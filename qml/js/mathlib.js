@@ -19,6 +19,7 @@
 .pragma library
 
 .import "expr-eval.js" as ExprEval
+.import "utils.js" as Utils
 
 const parser = new ExprEval.Parser()
 
@@ -26,24 +27,6 @@ class Expression {
     constructor(expr) {
         this.expr = expr
         this.calc = parser.parse(expr).simplify()
-        this.replacements = [
-            ['pi', 'π'],
-            ['inf', '∞'],
-            ['Infinity', '∞'],
-            [' * ', '×'],
-            ['0×', '0'],
-            ['1×', '1'],
-            ['2×', '2'],
-            ['3×', '3'],
-            ['4×', '4'],
-            ['5×', '5'],
-            ['6×', '6'],
-            ['7×', '7'],
-            ['8×', '8'],
-            ['9×', '9'],
-            [')×', ')'],
-            ['×(', '('],
-        ]
     }
     
     isConstant() {
@@ -66,13 +49,12 @@ class Expression {
         return this.calc.toString()
     }
     
-    toString() {
+    toString(forceSign=false) {
         var str = this.calc.toString()
         if(str[0] == "(") str = str.substr(1)
         if(str[str.length - 1] == ")") str = str.substr(0, str.length - 1)
-        this.replacements.forEach(function(replacement){
-            str = str.replace(replacement[0], replacement[1])
-        })
+        str = Utils.makeExpressionReadable(str)
+        if(str[0] != '-' && forceSign) str = '+' + str
         return str
     }
 }

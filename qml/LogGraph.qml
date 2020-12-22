@@ -29,7 +29,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "Logarithmic Graph Creator " + (settings.saveFilename != "" ? " - " + settings.saveFilename : "")
+    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename : "")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -75,11 +75,7 @@ ApplicationWindow {
 
             Settings {
                 id: settings
-                
                 onChanged: drawCanvas.requestPaint()
-                onCopyToClipboard: root.copyDiagramToClipboard()
-                onSaveDiagram: root.saveDiagram(filename)
-                onLoadDiagram: root.loadDiagram(filename)
             }
             
             ObjectLists {
@@ -124,32 +120,32 @@ ApplicationWindow {
             "xmin":         settings.xmin,
             "ymax":         settings.ymax,
             "yaxisstep":    settings.yaxisstep,
-            "xlabel":       settings.xaxislabel,
-            "ylabel":       settings.yaxislabel,
+            "xaxislabel":   settings.xaxislabel,
+            "yaxislabel":   settings.yaxislabel,
             "width":        root.width,
             "height":       root.height,
             "objects":      objs,
-            "type":         "bodediagramv1"
+            "type":         "logplotv1"
         }))
     }
     
     function loadDiagram(filename) {
         var data = JSON.parse(Helper.load(filename))
-        if(Object.keys(data).indexOf("type") != -1 && data["type"] == "bodediagramv1") {
+        if(Object.keys(data).indexOf("type") != -1 && data["type"] == "logplotv1") {
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
             settings.xmin = data["xmin"]
             settings.ymax = data["ymax"]
             settings.yaxisstep = data["yaxisstep"]
-            settings.xaxislabel = data["xlabel"]
-            settings.yaxislabel = data["ylabel"]
+            settings.xaxislabel = data["xaxislabel"]
+            settings.yaxislabel = data["yaxislabel"]
             root.height = data["height"]
             root.width = data["width"]
             
             Object.keys(data['objects']).forEach(function(objType){
                 Objects.currentObjects[objType] = []
                 data['objects'][objType].forEach(function(objData){
-                    var obj = new Objects.drawableTypes[objType](...objData)
+                    var obj = new Objects.types[objType](...objData)
                     Objects.currentObjects[objType].push(obj)
                 })
             })
@@ -166,4 +162,6 @@ ApplicationWindow {
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
     }
+    
+    
 }

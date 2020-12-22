@@ -21,6 +21,7 @@ import QtQuick.Dialogs 1.3 as D
 import QtQuick.Controls 2.12
 import "js/objects.js" as Objects
 import "js/mathlib.js" as MathLib
+import "js/utils.js" as Utils
 
 
 ListView {
@@ -30,7 +31,7 @@ ListView {
     
     property var listViews: {'':''} // Needs to be initialized or will be undefined -_-
     
-    model: Object.keys(Objects.drawableTypes)
+    model: Object.keys(Objects.types)
     implicitHeight: contentItem.childrenRect.height
     
     delegate: ListView {
@@ -112,9 +113,9 @@ ListView {
                 color: obj.color
                 title: `Pick new color for ${objType} ${obj.name}`
                 onAccepted: {
-                    Objects.currentObjects[objType][index].color = color
-                    objectListList.changed()
+                    Objects.currentObjects[objType][index].color = color.toString()
                     controlRow.obj = Objects.currentObjects[objType][index]
+                    objectListList.update()
                 }
             }
         }
@@ -127,7 +128,7 @@ ListView {
         property int objIndex: 0
         property var editingRow: QtObject{}
         property var obj: Objects.currentObjects[objType][objIndex]
-        title: `Logarithmic Graph Creator`
+        title: `Logarithmic Plotter`
         width: 300
         height: 400
         
@@ -157,11 +158,13 @@ ListView {
                 width: dlgProperties.width
                 defValue: objEditor.obj.name
                 onChanged: function(newValue) {
-                    Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newValue
-                    // TODO Resolve dependencies
-                    objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    objectListList.changed()
+                    if(Utils.parseName(newValue) != '') {
+                        Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = Utils.parseName(newValue)
+                        // TODO Resolve dependencies
+                        objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                        //objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                        objectListList.update()
+                    }
                 }
             }
         
@@ -176,19 +179,19 @@ ListView {
                     Objects.currentObjects[objEditor.objType][objEditor.objIndex].labelContent = model[newIndex]
                     objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                     objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    objectListList.changed()
+                    objectListList.update()
                 }
             }
             
             // Dynamic properties
             Repeater {
-                property var objProps: Objects.drawableTypes[objEditor.objType].properties()
+                property var objProps: Objects.types[objEditor.objType].properties()
                 model: Array.from(Object.keys(objProps), prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
                 
                 Item {
                     height: 30
                     width: dlgProperties.width
-                    property string label: modelData[0].charAt(0).toUpperCase() + modelData[0].slice(1).replace(/([A-Z])/g," $1");
+                    property string label: Utils.camelCase2readable(modelData[0])
                     
                     TextSetting {
                         id: customPropText
@@ -211,10 +214,7 @@ ListView {
                                 'string': function(){return newValue},
                                 'number': function(){return parseFloat(newValue)}
                             }[modelData[1]]()
-                            // TODO Resolve dependencies
-                            objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                            objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                            objectListList.changed()
+                            objectListList.update()
                         }
                         Component.onCompleted: {
                             //console.log(modelData[0], objEditor.obj[modelData[0]],modelData[1], defValue)
@@ -226,17 +226,29 @@ ListView {
                         height: 30
                         width: dlgProperties.width
                         label: parent.label
-                        model: visible ? modelData[1] : []
-                        visible: Array.isArray(modelData[1])
-                        currentIndex: model.indexOf(objEditor.obj[modelData[0]])
+                        // True to select an object of type, false for enums.
+                        property bool selectObjMode: (typeof modelData[1] == "string" && Object.keys(Objects.types).indexOf(modelData[1]) >= 0)
+                        model: visible ? 
+                            (selectObjMode ? Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]]) : modelData[1]) 
+                            : []
+                        visible: Array.isArray(modelData[1]) || selectObjMode
+                        currentIndex: model.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
 
                         onActivated: function(newIndex) {
                             // Setting object property.
-                            Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
+                            if(selectObjMode) {
+                                var selectedObj = Objects.getObjectByName(model[newIndex])
+                                if(selectedObj == null) {
+                                    selectedObj = Objects.createNewRegisteredObject(modelData[1])
+                                    model = Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]])
+                                    currentIndex = model.indexOf(selectedObj.name)
+                                }
+                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
+                            } else {
+                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
+                            }
                             // Refreshing
-                            objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                            objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                            objectListList.changed()
+                            objectListList.update()
                         }
                     }
                 }
@@ -257,7 +269,7 @@ ListView {
         }
         
         Repeater {
-            model: Object.keys(Objects.drawableTypes)
+            model: Object.keys(Objects.types)
             
             Button {
                 id: createBtn
@@ -276,15 +288,17 @@ ListView {
                 }
                 
                 onClicked: {
-                    var newobj = new Objects.drawableTypes[modelData]()
-                    if(Object.keys(Objects.currentObjects).indexOf(modelData) == -1) 
-                        Objects.currentObjects[modelData] = []
-                    Objects.currentObjects[modelData].push(newobj)
-                    objectListList.changed()
-                    console.log(objectListList, objectListList.listViews)
-                    objectListList.listViews[modelData].model = Objects.currentObjects[modelData]
+                    Objects.createNewRegisteredObject(modelData)
+                    objectListList.update()
                 }
             }
         }
+    }
+    
+    function update() {
+        objectListList.changed()
+        objectListList.model.forEach(function(objType){
+            objectListList.listViews[objType].model = Objects.currentObjects[objType]
+        })
     }
 }

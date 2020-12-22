@@ -16,6 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.pragma library
+
 var powerpos = {
     "-": "⁻",
     "0": "⁰",
@@ -115,4 +117,88 @@ function textsub(text) {
         }
     }
     return ret
+}
+
+function makeExpressionReadable(str) {
+    var replacements = [
+        [/pi/g, 'π'],
+        [/Infinity/g, '∞'],
+        [/inf/g, '∞'],
+        [/ \* /g, '×'],
+        [/ \^ /g, '^'],
+        [/\^\(([^\^]+)\)/g, function(match, p1) { return textsup(p1) }],
+        [/\^([^ ]+)/g, function(match, p1) { return textsup(p1) }],
+        [/(\d|\))×/g, '$1'],
+        [/×(\d|\()/g, '$1'],
+        [/\(([^)(+.-]+)\)/g, "$1"],
+        [/\(([^)(+.-]+)\)/g, "$1"],
+        [/\(([^)(+.-]+)\)/g, "$1"],
+        [/\(([^)(+.-]+)\)/g, "$1"],
+        [/\(([^)(+.-]+)\)/g, "$1"],
+        // Doing it 4 times to be recursive until better implementation
+    ]
+    // Replacements
+    replacements.forEach(function(replacement){
+        str = str.replace(replacement[0], replacement[1])
+    })
+    return str
+}
+
+function parseName(str, removeUnallowed = true) {
+    var replacements = [
+        // Greek letters
+        [/(\s|^)al(pha)?[^a-z]/g, 'α'],
+        [/(\s|^)be(ta)?[^a-z]/g, 'β'],
+        [/(\s|^)ga(mma)?[^a-z]/g, 'γ'],
+        [/(\s|^)de(lta)?[^a-z]/g, 'δ'],
+        [/(\s|^)ep(silon)?[^a-z]/g, 'ε'],
+        [/(\s|^)ze(ta)?[^a-z]/g, 'ζ'],
+        [/(\s|^)et(a)?[^a-z]/g, 'η'],
+        [/(\s|^)th(eta)?[^a-z]/g, 'θ'],
+        [/(\s|^)io(ta)?[^a-z]/g, 'ι'],
+        [/(\s|^)ka(ppa)[^a-z]?/g, 'κ'],
+        [/(\s|^)la(mbda)?[^a-z]/g, 'λ'],
+        [/(\s|^)mu[^a-z]/g, 'μ'],
+        [/(\s|^)nu[^a-z]/g, 'ν'],
+        [/(\s|^)xi[^a-z]/g, 'ξ'],
+        [/(\s|^)rh(o)?[^a-z]/g, 'ρ'],
+        [/(\s|^)si(gma)?[^a-z]/g, 'σ'],
+        [/(\s|^)ta(u)?[^a-z]/g, 'τ'],
+        [/(\s|^)up(silon)?[^a-z]/g, 'υ'],
+        [/(\s|^)ph(i)?[^a-z]/g, 'φ'],
+        [/(\s|^)ch(i)?[^a-z]/g, 'χ'],
+        [/(\s|^)ps(i)?[^a-z]/g, 'ψ'],
+        [/(\s|^)om(ega)?[^a-z]/g, 'ω'],
+        // Capital greek letters
+        [/(\s|^)gga(mma)?[^a-z]/g, 'Γ'],
+        [/(\s|^)gde(lta)?[^a-z]/g, 'Δ'],
+        [/(\s|^)gth(eta)?[^a-z]/g, 'Θ'],
+        [/(\s|^)gla(mbda)?[^a-z]/g, 'Λ'],
+        [/(\s|^)gxi[^a-z]/g, 'Ξ'],
+        [/(\s|^)gpi[^a-z]/g, 'Π'],
+        [/(\s|^)gsi(gma)[^a-z]?/g, 'Σ'],
+        [/(\s|^)gph(i)?[^a-z]/g, 'Φ'],
+        [/(\s|^)gps(i)?[^a-z]/g, 'Ψ'],
+        [/(\s|^)gom(ega)?[^a-z]/g, 'Ω'],
+        // Underscores
+        [/_\(([^\^]+)\)/g, function(match, p1) { return textsub(p1) }],
+        [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
+        // Removing
+        [/[xπℝℕ\\∪∩\]\[ ()^/÷*×+=\d-]/g , function(match){console.log('removing', match); return ''}],
+    ]
+    if(!removeUnallowed) replacements.pop()
+    // Replacements
+    replacements.forEach(function(replacement){
+        str = str.replace(replacement[0], replacement[1])
+    })
+    return str
+}
+
+String.prototype.toLatinUppercase = function() {
+    return this.replace(/[a-z]/g, function(match){return match.toUpperCase()})
+}
+
+function camelCase2readable(label) {
+    var parsed = parseName(label, false)
+    return parsed.charAt(0).toLatinUppercase() + parsed.slice(1).replace(/([A-Z])/g," $1")
 }

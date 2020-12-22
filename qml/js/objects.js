@@ -112,18 +112,15 @@ class Point extends DrawableObject  {
         var pointSize = 8
         switch(this.pointStyle) {
             case 'dot':
-                ctx.fillStyle = this.color
                 ctx.beginPath();
                 ctx.ellipse(canvasX-pointSize/2, canvasY-pointSize/2, pointSize, pointSize)
                 ctx.fill();
                 break;
             case 'diagonal cross':
-                ctx.strokeStyle = this.color
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY-pointSize/2, canvasX+pointSize/2, canvasY+pointSize/2)
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY+pointSize/2, canvasX-pointSize/2, canvasY+pointSize/2)
                 break;
             case 'vertical cross':
-                ctx.strokeStyle = this.color
                 canvas.drawLine(ctx, canvasX, canvasY-pointSize/2, canvasX, canvasY+pointSize/2)
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY, canvasX+pointSize/2, canvasY)
                 break;
@@ -131,7 +128,6 @@ class Point extends DrawableObject  {
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
         var textSize = ctx.measureText(text).width
-        ctx.fillStyle = this.color
         switch(this.labelPos) {
             case 'top':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY-16)
@@ -178,7 +174,7 @@ class Function extends DrawableObject {
     
     getReadableString() {
         if(this.displayMode == 'application') {
-            return `${this.name}: ${this.inDomain} ⸺˃ ${this.outDomain}\n    x ⸺˃ ${this.expression.toString()}`
+            return `${this.name}: ${this.inDomain} ⸺˃ ${this.outDomain}\n   ${' '.repeat(this.name.length)}x ⸺˃ ${this.expression.toString()}`
         } else {
             return `${this.name}(x) = ${this.expression.toString()}`
         }
@@ -191,28 +187,11 @@ class Function extends DrawableObject {
     }
     
     draw(canvas, ctx) {
-        ctx.strokeStyle = this.color
-        ctx.fillStyle = this.color
-        // Drawing small traits every 2px
-        var pxprecision = 2
-        var previousX = canvas.px2x(0)
-        var previousY = this.expression.evaluate(previousX)
-        for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
-            var currentX = canvas.px2x(px)
-            var currentY = this.expression.evaluate(currentX)
-            if(this.inDomain.includes(currentX) && this.inDomain.includes(previousX) &&
-                this.outDomain.includes(currentY) && this.outDomain.includes(previousY) &&
-                Math.abs(previousY-currentY)<100) { // 100 per 2px is a lot (probably inf to inf issue)
-                    canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
-                }
-            previousX = currentX
-            previousY = currentY
-        }
+        Function.drawFunction(canvas, ctx, this.expression, this.inDomain, this.outDomain)
         // Label
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
         var textSize = canvas.measureText(ctx, text)
-        ctx.fillStyle = this.color
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.expression.evaluate(this.labelX))
         switch(this.labelPos) {
@@ -225,11 +204,125 @@ class Function extends DrawableObject {
                 
         }
     }
+    
+    static drawFunction(canvas, ctx, expr, inDomain, outDomain) {
+        // Reusable in other objects.
+        // Drawing small traits every 2px
+        var pxprecision = 2
+        var previousX = canvas.px2x(0)
+        var previousY = expr.evaluate(previousX)
+        for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
+            var currentX = canvas.px2x(px)
+            var currentY = expr.evaluate(currentX)
+            if(inDomain.includes(currentX) && inDomain.includes(previousX) &&
+                outDomain.includes(currentY) && outDomain.includes(previousY) &&
+                Math.abs(previousY-currentY)<100) { // 100 per 2px is a lot (probably inf to inf issue)
+                    canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                }
+            previousX = currentX
+            previousY = currentY
+        }
+    }
 }
 
-const drawableTypes = {
+class GainBode extends DrawableObject {
+    static type(){return 'Gain Bode'}
+    static properties() {return {
+        'ω_0': 'Point',
+        'pass': ['high', 'low'],
+        'gain': 'Expression',
+        'labelPos': ['above', 'below'],
+        'labelX': 'number'
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
+                ω_0 = '', pass = 'high', gain = '20', labelPos = 'above', labelX = 1) {
+        if(name == null) name = getNewName('G', 'Gain Bode')
+        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE gains.
+        super(name, visible, color, labelContent)
+        if(typeof ω_0 == "string") {
+            // Point name or create one
+            ω_0 = getObjectByName('Point', ω_0)
+            if(ω_0 == null) {
+                // Create new point
+                ω_0 = createNewRegisteredObject('Point')
+                ω_0.name = getNewName('ω', 'Gain Bode')
+            }
+        }
+        console.log(this, ω_0)
+        this.ω_0 = ω_0
+        this.pass = pass
+        if(typeof gain == 'number' || typeof gain == 'string') gain = new MathLib.Expression(gain.toString())
+        this.gain = gain
+        this.labelPos = labelPos
+        this.labelX = labelX
+    }
+    
+    getReadableString() {
+        return `${this.name}: ${this.pass}-pass, ω₀=${this.ω_0.x}, ${this.gain.toString(true)} dB/dec.`
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, 
+        this.ω_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPos, this.labelX]
+    }
+    
+    draw(canvas, ctx) {
+        var base = [canvas.x2px(this.ω_0.x), canvas.y2px(this.ω_0.y)]
+        var dbfn = new MathLib.Expression(`${this.gain.evaluate()}*(ln(x)-ln(${this.ω_0.x}))/ln(10)+${this.ω_0.y}`)
+        var inDrawDom = new MathLib.EmptySet()
+
+        if(this.pass == 'high') {
+            // High pass, linear line from begining, then constant to the end.
+            canvas.drawLine(ctx, base[0], base[1], canvas.canvasSize.width, base[1])
+            inDrawDom = MathLib.parseDomain(`]-inf;${this.ω_0.x}[`)
+        } else {
+            // Low pass, constant from the beginning, linear line to the end.
+            canvas.drawLine(ctx, base[0], base[1], 0, base[1])
+            inDrawDom = MathLib.parseDomain(`]${this.ω_0.x};+inf[`)
+        }
+        Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
+    }
+}
+
+const types = {
     'Point': Point,
-    'Function': Function
+    'Function': Function,
+    'Gain Bode': GainBode,
 }
 
 var currentObjects = {}
+
+function getObjectByName(objType, objName) {
+    if(currentObjects[objType] == undefined) return null
+    var retObj = null
+    currentObjects[objType].forEach(function(obj){
+        if(obj.name == objName) retObj = obj
+    })
+    return retObj
+}
+
+function getObjectsName(objType) {
+    if(currentObjects[objType] == undefined) return []
+    return currentObjects[objType].map(function(obj) {
+        return obj.name
+    })
+}
+
+function createNewRegisteredObject(objType) {
+    if(Object.keys(types).indexOf(objType) == -1) return null // Object type does not exist.
+    var newobj = new types[objType]()
+    if(Object.keys(currentObjects).indexOf(objType) == -1) {
+        currentObjects[objType] = []
+    }
+    currentObjects[objType].push(newobj)
+    return newobj
+}
+
+var points = [new Point()]
+var f = new Function();
+f.point = points[0]
+points[0].name = 'B'
+points[0].x = 2
+f.point.x = 4
+console.log(points[0].name, f.point.name, points[0].x, f.point.x)

@@ -44,6 +44,8 @@ Canvas {
         drawAxises(ctx)
         Object.keys(Objects.currentObjects).forEach(function(objType){
             Objects.currentObjects[objType].forEach(function(obj){
+                ctx.strokeStyle = obj.color
+                ctx.fillStyle = obj.color
                 if(obj.visible) obj.draw(canvas, ctx)
             })
         })
@@ -61,7 +63,7 @@ Canvas {
     
     // Drawing the log based graph
     function drawGrille(ctx) {
-        ctx.strokeStyle = "#AAAAAA"
+        ctx.strokeStyle = "#C0C0C0"
         for(var xpow = -10; xpow <= 10; xpow++) {
             for(var xmulti = 1; xmulti < 10; xmulti++) {
                 drawXLine(ctx, Math.pow(10, xpow)*xmulti)

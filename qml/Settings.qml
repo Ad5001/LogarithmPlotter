@@ -20,15 +20,12 @@ import QtQuick.Controls 2.12
 import QtQuick 2.12 
 
 Grid {
-    id: root
+    id: settings
     height: 30*Math.max(1, Math.ceil(7 / columns))
     columns: Math.floor(width / settingWidth)
     spacing: 10
     
     signal changed()
-    signal copyToClipboard()
-    signal saveDiagram(string filename)
-    signal loadDiagram(string filename)
     
     property int settingWidth: 135
     
@@ -38,15 +35,14 @@ Grid {
     property double ymax: 25
     property int yaxisstep: 4
     property string xaxislabel: "ω (rad/s)"
-    property string yaxislabel: "Gain G (dB)"
+    property string yaxislabel: "G (dB)"
     property string saveFilename: ""
     
     FileDialog {
         id: fdiag
         onAccepted: {
             var filePath = fileUrl.toString().substr(7)
-            root.saveFilename = filePath
-            console.log(filePath)
+            settings.saveFilename = filePath
             if(exportMode) {
                 root.saveDiagram(filePath)
             } else {
@@ -63,11 +59,11 @@ Grid {
         isInt: true
         label: "X Zoom"
         min: 1
-        width: root.settingWidth
-        defValue: root.xzoom
+        width: settings.settingWidth
+        defValue: settings.xzoom
         onChanged: function(newValue) {
-            root.xzoom = newValue
-            root.changed()
+            settings.xzoom = newValue
+            settings.changed()
         }
     }
     TextSetting {
@@ -75,11 +71,11 @@ Grid {
         height: 30
         isInt: true
         label: "Y Zoom"
-        width: root.settingWidth
-        defValue: root.yzoom
+        width: settings.settingWidth
+        defValue: settings.yzoom
         onChanged: function(newValue) {
-            root.yzoom = newValue
-            root.changed()
+            settings.yzoom = newValue
+            settings.changed()
         }
     }
     // Positioning the graph
@@ -89,11 +85,11 @@ Grid {
         isDouble: true
         min: 0
         label: "Min X"
-        width: root.settingWidth
-        defValue: root.xmin
+        width: settings.settingWidth
+        defValue: settings.xmin
         onChanged: function(newValue) {
-            root.xmin = newValue
-            root.changed()
+            settings.xmin = newValue
+            settings.changed()
         }
     }
     TextSetting {
@@ -101,11 +97,11 @@ Grid {
         height: 30
         isDouble: true
         label: "Max Y"
-        width: root.settingWidth
-        defValue: root.ymax
+        width: settings.settingWidth
+        defValue: settings.ymax
         onChanged: function(newValue) {
-            root.ymax = newValue
-            root.changed()
+            settings.ymax = newValue
+            settings.changed()
         }
     }
     TextSetting {
@@ -113,32 +109,32 @@ Grid {
         height: 30
         isInt: true
         label: "Y Axis Step"
-        width: root.settingWidth
-        defValue: root.yaxisstep
+        width: settings.settingWidth
+        defValue: settings.yaxisstep
         onChanged: function(newValue) {
-            root.yaxisstep = newValue
-            root.changed()
+            settings.yaxisstep = newValue
+            settings.changed()
         }
     }
     
     Button {
         id: copyToClipboard
         height: 30
-        width: root.settingWidth
+        width: settings.settingWidth
         text: "Copy to clipboard"
         icon.name: 'editcopy'
-        onClicked: root.copyToClipboard()
+        onClicked: root.copyDiagramToClipboard()
     }
     
     TextSetting {
         id: xAxisLabel
         height: 30
         label: "X Label"
-        width: root.settingWidth
-        defValue: root.xaxislabel
+        width: settings.settingWidth
+        defValue: settings.xaxislabel
         onChanged: function(newValue) {
-            root.xaxislabel = newValue
-            root.changed()
+            settings.xaxislabel = newValue
+            settings.changed()
         }
     }
     
@@ -146,18 +142,18 @@ Grid {
         id: yAxisLabel
         height: 30
         label: "Y Label"
-        width: root.settingWidth
-        defValue: root.yaxislabel
+        width: settings.settingWidth
+        defValue: settings.yaxislabel
         onChanged: function(newValue) {
-            root.yaxislabel = newValue
-            root.changed()
+            settings.yaxislabel = newValue
+            settings.changed()
         }
     }
     
     Button {
         id: saveDiagram
         height: 30
-        width: root.settingWidth
+        width: settings.settingWidth
         text: "Save diagram"
         icon.name: 'filesave'
         onClicked: save()
@@ -166,7 +162,7 @@ Grid {
     Button {
         id: saveDiagramAs
         height: 30
-        width: root.settingWidth
+        width: settings.settingWidth
         text: "Save diagram as"
         icon.name: 'filesaveas'
         onClicked: saveAs()
@@ -175,7 +171,7 @@ Grid {
     Button {
         id: loadDiagram
         height: 30
-        width: root.settingWidth
+        width: settings.settingWidth
         text: "Load diagram"
         icon.name: 'fileopen'
         onClicked: load()
@@ -183,17 +179,17 @@ Grid {
     CheckBox {
         id: modePhaseCheck
         height: 30
-        width: root.settingWidth
+        width: settings.settingWidth
         text: "Mode phase"
-        property var refresh: checked ? root.changed() : root.changed()
+        property var refresh: checked ? settings.changed() : settings.changed()
     }
     
     function save() {
-        if(root.saveFilename == "") {
+        if(settings.saveFilename == "") {
             fdiag.exportMode = true
             fdiag.open()
         } else {
-            root.saveDiagram(root.saveFilename)
+            root.saveDiagram(settings.saveFilename)
         }
     }
     

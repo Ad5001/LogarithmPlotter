@@ -77,7 +77,7 @@ class Helper(QObject):
         os.system("xclip -selection clipboard -t image/png -i " + tempfile)
 
 app = QApplication([])
-app.setApplicationName("Logarithmic Graph Creator")
+app.setApplicationName("Logarithmic Plotter")
 app.setOrganizationName("Ad5001")
 engine = QQmlApplicationEngine()
 helper = Helper()
