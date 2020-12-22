@@ -40,7 +40,7 @@ ListView {
         model: Objects.currentObjects[objType]
         width: objectListList.width
         implicitHeight: contentItem.childrenRect.height
-        visible: model.length > 0
+        visible: model != undefined && model.length > 0
         
         Component.onCompleted: objectListList.listViews[objType] = objTypeList // Listing in order to be refreshed
         
@@ -49,6 +49,8 @@ ListView {
             color: sysPalette.windowText
             text: objectListList.model[index] + "s:"
             font.pixelSize: 20
+            visible: objTypeList.visible
+            height: visible ? 20 : 0
         }
         
         delegate: Item {
@@ -146,8 +148,6 @@ ListView {
             id: dlgProperties
             anchors.top: dlgTitle.bottom
             width: objEditor.width - 40
-            //height: 30*Math.max(1, Math.ceil(7 / columns))
-            //columns: Math.floor(width / settingWidth)
             spacing: 10
         
             TextSetting {
@@ -214,6 +214,7 @@ ListView {
                                 'string': function(){return newValue},
                                 'number': function(){return parseFloat(newValue)}
                             }[modelData[1]]()
+                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
                         }
                         Component.onCompleted: {
@@ -248,6 +249,7 @@ ListView {
                                 Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
                             }
                             // Refreshing
+                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
                         }
                     }

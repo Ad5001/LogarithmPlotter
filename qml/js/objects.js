@@ -28,11 +28,13 @@ function getNewName(allowedLetters, category) {
     var newid = currentObjects[category].length
     var letter = allowedLetters[newid % allowedLetters.length]
     var num = Math.round((newid - (newid % allowedLetters.length)) / allowedLetters.length)
-    return letter + (num > 0 ? Utils.textsup(num) : '')
+    return letter + (num > 0 ? Utils.textsub(num) : '')
 }
 
 class DrawableObject {
     static type(){return 'Unknown'}
+    static typeMultiple(){return 'Unknown'}
+    static createable() {return true}
     static properties() {return {}}
     
     constructor(name, visible = true, color = null, labelContent = 'name + value') {
@@ -46,10 +48,10 @@ class DrawableObject {
     }
     
     getRandomColor() {
-        var x = '0123456789'; // Removing ABCDEF for less flashy colors.
+        var x = '0123456789ABCDEF'; // Removing  for less flashy colors.
         var color = '#';
         for (var i = 0; i < 6; i++) {
-            color += x[Math.floor(Math.random() * 10)];
+            color += x[Math.floor(Math.random() * (16-6*(i%2==0)))];
         }
         return color;
     }
@@ -74,11 +76,14 @@ class DrawableObject {
         return [this.name, this.visible, this.color.toString(), this.labelContent]
     }
     
+    update() {}
+    
     draw(canvas, ctx) {}
 }
 
 class Point extends DrawableObject  {
     static type(){return 'Point'}
+    static typeMultiple(){return 'Points'}
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
@@ -144,10 +149,20 @@ class Point extends DrawableObject  {
                 
         }
     }
+    
+    update() {
+        if(currentObjects['Total gains Bode'] != undefined && currentObjects['Gain Bode'] != undefined) {
+            for(var i = 0; i < currentObjects['Gain Bode'].length; i++) {
+                console.log(currentObjects['Gain Bode'][i].ω_0.name)
+                if(currentObjects['Gain Bode'][i].ω_0.name == this.name) currentObjects['Gain Bode'][i].update()
+            }
+        }
+    }
 }
 
 class Function extends DrawableObject {
     static type(){return 'Function'}
+    static typeMultiple(){return 'Functions'}
     static properties() {return {
         'expression': 'Expression',
         'inDomain': 'Domain',
@@ -227,6 +242,7 @@ class Function extends DrawableObject {
 
 class GainBode extends DrawableObject {
     static type(){return 'Gain Bode'}
+    static typeMultiple(){return 'Gains Bode'}
     static properties() {return {
         'ω_0': 'Point',
         'pass': ['high', 'low'],
@@ -238,7 +254,7 @@ class GainBode extends DrawableObject {
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 ω_0 = '', pass = 'high', gain = '20', labelPos = 'above', labelX = 1) {
         if(name == null) name = getNewName('G', 'Gain Bode')
-        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE gains.
+        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitues (Total Gains Bode).
         super(name, visible, color, labelContent)
         if(typeof ω_0 == "string") {
             // Point name or create one
@@ -259,12 +275,21 @@ class GainBode extends DrawableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.ω_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec.`
+        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.ω_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
     }
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
         this.ω_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPos, this.labelX]
+    }
+    
+    evaluate(x=1) {
+        if((this.pass == 'high' && x < this.ω_0.x) || (this.pass == 'low' && x > this.ω_0.x)) {
+            var dbfn = new MathLib.Expression(`${this.gain.evaluate()}*(ln(x)-ln(${this.ω_0.x}))/ln(10)+${this.ω_0.y}`)
+            return dbfn.evaluate(x)
+        } else {
+            return this.ω_0.y.evaluate()
+        }
     }
     
     draw(canvas, ctx) {
@@ -288,12 +313,7 @@ class GainBode extends DrawableObject {
         ctx.font = "14px sans-serif"
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
-        var posY
-        if((this.pass == 'high' && this.labelX < this.ω_0.x) || (this.pass == 'low' && this.labelX > this.ω_0.x)) {
-            posY = canvas.y2px(dbfn.evaluate(this.labelX))
-        } else {
-            posY = base[1]
-        }
+        var posY = canvas.y2px(this.evaluate(this.labelX))
         switch(this.labelPos) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
@@ -303,12 +323,121 @@ class GainBode extends DrawableObject {
                 break;
         }
     }
+    
+    update() {
+        if(currentObjects['Total gains Bode'] != undefined) {
+            currentObjects['Total gains Bode'][0].recalculateCache()
+        }
+    }
+}
+
+class TotalGainsBode extends DrawableObject {
+    static type(){return 'Total gains Bode'}
+    static typeMultiple(){return 'Total gains Bode'}
+    static properties() {return {
+        'labelPos': ['above', 'below'],
+        'labelX': 'number'
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value',
+        labelPos = 'above', labelX = 1) {
+        if(name == null) name = 'G'
+        super(name, visible, color, labelContent)
+        this.labelPos = labelPos
+        this.labelX = labelX
+        this.recalculateCache()
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, labelPos = 'above', labelX = 1]
+    }
+    
+    getReadableString() {
+        return `${this.name}: ${getObjectsName('Gain Bode').join(' + ')}`
+    }
+    
+    recalculateCache() {
+        this.cachedParts = []
+        // Calculating this is fairly resource expansive so it's cached.
+        if(currentObjects['Gain Bode'] != undefined) {
+            console.log('Recalculating cache gain')
+            // Minimum to draw (can be expended if needed, just not inifite or it'll cause issues.
+            var drawMin = 0.01
+            
+            var baseY = 0
+            var ω0xGains = {100000: 0} // To draw the last part
+            var ω0xPass = {100000: 'high'} // To draw the last part
+            currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their ω_0 position.
+                if(ω0xGains[gainObj.ω_0.x.evaluate()] == undefined) {
+                    ω0xGains[gainObj.ω_0.x.evaluate()] = gainObj.gain.evaluate()
+                    ω0xPass[gainObj.ω_0.x.evaluate()] = gainObj.pass == 'high'
+                } else {
+                    ω0xGains[gainObj.ω_0.x.evaluate()+0.0001] = gainObj.gain.evaluate()
+                }
+                baseY += gainObj.evaluate(drawMin)
+            })
+            // Sorting the ω_0x
+            var ω0xList = Object.keys(ω0xGains)
+            ω0xList.sort()
+            ω0xList = ω0xList.reverse()
+            // Adding the total gains.
+            var gainsBeforeP = []
+            var gainsAfterP = []
+            var gainTotal = 0
+            for(var i=0; i < ω0xList.length; i++){
+                if(ω0xPass[ω0xList[i]]) { // High-pass
+                    gainsBeforeP.push(ω0xGains[ω0xList[i]])
+                    gainsAfterP.push(0)
+                    gainTotal += ω0xGains[ω0xList[i]] // Gain at first
+                } else {
+                    gainsBeforeP.push(0)
+                    gainsAfterP.push(ω0xGains[ω0xList[i]])
+                }
+            }
+            // Calculating parts
+            var previousPallier = drawMin
+            for(var pallier = 0; pallier < ω0xList.length; pallier++) {
+                var dbfn = new MathLib.Expression(`${gainTotal}*(ln(x)-ln(${previousPallier}))/ln(10)+${baseY}`)
+                var inDrawDom = MathLib.parseDomain(`]${previousPallier};${ω0xList[pallier]}]`)
+                this.cachedParts.push([dbfn, inDrawDom])
+                previousPallier = ω0xList[pallier]
+                gainTotal += gainsAfterP[pallier] - gainsBeforeP[pallier]
+                baseY = dbfn.evaluate(ω0xList[pallier])
+            }
+        }
+    }
+    
+    draw(canvas, ctx) {
+        if(this.cachedParts.length > 0) {
+            for(var i=0; i<this.cachedParts.length; i++) {
+                var [dbfn, inDrawDom] = this.cachedParts[i]
+                Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
+                if(inDrawDom.includes(this.labelX)) {
+                    // Label
+                    var text = this.getLabel()
+                    ctx.font = "14px sans-serif"
+                    var textSize = canvas.measureText(ctx, text)
+                    var posX = canvas.x2px(this.labelX)
+                    var posY = canvas.y2px(dbfn.evaluate(this.labelX))
+                    switch(this.labelPos) {
+                        case 'above':
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                            break;
+                        case 'below':
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                            break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 const types = {
     'Point': Point,
     'Function': Function,
     'Gain Bode': GainBode,
+    'Total gains Bode': TotalGainsBode
 }
 
 var currentObjects = {}
@@ -324,9 +453,7 @@ function getObjectByName(objType, objName) {
 
 function getObjectsName(objType) {
     if(currentObjects[objType] == undefined) return []
-    return currentObjects[objType].map(function(obj) {
-        return obj.name
-    })
+    return currentObjects[objType].map(function(obj) {return obj.name})
 }
 
 function createNewRegisteredObject(objType) {

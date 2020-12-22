@@ -132,7 +132,6 @@ class Domain {
                 var openBegin = frm.trim().charAt(0) == "]"
                 var openEnd = frm.trim().charAt(frm.length -1) == "["
                 var [begin, end] = frm.substr(1, frm.length-2).split(";")
-                console.log(frm, begin, end, openBegin, openEnd)
                 return new Domain(begin.trim(), end.trim(), openBegin, openEnd)
                 break;
         }

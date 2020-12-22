@@ -177,13 +177,6 @@ Grid {
         icon.name: 'fileopen'
         onClicked: load()
     }
-    CheckBox {
-        id: modePhaseCheck
-        height: 30
-        width: settings.settingWidth
-        text: "Mode phase"
-        property var refresh: checked ? settings.changed() : settings.changed()
-    }
     
     function save() {
         if(settings.saveFilename == "") {
