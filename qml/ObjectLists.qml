@@ -277,17 +277,12 @@ ListView {
                 id: createBtn
                 text: modelData
                 width: createRow.width
-                flat: false
+                visible: Objects.types[modelData].createable()
+                Component.onCompleted: console.log(modelData, visible, Objects)//, Objects.type[modelData])
+                height: visible ? implicitHeight : 0
+                icon.source: './icons/'+modelData+'.svg' // Default to dark version
                 
-                contentItem: Text {
-                    
-                    text: createBtn.text
-                    font.pixelSize: 20
-                    opacity: enabled ? 1.0 : 0.3
-                    color: sysPalette.windowText
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
+
                 
                 onClicked: {
                     Objects.createNewRegisteredObject(modelData)

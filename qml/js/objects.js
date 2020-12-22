@@ -151,7 +151,7 @@ class Point extends DrawableObject  {
     }
     
     update() {
-        if(currentObjects['Total gains Bode'] != undefined && currentObjects['Gain Bode'] != undefined) {
+        if(currentObjects['Somme gains Bode'] != undefined && currentObjects['Gain Bode'] != undefined) {
             for(var i = 0; i < currentObjects['Gain Bode'].length; i++) {
                 console.log(currentObjects['Gain Bode'][i].ω_0.name)
                 if(currentObjects['Gain Bode'][i].ω_0.name == this.name) currentObjects['Gain Bode'][i].update()
@@ -229,8 +229,8 @@ class Function extends DrawableObject {
         for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
             var currentX = canvas.px2x(px)
             var currentY = expr.evaluate(currentX)
-            if(inDomain.includes(currentX) && inDomain.includes(previousX) &&
-                outDomain.includes(currentY) && outDomain.includes(previousY) &&
+            if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
+                (outDomain.includes(currentY) || outDomain.includes(previousY)) &&
                 Math.abs(previousY-currentY)<100) { // 100 per 2px is a lot (probably inf to inf issue)
                     canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                 }
@@ -254,7 +254,7 @@ class GainBode extends DrawableObject {
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 ω_0 = '', pass = 'high', gain = '20', labelPos = 'above', labelX = 1) {
         if(name == null) name = getNewName('G', 'Gain Bode')
-        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitues (Total Gains Bode).
+        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitues (Somme gains Bode).
         super(name, visible, color, labelContent)
         if(typeof ω_0 == "string") {
             // Point name or create one
@@ -272,6 +272,7 @@ class GainBode extends DrawableObject {
         this.gain = gain
         this.labelPos = labelPos
         this.labelX = labelX
+        this.update()
     }
     
     getReadableString() {
@@ -325,15 +326,18 @@ class GainBode extends DrawableObject {
     }
     
     update() {
-        if(currentObjects['Total gains Bode'] != undefined) {
-            currentObjects['Total gains Bode'][0].recalculateCache()
+        if(currentObjects['Somme gains Bode'] != undefined) {
+            currentObjects['Somme gains Bode'][0].recalculateCache()
+        } else {
+            createNewRegisteredObject('Somme gains Bode')
         }
     }
 }
 
-class TotalGainsBode extends DrawableObject {
-    static type(){return 'Total gains Bode'}
-    static typeMultiple(){return 'Total gains Bode'}
+class SommeGainsBode extends DrawableObject {
+    static type(){return 'Somme gains Bode'}
+    static typeMultiple(){return 'Somme gains Bode'}
+    static createable() {return false}
     static properties() {return {
         'labelPos': ['above', 'below'],
         'labelX': 'number'
@@ -349,11 +353,11 @@ class TotalGainsBode extends DrawableObject {
     }
     
     export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, labelPos = 'above', labelX = 1]
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.labelPos, this.labelX]
     }
     
     getReadableString() {
-        return `${this.name}: ${getObjectsName('Gain Bode').join(' + ')}`
+        return `${this.name} = ${getObjectsName('Gain Bode').join(' + ')}`
     }
     
     recalculateCache() {
@@ -437,7 +441,7 @@ const types = {
     'Point': Point,
     'Function': Function,
     'Gain Bode': GainBode,
-    'Total gains Bode': TotalGainsBode
+    'Somme gains Bode': SommeGainsBode
 }
 
 var currentObjects = {}
@@ -465,11 +469,3 @@ function createNewRegisteredObject(objType) {
     currentObjects[objType].push(newobj)
     return newobj
 }
-
-var points = [new Point()]
-var f = new Function();
-f.point = points[0]
-points[0].name = 'B'
-points[0].x = 2
-f.point.x = 4
-console.log(points[0].name, f.point.name, points[0].x, f.point.x)

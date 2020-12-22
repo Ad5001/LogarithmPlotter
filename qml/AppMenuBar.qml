@@ -18,6 +18,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "js/objects.js" as Objects
 
 MenuBar {
     Menu {
@@ -57,6 +58,24 @@ MenuBar {
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
             icon.name: 'editcopy'
+        }
+    }
+    Menu {
+        title: qsTr("&Create")
+        // Services repeater
+        Repeater {
+            model: Object.keys(Objects.types)
+            
+            MenuItem {
+                text: modelData
+                visible: Objects.types[modelData].createable()
+                height: visible ? implicitHeight : 0
+                icon.source: './icons/'+modelData+'.svg' // Default to dark version
+                onTriggered: {
+                    Objects.createNewRegisteredObject(modelData)
+                    objectLists.update()
+                }
+            }
         }
     }
     Menu {

@@ -38,7 +38,7 @@ ApplicationWindow {
     
     Drawer {
         id: sidebar
-        width: 290
+        width: 300
         height: parent.height
         y: root.menuBar.height
         readonly property bool inPortrait: root.width < root.height
@@ -60,28 +60,31 @@ ApplicationWindow {
             width: parent.width
             anchors.top: topSeparator.bottom
             TabButton {
-                text: qsTr("Settings")
+                text: qsTr("Objects")
             }
             TabButton {
-                text: qsTr("Objects")
+                text: qsTr("Settings")
             }
         }
         
         StackLayout {
-            width: parent.width
-            currentIndex: sidebarSelector.currentIndex
             anchors.top: sidebarSelector.bottom
+            anchors.left: parent.left
+            anchors.topMargin: 5
+            anchors.leftMargin: 5
+            width: parent.width - 10
             height: parent.height - sidebarSelector.height
+            currentIndex: sidebarSelector.currentIndex
             z: -1
             clip: true
-
-            Settings {
-                id: settings
-                onChanged: drawCanvas.requestPaint()
-            }
             
             ObjectLists {
                 id: objectLists
+                onChanged: drawCanvas.requestPaint()
+            }
+
+            Settings {
+                id: settings
                 onChanged: drawCanvas.requestPaint()
             }
         }
@@ -152,11 +155,23 @@ ApplicationWindow {
                 })
             })
             // Refreshing sidebar
-            Object.keys(objectLists.listViews).forEach(function(type){
-                objectLists.listViews[type].model = Objects.currentObjects[type]
-            })
-            drawCanvas.requestPaint()
+            if(sidebarSelector.currentIndex == 0) {
+                // For some reason, if we load a file while the tab is on object,
+                // we get stuck in a Qt-side loop? Qt bug or sideeffect here, I don't know.
+                sidebarSelector.currentIndex = 1
+                objectLists.update()
+                delayRefreshTimer.start()
+            } else {
+                objectLists.update()
+            }
         }
+    }
+    
+    Timer {
+        id: delayRefreshTimer
+        repeat: false
+        interval: 1
+        onTriggered: sidebarSelector.currentIndex = 0
     }
     
     function copyDiagramToClipboard() {
