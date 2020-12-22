@@ -18,6 +18,7 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
+import "js/utils.js" as Utils
 
 Grid {
     id: settings
@@ -133,7 +134,7 @@ Grid {
         width: settings.settingWidth
         defValue: settings.xaxislabel
         onChanged: function(newValue) {
-            settings.xaxislabel = newValue
+            settings.xaxislabel = Utils.parseName(newValue, false)
             settings.changed()
         }
     }
@@ -145,7 +146,7 @@ Grid {
         width: settings.settingWidth
         defValue: settings.yaxislabel
         onChanged: function(newValue) {
-            settings.yaxislabel = newValue
+            settings.yaxislabel = Utils.parseName(newValue, false)
             settings.changed()
         }
     }

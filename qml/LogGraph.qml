@@ -72,6 +72,8 @@ ApplicationWindow {
             currentIndex: sidebarSelector.currentIndex
             anchors.top: sidebarSelector.bottom
             height: parent.height - sidebarSelector.height
+            z: -1
+            clip: true
 
             Settings {
                 id: settings

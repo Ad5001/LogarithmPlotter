@@ -15,6 +15,7 @@ build
 docs/html
 .directory
 loggraph.kdev4
+*.json
 .kdev4
 AccountFree.pro
 AccountFree.pro.user

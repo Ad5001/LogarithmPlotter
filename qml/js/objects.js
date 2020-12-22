@@ -46,10 +46,10 @@ class DrawableObject {
     }
     
     getRandomColor() {
-        var x = '0123456789ABCDEF';
+        var x = '0123456789'; // Removing ABCDEF for less flashy colors.
         var color = '#';
         for (var i = 0; i < 6; i++) {
-            color += x[Math.floor(Math.random() * 16)];
+            color += x[Math.floor(Math.random() * 10)];
         }
         return color;
     }
@@ -259,7 +259,7 @@ class GainBode extends DrawableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.pass}-pass, ω₀=${this.ω_0.x}, ${this.gain.toString(true)} dB/dec.`
+        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.ω_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec.`
     }
     
     export() {
@@ -282,6 +282,26 @@ class GainBode extends DrawableObject {
             inDrawDom = MathLib.parseDomain(`]${this.ω_0.x};+inf[`)
         }
         Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text)
+        var posX = canvas.x2px(this.labelX)
+        var posY
+        if((this.pass == 'high' && this.labelX < this.ω_0.x) || (this.pass == 'low' && this.labelX > this.ω_0.x)) {
+            posY = canvas.y2px(dbfn.evaluate(this.labelX))
+        } else {
+            posY = base[1]
+        }
+        switch(this.labelPos) {
+            case 'above':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                break;
+            case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+        }
     }
 }
 
