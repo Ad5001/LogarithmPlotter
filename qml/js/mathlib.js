@@ -33,7 +33,7 @@ class Expression {
         return this.expr.indexOf("x") == -1
     }
     
-    evaluate(x = 0) {
+    execute(x = 1) {
         return this.calc.evaluate({
             "x": x,
             "pi": Math.PI,
@@ -43,6 +43,10 @@ class Expression {
             "∞": Infinity,
             "e": Math.E
         })
+    }
+    
+    simplify(x = 1) {
+        return Utils.makeExpressionReadable(this.calc.substitute('x', x).simplify().toString())
     }
     
     toEditableString() {
@@ -83,8 +87,8 @@ class Domain {
     }
     
     includes(x) {
-        return ((this.openBegin && x > this.begin.evaluate()) || (!this.openBegin && x >= this.begin.evaluate())) &&
-            ((this.openEnd && x < this.end.evaluate()) || (!this.openEnd && x <= this.end.evaluate()))
+        return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
+            ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
     }
     
     toString() {
@@ -158,10 +162,10 @@ class DomainSet {
     }
     
     includes(x) {
-        var xcomputed = new Expression(x.toString()).evaluate()
+        var xcomputed = new Expression(x.toString()).execute()
         var found = false
         this.values.forEach(function(value){
-            if(xcomputed == value.evaluate()) {
+            if(xcomputed == value.execute()) {
                 found = true
                 return
             }

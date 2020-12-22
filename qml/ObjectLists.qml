@@ -84,7 +84,6 @@ ListView {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        console.log('Showing', objType, index, Objects.currentObjects[objType])
                         objEditor.obj = Objects.currentObjects[objType][index]
                         objEditor.objType = objType
                         objEditor.objIndex = index
@@ -278,7 +277,6 @@ ListView {
                 text: modelData
                 width: createRow.width
                 visible: Objects.types[modelData].createable()
-                Component.onCompleted: console.log(modelData, visible, Objects)//, Objects.type[modelData])
                 height: visible ? implicitHeight : 0
                 icon.source: './icons/'+modelData+'.svg' // Default to dark version
                 

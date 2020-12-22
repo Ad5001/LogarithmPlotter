@@ -35,6 +35,8 @@ Canvas {
     property double yaxisstep: 3
     property string xlabel: ""
     property string ylabel: ""
+    property int maxgradx: 8
+    property int maxgrady: 1000
     
     onPaint: {
         //console.log('Redrawing')
@@ -99,12 +101,12 @@ Canvas {
         // Axis graduation labels
         ctx.font = "14px sans-serif"
         
-        for(var xpow = -10; xpow <= 10; xpow+=1) {
+        for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
             var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
             if(xpow != 0)
                 drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+12+(6*(y==0)))
         }
-        for(var y = -Math.round(100/yaxisstep)*yaxisstep; y < canvas.ymax; y+=yaxisstep) {
+        for(var y = -Math.round(maxgrady/yaxisstep)*yaxisstep; y < canvas.ymax; y+=yaxisstep) {
             var textSize = ctx.measureText(y).width
             drawVisibleText(ctx, y, axisypx-3-textSize, y2px(y)+6+(6*(y==0)))
         }

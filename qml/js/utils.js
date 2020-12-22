@@ -202,3 +202,12 @@ function camelCase2readable(label) {
     var parsed = parseName(label, false)
     return parsed.charAt(0).toLatinUppercase() + parsed.slice(1).replace(/([A-Z])/g," $1")
 }
+
+function getRandomColor() {
+    var clrs = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += clrs[Math.floor(Math.random() * (16-6*(i%2==0)))];
+    }
+    return color;
+}
