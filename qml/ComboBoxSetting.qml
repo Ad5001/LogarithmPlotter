@@ -24,10 +24,16 @@ Item {
     height: 30
     
     signal activated(int newIndex)
+    signal accepted()
     
-    property var model: []
     property string label: ''
+    property alias model: combox.model
+    property alias editable: combox.editable
+    property alias editText: combox.editText
     property alias currentIndex: combox.currentIndex
+    function find(elementName) {
+        return combox.find(elementName)
+    }
     
     Text {
         id: labelItem
@@ -43,11 +49,10 @@ Item {
         height: 30
         anchors.left: labelItem.right
         anchors.leftMargin: 5
-        width: control.width - labelItem.width
-        model: control.model
-        currentIndex: model.indexOf(defValue)
+        width: control.width - labelItem.width - 5
         onActivated: function(newIndex) {
             control.activated(newIndex)
         }
+        onAccepted: control.accepted()
     }
 }

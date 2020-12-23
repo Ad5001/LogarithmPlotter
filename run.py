@@ -30,7 +30,7 @@ tempfile = tempfile.mkstemp(suffix = '.png')[1]
 
 def get_linux_theme():
     des = {
-        "KDE": "org.kde.desktop", # org.kde.desktop resolves to universal in PySide2.
+        "KDE": "fusion", # org.kde.desktop resolves to universal in PySide2.
         "gnome": "default",
         "lxqt": "fusion",
         "mate": "fusion",

@@ -27,20 +27,20 @@ MenuBar {
             text: qsTr("&Load...")
             shortcut: StandardKey.Open
             onTriggered: settings.load()
-            icon.name: 'fileopen'
+            icon.name: 'document-open'
             
         }
         Action {
             text: qsTr("&Save")
             shortcut: StandardKey.Save
             onTriggered: settings.save()
-            icon.name: 'filesave'
+            icon.name: 'document-save'
         }
         Action {
             text: qsTr("Save &As...")
             shortcut: StandardKey.SaveAs
             onTriggered: settings.saveAs()
-            icon.name: 'filesaveas'
+            icon.name: 'document-save-as'
             
         }
         MenuSeparator { }
@@ -57,7 +57,7 @@ MenuBar {
             text: qsTr("&Copy diagram")
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
-            icon.name: 'editcopy'
+            icon.name: 'edit-copy'
         }
     }
     Menu {

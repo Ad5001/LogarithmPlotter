@@ -14,7 +14,7 @@ dist/
 build
 docs/html
 .directory
-loggraph.kdev4
+*.kdev4
 *.json
 .kdev4
 AccountFree.pro

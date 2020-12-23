@@ -119,27 +119,105 @@ function textsub(text) {
     return ret
 }
 
+function simplifyExpression(str) {
+    var replacements = [
+        // Operations not done by parser.
+        [ // Removing parenthesis when content is only added from both sides.
+            /(^.?|[+-] |\()\(([^)(]+)\)(.?$| [+-]|\))/g,
+            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+        ],
+        [ // Removing parenthesis when content is only multiplied.
+            /(^.?|[*\/] |\()\(([^)(+-]+)\)(.?$| [*\/]|\))/g,
+            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+        ],
+        [// Simplification additions/substractions.
+            /(^.?|[^*\/] |\()([-.\d]+) (\+|\-) (\([^)(]+\)|[^)(]+) (\+|\-) ([-.\d]+)(.?$| [^*\/]|\))/g,
+            function(match, b4, n1, op1, middle, op2, n2, after) {
+                var total
+                if(op2 == '+') {
+                    total = parseFloat(n1) + parseFloat(n2)
+                } else {
+                    total = parseFloat(n1) - parseFloat(n2)
+                }
+                return `${b4}${total} ${op1} ${middle}${after}`
+            }
+        ],
+        [// Simplification multiplications/divisions.
+            /([-.\d]+) (\*|\/) (\([^)(]+\)|[^)(+-]+) (\*|\/) ([-.\d]+)/g, 
+            function(match, n1, op1, middle, op2, n2) {
+                if(parseInt(n1) == n1 && parseInt(n2) == n2 && op2 == '/' &&
+                (parseInt(n1) / parseInt(n2)) % 1 != 0) {
+                    // Non int result for int division.
+                    return `(${n1} / ${n2}) ${op1} ${middle}`
+                } else {
+                    if(op2 == '*') {
+                        return `${parseFloat(n1) * parseFloat(n2)} ${op1} ${middle}`
+                    } else {
+                        return `${parseFloat(n1) / parseFloat(n2)} ${op1} ${middle}`
+                    }
+                }
+            }
+        ],
+        [// Starting & ending parenthesis if not needed.
+            /^\((.*)\)$/g,
+            function(match, middle) {
+                var str = middle
+                // Replace all groups
+                while(/\([^)(]+\)/g.test(str))
+                    str = str.replace(/\([^)(]+\)/g, '')
+                // There shouldn't be any more parenthesis
+                // If there is, that means the 2 parenthesis are needed.
+                if(!str.includes(')') && !str.includes('(')) {
+                    return middle
+                } else {
+                    return `(${middle})`
+                }
+                
+            }
+        ],
+        // Simple simplifications
+        [/(\s|^|\()0 \* (\([^)(]+\))/g, '$10'],
+        [/(\s|^|\()0 \* ([^)(+-]+)/g, '$10'],
+        [/(\([^)(]\)) \* 0(\s|$|\))/g, '0$2'],
+        [/([^)(+-]) \* 0(\s|$|\))/g, '0$2'],
+        [/(\s|^|\()1 (\*|\/) /g, '$1'],
+        [/(\s|^|\()0 (\+|\-) /g, '$1'],
+        [/ (\*|\/) 1(\s|$|\))/g, '$2'],
+        [/ (\+|\-) 0(\s|$|\))/g, '$2'],
+        [/(^| |\() /g, '$1'],
+        [/ ($|\))/g, '$1'],
+    ]
+    
+    console.log(str)
+    // Replacements
+    replacements.forEach(function(replacement){
+        while(replacement[0].test(str))
+            str = str.replace(replacement[0], replacement[1])
+    })
+    return str
+}
+
 function makeExpressionReadable(str) {
     var replacements = [
+        // variables
         [/pi/g, 'π'],
         [/Infinity/g, '∞'],
         [/inf/g, '∞'],
+        // Other
         [/ \* /g, '×'],
         [/ \^ /g, '^'],
         [/\^\(([^\^]+)\)/g, function(match, p1) { return textsup(p1) }],
         [/\^([^ ]+)/g, function(match, p1) { return textsup(p1) }],
         [/(\d|\))×/g, '$1'],
         [/×(\d|\()/g, '$1'],
-        [/\(([^)(+.-]+)\)/g, "$1"],
-        [/\(([^)(+.-]+)\)/g, "$1"],
-        [/\(([^)(+.-]+)\)/g, "$1"],
-        [/\(([^)(+.-]+)\)/g, "$1"],
-        [/\(([^)(+.-]+)\)/g, "$1"],
-        // Doing it 4 times to be recursive until better implementation
+        [/\(([^)(+.\/-]+)\)/g, "$1"],
     ]
+    
+    str = simplifyExpression(str)
     // Replacements
     replacements.forEach(function(replacement){
-        str = str.replace(replacement[0], replacement[1])
+        while(replacement[0].test(str))
+            str = str.replace(replacement[0], replacement[1])
     })
     return str
 }
@@ -184,7 +262,7 @@ function parseName(str, removeUnallowed = true) {
         [/_\(([^\^]+)\)/g, function(match, p1) { return textsub(p1) }],
         [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
         // Removing
-        [/[xπℝℕ\\∪∩\]\[ ()^/÷*×+=\d-]/g , function(match){console.log('removing', match); return ''}],
+        [/[xπℝℕ\\∪∩\]\[ ()^/÷*×+=\d-]/g , ''],
     ]
     if(!removeUnallowed) replacements.pop()
     // Replacements
@@ -193,6 +271,7 @@ function parseName(str, removeUnallowed = true) {
     })
     return str
 }
+
 
 String.prototype.toLatinUppercase = function() {
     return this.replace(/[a-z]/g, function(match){return match.toUpperCase()})

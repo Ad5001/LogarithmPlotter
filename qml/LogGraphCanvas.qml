@@ -19,6 +19,7 @@
 import QtQuick 2.12 
 import "js/objects.js" as Objects
 import "js/utils.js" as Utils
+import "js/mathlib.js" as MathLib
 
 
 Canvas {
@@ -32,11 +33,17 @@ Canvas {
     property double ymax: 0
     property int xzoom: 10
     property int yzoom: 10
-    property double yaxisstep: 3
+    property string yaxisstep: "3"
     property string xlabel: ""
     property string ylabel: ""
     property int maxgradx: 8
     property int maxgrady: 1000
+    
+    property var yaxisstepExpr: (new MathLib.Expression(`x*(${yaxisstep})`))
+    property double yaxisstep1: yaxisstepExpr.execute(1)
+    property int drawMaxY: Math.ceil(Math.max(Math.abs(ymax), Math.abs(px2y(canvasSize.height)))/yaxisstep1)
+    
+    Component.onCompleted: console.log(yaxisstepExpr.toEditableString())
     
     onPaint: {
         //console.log('Redrawing')
@@ -71,8 +78,9 @@ Canvas {
                 drawXLine(ctx, Math.pow(10, xpow)*xmulti)
             }
         }
-        for(var y = -Math.round(100/yaxisstep)*yaxisstep; y < canvas.ymax; y+=yaxisstep) {
-            drawYLine(ctx, y)
+        for(var y = 0; y < drawMaxY; y+=1) {
+            drawYLine(ctx, y*yaxisstep1)
+            drawYLine(ctx, -y*yaxisstep1)
         }
     }
     
@@ -99,16 +107,21 @@ Canvas {
         var textSize = ctx.measureText(canvas.xlabel).width
         ctx.fillText(canvas.xlabel, canvas.canvasSize.width-14-textSize, axisxpx-5)
         // Axis graduation labels
-        ctx.font = "14px sans-serif"
+        ctx.font = "12px sans-serif"
         
         for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
             var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
             if(xpow != 0)
-                drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+12+(6*(y==0)))
+                drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
         }
-        for(var y = -Math.round(maxgrady/yaxisstep)*yaxisstep; y < canvas.ymax; y+=yaxisstep) {
-            var textSize = ctx.measureText(y).width
-            drawVisibleText(ctx, y, axisypx-3-textSize, y2px(y)+6+(6*(y==0)))
+        var txtMinus = ctx.measureText('-').width
+        for(var y = 0; y < drawMaxY; y += 1) {
+            var drawY = y*yaxisstep1
+            var txtY = yaxisstepExpr.simplify(y)
+            var textSize = ctx.measureText(txtY).width
+            drawVisibleText(ctx, txtY, axisypx-6-textSize, y2px(drawY)+4+(10*(y==0)))
+            if(y != 0)
+                drawVisibleText(ctx, '-'+txtY, axisypx-6-textSize-txtMinus, y2px(-drawY)+4)
         }
         ctx.fillStyle = "#FFFFFF"
     }

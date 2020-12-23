@@ -20,23 +20,23 @@ import QtQuick.Controls 2.12
 import QtQuick 2.12 
 import "js/utils.js" as Utils
 
-Grid {
+Column {
     id: settings
-    height: 30*Math.max(1, Math.ceil(7 / columns))
-    columns: Math.floor(width / settingWidth)
+    height: 30*9 //30*Math.max(1, Math.ceil(7 / columns))
+    //columns: Math.floor(width / settingWidth)
     spacing: 10
     
     signal changed()
     
-    property int settingWidth: 135
+    property int settingWidth: settings.width
     
     property int xzoom: 100
     property int yzoom: 10
     property double xmin: 5/10
     property double ymax: 25
-    property int yaxisstep: 4
-    property string xaxislabel: "ω (rad/s)"
-    property string yaxislabel: "G (dB)"
+    property string yaxisstep: "4"
+    property string xaxislabel: ""
+    property string yaxislabel: ""
     property string saveFilename: ""
     
     FileDialog {
@@ -48,6 +48,10 @@ Grid {
                 root.saveDiagram(filePath)
             } else {
                 root.loadDiagram(filePath)
+                if(xAxisLabel.find(settings.xaxislabel) == -1) xAxisLabel.model.append({text: settings.xaxislabel})
+                xAxisLabel.editText = settings.xaxislabel
+                if(yAxisLabel.find(settings.yaxislabel) == -1) yAxisLabel.model.append({text: settings.yaxislabel})
+                yAxisLabel.editText = settings.yaxislabel
             }
         }
     }
@@ -108,7 +112,7 @@ Grid {
     TextSetting {
         id: yAxisStep
         height: 30
-        isInt: true
+        //isInt: true
         label: "Y Axis Step"
         width: settings.settingWidth
         defValue: settings.yaxisstep
@@ -118,6 +122,58 @@ Grid {
         }
     }
     
+    ComboBoxSetting {
+        id: xAxisLabel
+        height: 30
+        width: settings.settingWidth
+        label: 'X Label'
+        model: ListModel {
+            ListElement { text: "" }
+            ListElement { text: "x" }
+            ListElement { text: "ω (rad/s)" }
+        }
+        currentIndex: find(settings.xaxislabel)
+        editable: true
+        onAccepted: function(){
+            editText = Utils.parseName(editText, false)
+            if (find(editText) === -1) model.append({text: editText})
+            settings.xaxislabel = editText
+            settings.changed()
+        }
+        onActivated: function(selectedId) {
+            settings.xaxislabel = model.get(selectedId).text
+            settings.changed()
+        }
+        Component.onCompleted: editText = settings.xaxislabel
+    }
+    
+    ComboBoxSetting {
+        id: yAxisLabel
+        height: 30
+        width: settings.settingWidth
+        label: 'Y Label'
+        model: ListModel {
+            ListElement { text: "" }
+            ListElement { text: "y" }
+            ListElement { text: "G (dB)" }
+            ListElement { text: "φ (deg)" }
+            ListElement { text: "φ (rad)" }
+        }
+        currentIndex: find(settings.yaxislabel)
+        editable: true
+        onAccepted: function(){
+            editText = Utils.parseName(editText, false)
+            if (find(editText) === -1) model.append({text: editText, yaxisstep: root.yaxisstep})
+            settings.yaxislabel = editText
+            settings.changed()
+        }
+        onActivated: function(selectedId) {
+            settings.yaxislabel = model.get(selectedId).text
+            settings.changed()
+        }
+        Component.onCompleted: editText = settings.yaxislabel
+    }
+    
     Button {
         id: copyToClipboard
         height: 30
@@ -125,30 +181,6 @@ Grid {
         text: "Copy to clipboard"
         icon.name: 'editcopy'
         onClicked: root.copyDiagramToClipboard()
-    }
-    
-    TextSetting {
-        id: xAxisLabel
-        height: 30
-        label: "X Label"
-        width: settings.settingWidth
-        defValue: settings.xaxislabel
-        onChanged: function(newValue) {
-            settings.xaxislabel = Utils.parseName(newValue, false)
-            settings.changed()
-        }
-    }
-    
-    TextSetting {
-        id: yAxisLabel
-        height: 30
-        label: "Y Label"
-        width: settings.settingWidth
-        defValue: settings.yaxislabel
-        onChanged: function(newValue) {
-            settings.yaxislabel = Utils.parseName(newValue, false)
-            settings.changed()
-        }
     }
     
     Button {

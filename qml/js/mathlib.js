@@ -23,10 +23,21 @@
 
 const parser = new ExprEval.Parser()
 
+var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manualy
+    "pi": Math.PI,
+    "π": Math.PI,
+    "inf": Infinity,
+    "Infinity": Infinity,
+    "∞": Infinity,
+    "e": Math.E
+}
+
 class Expression {
     constructor(expr) {
         this.expr = expr
         this.calc = parser.parse(expr).simplify()
+        this.cached = this.isConstant()
+        this.cachedValue = this.cached ? this.calc.evaluate(evalVariables) : null
     }
     
     isConstant() {
@@ -34,19 +45,14 @@ class Expression {
     }
     
     execute(x = 1) {
-        return this.calc.evaluate({
-            "x": x,
-            "pi": Math.PI,
-            "π": Math.PI,
-            "inf": Infinity,
-            "Infinity": Infinity,
-            "∞": Infinity,
-            "e": Math.E
-        })
+        if(this.cached) return this.cachedValue
+        return this.calc.evaluate(Object.assign({'x': x}, evalVariables))
     }
     
     simplify(x = 1) {
-        return Utils.makeExpressionReadable(this.calc.substitute('x', x).simplify().toString())
+        var expr = this.calc.substitute('x', x).simplify()
+        if(expr.evaluate(evalVariables) == 0) return '0'
+        return Utils.makeExpressionReadable(expr.toString())
     }
     
     toEditableString() {

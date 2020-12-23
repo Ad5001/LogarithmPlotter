@@ -200,7 +200,7 @@ class Function extends ExecutableObject {
     
     getReadableString() {
         if(this.displayMode == 'application') {
-            return `${this.name}: ${this.inDomain} ⸺˃ ${this.outDomain}\n   ${' '.repeat(this.name.length)}x ⸺˃ ${this.expression.toString()}`
+            return `${this.name}: ${this.inDomain} ⸺> ${this.outDomain}\n   ${' '.repeat(this.name.length)}x ⸺> ${this.expression.toString()}`
         } else {
             return `${this.name}(x) = ${this.expression.toString()}`
         }

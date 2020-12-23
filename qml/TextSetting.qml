@@ -30,49 +30,35 @@ Item {
     property double min: 1
     property string label
     property string defValue
+        
+    Text {
+        id: labelItem
+        height: 30
+        anchors.top: parent.top
+        verticalAlignment: TextInput.AlignVCenter
+        color: sysPalette.windowText
+        text: " "+ control.label +": "
+    }
     
-    Item {
-        anchors.centerIn: parent
-        width: labelItem.width + input.width
-        height: Math.max(labelItem.height, input.height)
         
-        Text {
-            id: labelItem
-            height: 30
-            anchors.top: parent.top
-            verticalAlignment: TextInput.AlignVCenter
-            color: sysPalette.windowText
-            text: " "+ control.label +": "
-        }
-        
-            
-        TextInput {
-            id: input
-            anchors.top: parent.top
-            anchors.left: labelItem.right
-            anchors.leftMargin: 5
-            width: control.width - labelItem.width
-            height: 30
-            verticalAlignment: TextInput.AlignVCenter
-            horizontalAlignment: TextInput.AlignHCenter
-            color: sysPalette.windowText
-            focus: true
-            text: control.defValue
-            selectByMouse: true
-            onEditingFinished: {
-                var value = text
-                if(control.isInt) value = Math.max(control.min,parseInt(value).toString()=="NaN"?control.min:parseInt(value))
-                if(control.isDouble) value = Math.max(control.min,parseFloat(value).toString()=="NaN"?control.min:parseFloat(value))
-                if(value != "") control.changed(value)
-            }
-        }
-            
-        Rectangle {
-            color: sysPalette.windowText
-            anchors.left: input.left
-            anchors.right: input.right
-            anchors.bottom: input.bottom
-            height: 2
+    TextField {
+        id: input
+        anchors.top: parent.top
+        anchors.left: labelItem.right
+        anchors.leftMargin: 5
+        width: control.width - labelItem.width - 5
+        height: 30
+        verticalAlignment: TextInput.AlignVCenter
+        horizontalAlignment: TextInput.AlignHCenter
+        color: sysPalette.windowText
+        focus: true
+        text: control.defValue
+        selectByMouse: true
+        onEditingFinished: {
+            var value = text
+            if(control.isInt) value = Math.max(control.min,parseInt(value).toString()=="NaN"?control.min:parseInt(value))
+            if(control.isDouble) value = Math.max(control.min,parseFloat(value).toString()=="NaN"?control.min:parseFloat(value))
+            if(value != "") control.changed(value)
         }
     }
 }

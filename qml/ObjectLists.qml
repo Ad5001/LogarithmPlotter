@@ -201,7 +201,7 @@ ListView {
                         isDouble: modelData[1] == 'number'
                         visible: ['Expression', 'Domain', 'string', 'number'].indexOf(modelData[1]) >= 0 
                         defValue: visible ? {
-                            'Expression': function(){return objEditor.obj[modelData[0]].toEditableString()},
+                            'Expression': function(){return Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString())},
                             'Domain': function(){return objEditor.obj[modelData[0]].toString()},
                             'string': function(){return objEditor.obj[modelData[0]]},
                             'number': function(){return objEditor.obj[modelData[0]]}
