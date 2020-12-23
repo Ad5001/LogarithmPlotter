@@ -23,12 +23,17 @@
 
 
 
-function getNewName(allowedLetters, category) {
-    if(Object.keys(currentObjects).indexOf(category) == -1) return allowedLetters[0]
-    var newid = currentObjects[category].length
-    var letter = allowedLetters[newid % allowedLetters.length]
-    var num = Math.round((newid - (newid % allowedLetters.length)) / allowedLetters.length)
-    return letter + (num > 0 ? Utils.textsub(num) : '')
+function getNewName(allowedLetters) {
+    var newid = 0
+    var ret
+    do {
+        var letter = allowedLetters[newid % allowedLetters.length]
+        var num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
+        ret = letter + (num > 0 ? Utils.textsub(num) : '')
+        newid += 1
+        console.log
+    } while(getObjectByName(ret) != null)
+    return ret
 }
 
 class DrawableObject {
@@ -105,7 +110,7 @@ class Point extends DrawableObject  {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 x = 1, y = 0, labelPos = 'top', pointStyle = 'dot') {
-        if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW', 'Point')
+        if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
         this.type = 'Point'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
@@ -185,7 +190,7 @@ class Function extends ExecutableObject {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 expression = 'x', inDomain = 'RPE', outDomain = 'R', displayMode = 'application', labelPos = 'above', labelX = 1) {
-        if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde', 'Function')
+        if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
         if(typeof expression == 'number' || typeof expression == 'string') expression = new MathLib.Expression(expression.toString())
         this.expression = expression
@@ -280,16 +285,16 @@ class GainBode extends ExecutableObject {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 ω_0 = '', pass = 'high', gain = '20', labelPos = 'above', labelX = 1) {
-        if(name == null) name = getNewName('G', 'Gain Bode')
+        if(name == null) name = getNewName('G')
         if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitues (Somme gains Bode).
         super(name, visible, color, labelContent)
         if(typeof ω_0 == "string") {
             // Point name or create one
-            ω_0 = getObjectByName('Point', ω_0)
+            ω_0 = getObjectByName(ω_0, 'Point')
             if(ω_0 == null) {
                 // Create new point
                 ω_0 = createNewRegisteredObject('Point')
-                ω_0.name = getNewName('ω', 'Gain Bode')
+                ω_0.name = getNewName('ω')
                 ω_0.color = this.color
                 labelPos = 'below'
             }
@@ -510,7 +515,7 @@ class CursorX extends DrawableObject {
     static type(){return 'CursorX'}
     static typeMultiple(){return 'CursorX'}
     static properties() {
-        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
+        
         var elementNames = []
         elementTypes.forEach(function(elemType){
             elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
@@ -525,27 +530,18 @@ class CursorX extends DrawableObject {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 x = 1, element = null, labelPos = 'left') {
-        if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW', 'Point')
+        if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
         this.type = 'CursorX'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
-        this.getElement()
-        this.labelPost = labelPos
+        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
+        this.element = getObjectByName(this.element, elementTypes)
+        this.labelPos = labelPos
     }
     
     update() {
-        if(typeof this.element == 'string') this.getElement()
-        console.log(this.element)
-    }
-    
-    getElement(){
-        var element = this.element
-        var elem = null
-        Object.keys(currentObjects).forEach(function(objType){
-            var ele = getObjectByName(objType, element)
-            if(ele != null) elem = ele
-        })
-        this.element = elem
+        if(typeof this.element == 'string') 
+            this.element = getObjectByName(this.element, elementTypes)
     }
 }
 
@@ -559,14 +555,24 @@ const types = {
 
 var currentObjects = {}
 
-function getObjectByName(objType, objName) {
-    if(currentObjects[objType] == undefined) return null
+function getObjectByName(objName, objType = null) {
+    var objectTypes = Object.keys(currentObjects)
+    if(typeof objType == 'string') {
+        if(currentObjects[objType] == undefined) return null
+        objectTypes = [objType]
+    }
+    if(Array.isArray(objType)) objectTypes = objType
     var retObj = null
-    currentObjects[objType].forEach(function(obj){
-        if(obj.name == objName) retObj = obj
+    objectTypes.forEach(function(objType){
+        if(currentObjects[objType] == undefined) return null
+        currentObjects[objType].forEach(function(obj){
+            if(obj.name == objName) retObj = obj
+        })
     })
     return retObj
 }
+
+
 
 function getObjectsName(objType) {
     if(currentObjects[objType] == undefined) return []

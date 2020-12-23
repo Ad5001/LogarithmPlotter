@@ -188,7 +188,6 @@ function simplifyExpression(str) {
         [/ ($|\))/g, '$1'],
     ]
     
-    console.log(str)
     // Replacements
     replacements.forEach(function(replacement){
         while(replacement[0].test(str))

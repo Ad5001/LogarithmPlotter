@@ -62,6 +62,7 @@ ListView {
             CheckBox {
                 id: visibilityCheckBox
                 checked: Objects.currentObjects[objType][index].visible
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: {
                     Objects.currentObjects[objType][index].visible = !Objects.currentObjects[objType][index].visible
                     objectListList.changed()
@@ -158,7 +159,10 @@ ListView {
                 defValue: objEditor.obj.name
                 onChanged: function(newValue) {
                     if(Utils.parseName(newValue) != '') {
-                        Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = Utils.parseName(newValue)
+                        var newName = Utils.parseName(newValue)
+                        if(Objects.getObjectByName(newName) != null) 
+                            newName = Objects.getNewName(newName)
+                        Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newName
                         // TODO Resolve dependencies
                         objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                         //objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
@@ -237,7 +241,7 @@ ListView {
                         onActivated: function(newIndex) {
                             // Setting object property.
                             if(selectObjMode) {
-                                var selectedObj = Objects.getObjectByName(model[newIndex])
+                                var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1])
                                 if(selectedObj == null) {
                                     selectedObj = Objects.createNewRegisteredObject(modelData[1])
                                     model = Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]])

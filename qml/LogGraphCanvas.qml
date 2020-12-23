@@ -43,7 +43,6 @@ Canvas {
     property double yaxisstep1: yaxisstepExpr.execute(1)
     property int drawMaxY: Math.ceil(Math.max(Math.abs(ymax), Math.abs(px2y(canvasSize.height)))/yaxisstep1)
     
-    Component.onCompleted: console.log(yaxisstepExpr.toEditableString())
     
     onPaint: {
         //console.log('Redrawing')
