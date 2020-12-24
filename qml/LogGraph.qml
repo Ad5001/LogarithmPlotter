@@ -147,6 +147,7 @@ ApplicationWindow {
             root.height = data["height"]
             root.width = data["width"]
             
+            Objects.currentObjects = {}
             Object.keys(data['objects']).forEach(function(objType){
                 Objects.currentObjects[objType] = []
                 data['objects'][objType].forEach(function(objData){

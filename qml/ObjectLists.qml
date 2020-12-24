@@ -32,7 +32,7 @@ ListView {
     property var listViews: {'':''} // Needs to be initialized or will be undefined -_-
     
     model: Object.keys(Objects.types)
-    implicitHeight: contentItem.childrenRect.height
+    implicitHeight: contentItem.childrenRect.height + footer.height + 10
     
     delegate: ListView {
         id: objTypeList
@@ -47,7 +47,7 @@ ListView {
         header: Text {
             verticalAlignment: TextInput.AlignVCenter
             color: sysPalette.windowText
-            text: objectListList.model[index] + "s:"
+            text: Objects.types[objType].typeMultiple() + ":"
             font.pixelSize: 20
             visible: objTypeList.visible
             height: visible ? 20 : 0
@@ -64,7 +64,7 @@ ListView {
                 checked: Objects.currentObjects[objType][index].visible
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: {
-                    Objects.currentObjects[objType][index].visible = !Objects.currentObjects[objType][index].visible
+                    Objects.currentObjects[objType][index].visible = this.checked
                     objectListList.changed()
                     controlRow.obj = Objects.currentObjects[objType][index]
                 }
@@ -76,6 +76,7 @@ ListView {
             Text {
                 id: objDescription
                 anchors.left: visibilityCheckBox.right
+                anchors.right: deleteButton.left
                 height: parent.height
                 verticalAlignment: TextInput.AlignVCenter
                 text: obj.getReadableString()
@@ -94,9 +95,28 @@ ListView {
                 }
             }
             
+            Button {
+                id: deleteButton
+                width: parent.height - 10
+                height: width
+                anchors.right: colorPickRect.left
+                anchors.rightMargin: 5
+                anchors.topMargin: 5
+                icon.source: './icons/delete.svg'
+                icon.name: 'delete'
+                
+                onClicked: {
+                    Objects.currentObjects[objType][index].delete()
+                    Objects.currentObjects[objType].splice(index, 1)
+                    objectListList.update()
+                }
+            }
+            
             Rectangle {
+                id: colorPickRect
                 anchors.right: parent.right
                 anchors.rightMargin: 5
+                anchors.topMargin: 5
                 color: obj.color
                 width: parent.height - 10
                 height: width
@@ -227,6 +247,19 @@ ListView {
                         }
                     }
                     
+                    CheckBox {
+                        id: customPropCheckBox
+                        visible: modelData[1] == 'Boolean'
+                        width: parent.width
+                        text: parent.label
+                        checked: visible ? objEditor.obj[modelData[0]] : false
+                        onClicked: {
+                            objEditor.obj[modelData[0]] = this.checked
+                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
+                            objectListList.update()
+                        }
+                    }
+                    
                     ComboBoxSetting {
                         id: customPropCombo
                         height: 30
@@ -249,6 +282,8 @@ ListView {
                                     model = Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]])
                                     currentIndex = model.indexOf(selectedObj.name)
                                 }
+                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]].requiredBy = objEditor.obj[modelData[0]].filter(function(obj) {objEditor.obj.name != obj.name})
+                                selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
                                 Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
                             } else {
                                 Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]

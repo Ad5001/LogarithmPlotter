@@ -60,6 +60,11 @@ class DrawableObject {
         this.requiredBy = []
     }
     
+    export() {
+        // Should return what will be input as arguments when a file is loaded (serializable form)
+        return [this.name, this.visible, this.color.toString(), this.labelContent]
+    }
+    
     getReadableString() {
         return `${this.name} = Unknown`
     }
@@ -76,11 +81,19 @@ class DrawableObject {
         }
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent]
+    update() {
+        for(var i = 0; i < this.requiredBy.length; i++) {
+            this.requiredBy[i].update()
+        }
     }
     
-    update() {}
+    delete() {
+        for(var i = 0; i < this.requiredBy.length; i++) {
+            var toRemove = this.requiredBy[i]
+            toRemove.delete()
+            currentObjects[toRemove.type] = currentObjects[toRemove.type].filter(obj => obj.name != toRemove.name)
+        }
+    }
     
     draw(canvas, ctx) {}
 }
@@ -103,12 +116,12 @@ class Point extends DrawableObject  {
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
-        'labelPos': ['top', 'bottom', 'left', 'right'],
+        'labelPosition': ['top', 'bottom', 'left', 'right'],
         'pointStyle': ['●', '✕', '＋'],
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                x = 1, y = 0, labelPos = 'top', pointStyle = '●') {
+                x = 1, y = 0, labelPosition = 'top', pointStyle = '●') {
         if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
         this.type = 'Point'
@@ -116,7 +129,7 @@ class Point extends DrawableObject  {
         this.x = x
         if(typeof y == 'number' || typeof y == 'string') y = new MathLib.Expression(y.toString())
         this.y = y
-        this.labelPos = labelPos
+        this.labelPosition = labelPosition
         this.pointStyle = pointStyle
     }
     
@@ -125,7 +138,7 @@ class Point extends DrawableObject  {
     }
     
     export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPos, this.pointStyle]
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.pointStyle]
     }
     
     draw(canvas, ctx) {
@@ -149,7 +162,7 @@ class Point extends DrawableObject  {
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
         var textSize = ctx.measureText(text).width
-        switch(this.labelPos) {
+        switch(this.labelPosition) {
             case 'top':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY-16)
                 break;
@@ -165,14 +178,6 @@ class Point extends DrawableObject  {
                 
         }
     }
-    
-    update() {
-        if(currentObjects['Somme gains Bode'] != undefined && currentObjects['Gain Bode'] != undefined) {
-            for(var i = 0; i < currentObjects['Gain Bode'].length; i++) {
-                if(currentObjects['Gain Bode'][i].ω_0.name == this.name) currentObjects['Gain Bode'][i].update()
-            }
-        }
-    }
 }
 
 class Function extends ExecutableObject {
@@ -182,16 +187,17 @@ class Function extends ExecutableObject {
         'expression': 'Expression',
         'inDomain': 'Domain',
         'outDomain': 'Domain',
-        'labelPos': ['above', 'below'],
+        'labelPosition': ['above', 'below'],
         'displayMode': ['application', 'function'],
         'labelX': 'number'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 expression = 'x', inDomain = 'RPE', outDomain = 'R', 
-                displayMode = 'application', labelPos = 'above', labelX = 1) {
+                displayMode = 'application', labelPosition = 'above', labelX = 1) {
         if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
+        this.type = 'Function'
         if(typeof expression == 'number' || typeof expression == 'string') expression = new MathLib.Expression(expression.toString())
         this.expression = expression
         if(typeof inDomain == 'string') inDomain = MathLib.parseDomain(inDomain)
@@ -199,7 +205,7 @@ class Function extends ExecutableObject {
         if(typeof outDomain == 'string') outDomain = MathLib.parseDomain(outDomain)
         this.outDomain = outDomain
         this.displayMode = displayMode
-        this.labelPos = labelPos
+        this.labelPosition = labelPosition
         this.labelX = labelX
     }
     
@@ -214,12 +220,12 @@ class Function extends ExecutableObject {
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
         this.expression.toEditableString(), this.inDomain.toString(), this.outDomain.toString(), 
-        this.displayMode, this.labelPos, this.labelX]
+        this.displayMode, this.labelPosition, this.labelX]
     }
     
     execute(x = 1) {
         if(this.inDomain.includes(x))
-            return this.expr.execute(x)
+            return this.expression.execute(x)
         return null
     }
     
@@ -229,7 +235,7 @@ class Function extends ExecutableObject {
     
     simplify(x = 1) {
         if(this.inDomain.includes(x))
-            return this.expr.simplify(x)
+            return this.expression.simplify(x)
         return ''
     }
     
@@ -241,7 +247,7 @@ class Function extends ExecutableObject {
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.expression.execute(this.labelX))
-        switch(this.labelPos) {
+        switch(this.labelPosition) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
@@ -279,15 +285,16 @@ class GainBode extends ExecutableObject {
         'ω_0': 'Point',
         'pass': ['high', 'low'],
         'gain': 'Expression',
-        'labelPos': ['above', 'below'],
+        'labelPosition': ['above', 'below'],
         'labelX': 'number'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                ω_0 = '', pass = 'high', gain = '20', labelPos = 'above', labelX = 1) {
+                ω_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1) {
         if(name == null) name = getNewName('G')
-        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitues (Somme gains Bode).
+        if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitudes (Somme gains Bode).
         super(name, visible, color, labelContent)
+        this.type = 'Gain Bode'
         if(typeof ω_0 == "string") {
             // Point name or create one
             ω_0 = getObjectByName(ω_0, 'Point')
@@ -296,14 +303,15 @@ class GainBode extends ExecutableObject {
                 ω_0 = createNewRegisteredObject('Point')
                 ω_0.name = getNewName('ω')
                 ω_0.color = this.color
-                labelPos = 'below'
+                labelPosition = 'below'
             }
+            ω_0.requiredBy.push(this)
         }
         this.ω_0 = ω_0
         this.pass = pass
         if(typeof gain == 'number' || typeof gain == 'string') gain = new MathLib.Expression(gain.toString())
         this.gain = gain
-        this.labelPos = labelPos
+        this.labelPosition = labelPosition
         this.labelX = labelX
     }
     
@@ -313,7 +321,7 @@ class GainBode extends ExecutableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.ω_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPos, this.labelX]
+        this.ω_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX]
     }
     
     execute(x=1) {
@@ -360,7 +368,7 @@ class GainBode extends ExecutableObject {
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPos) {
+        switch(this.labelPosition) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
@@ -384,21 +392,21 @@ class SommeGainsBode extends DrawableObject {
     static typeMultiple(){return 'Somme gains Bode'}
     static createable() {return false}
     static properties() {return {
-        'labelPos': ['above', 'below'],
+        'labelPosition': ['above', 'below'],
         'labelX': 'number'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value',
-        labelPos = 'above', labelX = 1) {
+        labelPosition = 'above', labelX = 1) {
         if(name == null) name = 'G'
         super(name, visible, color, labelContent)
-        this.labelPos = labelPos
+        this.labelPosition = labelPosition
         this.labelX = labelX
         this.recalculateCache()
     }
     
     export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.labelPos, this.labelX]
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.labelPosition, this.labelX]
     }
     
     getReadableString() {
@@ -493,7 +501,7 @@ class SommeGainsBode extends DrawableObject {
                     var textSize = canvas.measureText(ctx, text)
                     var posX = canvas.x2px(this.labelX)
                     var posY = canvas.y2px(dbfn.execute(this.labelX))
-                    switch(this.labelPos) {
+                    switch(this.labelPosition) {
                         case 'above':
                             canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                             break;
@@ -508,12 +516,55 @@ class SommeGainsBode extends DrawableObject {
 }
 
 class PhaseBode extends ExecutableObject {
+    static type(){return 'Phase Bode'}
+    static typeMultiple(){return 'Phases Bode'}
+    static properties() {return {
+        'ω_0': 'Point',
+        'phase': 'Expression',
+        'unit': ['°', 'deg', 'rad'],
+        'labelPosition': ['above', 'below'],
+        'labelX': 'number'
+    }}
     
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
+                ω_0 = '', phase = 90, unit = '°', labelPosition = 'above', labelX = 1) {
+        if(name == null) name = getNewName('φ')
+        if(name == 'φ') name = 'φ₀' // φ is reserved for sum of BODE phases (Somme phases Bode).
+        super(name, visible, color, labelContent)
+        this.type = 'Phase Bode'
+        if(typeof ω_0 == "string") {
+            // Point name or create one
+            ω_0 = getObjectByName(ω_0, 'Point')
+            if(ω_0 == null) {
+                // Create new point
+                ω_0 = createNewRegisteredObject('Point')
+                ω_0.name = getNewName('ω')
+                ω_0.color = this.color
+                labelPosition = 'below'
+            }
+            ω_0.requiredBy.push(this)
+        }
+        this.ω_0 = ω_0
+        if(typeof phase == 'number' || typeof phase == 'string') phase = new MathLib.Expression(phase.toString())
+        this.phase = phase
+        this.unit = unit
+        this.labelPosition = labelPosition
+        this.labelX = labelX
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, 
+        this.ω_0.name, this.phase.toEditableString(), this.unit, this.labelPosition, this.labelX]
+    }
+    
+    getReadableString() {
+        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ω₀ = ${this.ω_0.x}\n`
+    }
 }
 
 class CursorX extends DrawableObject {
-    static type(){return 'CursorX'}
-    static typeMultiple(){return 'CursorX'}
+    static type(){return 'X Cursor'}
+    static typeMultiple(){return 'X Cursors'}
     static properties() {
         var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
         var elementNames = ['']
@@ -522,33 +573,134 @@ class CursorX extends DrawableObject {
         })
         return {
             'x': 'Expression',
-            'element': elementNames,
-            'labelPos': ['left', 'right'],
+            'targetElement': elementNames,
+            'labelPosition': ['left', 'right'],
+            'approximate': 'Boolean',
+            'rounding': 'number',
             'displayStyle': [
-                '⸻⸻⸻',
-                '— — — — —',
-                '• • • • •'
-            ]
+                '— — — — — — —',
+                '⸺⸺⸺⸺⸺⸺',
+                '• • • • • • • • • •'
+            ],
+            'targetValuePosition' : ['Next to target', 'With label', 'Hidden']
         }
     }
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                x = 1, element = null, labelPos = 'left', displayStyle = '⸻⸻⸻') {
+                x = 1, targetElement = null, labelPosition = 'left', approximate = true,
+                rounding = 3, displayStyle = '— — — — — — —', targetValuePosition = 'Next to target') {
         if(name == null) name = getNewName('X')
         super(name, visible, color, labelContent)
-        this.type = 'CursorX'
+        this.type = 'X Cursor'
+        this.approximate = approximate
+        this.rounding = rounding
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
         this.x = x
         var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-        this.element = getObjectByName(this.element, elementTypes)
-        this.labelPos = labelPos
+        this.targetElement = getObjectByName(this.targetElement, elementTypes)
+        this.labelPosition = labelPosition
         this.displayStyle = displayStyle
+        this.targetValuePosition = targetValuePosition
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, 
+        this.x.toEditableString(), this.targetElement.name, this.labelPosition, 
+        this.approximate, this.rounding, this.displayStyle, this.targetValuePosition]
+    }
+    
+    getReadableString() {
+        if(this.targetElement == null) return `${this.name} = ${this.x.toString()}`
+        return `${this.name} = ${this.x.toString()}\n${this.getTargetValueLabel()}`
+    }
+    
+    getTargetValueLabel() {
+        var t = this.targetElement
+        var approx = ''
+        if(this.approximate) {
+            approx = t.execute(this.x.execute())
+            approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
+        }
+        return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
+            (this.approximate ? ' ≃ ' + approx : '')
+    }
+    
+    getLabel() {
+        switch(this.labelContent) {
+            case 'name':
+                return this.name
+                break;
+            case 'name + value':
+                switch(this.targetValuePosition) {
+                    case 'Next to target':
+                    case 'Hidden':
+                        return `${this.name} = ${this.x.toString()}`
+                        break;
+                    case 'With label':
+                        return this.getReadableString()
+                        break;
+                }
+            case 'null':
+                return ''
+        }
+    }
+    
+    draw(canvas, ctx) {
+        var xpos = canvas.x2px(this.x.execute())
+        switch(this.displayStyle) {
+            case '— — — — — — —':
+                var dashPxSize = 10
+                for(var i = 0; i < canvas.canvasSize.height; i += dashPxSize*2)
+                    canvas.drawLine(ctx, xpos, i, xpos, i+dashPxSize)
+                break;
+            case '⸺⸺⸺⸺⸺⸺':
+                canvas.drawXLine(ctx, this.x.execute())
+                break;
+            case '• • • • • • • • • •':
+                var pointDistancePx = 10
+                var pointSize = 2
+                ctx.beginPath();
+                for(var i = 0; i < canvas.canvasSize.height; i += pointDistancePx)
+                    ctx.ellipse(xpos-pointSize/2, i-pointSize/2, pointSize, pointSize)
+                ctx.fill();
+                break;
+        }
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text, 7)
+        
+        switch(this.labelPosition) {
+            case 'left':
+                canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, textSize.height+5)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, xpos+5, textSize.height+5)
+                break;
+        }
+        
+        if(this.targetValuePosition == 'Next to target' && this.targetElement != null) {
+            var text = this.getTargetValueLabel()
+            var textSize = canvas.measureText(ctx, text, 7)
+            var ypox = canvas.y2px(this.targetElement.execute(this.x.execute()))
+            switch(this.labelPosition) {
+                case 'left':
+                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height)
+                    break;
+                case 'right':
+                    canvas.drawVisibleText(ctx, text, xpos+5, ypox.textSize.height)
+                    break;
+            }
+        }
+        
     }
     
     update() {
-        if(typeof this.element == 'string') 
+        if(typeof this.targetElement == 'string') {
             var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-            this.element = getObjectByName(this.element, elementTypes)
+            this.targetElement = getObjectByName(this.targetElement, elementTypes)
+        }
     }
 }
 
@@ -557,7 +709,8 @@ const types = {
     'Function': Function,
     'Gain Bode': GainBode,
     'Somme gains Bode': SommeGainsBode,
-    'CursorX': CursorX
+    'Phase Bode': PhaseBode,
+    'X Cursor': CursorX
 }
 
 var currentObjects = {}

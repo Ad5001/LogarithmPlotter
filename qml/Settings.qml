@@ -156,6 +156,7 @@ Column {
             ListElement { text: "" }
             ListElement { text: "y" }
             ListElement { text: "G (dB)" }
+            ListElement { text: "φ (°)" }
             ListElement { text: "φ (deg)" }
             ListElement { text: "φ (rad)" }
         }

@@ -49,7 +49,7 @@ class Expression {
         return this.calc.evaluate(Object.assign({'x': x}, evalVariables))
     }
     
-    simplify(x = 1) {
+    simplify(x) {
         var expr = this.calc.substitute('x', x).simplify()
         if(expr.evaluate(evalVariables) == 0) return '0'
         return Utils.makeExpressionReadable(expr.toString())
@@ -67,6 +67,10 @@ class Expression {
         if(str[0] != '-' && forceSign) str = '+' + str
         return str
     }
+}
+
+function executeExpression(expr){
+    return (new Expression(expr.toString())).execute()
 }
 
 // Domains
@@ -93,6 +97,7 @@ class Domain {
     }
     
     includes(x) {
+        if(typeof x == 'string') x = executeExpression(x)
         return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
             ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
     }
@@ -168,10 +173,10 @@ class DomainSet {
     }
     
     includes(x) {
-        var xcomputed = new Expression(x.toString()).execute()
+        if(typeof x == 'string') x = executeExpression(x)
         var found = false
         this.values.forEach(function(value){
-            if(xcomputed == value.execute()) {
+            if(x == value.execute()) {
                 found = true
                 return
             }
