@@ -29,9 +29,8 @@ function getNewName(allowedLetters) {
     do {
         var letter = allowedLetters[newid % allowedLetters.length]
         var num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
-        ret = letter + (num > 0 ? Utils.textsub(num) : '')
+        ret = letter + (num > 0 ? Utils.textsub(num-1) : '')
         newid += 1
-        console.log
     } while(getObjectByName(ret) != null)
     return ret
 }
@@ -105,11 +104,11 @@ class Point extends DrawableObject  {
         'x': 'Expression',
         'y': 'Expression',
         'labelPos': ['top', 'bottom', 'left', 'right'],
-        'pointStyle': ['dot', 'diagonal cross', 'vertical cross'],
+        'pointStyle': ['●', '✕', '＋'],
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                x = 1, y = 0, labelPos = 'top', pointStyle = 'dot') {
+                x = 1, y = 0, labelPos = 'top', pointStyle = '●') {
         if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
         this.type = 'Point'
@@ -133,16 +132,16 @@ class Point extends DrawableObject  {
         var [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
         var pointSize = 8
         switch(this.pointStyle) {
-            case 'dot':
+            case '●':
                 ctx.beginPath();
                 ctx.ellipse(canvasX-pointSize/2, canvasY-pointSize/2, pointSize, pointSize)
                 ctx.fill();
                 break;
-            case 'diagonal cross':
+            case '✕':
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY-pointSize/2, canvasX+pointSize/2, canvasY+pointSize/2)
-                canvas.drawLine(ctx, canvasX-pointSize/2, canvasY+pointSize/2, canvasX-pointSize/2, canvasY+pointSize/2)
+                canvas.drawLine(ctx, canvasX-pointSize/2, canvasY+pointSize/2, canvasX+pointSize/2, canvasY-pointSize/2)
                 break;
-            case 'vertical cross':
+            case '＋':
                 canvas.drawLine(ctx, canvasX, canvasY-pointSize/2, canvasX, canvasY+pointSize/2)
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY, canvasX+pointSize/2, canvasY)
                 break;
@@ -189,7 +188,8 @@ class Function extends ExecutableObject {
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                expression = 'x', inDomain = 'RPE', outDomain = 'R', displayMode = 'application', labelPos = 'above', labelX = 1) {
+                expression = 'x', inDomain = 'RPE', outDomain = 'R', 
+                displayMode = 'application', labelPos = 'above', labelX = 1) {
         if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
         if(typeof expression == 'number' || typeof expression == 'string') expression = new MathLib.Expression(expression.toString())
@@ -305,7 +305,6 @@ class GainBode extends ExecutableObject {
         this.gain = gain
         this.labelPos = labelPos
         this.labelX = labelX
-        this.update()
     }
     
     getReadableString() {
@@ -446,14 +445,14 @@ class SommeGainsBode extends DrawableObject {
                     ω0xGains[gainObj.ω_0.x.execute()] = gainObj.gain.execute()
                     ω0xPass[gainObj.ω_0.x.execute()] = gainObj.pass == 'high'
                 } else {
-                    ω0xGains[gainObj.ω_0.x.execute()+0.0001] = gainObj.gain.execute()
+                    ω0xGains[gainObj.ω_0.x.execute()+0.001] = gainObj.gain.execute()
+                    ω0xPass[gainObj.ω_0.x.execute()+0.001] = gainObj.pass == 'high'
                 }
                 baseY += gainObj.execute(drawMin)
             })
             // Sorting the ω_0x
-            var ω0xList = Object.keys(ω0xGains)
-            ω0xList.sort()
-            ω0xList = ω0xList.reverse()
+            var ω0xList = Object.keys(ω0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
+            ω0xList.sort((a,b) => a - b)
             // Adding the total gains.
             var gainsBeforeP = []
             var gainsAfterP = []
@@ -468,6 +467,7 @@ class SommeGainsBode extends DrawableObject {
                     gainsAfterP.push(ω0xGains[ω0xList[i]])
                 }
             }
+            console.log(gainsBeforeP, gainsAfterP)
             // Calculating parts
             var previousPallier = drawMin
             for(var pallier = 0; pallier < ω0xList.length; pallier++) {
@@ -475,8 +475,8 @@ class SommeGainsBode extends DrawableObject {
                 var inDrawDom = MathLib.parseDomain(`]${previousPallier};${ω0xList[pallier]}]`)
                 this.cachedParts.push([dbfn, inDrawDom])
                 previousPallier = ω0xList[pallier]
-                gainTotal += gainsAfterP[pallier] - gainsBeforeP[pallier]
                 baseY = dbfn.execute(ω0xList[pallier])
+                gainTotal += gainsAfterP[pallier] - gainsBeforeP[pallier]
             }
         }
     }
@@ -515,32 +515,39 @@ class CursorX extends DrawableObject {
     static type(){return 'CursorX'}
     static typeMultiple(){return 'CursorX'}
     static properties() {
-        
-        var elementNames = []
+        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
+        var elementNames = ['']
         elementTypes.forEach(function(elemType){
             elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
         })
-        console.log(currentObjects[elementTypes[0]].map(obj => obj.name), elementNames, elementNames[0], elementTypes, Array.isArray(elementNames))
         return {
             'x': 'Expression',
             'element': elementNames,
             'labelPos': ['left', 'right'],
+            'displayStyle': [
+                '⸻⸻⸻',
+                '— — — — —',
+                '• • • • •'
+            ]
         }
     }
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                x = 1, element = null, labelPos = 'left') {
-        if(name == null) name = getNewName('ABCDEFJKLMNOPQRSTUVW')
+                x = 1, element = null, labelPos = 'left', displayStyle = '⸻⸻⸻') {
+        if(name == null) name = getNewName('X')
         super(name, visible, color, labelContent)
         this.type = 'CursorX'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
+        this.x = x
         var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
         this.element = getObjectByName(this.element, elementTypes)
         this.labelPos = labelPos
+        this.displayStyle = displayStyle
     }
     
     update() {
         if(typeof this.element == 'string') 
+            var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
             this.element = getObjectByName(this.element, elementTypes)
     }
 }
@@ -576,7 +583,7 @@ function getObjectByName(objName, objType = null) {
 
 function getObjectsName(objType) {
     if(currentObjects[objType] == undefined) return []
-    return currentObjects[objType].map(function(obj) {return obj.name})
+    return currentObjects[objType].map(obj => obj.name)
 }
 
 function createNewRegisteredObject(objType) {

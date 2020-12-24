@@ -27,7 +27,7 @@ Item {
     
     property bool isInt: false
     property bool isDouble: false
-    property double min: 1
+    property double min: -1
     property string label
     property string defValue
         

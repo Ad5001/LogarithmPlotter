@@ -158,10 +158,13 @@ ListView {
                 width: dlgProperties.width
                 defValue: objEditor.obj.name
                 onChanged: function(newValue) {
-                    if(Utils.parseName(newValue) != '') {
-                        var newName = Utils.parseName(newValue)
-                        if(Objects.getObjectByName(newName) != null) 
+                    var newName = Utils.parseName(newValue)
+                    if(newName != '' && objEditor.obj.name != newName) {
+                        console.log('Renaming to', newName)
+                        if(Objects.getObjectByName(newName) != null) {
+                            console.log(Objects.getObjectByName(newName).name, newName)
                             newName = Objects.getNewName(newName)
+                        }
                         Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newName
                         // TODO Resolve dependencies
                         objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
@@ -201,7 +204,6 @@ ListView {
                         height: 30
                         width: parent.width
                         label: parent.label
-                        min: 1
                         isDouble: modelData[1] == 'number'
                         visible: ['Expression', 'Domain', 'string', 'number'].indexOf(modelData[1]) >= 0 
                         defValue: visible ? {
