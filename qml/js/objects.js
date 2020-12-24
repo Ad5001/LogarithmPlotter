@@ -35,6 +35,7 @@ function getNewName(allowedLetters) {
     return ret
 }
 
+
 class DrawableObject {
     // Class to extend for every type of object that
     // can be drawn on the canvas.
@@ -98,6 +99,7 @@ class DrawableObject {
     draw(canvas, ctx) {}
 }
 
+
 class ExecutableObject extends DrawableObject {
     // Class to be extended for every class upon which we
     // calculate an y for a x with the execute function.
@@ -110,13 +112,14 @@ class ExecutableObject extends DrawableObject {
     simplify(x = 1) {return '0'}
 }
 
+
 class Point extends DrawableObject  {
     static type(){return 'Point'}
     static typeMultiple(){return 'Points'}
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
-        'labelPosition': ['top', 'bottom', 'left', 'right'],
+        'labelPosition': ['top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
         'pointStyle': ['●', '✕', '＋'],
     }}
     
@@ -175,10 +178,23 @@ class Point extends DrawableObject  {
             case 'right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+4)
                 break;
+            case 'top-left':
+                canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY-16)
+                break;
+            case 'top-right':
+                canvas.drawVisibleText(ctx, text, canvasX+10, canvasY-16)
+                break;
+            case 'bottom-left':
+                canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY+16)
+                break;
+            case 'bottom-right':
+                canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+16)
+                break;
                 
         }
     }
 }
+
 
 class Function extends ExecutableObject {
     static type(){return 'Function'}
@@ -244,7 +260,7 @@ class Function extends ExecutableObject {
         // Label
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text)
+        var textSize = canvas.measureText(ctx, text, 7)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.expression.execute(this.labelX))
         switch(this.labelPosition) {
@@ -278,6 +294,7 @@ class Function extends ExecutableObject {
     }
 }
 
+
 class GainBode extends ExecutableObject {
     static type(){return 'Gain Bode'}
     static typeMultiple(){return 'Gains Bode'}
@@ -302,6 +319,7 @@ class GainBode extends ExecutableObject {
                 // Create new point
                 om_0 = createNewRegisteredObject('Point')
                 om_0.name = getNewName('ω')
+                om_0.labelContent = 'name'
                 om_0.color = this.color
                 labelPosition = 'below'
             }
@@ -316,7 +334,7 @@ class GainBode extends ExecutableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
+        return `${this.name}: ${this.pass}-pass; ${this.om_0.name} = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
     }
     
     export() {
@@ -368,15 +386,15 @@ class GainBode extends ExecutableObject {
         // Label
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text)
+        var textSize = canvas.measureText(ctx, text, 7)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-3)
                 break;
             case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+3+textSize.height)
                 break;
         }
     }
@@ -389,6 +407,7 @@ class GainBode extends ExecutableObject {
         }
     }
 }
+
 
 class SommeGainsBode extends DrawableObject {
     static type(){return 'Somme gains Bode'}
@@ -445,48 +464,49 @@ class SommeGainsBode extends DrawableObject {
         // Calculating this is fairly resource expansive so it's cached.
         if(currentObjects['Gain Bode'] != undefined) {
             console.log('Recalculating cache gain')
-            // Minimum to draw (can be expended if needed, just not inifite or it'll cause issues.
-            var drawMin = 0.01
+            // Minimum to draw (can be expended if needed, just not infinite or it'll cause issues.
+            var drawMin = 0.001
             
             var baseY = 0
-            var ω0xGains = {100000: 0} // To draw the last part
-            var ω0xPass = {100000: 'high'} // To draw the last part
+            var om0xGains = {100000: 0} // To draw the last part
+            var om0xPass = {100000: 'high'} // To draw the last part
             currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their om_0 position.
-                if(ω0xGains[gainObj.om_0.x.execute()] == undefined) {
-                    ω0xGains[gainObj.om_0.x.execute()] = gainObj.gain.execute()
-                    ω0xPass[gainObj.om_0.x.execute()] = gainObj.pass == 'high'
+                var om0x = gainObj.om_0.x.execute()
+                if(om0xGains[om0x] == undefined) {
+                    om0xGains[om0x] = gainObj.gain.execute()
+                    om0xPass[om0x] = gainObj.pass == 'high'
                 } else {
-                    ω0xGains[gainObj.om_0.x.execute()+0.001] = gainObj.gain.execute()
-                    ω0xPass[gainObj.om_0.x.execute()+0.001] = gainObj.pass == 'high'
+                    om0xGains[om0x+0.001] = gainObj.gain.execute()
+                    om0xPass[om0x+0.001] = gainObj.pass == 'high'
                 }
                 baseY += gainObj.execute(drawMin)
             })
             // Sorting the om_0x
-            var ω0xList = Object.keys(ω0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
-            ω0xList.sort((a,b) => a - b)
+            var om0xList = Object.keys(om0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
+            om0xList.sort((a,b) => a - b)
             // Adding the total gains.
             var gainsBeforeP = []
             var gainsAfterP = []
             var gainTotal = 0
-            for(var i=0; i < ω0xList.length; i++){
-                if(ω0xPass[ω0xList[i]]) { // High-pass
-                    gainsBeforeP.push(ω0xGains[ω0xList[i]])
+            for(var i=0; i < om0xList.length; i++){
+                if(om0xPass[om0xList[i]]) { // High-pass
+                    gainsBeforeP.push(om0xGains[om0xList[i]])
                     gainsAfterP.push(0)
-                    gainTotal += ω0xGains[ω0xList[i]] // Gain at first
+                    gainTotal += om0xGains[om0xList[i]] // Gain at first
                 } else {
                     gainsBeforeP.push(0)
-                    gainsAfterP.push(ω0xGains[ω0xList[i]])
+                    gainsAfterP.push(om0xGains[om0xList[i]])
                 }
             }
             console.log(gainsBeforeP, gainsAfterP)
             // Calculating parts
             var previousPallier = drawMin
-            for(var pallier = 0; pallier < ω0xList.length; pallier++) {
+            for(var pallier = 0; pallier < om0xList.length; pallier++) {
                 var dbfn = new MathLib.Expression(`${gainTotal}*(ln(x)-ln(${previousPallier}))/ln(10)+${baseY}`)
-                var inDrawDom = MathLib.parseDomain(`]${previousPallier};${ω0xList[pallier]}]`)
+                var inDrawDom = MathLib.parseDomain(`]${previousPallier};${om0xList[pallier]}]`)
                 this.cachedParts.push([dbfn, inDrawDom])
-                previousPallier = ω0xList[pallier]
-                baseY = dbfn.execute(ω0xList[pallier])
+                previousPallier = om0xList[pallier]
+                baseY = dbfn.execute(om0xList[pallier])
                 gainTotal += gainsAfterP[pallier] - gainsBeforeP[pallier]
             }
         }
@@ -501,15 +521,15 @@ class SommeGainsBode extends DrawableObject {
                     // Label
                     var text = this.getLabel()
                     ctx.font = "14px sans-serif"
-                    var textSize = canvas.measureText(ctx, text)
+                    var textSize = canvas.measureText(ctx, text, 7)
                     var posX = canvas.x2px(this.labelX)
                     var posY = canvas.y2px(dbfn.execute(this.labelX))
                     switch(this.labelPosition) {
                         case 'above':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
                             break;
                         case 'below':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
                             break;
                     }
                 }
@@ -517,6 +537,7 @@ class SommeGainsBode extends DrawableObject {
         }
     }
 }
+
 
 class PhaseBode extends ExecutableObject {
     static type(){return 'Phase Bode'}
@@ -545,6 +566,7 @@ class PhaseBode extends ExecutableObject {
                 om_0 = createNewRegisteredObject('Point')
                 om_0.name = getNewName('ω')
                 om_0.color = this.color
+                om_0.labelContent = 'name'
                 om_0.labelPosition = this.phase.execute() >= 0 ? 'bottom' : 'top'
                 labelPosition = 'below'
             }
@@ -562,7 +584,7 @@ class PhaseBode extends ExecutableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ω₀ = ${this.om_0.x}\n`
+        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ${this.om_0.name} = ${this.om_0.x}\n`
     }
     
     execute(x=1) {
@@ -595,17 +617,149 @@ class PhaseBode extends ExecutableObject {
         var augmt = this.phase.execute()
         var baseY = canvas.y2px(omy)
         var augmtY = canvas.y2px(omy+augmt)
-        if(baseX > 0 && baseY > 0 && baseY < canvas.canvasSize.height) // before change line.
-            canvas.drawLine(ctx, 0, baseY, Math.min(baseX, canvas.canvasSize.height), baseY)
-        if(baseX > 0 && baseX < canvas.canvasSize.width && 
-            ((baseY > 0 && baseY < canvas.canvasSize.height) || 
-            (augmtY > 0 && augmtY < canvas.canvasSize.height))) { // Transition line.
-            canvas.drawLine(ctx, baseX, baseY, baseX, augmtY)
+        // Before change line.
+        canvas.drawLine(ctx, 0, baseY, Math.min(baseX, canvas.canvasSize.height), baseY)
+        // Transition line.
+        canvas.drawLine(ctx, baseX, baseY, baseX, augmtY)
+        // After change line
+        canvas.drawLine(ctx, Math.max(0, baseX), augmtY, canvas.canvasSize.width, augmtY)
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text, 7)
+        var posX = canvas.x2px(this.labelX)
+        var posY = canvas.y2px(this.execute(this.labelX))
+        switch(this.labelPosition) {
+            case 'above':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
+                break;
+            case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
+                break;
         }
-        if(baseX < canvas.canvasSize.width && augmtY > 0 && augmtY < canvas.canvasSize.height)
-            canvas.drawLine(ctx, Math.max(0, baseX), augmtY, canvas.canvasSize.width, augmtY)
+    }
+    
+    update() {
+        if(currentObjects['Somme phases Bode'] != undefined) {
+            currentObjects['Somme phases Bode'][0].recalculateCache()
+        } else {
+            createNewRegisteredObject('Somme phases Bode')
+        }
     }
 }
+
+
+class SommePhasesBode extends ExecutableObject {
+    static type(){return 'Somme phases Bode'}
+    static typeMultiple(){return 'Somme phases Bode'}
+    static createable() {return false}
+    static properties() {return {
+        'labelPosition': ['above', 'below'],
+        'labelX': 'number'
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value',
+        labelPosition = 'above', labelX = 1) {
+        if(name == null) name = 'φ'
+        super(name, visible, color, labelContent)
+        this.labelPosition = labelPosition
+        this.labelX = labelX
+        this.recalculateCache()
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.labelPosition, this.labelX]
+    }
+    
+    getReadableString() {
+        return `${this.name} = ${getObjectsName('Phase Bode').join(' + ')}`
+    }
+    
+    execute(x=1) {
+        if(typeof x == 'string') x = MathLib.executeExpression(x)
+        for(var i = 0; i < this.om0xList.length-1; i++) {
+            if(x >= this.om0xList[i] && x < this.om0xList[i+1]) return this.phasesList[i]
+        }
+    }
+    
+    simplify(x = 1) {
+        var xval = x
+        if(typeof x == 'string') xval = MathLib.executeExpression(x)
+        for(var i = 0; i < this.om0xList.length-1; i++) {
+            if(xval >= this.om0xList[i] && xval < this.om0xList[i+1]) {
+                return (new MathLib.Expression(this.phasesExprList[i])).simplify()
+            }
+        }
+        return '0'
+    }
+    
+    canExecute(x = 1) {
+        return true
+    }
+    
+    recalculateCache() {
+        // Minimum to draw (can be expended if needed, just not infinite or it'll cause issues.
+        var drawMin = 0.001
+        var drawMax = 100000
+        this.om0xList = [drawMin, drawMax]
+        this.phasesList = [0]
+        this.phasesExprList = ['0']
+        var phasesDict = {}
+        var phasesExprDict = {}
+        phasesDict[drawMax] = 0
+        
+        if(currentObjects['Phase Bode'] != undefined) {
+            console.log('Recalculating cache phase')
+            for(var i = 0; i < currentObjects['Phase Bode'].length; i++) {
+                var obj = currentObjects['Phase Bode'][i]
+                this.om0xList.push(obj.om_0.x.execute())
+                if(phasesDict[obj.om_0.x.execute()] == undefined) {
+                    phasesDict[obj.om_0.x.execute()] = obj.phase.execute()
+                    phasesExprDict[obj.om_0.x.execute()] = obj.phase.toEditableString()
+                } else {
+                    phasesDict[obj.om_0.x.execute()] += obj.phase.execute()
+                    phasesExprDict[obj.om_0.x.execute()] += '+' + obj.phase.toEditableString()
+                }
+                this.phasesList[0] += obj.om_0.y.execute()
+                this.phasesExprList[0] += '+' + obj.om_0.y.toEditableString()
+            }
+            this.om0xList.sort((a,b) => a - b)
+            var totalAdded = this.phasesList[0]
+            for(var i = 1; i < this.om0xList.length; i++) {
+                this.phasesList[i] = this.phasesList[i-1] + phasesDict[this.om0xList[i]]
+                this.phasesExprList[i] = this.phasesExprList[i-1] + '+' + phasesDict[this.om0xList[i]]
+            }
+        }
+    }
+    
+    draw(canvas, ctx) {
+        for(var i = 0; i < this.om0xList.length-1; i++) {
+            var om0xBegin = canvas.x2px(this.om0xList[i])
+            var om0xEnd = canvas.x2px(this.om0xList[i+1])
+            var baseY = canvas.y2px(this.phasesList[i])
+            var nextY = canvas.y2px(this.phasesList[i+1])
+            canvas.drawLine(ctx, om0xBegin, baseY, om0xEnd, baseY)
+            canvas.drawLine(ctx, om0xEnd, baseY, om0xEnd, nextY)
+        }
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text, 7)
+        var posX = canvas.x2px(this.labelX)
+        var posY = canvas.y2px(this.execute(this.labelX))
+        switch(this.labelPosition) {
+            case 'above':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
+                break;
+            case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
+                break;
+        }
+    }
+}
+
 
 class CursorX extends DrawableObject {
     static type(){return 'X Cursor'}
@@ -641,8 +795,7 @@ class CursorX extends DrawableObject {
         this.rounding = rounding
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
         this.x = x
-        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-        this.targetElement = getObjectByName(this.targetElement, elementTypes)
+        this.targetElement = targetElement
         this.labelPosition = labelPosition
         this.displayStyle = displayStyle
         this.targetValuePosition = targetValuePosition
@@ -650,17 +803,17 @@ class CursorX extends DrawableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.x.toEditableString(), this.targetElement.name, this.labelPosition, 
+        this.x.toEditableString(), this.targetElement, this.labelPosition, 
         this.approximate, this.rounding, this.displayStyle, this.targetValuePosition]
     }
     
     getReadableString() {
-        if(this.targetElement == null) return `${this.name} = ${this.x.toString()}`
+        if(this.getTargetElement() == null) return `${this.name} = ${this.x.toString()}`
         return `${this.name} = ${this.x.toString()}\n${this.getTargetValueLabel()}`
     }
     
     getTargetValueLabel() {
-        var t = this.targetElement
+        var t = this.getTargetElement()
         var approx = ''
         if(this.approximate) {
             approx = t.execute(this.x.execute())
@@ -668,6 +821,11 @@ class CursorX extends DrawableObject {
         }
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
             (this.approximate ? ' ≃ ' + approx : '')
+    }
+    
+    getTargetElement() {
+        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
+        return getObjectByName(this.targetElement, elementTypes)
     }
     
     getLabel() {
@@ -725,26 +883,18 @@ class CursorX extends DrawableObject {
                 break;
         }
         
-        if(this.targetValuePosition == 'Next to target' && this.targetElement != null) {
+        if(this.targetValuePosition == 'Next to target' && this.getTargetElement() != null) {
             var text = this.getTargetValueLabel()
             var textSize = canvas.measureText(ctx, text, 7)
-            var ypox = canvas.y2px(this.targetElement.execute(this.x.execute()))
+            var ypox = canvas.y2px(this.getTargetElement().execute(this.x.execute()))
             switch(this.labelPosition) {
                 case 'left':
                     canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height)
                     break;
                 case 'right':
-                    canvas.drawVisibleText(ctx, text, xpos+5, ypox.textSize.height)
+                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height)
                     break;
             }
-        }
-        
-    }
-    
-    update() {
-        if(typeof this.targetElement == 'string') {
-            var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-            this.targetElement = getObjectByName(this.targetElement, elementTypes)
         }
     }
 }
@@ -755,6 +905,7 @@ const types = {
     'Gain Bode': GainBode,
     'Somme gains Bode': SommeGainsBode,
     'Phase Bode': PhaseBode,
+    'Somme phases Bode': SommePhasesBode,
     'X Cursor': CursorX
 }
 

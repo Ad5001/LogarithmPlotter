@@ -87,6 +87,8 @@ ListView {
                 id: objVisibilityCheckBox
                 checked: Objects.currentObjects[objType][index].visible
                 anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 5
                 onClicked: {
                     Objects.currentObjects[objType][index].visible = this.checked
                     objectListList.changed()
@@ -100,11 +102,11 @@ ListView {
             Text {
                 id: objDescription
                 anchors.left: objVisibilityCheckBox.right
-                anchors.right: deleteButton.left
+                anchors.right: settingsButton.left
                 height: parent.height
                 verticalAlignment: TextInput.AlignVCenter
                 text: obj.getReadableString()
-                font.pixelSize: 16
+                font.pixelSize: 14
                 color: sysPalette.windowText
                 
                 MouseArea {
@@ -116,6 +118,25 @@ ListView {
                         objEditor.editingRow = controlRow
                         objEditor.open()
                     }
+                }
+            }
+            
+            Button {
+                id: settingsButton
+                width: parent.height - 10
+                height: width
+                anchors.right: deleteButton.left
+                anchors.rightMargin: 5
+                anchors.topMargin: 5
+                icon.source: './icons/settings.svg'
+                icon.name: 'configure'
+                
+                onClicked: {
+                    objEditor.obj = Objects.currentObjects[objType][index]
+                    objEditor.objType = objType
+                    objEditor.objIndex = index
+                    objEditor.editingRow = controlRow
+                    objEditor.open()
                 }
             }
             
@@ -251,17 +272,17 @@ ListView {
                         isDouble: modelData[1] == 'number'
                         visible: ['Expression', 'Domain', 'string', 'number'].indexOf(modelData[1]) >= 0 
                         defValue: visible ? {
-                            'Expression': function(){return Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString())},
-                            'Domain': function(){return objEditor.obj[modelData[0]].toString()},
-                            'string': function(){return objEditor.obj[modelData[0]]},
-                            'number': function(){return objEditor.obj[modelData[0]]}
+                            'Expression': () => Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString()),
+                            'Domain': () => objEditor.obj[modelData[0]].toString(),
+                            'string': () => objEditor.obj[modelData[0]],
+                            'number': () => objEditor.obj[modelData[0]]
                         }[modelData[1]]() : ""
                         onChanged: function(newValue) {
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = {
-                                'Expression': function(){return new MathLib.Expression(newValue)},
-                                'Domain': function(){return MathLib.parseDomain(newValue)},
-                                'string': function(){return newValue},
-                                'number': function(){return parseFloat(newValue)}
+                                'Expression': () => new MathLib.Expression(newValue),
+                                'Domain': () => MathLib.parseDomain(newValue),
+                                'string': () => newValue,
+                                'number': () => parseFloat(newValue)
                             }[modelData[1]]()
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
@@ -306,7 +327,7 @@ ListView {
                                     model = Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]])
                                     currentIndex = model.indexOf(selectedObj.name)
                                 }
-                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]].requiredBy = objEditor.obj[modelData[0]].filter(function(obj) {objEditor.obj.name != obj.name})
+                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
                                 selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
                                 Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
                             } else {
