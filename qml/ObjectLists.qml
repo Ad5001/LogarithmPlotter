@@ -37,30 +37,54 @@ ListView {
     delegate: ListView {
         id: objTypeList
         property string objType: objectListList.model[index]
+        property var editingRows: []
         model: Objects.currentObjects[objType]
         width: objectListList.width
         implicitHeight: contentItem.childrenRect.height
         visible: model != undefined && model.length > 0
+        interactive: false
         
         Component.onCompleted: objectListList.listViews[objType] = objTypeList // Listing in order to be refreshed
         
-        header: Text {
-            verticalAlignment: TextInput.AlignVCenter
-            color: sysPalette.windowText
-            text: Objects.types[objType].typeMultiple() + ":"
-            font.pixelSize: 20
-            visible: objTypeList.visible
+        header: Row {
+            width: typeHeaderText.width + typeVisibilityCheckBox.visible
             height: visible ? 20 : 0
+            visible: objTypeList.visible
+            
+            CheckBox {
+                id: typeVisibilityCheckBox
+                checked: Objects.currentObjects[objType] != undefined ? Objects.currentObjects[objType].every(obj => obj.visible) : true
+                onClicked: {
+                    console.log(Objects.currentObjects[objType].every(obj => obj.visible))
+                    Objects.currentObjects[objType].forEach(obj => obj.visible = this.checked)
+                    objTypeList.editingRows.forEach(obj => obj.objVisible = this.checked)
+                    objectListList.changed()
+                }
+                
+                ToolTip.visible: hovered
+                ToolTip.text: checked ? `Hide all ${Objects.types[objType].typeMultiple()}` : `Show all ${Objects.types[objType].typeMultiple()}`
+            }
+            
+            Text {
+                id: typeHeaderText
+                verticalAlignment: TextInput.AlignVCenter
+                color: sysPalette.windowText
+                text: Objects.types[objType].typeMultiple() + ":"
+                font.pixelSize: 20
+            }
         }
         
         delegate: Item {
             id: controlRow
             property var obj: Objects.currentObjects[objType][index]
+            property alias objVisible: objVisibilityCheckBox.checked
             height: 40
             width: objTypeList.width
             
+            Component.onCompleted: objTypeList.editingRows.push(controlRow)
+            
             CheckBox {
-                id: visibilityCheckBox
+                id: objVisibilityCheckBox
                 checked: Objects.currentObjects[objType][index].visible
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: {
@@ -75,7 +99,7 @@ ListView {
             
             Text {
                 id: objDescription
-                anchors.left: visibilityCheckBox.right
+                anchors.left: objVisibilityCheckBox.right
                 anchors.right: deleteButton.left
                 height: parent.height
                 verticalAlignment: TextInput.AlignVCenter
