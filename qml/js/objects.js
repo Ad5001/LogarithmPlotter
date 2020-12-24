@@ -282,7 +282,7 @@ class GainBode extends ExecutableObject {
     static type(){return 'Gain Bode'}
     static typeMultiple(){return 'Gains Bode'}
     static properties() {return {
-        'ω_0': 'Point',
+        'om_0': 'Point',
         'pass': ['high', 'low'],
         'gain': 'Expression',
         'labelPosition': ['above', 'below'],
@@ -290,24 +290,24 @@ class GainBode extends ExecutableObject {
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                ω_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1) {
+                om_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1) {
         if(name == null) name = getNewName('G')
         if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitudes (Somme gains Bode).
         super(name, visible, color, labelContent)
         this.type = 'Gain Bode'
-        if(typeof ω_0 == "string") {
+        if(typeof om_0 == "string") {
             // Point name or create one
-            ω_0 = getObjectByName(ω_0, 'Point')
-            if(ω_0 == null) {
+            om_0 = getObjectByName(om_0, 'Point')
+            if(om_0 == null) {
                 // Create new point
-                ω_0 = createNewRegisteredObject('Point')
-                ω_0.name = getNewName('ω')
-                ω_0.color = this.color
+                om_0 = createNewRegisteredObject('Point')
+                om_0.name = getNewName('ω')
+                om_0.color = this.color
                 labelPosition = 'below'
             }
-            ω_0.requiredBy.push(this)
+            om_0.requiredBy.push(this)
         }
-        this.ω_0 = ω_0
+        this.om_0 = om_0
         this.pass = pass
         if(typeof gain == 'number' || typeof gain == 'string') gain = new MathLib.Expression(gain.toString())
         this.gain = gain
@@ -316,29 +316,32 @@ class GainBode extends ExecutableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.ω_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
+        return `${this.name}: ${this.pass}-pass; ω₀ = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
     }
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.ω_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX]
+        this.om_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX]
     }
     
     execute(x=1) {
-        if((this.pass == 'high' && x < this.ω_0.x) || (this.pass == 'low' && x > this.ω_0.x)) {
-            var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.ω_0.x}))/ln(10)+${this.ω_0.y}`)
+        if(typeof x == 'string') x = MathLib.executeExpression(x)
+        if((this.pass == 'high' && x < this.om_0.x) || (this.pass == 'low' && x > this.om_0.x)) {
+            var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.om_0.x}))/ln(10)+${this.om_0.y}`)
             return dbfn.execute(x)
         } else {
-            return this.ω_0.y.execute()
+            return this.om_0.y.execute()
         }
     }
     
     simplify(x = 1) {
-        if((this.pass == 'high' && x < this.ω_0.x) || (this.pass == 'low' && x > this.ω_0.x)) {
-            var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.ω_0.x}))/ln(10)+${this.ω_0.y}`)
+        var xval = x
+        if(typeof x == 'string') xval = MathLib.executeExpression(x)
+        if((this.pass == 'high' && xval < this.om_0.x) || (this.pass == 'low' && xval > this.om_0.x)) {
+            var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.om_0.x}))/ln(10)+${this.om_0.y}`)
             return dbfn.simplify(x)
         } else {
-            return this.ω_0.y.toString()
+            return this.om_0.y.toString()
         }
     }
     
@@ -347,18 +350,18 @@ class GainBode extends ExecutableObject {
     }
     
     draw(canvas, ctx) {
-        var base = [canvas.x2px(this.ω_0.x), canvas.y2px(this.ω_0.y)]
-        var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.ω_0.x}))/ln(10)+${this.ω_0.y}`)
+        var base = [canvas.x2px(this.om_0.x), canvas.y2px(this.om_0.y)]
+        var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.om_0.x}))/ln(10)+${this.om_0.y}`)
         var inDrawDom = new MathLib.EmptySet()
 
         if(this.pass == 'high') {
             // High pass, linear line from begining, then constant to the end.
             canvas.drawLine(ctx, base[0], base[1], canvas.canvasSize.width, base[1])
-            inDrawDom = MathLib.parseDomain(`]-inf;${this.ω_0.x}[`)
+            inDrawDom = MathLib.parseDomain(`]-inf;${this.om_0.x}[`)
         } else {
             // Low pass, constant from the beginning, linear line to the end.
             canvas.drawLine(ctx, base[0], base[1], 0, base[1])
-            inDrawDom = MathLib.parseDomain(`]${this.ω_0.x};+inf[`)
+            inDrawDom = MathLib.parseDomain(`]${this.om_0.x};+inf[`)
         }
         Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
         
@@ -448,17 +451,17 @@ class SommeGainsBode extends DrawableObject {
             var baseY = 0
             var ω0xGains = {100000: 0} // To draw the last part
             var ω0xPass = {100000: 'high'} // To draw the last part
-            currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their ω_0 position.
-                if(ω0xGains[gainObj.ω_0.x.execute()] == undefined) {
-                    ω0xGains[gainObj.ω_0.x.execute()] = gainObj.gain.execute()
-                    ω0xPass[gainObj.ω_0.x.execute()] = gainObj.pass == 'high'
+            currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their om_0 position.
+                if(ω0xGains[gainObj.om_0.x.execute()] == undefined) {
+                    ω0xGains[gainObj.om_0.x.execute()] = gainObj.gain.execute()
+                    ω0xPass[gainObj.om_0.x.execute()] = gainObj.pass == 'high'
                 } else {
-                    ω0xGains[gainObj.ω_0.x.execute()+0.001] = gainObj.gain.execute()
-                    ω0xPass[gainObj.ω_0.x.execute()+0.001] = gainObj.pass == 'high'
+                    ω0xGains[gainObj.om_0.x.execute()+0.001] = gainObj.gain.execute()
+                    ω0xPass[gainObj.om_0.x.execute()+0.001] = gainObj.pass == 'high'
                 }
                 baseY += gainObj.execute(drawMin)
             })
-            // Sorting the ω_0x
+            // Sorting the om_0x
             var ω0xList = Object.keys(ω0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
             ω0xList.sort((a,b) => a - b)
             // Adding the total gains.
@@ -519,7 +522,7 @@ class PhaseBode extends ExecutableObject {
     static type(){return 'Phase Bode'}
     static typeMultiple(){return 'Phases Bode'}
     static properties() {return {
-        'ω_0': 'Point',
+        'om_0': 'Point',
         'phase': 'Expression',
         'unit': ['°', 'deg', 'rad'],
         'labelPosition': ['above', 'below'],
@@ -527,26 +530,27 @@ class PhaseBode extends ExecutableObject {
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                ω_0 = '', phase = 90, unit = '°', labelPosition = 'above', labelX = 1) {
+                om_0 = '', phase = 90, unit = '°', labelPosition = 'above', labelX = 1) {
         if(name == null) name = getNewName('φ')
         if(name == 'φ') name = 'φ₀' // φ is reserved for sum of BODE phases (Somme phases Bode).
         super(name, visible, color, labelContent)
         this.type = 'Phase Bode'
-        if(typeof ω_0 == "string") {
-            // Point name or create one
-            ω_0 = getObjectByName(ω_0, 'Point')
-            if(ω_0 == null) {
-                // Create new point
-                ω_0 = createNewRegisteredObject('Point')
-                ω_0.name = getNewName('ω')
-                ω_0.color = this.color
-                labelPosition = 'below'
-            }
-            ω_0.requiredBy.push(this)
-        }
-        this.ω_0 = ω_0
         if(typeof phase == 'number' || typeof phase == 'string') phase = new MathLib.Expression(phase.toString())
         this.phase = phase
+        if(typeof om_0 == "string") {
+            // Point name or create one
+            om_0 = getObjectByName(om_0, 'Point')
+            if(om_0 == null) {
+                // Create new point
+                om_0 = createNewRegisteredObject('Point')
+                om_0.name = getNewName('ω')
+                om_0.color = this.color
+                om_0.labelPosition = this.phase.execute() >= 0 ? 'bottom' : 'top'
+                labelPosition = 'below'
+            }
+            om_0.requiredBy.push(this)
+        }
+        this.om_0 = om_0
         this.unit = unit
         this.labelPosition = labelPosition
         this.labelX = labelX
@@ -554,11 +558,52 @@ class PhaseBode extends ExecutableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.ω_0.name, this.phase.toEditableString(), this.unit, this.labelPosition, this.labelX]
+        this.om_0.name, this.phase.toEditableString(), this.unit, this.labelPosition, this.labelX]
     }
     
     getReadableString() {
-        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ω₀ = ${this.ω_0.x}\n`
+        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ω₀ = ${this.om_0.x}\n`
+    }
+    
+    execute(x=1) {
+        if(typeof x == 'string') x = MathLib.executeExpression(x)
+        if(x < this.om_0.x) {
+            return this.om_0.y.execute()
+        } else {
+            return this.om_0.y.execute() + this.phase.execute()
+        }
+    }
+    
+    simplify(x = 1) {
+        var xval = x
+        if(typeof x == 'string') xval = MathLib.executeExpression(x)
+        if(xval < this.om_0.x) {
+            return this.om_0.y.toString()
+        } else {
+            var newExp = this.om_0.y.toEditableString() + ' + ' + this.phase.toEditableString()
+            return (new MathLib.Expression(newExp)).toString()
+        }
+    }
+    
+    canExecute(x = 1) {
+        return true
+    }
+    
+    draw(canvas, ctx) {
+        var baseX = canvas.x2px(this.om_0.x.execute())
+        var omy = this.om_0.y.execute()
+        var augmt = this.phase.execute()
+        var baseY = canvas.y2px(omy)
+        var augmtY = canvas.y2px(omy+augmt)
+        if(baseX > 0 && baseY > 0 && baseY < canvas.canvasSize.height) // before change line.
+            canvas.drawLine(ctx, 0, baseY, Math.min(baseX, canvas.canvasSize.height), baseY)
+        if(baseX > 0 && baseX < canvas.canvasSize.width && 
+            ((baseY > 0 && baseY < canvas.canvasSize.height) || 
+            (augmtY > 0 && augmtY < canvas.canvasSize.height))) { // Transition line.
+            canvas.drawLine(ctx, baseX, baseY, baseX, augmtY)
+        }
+        if(baseX < canvas.canvasSize.width && augmtY > 0 && augmtY < canvas.canvasSize.height)
+            canvas.drawLine(ctx, Math.max(0, baseX), augmtY, canvas.canvasSize.width, augmtY)
     }
 }
 
@@ -731,8 +776,6 @@ function getObjectByName(objName, objType = null) {
     })
     return retObj
 }
-
-
 
 function getObjectsName(objType) {
     if(currentObjects[objType] == undefined) return []
