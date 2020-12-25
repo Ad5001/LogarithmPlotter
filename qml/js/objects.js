@@ -158,8 +158,8 @@ class Point extends DrawableObject  {
                 canvas.drawLine(ctx, canvasX-pointSize/2, canvasY+pointSize/2, canvasX+pointSize/2, canvasY-pointSize/2)
                 break;
             case '＋':
-                canvas.drawLine(ctx, canvasX, canvasY-pointSize/2, canvasX, canvasY+pointSize/2)
-                canvas.drawLine(ctx, canvasX-pointSize/2, canvasY, canvasX+pointSize/2, canvasY)
+                ctx.fillRect(canvasX-pointSize/2, canvasY-1, pointSize, 2)
+                ctx.fillRect(canvasX-1, canvasY-pointSize/2, 2, pointSize)
                 break;
         }
         var text = this.getLabel()
@@ -265,10 +265,10 @@ class Function extends ExecutableObject {
         var posY = canvas.y2px(this.expression.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
                 break;
             case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
                 break;
                 
         }
@@ -279,17 +279,43 @@ class Function extends ExecutableObject {
         // Drawing small traits every 2px
         var pxprecision = 2
         var previousX = canvas.px2x(0)
-        var previousY = expr.execute(previousX)
-        for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
-            var currentX = canvas.px2x(px)
-            var currentY = expr.execute(currentX)
-            if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
-                (outDomain.includes(currentY) || outDomain.includes(previousY)) &&
-                Math.abs(previousY-currentY)<100) { // 100 per 2px is a lot (probably inf to inf issue)
-                    canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+        var previousY;
+        var draw = function(currentX) {
+        }
+        console.log('Drawing', inDomain, inDomain instanceof MathLib.SpecialDomain)
+        if(inDomain instanceof MathLib.SpecialDomain && inDomain.moveSupported) {
+            previousX = inDomain.previous(previousX)
+            if(previousX === null) previousX = inDomain.next(canvas.px2x(0))
+            previousY = expr.execute(previousX)
+            while(previousX !== null && canvas.x2px(previousX) < canvas.canvasSize.width) {
+                var currentX = inDomain.next(previousX)
+                var currentY = expr.execute(currentX)
+                if(currentX === null) break;
+                if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
+                    (outDomain.includes(currentY) || outDomain.includes(previousY))) {
+                    canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                    ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+                    ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
                 }
-            previousX = currentX
-            previousY = currentY
+                previousX = currentX
+                previousY = currentY
+            }
+            // Drawing the last cross
+            ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+            ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+        } else {
+            previousY = expr.execute(previousX)
+            for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
+                var currentX = canvas.px2x(px)
+                var currentY = expr.execute(currentX)
+                if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
+                    (outDomain.includes(currentY) || outDomain.includes(previousY)) &&
+                    Math.abs(previousY-currentY)<100) {
+                        canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                    }
+                previousX = currentX
+                previousY = currentY
+            }
         }
     }
 }
