@@ -282,7 +282,6 @@ class Function extends ExecutableObject {
         var previousY;
         var draw = function(currentX) {
         }
-        console.log('Drawing', inDomain, inDomain instanceof MathLib.SpecialDomain)
         if(inDomain instanceof MathLib.SpecialDomain && inDomain.moveSupported) {
             previousX = inDomain.previous(previousX)
             if(previousX === null) previousX = inDomain.next(canvas.px2x(0))

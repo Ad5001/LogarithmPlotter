@@ -105,6 +105,7 @@ ApplicationWindow {
         xlabel: settings.xaxislabel
         ylabel: settings.yaxislabel
         yaxisstep: settings.yaxisstep
+        xaxisstep: settings.xaxisstep
         logscalex: settings.logscalex
         
         onPaint: {
@@ -125,9 +126,11 @@ ApplicationWindow {
             "yzoom":        settings.yzoom,
             "xmin":         settings.xmin,
             "ymax":         settings.ymax,
+            "xaxisstep":    settings.xaxisstep,
             "yaxisstep":    settings.yaxisstep,
             "xaxislabel":   settings.xaxislabel,
             "yaxislabel":   settings.yaxislabel,
+            "logscalex":    settings.logscalex,
             "width":        root.width,
             "height":       root.height,
             "objects":      objs,
@@ -142,9 +145,11 @@ ApplicationWindow {
             settings.yzoom = data["yzoom"]
             settings.xmin = data["xmin"]
             settings.ymax = data["ymax"]
+            settings.xaxisstep = data["xaxisstep"]
             settings.yaxisstep = data["yaxisstep"]
             settings.xaxislabel = data["xaxislabel"]
             settings.yaxislabel = data["yaxislabel"]
+            settings.logscalex = data["logscalex"]
             root.height = data["height"]
             root.width = data["width"]
             

@@ -34,6 +34,7 @@ Column {
     property int yzoom: 10
     property double xmin: 5/10
     property double ymax: 25
+    property string xaxisstep: "4"
     property string yaxisstep: "4"
     property string xaxislabel: ""
     property string yaxislabel: ""
@@ -113,12 +114,24 @@ Column {
     TextSetting {
         id: yAxisStep
         height: 30
-        //isInt: true
         label: "Y Axis Step"
         width: settings.settingWidth
         defValue: settings.yaxisstep
         onChanged: function(newValue) {
             settings.yaxisstep = newValue
+            settings.changed()
+        }
+    }
+    
+    TextSetting {
+        id: xAxisStep
+        height: 30
+        label: "X Axis Step"
+        width: settings.settingWidth
+        defValue: settings.xaxisstep
+        visible: !settings.logscalex
+        onChanged: function(newValue) {
+            settings.xaxisstep = newValue
             settings.changed()
         }
     }

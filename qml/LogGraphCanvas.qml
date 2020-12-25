@@ -33,7 +33,8 @@ Canvas {
     property double ymax: 0
     property int xzoom: 10
     property int yzoom: 10
-    property string yaxisstep: "3"
+    property string xaxisstep: "4"
+    property string yaxisstep: "4"
     property string xlabel: ""
     property string ylabel: ""
     property int maxgradx: 8
@@ -42,6 +43,9 @@ Canvas {
     property var yaxisstepExpr: (new MathLib.Expression(`x*(${yaxisstep})`))
     property double yaxisstep1: yaxisstepExpr.execute(1)
     property int drawMaxY: Math.ceil(Math.max(Math.abs(ymax), Math.abs(px2y(canvasSize.height)))/yaxisstep1)
+    property var xaxisstepExpr: (new MathLib.Expression(`x*(${xaxisstep})`))
+    property double xaxisstep1: xaxisstepExpr.execute(1)
+    property int drawMaxX: Math.ceil(Math.max(Math.abs(xmin), Math.abs(px2x(canvasSize.width)))/xaxisstep1)
     
     
     onPaint: {
@@ -79,10 +83,9 @@ Canvas {
                 }
             }
         } else {
-            for(var x = 0; x < 40*maxgradx; x+=1) {
-                // TODO: Fill screen based
-                drawXLine(ctx, x*yaxisstep1)
-                drawXLine(ctx, -x*yaxisstep1)
+            for(var x = 0; x < drawMaxX; x+=1) {
+                drawXLine(ctx, x*xaxisstep1)
+                drawXLine(ctx, -x*xaxisstep1)
             }
         }
         for(var y = 0; y < drawMaxY; y+=1) {

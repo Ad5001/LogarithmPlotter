@@ -132,6 +132,10 @@ class Domain {
             case "ℤ⁺":
                 return Domain.N
                 break;
+            case "NLOG":
+            case "ℕˡᵒᵍ":
+                return Domain.NLog
+                break;
             case "NE":
             case "NP":
             case "N*":
@@ -536,7 +540,16 @@ Domain.ZM = new SpecialDomain('ℤ⁻', x => x%1==0 && x <= 0,
 Domain.ZME = new SpecialDomain('ℤ⁻*', x => x%1==0 && x < 0, 
                                x => Math.min(Math.floor(x)+1, -1), 
                                x => Math.min(Math.ceil(x)-1, -1))
-
+Domain.NLog = new SpecialDomain('ℕˡᵒᵍ', 
+                                x => x/Math.pow(10, x.toString().length-1) % 1 == 0 && x > 0, 
+                                function(x) {
+                                    var x10pow = Math.pow(10, x.toString().length-1)
+                                    return Math.max(1, (Math.floor(x/x10pow)+1)*x10pow)
+                                }, 
+                                function(x) {
+                                    var x10pow = Math.pow(10, x.toString().length-1)
+                                    return Math.max(1, (Math.ceil(x/x10pow)-1)*x10pow)
+                                })
 
 var refedDomains = []
 
