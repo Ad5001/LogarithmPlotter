@@ -55,6 +55,10 @@ class Expression {
         return Utils.makeExpressionReadable(expr.toString())
     }
     
+    duplicate() {
+        return new Expression(this.toEditableString())
+    }
+    
     toEditableString() {
         return this.calc.toString()
     }
@@ -74,39 +78,20 @@ function executeExpression(expr){
 }
 
 // Domains
-
-class EmptySet {
+class Domain {
     constructor() {}
     
     includes(x) { return false }
     
-    toString() { return "∅" }
+    toString() { return '???' }
+    
+    union(domain) { return domain }
+    
+    intersection(domain) { return this }
     
     static import(frm) { return new EmptySet() }
-}
-
-class Domain {
-    constructor(begin, end, openBegin, openEnd) {
-        if(typeof begin == 'number' || typeof begin == 'string') begin = new Expression(begin.toString())
-        this.begin = begin
-        if(typeof end == 'number' || typeof end == 'string') end = new Expression(end.toString())
-        this.end = end
-        this.openBegin = openBegin
-        this.openEnd = openEnd
-        this.displayName = (openBegin ? "]" : "[") + begin.toString() + ";" + end.toString() + (openEnd ? "[" : "]")
-    }
     
-    includes(x) {
-        if(typeof x == 'string') x = executeExpression(x)
-        return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
-            ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
-    }
-    
-    toString() {
-        return this.displayName
-    }
-    
-    static importFrom(frm) {
+    static import(frm) {
         switch(frm.trim().toUpperCase()) {
             case "R":
             case "ℝ":
@@ -144,27 +129,86 @@ class Domain {
                 return Domain.RME
                 break;
             default:
-                var openBegin = frm.trim().charAt(0) == "]"
-                var openEnd = frm.trim().charAt(frm.length -1) == "["
-                var [begin, end] = frm.substr(1, frm.length-2).split(";")
-                return new Domain(begin.trim(), end.trim(), openBegin, openEnd)
+                return EmptySet()
                 break;
         }
     }
 }
-Domain.R = new Domain(-Infinity,Infinity,true,true)
+
+class EmptySet extends Domain {
+    
+    includes(x) { return false }
+    
+    toString() { return "∅" }
+    
+    union(domain) { return domain }
+    
+    intersection(domain) { return this }
+    
+    static import(frm) { return new EmptySet() }
+}
+
+class Interval extends Domain {
+    constructor(begin, end, openBegin, openEnd) {
+        super()
+        if(typeof begin == 'number' || typeof begin == 'string') begin = new Expression(begin.toString())
+        this.begin = begin
+        if(typeof end == 'number' || typeof end == 'string') end = new Expression(end.toString())
+        this.end = end
+        this.openBegin = openBegin
+        this.openEnd = openEnd
+        this.displayName = (openBegin ? "]" : "[") + begin.toString() + ";" + end.toString() + (openEnd ? "[" : "]")
+    }
+    
+    includes(x) {
+        if(typeof x == 'string') x = executeExpression(x)
+        return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
+            ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
+    }
+    
+    toString() {
+        return this.displayName
+    }
+    
+    union(domain) {
+        if(domain instanceof EmptySet) return this
+        if(domain instanceof DomainSet) return domain.union(this)
+        if(domain instanceof UnionDomain) return domain.union(this)
+        if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
+        if(domain instanceof MinusDomain) return new UnionDomain(this, domain)
+        if(domain instanceof Interval) return new UnionDomain(this, domain)
+    }
+    
+    intersection(domain) {
+        if(domain instanceof EmptySet) return domain
+        if(domain instanceof DomainSet) return domain.intersection(this)
+        if(domain instanceof UnionDomain) return new IntersectionDomain(this, domain)
+        if(domain instanceof IntersectionDomain) return domain.intersection(this)
+        if(domain instanceof MinusDomain) return new IntersectionDomain(this, domain)
+        if(domain instanceof Interval) return new IntersectionDomain(this, domain)
+    }
+    
+    static import(frm) {
+        var openBegin = frm.trim().charAt(0) == "]"
+        var openEnd = frm.trim().charAt(frm.length -1) == "["
+        var [begin, end] = frm.substr(1, frm.length-2).split(";")
+        return new Interval(begin.trim(), end.trim(), openBegin, openEnd)
+    }
+}
+Domain.R = new Interval(-Infinity,Infinity,true,true)
 Domain.R.displayName = "ℝ"
-Domain.RP = new Domain(0,Infinity,true,false)
+Domain.RP = new Interval(0,Infinity,true,false)
 Domain.RP.displayName = "ℝ⁺"
-Domain.RM = new Domain(-Infinity,0,true,false)
+Domain.RM = new Interval(-Infinity,0,true,false)
 Domain.RM.displayName = "ℝ⁻"
-Domain.RPE = new Domain(0,Infinity,true,true)
+Domain.RPE = new Interval(0,Infinity,true,true)
 Domain.RPE.displayName = "ℝ⁺*"
-Domain.RME = new Domain(-Infinity,0,true,true)
+Domain.RME = new Interval(-Infinity,0,true,true)
 Domain.RME.displayName = "ℝ⁻*"
 
-class DomainSet {
+class DomainSet extends Domain {
     constructor(values) {
+        super()
         var newVals = []
         values.forEach(function(value){
             newVals.push(new Expression(value.toString()))
@@ -174,27 +218,79 @@ class DomainSet {
     
     includes(x) {
         if(typeof x == 'string') x = executeExpression(x)
-        var found = false
-        this.values.forEach(function(value){
-            if(x == value.execute()) {
-                found = true
-                return
-            }
-        })
-        return found
+        for(var i = 0; i < this.values.length; i++)
+            if(x == this.values[i].execute()) return true
+        return false
     }
     
     toString() {
         return "{" + this.values.join(";") + "}"
     }
     
-    static importFrom(frm) {
+    union(domain) {
+        if(domain instanceof EmptySet) return this
+        if(domain instanceof DomainSet) {
+            var newValues = []
+            var values = this.values.concat(domain.values).filter(function(val){
+                newValues.push(val.execute())
+                return newValues.indexOf(val.execute()) == newValues.length - 1
+            })
+            return new DomainSet(values)
+        }
+        var notIncludedValues = []
+        for(var i = 0; i < this.values.length; i++) {
+            var value = this.values[i].execute()
+            if(domain instanceof Interval) {
+                if(domain.begin.execute() == value && domain.openBegin) {
+                    domain.openBegin = false
+                }
+                if(domain.end.execute() == value && domain.openEnd) {
+                    domain.openEnd = false
+                }
+            }
+            if(!domain.includes(value)) 
+                notIncludedValues.push(this.values[i].toEditableString())
+        }
+        if(notIncludedValues.length == 0) return domain
+        return new UnionDomain(domain, new DomainSet(notIncludedValues))
+    }
+    
+    intersection(domain) {
+        if(domain instanceof EmptySet) return domain
+        if(domain instanceof DomainSet) {
+            var domValues = domain.values.map(expr => expr.execute())
+            this.values = this.values.filter(function(val){
+                return domValues.indexOf(val.execute()) >= 0
+            })
+            return this
+        }
+        var includedValues = []
+        for(var i = 0; i < this.values.length; i++) {
+            var value = this.values[i].execute()
+            if(domain instanceof Interval) {
+                if(domain.begin.execute() == value && !domain.openBegin) {
+                    domain.openBegin = false
+                }
+                if(domain.end.execute() == value && !domain.openEnd) {
+                    domain.openEnd = false
+                }
+            }
+            if(domain.includes(value)) 
+                includedValues.push(this.values[i].toEditableString())
+        }
+        if(includedValues.length == 0) return new EmptySet()
+        if(includedValues.length == this.values.length) return this
+        return new IntersectionDomain(domain, new DomainSet(includedValues))
+    }
+    
+    static import(frm) {
         return new DomainSet(frm.substr(1, frm.length-2).split(";"))
     }
 }
 
-class UnionDomain {
+class UnionDomain extends Domain {
     constructor(dom1, dom2) {
+        super()
         this.dom1 = dom1
         this.dom2 = dom2
     }
@@ -207,15 +303,36 @@ class UnionDomain {
         return this.dom1.toString() + " ∪ " + this.dom2.toString()
     }
     
-    static importFrom(frm) {
+    union(domain) {
+        if(domain instanceof EmptySet) return this
+        if(domain instanceof DomainSet) return domain.union(this)
+        if(domain instanceof Interval) return domain.union(this)
+        if(domain instanceof UnionDomain) return new UnionDomain(this, domain)
+        if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
+        if(domain instanceof MinusDomain) return new MinusDomain(this, domain)
+    }
+    
+    intersection(domain) {
+        if(domain instanceof EmptySet) return domain
+        if(domain instanceof DomainSet) return domain.intersection(this)
+        if(domain instanceof UnionDomain) return new IntersectionDomain(this, domain)
+        if(domain instanceof IntersectionDomain) return this.dom1.intersection(domain.dom1).intersection(this.dom2).intersection(domain.dom2)
+        if(domain instanceof MinusDomain) return new IntersectionDomain(this, domain)
+    }
+    
+    static import(frm) {
         var domains = frm.trim().split("∪")
         if(domains.length == 1) domains = frm.trim().split("U") // Fallback
-        return new UnionDomain(parseDomain(domains[0].trim()), parseDomain(domains[1].trim()))
+        var dom1 = parseDomain(domains.pop())
+        var dom2 = parseDomain(domains.join('∪'))
+        console.log('Union', dom1, dom2)
+        return dom1.union(dom2)
     }
 }
 
-class IntersectionDomain {
+class IntersectionDomain extends Domain {
     constructor(dom1, dom2) {
+        super()
         this.dom1 = dom1
         this.dom2 = dom2
     }
@@ -228,14 +345,34 @@ class IntersectionDomain {
         return this.dom1.toString() + " ∩ " + this.dom2.toString()
     }
     
-    static importFrom(frm) {
+    union(domain) {
+        if(domain instanceof EmptySet) return this
+        if(domain instanceof DomainSet) return domain.union(this)
+        if(domain instanceof Interval) return domain.union(this)
+        if(domain instanceof UnionDomain) return  this.dom1.union(domain.dom1).union(this.dom2).union(domain.dom2)
+        if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
+        if(domain instanceof MinusDomain) return new MinusDomain(this, domain)
+    }
+    
+    intersection(domain) {
+        if(domain instanceof EmptySet) return domain
+        if(domain instanceof DomainSet) return domain.intersection(this)
+        if(domain instanceof UnionDomain) return new IntersectionDomain(this, domain)
+        if(domain instanceof IntersectionDomain) return new IntersectionDomain(this, domain)
+        if(domain instanceof MinusDomain) return new IntersectionDomain(this, domain)
+    }
+    
+    static import(frm) {
         var domains = frm.trim().split("∩")
-        return new IntersectionDomain(parseDomain(domains[0].trim()), parseDomain(domains[1].trim()))
+        var dom1 = parseDomain(domains.pop())
+        var dom2 = parseDomain(domains.join('∪'))
+        return dom1.intersection(dom2)
     }
 }
 
-class MinusDomain {
+class MinusDomain extends Domain {
     constructor(dom1, dom2) {
+        super()
         this.dom1 = dom1
         this.dom2 = dom2
     }
@@ -248,23 +385,40 @@ class MinusDomain {
         return this.dom1.toString() + "∖" + this.dom2.toString()
     }
     
-    static importFrom(frm) {
+    static import(frm) {
         var domains = frm.trim().split("∖")
         if(domains.length == 1) domains = frm.trim().split("\\") // Fallback
-        return new MinusDomain(parseDomain(domains[0].trim()), parseDomain(domains[1].trim()))
+        var dom1 = parseDomain(domains.pop())
+        var dom2 = parseDomain(domains.join('∪'))
+        return new MinusDomain(dom1, dom2)
     }
 }
 
 Domain.RE = new MinusDomain("R", "{0}")
 Domain.RE.displayName = "ℝ*"
 
+var refedDomains = []
 
 function parseDomain(domain) {
-    if(domain.indexOf("U") >= 0 || domain.indexOf("∪") >= 0) return UnionDomain.importFrom(domain)
-    if(domain.indexOf("∩") >= 0) return IntersectionDomain.importFrom(domain)
-    if(domain.indexOf("∖") >= 0 || domain.indexOf("\\") >= 0) return MinusDomain.importFrom(domain)
-    if(domain.charAt(0) == "{" && domain.charAt(domain.length -1) == "}") return DomainSet.importFrom(domain)
-    if(domain.indexOf("]") >= 0 || domain.indexOf("]") >= 0) return Domain.importFrom(domain)
-    if(domain.toUpperCase().indexOf("R") >= 0 || domain.indexOf("ℝ") >= 0) return Domain.importFrom(domain)
+    if(!domain.includes(')') && !domain.includes('(')) return parseDomainSimple(domain)
+    var domStr
+    while((domStr = /\(([^)(]+)\)/.exec(domain)) !== null) {
+        var dom = parseDomainSimple(domStr[1]);
+        console.log(domain, domStr[0])
+        domain = domain.replace(domStr[0], 'D' + refedDomains.length)
+        refedDomains.push(dom)
+    }
+    return parseDomainSimple(domain)
+}
+
+function parseDomainSimple(domain) {
+    console.log('Parsing domain', domain, typeof domain)
+    if(domain[0] == 'D') return refedDomains[parseInt(domain.substr(1))]
+    if(domain.indexOf("U") >= 0 || domain.indexOf("∪") >= 0) return UnionDomain.import(domain)
+    if(domain.indexOf("∩") >= 0) return IntersectionDomain.import(domain)
+    if(domain.indexOf("∖") >= 0 || domain.indexOf("\\") >= 0) return MinusDomain.import(domain)
+    if(domain.charAt(0) == "{" && domain.charAt(domain.length -1) == "}") return DomainSet.import(domain)
+    if(domain.indexOf("]") >= 0 || domain.indexOf("[") >= 0) return Interval.import(domain)
+    if(domain.toUpperCase().indexOf("R") >= 0 || domain.indexOf("ℝ") >= 0) return Domain.import(domain)
     return new EmptySet()
 }
