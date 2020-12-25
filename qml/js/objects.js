@@ -36,22 +36,27 @@ function getNewName(allowedLetters) {
 }
 
 class List {
-    constructor(type, format=/^.+$/, label = '') {
+    constructor(type, format = /^.+$/, label = '', forbidAdding = false) {
         // type can be string, int and double.
-        this.type = type
+        this.type = 'List'
+        this.valueType = type
         this.format = format
         this.label = label
+        this.forbidAdding = forbidAdding
     }
 }
 
 class Dictionary {
-    constructor(type, keyType = 'string', format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = '', postKeyLabel = ': ') {
+    constructor(type, keyType = 'string', format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = '', postKeyLabel = ': ', forbidAdding = false) {
         // type & keyType can be string, int and double.
-        this.type = type
+        this.type = 'Dict'
+        this.valueType = type
         this.keyType = keyType
         this.format = format
+        this.keyFormat = keyFormat
         this.preKeyLabel = preKeyLabel
         this.postKeyLabel = postKeyLabel
+        this.forbidAdding = forbidAdding
     }
 }
 
@@ -938,7 +943,23 @@ class CursorX extends DrawableObject {
     }
 }
 
- 
+class Sequence extends ExecutableObject {
+    static type(){return 'Sequence'}
+    static typeMultiple(){return 'Sequences'}
+    static properties() {return {
+        'defaultExpression': new Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[n+', '] = ', true),
+        'comment1': 'NOTE: Use {name}[n] to refer to uₙ, u[n+1] for uₙ₊₁...',
+        'markedValues': new Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[', '] = '),
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
+                defaultExp = {1: "u[n]"}, markedValues = {0: 0}) {
+        if(name == null) name = getNewName('uvwPSUVWabcde')
+        super(name, visible, color, labelContent)
+        this.defaultExpression = defaultExp
+        this.markedValues = markedValues
+    }
+}
 
 const types = {
     'Point': Point,
@@ -947,7 +968,8 @@ const types = {
     'Somme gains Bode': SommeGainsBode,
     'Phase Bode': PhaseBode,
     'Somme phases Bode': SommePhasesBode,
-    'X Cursor': CursorX
+    'X Cursor': CursorX,
+    'Sequence': Sequence
 }
 
 var currentObjects = {}

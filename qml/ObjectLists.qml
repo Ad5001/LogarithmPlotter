@@ -257,7 +257,7 @@ ListView {
                 id: dlgCustomProperties
                 
                 Item {
-                    height: 30
+                    height: customPropListDict.visible ? customPropListDict.height : 30
                     width: dlgProperties.width
                     property string label: Utils.camelCase2readable(modelData[0])
                     
@@ -266,7 +266,7 @@ ListView {
                         height: 30
                         width: parent.width
                         visible: modelData[0].startsWith('comment')
-                        text: visible ? modelData[1] : ''
+                        text: visible ? modelData[1].replace('{name}', objEditor.obj.name) : ''
                         color: sysPalette.windowText
                     }
                     
@@ -341,6 +341,32 @@ ListView {
                             objectListList.update()
                         }
                     }
+                    
+                    ListSetting {
+                        id: customPropListDict
+                        width: parent.width
+                        
+                        visible: typeof modelData[1] == 'object' && 'type' in modelData[1] && (modelData[1].type == 'List' || modelData[1].type == 'Dict')
+                        label: parent.label
+                        dictionaryMode: visible ? modelData[1].type == 'Dict' : false
+                        keyType: dictionaryMode ? modelData[1].keyType : 'string'
+                        valueType: visible ? modelData[1].type : 'string'
+                        preKeyLabel: (dictionaryMode ? modelData[1].preKeyLabel : modelData[1].label).replace('{name}', objEditor.obj.name)
+                        postKeyLabel: (dictionaryMode ? modelData[1].postKeyLabel : '').replace('{name}', objEditor.obj.name)
+                        keyRegexp: dictionaryMode ? modelData[1].keyFormat : /^.+$/
+                        valueRegexp: visible ? modelData[1].format : /^.+$/
+                        forbidAdding: visible ? modelData[1].forbidAdding : false
+                        
+                        onChanged: {
+                            Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = exportModel()
+                        }
+                        
+                        Component.onCompleted: {
+                            console.log('Visible', visible, modelData[0], modelData[1])
+                            console.log('Type', ('type' in modelData[1]), modelData[1].type)
+                            if(visible) importModel(objEditor.obj[modelData[0]])
+                        }
+                    }
                 }
             }
         }
@@ -385,7 +411,7 @@ ListView {
     
     function update() {
         objectListList.changed()
-        for(var objType in objectListList.model) {
+        for(var objType in objectListList.listViews) {
             objectListList.listViews[objType].model = Objects.currentObjects[objType]
         }
     }
