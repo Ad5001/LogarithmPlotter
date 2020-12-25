@@ -115,12 +115,12 @@ ApplicationWindow {
     
     function saveDiagram(filename) {
         var objs = {}
-        Object.keys(Objects.currentObjects).forEach(function(objType){
+        for(var objType in Objects.currentObjects){
             objs[objType] = []
-            Objects.currentObjects[objType].forEach(function(obj){
+            for(var obj of Objects.currentObjects[objType]) {
                 objs[objType].push(obj.export())
-            })
-        })
+            }
+        }
         Helper.write(filename, JSON.stringify({
             "xzoom":        settings.xzoom,
             "yzoom":        settings.yzoom,
@@ -140,7 +140,7 @@ ApplicationWindow {
     
     function loadDiagram(filename) {
         var data = JSON.parse(Helper.load(filename))
-        if("type" in Object.keys(data) && data["type"] == "logplotv1") {
+        if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
             settings.xmin = data["xmin"]
@@ -154,13 +154,13 @@ ApplicationWindow {
             root.width = data["width"]
             
             Objects.currentObjects = {}
-            Object.keys(data['objects']).forEach(function(objType){
+            for(var objType in data['objects']) {
                 Objects.currentObjects[objType] = []
-                data['objects'][objType].forEach(function(objData){
+                for(var objData of data['objects'][objType]) {
                     var obj = new Objects.types[objType](...objData)
                     Objects.currentObjects[objType].push(obj)
-                })
-            })
+                }
+            }
             // Refreshing sidebar
             if(sidebarSelector.currentIndex == 0) {
                 // For some reason, if we load a file while the tab is on object,

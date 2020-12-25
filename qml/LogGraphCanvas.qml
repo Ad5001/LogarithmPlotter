@@ -54,13 +54,13 @@ Canvas {
         reset(ctx)
         drawGrille(ctx)
         drawAxises(ctx)
-        Object.keys(Objects.currentObjects).forEach(function(objType){
-            Objects.currentObjects[objType].forEach(function(obj){
+        for(var objType in Objects.currentObjects) {
+            for(var obj of Objects.currentObjects[objType]){
                 ctx.strokeStyle = obj.color
                 ctx.fillStyle = obj.color
                 if(obj.visible) obj.draw(canvas, ctx)
-            })
-        })
+            }
+        }
         drawLabels(ctx)
         
     }

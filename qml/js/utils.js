@@ -287,7 +287,7 @@ function camelCase2readable(label) {
 function getRandomColor() {
     var clrs = '0123456789ABCDEF';
     var color = '#';
-    for (var i = 0; i < 6; i++) {
+    for(var i = 0; i < 6; i++) {
         color += clrs[Math.floor(Math.random() * (16-5*(i%2==0)))];
     }
     return color;

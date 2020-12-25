@@ -55,8 +55,8 @@ ListView {
                 id: typeVisibilityCheckBox
                 checked: Objects.currentObjects[objType] != undefined ? Objects.currentObjects[objType].every(obj => obj.visible) : true
                 onClicked: {
-                    Objects.currentObjects[objType].forEach(obj => obj.visible = this.checked)
-                    objTypeList.editingRows.forEach(obj => obj.objVisible = this.checked)
+                    for(var obj of Objects.currentObjects[objType]) obj.visible = this.checked
+                    for(var obj of objTypeList.editingRows) obj.objVisible = this.checked
                     objectListList.changed()
                 }
                 
@@ -115,7 +115,7 @@ ListView {
                         objEditor.objType = objType
                         objEditor.objIndex = index
                         objEditor.editingRow = controlRow
-                        objEditor.open()
+                        objEditor.show()
                     }
                 }
             }
@@ -135,7 +135,7 @@ ListView {
                     objEditor.objType = objType
                     objEditor.objIndex = index
                     objEditor.editingRow = controlRow
-                    objEditor.open()
+                    objEditor.show()
                 }
             }
             
@@ -192,7 +192,7 @@ ListView {
         id: objEditor
         property string objType: 'Point'
         property int objIndex: 0
-        property var editingRow: QtObject{}
+        property QtObject editingRow: QtObject{}
         property var obj: Objects.currentObjects[objType][objIndex]
         title: `Logarithmic Plotter`
         width: 300
@@ -224,7 +224,6 @@ ListView {
                 onChanged: function(newValue) {
                     var newName = Utils.parseName(newValue)
                     if(newName != '' && objEditor.obj.name != newName) {
-                        console.log('Renaming to', newName)
                         if(Objects.getObjectByName(newName) != null) {
                             console.log(Objects.getObjectByName(newName).name, newName)
                             newName = Objects.getNewName(newName)
@@ -255,8 +254,7 @@ ListView {
             
             // Dynamic properties
             Repeater {
-                property var objProps: Objects.types[objEditor.objType].properties()
-                model: Array.from(Object.keys(objProps), prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
+                id: dlgCustomProperties
                 
                 Item {
                     height: 30
@@ -268,17 +266,17 @@ ListView {
                         height: 30
                         width: parent.width
                         visible: modelData[0].startsWith('comment')
-                        text: modelData[1]
+                        text: visible ? modelData[1] : ''
                         color: sysPalette.windowText
                     }
                     
                     TextSetting {
                         id: customPropText
-                        height: 30
+                        height: visible ? 30 : 0
                         width: parent.width
                         label: parent.label
                         isDouble: modelData[1] == 'number'
-                        visible: modelData[1] in ['Expression', 'Domain', 'string', 'number']
+                        visible: ['Expression', 'Domain', 'string', 'number'].includes(modelData[1])
                         defValue: visible ? {
                             'Expression': () => Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString()),
                             'Domain': () => objEditor.obj[modelData[0]].toString(),
@@ -316,7 +314,7 @@ ListView {
                         width: dlgProperties.width
                         label: parent.label
                         // True to select an object of type, false for enums.
-                        property bool selectObjMode: (typeof modelData[1] == "string" && modelData[1] in Object.keys(Objects.types))
+                        property bool selectObjMode: (typeof modelData[1] == "string" && Object.keys(Objects.types).includes(modelData[1]))
                         model: visible ? 
                             (selectObjMode ? Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]]) : modelData[1]) 
                             : []
@@ -346,6 +344,12 @@ ListView {
                 }
             }
         }
+        
+        function show() {
+            var objProps = Objects.types[objEditor.objType].properties()
+            dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
+            objEditor.open()
+        }
     }
     
     footer: Column {
@@ -371,8 +375,6 @@ ListView {
                 height: visible ? implicitHeight : 0
                 icon.source: './icons/'+modelData+'.svg' // Default to dark version
                 
-
-                
                 onClicked: {
                     Objects.createNewRegisteredObject(modelData)
                     objectListList.update()
@@ -383,8 +385,8 @@ ListView {
     
     function update() {
         objectListList.changed()
-        objectListList.model.forEach(function(objType){
+        for(var objType in objectListList.model) {
             objectListList.listViews[objType].model = Objects.currentObjects[objType]
-        })
+        }
     }
 }

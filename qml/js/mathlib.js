@@ -79,11 +79,13 @@ function executeExpression(expr){
 }
 
 class Sequence extends Expression {
-    constructor(name, baseValues = {}, expr) {
+    constructor(name, baseValues = {}, valuePlus = 1, expr = "") {
+        // u[n+valuePlus] = expr
         console.log('Expression', expr)
         super(expr)
         this.name = name
         this.baseValues = baseValues
+        this.valuePlus = valuePlus
     }
     
     isConstant() {
@@ -93,7 +95,7 @@ class Sequence extends Expression {
     execute(n = 0) {
         if(this.cached) return this.cachedValue
         if(n in this.baseValues) return this.baseValues[n]
-        var vars = Object.assign({'n': n-1}, evalVariables)
+        var vars = Object.assign({'n': n-this.valuePlus}, evalVariables)
         vars[this.name] = this.baseValues
         var un = this.calc.evaluate(vars)
         this.baseValues[n] = un
@@ -101,7 +103,7 @@ class Sequence extends Expression {
     }
 }
 
-var test = new Sequence('u', {0: 0}, '3*u[n]+3')
+var test = new Sequence('u', {0: 0, 1: 1}, 2, '3*u[n]+3')
 console.log(test)
 for(var i=0; i<20; i++)
     console.log('u' + Utils.textsub(i) + ' = ' + test.execute(i))
@@ -330,8 +332,8 @@ class DomainSet extends SpecialDomain {
         console.log(values)
         var newVals = {}
         this.executedValues = []
-        for(var i = 0; i < values.length; i++) {
-            var expr = new Expression(values[i].toString())
+        for(var value of values) {
+            var expr = new Expression(value.toString())
             var ex = expr.execute()
             newVals[ex] = expr
             this.executedValues.push(ex)
@@ -342,8 +344,8 @@ class DomainSet extends SpecialDomain {
     
     includes(x) {
         if(typeof x == 'string') x = executeExpression(x)
-        for(var i = 0; i < this.values.length; i++)
-            if(x == this.values[i].execute()) return true
+        for(var value of this.values)
+            if(x == value.execute()) return true
         return false
     }
     
@@ -385,7 +387,7 @@ class DomainSet extends SpecialDomain {
             return new DomainSet(values)
         }
         var notIncludedValues = []
-        for(var i = 0; i < this.values.length; i++) {
+        for(var value in this.values) {
             var value = this.executedValues[i]
             if(domain instanceof Interval) {
                 if(domain.begin.execute() == value && domain.openBegin) {
@@ -412,7 +414,7 @@ class DomainSet extends SpecialDomain {
             return this
         }
         var includedValues = []
-        for(var i = 0; i < this.values.length; i++) {
+        for(var i in this.values) {
             var value = this.executedValues[i]
             if(domain instanceof Interval) {
                 if(domain.begin.execute() == value && !domain.openBegin) {

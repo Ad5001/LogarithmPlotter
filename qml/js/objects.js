@@ -35,6 +35,25 @@ function getNewName(allowedLetters) {
     return ret
 }
 
+class List {
+    constructor(type, format=/^.+$/, label = '') {
+        // type can be string, int and double.
+        this.type = type
+        this.format = format
+        this.label = label
+    }
+}
+
+class Dictionary {
+    constructor(type, keyType = 'string', format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = '', postKeyLabel = ': ') {
+        // type & keyType can be string, int and double.
+        this.type = type
+        this.keyType = keyType
+        this.format = format
+        this.preKeyLabel = preKeyLabel
+        this.postKeyLabel = postKeyLabel
+    }
+}
 
 class DrawableObject {
     // Class to extend for every type of object that
@@ -47,7 +66,9 @@ class DrawableObject {
     static createable() {return true}
     // Properties are set with key as property name and 
     // value as it's type name (e.g 'Expression', 'string', 
-    // 'Point'...) or an array with possibilities for enums.
+    // 'Point'...), an Array for enumerations,
+    // a List instance for lists, a Dictionary instance for
+    // dictionary
     // Used for property modifier in the sidebar.
     static properties() {return {}}
     
@@ -83,14 +104,13 @@ class DrawableObject {
     }
     
     update() {
-        for(var i = 0; i < this.requiredBy.length; i++) {
-            this.requiredBy[i].update()
+        for(var req of this.requiredBy) {
+            req.update()
         }
     }
     
     delete() {
-        for(var i = 0; i < this.requiredBy.length; i++) {
-            var toRemove = this.requiredBy[i]
+        for(var toRemove of this.requiredBy) {
             toRemove.delete()
             currentObjects[toRemove.type] = currentObjects[toRemove.type].filter(obj => obj.name != toRemove.name)
         }
@@ -460,8 +480,7 @@ class SommeGainsBode extends DrawableObject {
     }
     
     execute(x = 0) {
-        for(var i=0; i<this.cachedParts.length; i++) {
-            var [dbfn, inDrawDom] = this.cachedParts[i]
+        for(var [dbfn, inDrawDom] of this.cachedParts) {
             if(inDrawDom.includes(x)) {
                 return dbfn.execute(x)
             }
@@ -474,8 +493,7 @@ class SommeGainsBode extends DrawableObject {
     }
     
     simplify(x = 1) {
-        for(var i=0; i<this.cachedParts.length; i++) {
-            var [dbfn, inDrawDom] = this.cachedParts[i]
+        for(var [dbfn, inDrawDom] of this.cachedParts) {
             if(inDrawDom.includes(x)) {
                 return dbfn.simplify(x)
             }
@@ -512,20 +530,19 @@ class SommeGainsBode extends DrawableObject {
             var gainsBeforeP = []
             var gainsAfterP = []
             var gainTotal = 0
-            for(var i=0; i < om0xList.length; i++){
-                if(om0xPass[om0xList[i]]) { // High-pass
-                    gainsBeforeP.push(om0xGains[om0xList[i]])
+            for(var om0x of om0xList){
+                if(om0xPass[om0x]) { // High-pass
+                    gainsBeforeP.push(om0xGains[om0x])
                     gainsAfterP.push(0)
-                    gainTotal += om0xGains[om0xList[i]] // Gain at first
+                    gainTotal += om0xGains[om0x] // Gain at first
                 } else {
                     gainsBeforeP.push(0)
-                    gainsAfterP.push(om0xGains[om0xList[i]])
+                    gainsAfterP.push(om0xGains[om0x])
                 }
             }
-            console.log(gainsBeforeP, gainsAfterP)
             // Calculating parts
             var previousPallier = drawMin
-            for(var pallier = 0; pallier < om0xList.length; pallier++) {
+            for(var pallier = 0; pallier <= om0xList.length; pallier++) {
                 var dbfn = new MathLib.Expression(`${gainTotal}*(ln(x)-ln(${previousPallier}))/ln(10)+${baseY}`)
                 var inDrawDom = MathLib.parseDomain(`]${previousPallier};${om0xList[pallier]}]`)
                 this.cachedParts.push([dbfn, inDrawDom])
@@ -538,8 +555,7 @@ class SommeGainsBode extends DrawableObject {
     
     draw(canvas, ctx) {
         if(this.cachedParts.length > 0) {
-            for(var i=0; i<this.cachedParts.length; i++) {
-                var [dbfn, inDrawDom] = this.cachedParts[i]
+            for(var [dbfn, inDrawDom] of this.cachedParts) {
                 Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
                 if(inDrawDom.includes(this.labelX)) {
                     // Label
@@ -735,8 +751,7 @@ class SommePhasesBode extends ExecutableObject {
         
         if(currentObjects['Phase Bode'] != undefined) {
             console.log('Recalculating cache phase')
-            for(var i = 0; i < currentObjects['Phase Bode'].length; i++) {
-                var obj = currentObjects['Phase Bode'][i]
+            for(var obj of currentObjects['Phase Bode']) {
                 this.om0xList.push(obj.om_0.x.execute())
                 if(phasesDict[obj.om_0.x.execute()] == undefined) {
                     phasesDict[obj.om_0.x.execute()] = obj.phase.execute()
@@ -959,9 +974,9 @@ function getObjectsName(objType) {
     return currentObjects[objType].map(obj => obj.name)
 }
 
-function createNewRegisteredObject(objType) {
+function createNewRegisteredObject(objType, args=[]) {
     if(Object.keys(types).indexOf(objType) == -1) return null // Object type does not exist.
-    var newobj = new types[objType]()
+    var newobj = new types[objType](...args)
     if(Object.keys(currentObjects).indexOf(objType) == -1) {
         currentObjects[objType] = []
     }
