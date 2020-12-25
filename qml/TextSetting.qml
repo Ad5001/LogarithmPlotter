@@ -37,7 +37,7 @@ Item {
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
         color: sysPalette.windowText
-        text: " "+ control.label +": "
+        text: control.label +": "
     }
     
         

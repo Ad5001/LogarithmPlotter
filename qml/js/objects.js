@@ -203,6 +203,7 @@ class Function extends ExecutableObject {
         'expression': 'Expression',
         'inDomain': 'Domain',
         'outDomain': 'Domain',
+        'comment1': 'Ex: R+* (ℝ⁺*), N* (ℕ*), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
         'labelPosition': ['above', 'below'],
         'displayMode': ['application', 'function'],
         'labelX': 'number'
@@ -280,8 +281,6 @@ class Function extends ExecutableObject {
         var pxprecision = 2
         var previousX = canvas.px2x(0)
         var previousY;
-        var draw = function(currentX) {
-        }
         if(inDomain instanceof MathLib.SpecialDomain && inDomain.moveSupported) {
             previousX = inDomain.previous(previousX)
             if(previousX === null) previousX = inDomain.next(canvas.px2x(0))
@@ -923,6 +922,8 @@ class CursorX extends DrawableObject {
         }
     }
 }
+
+ 
 
 const types = {
     'Point': Point,

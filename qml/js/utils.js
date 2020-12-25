@@ -207,8 +207,10 @@ function makeExpressionReadable(str) {
         [/ \^ /g, '^'],
         [/\^\(([^\^]+)\)/g, function(match, p1) { return textsup(p1) }],
         [/\^([^ ]+)/g, function(match, p1) { return textsup(p1) }],
+        [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
+        [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
         [/(\d|\))×/g, '$1'],
-        [/×(\d|\()/g, '$1'],
+        //[/×(\d|\()/g, '$1'],
         [/\(([^)(+.\/-]+)\)/g, "$1"],
     ]
     
@@ -258,8 +260,10 @@ function parseName(str, removeUnallowed = true) {
         [/([^a-z]|^)gps(i)?([^a-z]|$)/g, '$1Ψ$3'],
         [/([^a-z]|^)gom(ega)?([^a-z]|$)/g, '$1Ω$3'],
         // Underscores
-        [/_\(([^\^]+)\)/g, function(match, p1) { return textsub(p1) }],
+        [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
         [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
+        // Array elements
+        [/\[([^\]\[]+)\]/g, function(match, p1) { return textsub(p1) }],
         // Removing
         [/[xπℝℕ\\∪∩\]\[ ()^/÷*×+=\d-]/g , ''],
     ]
@@ -270,7 +274,6 @@ function parseName(str, removeUnallowed = true) {
     })
     return str
 }
-
 
 String.prototype.toLatinUppercase = function() {
     return this.replace(/[a-z]/g, function(match){return match.toUpperCase()})

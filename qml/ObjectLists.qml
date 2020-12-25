@@ -263,13 +263,22 @@ ListView {
                     width: dlgProperties.width
                     property string label: Utils.camelCase2readable(modelData[0])
                     
+                    Text {
+                        id: customPropComment
+                        height: 30
+                        width: parent.width
+                        visible: modelData[0].startsWith('comment')
+                        text: modelData[1]
+                        color: sysPalette.windowText
+                    }
+                    
                     TextSetting {
                         id: customPropText
                         height: 30
                         width: parent.width
                         label: parent.label
                         isDouble: modelData[1] == 'number'
-                        visible: ['Expression', 'Domain', 'string', 'number'].indexOf(modelData[1]) >= 0 
+                        visible: modelData[1] in ['Expression', 'Domain', 'string', 'number']
                         defValue: visible ? {
                             'Expression': () => Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString()),
                             'Domain': () => objEditor.obj[modelData[0]].toString(),
@@ -285,9 +294,6 @@ ListView {
                             }[modelData[1]]()
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
-                        }
-                        Component.onCompleted: {
-                            //console.log(modelData[0], objEditor.obj[modelData[0]],modelData[1], defValue)
                         }
                     }
                     
@@ -310,7 +316,7 @@ ListView {
                         width: dlgProperties.width
                         label: parent.label
                         // True to select an object of type, false for enums.
-                        property bool selectObjMode: (typeof modelData[1] == "string" && Object.keys(Objects.types).indexOf(modelData[1]) >= 0)
+                        property bool selectObjMode: (typeof modelData[1] == "string" && modelData[1] in Object.keys(Objects.types))
                         model: visible ? 
                             (selectObjMode ? Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]]) : modelData[1]) 
                             : []

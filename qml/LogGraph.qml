@@ -140,7 +140,7 @@ ApplicationWindow {
     
     function loadDiagram(filename) {
         var data = JSON.parse(Helper.load(filename))
-        if(Object.keys(data).indexOf("type") != -1 && data["type"] == "logplotv1") {
+        if("type" in Object.keys(data) && data["type"] == "logplotv1") {
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
             settings.xmin = data["xmin"]

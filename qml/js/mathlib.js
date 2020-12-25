@@ -23,13 +23,17 @@
 
 const parser = new ExprEval.Parser()
 
+var u = {1: 1, 2: 2, 3: 3}
+console.log(parser.parse('u[n]+u[n+1]+u[n+2]').simplify().evaluate({"u": u, 'n': 1}))
+
 var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manualy
     "pi": Math.PI,
     "π": Math.PI,
     "inf": Infinity,
     "Infinity": Infinity,
     "∞": Infinity,
-    "e": Math.E
+    "e": Math.E,
+    "E": Math.E
 }
 
 class Expression {
@@ -64,10 +68,7 @@ class Expression {
     }
     
     toString(forceSign=false) {
-        var str = this.calc.toString()
-        if(str[0] == "(") str = str.substr(1)
-        if(str[str.length - 1] == ")") str = str.substr(0, str.length - 1)
-        str = Utils.makeExpressionReadable(str)
+        var str = Utils.makeExpressionReadable(this.calc.toString())
         if(str[0] != '-' && forceSign) str = '+' + str
         return str
     }
@@ -76,6 +77,34 @@ class Expression {
 function executeExpression(expr){
     return (new Expression(expr.toString())).execute()
 }
+
+class Sequence extends Expression {
+    constructor(name, baseValues = {}, expr) {
+        console.log('Expression', expr)
+        super(expr)
+        this.name = name
+        this.baseValues = baseValues
+    }
+    
+    isConstant() {
+        return this.expr.indexOf("n") == -1
+    }
+    
+    execute(n = 0) {
+        if(this.cached) return this.cachedValue
+        if(n in this.baseValues) return this.baseValues[n]
+        var vars = Object.assign({'n': n-1}, evalVariables)
+        vars[this.name] = this.baseValues
+        var un = this.calc.evaluate(vars)
+        this.baseValues[n] = un
+        return un
+    }
+}
+
+var test = new Sequence('u', {0: 0}, '3*u[n]+3')
+console.log(test)
+for(var i=0; i<20; i++)
+    console.log('u' + Utils.textsub(i) + ' = ' + test.execute(i))
 
 // Domains
 class Domain {
