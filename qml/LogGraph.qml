@@ -105,6 +105,7 @@ ApplicationWindow {
         xlabel: settings.xaxislabel
         ylabel: settings.yaxislabel
         yaxisstep: settings.yaxisstep
+        logscalex: settings.logscalex
         
         onPaint: {
             var ctx = getContext("2d");

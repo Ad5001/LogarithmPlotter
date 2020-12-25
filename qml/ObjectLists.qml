@@ -55,7 +55,6 @@ ListView {
                 id: typeVisibilityCheckBox
                 checked: Objects.currentObjects[objType] != undefined ? Objects.currentObjects[objType].every(obj => obj.visible) : true
                 onClicked: {
-                    console.log(Objects.currentObjects[objType].every(obj => obj.visible))
                     Objects.currentObjects[objType].forEach(obj => obj.visible = this.checked)
                     objTypeList.editingRows.forEach(obj => obj.objVisible = this.checked)
                     objectListList.changed()

@@ -37,6 +37,7 @@ Column {
     property string yaxisstep: "4"
     property string xaxislabel: ""
     property string yaxislabel: ""
+    property bool logscalex: true
     property string saveFilename: ""
     
     FileDialog {
@@ -88,7 +89,7 @@ Column {
         id: minX
         height: 30
         isDouble: true
-        min: 0
+        min: -Infinity
         label: "Min X"
         width: settings.settingWidth
         defValue: settings.xmin
@@ -173,6 +174,16 @@ Column {
             settings.changed()
         }
         Component.onCompleted: editText = settings.yaxislabel
+    }
+    
+    CheckBox {
+        id: logScaleX
+        checked: settings.logscalex
+        text: 'X Log scale'
+        onClicked: {
+            settings.logscalex = checked
+            settings.changed()
+        }
     }
     
     Button {

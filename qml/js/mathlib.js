@@ -412,7 +412,6 @@ function parseDomain(domain) {
 }
 
 function parseDomainSimple(domain) {
-    console.log('Parsing domain', domain, typeof domain)
     if(domain[0] == 'D') return refedDomains[parseInt(domain.substr(1))]
     if(domain.indexOf("U") >= 0 || domain.indexOf("∪") >= 0) return UnionDomain.import(domain)
     if(domain.indexOf("∩") >= 0) return IntersectionDomain.import(domain)

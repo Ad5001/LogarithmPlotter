@@ -37,7 +37,7 @@ Canvas {
     property string xlabel: ""
     property string ylabel: ""
     property int maxgradx: 8
-    property int maxgrady: 1000
+    property bool logscalex: false
     
     property var yaxisstepExpr: (new MathLib.Expression(`x*(${yaxisstep})`))
     property double yaxisstep1: yaxisstepExpr.execute(1)
@@ -72,9 +72,17 @@ Canvas {
     // Drawing the log based graph
     function drawGrille(ctx) {
         ctx.strokeStyle = "#C0C0C0"
-        for(var xpow = -10; xpow <= 10; xpow++) {
-            for(var xmulti = 1; xmulti < 10; xmulti++) {
-                drawXLine(ctx, Math.pow(10, xpow)*xmulti)
+        if(logscalex) {
+            for(var xpow = -maxgradx; xpow <= maxgradx; xpow++) {
+                for(var xmulti = 1; xmulti < 10; xmulti++) {
+                    drawXLine(ctx, Math.pow(10, xpow)*xmulti)
+                }
+            }
+        } else {
+            for(var x = 0; x < 40*maxgradx; x+=1) {
+                // TODO: Fill screen based
+                drawXLine(ctx, x*yaxisstep1)
+                drawXLine(ctx, -x*yaxisstep1)
             }
         }
         for(var y = 0; y < drawMaxY; y+=1) {
@@ -85,35 +93,47 @@ Canvas {
     
     function drawAxises(ctx) {
         ctx.strokeStyle = "#000000"
-        drawXLine(ctx, 1)
+        var axisypos = logscalex ? 1 : 0
+        drawXLine(ctx, axisypos)
         drawYLine(ctx, 0)
-        var axisypx = x2px(1) // X coordinate of Y axis
+        var axisypx = x2px(axisypos) // X coordinate of Y axis
         var axisxpx = y2px(0) // Y coordinate of X axis
         // Drawing arrows
         drawLine(ctx, axisypx, 0, axisypx-10, 10)
         drawLine(ctx, axisypx, 0, axisypx+10, 10)
-        drawLine(ctx, canvas.canvasSize.width, axisxpx, canvas.canvasSize.width-10, axisxpx-10)
-        drawLine(ctx, canvas.canvasSize.width, axisxpx, canvas.canvasSize.width-10, axisxpx+10)
+        drawLine(ctx, canvasSize.width, axisxpx, canvasSize.width-10, axisxpx-10)
+        drawLine(ctx, canvasSize.width, axisxpx, canvasSize.width-10, axisxpx+10)
     }
     
     function drawLabels(ctx) {
-        var axisypx = x2px(1) // X coordinate of Y axis
+        var axisypx = x2px(logscalex ? 1 : 0) // X coordinate of Y axis
         var axisxpx = y2px(0) // Y coordinate of X axis
         // Labels
         ctx.fillStyle = "#000000"
         ctx.font = "16px sans-serif"
-        ctx.fillText(canvas.ylabel, axisypx+5, 24)
-        var textSize = ctx.measureText(canvas.xlabel).width
-        ctx.fillText(canvas.xlabel, canvas.canvasSize.width-14-textSize, axisxpx-5)
+        ctx.fillText(ylabel, axisypx+5, 24)
+        var textSize = ctx.measureText(xlabel).width
+        ctx.fillText(xlabel, canvasSize.width-14-textSize, axisxpx-5)
         // Axis graduation labels
         ctx.font = "12px sans-serif"
         
-        for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
-            var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
-            if(xpow != 0)
-                drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
-        }
         var txtMinus = ctx.measureText('-').width
+        if(logscalex) {
+            for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
+                var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
+                if(xpow != 0)
+                    drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
+            }
+        } else {
+            for(var x = 0; x < 40*maxgradx; x += 1) {
+                var drawX = x*yaxisstep1
+                var txtX = yaxisstepExpr.simplify(x)
+                var textSize = measureText(ctx, txtX, 6).height
+                if(x != 0)
+                    drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
+                    drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
+            }
+        }
         for(var y = 0; y < drawMaxY; y += 1) {
             var drawY = y*yaxisstep1
             var txtY = yaxisstepExpr.simplify(y)
@@ -126,26 +146,26 @@ Canvas {
     }
     
     function drawXLine(ctx, x) {
-        if(visible(x, canvas.ymax)) {
-            drawLine(ctx, x2px(x), 0, x2px(x), canvas.canvasSize.height)
+        if(visible(x, ymax)) {
+            drawLine(ctx, x2px(x), 0, x2px(x), canvasSize.height)
         }
     }
     
     function drawYLine(ctx, y) {
-        if(visible(canvas.xmin, y)) {
-            drawLine(ctx, 0, y2px(y), canvas.canvasSize.width, y2px(y))
+        if(visible(xmin, y)) {
+            drawLine(ctx, 0, y2px(y), canvasSize.width, y2px(y))
         }
     }
     
     function drawVisibleText(ctx, text, x, y, lineHeight = 14) {
-        if(x > 0 && x < canvas.canvasSize.width && y > 0 && y < canvas.canvasSize.height) {
+        if(x > 0 && x < canvasSize.width && y > 0 && y < canvasSize.height) {
             text.toString().split("\n").forEach(function(txt, i){
                 ctx.fillText(txt, x, y+(lineHeight*i))
             })
         }
     }
     
-    // Method to calculate multiline string dimensions
+    // Method to calculate multi-line string dimensions
     function measureText(ctx, text, lineHeight=14) {
         var theight = 0
         var twidth = 0
@@ -156,26 +176,30 @@ Canvas {
         return {'width': twidth, 'height': theight}
     }
     
-    // Converts x coordinate to it's relative position on the canvas.
+    // Converts x coordinate to it's relative position on the 
     function x2px(x) {
-        var logxmin = Math.log(canvas.xmin)
-        return (Math.log(x)-logxmin)*canvas.xzoom
+        if(logscalex) {
+            var logxmin = Math.log(xmin)
+            return (Math.log(x)-logxmin)*xzoom
+        } else return (x - xmin)*xzoom
     }
-    // Converts y coordinate to it's relative position on the canvas.
+    // Converts y coordinate to it's relative position on the 
     // Y is NOT ln based.
     function y2px(y) {
-        return (canvas.ymax-y)*canvas.yzoom
+        return (ymax-y)*yzoom
     }
     // Reverse functions
     function px2x(px) {
-        return Math.exp(px/canvas.xzoom+Math.log(canvas.xmin))
+        if(logscalex) {
+            return Math.exp(px/xzoom+Math.log(xmin))
+        } else return (px/xzoom+xmin)
     }
     function px2y(px) {
-        return -(px/canvas.yzoom-canvas.ymax)
+        return -(px/yzoom-ymax)
     }
     // Checks whether a point is visible or not.
     function visible(x, y) {
-        return (x2px(x) >= 0 && x2px(x) <= canvas.canvasSize.width) && (y2px(y) >= 0 && y2px(y) <= canvas.canvasSize.height)
+        return (x2px(x) >= 0 && x2px(x) <= canvasSize.width) && (y2px(y) >= 0 && y2px(y) <= canvasSize.height)
     }
     // Draws a line from a (x1, y1) to (x2, y2)
     function drawLine(ctx, x1, y1, x2, y2) {
