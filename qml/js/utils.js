@@ -237,7 +237,6 @@ function simplifyExpression(str) {
     return str
 }
 
-console.log(simplifyExpression("(4 * (4 * pi + pi)) + pi"))
 
 function makeExpressionReadable(str) {
     var replacements = [

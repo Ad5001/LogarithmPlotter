@@ -137,12 +137,7 @@ class Sequence extends Expression {
     }
 }
 
-var test = new Sequence('u', {0: '0', 1: 'π'}, 2, '3*u[n]')
-console.log(test)
-for(var i=0; i<20; i++) {
-    //console.log('u' + Utils.textsub(i) + ' = ' + test.simplify(i))
-    console.log('u' + Utils.textsub(i) + ' = ' + test.execute(i))
-}
+
 // Domains
 class Domain {
     constructor() {}
