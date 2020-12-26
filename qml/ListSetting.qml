@@ -97,7 +97,7 @@ Column {
                 verticalAlignment: TextInput.AlignVCenter
                 horizontalAlignment: TextInput.AlignHCenter
                 color: sysPalette.windowText
-                text: visible ? control.model.get(index).key : false
+                text: visible ? control.model.get(index).val : false
                 selectByMouse: true
                 onEditingFinished: {
                     var value = text
@@ -112,7 +112,7 @@ Column {
                             value = ""
                     }
                     if(value != "" && keyInput.acceptableInput) {
-                        control.model.setProperty(index, 'value', value)
+                        control.model.setProperty(index, 'val', value)
                         control.changed()
                     }
                 }
@@ -128,8 +128,8 @@ Column {
         
         onClicked: {
             control.model.append({
-                key: "",
-                value: ""
+                key: control.keyType == 'string' ? '' : model.count,
+                val: control.valueType == 'string' ? '' : 0
             })
         }
     }
@@ -138,8 +138,8 @@ Column {
         model.clear()
         for(var key in importer) 
             model.append({
-                key: key,
-                value: importer[key]
+                key: control.keyType == 'string' ? key.toString() : parseFloat(key),
+                val: control.valueType == 'string' ? importer[key].toString() : parseFloat(importer[key])
             })
     }
     
@@ -147,12 +147,12 @@ Column {
         if(dictionaryMode) {
             var ret = {}
             for(var i = 0; i < model.count; i++)
-                ret[model.get(i).key] = model.get(i).value
+                ret[model.get(i).key] = model.get(i).val
             return ret
         } else {
             var ret = []
             for(var i = 0; i < model.count; i++)
-                ret.push(model.get(i).value)
+                ret.push(model.get(i).val)
         }
     }
 }

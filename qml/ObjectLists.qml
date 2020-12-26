@@ -246,8 +246,8 @@ ListView {
                 currentIndex: model.indexOf(objEditor.obj.labelContent)
                 onActivated: function(newIndex) {
                     Objects.currentObjects[objEditor.objType][objEditor.objIndex].labelContent = model[newIndex]
-                    objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                    //objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                    //objEditor.editingRow.obj = objEditor.obj
                     objectListList.update()
                 }
             }
@@ -266,7 +266,7 @@ ListView {
                         height: 30
                         width: parent.width
                         visible: modelData[0].startsWith('comment')
-                        text: visible ? modelData[1].replace('{name}', objEditor.obj.name) : ''
+                        text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
                         color: sysPalette.windowText
                     }
                     
@@ -276,7 +276,7 @@ ListView {
                         width: parent.width
                         label: parent.label
                         isDouble: modelData[1] == 'number'
-                        visible: ['Expression', 'Domain', 'string', 'number'].includes(modelData[1])
+                        visible: paramTypeIn(modelData[1], ['Expression', 'Domain', 'string', 'number'])
                         defValue: visible ? {
                             'Expression': () => Utils.simplifyExpression(objEditor.obj[modelData[0]].toEditableString()),
                             'Domain': () => objEditor.obj[modelData[0]].toString(),
@@ -314,20 +314,20 @@ ListView {
                         width: dlgProperties.width
                         label: parent.label
                         // True to select an object of type, false for enums.
-                        property bool selectObjMode: (typeof modelData[1] == "string" && Object.keys(Objects.types).includes(modelData[1]))
+                        property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                         model: visible ? 
-                            (selectObjMode ? Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]]) : modelData[1]) 
+                            (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType]) : modelData[1].values) 
                             : []
-                        visible: Array.isArray(modelData[1]) || selectObjMode
+                        visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
                         currentIndex: model.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
 
                         onActivated: function(newIndex) {
                             // Setting object property.
                             if(selectObjMode) {
-                                var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1])
+                                var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1].objType)
                                 if(selectedObj == null) {
-                                    selectedObj = Objects.createNewRegisteredObject(modelData[1])
-                                    model = Objects.getObjectsName(modelData[1]).concat(['+ Create new ' + modelData[1]])
+                                    selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
+                                    model = Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType])
                                     currentIndex = model.indexOf(selectedObj.name)
                                 }
                                 Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
@@ -346,24 +346,23 @@ ListView {
                         id: customPropListDict
                         width: parent.width
                         
-                        visible: typeof modelData[1] == 'object' && 'type' in modelData[1] && (modelData[1].type == 'List' || modelData[1].type == 'Dict')
+                        visible: paramTypeIn(modelData[1], ['List', 'Dict'])
                         label: parent.label
-                        dictionaryMode: visible ? modelData[1].type == 'Dict' : false
+                        dictionaryMode: paramTypeIn(modelData[1], ['Dict'])
                         keyType: dictionaryMode ? modelData[1].keyType : 'string'
-                        valueType: visible ? modelData[1].type : 'string'
-                        preKeyLabel: (dictionaryMode ? modelData[1].preKeyLabel : modelData[1].label).replace('{name}', objEditor.obj.name)
-                        postKeyLabel: (dictionaryMode ? modelData[1].postKeyLabel : '').replace('{name}', objEditor.obj.name)
+                        valueType: visible ? modelData[1].valueType : 'string'
+                        preKeyLabel: visible ? (dictionaryMode ? modelData[1].preKeyLabel : modelData[1].label).replace(/\{name\}/g, objEditor.obj.name) : ''
+                        postKeyLabel: visible ? (dictionaryMode ? modelData[1].postKeyLabel : '').replace(/\{name\}/g, objEditor.obj.name) : ''
                         keyRegexp: dictionaryMode ? modelData[1].keyFormat : /^.+$/
                         valueRegexp: visible ? modelData[1].format : /^.+$/
                         forbidAdding: visible ? modelData[1].forbidAdding : false
                         
                         onChanged: {
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = exportModel()
+                            objectListList.update()
                         }
                         
                         Component.onCompleted: {
-                            console.log('Visible', visible, modelData[0], modelData[1])
-                            console.log('Type', ('type' in modelData[1]), modelData[1].type)
                             if(visible) importModel(objEditor.obj[modelData[0]])
                         }
                     }
@@ -372,6 +371,7 @@ ListView {
         }
         
         function show() {
+            dlgCustomProperties.model = [] // Reset
             var objProps = Objects.types[objEditor.objType].properties()
             dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
             objEditor.open()
@@ -414,5 +414,12 @@ ListView {
         for(var objType in objectListList.listViews) {
             objectListList.listViews[objType].model = Objects.currentObjects[objType]
         }
+    }
+    
+    function paramTypeIn(parameter, types = []) {
+        if(types.includes(parameter.toString())) return true
+        if(typeof parameter == 'object' && 'type' in parameter) 
+            return types.includes(parameter.type)
+        return false
     }
 }

@@ -20,7 +20,7 @@
 
 .import "utils.js" as Utils
 .import "mathlib.js" as MathLib
-
+.import "parameters.js" as P
 
 
 function getNewName(allowedLetters) {
@@ -33,31 +33,6 @@ function getNewName(allowedLetters) {
         newid += 1
     } while(getObjectByName(ret) != null)
     return ret
-}
-
-class List {
-    constructor(type, format = /^.+$/, label = '', forbidAdding = false) {
-        // type can be string, int and double.
-        this.type = 'List'
-        this.valueType = type
-        this.format = format
-        this.label = label
-        this.forbidAdding = forbidAdding
-    }
-}
-
-class Dictionary {
-    constructor(type, keyType = 'string', format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = '', postKeyLabel = ': ', forbidAdding = false) {
-        // type & keyType can be string, int and double.
-        this.type = 'Dict'
-        this.valueType = type
-        this.keyType = keyType
-        this.format = format
-        this.keyFormat = keyFormat
-        this.preKeyLabel = preKeyLabel
-        this.postKeyLabel = postKeyLabel
-        this.forbidAdding = forbidAdding
-    }
 }
 
 class DrawableObject {
@@ -144,8 +119,8 @@ class Point extends DrawableObject  {
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
-        'labelPosition': ['top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
-        'pointStyle': ['●', '✕', '＋'],
+        'labelPosition': new P.Enum('top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
+        'pointStyle': new P.Enum('●', '✕', '＋'),
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
@@ -229,8 +204,8 @@ class Function extends ExecutableObject {
         'inDomain': 'Domain',
         'outDomain': 'Domain',
         'comment1': 'Ex: R+* (ℝ⁺*), N* (ℕ*), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
-        'labelPosition': ['above', 'below'],
-        'displayMode': ['application', 'function'],
+        'labelPosition': new P.Enum('above', 'below'),
+        'displayMode': new P.Enum('application', 'function'),
         'labelX': 'number'
     }}
     
@@ -348,10 +323,10 @@ class GainBode extends ExecutableObject {
     static type(){return 'Gain Bode'}
     static typeMultiple(){return 'Gains Bode'}
     static properties() {return {
-        'om_0': 'Point',
-        'pass': ['high', 'low'],
+        'om_0': new P.ObjectType('Point'),
+        'pass': new P.Enum('high', 'low'),
         'gain': 'Expression',
-        'labelPosition': ['above', 'below'],
+        'labelPosition': new P.Enum('above', 'below'),
         'labelX': 'number'
     }}
     
@@ -463,7 +438,7 @@ class SommeGainsBode extends DrawableObject {
     static typeMultiple(){return 'Somme gains Bode'}
     static createable() {return false}
     static properties() {return {
-        'labelPosition': ['above', 'below'],
+        'labelPosition': new P.Enum('above', 'below'),
         'labelX': 'number'
     }}
     
@@ -588,10 +563,10 @@ class PhaseBode extends ExecutableObject {
     static type(){return 'Phase Bode'}
     static typeMultiple(){return 'Phases Bode'}
     static properties() {return {
-        'om_0': 'Point',
+        'om_0': new P.ObjectType('Point'),
         'phase': 'Expression',
-        'unit': ['°', 'deg', 'rad'],
-        'labelPosition': ['above', 'below'],
+        'unit': new P.Enum('°', 'deg', 'rad'),
+        'labelPosition': new P.Enum('above', 'below'),
         'labelX': 'number'
     }}
     
@@ -700,7 +675,7 @@ class SommePhasesBode extends ExecutableObject {
     static typeMultiple(){return 'Somme phases Bode'}
     static createable() {return false}
     static properties() {return {
-        'labelPosition': ['above', 'below'],
+        'labelPosition': new P.Enum('above', 'below'),
         'labelX': 'number'
     }}
     
@@ -816,16 +791,16 @@ class CursorX extends DrawableObject {
         })
         return {
             'x': 'Expression',
-            'targetElement': elementNames,
-            'labelPosition': ['left', 'right'],
+            'targetElement': new P.Enum(...elementNames),
+            'labelPosition': new P.Enum('left', 'right'),
             'approximate': 'Boolean',
             'rounding': 'number',
-            'displayStyle': [
+            'displayStyle': new P.Enum(
                 '— — — — — — —',
                 '⸺⸺⸺⸺⸺⸺',
                 '• • • • • • • • • •'
-            ],
-            'targetValuePosition' : ['Next to target', 'With label', 'Hidden']
+            ),
+            'targetValuePosition' : new P.Enum('Next to target', 'With label', 'Hidden')
         }
     }
     
@@ -947,9 +922,9 @@ class Sequence extends ExecutableObject {
     static type(){return 'Sequence'}
     static typeMultiple(){return 'Sequences'}
     static properties() {return {
-        'defaultExpression': new Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[n+', '] = ', true),
-        'comment1': 'NOTE: Use {name}[n] to refer to uₙ, u[n+1] for uₙ₊₁...',
-        'markedValues': new Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[', '] = '),
+        'defaultExpression': new P.Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[n+', '] = ', true),
+        'comment1': 'Note: Use {name}[n] to refer to {name}ₙ, {name}[n+1] for {name}ₙ₊₁...',
+        'markedValues': new P.Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[', '] = '),
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 

@@ -223,7 +223,7 @@ class EmptySet extends Domain {
     static import(frm) { return new EmptySet() }
 }
 
-class Interval extends Domain {
+class Range extends Domain {
     constructor(begin, end, openBegin, openEnd) {
         super()
         if(typeof begin == 'number' || typeof begin == 'string') begin = new Expression(begin.toString())
@@ -251,7 +251,7 @@ class Interval extends Domain {
         if(domain instanceof UnionDomain) return domain.union(this)
         if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
         if(domain instanceof MinusDomain) return new UnionDomain(this, domain)
-        if(domain instanceof Interval) return new UnionDomain(this, domain)
+        if(domain instanceof Range) return new UnionDomain(this, domain)
     }
     
     intersection(domain) {
@@ -260,14 +260,14 @@ class Interval extends Domain {
         if(domain instanceof UnionDomain) return new IntersectionDomain(this, domain)
         if(domain instanceof IntersectionDomain) return domain.intersection(this)
         if(domain instanceof MinusDomain) return new IntersectionDomain(this, domain)
-        if(domain instanceof Interval) return new IntersectionDomain(this, domain)
+        if(domain instanceof Range) return new IntersectionDomain(this, domain)
     }
     
     static import(frm) {
         var openBegin = frm.trim().charAt(0) == "]"
         var openEnd = frm.trim().charAt(frm.length -1) == "["
         var [begin, end] = frm.substr(1, frm.length-2).split(";")
-        return new Interval(begin.trim(), end.trim(), openBegin, openEnd)
+        return new Range(begin.trim(), end.trim(), openBegin, openEnd)
     }
 }
 
@@ -312,7 +312,7 @@ class SpecialDomain extends Domain {
         if(domain instanceof UnionDomain) return new UnionDomain(this, domain)
         if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
         if(domain instanceof MinusDomain) return new UnionDomain(this, domain)
-        if(domain instanceof Interval) return new UnionDomain(this, domain)
+        if(domain instanceof Range) return new UnionDomain(this, domain)
     }
     
     intersection(domain) {
@@ -321,7 +321,7 @@ class SpecialDomain extends Domain {
         if(domain instanceof UnionDomain) return new IntersectionDomain(this, domain)
         if(domain instanceof IntersectionDomain) return new IntersectionDomain(this, domain)
         if(domain instanceof MinusDomain) return new IntersectionDomain(this, domain)
-        if(domain instanceof Interval) return new IntersectionDomain(this, domain)
+        if(domain instanceof Range) return new IntersectionDomain(this, domain)
     }
 }
 
@@ -389,7 +389,7 @@ class DomainSet extends SpecialDomain {
         var notIncludedValues = []
         for(var value in this.values) {
             var value = this.executedValues[i]
-            if(domain instanceof Interval) {
+            if(domain instanceof Range) {
                 if(domain.begin.execute() == value && domain.openBegin) {
                     domain.openBegin = false
                 }
@@ -416,7 +416,7 @@ class DomainSet extends SpecialDomain {
         var includedValues = []
         for(var i in this.values) {
             var value = this.executedValues[i]
-            if(domain instanceof Interval) {
+            if(domain instanceof Range) {
                 if(domain.begin.execute() == value && !domain.openBegin) {
                     domain.openBegin = false
                 }
@@ -455,7 +455,7 @@ class UnionDomain extends Domain {
     union(domain) {
         if(domain instanceof EmptySet) return this
         if(domain instanceof DomainSet) return domain.union(this)
-        if(domain instanceof Interval) return domain.union(this)
+        if(domain instanceof Range) return domain.union(this)
         if(domain instanceof UnionDomain) return new UnionDomain(this, domain)
         if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
         if(domain instanceof MinusDomain) return new MinusDomain(this, domain)
@@ -496,7 +496,7 @@ class IntersectionDomain extends Domain {
     union(domain) {
         if(domain instanceof EmptySet) return this
         if(domain instanceof DomainSet) return domain.union(this)
-        if(domain instanceof Interval) return domain.union(this)
+        if(domain instanceof Range) return domain.union(this)
         if(domain instanceof UnionDomain) return  this.dom1.union(domain.dom1).union(this.dom2).union(domain.dom2)
         if(domain instanceof IntersectionDomain) return new UnionDomain(this, domain)
         if(domain instanceof MinusDomain) return new MinusDomain(this, domain)
@@ -545,15 +545,15 @@ class MinusDomain extends Domain {
 Domain.RE = new MinusDomain("R", "{0}")
 Domain.RE.displayName = "ℝ*"
 
-Domain.R = new Interval(-Infinity,Infinity,true,true)
+Domain.R = new Range(-Infinity,Infinity,true,true)
 Domain.R.displayName = "ℝ"
-Domain.RP = new Interval(0,Infinity,true,false)
+Domain.RP = new Range(0,Infinity,true,false)
 Domain.RP.displayName = "ℝ⁺"
-Domain.RM = new Interval(-Infinity,0,true,false)
+Domain.RM = new Range(-Infinity,0,true,false)
 Domain.RM.displayName = "ℝ⁻"
-Domain.RPE = new Interval(0,Infinity,true,true)
+Domain.RPE = new Range(0,Infinity,true,true)
 Domain.RPE.displayName = "ℝ⁺*"
-Domain.RME = new Interval(-Infinity,0,true,true)
+Domain.RME = new Range(-Infinity,0,true,true)
 Domain.RME.displayName = "ℝ⁻*"
 Domain.N = new SpecialDomain('ℕ', x => x%1==0 && x >= 0, 
                              x => Math.max(Math.floor(x)+1, 0), 
@@ -601,7 +601,7 @@ function parseDomainSimple(domain) {
     if(domain.includes("∩")) return IntersectionDomain.import(domain)
     if(domain.includes("∖") || domain.includes("\\")) return MinusDomain.import(domain)
     if(domain.charAt(0) == "{" && domain.charAt(domain.length -1) == "}") return DomainSet.import(domain)
-    if(domain.includes("]") || domain.includes("[")) return Interval.import(domain)
+    if(domain.includes("]") || domain.includes("[")) return Range.import(domain)
     if(["R", "ℝ", "N", "ℕ", "Z", "ℤ"].some(str => domain.toUpperCase().includes(str)))
         return Domain.import(domain)
     if(domain[0] == 'D') return refedDomains[parseInt(domain.substr(1))]
