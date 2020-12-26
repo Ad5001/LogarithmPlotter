@@ -20,6 +20,9 @@
 
 var powerpos = {
     "-": "⁻",
+    "+": "⁺",
+    "=": "⁼",
+    " ": " ",
     "0": "⁰",
     "1": "¹",
     "2": "²",
@@ -30,8 +33,6 @@ var powerpos = {
     "7": "⁷",
     "8": "⁸",
     "9": "⁹",
-    "+": "⁺",
-    "=": "⁼",
     "a": "ᵃ",
     "b": "ᵇ",
     "c": "ᶜ",
@@ -56,11 +57,14 @@ var powerpos = {
     "w": "ʷ",
     "x": "ˣ",
     "y": "ʸ",
-    "z": "ᶻ",
+    "z": "ᶻ"
 }
 
 var indicepos = {
     "-": "₋",
+    "+": "₊",
+    "=": "₌",
+    " ": " ",
     "0": "₀",
     "1": "₁",
     "2": "₂",
@@ -71,8 +75,6 @@ var indicepos = {
     "7": "₇",
     "8": "₈",
     "9": "₉",
-    "+": "₊",
-    "=": "₌",
     "a": "ₐ",
     "e": "ₑ",
     "h": "ₕ",
@@ -122,12 +124,46 @@ function textsub(text) {
 function simplifyExpression(str) {
     var replacements = [
         // Operations not done by parser.
+        [// Decomposition way 2
+            /(^.?|[+-] |\()([-.\d\w]+) ([*/]) \((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\)(.?$| [+-]|\))/g,
+            "$1$2 $3 $4 $6 $2 $3 $7$9"
+        ],
+        [ // Decomposition way 2
+            /(^.?|[+-] |\()\((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\) ([*/]) ([-.\d\w]+)(.?$| [+-]|\))/g,
+            "$1$8 $7 $2 $4 $8 $7 $5$9"
+        ],
+        [ // Factorisation of π elements.
+            /(([-\d\w.]+ [*/] )*)(pi|π)(( [/*] [-\d\w.]+)*) ([+-]) (([-\d\w.]+ [*/] )*)(pi|π)(( [/*] [-\d\w.]+)*)?/g,
+            function(match, m1, n1, pi1, m2, ope2, n2, opeM, m3, n3, pi2, m4, ope4, n4) {
+                //          g1, g2, g3 , g4, g5,   g6, g7,   g8, g9, g10, g11,g12 , g13
+                // We don't care about mx & pix, ope2 & ope4 are either / or * for n2 & n4.
+                // n1 & n3 are multiplied, opeM is the main operation (- or +).
+                // Putting all n in form of number
+                //n2 = n2 == undefined ? 1 : parseFloat(n)
+                n1 = m1 == undefined ? 1 : eval(m1 + '1')
+                n2 = m2 == undefined ? 1 : eval('1' + m2)
+                n3 = m3 == undefined ? 1 : eval(m3 + '1')
+                n4 = m4 == undefined ? 1 : eval('1' + m4)
+                //var [n1, n2, n3, n4] = [n1, n2, n3, n4].map(n => n == undefined ? 1 : parseFloat(n))
+                // Falling back to * in case it does not exist (the corresponding n would be 1)
+                var [ope2, ope4] = [ope2, ope4].map(ope => ope == '/' ? '/' : '*')
+                var coeff1 = n1*n2
+                var coeff2 = n3*n4
+                var coefficient = coeff1+coeff2-(opeM == '-' ? 2*coeff2 : 0)
+                
+                return `${coefficient} * π`
+            }
+        ],
         [ // Removing parenthesis when content is only added from both sides.
             /(^.?|[+-] |\()\(([^)(]+)\)(.?$| [+-]|\))/g,
             function(match, b4, middle, after) {return `${b4}${middle}${after}`}
         ],
         [ // Removing parenthesis when content is only multiplied.
-            /(^.?|[*\/] |\()\(([^)(+-]+)\)(.?$| [*\/]|\))/g,
+            /(^.?|[*\/] |\()\(([^)(+-]+)\)(.?$| [*\/+-]|\))/g,
+            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+        ],
+        [ // Removing parenthesis when content is only multiplied.
+            /(^.?|[*\/-+] |\()\(([^)(+-]+)\)(.?$| [*\/]|\))/g,
             function(match, b4, middle, after) {return `${b4}${middle}${after}`}
         ],
         [// Simplification additions/substractions.
@@ -176,25 +212,32 @@ function simplifyExpression(str) {
             }
         ],
         // Simple simplifications
-        [/(\s|^|\()0 \* (\([^)(]+\))/g, '$10'],
-        [/(\s|^|\()0 \* ([^)(+-]+)/g, '$10'],
-        [/(\([^)(]\)) \* 0(\s|$|\))/g, '0$2'],
-        [/([^)(+-]) \* 0(\s|$|\))/g, '0$2'],
-        [/(\s|^|\()1 (\*|\/) /g, '$1'],
-        [/(\s|^|\()0 (\+|\-) /g, '$1'],
-        [/ (\*|\/) 1(\s|$|\))/g, '$2'],
-        [/ (\+|\-) 0(\s|$|\))/g, '$2'],
+        [/(\s|^|\()0(\.0+)? \* (\([^)(]+\))/g, '$10'],
+        [/(\s|^|\()0(\.0+)? \* ([^)(+-]+)/g, '$10'],
+        [/(\([^)(]\)) \* 0(\.0+)?(\s|$|\))/g, '0$3'],
+        [/([^)(+-]) \* 0(\.0+)?(\s|$|\))/g, '0$3'],
+        [/(\s|^|\()1(\.0+)? (\*|\/) /g, '$1'],
+        [/(\s|^|\()0(\.0+)? (\+|\-) /g, '$1'],
+        [/ (\*|\/) 1(\.0+)?(\s|$|\))/g, '$3'],
+        [/ (\+|\-) 0(\.0+)?(\s|$|\))/g, '$3'],
         [/(^| |\() /g, '$1'],
         [/ ($|\))/g, '$1'],
     ]
     
     // Replacements
-    replacements.forEach(function(replacement){
-        while(replacement[0].test(str))
-            str = str.replace(replacement[0], replacement[1])
-    })
+    var found
+    do {
+        found = false
+        for(var replacement of replacements)
+            while(replacement[0].test(str)) {
+                found = true
+                str = str.replace(replacement[0], replacement[1])
+            }
+    } while(found)
     return str
 }
+
+console.log(simplifyExpression("(4 * (4 * pi + pi)) + pi"))
 
 function makeExpressionReadable(str) {
     var replacements = [
@@ -209,6 +252,7 @@ function makeExpressionReadable(str) {
         [/\^([^ ]+)/g, function(match, p1) { return textsup(p1) }],
         [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
         [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
+        [/\[([^\[\]]+)\]/g, function(match, p1) { return textsub(p1) }],
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
         [/\(([^)(+.\/-]+)\)/g, "$1"],
@@ -216,10 +260,9 @@ function makeExpressionReadable(str) {
     
     str = simplifyExpression(str)
     // Replacements
-    replacements.forEach(function(replacement){
+    for(var replacement of replacements)
         while(replacement[0].test(str))
             str = str.replace(replacement[0], replacement[1])
-    })
     return str
 }
 
@@ -269,9 +312,8 @@ function parseName(str, removeUnallowed = true) {
     ]
     if(!removeUnallowed) replacements.pop()
     // Replacements
-    replacements.forEach(function(replacement){
+    for(var replacement of replacements)
         str = str.replace(replacement[0], replacement[1])
-    })
     return str
 }
 

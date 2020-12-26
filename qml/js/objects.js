@@ -45,10 +45,10 @@ class DrawableObject {
     // or are instanciated by other objects.
     static createable() {return true}
     // Properties are set with key as property name and 
-    // value as it's type name (e.g 'Expression', 'string', 
-    // 'Point'...), an Array for enumerations,
-    // a List instance for lists, a Dictionary instance for
-    // dictionary
+    // value as it's type name (e.g 'Expression', 'string'...), 
+    // an Enum for enumerations, an ObjectType for DrawableObjects
+    // with a specific type, a List instance for lists, a 
+    // Dictionary instance for dictionaries...
     // Used for property modifier in the sidebar.
     static properties() {return {}}
     
@@ -206,12 +206,16 @@ class Function extends ExecutableObject {
         'comment1': 'Ex: R+* (ℝ⁺*), N* (ℕ*), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
         'labelPosition': new P.Enum('above', 'below'),
         'displayMode': new P.Enum('application', 'function'),
-        'labelX': 'number'
+        'labelX': 'number',
+        'comment1': 'The following parameters are used in case of non-continuous ensembles\n(E.g: ℕ, ℤ, sets like {0;3}...)',
+        'drawPoints': 'Boolean',
+        'drawDashedLines': 'Boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 expression = 'x', inDomain = 'RPE', outDomain = 'R', 
-                displayMode = 'application', labelPosition = 'above', labelX = 1) {
+                displayMode = 'application', labelPosition = 'above', labelX = 1,
+                drawPoints = true, drawDashedLines = true) {
         if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
         this.type = 'Function'
@@ -224,6 +228,8 @@ class Function extends ExecutableObject {
         this.displayMode = displayMode
         this.labelPosition = labelPosition
         this.labelX = labelX
+        this.drawPoints = drawPoints
+        this.drawDashedLines = drawDashedLines
     }
     
     getReadableString() {
@@ -237,7 +243,7 @@ class Function extends ExecutableObject {
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
         this.expression.toEditableString(), this.inDomain.toString(), this.outDomain.toString(), 
-        this.displayMode, this.labelPosition, this.labelX]
+        this.displayMode, this.labelPosition, this.labelX, this.drawPoints, this.drawDashedLines]
     }
     
     execute(x = 1) {
@@ -257,13 +263,13 @@ class Function extends ExecutableObject {
     }
     
     draw(canvas, ctx) {
-        Function.drawFunction(canvas, ctx, this.expression, this.inDomain, this.outDomain)
+        Function.drawFunction(canvas, ctx, this.expression, this.inDomain, this.outDomain, this.drawPoints, this.drawDashedLines)
         // Label
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
         var textSize = canvas.measureText(ctx, text, 7)
         var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.expression.execute(this.labelX))
+        var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
@@ -275,32 +281,39 @@ class Function extends ExecutableObject {
         }
     }
     
-    static drawFunction(canvas, ctx, expr, inDomain, outDomain) {
+    static drawFunction(canvas, ctx, expr, inDomain, outDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
         // Drawing small traits every 2px
         var pxprecision = 2
         var previousX = canvas.px2x(0)
         var previousY;
         if(inDomain instanceof MathLib.SpecialDomain && inDomain.moveSupported) {
+            // Point based functions.
             previousX = inDomain.previous(previousX)
             if(previousX === null) previousX = inDomain.next(canvas.px2x(0))
             previousY = expr.execute(previousX)
+            if(!drawPoints && !drawDash) return
             while(previousX !== null && canvas.x2px(previousX) < canvas.canvasSize.width) {
                 var currentX = inDomain.next(previousX)
                 var currentY = expr.execute(currentX)
                 if(currentX === null) break;
                 if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
                     (outDomain.includes(currentY) || outDomain.includes(previousY))) {
-                    canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
-                    ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
-                    ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+                    if(drawDash)
+                        canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                    if(drawPoints) {
+                        ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+                        ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+                    }
                 }
                 previousX = currentX
                 previousY = currentY
             }
-            // Drawing the last cross
-            ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
-            ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+            if(drawPoints) {
+                // Drawing the last cross
+                ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+                ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+            }
         } else {
             previousY = expr.execute(previousX)
             for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
@@ -843,6 +856,7 @@ class CursorX extends DrawableObject {
     }
     
     getTargetElement() {
+        // TODO: Use the dependency system instead.
         var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
         return getObjectByName(this.targetElement, elementTypes)
     }
@@ -922,17 +936,65 @@ class Sequence extends ExecutableObject {
     static type(){return 'Sequence'}
     static typeMultiple(){return 'Sequences'}
     static properties() {return {
-        'defaultExpression': new P.Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[n+', '] = ', true),
+        'drawPoints': 'Boolean',
+        'drawDashedLines': 'Boolean',
+        'defaultExpression': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[n+', '] = ', true),
         'comment1': 'Note: Use {name}[n] to refer to {name}ₙ, {name}[n+1] for {name}ₙ₊₁...',
-        'markedValues': new P.Dictionary('string', 'int', /^.+$/, /^(\d+)$/, '{name}[', '] = '),
+        'baseValues': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[', '] = '),
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                defaultExp = {1: "u[n]"}, markedValues = {0: 0}) {
+                drawPoints = true, drawDashedLines = true, defaultExp = {1: "n"}, 
+                baseValues = {0: 0}) {
         if(name == null) name = getNewName('uvwPSUVWabcde')
         super(name, visible, color, labelContent)
+        this.drawPoints = drawPoints
+        this.drawDashedLines = drawDashedLines
         this.defaultExpression = defaultExp
-        this.markedValues = markedValues
+        this.baseValues = baseValues
+        this.update()
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent,
+        this.drawPoints, this.drawDashedLines, this.defaultExpression, this.baseValues]
+    }
+    
+    update() {
+        super.update()
+        if(
+            this.sequence == null || this.baseValues != this.sequence.baseValues ||
+            this.sequence.name != this.name || 
+            this.sequence.expr != Object.values(this.defaultExpression)[0] ||
+            this.sequence.valuePlus != Object.keys(this.defaultExpression)[0]
+        )
+            this.sequence = new MathLib.Sequence(
+                this.name, this.baseValues, 
+                Object.keys(this.defaultExpression)[0], 
+                Object.values(this.defaultExpression)[0]
+            )
+    }
+    
+    
+    getReadableString() {
+        return this.sequence.toString()
+    }
+    
+    execute(x = 1) {
+        if(x % 1 == 0)
+            return this.sequence.execute(x)
+        return null
+    }
+    canExecute(x = 1) {return x%1 == 0}
+    // Simplify returns the simplified string of the expression.
+    simplify(x = 1) {
+        if(x % 1 == 0)
+            return this.sequence.simplify(x)
+        return null
+    }
+    
+    draw(canvas, ctx) {
+        Function.drawFunction(canvas, ctx, this.sequence, canvas.logscalex ? MathLib.Domain.NE : MathLib.Domain.N, MathLib.Domain.R, this.drawPoints, this.drawDashedLines)
     }
 }
 

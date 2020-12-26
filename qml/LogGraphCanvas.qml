@@ -128,13 +128,12 @@ Canvas {
                     drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
             }
         } else {
-            for(var x = 0; x < 40*maxgradx; x += 1) {
-                var drawX = x*yaxisstep1
-                var txtX = yaxisstepExpr.simplify(x)
+            for(var x = 1; x < drawMaxX; x += 1) {
+                var drawX = x*xaxisstep1
+                var txtX = xaxisstepExpr.simplify(x)
                 var textSize = measureText(ctx, txtX, 6).height
-                if(x != 0)
-                    drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
-                    drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
+                drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
+                drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
             }
         }
         for(var y = 0; y < drawMaxY; y += 1) {

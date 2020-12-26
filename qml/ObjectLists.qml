@@ -359,6 +359,7 @@ ListView {
                         
                         onChanged: {
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = exportModel()
+                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
                         }
                         

@@ -71,7 +71,7 @@ Column {
                         if(value.toString()=="NaN")
                             value = ""
                     }
-                    if(value != "" && valueInput.acceptableInput) {
+                    if(value !== "" && valueInput.acceptableInput) {
                         control.model.setProperty(index, 'key', value)
                         control.changed()
                     }
@@ -111,7 +111,7 @@ Column {
                         if(value.toString()=="NaN")
                             value = ""
                     }
-                    if(value != "" && keyInput.acceptableInput) {
+                    if(value !== "" && keyInput.acceptableInput) {
                         control.model.setProperty(index, 'val', value)
                         control.changed()
                     }
@@ -153,6 +153,7 @@ Column {
             var ret = []
             for(var i = 0; i < model.count; i++)
                 ret.push(model.get(i).val)
+            return ret
         }
     }
 }

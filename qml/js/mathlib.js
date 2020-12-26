@@ -24,7 +24,6 @@
 const parser = new ExprEval.Parser()
 
 var u = {1: 1, 2: 2, 3: 3}
-console.log(parser.parse('u[n]+u[n+1]+u[n+2]').simplify().evaluate({"u": u, 'n': 1}))
 
 var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manualy
     "pi": Math.PI,
@@ -45,7 +44,7 @@ class Expression {
     }
     
     isConstant() {
-        return this.expr.indexOf("x") == -1
+        return !this.expr.includes("x") && !this.expr.includes("n")
     }
     
     execute(x = 1) {
@@ -81,33 +80,69 @@ function executeExpression(expr){
 class Sequence extends Expression {
     constructor(name, baseValues = {}, valuePlus = 1, expr = "") {
         // u[n+valuePlus] = expr
-        console.log('Expression', expr)
         super(expr)
         this.name = name
         this.baseValues = baseValues
-        this.valuePlus = valuePlus
+        this.calcValues = Object.assign({}, baseValues)
+        for(var n in this.calcValues)
+            if(['string', 'number'].includes(typeof this.calcValues[n]))
+                this.calcValues[n] = parser.parse(this.calcValues[n].toString()).simplify()
+        this.valuePlus = parseInt(valuePlus)
     }
     
     isConstant() {
         return this.expr.indexOf("n") == -1
     }
     
-    execute(n = 0) {
-        if(this.cached) return this.cachedValue
-        if(n in this.baseValues) return this.baseValues[n]
-        var vars = Object.assign({'n': n-this.valuePlus}, evalVariables)
-        vars[this.name] = this.baseValues
-        var un = this.calc.evaluate(vars)
-        this.baseValues[n] = un
-        return un
+    execute(n = 1) {
+        if(n in this.calcValues)
+            return this.calcValues[n].evaluate(evalVariables)
+        this.cache(n)
+        return this.calcValues[n].evaluate(evalVariables)
+    }
+    
+    simplify(n = 1) {
+        if(n in this.calcValues) 
+            return Utils.makeExpressionReadable(this.calcValues[n].toString())
+        this.cache(n)
+        return Utils.makeExpressionReadable(this.calcValues[n].toString())
+    }
+    
+    cache(n = 1) {
+        var str = this.calc.substitute('n', n-this.valuePlus).toString()
+        for(var newn in this.calcValues) {
+            var un = new RegExp(`${this.name}\\[${newn}\\]`, 'g')
+            if(un.test(str)) {
+                if (this.calcValues[newn] == undefined)
+                    this.cache(newn)
+                str = str.replace(un, this.calcValues[newn])
+            }
+        }
+        var expr = parser.parse(str).simplify()
+        if(expr.evaluate(evalVariables) == 0) expr = parser.parse('0')
+        console.log(n, expr.toString())
+        expr = parser.parse(Utils.simplifyExpression(expr.toString())).simplify()
+        this.calcValues[n] = expr
+    }
+    
+    toString(forceSign=false) {
+        var str = Utils.makeExpressionReadable(this.calc.toString())
+        if(str[0] != '-' && forceSign) str = '+' + str
+        var subtxt = this.valuePlus == 0 ? 'ₙ' : Utils.textsub('n+' + this.valuePlus)
+        var ret = `${this.name}${subtxt} = ${str}${this.baseValues.length == 0 ? '' : "\n"}`
+        ret += Object.keys(this.baseValues).map(
+            n => `${this.name}${Utils.textsub(n)} = ${this.baseValues[n]}`
+        ).join('; ')
+        return ret
     }
 }
 
-var test = new Sequence('u', {0: 0, 1: 1}, 2, '3*u[n]+3')
+var test = new Sequence('u', {0: '0', 1: 'π'}, 2, '3*u[n]')
 console.log(test)
-for(var i=0; i<20; i++)
+for(var i=0; i<20; i++) {
+    //console.log('u' + Utils.textsub(i) + ' = ' + test.simplify(i))
     console.log('u' + Utils.textsub(i) + ' = ' + test.execute(i))
-
+}
 // Domains
 class Domain {
     constructor() {}
