@@ -401,10 +401,16 @@ ListView {
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.source: './icons/'+modelData+'.svg' // Default to dark version
+                icon.color: sysPalette.windowText
                 
                 onClicked: {
                     Objects.createNewRegisteredObject(modelData)
                     objectListList.update()
+                    objEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
+                    objEditor.objType = modelData
+                    objEditor.objIndex = Objects.currentObjects[modelData].length - 1
+                    objEditor.editingRow = objectListList.listViews[modelData].editingRows[objEditor.objIndex]
+                    objEditor.show()
                 }
             }
         }
