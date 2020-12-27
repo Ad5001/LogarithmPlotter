@@ -301,6 +301,7 @@ ListView {
                         height: visible ? implicitHeight : 0
                         width: parent.width
                         text: parent.label
+                        
                         checked: visible ? objEditor.obj[modelData[0]] : false
                         onClicked: {
                             objEditor.obj[modelData[0]] = this.checked
@@ -308,11 +309,11 @@ ListView {
                             objectListList.update()
                         }
                     }
-                    
+                                        
                     ComboBoxSetting {
                         id: customPropCombo
                         width: dlgProperties.width
-                        height: visible ? implicitHeight : 0
+                        height: visible ? 30 : 0
                         label: parent.label
                         // True to select an object of type, false for enums.
                         property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
