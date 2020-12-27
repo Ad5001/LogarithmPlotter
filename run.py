@@ -19,6 +19,7 @@
 from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
+from PySide2.QtGui import QIcon
 
 import os
 import tempfile
@@ -79,6 +80,7 @@ class Helper(QObject):
 app = QApplication([])
 app.setApplicationName("Logarithmic Plotter")
 app.setOrganizationName("Ad5001")
+app.setWindowIcon(QIcon(os.path.realpath(os.path.join(os.getcwd(), "logplotter.svg"))))
 engine = QQmlApplicationEngine()
 helper = Helper()
 engine.rootContext().setContextProperty("Helper", helper)
