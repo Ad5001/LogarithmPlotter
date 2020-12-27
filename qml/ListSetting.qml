@@ -90,7 +90,7 @@ Column {
             TextField {
                 id: valueInput
                 height: parent.height
-                width: parent.width - x
+                width: parent.width - x - deleteButton.width - 5
                 validator: RegExpValidator { 
                     regExp: control.valueRegexp
                 }
@@ -115,6 +115,24 @@ Column {
                         control.model.setProperty(index, 'val', value)
                         control.changed()
                     }
+                }
+            }
+            
+            Item {
+                width: 5
+                height: parent.height
+            }
+            
+            Button {
+                id: deleteButton
+                width: visible ? parent.height : 0
+                height: width
+                icon.source: './icons/delete.svg'
+                icon.name: 'delete'
+                visible: !control.forbidAdding
+                
+                onClicked: {
+                    control.model.remove(index)
                 }
             }
         }

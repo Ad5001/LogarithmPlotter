@@ -257,14 +257,14 @@ ListView {
                 id: dlgCustomProperties
                 
                 Item {
-                    height: customPropListDict.visible ? customPropListDict.height : 30
+                    height: customPropComment.height + customPropText.height + customPropCheckBox.height + customPropCombo.height + customPropListDict.height
                     width: dlgProperties.width
                     property string label: Utils.camelCase2readable(modelData[0])
                     
                     Text {
                         id: customPropComment
-                        height: 30
                         width: parent.width
+                        height: visible ? implicitHeight : 0
                         visible: modelData[0].startsWith('comment')
                         text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
                         color: sysPalette.windowText
@@ -298,6 +298,7 @@ ListView {
                     CheckBox {
                         id: customPropCheckBox
                         visible: modelData[1] == 'Boolean'
+                        height: visible ? implicitHeight : 0
                         width: parent.width
                         text: parent.label
                         checked: visible ? objEditor.obj[modelData[0]] : false
@@ -310,8 +311,8 @@ ListView {
                     
                     ComboBoxSetting {
                         id: customPropCombo
-                        height: 30
                         width: dlgProperties.width
+                        height: visible ? implicitHeight : 0
                         label: parent.label
                         // True to select an object of type, false for enums.
                         property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
@@ -345,6 +346,7 @@ ListView {
                     ListSetting {
                         id: customPropListDict
                         width: parent.width
+                        height: visible ? implicitHeight : 0
                         
                         visible: paramTypeIn(modelData[1], ['List', 'Dict'])
                         label: parent.label
@@ -401,6 +403,7 @@ ListView {
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.source: './icons/'+modelData+'.svg' // Default to dark version
+                icon.name: modelData
                 icon.color: sysPalette.windowText
                 
                 onClicked: {

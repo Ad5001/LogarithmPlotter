@@ -120,7 +120,6 @@ class Sequence extends Expression {
         }
         var expr = parser.parse(str).simplify()
         if(expr.evaluate(evalVariables) == 0) expr = parser.parse('0')
-        console.log(n, expr.toString())
         expr = parser.parse(Utils.simplifyExpression(expr.toString())).simplify()
         this.calcValues[n] = expr
     }
