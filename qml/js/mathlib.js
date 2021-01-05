@@ -113,7 +113,6 @@ class Sequence extends Expression {
         var expr = parser.parse(str).simplify()
         var l = {}
         l[this.name] = this.calcValues
-        console.log(JSON.stringify(l), expr)
         this.calcValues[n] = expr.evaluate(Object.assign(l, evalVariables))
     }
     

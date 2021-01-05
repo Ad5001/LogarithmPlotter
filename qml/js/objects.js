@@ -1030,25 +1030,29 @@ class Sequence extends ExecutableObject {
         'defaultExpression': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[n+', '] = ', true),
         'comment1': 'Note: Use {name}[n] to refer to {name}ₙ, {name}[n+1] for {name}ₙ₊₁...',
         'baseValues': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[', '] = '),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
+        'labelX': 'number'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 drawPoints = true, drawDashedLines = true, defaultExp = {1: "n"}, 
-                baseValues = {0: 0}) {
+                baseValues = {0: 0}, labelPosition = 'above', labelX = 1) {
         if(name == null) name = getNewName('uvwPSUVWabcde')
         super(name, visible, color, labelContent)
         this.drawPoints = drawPoints
         this.drawDashedLines = drawDashedLines
         this.defaultExpression = defaultExp
         this.baseValues = baseValues
+        this.labelPosition = labelPosition
+        this.labelX = labelX
         this.update()
     }
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent,
-        this.drawPoints, this.drawDashedLines, this.defaultExpression, this.baseValues]
+        this.drawPoints, this.drawDashedLines, this.defaultExpression, this.baseValues, this.labelPosition, this.labelX]
     }
-    
+
     update() {
         super.update()
         if(
@@ -1082,8 +1086,53 @@ class Sequence extends ExecutableObject {
         return null
     }
     
+    getLabel() {
+        switch(this.labelContent) {
+            case 'name':
+                return `(${this.name}ₙ)`
+            case 'name + value':
+                return this.getReadableString()
+            case 'null':
+                return ''
+                
+        }
+    }
+    
     draw(canvas, ctx) {
         Function.drawFunction(canvas, ctx, this.sequence, canvas.logscalex ? MathLib.Domain.NE : MathLib.Domain.N, MathLib.Domain.R, this.drawPoints, this.drawDashedLines)
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text, 7)
+        var posX = canvas.x2px(this.labelX)
+        var posY = canvas.y2px(this.execute(this.labelX))
+        switch(this.labelPosition) {
+            case 'above':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                break;
+            case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                break;
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
+                break;
+        }
     }
 }
 

@@ -29,7 +29,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename : "")
+    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[0] : "")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
