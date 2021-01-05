@@ -211,7 +211,7 @@ ListView {
         Column {
             id: dlgProperties
             anchors.top: dlgTitle.bottom
-            width: objEditor.width - 40
+            width: objEditor.width - 20
             spacing: 10
         
             TextSetting {
@@ -268,6 +268,7 @@ ListView {
                         visible: modelData[0].startsWith('comment')
                         text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
                         color: sysPalette.windowText
+                        wrapMode: Text.WordWrap
                     }
                     
                     TextSetting {
@@ -298,7 +299,7 @@ ListView {
                     CheckBox {
                         id: customPropCheckBox
                         visible: modelData[1] == 'Boolean'
-                        height: visible ? implicitHeight : 0
+                        height: visible ? 20 : 0
                         width: parent.width
                         text: parent.label
                         

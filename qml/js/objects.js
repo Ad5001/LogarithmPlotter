@@ -201,19 +201,19 @@ class Function extends ExecutableObject {
     static typeMultiple(){return 'Functions'}
     static properties() {return {
         'expression': 'Expression',
-        'inDomain': 'Domain',
-        'outDomain': 'Domain',
-        'comment1': 'Ex: R+* (ℝ⁺*), N* (ℕ*), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
-        'labelPosition': new P.Enum('above', 'below'),
+        'definitionDomain': 'Domain',
+        'destinationDomain': 'Domain',
+        'comment1': 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'displayMode': new P.Enum('application', 'function'),
         'labelX': 'number',
-        'comment1': 'The following parameters are used in case of non-continuous ensembles\n(E.g: ℕ, ℤ, sets like {0;3}...)',
+        'comment2': 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
         'drawPoints': 'Boolean',
         'drawDashedLines': 'Boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                expression = 'x', inDomain = 'RPE', outDomain = 'R', 
+                expression = 'x', definitionDomain = 'RPE', destinationDomain = 'R', 
                 displayMode = 'application', labelPosition = 'above', labelX = 1,
                 drawPoints = true, drawDashedLines = true) {
         if(name == null) name = getNewName('fghjqlmnopqrstuvwabcde')
@@ -221,10 +221,10 @@ class Function extends ExecutableObject {
         this.type = 'Function'
         if(typeof expression == 'number' || typeof expression == 'string') expression = new MathLib.Expression(expression.toString())
         this.expression = expression
-        if(typeof inDomain == 'string') inDomain = MathLib.parseDomain(inDomain)
-        this.inDomain = inDomain
-        if(typeof outDomain == 'string') outDomain = MathLib.parseDomain(outDomain)
-        this.outDomain = outDomain
+        if(typeof definitionDomain == 'string') definitionDomain = MathLib.parseDomain(definitionDomain)
+        this.definitionDomain = definitionDomain
+        if(typeof destinationDomain == 'string') destinationDomain = MathLib.parseDomain(destinationDomain)
+        this.destinationDomain = destinationDomain
         this.displayMode = displayMode
         this.labelPosition = labelPosition
         this.labelX = labelX
@@ -234,36 +234,36 @@ class Function extends ExecutableObject {
     
     getReadableString() {
         if(this.displayMode == 'application') {
-            return `${this.name}: ${this.inDomain} ⸺> ${this.outDomain}\n   ${' '.repeat(this.name.length)}x ⸺> ${this.expression.toString()}`
+            return `${this.name}: ${this.definitionDomain} ⸺> ${this.destinationDomain}\n   ${' '.repeat(this.name.length)}x ⸺> ${this.expression.toString()}`
         } else {
-            return `${this.name}(x) = ${this.expression.toString()}`
+            return `${this.name}(x) = ${this.expression.toString()}\nD<sub>${this.name}</sub> = ${this.definitionDomain}`
         }
     }
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.expression.toEditableString(), this.inDomain.toString(), this.outDomain.toString(), 
+        this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(), 
         this.displayMode, this.labelPosition, this.labelX, this.drawPoints, this.drawDashedLines]
     }
     
     execute(x = 1) {
-        if(this.inDomain.includes(x))
+        if(this.definitionDomain.includes(x))
             return this.expression.execute(x)
         return null
     }
     
     canExecute(x = 1) {
-        return this.inDomain.includes(x)
+        return this.definitionDomain.includes(x)
     }
     
     simplify(x = 1) {
-        if(this.inDomain.includes(x))
+        if(this.definitionDomain.includes(x))
             return this.expression.simplify(x)
         return ''
     }
     
     draw(canvas, ctx) {
-        Function.drawFunction(canvas, ctx, this.expression, this.inDomain, this.outDomain, this.drawPoints, this.drawDashedLines)
+        Function.drawFunction(canvas, ctx, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
         // Label
         var text = this.getLabel()
         ctx.font = "14px sans-serif"
@@ -272,33 +272,50 @@ class Function extends ExecutableObject {
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
             case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
                 break;
-                
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
+                break;
         }
     }
     
-    static drawFunction(canvas, ctx, expr, inDomain, outDomain, drawPoints = true, drawDash = true) {
+    static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
         // Drawing small traits every 2px
         var pxprecision = 2
         var previousX = canvas.px2x(0)
         var previousY;
-        if(inDomain instanceof MathLib.SpecialDomain && inDomain.moveSupported) {
+        if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {
             // Point based functions.
-            previousX = inDomain.previous(previousX)
-            if(previousX === null) previousX = inDomain.next(canvas.px2x(0))
+            previousX = definitionDomain.previous(previousX)
+            if(previousX === null) previousX = definitionDomain.next(canvas.px2x(0))
             previousY = expr.execute(previousX)
             if(!drawPoints && !drawDash) return
             while(previousX !== null && canvas.x2px(previousX) < canvas.canvasSize.width) {
-                var currentX = inDomain.next(previousX)
+                var currentX = definitionDomain.next(previousX)
                 var currentY = expr.execute(currentX)
                 if(currentX === null) break;
-                if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
-                    (outDomain.includes(currentY) || outDomain.includes(previousY))) {
+                if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
+                    (destinationDomain.includes(currentY) || destinationDomain.includes(previousY))) {
                     if(drawDash)
                         canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                     if(drawPoints) {
@@ -319,8 +336,8 @@ class Function extends ExecutableObject {
             for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
                 var currentX = canvas.px2x(px)
                 var currentY = expr.execute(currentX)
-                if((inDomain.includes(currentX) || inDomain.includes(previousX)) &&
-                    (outDomain.includes(currentY) || outDomain.includes(previousY)) &&
+                if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
+                    (destinationDomain.includes(currentY) || destinationDomain.includes(previousY)) &&
                     Math.abs(previousY-currentY)<100) {
                         canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                     }
@@ -339,7 +356,7 @@ class GainBode extends ExecutableObject {
         'om_0': new P.ObjectType('Point'),
         'pass': new P.Enum('high', 'low'),
         'gain': 'Expression',
-        'labelPosition': new P.Enum('above', 'below'),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
     
@@ -428,10 +445,28 @@ class GainBode extends ExecutableObject {
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-3)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
             case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+3+textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                break;
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
         }
     }
@@ -451,7 +486,7 @@ class SommeGainsBode extends DrawableObject {
     static typeMultiple(){return 'Somme gains Bode'}
     static createable() {return false}
     static properties() {return {
-        'labelPosition': new P.Enum('above', 'below'),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
     
@@ -559,10 +594,28 @@ class SommeGainsBode extends DrawableObject {
                     var posY = canvas.y2px(dbfn.execute(this.labelX))
                     switch(this.labelPosition) {
                         case 'above':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                             break;
                         case 'below':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                            break;
+                        case 'left':
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                            break;
+                        case 'right':
+                            canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                            break;
+                        case 'above-left':
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                            break;
+                        case 'above-right':
+                            canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                            break;
+                        case 'below-left':
+                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                            break;
+                        case 'below-right':
+                            canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                             break;
                     }
                 }
@@ -579,7 +632,7 @@ class PhaseBode extends ExecutableObject {
         'om_0': new P.ObjectType('Point'),
         'phase': 'Expression',
         'unit': new P.Enum('°', 'deg', 'rad'),
-        'labelPosition': new P.Enum('above', 'below'),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
     
@@ -617,7 +670,7 @@ class PhaseBode extends ExecutableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ${this.om_0.name} = ${this.om_0.x}\n`
+        return `${this.name}: ${this.phase.toString(true)}${this.unit} at ${this.om_0.name} = ${this.om_0.x}`
     }
     
     execute(x=1) {
@@ -665,10 +718,28 @@ class PhaseBode extends ExecutableObject {
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
             case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                break;
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
         }
     }
@@ -688,7 +759,7 @@ class SommePhasesBode extends ExecutableObject {
     static typeMultiple(){return 'Somme phases Bode'}
     static createable() {return false}
     static properties() {return {
-        'labelPosition': new P.Enum('above', 'below'),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
     
@@ -783,10 +854,28 @@ class SommePhasesBode extends ExecutableObject {
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
             case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-5)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
             case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+5+textSize.height)
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                break;
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
         }
     }

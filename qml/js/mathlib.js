@@ -86,7 +86,7 @@ class Sequence extends Expression {
         this.calcValues = Object.assign({}, baseValues)
         for(var n in this.calcValues)
             if(['string', 'number'].includes(typeof this.calcValues[n]))
-                this.calcValues[n] = parser.parse(this.calcValues[n].toString()).simplify()
+                this.calcValues[n] = parser.parse(this.calcValues[n].toString()).simplify().evaluate(evalVariables)
         this.valuePlus = parseInt(valuePlus)
     }
     
@@ -96,9 +96,9 @@ class Sequence extends Expression {
     
     execute(n = 1) {
         if(n in this.calcValues)
-            return this.calcValues[n].evaluate(evalVariables)
+            return this.calcValues[n]
         this.cache(n)
-        return this.calcValues[n].evaluate(evalVariables)
+        return this.calcValues[n]
     }
     
     simplify(n = 1) {
@@ -109,19 +109,12 @@ class Sequence extends Expression {
     }
     
     cache(n = 1) {
-        var str = this.calc.substitute('n', n-this.valuePlus).toString()
-        for(var newn in this.calcValues) {
-            var un = new RegExp(`${this.name}\\[${newn}\\]`, 'g')
-            if(un.test(str)) {
-                if (this.calcValues[newn] == undefined)
-                    this.cache(newn)
-                str = str.replace(un, this.calcValues[newn])
-            }
-        }
+        var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
         var expr = parser.parse(str).simplify()
-        if(expr.evaluate(evalVariables) == 0) expr = parser.parse('0')
-        expr = parser.parse(Utils.simplifyExpression(expr.toString())).simplify()
-        this.calcValues[n] = expr
+        var l = {}
+        l[this.name] = this.calcValues
+        console.log(JSON.stringify(l), expr)
+        this.calcValues[n] = expr.evaluate(Object.assign(l, evalVariables))
     }
     
     toString(forceSign=false) {
