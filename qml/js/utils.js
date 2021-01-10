@@ -23,6 +23,8 @@ var powerpos = {
     "+": "⁺",
     "=": "⁼",
     " ": " ",
+    "(": "⁽",
+    ")": "⁾",
     "0": "⁰",
     "1": "¹",
     "2": "²",
@@ -64,6 +66,8 @@ var indicepos = {
     "-": "₋",
     "+": "₊",
     "=": "₌",
+    "(": "₍",
+    ")": "₎",
     " ": " ",
     "0": "₀",
     "1": "₁",
@@ -255,6 +259,14 @@ function makeExpressionReadable(str) {
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
         [/\(([^)(+.\/-]+)\)/g, "$1"],
+        [/integral\((.+), ?(.+), ("|')(.+)("|'), ?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
+            console.log('Intégrale', a, b, body, by)
+            if(a.length < b.length) {
+                return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
+            } else {
+                return `∫${textsup(b)}${textsub(a)} ${body} d${by}`
+            }
+        }]
     ]
     
     str = simplifyExpression(str)

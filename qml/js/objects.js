@@ -236,7 +236,7 @@ class Function extends ExecutableObject {
         if(this.displayMode == 'application') {
             return `${this.name}: ${this.definitionDomain} ⸺> ${this.destinationDomain}\n   ${' '.repeat(this.name.length)}x ⸺> ${this.expression.toString()}`
         } else {
-            return `${this.name}(x) = ${this.expression.toString()}\nD<sub>${this.name}</sub> = ${this.definitionDomain}`
+            return `${this.name}(x) = ${this.expression.toString()}\nD${Utils.textsub(this.name)} = ${this.definitionDomain}`
         }
     }
     

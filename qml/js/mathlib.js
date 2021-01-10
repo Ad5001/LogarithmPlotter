@@ -21,9 +21,7 @@
 .import "expr-eval.js" as ExprEval
 .import "utils.js" as Utils
 
-const parser = new ExprEval.Parser()
 
-var u = {1: 1, 2: 2, 3: 3}
 
 var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manualy
     "pi": Math.PI,
@@ -33,6 +31,15 @@ var evalVariables = { // Variables not provided by expr-eval.js, needs to be pro
     "∞": Infinity,
     "e": Math.E,
     "E": Math.E
+}
+
+var currentVars = {}
+
+const parser = new ExprEval.Parser()
+parser.functions.integral = function(a, b, f, variable) {
+    // https://en.wikipedia.org/wiki/Simpson%27s_rule
+    f = parser.parse(f).toJSFunction(variable, currentVars)
+    return (b-a)/6*(f(a)+4*f((a+b)/2)+f(b))
 }
 
 class Expression {
@@ -49,7 +56,8 @@ class Expression {
     
     execute(x = 1) {
         if(this.cached) return this.cachedValue
-        return this.calc.evaluate(Object.assign({'x': x}, evalVariables))
+        currentVars = Object.assign({'x': x}, evalVariables)
+        return this.calc.evaluate(currentVars)
     }
     
     simplify(x) {
@@ -111,9 +119,10 @@ class Sequence extends Expression {
     cache(n = 1) {
         var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
         var expr = parser.parse(str).simplify()
-        var l = {}
+        var l = {'n': n-this.valuePlus} // Just in case, add n (for custom functions)
         l[this.name] = this.calcValues
-        this.calcValues[n] = expr.evaluate(Object.assign(l, evalVariables))
+        currentVars = Object.assign(l, evalVariables)
+        this.calcValues[n] = expr.evaluate(currentVars)
     }
     
     toString(forceSign=false) {
