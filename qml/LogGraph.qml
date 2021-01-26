@@ -107,6 +107,8 @@ ApplicationWindow {
         yaxisstep: settings.yaxisstep
         xaxisstep: settings.xaxisstep
         logscalex: settings.logscalex
+        showxgrad: settings.showxgrad
+        showygrad: settings.showygrad
         
         onPaint: {
             var ctx = getContext("2d");
