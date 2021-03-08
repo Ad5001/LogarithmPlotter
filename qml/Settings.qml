@@ -40,6 +40,8 @@ Column {
     property string yaxislabel: ""
     property bool logscalex: true
     property string saveFilename: ""
+    property bool showxgrad: true
+    property bool showygrad: true
     
     FileDialog {
         id: fdiag
@@ -195,6 +197,26 @@ Column {
         text: 'X Log scale'
         onClicked: {
             settings.logscalex = checked
+            settings.changed()
+        }
+    }
+    
+    CheckBox {
+        id: showXGrad
+        checked: settings.showxgrad
+        text: 'Show X graduation'
+        onClicked: {
+            settings.showxgrad = checked
+            settings.changed()
+        }
+    }
+    
+    CheckBox {
+        id: showYGrad
+        checked: settings.showygrad
+        text: 'Show Y graduation'
+        onClicked: {
+            settings.showygrad = checked
             settings.changed()
         }
     }

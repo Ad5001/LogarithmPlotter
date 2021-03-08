@@ -39,6 +39,8 @@ Canvas {
     property string ylabel: ""
     property int maxgradx: 8
     property bool logscalex: false
+    property bool showxgrad: false
+    property bool showygrad: false
     
     property var yaxisstepExpr: (new MathLib.Expression(`x*(${yaxisstep})`))
     property double yaxisstep1: yaxisstepExpr.execute(1)
@@ -121,28 +123,32 @@ Canvas {
         ctx.font = "12px sans-serif"
         
         var txtMinus = ctx.measureText('-').width
-        if(logscalex) {
-            for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
-                var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
-                if(xpow != 0)
-                    drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
-            }
-        } else {
-            for(var x = 1; x < drawMaxX; x += 1) {
-                var drawX = x*xaxisstep1
-                var txtX = xaxisstepExpr.simplify(x)
-                var textSize = measureText(ctx, txtX, 6).height
-                drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
-                drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
+        if(showxgrad) {
+            if(logscalex) {
+                for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
+                    var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
+                    if(xpow != 0)
+                        drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
+                }
+            } else {
+                for(var x = 1; x < drawMaxX; x += 1) {
+                    var drawX = x*xaxisstep1
+                    var txtX = xaxisstepExpr.simplify(x)
+                    var textSize = measureText(ctx, txtX, 6).height
+                    drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
+                    drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
+                }
             }
         }
-        for(var y = 0; y < drawMaxY; y += 1) {
-            var drawY = y*yaxisstep1
-            var txtY = yaxisstepExpr.simplify(y)
-            var textSize = ctx.measureText(txtY).width
-            drawVisibleText(ctx, txtY, axisypx-6-textSize, y2px(drawY)+4+(10*(y==0)))
-            if(y != 0)
-                drawVisibleText(ctx, '-'+txtY, axisypx-6-textSize-txtMinus, y2px(-drawY)+4)
+        if(showygrad) {
+            for(var y = 0; y < drawMaxY; y += 1) {
+                var drawY = y*yaxisstep1
+                var txtY = yaxisstepExpr.simplify(y)
+                var textSize = ctx.measureText(txtY).width
+                drawVisibleText(ctx, txtY, axisypx-6-textSize, y2px(drawY)+4+(10*(y==0)))
+                if(y != 0)
+                    drawVisibleText(ctx, '-'+txtY, axisypx-6-textSize-txtMinus, y2px(-drawY)+4)
+            }
         }
         ctx.fillStyle = "#FFFFFF"
     }
