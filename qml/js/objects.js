@@ -234,7 +234,7 @@ class Function extends ExecutableObject {
     
     getReadableString() {
         if(this.displayMode == 'application') {
-            return `${this.name}: ${this.definitionDomain} ⸺> ${this.destinationDomain}\n   ${' '.repeat(this.name.length)}x ⸺> ${this.expression.toString()}`
+            return `${this.name}: ${this.definitionDomain} ⟼ ${this.destinationDomain}\n   ${' '.repeat(this.name.length)}x ⟼ ${this.expression.toString()}`
         } else {
             return `${this.name}(x) = ${this.expression.toString()}\nD${Utils.textsub(this.name)} = ${this.definitionDomain}`
         }
@@ -1136,6 +1136,153 @@ class Sequence extends ExecutableObject {
     }
 }
 
+class RepartitionFunction extends ExecutableObject {
+    static type(){return 'Repartition function'}
+    static typeMultiple(){return 'Repartition functions'}
+    static properties() {return {
+        'beginIncluded': 'Boolean',
+        'drawLineEnds': 'Boolean',
+        'comment1': 'Note: Specify the properties for each potential result.',
+        'probabilities': new P.Dictionary('string', 'int', /^[\d.]+$/, /^[\d\.]+$/, 'P({name} = ', ') = '),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
+        'labelX': 'number'
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
+                beginIncluded = true, drawLineEnds = true, probabilities = {0: 0}, labelPosition = 'above', labelX = 1) {
+        if(name == null) name = getNewName('XYZUVW')
+        super(name, visible, color, labelContent)
+        this.beginIncluded = beginIncluded
+        this.drawLineEnds = drawLineEnds
+        this.probabilities = probabilities
+        this.labelPosition = labelPosition
+        this.labelX = labelX
+        this.update()
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent,
+        this.beginIncluded, this.drawLineEnds, this.probabilities, this.labelPosition, this.labelX]
+    }
+    
+    
+    getReadableString() {
+        var keys = Object.keys(this.probabilities).sort();
+        return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
+    }
+    
+    execute(x = 1) {
+        var ret = 0;
+        Object.keys(this.probabilities).sort().forEach(idx => {
+            if(x >= idx) ret += this.probabilities[idx]
+        })
+        return ret
+    }
+    
+    canExecute(x = 1) {return true}
+    // Simplify returns the simplified string of the expression.
+    simplify(x = 1) {
+        return this.execute(x)
+    }
+    
+    getLabel() {
+        switch(this.labelContent) {
+            case 'name':
+                return `P(${this.name} ≤ x)`
+            case 'name + value':
+                return this.getReadableString()
+            case 'null':
+                return ''
+        }
+    }
+    
+    draw(canvas, ctx) {
+        var currentY = 0;
+        var keys = Object.keys(this.probabilities).sort()
+        console.log("Keys", keys)
+        if(canvas.visible(keys[0],this.probabilities[keys[0]])) {
+            canvas.drawLine(ctx, 
+                0,
+                canvas.y2px(0),
+                canvas.x2px(keys[0]),
+                canvas.y2px(0)
+            )
+            if(canvas.visible(keys[0],0)) {
+                ctx.beginPath();
+                ctx.arc(canvas.x2px(keys[0])+4,canvas.y2px(0), 4, Math.PI / 2, 3 * Math.PI / 2);
+                ctx.stroke();
+            }
+        }
+        for(var i = 0; i < keys.length-1; i++) {
+            var idx = keys[i];
+            currentY += parseFloat(this.probabilities[idx]);
+            if(canvas.visible(idx,currentY) || canvas.visible(keys[i+1],currentY)) {
+                console.log("Drawing", idx, Math.max(0,canvas.x2px(idx)), canvas.y2px(currentY), Math.min(canvas.canvasSize.width,canvas.x2px(keys[i+1])), canvas.y2px(currentY))
+                canvas.drawLine(ctx,
+                    Math.max(0,canvas.x2px(idx)),
+                    canvas.y2px(currentY),
+                    Math.min(canvas.canvasSize.width,canvas.x2px(keys[i+1])),
+                    canvas.y2px(currentY)
+                )
+                if(canvas.visible(idx,currentY)) {
+                    ctx.beginPath();
+                    ctx.arc(canvas.x2px(idx),canvas.y2px(currentY), 4, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+                if(canvas.visible(keys[i+1],currentY)) {
+                    ctx.beginPath();
+                    ctx.arc(canvas.x2px(keys[i+1])+4,canvas.y2px(currentY), 4, Math.PI / 2, 3 * Math.PI / 2);
+                    ctx.stroke();
+                }
+            }
+        }
+        if(canvas.visible(keys[keys.length-1],this.probabilities[keys[keys.length-1]])) {
+            canvas.drawLine(ctx, 
+                Math.max(0,canvas.x2px(keys[keys.length-1])),
+                canvas.y2px(this.probabilities[keys[keys.length-1]]),
+                canvas.canvasSize.width,
+                canvas.y2px(this.probabilities[keys[keys.length-1]])
+            )
+            ctx.beginPath();
+            ctx.arc(canvas.x2px(idx),canvas.y2px(currentY), 4, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        // Label
+        var text = this.getLabel()
+        ctx.font = "14px sans-serif"
+        var textSize = canvas.measureText(ctx, text, 7)
+        var posX = canvas.x2px(this.labelX)
+        var posY = canvas.y2px(this.execute(this.labelX))
+        switch(this.labelPosition) {
+            case 'above':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
+                break;
+            case 'below':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
+                break;
+            case 'above-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
+                break;
+            case 'above-right':
+                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
+                break;
+            case 'below-left':
+                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
+                break;
+            case 'below-right':
+                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
+                break;
+        }
+    }
+}
+
 const types = {
     'Point': Point,
     'Function': Function,
@@ -1144,7 +1291,8 @@ const types = {
     'Phase Bode': PhaseBode,
     'Somme phases Bode': SommePhasesBode,
     'X Cursor': CursorX,
-    'Sequence': Sequence
+    'Sequence': Sequence,
+    'Repartition function': RepartitionFunction,
 }
 
 var currentObjects = {}

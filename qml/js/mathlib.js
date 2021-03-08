@@ -63,7 +63,14 @@ class Expression {
     simplify(x) {
         var expr = this.calc.substitute('x', x).simplify()
         if(expr.evaluate(evalVariables) == 0) return '0'
-        return Utils.makeExpressionReadable(expr.toString())
+        var str = Utils.makeExpressionReadable(expr.toString());
+        if(str != undefined && str.match(/^\d*\.\d+$/)) {
+            if(str.split('.')[1].split('0').length > 7) {
+                // Likely rounding error
+                str = parseFloat(str.substring(0, str.length-1)).toString();
+            }
+        }
+        return str
     }
     
     duplicate() {
