@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-logarithm-plotter">
+  <!--Created automatically by update-mime-database. DO NOT EDIT!-->
+  <comment>Logarithm Plot/Graph</comment>
+  <icon name="/home/ad5001/Apps/LogarithmPlotter/logplotterfile.svg"/>
+  <glob-deleteall/>
+  <glob pattern="*.json"/>
+  <glob pattern="*.lgg"/>
+  <glob pattern="*.lgp"/>
+</mime-type>

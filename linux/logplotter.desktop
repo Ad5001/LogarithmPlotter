@@ -5,6 +5,7 @@ Name=Logarithm Plotter
 Comment=Plotter to make BODE diagrams, sequences and repartition functions.
 Exec=/usr/bin/python3 /home/ad5001/Apps/LogarithmPlotter/run.py %F
 Icon=/home/ad5001/Apps/LogarithmPlotter/logplotter.svg
+MimeType=application/x-logarithm-plotter;
 Terminal=false
 StartupNotify=false
 Categories=Graphics;Science;Math;

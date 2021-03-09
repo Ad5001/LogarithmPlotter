@@ -21,7 +21,7 @@
        inkscape:collect="always"
        id="linearGradient909">
       <stop
-         style="stop-color:#dddddf;stop-opacity:1;"
+         style="stop-color:#d0d0df;stop-opacity:1"
          offset="0"
          id="stop905" />
       <stop
@@ -46,9 +46,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.2"
-     inkscape:cx="20.998067"
-     inkscape:cy="1.6486949"
+     inkscape:zoom="63.356767"
+     inkscape:cx="21.069815"
+     inkscape:cy="8.4702325"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -65,7 +65,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -117,7 +117,7 @@
     <path
        id="rect902"
        style="fill:url(#linearGradient911);fill-opacity:1;stroke:none;stroke-width:0.6579;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 17,6 h 2.65 v 2 0 z"
+       d="m 17,6 h 2.65 v 2.5 0 z"
        sodipodi:nodetypes="ccccc" />
   </g>
 </svg>

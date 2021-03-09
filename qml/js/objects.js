@@ -1137,13 +1137,13 @@ class Sequence extends ExecutableObject {
 }
 
 class RepartitionFunction extends ExecutableObject {
-    static type(){return 'Repartition function'}
-    static typeMultiple(){return 'Repartition functions'}
+    static type(){return 'Repartition'}
+    static typeMultiple(){return 'Repartitions'}
     static properties() {return {
         'beginIncluded': 'Boolean',
         'drawLineEnds': 'Boolean',
         'comment1': 'Note: Specify the properties for each potential result.',
-        'probabilities': new P.Dictionary('string', 'float', /^-?[\d.]+$/, /^-?[\d\.]+$/, 'P({name} = ', ') = '),
+        'probabilities': new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d\.,]+$/, 'P({name} = ', ') = '),
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
@@ -1174,7 +1174,7 @@ class RepartitionFunction extends ExecutableObject {
     execute(x = 1) {
         var ret = 0;
         Object.keys(this.probabilities).sort((a,b) => a-b).forEach(idx => {
-            if(x >= idx) ret += parseFloat(this.probabilities[idx])
+            if(x >= idx) ret += parseFloat(this.probabilities[idx].replace(/,/g, '.'))
         })
         return ret
     }
@@ -1200,7 +1200,7 @@ class RepartitionFunction extends ExecutableObject {
         var currentY = 0;
         var keys = Object.keys(this.probabilities).map(idx => parseInt(idx)).sort((a,b) => a-b)
         console.log("Keys", keys)
-        if(canvas.visible(keys[0],this.probabilities[keys[0]])) {
+        if(canvas.visible(keys[0],this.probabilities[keys[0]].replace(/,/g, '.'))) {
             canvas.drawLine(ctx, 
                 0,
                 canvas.y2px(0),
@@ -1215,7 +1215,7 @@ class RepartitionFunction extends ExecutableObject {
         }
         for(var i = 0; i < keys.length-1; i++) {
             var idx = keys[i];
-            currentY += parseFloat(this.probabilities[idx]);
+            currentY += parseFloat(this.probabilities[idx].replace(/,/g, '.'));
             if(canvas.visible(idx,currentY) || canvas.visible(keys[i+1],currentY)) {
                 console.log("Drawing", idx, Math.max(0,canvas.x2px(idx)), canvas.y2px(currentY), Math.min(canvas.canvasSize.width,canvas.x2px(keys[i+1])), canvas.y2px(currentY))
                 canvas.drawLine(ctx,
@@ -1239,14 +1239,14 @@ class RepartitionFunction extends ExecutableObject {
         if(canvas.visible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]]))) {
             canvas.drawLine(ctx, 
                 Math.max(0,canvas.x2px(keys[keys.length-1])),
-                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])),
+                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.'))),
                 canvas.canvasSize.width,
-                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]]))
+                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.')))
             )
             ctx.beginPath();
             ctx.arc(
                 canvas.x2px(keys[keys.length-1]),
-                    canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])), 
+                    canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.'))), 
                     4, 0, 2 * Math.PI);
             ctx.fill();
         }
@@ -1295,7 +1295,7 @@ const types = {
     'Somme phases Bode': SommePhasesBode,
     'X Cursor': CursorX,
     'Sequence': Sequence,
-    'Repartition function': RepartitionFunction,
+    'Repartition': RepartitionFunction,
 }
 
 var currentObjects = {}

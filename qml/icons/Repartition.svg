@@ -12,8 +12,8 @@
    viewBox="0 0 24.0 24.0"
    version="1.1"
    id="SVGRoot"
-   sodipodi:docname="Repartition function.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   sodipodi:docname="Repartition.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <defs
      id="defs835" />
   <sodipodi:namedview
@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="31.678384"
-     inkscape:cx="10.734927"
-     inkscape:cy="13.020605"
+     inkscape:cx="4.7687136"
+     inkscape:cy="12.95747"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -69,7 +69,7 @@
        x="5"
        y="11" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.755908;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path1416"
        sodipodi:type="arc"
        sodipodi:cx="22.049"

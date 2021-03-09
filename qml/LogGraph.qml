@@ -52,7 +52,7 @@ ApplicationWindow {
             id: topSeparator
             color: sysPaletteIn.dark
             width: parent.width
-            height: 2
+            height: 0
         }
         
         TabBar {
@@ -143,6 +143,7 @@ ApplicationWindow {
     
     function loadDiagram(filename) {
         var data = JSON.parse(Helper.load(filename))
+        var error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
             settings.saveFilename = filename
             settings.xzoom = data["xzoom"]
@@ -159,22 +160,29 @@ ApplicationWindow {
             
             Objects.currentObjects = {}
             for(var objType in data['objects']) {
-                Objects.currentObjects[objType] = []
-                for(var objData of data['objects'][objType]) {
-                    var obj = new Objects.types[objType](...objData)
-                    Objects.currentObjects[objType].push(obj)
+                if(Object.keys(Objects.types).indexOf(objType) > -1) {
+                    Objects.currentObjects[objType] = []
+                    for(var objData of data['objects'][objType]) {
+                        var obj = new Objects.types[objType](...objData)
+                        Objects.currentObjects[objType].push(obj)
+                    }
+                } else {
+                    error += "Unknown object type: " +objType + "\n";
                 }
             }
             // Refreshing sidebar
             if(sidebarSelector.currentIndex == 0) {
                 // For some reason, if we load a file while the tab is on object,
-                // we get stuck in a Qt-side loop? Qt bug or sideeffect here, I don't know.
+                // we get stuck in a Qt-side loop? Qt bug or side-effect here, I don't know.
                 sidebarSelector.currentIndex = 1
                 objectLists.update()
                 delayRefreshTimer.start()
             } else {
                 objectLists.update()
             }
+        }
+        if(error != "") {
+            
         }
     }
     
