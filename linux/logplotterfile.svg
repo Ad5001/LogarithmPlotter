@@ -19,6 +19,18 @@
      id="defs10">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient51">
+      <stop
+         style="stop-color:#ededef;stop-opacity:1"
+         offset="0"
+         id="stop47" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop49" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient909">
       <stop
          style="stop-color:#d0d0df;stop-opacity:1"
@@ -38,6 +50,15 @@
        x2="19"
        y2="9"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient51"
+       id="linearGradient53"
+       x1="7"
+       y1="5"
+       x2="19"
+       y2="22"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -46,9 +67,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="63.356767"
-     inkscape:cx="21.069815"
-     inkscape:cy="8.4702325"
+     inkscape:zoom="22.4"
+     inkscape:cx="11.327682"
+     inkscape:cy="10.179403"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -75,7 +96,7 @@
      id="layer1">
     <path
        id="rect26"
-       style="fill:#ffffff;fill-opacity:1;stroke:#aaaaaf;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:url(#linearGradient53);fill-opacity:1;stroke:#aaaaaf;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 4,2 h 13 l 3,3.8181818 V 23 H 4 Z"
        sodipodi:nodetypes="cccccc" />
     <g
