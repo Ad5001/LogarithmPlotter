@@ -1143,7 +1143,7 @@ class RepartitionFunction extends ExecutableObject {
         'beginIncluded': 'Boolean',
         'drawLineEnds': 'Boolean',
         'comment1': 'Note: Specify the properties for each potential result.',
-        'probabilities': new P.Dictionary('string', 'int', /^[\d.]+$/, /^[\d\.]+$/, 'P({name} = ', ') = '),
+        'probabilities': new P.Dictionary('string', 'float', /^-?[\d.]+$/, /^-?[\d\.]+$/, 'P({name} = ', ') = '),
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
     }}
@@ -1198,7 +1198,7 @@ class RepartitionFunction extends ExecutableObject {
     
     draw(canvas, ctx) {
         var currentY = 0;
-        var keys = Object.keys(this.probabilities).sort()
+        var keys = Object.keys(this.probabilities).map(idx => parseInt(idx)).sort((a,b) => a-b)
         console.log("Keys", keys)
         if(canvas.visible(keys[0],this.probabilities[keys[0]])) {
             canvas.drawLine(ctx, 
@@ -1236,15 +1236,19 @@ class RepartitionFunction extends ExecutableObject {
                 }
             }
         }
-        if(canvas.visible(keys[keys.length-1],this.probabilities[keys[keys.length-1]])) {
+        console.log("Checking end", canvas.visible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]])), canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])))
+        if(canvas.visible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]]))) {
             canvas.drawLine(ctx, 
                 Math.max(0,canvas.x2px(keys[keys.length-1])),
-                canvas.y2px(this.probabilities[keys[keys.length-1]]),
+                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])),
                 canvas.canvasSize.width,
-                canvas.y2px(this.probabilities[keys[keys.length-1]])
+                canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]]))
             )
             ctx.beginPath();
-            ctx.arc(canvas.x2px(idx),canvas.y2px(currentY), 4, 0, 2 * Math.PI);
+            ctx.arc(
+                canvas.x2px(keys[keys.length-1]),
+                    canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])), 
+                    4, 0, 2 * Math.PI);
             ctx.fill();
         }
         
