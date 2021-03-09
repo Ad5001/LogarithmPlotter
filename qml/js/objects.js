@@ -1167,14 +1167,14 @@ class RepartitionFunction extends ExecutableObject {
     
     
     getReadableString() {
-        var keys = Object.keys(this.probabilities).sort();
+        var keys = Object.keys(this.probabilities).sort((a,b) => a-b);
         return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
     }
     
     execute(x = 1) {
         var ret = 0;
-        Object.keys(this.probabilities).sort().forEach(idx => {
-            if(x >= idx) ret += this.probabilities[idx]
+        Object.keys(this.probabilities).sort((a,b) => a-b).forEach(idx => {
+            if(x >= idx) ret += parseFloat(this.probabilities[idx])
         })
         return ret
     }
@@ -1236,7 +1236,6 @@ class RepartitionFunction extends ExecutableObject {
                 }
             }
         }
-        console.log("Checking end", canvas.visible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]])), canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]])))
         if(canvas.visible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]]))) {
             canvas.drawLine(ctx, 
                 Math.max(0,canvas.x2px(keys[keys.length-1])),

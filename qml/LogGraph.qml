@@ -29,7 +29,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[0] : "")
+    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[settings.saveFilename.split('/').length -1] : "")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -116,6 +116,7 @@ ApplicationWindow {
     }
     
     function saveDiagram(filename) {
+        settings.saveFilename = filename
         var objs = {}
         for(var objType in Objects.currentObjects){
             objs[objType] = []
@@ -143,6 +144,7 @@ ApplicationWindow {
     function loadDiagram(filename) {
         var data = JSON.parse(Helper.load(filename))
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
+            settings.saveFilename = filename
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
             settings.xmin = data["xmin"]
