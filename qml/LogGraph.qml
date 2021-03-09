@@ -68,12 +68,13 @@ ApplicationWindow {
         }
         
         StackLayout {
+            id: sidebarContents
             anchors.top: sidebarSelector.bottom
             anchors.left: parent.left
             anchors.topMargin: 5
             anchors.leftMargin: 5
             width: parent.width - 10
-            height: parent.height - sidebarSelector.height
+            height: parent.height - sidebarContents.x;
             currentIndex: sidebarSelector.currentIndex
             z: -1
             clip: true
