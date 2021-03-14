@@ -93,7 +93,7 @@ engine.addImportPath(os.path.realpath(os.path.join(os.getcwd(), "qml")))
 engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "LogGraph.qml")))
 
 os.chdir(pwd)
-if len(argv) > 0 and os.path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg']:
+if len(argv) > 0 and os.path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
     print(argv[-1])
     engine.rootObjects()[0].loadDiagram(argv[-1])
 os.chdir(os.path.dirname(os.path.realpath(__file__)))

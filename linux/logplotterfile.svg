@@ -15,6 +15,8 @@
    id="SVGRoot"
    sodipodi:docname="logplotterfile.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <title
+     id="title849">Logarithm Plotter Icon</title>
   <defs
      id="defs10">
     <linearGradient
@@ -67,16 +69,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="22.4"
-     inkscape:cx="11.327682"
-     inkscape:cy="10.179403"
+     inkscape:zoom="15.839192"
+     inkscape:cx="31.617327"
+     inkscape:cy="5.2075676"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
-     inkscape:window-x="1920"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
@@ -91,8 +93,38 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title>Logarithm Plotter File Icon</dc:title>
+        <dc:date>2021</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Ad5001</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>(c) Copyright Ad5001 2021</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
       </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
     </rdf:RDF>
   </metadata>
   <g
@@ -104,37 +136,33 @@
        style="fill:url(#linearGradient53);fill-opacity:1;stroke:#aaaaaf;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 4,2 h 13 l 3,3.8181818 V 23 H 4 Z"
        sodipodi:nodetypes="cccccc" />
-    <g
-       id="g870"
-       transform="translate(-4.5,-1)">
-      <rect
-         style="fill:#000000;fill-rule:evenodd;stroke-width:9.65201;stroke-opacity:0"
-         id="rect1410"
-         width="11"
-         height="1"
-         x="11"
-         y="17" />
-      <rect
-         style="fill:#000000;fill-rule:evenodd;stroke-width:9.65208;stroke-opacity:0"
-         id="rect1412"
-         width="1"
-         height="11"
-         x="15"
-         y="8" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.975312;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="path1529"
-         sodipodi:type="arc"
-         sodipodi:cx="11"
-         sodipodi:cy="8"
-         sodipodi:rx="10.012342"
-         sodipodi:ry="9.0123415"
-         sodipodi:start="0"
-         sodipodi:end="1.5707963"
-         sodipodi:arc-type="arc"
-         sodipodi:open="true"
-         d="M 21.012342,8 A 10.012342,9.0123415 0 0 1 11,17.012341" />
-    </g>
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke-width:9.65201;stroke-opacity:0"
+       id="rect1410"
+       width="11"
+       height="1"
+       x="6.5"
+       y="16" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke-width:9.65208;stroke-opacity:0"
+       id="rect1412"
+       width="1"
+       height="11"
+       x="10.5"
+       y="7" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.97652;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1529"
+       sodipodi:type="arc"
+       sodipodi:cx="6.5"
+       sodipodi:cy="7"
+       sodipodi:rx="10.01174"
+       sodipodi:ry="9.0117397"
+       sodipodi:start="0"
+       sodipodi:end="1.5707963"
+       sodipodi:arc-type="arc"
+       sodipodi:open="true"
+       d="M 16.51174,7 A 10.01174,9.0117397 0 0 1 6.5,16.01174" />
     <path
        id="rect899"
        style="fill:#aaaaaf;fill-opacity:1;stroke:none;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

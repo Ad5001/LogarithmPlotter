@@ -24,7 +24,7 @@ D.FileDialog {
     property bool exportMode: false
     
     title: exportMode ? "Export Logarithmic Graph file" : "Import Logarithmic Graph file"
-    nameFilters: ["Logarithmic Graph JSON Data (*.lgg)", "Old Logarithmic Graph JSON Data (*.json)", "All files (*)"]
+    nameFilters: ["Logarithmic Graph JSON Data (*.lpf *.lgg)", "Old Logarithmic Graph JSON Data (*.json)", "All files (*)"]
 
     folder: shortcuts.documents
     selectExisting: !exportMode

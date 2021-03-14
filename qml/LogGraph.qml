@@ -94,9 +94,9 @@ ApplicationWindow {
     LogGraphCanvas {
         id: drawCanvas
         anchors.top: parent.top
-        anchors.left: sidebar.right
+        anchors.left: sidebar.inPortrait ? parent.left : sidebar.right
         height: parent.height
-        width: parent.width - sidebar.position*sidebar.width
+        width: sidebar.inPortrait ? parent.width : parent.width - sidebar.position*sidebar.width
         x: sidebar.position*sidebar.width
         
         xmin: settings.xmin
@@ -117,6 +117,8 @@ ApplicationWindow {
     }
     
     function saveDiagram(filename) {
+        if(['json', 'lpf', 'lgg'].indexOf(filename.split('.')[filename.split('.').length-1]) == -1)
+            filename += '.lpf'
         settings.saveFilename = filename
         var objs = {}
         for(var objType in Objects.currentObjects){
