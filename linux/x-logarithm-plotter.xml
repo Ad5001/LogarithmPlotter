@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-logarithm-plotter">
-    <comment>Logarithm Plot/Graph</comment>
-    <comment xml:lang="fr">Graphe Logarithmique</comment>
+    <comment>Logarithm Plot File</comment>
+    <comment xml:lang="fr">Fichier Graphe Logarithmique</comment>
     <icon name="/home/ad5001/Apps/LogarithmPlotter/linux/logplotterfile.svg"/>
     <glob-deleteall/>
     <glob pattern="*.json"/>

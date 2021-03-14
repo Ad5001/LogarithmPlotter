@@ -20,11 +20,10 @@ Column {
     
     property alias model: repeater.model
     
-    Text {
+    Label {
         id: labelItem
         height: 30
         verticalAlignment: TextInput.AlignVCenter
-        color: sysPalette.windowText
         text: control.label +": "
     }
     

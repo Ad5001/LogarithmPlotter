@@ -48,17 +48,10 @@ ApplicationWindow {
         visible: !inPortrait
 
         
-        Rectangle {
-            id: topSeparator
-            color: sysPaletteIn.dark
-            width: parent.width
-            height: 0
-        }
-        
         TabBar {
             id: sidebarSelector
             width: parent.width
-            anchors.top: topSeparator.bottom
+            anchors.top: parent.top
             TabButton {
                 text: qsTr("Objects")
             }

@@ -64,10 +64,9 @@ ListView {
                 ToolTip.text: checked ? `Hide all ${Objects.types[objType].typeMultiple()}` : `Show all ${Objects.types[objType].typeMultiple()}`
             }
             
-            Text {
+            Label {
                 id: typeHeaderText
                 verticalAlignment: TextInput.AlignVCenter
-                color: sysPalette.windowText
                 text: Objects.types[objType].typeMultiple() + ":"
                 font.pixelSize: 20
             }
@@ -98,15 +97,14 @@ ListView {
                 ToolTip.text: checked ? `Hide ${objType} ${obj.name}` : `Show ${objType} ${obj.name}`
             }
             
-            Text {
+            Label {
                 id: objDescription
                 anchors.left: objVisibilityCheckBox.right
-                anchors.right: settingsButton.left
+                anchors.right: deleteButton.left
                 height: parent.height
                 verticalAlignment: TextInput.AlignVCenter
                 text: obj.getReadableString()
                 font.pixelSize: 14
-                color: sysPalette.windowText
                 
                 MouseArea {
                     anchors.fill: parent
@@ -117,25 +115,6 @@ ListView {
                         objEditor.editingRow = controlRow
                         objEditor.show()
                     }
-                }
-            }
-            
-            Button {
-                id: settingsButton
-                width: parent.height - 10
-                height: width
-                anchors.right: deleteButton.left
-                anchors.rightMargin: 5
-                anchors.topMargin: 5
-                icon.source: './icons/settings.svg'
-                icon.name: 'configure'
-                
-                onClicked: {
-                    objEditor.obj = Objects.currentObjects[objType][index]
-                    objEditor.objType = objType
-                    objEditor.objIndex = index
-                    objEditor.editingRow = controlRow
-                    objEditor.show()
                 }
             }
             
@@ -198,7 +177,7 @@ ListView {
         width: 300
         height: 400
         
-        Text {
+        Label {
             id: dlgTitle
             anchors.left: parent.left
             anchors.top: parent.top
@@ -261,13 +240,13 @@ ListView {
                     width: dlgProperties.width
                     property string label: Utils.camelCase2readable(modelData[0])
                     
-                    Text {
+                    Label {
                         id: customPropComment
                         width: parent.width
                         height: visible ? implicitHeight : 0
                         visible: modelData[0].startsWith('comment')
                         text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
-                        color: sysPalette.windowText
+                        //color: sysPalette.windowText
                         wrapMode: Text.WordWrap
                     }
                     
@@ -387,35 +366,42 @@ ListView {
         id: createRow
         width: parent.width
         
-        Text {
+        Label {
             id: createTitle
             verticalAlignment: TextInput.AlignVCenter
             text: '+ Create new:'
             font.pixelSize: 20
-            color: sysPalette.windowText
+            //color: sysPalette.windowText
         }
         
-        Repeater {
-            model: Object.keys(Objects.types)
-            
-            Button {
-                id: createBtn
-                text: modelData
-                width: createRow.width
-                visible: Objects.types[modelData].createable()
-                height: visible ? implicitHeight : 0
-                icon.source: './icons/'+modelData+'.svg' // Default to dark version
-                icon.name: modelData
-                icon.color: sysPalette.windowText
+        Grid {
+            width: parent.width
+            columns: 3
+            Repeater {
+                model: Object.keys(Objects.types)
                 
-                onClicked: {
-                    Objects.createNewRegisteredObject(modelData)
-                    objectListList.update()
-                    objEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
-                    objEditor.objType = modelData
-                    objEditor.objIndex = Objects.currentObjects[modelData].length - 1
-                    objEditor.editingRow = objectListList.listViews[modelData].editingRows[objEditor.objIndex]
-                    objEditor.show()
+                Button {
+                    id: createBtn
+                    text: modelData
+                    width: parent.width/3
+                    visible: Objects.types[modelData].createable()
+                    height: visible ? implicitHeight : 0
+                    display: AbstractButton.TextUnderIcon
+                    icon.source: './icons/'+modelData+'.svg' // Default to dark version
+                    icon.name: modelData
+                    icon.width: 24
+                    icon.height: 24
+                    icon.color: sysPalette.windowText
+                    
+                    onClicked: {
+                        Objects.createNewRegisteredObject(modelData)
+                        objectListList.update()
+                        objEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
+                        objEditor.objType = modelData
+                        objEditor.objIndex = Objects.currentObjects[modelData].length - 1
+                        objEditor.editingRow = objectListList.listViews[modelData].editingRows[objEditor.objIndex]
+                        objEditor.show()
+                    }
                 }
             }
         }

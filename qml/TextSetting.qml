@@ -31,12 +31,12 @@ Item {
     property string label
     property string defValue
         
-    Text {
+    Label {
         id: labelItem
         height: 30
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
-        color: sysPalette.windowText
+        //color: sysPalette.windowText
         text: control.label +": "
     }
     

@@ -35,12 +35,11 @@ Item {
         return combox.find(elementName)
     }
     
-    Text {
+    Label {
         id: labelItem
         height: 30
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
-        color: sysPalette.windowText
         text: control.label +": "
     }
     
