@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="15.839192"
-     inkscape:cx="21.452629"
-     inkscape:cy="4.4190861"
+     inkscape:zoom="22.4"
+     inkscape:cx="19.545462"
+     inkscape:cy="13.163586"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -60,15 +60,9 @@
      id="layer1">
     <g
        aria-label="X"
-       transform="scale(0.99446808,1.0055627)"
+       transform="matrix(0.99446808,0,0,1.0055627,-2.2765848e-8,0.50000001)"
        id="text14"
-       style="font-style:normal;font-weight:normal;font-size:17.3373px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00023">
-      <path
-         d="M 8.5472829,6.9612765 12.066752,1.4917021 H 10.055627 L 7.5417202,5.9668084 5.0278135,1.4917021 H 3.0166881 L 6.5361575,6.9612765 3.0166881,13.425312 H 5.0278135 L 7.5417202,7.9557446 10.055627,13.425312 h 2.011125 z"
-         style="font-size:17.3373px;stroke-width:1.00023"
-         id="path835"
-         sodipodi:nodetypes="ccccccccccccc" />
-    </g>
+       style="font-style:normal;font-weight:normal;font-size:17.3373px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00023" />
     <rect
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.774803;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect12"
@@ -77,5 +71,15 @@
        x="17"
        y="0"
        ry="2.14841e-13" />
+    <path
+       id="rect835"
+       style="fill:#000000;fill-rule:evenodd;stroke-width:2"
+       d="m 5,2 h 2 l 8,14 h -2 z"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="rect835-6"
+       style="fill:#000000;fill-rule:evenodd;stroke-width:2"
+       d="M 15,2 H 13 L 5,16 h 2 z"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>

@@ -30,10 +30,23 @@ Item {
     property double min: -1
     property string label
     property string defValue
-        
+    property string icon: ""
+    
+    Icon {
+        id: iconLabel
+        anchors.top: parent.top
+        anchors.topMargin: icon == "" ? 0 : 3
+        source: control.visible ? control.icon : ""
+        width: height
+        height: icon == "" || !visible ? 0 : 24
+        color: sysPalette.windowText
+    }
+    
     Label {
         id: labelItem
-        height: 30
+        anchors.left: iconLabel.right
+        anchors.leftMargin: icon == "" ? 0 : 5
+        height: parent.height
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
         //color: sysPalette.windowText
@@ -46,8 +59,8 @@ Item {
         anchors.top: parent.top
         anchors.left: labelItem.right
         anchors.leftMargin: 5
-        width: control.width - labelItem.width - 5
-        height: 30
+        width: control.width - labelItem.width - iconLabel.width - 10
+        height: parent.height
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: TextInput.AlignHCenter
         color: sysPalette.windowText

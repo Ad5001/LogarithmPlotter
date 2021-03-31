@@ -12,7 +12,7 @@
    viewBox="0 0 24.0 24.0"
    version="1.1"
    id="SVGRoot"
-   sodipodi:docname="Point.svg"
+   sodipodi:docname="Somme gains Bode.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <defs
      id="defs1469" />
@@ -24,17 +24,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="22.4"
-     inkscape:cx="23.448337"
-     inkscape:cy="9.9487426"
+     inkscape:cx="22.985246"
+     inkscape:cy="9.8906279"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
-     inkscape:window-width="1829"
-     inkscape:window-height="916"
-     inkscape:window-x="48"
-     inkscape:window-y="31"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid2039" />
@@ -61,18 +61,33 @@
     <path
        id="path1414"
        style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
-       d="m 9.979376,18.120606 a 3.5,3.5 0 0 1 -3.06333,3.854578 3.5,3.5 0 0 1 -3.8866522,-3.022533 3.5,3.5 0 0 1 2.9814002,-3.918293 3.5,3.5 0 0 1 3.9495,2.939936" />
+       d="m 19.979376,19.120606 a 3.5,3.5 0 0 1 -3.06333,3.854578 3.5,3.5 0 0 1 -3.886652,-3.022533 3.5,3.5 0 0 1 2.9814,-3.918293 3.5,3.5 0 0 1 3.9495,2.939936" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:16.166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       id="rect835"
+       width="18"
+       height="2"
+       x="0"
+       y="18.5" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.3373px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00023"
-       x="12.066752"
-       y="13.922545"
-       id="text14"
-       transform="scale(0.99446808,1.0055627)"><tspan
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="-0.5703125"
+       y="11.875"
+       id="text839"><tspan
          sodipodi:role="line"
-         id="tspan12"
-         x="12.066752"
-         y="13.922545"
-         style="font-size:17.3373px;stroke-width:1.00023">A</tspan></text>
+         id="tspan837"
+         x="-0.5703125"
+         y="11.875"
+         style="font-size:16px">ΣG</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:19.0663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       id="rect835-3"
+       width="25.038315"
+       height="2"
+       x="-10.17229"
+       y="23.748709"
+       ry="0"
+       transform="rotate(-60)" />
   </g>
 </svg>

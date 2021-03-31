@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="22.4"
-     inkscape:cx="22.985246"
-     inkscape:cy="9.8906279"
+     inkscape:zoom="63.356768"
+     inkscape:cx="15.947723"
+     inkscape:cy="5.6917309"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -59,35 +59,38 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="path1414"
-       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
-       d="m 19.979376,19.120606 a 3.5,3.5 0 0 1 -3.06333,3.854578 3.5,3.5 0 0 1 -3.886652,-3.022533 3.5,3.5 0 0 1 2.9814,-3.918293 3.5,3.5 0 0 1 3.9495,2.939936" />
+       id="rect838"
+       style="fill:#000000;fill-rule:evenodd;stroke-width:2"
+       d="M 2,2 H 8 V 3 H 4 L 7,6 4,9 h 4 v 1 H 2 V 9 L 5,6 2,3 Z"
+       sodipodi:nodetypes="ccccccccccccc" />
     <rect
-       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:16.166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:14.257;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
        id="rect835"
-       width="18"
+       width="14"
        height="2"
        x="0"
-       y="18.5" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-0.5703125"
-       y="11.875"
-       id="text839"><tspan
-         sodipodi:role="line"
-         id="tspan837"
-         x="-0.5703125"
-         y="11.875"
-         style="font-size:16px">ΣG</tspan></text>
-    <rect
-       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:19.0663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
-       id="rect835-3"
-       width="25.038315"
-       height="2"
-       x="-10.17229"
-       y="23.748709"
-       ry="0"
-       transform="rotate(-60)" />
+       y="17" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:2"
+       id="path837"
+       cx="13"
+       cy="18"
+       r="4" />
+    <path
+       id="rect837"
+       style="fill:#000000;fill-rule:evenodd;stroke-width:2.10035"
+       transform="rotate(30)"
+       d="m 20.686533,-6.169873 2.232051,-0.1339746 -0.06218,13.8923049 -2.23205,0.1339746 z"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       aria-label="G"
+       id="text846"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none">
+      <path
+         d="m 13,2 c 0,0 -3,0 -3,3 0,3 0,5 3,5 2,0 3,0 3,-2 V 6 h -3 v 1 h 2 v 1 c 0,1 -1,1 -2,1 -1,0 -2,0 -2,-4 0,-1 1,-2 2,-2 2,0 2,1 2,1 h 1 c 0,0 0,-2 -3,-2 z"
+         style="font-size:12px"
+         id="path848"
+         sodipodi:nodetypes="sssccccccsssccs" />
+    </g>
   </g>
 </svg>

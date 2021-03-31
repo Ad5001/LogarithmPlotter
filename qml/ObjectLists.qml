@@ -197,6 +197,7 @@ ListView {
                 id: nameProperty
                 height: 30
                 label: "Name"
+                icon: "icons/settings/custom/label.svg"
                 min: 1
                 width: dlgProperties.width
                 defValue: objEditor.obj.name
@@ -222,6 +223,7 @@ ListView {
                 width: dlgProperties.width
                 label: "Label content"
                 model: ["null", "name", "name + value"]
+                icon: "icons/settings/custom/label.svg"
                 currentIndex: model.indexOf(objEditor.obj.labelContent)
                 onActivated: function(newIndex) {
                     Objects.currentObjects[objEditor.objType][objEditor.objIndex].labelContent = model[newIndex]
@@ -255,6 +257,7 @@ ListView {
                         height: visible ? 30 : 0
                         width: parent.width
                         label: parent.label
+                        icon: `icons/settings/custom/${parent.label}.svg`
                         isDouble: modelData[1] == 'number'
                         visible: paramTypeIn(modelData[1], ['Expression', 'Domain', 'string', 'number'])
                         defValue: visible ? {
@@ -281,6 +284,7 @@ ListView {
                         height: visible ? 20 : 0
                         width: parent.width
                         text: parent.label
+                        icon: visible ? `icons/settings/custom/${parent.label}.svg` : ''
                         
                         checked: visible ? objEditor.obj[modelData[0]] : false
                         onClicked: {
@@ -295,6 +299,7 @@ ListView {
                         width: dlgProperties.width
                         height: visible ? 30 : 0
                         label: parent.label
+                        icon: `icons/settings/custom/${parent.label}.svg`
                         // True to select an object of type, false for enums.
                         property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                         model: visible ? 
@@ -331,6 +336,7 @@ ListView {
                         
                         visible: paramTypeIn(modelData[1], ['List', 'Dict'])
                         label: parent.label
+                        //icon: `icons/settings/custom/${parent.label}.svg`
                         dictionaryMode: paramTypeIn(modelData[1], ['Dict'])
                         keyType: dictionaryMode ? modelData[1].keyType : 'string'
                         valueType: visible ? modelData[1].valueType : 'string'

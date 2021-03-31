@@ -31,12 +31,26 @@ Item {
     property alias editable: combox.editable
     property alias editText: combox.editText
     property alias currentIndex: combox.currentIndex
+    property string icon: ""
+    
     function find(elementName) {
         return combox.find(elementName)
     }
     
+    Icon {
+        id: iconLabel
+        anchors.top: parent.top
+        anchors.topMargin: icon == "" ? 0 : 3
+        source: control.visible ? control.icon : ""
+        width: height
+        height: icon == "" && visible ? 0 : 24
+        color: sysPalette.windowText
+    }
+    
     Label {
         id: labelItem
+        anchors.left: iconLabel.right
+        anchors.leftMargin: icon == "" ? 0 : 5
         height: 30
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
@@ -48,7 +62,7 @@ Item {
         height: 30
         anchors.left: labelItem.right
         anchors.leftMargin: 5
-        width: control.width - labelItem.width - 5
+        width: control.width - labelItem.width - iconLabel.width - 10
         onActivated: function(newIndex) {
             control.activated(newIndex)
         }

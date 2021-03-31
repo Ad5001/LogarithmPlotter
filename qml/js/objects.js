@@ -941,7 +941,7 @@ class CursorX extends DrawableObject {
             approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
         }
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
-            (this.approximate ? ' ≃ ' + approx : '')
+            (this.approximate ? ' ≈ ' + approx : '')
     }
     
     getTargetElement() {

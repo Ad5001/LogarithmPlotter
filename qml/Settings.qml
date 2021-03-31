@@ -76,6 +76,7 @@ ScrollView {
                 settings.changed()
             }
         }
+        
         TextSetting {
             id: zoomY
             height: 30
@@ -88,6 +89,7 @@ ScrollView {
                 settings.changed()
             }
         }
+        
         // Positioning the graph
         TextSetting {
             id: minX
@@ -95,6 +97,7 @@ ScrollView {
             isDouble: true
             min: -Infinity
             label: "Min X"
+            icon: "icons/settings/xmin.svg"
             width: settings.settingWidth
             defValue: settings.xmin
             onChanged: function(newValue) {
@@ -102,11 +105,13 @@ ScrollView {
                 settings.changed()
             }
         }
+        
         TextSetting {
             id: maxY
             height: 30
             isDouble: true
             label: "Max Y"
+            icon: "icons/settings/ymax.svg"
             width: settings.settingWidth
             defValue: settings.ymax
             onChanged: function(newValue) {
@@ -114,10 +119,12 @@ ScrollView {
                 settings.changed()
             }
         }
+        
         TextSetting {
             id: yAxisStep
             height: 30
             label: "Y Axis Step"
+            icon: "icons/settings/yaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.yaxisstep
             onChanged: function(newValue) {
@@ -130,6 +137,7 @@ ScrollView {
             id: xAxisStep
             height: 30
             label: "X Axis Step"
+            icon: "icons/settings/xaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.xaxisstep
             visible: !settings.logscalex
@@ -144,6 +152,7 @@ ScrollView {
             height: 30
             width: settings.settingWidth
             label: 'X Label'
+            icon: "icons/settings/xlabel.svg"
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "x" }
@@ -169,6 +178,7 @@ ScrollView {
             height: 30
             width: settings.settingWidth
             label: 'Y Label'
+            icon: "icons/settings/ylabel.svg"
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "y" }

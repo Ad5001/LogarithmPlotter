@@ -222,7 +222,7 @@ Canvas {
         var progPerc = dashPxSize/distance
         ctx.beginPath();
         ctx.moveTo(x1, y1);
-        for(var i = progPerc/2; i < 1; i += progPerc) {
+        for(var i = 0; i < 1; i += progPerc) {
             ctx.lineTo(x1-(x1-x2)*i, y1-(y1-y2)*i)
             ctx.moveTo(x1-(x1-x2)*(i+progPerc/2), y1-(y1-y2)*(i+progPerc/2))
         }

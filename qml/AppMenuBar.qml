@@ -82,6 +82,9 @@ MenuBar {
     }
     Menu {
         title: qsTr("&Help")
-        Action { text: qsTr("&About") }
+        Action {
+            text: qsTr("&About")
+            icon.name: 'about'
+        }
     }
 }
