@@ -252,20 +252,22 @@ function makeExpressionReadable(str) {
         [/ \* /g, '×'],
         [/ \^ /g, '^'],
         [/\^\(([^\^]+)\)/g, function(match, p1) { return textsup(p1) }],
-        [/\^([^ ]+)/g, function(match, p1) { return textsup(p1) }],
+        [/\^([^ "]+)/g, function(match, p1) { return textsup(p1) }],
         [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
-        [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
+        [/_([^ "]+)/g, function(match, p1) { return textsub(p1) }],
         [/\[([^\[\]]+)\]/g, function(match, p1) { return textsub(p1) }],
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
         [/\(([^)(+.\/-]+)\)/g, "$1"],
-        [/integral\((.+), ?(.+), ("|')(.+)("|'), ?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
-            console.log('Intégrale', a, b, body, by)
+        [/integral\((.+), ?(.+), ?("|')(.+)("|'), ?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
             if(a.length < b.length) {
                 return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
             } else {
                 return `∫${textsup(b)}${textsub(a)} ${body} d${by}`
             }
+        }],
+        [/derivative\(?("|')(.+)("|'), ?("|')(.+)("|'), ?(.+)\)?/g, function(match, p1, body, p2, p3, by, p4, x) {
+            return `d(${body.replace(new RegExp(by, 'g'), 'x')})/dx`
         }]
     ]
     
@@ -315,7 +317,7 @@ function parseName(str, removeUnallowed = true) {
         [/([^a-z]|^)gom(ega)?([^a-z]|$)/g, '$1Ω$3'],
         // Underscores
         [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
-        [/_([^ ]+)/g, function(match, p1) { return textsub(p1) }],
+        [/_([^" ]+)/g, function(match, p1) { return textsub(p1) }],
         // Array elements
         [/\[([^\]\[]+)\]/g, function(match, p1) { return textsub(p1) }],
         // Removing

@@ -42,6 +42,13 @@ parser.functions.integral = function(a, b, f, variable) {
     return (b-a)/6*(f(a)+4*f((a+b)/2)+f(b))
 }
 
+const DERIVATION_PRECISION = 0.1
+
+parser.functions.derivative = function(f, variable, x) {
+    f = parser.parse(f).toJSFunction(variable, currentVars)
+    return (f(x+DERIVATION_PRECISION/2)-f(x-DERIVATION_PRECISION/2))/DERIVATION_PRECISION
+}
+
 class Expression {
     constructor(expr) {
         this.expr = expr

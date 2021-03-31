@@ -38,6 +38,8 @@ Canvas {
     property string xlabel: ""
     property string ylabel: ""
     property int maxgradx: 8
+    property double linewidth: 1
+    property double textsize: 14
     property bool logscalex: false
     property bool showxgrad: false
     property bool showygrad: false
@@ -56,6 +58,7 @@ Canvas {
         reset(ctx)
         drawGrille(ctx)
         drawAxises(ctx)
+        ctx.lineWidth = linewidth
         for(var objType in Objects.currentObjects) {
             for(var obj of Objects.currentObjects[objType]){
                 ctx.strokeStyle = obj.color
@@ -63,6 +66,7 @@ Canvas {
                 if(obj.visible) obj.draw(canvas, ctx)
             }
         }
+        ctx.lineWidth = 1
         drawLabels(ctx)
         
     }
@@ -71,7 +75,7 @@ Canvas {
         // Reset
         ctx.fillStyle = "#FFFFFF"
         ctx.strokeStyle = "#000000"
-        ctx.font = "12px sans-serif"
+        ctx.font = `${canvas.textsize-2}px sans-serif`
         ctx.fillRect(0,0,width,height)
     }
     
@@ -115,12 +119,12 @@ Canvas {
         var axisxpx = y2px(0) // Y coordinate of X axis
         // Labels
         ctx.fillStyle = "#000000"
-        ctx.font = "16px sans-serif"
-        ctx.fillText(ylabel, axisypx+5, 24)
+        ctx.font = `${canvas.textsize+2}px sans-serif`
+        ctx.fillText(ylabel, axisypx+10, 24)
         var textSize = ctx.measureText(xlabel).width
         ctx.fillText(xlabel, canvasSize.width-14-textSize, axisxpx-5)
         // Axis graduation labels
-        ctx.font = "12px sans-serif"
+        ctx.font = `${canvas.textsize-2}px sans-serif`
         
         var txtMinus = ctx.measureText('-').width
         if(showxgrad) {
@@ -135,8 +139,8 @@ Canvas {
                     var drawX = x*xaxisstep1
                     var txtX = xaxisstepExpr.simplify(x)
                     var textSize = measureText(ctx, txtX, 6).height
-                    drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+6+textSize)
-                    drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+6+textSize)
+                    drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+textsize/2+textSize)
+                    drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+textsize/2+textSize)
                 }
             }
         }
@@ -165,20 +169,20 @@ Canvas {
         }
     }
     
-    function drawVisibleText(ctx, text, x, y, lineHeight = 14) {
+    function drawVisibleText(ctx, text, x, y) {
         if(x > 0 && x < canvasSize.width && y > 0 && y < canvasSize.height) {
             text.toString().split("\n").forEach(function(txt, i){
-                ctx.fillText(txt, x, y+(lineHeight*i))
+                ctx.fillText(txt, x, y+(canvas.textsize*i))
             })
         }
     }
     
     // Method to calculate multi-line string dimensions
-    function measureText(ctx, text, lineHeight=14) {
+    function measureText(ctx, text) {
         var theight = 0
         var twidth = 0
         text.split("\n").forEach(function(txt, i){
-            theight += lineHeight
+            theight += canvas.textsize
             if(ctx.measureText(txt).width > twidth) twidth = ctx.measureText(txt).width
         })
         return {'width': twidth, 'height': theight}
@@ -215,6 +219,12 @@ Canvas {
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.stroke();
+    }
+    
+    function drawDashedLine2(ctx, x1, y1, x2, y2, dashPxSize = 5) {
+        ctx.setLineDash([dashPxSize, dashPxSize]);
+        drawLine(ctx, x1, y1, x2, y2)
+        ctx.setLineDash([]);
     }
     
     function drawDashedLine(ctx, x1, y1, x2, y2, dashPxSize = 10) {

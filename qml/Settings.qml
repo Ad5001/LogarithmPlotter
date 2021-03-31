@@ -35,15 +35,18 @@ ScrollView {
     property string yaxisstep: "4"
     property string xaxislabel: ""
     property string yaxislabel: ""
+    property double linewidth: 1
+    property double textsize: 14
     property bool logscalex: true
     property string saveFilename: ""
     property bool showxgrad: true
     property bool showygrad: true
     
     Column {
-        height: 30*9 //30*Math.max(1, Math.ceil(7 / columns))
+        //height: 30*12 //30*Math.max(1, Math.ceil(7 / columns))
         //columns: Math.floor(width / settingWidth)
         spacing: 10
+        
         FileDialog {
             id: fdiag
             onAccepted: {
@@ -61,7 +64,6 @@ ScrollView {
             }
         }
         
-        // Line 1
         // Zoom
         TextSetting {
             id: zoomX
@@ -121,6 +123,20 @@ ScrollView {
         }
         
         TextSetting {
+            id: xAxisStep
+            height: 30
+            label: "X Axis Step"
+            icon: "icons/settings/xaxisstep.svg"
+            width: settings.settingWidth
+            defValue: settings.xaxisstep
+            visible: !settings.logscalex
+            onChanged: function(newValue) {
+                settings.xaxisstep = newValue
+                settings.changed()
+            }
+        }
+        
+        TextSetting {
             id: yAxisStep
             height: 30
             label: "Y Axis Step"
@@ -134,15 +150,31 @@ ScrollView {
         }
         
         TextSetting {
-            id: xAxisStep
+            id: lineWidth
             height: 30
-            label: "X Axis Step"
-            icon: "icons/settings/xaxisstep.svg"
+            isDouble: true
+            label: "Line width"
+            min: 1
+            icon: "icons/settings/linewidth.svg"
             width: settings.settingWidth
-            defValue: settings.xaxisstep
-            visible: !settings.logscalex
+            defValue: settings.linewidth
             onChanged: function(newValue) {
-                settings.xaxisstep = newValue
+                settings.linewidth = newValue
+                settings.changed()
+            }
+        }
+        
+        TextSetting {
+            id: textSize
+            height: 30
+            isDouble: true
+            label: "Text size (px)"
+            min: 1
+            icon: "icons/settings/textsize.svg"
+            width: settings.settingWidth
+            defValue: settings.textsize
+            onChanged: function(newValue) {
+                settings.textsize = newValue
                 settings.changed()
             }
         }

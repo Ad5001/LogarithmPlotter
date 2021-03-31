@@ -163,7 +163,7 @@ class Point extends DrawableObject  {
                 break;
         }
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
+        ctx.font = `${canvas.textsize}px sans-serif`
         var textSize = ctx.measureText(text).width
         switch(this.labelPosition) {
             case 'top':
@@ -266,8 +266,8 @@ class Function extends ExecutableObject {
         Function.drawFunction(canvas, ctx, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
@@ -439,8 +439,8 @@ class GainBode extends ExecutableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
@@ -588,8 +588,8 @@ class SommeGainsBode extends DrawableObject {
                 if(inDrawDom.includes(this.labelX)) {
                     // Label
                     var text = this.getLabel()
-                    ctx.font = "14px sans-serif"
-                    var textSize = canvas.measureText(ctx, text, 7)
+                    ctx.font = `${canvas.textsize}px sans-serif`
+                    var textSize = canvas.measureText(ctx, text)
                     var posX = canvas.x2px(this.labelX)
                     var posY = canvas.y2px(dbfn.execute(this.labelX))
                     switch(this.labelPosition) {
@@ -712,8 +712,8 @@ class PhaseBode extends ExecutableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
@@ -848,8 +848,8 @@ class SommePhasesBode extends ExecutableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
@@ -993,8 +993,8 @@ class CursorX extends DrawableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         
         switch(this.labelPosition) {
             case 'left':
@@ -1007,7 +1007,7 @@ class CursorX extends DrawableObject {
         
         if(this.targetValuePosition == 'Next to target' && this.getTargetElement() != null) {
             var text = this.getTargetValueLabel()
-            var textSize = canvas.measureText(ctx, text, 7)
+            var textSize = canvas.measureText(ctx, text)
             var ypox = canvas.y2px(this.getTargetElement().execute(this.x.execute()))
             switch(this.labelPosition) {
                 case 'left':
@@ -1103,8 +1103,8 @@ class Sequence extends ExecutableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {
@@ -1253,8 +1253,8 @@ class RepartitionFunction extends ExecutableObject {
         
         // Label
         var text = this.getLabel()
-        ctx.font = "14px sans-serif"
-        var textSize = canvas.measureText(ctx, text, 7)
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
         switch(this.labelPosition) {

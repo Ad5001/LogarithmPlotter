@@ -66,8 +66,8 @@ ApplicationWindow {
             anchors.left: parent.left
             anchors.topMargin: 5
             anchors.leftMargin: 5
+            anchors.bottom: parent.bottom
             width: parent.width - 10
-            height: parent.height - sidebarContents.x;
             currentIndex: sidebarSelector.currentIndex
             z: -1
             clip: true
@@ -101,12 +101,10 @@ ApplicationWindow {
         yaxisstep: settings.yaxisstep
         xaxisstep: settings.xaxisstep
         logscalex: settings.logscalex
+        linewidth: settings.linewidth
+        textsize: settings.textsize
         showxgrad: settings.showxgrad
         showygrad: settings.showygrad
-        
-        onPaint: {
-            var ctx = getContext("2d");
-        }
     }
     
     function saveDiagram(filename) {
@@ -130,6 +128,8 @@ ApplicationWindow {
             "xaxislabel":   settings.xaxislabel,
             "yaxislabel":   settings.yaxislabel,
             "logscalex":    settings.logscalex,
+            "linewidth":    settings.linewidth,
+            "textsize":     settings.textsize,
             "width":        root.width,
             "height":       root.height,
             "objects":      objs,
@@ -151,6 +151,10 @@ ApplicationWindow {
             settings.xaxislabel = data["xaxislabel"]
             settings.yaxislabel = data["yaxislabel"]
             settings.logscalex = data["logscalex"]
+            if("linewidth" in data)
+                settings.linewidth = data["linewidth"]
+            if("textsize" in data)
+                settings.textsize = data["textsize"]
             root.height = data["height"]
             root.width = data["width"]
             
@@ -176,6 +180,8 @@ ApplicationWindow {
             } else {
                 objectLists.update()
             }
+        } else {
+            error = "Invalid file provided."
         }
         if(error != "") {
             
