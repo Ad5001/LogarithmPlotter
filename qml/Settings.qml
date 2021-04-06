@@ -71,6 +71,7 @@ ScrollView {
             isInt: true
             label: "X Zoom"
             min: 1
+            icon: "icons/settings/xzoom.svg"
             width: settings.settingWidth
             defValue: settings.xzoom
             onChanged: function(newValue) {
@@ -84,6 +85,7 @@ ScrollView {
             height: 30
             isInt: true
             label: "Y Zoom"
+            icon: "icons/settings/yzoom.svg"
             width: settings.settingWidth
             defValue: settings.yzoom
             onChanged: function(newValue) {
