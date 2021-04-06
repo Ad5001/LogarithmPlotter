@@ -16,6 +16,8 @@ docs/html
 .directory
 *.kdev4
 *.json
+*.lpf
+*.lgg
 .kdev4
 AccountFree.pro
 AccountFree.pro.user

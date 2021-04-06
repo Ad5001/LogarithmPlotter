@@ -19,6 +19,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "js/objects.js" as Objects
+import "js/historylib.js" as HistoryLib
 
 MenuBar {
     Menu {
@@ -54,6 +55,23 @@ MenuBar {
     Menu {
         title: qsTr("&Edit")
         Action { 
+            text: qsTr("&Undo")
+            shortcut: StandardKey.Undo
+            onTriggered: history.undo()
+            icon.name: 'edit-undo'
+            icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
+            enabled: history.undoCount > 0
+        }
+        Action { 
+            text: qsTr("&Redo")
+            shortcut: StandardKey.Redo
+            onTriggered: history.redo()
+            icon.name: 'edit-redo'
+            icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
+            enabled: history.redoCount > 0
+        }
+        MenuSeparator { }
+        Action { 
             text: qsTr("&Copy diagram")
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
@@ -74,7 +92,8 @@ MenuBar {
                 icon.name: modelData
                 icon.color: sysPalette.windowText
                 onTriggered: {
-                    Objects.createNewRegisteredObject(modelData)
+                    var newObj = Objects.createNewRegisteredObject(modelData)
+                    history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
                 }
             }

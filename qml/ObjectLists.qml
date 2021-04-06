@@ -22,6 +22,7 @@ import QtQuick.Controls 2.12
 import "js/objects.js" as Objects
 import "js/mathlib.js" as MathLib
 import "js/utils.js" as Utils
+import "js/historylib.js" as HistoryLib
 
 
 ListView {
@@ -88,6 +89,9 @@ ListView {
                 anchors.left: parent.left
                 anchors.leftMargin: 5
                 onClicked: {
+                    history.addToHistory(new HistoryLib.EditedVisibility(
+                        objEditor.obj.name, objEditor.objType, this.checked
+                    ))
                     Objects.currentObjects[objType][index].visible = this.checked
                     objectListList.changed()
                     controlRow.obj = Objects.currentObjects[objType][index]
@@ -129,6 +133,9 @@ ListView {
                 icon.name: 'delete'
                 
                 onClicked: {
+                    history.addToHistory(new HistoryLib.DeleteObject(
+                        objEditor.obj.name, objEditor.objType, objEditor.obj.export()
+                    ))
                     Objects.currentObjects[objType][index].delete()
                     Objects.currentObjects[objType].splice(index, 1)
                     objectListList.update()
@@ -158,7 +165,11 @@ ListView {
                 color: obj.color
                 title: `Pick new color for ${objType} ${obj.name}`
                 onAccepted: {
-                    Objects.currentObjects[objType][index].color = color.toString()
+                    history.addToHistory(new HistoryLib.EditedProperty(
+                        objEditor.obj.name, objEditor.objType, "color", 
+                        objEditor.obj.color, color.toString()
+                    ))
+                    objEditor.obj.color = color.toString()
                     controlRow.obj = Objects.currentObjects[objType][index]
                     objectListList.update()
                 }
@@ -209,9 +220,7 @@ ListView {
                             newName = Objects.getNewName(newName)
                         }
                         Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newName
-                        // TODO Resolve dependencies
                         objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                        //objEditor.editingRow.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                         objectListList.update()
                     }
                 }
@@ -227,8 +236,6 @@ ListView {
                 currentIndex: model.indexOf(objEditor.obj.labelContent)
                 onActivated: function(newIndex) {
                     Objects.currentObjects[objEditor.objType][objEditor.objIndex].labelContent = model[newIndex]
-                    //objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    //objEditor.editingRow.obj = objEditor.obj
                     objectListList.update()
                 }
             }
@@ -267,12 +274,18 @@ ListView {
                             'number': () => objEditor.obj[modelData[0]]
                         }[modelData[1]]() : ""
                         onChanged: function(newValue) {
-                            Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = {
+                            var newValue = {
                                 'Expression': () => new MathLib.Expression(newValue),
                                 'Domain': () => MathLib.parseDomain(newValue),
                                 'string': () => newValue,
                                 'number': () => parseFloat(newValue)
                             }[modelData[1]]()
+                            history.addToHistory(new HistoryLib.EditedProperty(
+                                objEditor.obj.name, objEditor.objType, modelData[0], 
+                                objEditor.obj[modelData[0]], newValue
+                            ))
+                            //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = newValue
+                            objEditor.obj[modelData[0]] = newValue
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
                         }
@@ -288,6 +301,10 @@ ListView {
                         
                         checked: visible ? objEditor.obj[modelData[0]] : false
                         onClicked: {
+                            history.addToHistory(new HistoryLib.EditedProperty(
+                                objEditor.obj.name, objEditor.objType, modelData[0], 
+                                objEditor.obj[modelData[0]], this.checked
+                            ))
                             objEditor.obj[modelData[0]] = this.checked
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
                             objectListList.update()
@@ -302,6 +319,7 @@ ListView {
                         icon: `icons/settings/custom/${parent.label}.svg`
                         // True to select an object of type, false for enums.
                         property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
+                        
                         model: visible ? 
                             (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType]) : modelData[1].values) 
                             : []
@@ -314,14 +332,26 @@ ListView {
                                 var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1].objType)
                                 if(selectedObj == null) {
                                     selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
+                                    history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
                                     model = Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType])
                                     currentIndex = model.indexOf(selectedObj.name)
                                 }
-                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
+                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
+                                objEditor.obj.requiredBy = objEditor.obj.requiredBy.filter((obj) => objEditor.obj.name != obj.name)
                                 selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
-                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
+                                history.addToHistory(new HistoryLib.EditedProperty(
+                                    objEditor.obj.name, objEditor.objType, modelData[0], 
+                                    objEditor.obj[modelData[0]], selectedObj
+                                ))
+                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
+                                objEditor.obj[modelData[0]] = selectedObj
                             } else {
-                                Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
+                                history.addToHistory(new HistoryLib.EditedProperty(
+                                    objEditor.obj.name, objEditor.objType, modelData[0], 
+                                    objEditor.obj[modelData[0]], model[newIndex]
+                                ))
+                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
+                                objEditor.obj[modelData[0]] = model[newIndex]
                             }
                             // Refreshing
                             Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
@@ -347,8 +377,15 @@ ListView {
                         forbidAdding: visible ? modelData[1].forbidAdding : false
                         
                         onChanged: {
-                            Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = exportModel()
-                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
+                            var exported = exportModel()
+                            history.addToHistory(new HistoryLib.EditedProperty(
+                                objEditor.obj.name, objEditor.objType, modelData[0], 
+                                objEditor.obj[modelData[0]], exported
+                            ))
+                            //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = exported
+                            objEditor.obj[modelData[0]] = exported
+                            //Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
+                            objEditor.obj.update()
                             objectListList.update()
                         }
                         
@@ -368,6 +405,7 @@ ListView {
         }
     }
     
+    // Create items
     footer: Column {
         id: createRow
         width: parent.width
@@ -400,7 +438,8 @@ ListView {
                     icon.color: sysPalette.windowText
                     
                     onClicked: {
-                        Objects.createNewRegisteredObject(modelData)
+                        var newObj = Objects.createNewRegisteredObject(modelData)
+                        history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                         objectListList.update()
                         objEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
                         objEditor.objType = modelData

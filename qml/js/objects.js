@@ -22,6 +22,8 @@
 .import "mathlib.js" as MathLib
 .import "parameters.js" as P
 
+var history = null
+var HistoryLib = null
 
 function getNewName(allowedLetters) {
     var newid = 0
@@ -375,6 +377,7 @@ class GainBode extends ExecutableObject {
                 om_0.name = getNewName('ω')
                 om_0.labelContent = 'name'
                 om_0.color = this.color
+                history.addToHistory(new HistoryLib.CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'
             }
             om_0.requiredBy.push(this)
@@ -654,6 +657,7 @@ class PhaseBode extends ExecutableObject {
                 om_0.color = this.color
                 om_0.labelContent = 'name'
                 om_0.labelPosition = this.phase.execute() >= 0 ? 'bottom' : 'top'
+                history.addToHistory(new HistoryLib.CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'
             }
             om_0.requiredBy.push(this)
@@ -886,14 +890,9 @@ class CursorX extends DrawableObject {
     static type(){return 'X Cursor'}
     static typeMultiple(){return 'X Cursors'}
     static properties() {
-        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-        var elementNames = ['']
-        elementTypes.forEach(function(elemType){
-            elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
-        })
         return {
             'x': 'Expression',
-            'targetElement': new P.Enum(...elementNames),
+            'targetElement': new P.ObjectType('ExecutableObject'),
             'labelPosition': new P.Enum('left', 'right'),
             'approximate': 'Boolean',
             'rounding': 'number',
@@ -917,6 +916,9 @@ class CursorX extends DrawableObject {
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
         this.x = x
         this.targetElement = targetElement
+        if(typeof targetElement == "string") {
+            this.targetElement = getObjectByName(targetElement, elementTypes)
+        }
         this.labelPosition = labelPosition
         this.displayStyle = displayStyle
         this.targetValuePosition = targetValuePosition
@@ -924,17 +926,17 @@ class CursorX extends DrawableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.x.toEditableString(), this.targetElement, this.labelPosition, 
+        this.x.toEditableString(), this.targetElement == null ? null : this.targetElement.name, this.labelPosition, 
         this.approximate, this.rounding, this.displayStyle, this.targetValuePosition]
     }
     
     getReadableString() {
-        if(this.getTargetElement() == null) return `${this.name} = ${this.x.toString()}`
+        if(this.targetElement == null) return `${this.name} = ${this.x.toString()}`
         return `${this.name} = ${this.x.toString()}\n${this.getTargetValueLabel()}`
     }
     
     getTargetValueLabel() {
-        var t = this.getTargetElement()
+        var t = this.targetElement
         var approx = ''
         if(this.approximate) {
             approx = t.execute(this.x.execute())
@@ -942,12 +944,6 @@ class CursorX extends DrawableObject {
         }
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
             (this.approximate ? ' ≈ ' + approx : '')
-    }
-    
-    getTargetElement() {
-        // TODO: Use the dependency system instead.
-        var elementTypes = Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
-        return getObjectByName(this.targetElement, elementTypes)
     }
     
     getLabel() {
@@ -1005,10 +1001,10 @@ class CursorX extends DrawableObject {
                 break;
         }
         
-        if(this.targetValuePosition == 'Next to target' && this.getTargetElement() != null) {
+        if(this.targetValuePosition == 'Next to target' && this.targetElement != null) {
             var text = this.getTargetValueLabel()
             var textSize = canvas.measureText(ctx, text)
-            var ypox = canvas.y2px(this.getTargetElement().execute(this.x.execute()))
+            var ypox = canvas.y2px(this.targetElement.execute(this.x.execute()))
             switch(this.labelPosition) {
                 case 'left':
                     canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height)
@@ -1303,8 +1299,11 @@ var currentObjects = {}
 function getObjectByName(objName, objType = null) {
     var objectTypes = Object.keys(currentObjects)
     if(typeof objType == 'string') {
-        if(currentObjects[objType] == undefined) return null
-        objectTypes = [objType]
+        if(objType == "ExecutableObject") {
+            objectTypes = getExecutableTypes()
+        } else if(currentObjects[objType] != undefined) {
+            objectTypes = [objType]
+        }
     }
     if(Array.isArray(objType)) objectTypes = objType
     var retObj = null
@@ -1318,8 +1317,21 @@ function getObjectByName(objName, objType = null) {
 }
 
 function getObjectsName(objType) {
+    if(objType == "ExecutableObject") {
+        var types = getExecutableTypes()
+        var elementNames = ['']
+        types.forEach(function(elemType){
+            elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
+        })
+        console.log(elementNames)
+        return elementNames
+    }
     if(currentObjects[objType] == undefined) return []
     return currentObjects[objType].map(obj => obj.name)
+}
+
+function getExecutableTypes() {
+    return Object.keys(currentObjects).filter(objType => types[objType].prototype instanceof ExecutableObject)
 }
 
 function createNewRegisteredObject(objType, args=[]) {

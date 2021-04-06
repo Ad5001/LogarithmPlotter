@@ -33,6 +33,7 @@ ApplicationWindow {
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
+    History { id: history }
     
     menuBar: AppMenuBar {}
     
@@ -200,6 +201,4 @@ ApplicationWindow {
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
     }
-    
-    
 }

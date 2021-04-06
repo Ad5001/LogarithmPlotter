@@ -580,7 +580,7 @@ class MinusDomain extends Domain {
     static import(frm) {
         var domains = frm.trim().split("∖")
         if(domains.length == 1) domains = frm.trim().split("\\") // Fallback
-        var dom1 = parseDomain(domains.pop())
+        var dom1 = parseDomain(domains.shift())
         var dom2 = parseDomain(domains.join('∪'))
         return new MinusDomain(dom1, dom2)
     }

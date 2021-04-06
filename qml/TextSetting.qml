@@ -71,7 +71,10 @@ Item {
             var value = text
             if(control.isInt) value = Math.max(control.min,parseInt(value).toString()=="NaN"?control.min:parseInt(value))
             if(control.isDouble) value = Math.max(control.min,parseFloat(value).toString()=="NaN"?control.min:parseFloat(value))
-            if(value != "") control.changed(value)
+            if(value != "" && value.toString() != defValue) {
+                control.changed(value)
+                defValue = value.toString()
+            }
         }
     }
 }
