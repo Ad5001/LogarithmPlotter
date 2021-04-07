@@ -90,7 +90,7 @@ ListView {
                 anchors.leftMargin: 5
                 onClicked: {
                     history.addToHistory(new HistoryLib.EditedVisibility(
-                        objEditor.obj.name, objEditor.objType, this.checked
+                        Objects.currentObjects[objType][index].name, objType, this.checked
                     ))
                     Objects.currentObjects[objType][index].visible = this.checked
                     objectListList.changed()

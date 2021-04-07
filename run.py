@@ -31,7 +31,7 @@ pwd = os.getcwd()
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
-tempfile = tempfile.mkstemp(suffix = '.png')[1]
+tempfile = tempfile.mkstemp(suffix='.png')[1]
 
 def get_linux_theme():
     des = {

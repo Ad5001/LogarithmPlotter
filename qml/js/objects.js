@@ -1195,7 +1195,6 @@ class RepartitionFunction extends ExecutableObject {
     draw(canvas, ctx) {
         var currentY = 0;
         var keys = Object.keys(this.probabilities).map(idx => parseInt(idx)).sort((a,b) => a-b)
-        console.log("Keys", keys)
         if(canvas.visible(keys[0],this.probabilities[keys[0]].replace(/,/g, '.'))) {
             canvas.drawLine(ctx, 
                 0,
@@ -1213,7 +1212,6 @@ class RepartitionFunction extends ExecutableObject {
             var idx = keys[i];
             currentY += parseFloat(this.probabilities[idx].replace(/,/g, '.'));
             if(canvas.visible(idx,currentY) || canvas.visible(keys[i+1],currentY)) {
-                console.log("Drawing", idx, Math.max(0,canvas.x2px(idx)), canvas.y2px(currentY), Math.min(canvas.canvasSize.width,canvas.x2px(keys[i+1])), canvas.y2px(currentY))
                 canvas.drawLine(ctx,
                     Math.max(0,canvas.x2px(idx)),
                     canvas.y2px(currentY),

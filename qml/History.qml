@@ -17,11 +17,12 @@
  */
 
 import QtQuick 2.12
+import QtQml 2.12
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
 
-QtObject {
+Item {
     // Using a QtObject is necessary in order to have proper property propagation in QML
     id: historyObj
     property int undoCount: 0
@@ -29,7 +30,7 @@ QtObject {
     property var undoStack: []
     property var redoStack: []
     
-    function empty() {
+    function clear() {
         undoStack = []
         redoStack = []
     }
@@ -40,6 +41,7 @@ QtObject {
             undoStack.push(action)
             undoCount++;
             redoStack = []
+            redoCount = 0
         }
     }
 
@@ -62,6 +64,44 @@ QtObject {
             undoStack.push(action)
             undoCount++;
             redoCount--;
+        }
+    }
+    
+    function undoMultipleDefered(toUndoCount) {
+        undoTimer.toUndoCount = toUndoCount;
+        undoTimer.start()
+    }
+    
+    function redoMultipleDefered(toRedoCount) {
+        redoTimer.toRedoCount = toRedoCount;
+        redoTimer.start()
+    }
+    
+    Timer {
+        id: undoTimer
+        interval: 5; running: false; repeat: true
+        property int toUndoCount: 0
+        onTriggered: {
+            if(toUndoCount > 0) {
+                historyObj.undo()
+                toUndoCount--;
+            } else {
+                running = false;
+            }
+        }
+    }
+    
+    Timer {
+        id: redoTimer
+        interval: 5; running: false; repeat: true
+        property int toRedoCount: 0
+        onTriggered: {
+            if(toRedoCount > 0) {
+                historyObj.redo()
+                toRedoCount--;
+            } else {
+                running = false;
+            }
         }
     }
     

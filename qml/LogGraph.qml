@@ -59,6 +59,9 @@ ApplicationWindow {
             TabButton {
                 text: qsTr("Settings")
             }
+            TabButton {
+                text: qsTr("History")
+            }
         }
         
         StackLayout {
@@ -68,6 +71,7 @@ ApplicationWindow {
             anchors.topMargin: 5
             anchors.leftMargin: 5
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: 20
             width: parent.width - 10
             currentIndex: sidebarSelector.currentIndex
             z: -1
@@ -81,6 +85,10 @@ ApplicationWindow {
             Settings {
                 id: settings
                 onChanged: drawCanvas.requestPaint()
+            }
+
+            HistoryBrowser {
+                id: historyBrowser
             }
         }
     }
@@ -142,6 +150,7 @@ ApplicationWindow {
         var data = JSON.parse(Helper.load(filename))
         var error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
+            history.clear()
             settings.saveFilename = filename
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
