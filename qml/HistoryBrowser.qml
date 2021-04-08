@@ -47,6 +47,8 @@ ScrollView {
                     flat: true
                     text: history.redoStack[index].getReadableString()
                     
+                    ToolTip.visible: hovered
+                    ToolTip.text: text
                     
                     onClicked: {
                         history.redoMultipleDefered(history.redoCount-index)
@@ -98,6 +100,8 @@ ScrollView {
                     flat: true
                     text: history.undoStack[history.undoCount-index-1].getReadableString()
                     
+                    ToolTip.visible: hovered
+                    ToolTip.text: text
                     
                     onClicked: {
                         history.undoMultipleDefered(index+1)
