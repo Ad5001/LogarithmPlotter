@@ -279,8 +279,8 @@ ScrollView {
             id: saveDiagram
             height: 30
             width: settings.settingWidth
-            text: "Save diagram"
-            icon.name: 'filesave'
+            text: "Save plot"
+            icon.name: 'document-save'
             onClicked: save()
         }
         
@@ -288,8 +288,8 @@ ScrollView {
             id: saveDiagramAs
             height: 30
             width: settings.settingWidth
-            text: "Save diagram as"
-            icon.name: 'filesaveas'
+            text: "Save plot as"
+            icon.name: 'document-save-as'
             onClicked: saveAs()
         }
         
@@ -297,8 +297,8 @@ ScrollView {
             id: loadDiagram
             height: 30
             width: settings.settingWidth
-            text: "Load diagram"
-            icon.name: 'fileopen'
+            text: "Load plot"
+            icon.name: 'document-open'
             onClicked: load()
         }
     }
