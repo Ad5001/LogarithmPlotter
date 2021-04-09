@@ -166,10 +166,10 @@ ListView {
                 title: `Pick new color for ${objType} ${obj.name}`
                 onAccepted: {
                     history.addToHistory(new HistoryLib.EditedProperty(
-                        objEditor.obj.name, objEditor.objType, "color", 
-                        objEditor.obj.color, color.toString()
+                        obj.name, objType, "color", 
+                        obj.color, color.toString()
                     ))
-                    objEditor.obj.color = color.toString()
+                    obj.color = color.toString()
                     controlRow.obj = Objects.currentObjects[objType][index]
                     objectListList.update()
                 }

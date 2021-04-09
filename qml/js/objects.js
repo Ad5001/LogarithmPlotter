@@ -65,7 +65,7 @@ class DrawableObject {
     }
     
     export() {
-        // Should return what will be input as arguments when a file is loaded (serializable form)
+        // Should return what will be inputed as arguments when a file is loaded (serializable form)
         return [this.name, this.visible, this.color.toString(), this.labelContent]
     }
     
@@ -148,7 +148,7 @@ class Point extends DrawableObject  {
     
     draw(canvas, ctx) {
         var [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
-        var pointSize = 8
+        var pointSize = 8+(ctx.lineWidth*2)
         switch(this.pointStyle) {
             case '●':
                 ctx.beginPath();
@@ -359,11 +359,12 @@ class GainBode extends ExecutableObject {
         'pass': new P.Enum('high', 'low'),
         'gain': 'Expression',
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number'
+        'labelX': 'number',
+        'omGraduation': 'Boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                om_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1) {
+                om_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1, omGraduation = false) {
         if(name == null) name = getNewName('G')
         if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitudes (Somme gains Bode).
         super(name, visible, color, labelContent)
@@ -388,6 +389,7 @@ class GainBode extends ExecutableObject {
         this.gain = gain
         this.labelPosition = labelPosition
         this.labelX = labelX
+        this.omGraduation = omGraduation
     }
     
     getReadableString() {
@@ -439,7 +441,11 @@ class GainBode extends ExecutableObject {
             inDrawDom = MathLib.parseDomain(`]${this.om_0.x};+inf[`)
         }
         Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
-        
+        // Dashed line representing break in function
+        var xpos = canvas.x2px(this.om_0.x.execute())
+        var dashPxSize = 10
+        for(var i = 0; i < canvas.canvasSize.height && this.omGraduation; i += dashPxSize*2)
+            canvas.drawLine(ctx, xpos, i, xpos, i+dashPxSize)
         // Label
         var text = this.getLabel()
         ctx.font = `${canvas.textsize}px sans-serif`
@@ -1280,6 +1286,75 @@ class RepartitionFunction extends ExecutableObject {
     }
 }
 
+
+class Text extends DrawableObject  {
+    static type(){return 'Text'}
+    static typeMultiple(){return 'Texts'}
+    static properties() {return {
+        'x': 'Expression',
+        'y': 'Expression',
+        'labelPosition': new P.Enum('center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
+        'text': 'string',
+    }}
+    
+    constructor(name = null, visible = true, color = null, labelContent = 'null', 
+                x = 1, y = 0, labelPosition = 'center', text = 'New text') {
+        if(name == null) name = "tex" + getNewName('t')
+        super(name, visible, color, labelContent)
+        this.type = 'Point'
+        if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
+        this.x = x
+        if(typeof y == 'number' || typeof y == 'string') y = new MathLib.Expression(y.toString())
+        this.y = y
+        this.labelPosition = labelPosition
+        this.text = text
+    }
+    
+    getReadableString() {
+        return `${this.name} = "${this.text}"`
+    }
+    
+    export() {
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.text]
+    }
+    
+    draw(canvas, ctx) {
+        var [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
+        ctx.font = `${canvas.textsize}px sans-serif`
+        var textSize = ctx.measureText(this.text).width
+        switch(this.labelPosition) {
+            case 'center':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+4)
+                break;
+            case 'top':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY-16)
+                break;
+            case 'bottom':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+16)
+                break;
+            case 'left':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+4)
+                break;
+            case 'right':
+                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+4)
+                break;
+            case 'top-left':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY-16)
+                break;
+            case 'top-right':
+                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY-16)
+                break;
+            case 'bottom-left':
+                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+16)
+                break;
+            case 'bottom-right':
+                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+16)
+                break;
+                
+        }
+    }
+}
+
 const types = {
     'Point': Point,
     'Function': Function,
@@ -1290,6 +1365,7 @@ const types = {
     'X Cursor': CursorX,
     'Sequence': Sequence,
     'Repartition': RepartitionFunction,
+    'Text': Text
 }
 
 var currentObjects = {}

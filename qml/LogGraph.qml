@@ -138,6 +138,8 @@ ApplicationWindow {
             "yaxislabel":   settings.yaxislabel,
             "logscalex":    settings.logscalex,
             "linewidth":    settings.linewidth,
+            "showxgrad":    settings.showxgrad,
+            "showygrad":    settings.showygrad,
             "textsize":     settings.textsize,
             "width":        root.width,
             "height":       root.height,
@@ -161,6 +163,10 @@ ApplicationWindow {
             settings.xaxislabel = data["xaxislabel"]
             settings.yaxislabel = data["yaxislabel"]
             settings.logscalex = data["logscalex"]
+            if("showxgrad" in data)
+                settings.showxgrad = data["showxgrad"]
+            if("showygrad" in data)
+                settings.textsize = data["showygrad"]
             if("linewidth" in data)
                 settings.linewidth = data["linewidth"]
             if("textsize" in data)
