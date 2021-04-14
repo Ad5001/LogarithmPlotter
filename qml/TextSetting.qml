@@ -77,4 +77,62 @@ Item {
             }
         }
     }
+    
+    Button {
+        text: "α"
+        anchors.right: parent.right
+        anchors.rightMargin: 5
+        anchors.verticalCenter: parent.verticalCenter
+        width: 20
+        height: width
+        visible: !isInt && !isDouble
+        onClicked: insertPopup.open()
+    }
+    
+    Popup {
+        id: insertPopup
+        x: input.x
+        y: input.y + input.height
+        width: 200
+        height: insertGrid.insertChars/insertGrid.columns
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+        
+        Grid {
+            id: insertGrid
+            width: parent.width
+            columns: 10
+            
+            property var insertChars: [
+                "α","β","γ","δ","ε","ζ","η","θ","κ","λ",
+                "μ","ξ","ρ","ς","σ","τ","φ","χ","ψ","ω",
+                "Γ","Δ","Θ","Λ","Ξ","Π","Σ","Φ","Ψ","Ω",
+                "∞","≠","≥","≤","∧","∨","∩","∪","⊂","⊃",
+                "⊕","⊗","∈","∀","∃","∂"," "," "," "," ",
+                "¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰",
+                "₁","₂","₃","₄","₅","₆","₇","₈","₉","₀",
+                "ₐ","ₑ","ₒ","ₓ","ₔ","ₕ","ₖ","ₗ","ₘ","ₙ",
+                "ₚ","ₛ","ₜ","₊","₋","₌","₍","₎"," "," "
+
+            ]
+            Repeater {
+                model: parent.insertChars.length
+                
+                Button {
+                    id: insertBtn
+                    width: insertGrid.width/insertGrid.columns
+                    height: width
+                    text: insertGrid.insertChars[modelData]
+                    flat: text == " "
+                    
+                    onClicked: {
+                        input.insert(input.cursorPosition, insertGrid.insertChars[modelData])
+                        insertPopup.close()
+                        input.focus = true
+                    }
+                }
+            }
+        }
+    }
 }

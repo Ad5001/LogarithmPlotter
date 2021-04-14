@@ -398,7 +398,7 @@ class GainBode extends ExecutableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.om_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX]
+        this.om_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX, this.omGraduation]
     }
     
     execute(x=1) {
