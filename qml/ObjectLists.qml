@@ -1,6 +1,6 @@
 /**
- *  Logarithm Graph Creator - Create graphs with logarithm scales.
- *  Copyright (C) 2020  Ad5001
+ *  Logarithmic Plotter - Create graphs with logarithm scales.
+ *  Copyright (C) 2021  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
