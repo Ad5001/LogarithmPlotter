@@ -1,5 +1,5 @@
 """
- *  Logarithm Graph Creator - Create graphs with logarithm scales.
+ *  Logarithmic Plotter - Create graphs with logarithm scales.
  *  Copyright (C) 2020  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -20,16 +20,20 @@ from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
 from PySide2.QtGui import QIcon
+from PySide2 import __version__ as PySide2_version
 
 import os
 import tempfile
 from platform import release as os_release
 from json import dumps
-from sys import platform, argv
+from sys import platform, argv, version as sys_version
+import webbrowser
+
 
 pwd = os.getcwd()
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
+__VERSION__ = "0.0.1.dev0"
 
 tempfile = tempfile.mkstemp(suffix='.png')[1]
 
@@ -80,6 +84,22 @@ class Helper(QObject):
         global tempfile
         # TODO: Better copy system
         os.system("xclip -selection clipboard -t image/png -i " + tempfile)
+    
+    @Slot(result=str)
+    def getVersion(self):
+        return __VERSION__
+    
+    @Slot(result=str)
+    def getDebugInfos(self):
+        """
+        Returns the version info about Qt, PySide2 & Python
+        """
+        return "Built with PySide2 (Qt) v{} and python v{}".format(PySide2_version, sys_version.split("\n")[0])
+    
+    @Slot(str)
+    def openUrl(self, url):
+        webbrowser.open(url)
+        
 
 app = QApplication(argv)
 app.setApplicationName("Logarithmic Plotter")
