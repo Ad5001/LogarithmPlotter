@@ -1357,6 +1357,7 @@ class Text extends DrawableObject  {
 
 const types = {
     'Point': Point,
+    'Text': Text,
     'Function': Function,
     'Gain Bode': GainBode,
     'Somme gains Bode': SommeGainsBode,
@@ -1364,8 +1365,7 @@ const types = {
     'Somme phases Bode': SommePhasesBode,
     'X Cursor': CursorX,
     'Sequence': Sequence,
-    'Repartition': RepartitionFunction,
-    'Text': Text
+    'Repartition': RepartitionFunction
 }
 
 var currentObjects = {}
