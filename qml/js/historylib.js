@@ -22,10 +22,11 @@
 
 .import "objects.js" as Objects
 .import "utils.js" as Utils
+.import "mathlib.js" as MathLib
 
 class Action {
     // Type of the action done.
-    static type(){return 'Unknown'}
+    type(){return 'Unknown'}
     
     // TargetName is the name of the object that's targeted by the event.
     constructor(targetName = "", targetType = "Point") {
@@ -37,6 +38,10 @@ class Action {
     
     redo() {}
     
+    export() {
+        return [this.targetName, this.targetType]
+    }
+    
     getReadableString() {
         return 'Unknown action'
     }
@@ -44,12 +49,13 @@ class Action {
 
 class CreateNewObject extends Action {
     // Action used for the creation of an object
-    static type(){return 'CreateNewObject'}
+    type(){return 'CreateNewObject'}
     
     constructor(targetName = "", targetType = "Point", properties = []) {
         super(targetName, targetType)
         this.targetProperties = properties
     }
+
     
     undo() {
         var targetIndex = Objects.getObjectsName(this.targetType).indexOf(this.targetName)
@@ -61,6 +67,10 @@ class CreateNewObject extends Action {
         Objects.createNewRegisteredObject(this.targetType, this.targetProperties)
     }
     
+    export() {
+        return [this.targetName, this.targetType, this.targetProperties]
+    }
+    
     getReadableString() {
         return `New ${this.targetType} ${this.targetName} created.`
     }
@@ -68,7 +78,7 @@ class CreateNewObject extends Action {
 
 class DeleteObject extends CreateNewObject {
     // Action used at the deletion of an object. Basicly the same thing as creating a new object, except Redo & Undo are reversed.
-    static type(){return 'DeleteObject'}
+    type(){return 'DeleteObject'}
     
     undo() {
         super.redo()
@@ -85,14 +95,18 @@ class DeleteObject extends CreateNewObject {
 
 class EditedProperty extends Action {
     // Action used everytime an object's property has been changed
-    static type(){return 'EditedProperty'}
+    type(){return 'EditedProperty'}
     
-    constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true) {
+    constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true, valueIsExpressionNeedingImport = false) {
         super(targetName, targetType)
         this.targetProperty = targetProperty
         this.targetPropertyReadable = Utils.camelCase2readable(this.targetProperty)
         this.previousValue = previousValue
         this.newValue = newValue
+        if(valueIsExpressionNeedingImport) {
+            this.previousValue = new MathLib.Expression(this.previousValue);
+            this.newValue = new MathLib.Expression(this.newValue);
+        }
     }
     
     undo() {
@@ -101,6 +115,14 @@ class EditedProperty extends Action {
     
     redo() {
         Objects.getObjectByName(this.targetName, this.targetType)[this.targetProperty] = this.newValue
+    }
+    
+    export() {
+        if(this.previousValue instanceof MathLib.Expression) {
+            return [this.targetName, this.targetType, this.targetProperty, this.previousValue.toEditableString(), this.newValue.toEditableString(), true]
+        } else {
+            return [this.targetName, this.targetType, this.targetProperty, this.previousValue, this.newValue, false]
+        }
     }
     
     getReadableString() {
@@ -112,7 +134,7 @@ class EditedProperty extends Action {
 
 class EditedVisibility extends EditedProperty {
     // Action used everytime an object's property has been changed
-    static type(){return 'EditedVisibility'}
+    type(){return 'EditedVisibility'}
     
     constructor(targetName = "", targetType = "Point", newValue = true) {
         super(targetName, targetType, "visible", !newValue, newValue)
@@ -125,4 +147,29 @@ class EditedVisibility extends EditedProperty {
             return `${this.targetType} ${this.targetName} hidden.`
         }
     }
+}
+
+class NameChanged extends EditedProperty {
+    // Action used everytime an object's property has been changed
+    type(){return 'EditedVisibility'}
+    
+    constructor(targetName = "", targetType = "Point", newName = "") {
+        super(targetName, targetType, "name", targetName, newName)
+    }
+    
+    undo() {
+        Objects.getObjectByName(this.newValue, this.targetType)['name'] = this.previousValue
+    }
+    
+    redo() {
+        Objects.getObjectByName(this.previousValue, this.targetType)[this.targetProperty] = this.newValue
+    }
+}
+
+var Actions = {
+    "Action": Action,
+    "CreateNewObject": CreateNewObject,
+    "DeleteObject": DeleteObject,
+    "EditedProperty": EditedProperty,
+    "EditedVisibility": EditedVisibility,
 }

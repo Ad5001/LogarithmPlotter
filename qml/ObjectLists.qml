@@ -219,6 +219,9 @@ ListView {
                             console.log(Objects.getObjectByName(newName).name, newName)
                             newName = Objects.getNewName(newName)
                         }
+                        history.addToHistory(new HistoryLib.NameChanged(
+                            objEditor.obj.name, objEditor.objType, newName
+                        ))
                         Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newName
                         objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                         objectListList.update()

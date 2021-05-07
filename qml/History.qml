@@ -34,6 +34,33 @@ Item {
         undoStack = []
         redoStack = []
     }
+    
+    function serialize() {
+        let undoSt = [], redoSt = [];
+        for(let i = 0; i < undoCount; i++)
+            undoSt.push([
+                undoStack[i].type(),
+                undoStack[i].export()
+            ]);
+        for(let i = 0; i < redoCount; i++)
+            redoSt.push([
+                redoStack[i].type(),
+                redoStack[i].export()
+            ]);
+        return [undoSt, redoSt]
+    }
+    
+    function unserialize(undoSt, redoSt) {
+        clear();
+        for(let i = 0; i < undoSt.length; i++)
+            undoStack.push(new HistoryLib.Actions[undoSt[i][0]](...undoSt[i][1]))
+        for(let i = 0; i < redoSt.length; i++)
+            redoStack.push(new HistoryLib.Actions[redoSt[i][0]](...redoSt[i][1]))
+        undoCount = undoSt.length;
+        redoCount = redoSt.length;
+        objectLists.update()
+    }
+    
 
     function addToHistory(action) {
         if(action instanceof HistoryLib.Action) {

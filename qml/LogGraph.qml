@@ -141,6 +141,7 @@ ApplicationWindow {
             "showxgrad":    settings.showxgrad,
             "showygrad":    settings.showygrad,
             "textsize":     settings.textsize,
+            "history":      history.serialize(),
             "width":        root.width,
             "height":       root.height,
             "objects":      objs,
@@ -153,6 +154,7 @@ ApplicationWindow {
         var error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
             history.clear()
+            // Importing settings
             settings.saveFilename = filename
             settings.xzoom = data["xzoom"]
             settings.yzoom = data["yzoom"]
@@ -171,9 +173,12 @@ ApplicationWindow {
                 settings.linewidth = data["linewidth"]
             if("textsize" in data)
                 settings.textsize = data["textsize"]
+            if("history" in data)
+                history.unserialize(...data["history"])
             root.height = data["height"]
             root.width = data["width"]
             
+            // Importing objectw
             Objects.currentObjects = {}
             for(var objType in data['objects']) {
                 if(Object.keys(Objects.types).indexOf(objType) > -1) {
