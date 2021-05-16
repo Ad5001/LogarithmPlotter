@@ -57,12 +57,21 @@ ApplicationWindow {
             anchors.top: parent.top
             TabButton {
                 text: qsTr("Objects")
+                icon.name: 'polygon-add-nodes'
+                icon.color: sysPalette.windowText
+                //height: 24
             }
             TabButton {
                 text: qsTr("Settings")
+                icon.name: 'preferences-system'
+                icon.color: sysPalette.windowText
+                //height: 24
             }
             TabButton {
                 text: qsTr("History")
+                icon.name: 'history'
+                icon.color: sysPalette.windowText
+                //height: 24
             }
         }
         

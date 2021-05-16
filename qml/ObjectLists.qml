@@ -438,7 +438,7 @@ ListView {
                     icon.name: modelData
                     icon.width: 24
                     icon.height: 24
-                    icon.color: sysPalette.windowText
+                    icon.color: 'white'//sysPalette.windowText
                     
                     onClicked: {
                         var newObj = Objects.createNewRegisteredObject(modelData)

@@ -19,7 +19,7 @@
 from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
-from PySide2.QtGui import QIcon
+from PySide2.QtGui import QIcon, QImage
 from PySide2 import __version__ as PySide2_version
 
 import os
@@ -39,7 +39,7 @@ tempfile = tempfile.mkstemp(suffix='.png')[1]
 
 def get_linux_theme():
     des = {
-        "KDE": "fusion", # org.kde.desktop resolves to universal in PySide2.
+        "KDE": "Flat",
         "gnome": "default",
         "lxqt": "fusion",
         "mate": "fusion",
@@ -82,8 +82,8 @@ class Helper(QObject):
     @Slot()
     def copyImageToClipboard(self):
         global tempfile
-        # TODO: Better copy system
-        os.system("xclip -selection clipboard -t image/png -i " + tempfile)
+        clipboard = QApplication.clipboard()
+        clipboard.setImage(QImage(tempfile))
     
     @Slot(result=str)
     def getVersion(self):

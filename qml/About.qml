@@ -40,7 +40,7 @@ D.Dialog {
         anchors.topMargin: 10
     }
     
-    Text {
+    Label {
         id: appName
         anchors.top: logo.bottom
         anchors.left: parent.left
@@ -52,7 +52,7 @@ D.Dialog {
         text: "Logarithmic Plotter v" + Helper.getVersion() 
     }
     
-    Text {
+    Label {
         id: description
         anchors.top: appName.bottom
         anchors.left: parent.left
@@ -64,7 +64,7 @@ D.Dialog {
         text: "Create graphs with logarithm scales."
     }
     
-    Text {
+    Label {
         id: debugInfos
         anchors.top: description.bottom
         anchors.left: parent.left
@@ -76,7 +76,7 @@ D.Dialog {
         text: Helper.getDebugInfos() 
     }
     
-    Text {
+    Label {
         id: copyrightInfos
         anchors.top: debugInfos.bottom
         anchors.horizontalCenter: parent.horizontalCenter
@@ -85,7 +85,7 @@ D.Dialog {
         wrapMode: Text.WordWrap
         textFormat: Text.RichText
         font.pixelSize: 13
-        text: "Copyright (C) 2021  Ad5001 &lt;mail@ad5001.eu&gt;<br>
+        text: "Copyright © 2021  Ad5001 &lt;mail@ad5001.eu&gt;<br>
 <br>
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>
 <br>
