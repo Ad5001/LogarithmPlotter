@@ -7,6 +7,6 @@ echo "Installing mime-type..."
 mkdir -p ~/.local/share/applications
 sed "s+/home/ad5001/Apps/LogarithmPlotter/+$APPROOT/+g" "$APPROOT/linux/x-logarithm-plotter.xml" > ~/.local/share/mime/packages/x-logarithm-plotter.xml
 mkdir -p ~/.local/share/icons/hicolor/scalable/mimetypes
-cp "$APPROOT/linux/logplotterfile.svg" ~/.local/share/icons/hicolor/scalable/mimetypes/application-x-logarithm-plotter.svg
+cp "$APPROOT/logplotterfile.svg" ~/.local/share/icons/hicolor/scalable/mimetypes/application-x-logarithm-plotter.svg
 update-mime-database ~/.local/share/mime/
 update-icon-caches ~/.local/share/icons/hicolor

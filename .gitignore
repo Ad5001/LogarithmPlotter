@@ -18,6 +18,7 @@ docs/html
 *.json
 *.lpf
 *.lgg
+*.spec
 .kdev4
 AccountFree.pro
 AccountFree.pro.user
