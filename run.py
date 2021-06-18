@@ -1,6 +1,6 @@
 """
- *  Logarithmic Plotter - Create graphs with logarithm scales.
- *  Copyright (C) 2020  Ad5001
+ *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  Copyright (C) 2021  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ class Helper(QObject):
         
 
 app = QApplication(argv)
-app.setApplicationName("Logarithmic Plotter")
+app.setApplicationName("LogarithmPlotter")
 app.setOrganizationName("Ad5001")
 app.setWindowIcon(QIcon(os.path.realpath(os.path.join(os.getcwd(), "logplotter.svg"))))
 engine = QQmlApplicationEngine()

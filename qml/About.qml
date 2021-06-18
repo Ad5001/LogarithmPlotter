@@ -1,5 +1,5 @@
 /**
- *  Logarithmic Plotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - Create graphs with logarithm scales.
  *  Copyright (C) 2021  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ import QtQuick.Controls 2.12
 
 D.Dialog {
     id: about
-    title: `About Logarithmic Plotter`
+    title: `About LogarithmPlotter`
     width: 400
     height: 600
     
@@ -49,7 +49,7 @@ D.Dialog {
         width: parent.width
         wrapMode: Text.WordWrap
         font.pixelSize: 25
-        text: "Logarithmic Plotter v" + Helper.getVersion() 
+        text: "LogarithmPlotter v" + Helper.getVersion() 
     }
     
     Label {

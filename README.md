@@ -1,4 +1,4 @@
-# Logarithm Plotter
+# LogarithmPlotter
 
 Create graphs with logarithm scales, namely BODE diagrams.
 
@@ -18,7 +18,7 @@ You can generate installers from AccountFree after installing all the dependenci
 Run `bash linux/install_local.sh`
 
 ## Legal notice
-        Logarithmic Plotter - Create graphs with logarithm scales.
+        LogarithmPlotter - Create graphs with logarithm scales.
         Copyright (C) 2021  Ad5001 <mail@ad5001.eu>
 
         This program is free software: you can redistribute it and/or modify

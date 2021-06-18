@@ -1,5 +1,5 @@
 /**
- *  Logarithmic Plotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - Create graphs with logarithm scales.
  *  Copyright (C) 2021  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -23,8 +23,8 @@ D.FileDialog {
     
     property bool exportMode: false
     
-    title: exportMode ? "Export Logarithmic Graph file" : "Import Logarithmic Graph file"
-    nameFilters: ["Logarithmic Graph JSON Data (*.lpf *.lgg)", "Old Logarithmic Graph JSON Data (*.json)", "All files (*)"]
+    title: exportMode ? "Export Logarithm Plot file" : "Import Logarithm Plot file"
+    nameFilters: ["Logarithm Plot File (*.lpf *.lgg)", "Old Logarithm Plot Data (*.json)", "All files (*)"]
 
     folder: shortcuts.documents
     selectExisting: !exportMode

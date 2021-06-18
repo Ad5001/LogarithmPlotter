@@ -1,5 +1,5 @@
 /**
- *  Logarithmic Plotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - Create graphs with logarithm scales.
  *  Copyright (C) 2021  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "Logarithmic Plotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[settings.saveFilename.split('/').length -1] : "")
+    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[settings.saveFilename.split('/').length -1] : "")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
