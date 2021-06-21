@@ -1,3 +1,4 @@
+Unicode True
 ; Modern UI definitions
 ;--------------------------------
 ;Include Modern UI
@@ -8,10 +9,10 @@
 ;Definitions
 !define APP_NAME "LogarithmPlotter"
 !define DEV_NAME "Ad5001"
-!define WEBSITE "https://logarithmplotter.org"
+!define WEBSITE "https://apps.ad5001.eu/LogarithmPlotter"
 !define APP_VERSION "0.0.1.0"
 !define COPYRIGHT "Ad5001 © 2021"
-!define DESCRIPTION "Browse and use online services, free of account."
+!define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
 
@@ -34,7 +35,7 @@ VIAddVersionKey "ProductName"  "${APP_NAME}"
 VIAddVersionKey "CompanyName"  "${DEV_NAME}"
 VIAddVersionKey "LegalCopyright"  "${COPYRIGHT}"
 VIAddVersionKey "FileDescription"  "${DESCRIPTION}"
-VIAddVersionKey "FileVersion"  "${VERSION}"
+VIAddVersionKey "FileVersion"  "${APP_VERSION}"
 
 
 ;--------------------------------
@@ -50,7 +51,7 @@ VIAddVersionKey "FileVersion"  "${VERSION}"
 ;!insertmacro MUI_WELCOMEPAGE_TITLE_3LINES
 
 ;Icons
-Icon "logplotter.ico"
+Icon "logarithmplotter.ico"
 ;!define MUI_HEADERIMAGE
 ;!define MUI_HEADERIMAGE_BITMAP "logarithmplotter.bmp"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "inst_banner.bmp"
@@ -167,16 +168,16 @@ Section ""
     WriteRegStr HKLM ${REG_UNINSTALL} "UninstallString" "$INSTDIR\uninstall.exe"
     WriteRegStr HKLM ${REG_UNINSTALL} "QuietUninstallString" "$INSTDIR\uninstall.exe /S"
     WriteRegStr HKLM ${REG_UNINSTALL} "DisplayIcon" "$INSTDIR\logarithmplotter.bmp"
-    WriteRegStr HKLM ${REG_UNINSTALL} "DisplayVersion" "${VERSION}"
+    WriteRegStr HKLM ${REG_UNINSTALL} "DisplayVersion" "${APP_VERSION}"
     WriteRegStr HKLM ${REG_UNINSTALL} "Readme" "$INSTDIR\README.md"
     WriteRegStr HKLM ${REG_UNINSTALL} "URLInfoAbout" "${WEBSITE}"
 
-    SectionEnd
+SectionEnd
 
-    ;--------------------------------
-    ;Uninstaller Section
-    ;
-    Section "Uninstall"
+;--------------------------------
+;Uninstaller Section
+;
+Section "Uninstall"
 
     RMDir /r "$INSTDIR"
 

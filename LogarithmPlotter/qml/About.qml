@@ -29,7 +29,7 @@ D.Dialog {
     
     Image {
         id: logo
-        source: "../logplotter.svg"
+        source: "../../logplotter.svg"
         sourceSize.width: 64
         sourceSize.height: 64
         width: 64

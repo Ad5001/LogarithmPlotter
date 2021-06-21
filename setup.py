@@ -53,7 +53,6 @@ def package_data():
     for d,folders,files in os.walk("LogarithmPlotter/qml"):
         d = d[17:]
         pkg_data += [os.path.join(d, f) for f in files]
-    print("Pkgdata", pkg_data)
     return pkg_data
 
 data_files = []

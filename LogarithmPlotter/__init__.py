@@ -122,7 +122,10 @@ def run():
     if not engine.rootObjects():
         print("No root object")
         exit(-1)
-    app.exec_()
+    exit_code = app.exec_()
 
     os.remove(tempfile)
-    
+    exit(exit_code)
+
+if __name__ == "__main__":
+    run()
