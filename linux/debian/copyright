@@ -1,0 +1,8 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: logarithmplotter
+Upstream-Contact: Ad5001 <mail@ad5001.eu>
+
+Files: *
+Copyright: 2020, Ad5001 <mail@ad5001.eu>
+License: GPL-3
+

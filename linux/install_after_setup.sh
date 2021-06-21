@@ -2,7 +2,7 @@
 APPROOT="$(cd -P "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "Adding desktop file..."
 mkdir -p ~/.local/share/applications
-sed "s+ROOTFOLDER+$APPROOT/+g" "$APPROOT/linux/logplotter.desktop" > ~/.local/share/applications/logarithmplotter.desktop
+sed "s+ROOTFOLDER+$APPROOT/+g" "$APPROOT/linux/logarithmplotter.desktop" > ~/.local/share/applications/logarithmplotter.desktop
 echo "Installing mime-type..."
 mkdir -p ~/.local/share/applications
 sed "s+ROOTFOLDER+$APPROOT/+g" "$APPROOT/linux/x-logarithm-plotter-old.xml" > ~/.local/share/mime/packages/x-logarithm-plotter.xml

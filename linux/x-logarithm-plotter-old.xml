@@ -3,7 +3,7 @@
   <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-logarithm-plotter">
     <comment>Logarithm Plot File</comment>
     <comment xml:lang="fr">Fichier Graphe Logarithmique</comment>
-    <icon name="application-x-logarithm-plotter"/>
+    <icon name="ROOTFOLDER/logplotterfile.svg"/>
     <glob-deleteall/>
     <glob pattern="*.json"/>
     <glob pattern="*.lgg"/>
