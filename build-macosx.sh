@@ -3,8 +3,8 @@
 rm $(find . -name "*.qmlc")
 rm $(find . -name "*.pyc")
 python3 -m pip install -U pyinstaller
-iconutil -c icns "mac/logarithmplotter.iconset"
-            --add-data "AccountLogarithmPlotter/qml:qml" \
+iconutil -c icns "mac/logarithmplotter.iconset" \
+pyinstaller --add-data "LogarithmPlotter/qml:qml" \
             --add-data "LICENSE.md:." \
             --add-data "README.md:." \
             --exclude-module "FixTk" \

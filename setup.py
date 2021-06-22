@@ -29,7 +29,7 @@ Environment :: Graphic
 Environment :: X11 Applications :: Qt
 License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Natural Language :: English
-Development Status :: 4 - Beta
+Development Status :: 3 - Alpha
 Operating System :: MacOS :: MacOS X
 Operating System :: Microsoft :: Windows
 Operating System :: POSIX
