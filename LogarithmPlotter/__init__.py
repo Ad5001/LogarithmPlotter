@@ -99,7 +99,7 @@ def run():
         "freebsd": get_linux_theme(),
         "win32": "universal" if os_release == "10" else "fusion",
         "cygwin": "fusion",
-        "darwin": "imagine"
+        "darwin": "default"
     }[platform]
 
     app = QApplication(argv)
