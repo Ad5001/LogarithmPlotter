@@ -210,8 +210,8 @@ class Function extends ExecutableObject {
         'displayMode': new P.Enum('application', 'function'),
         'labelX': 'number',
         'comment2': 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
-        'drawPoints': 'Boolean',
-        'drawDashedLines': 'Boolean'
+        'drawPoints': 'boolean',
+        'drawDashedLines': 'boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
@@ -360,7 +360,7 @@ class GainBode extends ExecutableObject {
         'gain': 'Expression',
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number',
-        'omGraduation': 'Boolean'
+        'omGraduation': 'boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
@@ -481,6 +481,7 @@ class GainBode extends ExecutableObject {
     }
     
     update() {
+        super.update()
         if(currentObjects['Somme gains Bode'] != undefined) {
             currentObjects['Somme gains Bode'][0].recalculateCache()
         } else {
@@ -892,7 +893,7 @@ class SommePhasesBode extends ExecutableObject {
 }
 
 
-class CursorX extends DrawableObject {
+class XCursor extends DrawableObject {
     static type(){return 'X Cursor'}
     static typeMultiple(){return 'X Cursors'}
     static properties() {
@@ -900,7 +901,7 @@ class CursorX extends DrawableObject {
             'x': 'Expression',
             'targetElement': new P.ObjectType('ExecutableObject'),
             'labelPosition': new P.Enum('left', 'right'),
-            'approximate': 'Boolean',
+            'approximate': 'boolean',
             'rounding': 'number',
             'displayStyle': new P.Enum(
                 '— — — — — — —',
@@ -1027,8 +1028,8 @@ class Sequence extends ExecutableObject {
     static type(){return 'Sequence'}
     static typeMultiple(){return 'Sequences'}
     static properties() {return {
-        'drawPoints': 'Boolean',
-        'drawDashedLines': 'Boolean',
+        'drawPoints': 'boolean',
+        'drawDashedLines': 'boolean',
         'defaultExpression': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[n+', '] = ', true),
         'comment1': 'Note: Use {name}[n] to refer to {name}ₙ, {name}[n+1] for {name}ₙ₊₁...',
         'baseValues': new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[', '] = '),
@@ -1142,8 +1143,8 @@ class RepartitionFunction extends ExecutableObject {
     static type(){return 'Repartition'}
     static typeMultiple(){return 'Repartitions'}
     static properties() {return {
-        'beginIncluded': 'Boolean',
-        'drawLineEnds': 'Boolean',
+        'beginIncluded': 'boolean',
+        'drawLineEnds': 'boolean',
         'comment1': 'Note: Specify the properties for each potential result.',
         'probabilities': new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d\.,]+$/, 'P({name} = ', ') = '),
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
@@ -1363,7 +1364,7 @@ const types = {
     'Somme gains Bode': SommeGainsBode,
     'Phase Bode': PhaseBode,
     'Somme phases Bode': SommePhasesBode,
-    'X Cursor': CursorX,
+    'X Cursor': XCursor,
     'Sequence': Sequence,
     'Repartition': RepartitionFunction
 }

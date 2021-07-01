@@ -188,14 +188,14 @@ Canvas {
         return {'width': twidth, 'height': theight}
     }
     
-    // Converts x coordinate to it's relative position on the 
+    // Converts x coordinate to it's relative position on the canvas
     function x2px(x) {
         if(logscalex) {
             var logxmin = Math.log(xmin)
             return (Math.log(x)-logxmin)*xzoom
         } else return (x - xmin)*xzoom
     }
-    // Converts y coordinate to it's relative position on the 
+    // Converts y coordinate to it's relative position on the canvas
     // Y is NOT ln based.
     function y2px(y) {
         return (ymax-y)*yzoom

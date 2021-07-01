@@ -296,7 +296,7 @@ ListView {
                     
                     CheckBox {
                         id: customPropCheckBox
-                        visible: modelData[1] == 'Boolean'
+                        visible: modelData[1] == 'boolean'
                         height: visible ? 20 : 0
                         width: parent.width
                         text: parent.label
