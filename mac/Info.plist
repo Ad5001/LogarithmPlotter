@@ -17,8 +17,49 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.0</string>
+	<string>0.0.1</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>eu.ad5001.x-logarithm-plotter</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://git.ad5001.eu/Ad5001/LogarithmicPlotter/wiki/LogarithmPlotter-file-format-v1.0</string>
+			<key>UTTypeDescription</key>
+			<string>Logarithm Plot File</string>
+			<key>UTTypeIconFile</key>
+			<string>logarithmplotterfile.icns</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lpf</string>
+					<string>lgg</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>logarithmplotterfile.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Logarithm Plot File</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>eu.ad5001.x-logarithm-plotter</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
