@@ -1300,7 +1300,7 @@ class Text extends DrawableObject  {
     
     constructor(name = null, visible = true, color = null, labelContent = 'null', 
                 x = 1, y = 0, labelPosition = 'center', text = 'New text') {
-        if(name == null) name = "tex" + getNewName('t')
+        if(name == null) name = getNewName('t')
         super(name, visible, color, labelContent)
         this.type = 'Point'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())

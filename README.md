@@ -1,4 +1,4 @@
-# LogarithmPlotter
+# ![icon](https://git.ad5001.eu/Ad5001/LogarithmicPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
 
 Create graphs with logarithm scales, namely BODE diagrams.
 
@@ -9,11 +9,12 @@ You can simply run LogarithmPlotter using `python3 run.py`.
 ## Install
 
 ### Generate installers:
-You can generate installers from AccountFree after installing all the dependencies:
+You can generate installers from AccountFree after installing all the dependencies:   
+For all builds, you need [Python 3](https://python.org) with [PySide2](https://pypi.org/project/PySide2/) installable with `pip install PySide2`.    
 - Windows installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
     - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an exe for LogarithmPlotter.
-    - You also [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install the `nsis` package).    
+    - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install the [nsis](https://pkgs.org/download/nsis) package).    
     - Run the `package-windows.bat` script (or `package.wine.sh`if you're cross-compiling on Linux). You will find a logarithmplotter-setup.exe installer in the dist/accountfree/ folder.
 - MacOS Archive creator installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    

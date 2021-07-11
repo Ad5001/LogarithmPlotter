@@ -125,6 +125,11 @@ ApplicationWindow {
         textsize: settings.textsize
         showxgrad: settings.showxgrad
         showygrad: settings.showygrad
+        
+        onPainted: if(TestBuild == true) {
+            console.log("Plot drawn in canvas, terminating test of build in 100ms.")
+            testBuildTimer.start()
+        }
     }
     
     function saveDiagram(filename) {
@@ -161,6 +166,7 @@ ApplicationWindow {
     }
     
     function loadDiagram(filename) {
+        console.log("Loading file '" + filename + "'.")
         var data = JSON.parse(Helper.load(filename))
         var error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
@@ -216,8 +222,11 @@ ApplicationWindow {
             error = "Invalid file provided."
         }
         if(error != "") {
-            
+            console.log(error)
+            // TODO: Error handling
         }
+        drawCanvas.requestPaint()
+        console.log("Loaded file '" + filename + "'.")
     }
     
     Timer {
@@ -225,6 +234,13 @@ ApplicationWindow {
         repeat: false
         interval: 1
         onTriggered: sidebarSelector.currentIndex = 0
+    }
+    
+    Timer {
+        id: testBuildTimer
+        repeat: false
+        interval: 100
+        onTriggered: Qt.quit() // Quit after paint on test build
     }
     
     function copyDiagramToClipboard() {

@@ -1,0 +1,44 @@
+kind: pipeline
+name: build-test
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: Linux test
+  image: ad5001/ubuntu-pyside2-xvfb:hirsute-5.15.2
+  commands:
+  - xvfb-run python3 run.py --test-build
+  - xvfb-run python3 run.py --test-build ./.drone/test1.lpf
+  - xvfb-run python3 run.py --test-build ./.drone/test2.lpf
+  when:
+    event: [ push, tag ]
+
+- name: Windows test
+  image: ad5001/ubuntu-pyside2-xvfb-wine:win7-5.15.2
+  commands:
+  - # For some reason, launching GUI apps with wine, even with xvfb-run, fails.
+  - #xvfb-run python run.py --test-build
+  - #xvfb-run python run.py --test-build ./.drone/test1.lpf
+  - #xvfb-run python run.py --test-build ./.drone/test2.lpf
+  when:
+    event: [ push, tag ]
+
+
+- name: Linux packaging
+  image: ad5001/accountfree-build-img:hirsute-5.15.2
+  commands:
+  - bash package-linux.sh
+  when:
+    event: [ push, tag ]
+
+
+- name: Windows building
+  image: ad5001/accountfree-build-img-wine:win7-5.15.2
+  commands:
+  - bash build-wine.sh
+  - bash package-wine.sh
+  when:
+    event: [ push, tag ]
+  

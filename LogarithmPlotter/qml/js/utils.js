@@ -259,7 +259,7 @@ function makeExpressionReadable(str) {
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
         [/\(([^)(+.\/-]+)\)/g, "$1"],
-        [/integral\((.+), ?(.+), ?("|')(.+)("|'), ?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
+        [/integral\((.+),\s?(.+),\s?("|')(.+)("|'),\s?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
             if(a.length < b.length) {
                 return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
             } else {
