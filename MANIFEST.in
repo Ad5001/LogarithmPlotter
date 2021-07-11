@@ -1,2 +1,2 @@
 
-recursive-include LogarithmPlotter/qml *.qml *.js *.qdoc qmldir *.svg
+recursive-include LogarithmPlotter/qml *.qml *.js *.qdoc qmldir *.svg *.md LICENSE

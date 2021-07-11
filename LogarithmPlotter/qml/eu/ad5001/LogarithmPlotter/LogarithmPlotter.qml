@@ -35,7 +35,9 @@ ApplicationWindow {
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     History { id: history }
     
-    menuBar: AppMenuBar {}
+    menuBar: appMenu.trueItem
+    
+    AppMenuBar {id: appMenu}
     
     About {id: about}
     

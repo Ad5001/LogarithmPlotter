@@ -17,7 +17,8 @@
  */
 
 import QtQuick 2.12
-import QtQuick.Controls 2.12
+//import QtQuick.Controls 2.12
+import eu.ad5001.MixedMenu 1.0
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
@@ -28,20 +29,20 @@ MenuBar {
             text: qsTr("&Load...")
             shortcut: StandardKey.Open
             onTriggered: settings.load()
-            icon.name: 'document-open'
+            iconName: 'document-open'
             
         }
         Action {
             text: qsTr("&Save")
             shortcut: StandardKey.Save
             onTriggered: settings.save()
-            icon.name: 'document-save'
+            iconName: 'document-save'
         }
         Action {
             text: qsTr("Save &As...")
             shortcut: StandardKey.SaveAs
             onTriggered: settings.saveAs()
-            icon.name: 'document-save-as'
+            iconName: 'document-save-as'
             
         }
         MenuSeparator { }
@@ -49,7 +50,7 @@ MenuBar {
             text: qsTr("&Quit")
             shortcut: StandardKey.Quit
             onTriggered: Qt.quit()
-            icon.name: 'application-exit'
+            iconName: 'application-exit'
         }
     }
     Menu {
@@ -58,16 +59,16 @@ MenuBar {
             text: qsTr("&Undo")
             shortcut: StandardKey.Undo
             onTriggered: history.undo()
-            icon.name: 'edit-undo'
-            icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
+            iconName: 'edit-undo'
+            iconColor: enabled ? sysPalette.windowText : sysPaletteIn.windowText
             enabled: history.undoCount > 0
         }
         Action { 
             text: qsTr("&Redo")
             shortcut: StandardKey.Redo
             onTriggered: history.redo()
-            icon.name: 'edit-redo'
-            icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
+            iconName: 'edit-redo'
+            iconColor: enabled ? sysPalette.windowText : sysPaletteIn.windowText
             enabled: history.redoCount > 0
         }
         MenuSeparator { }
@@ -75,7 +76,7 @@ MenuBar {
             text: qsTr("&Copy diagram")
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
-            icon.name: 'edit-copy'
+            iconName: 'edit-copy'
         }
     }
     Menu {
@@ -88,9 +89,9 @@ MenuBar {
                 text: modelData
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
-                icon.source: './icons/'+modelData+'.svg' // Default to dark version
-                icon.name: modelData
-                icon.color: sysPalette.windowText
+                iconSource: './icons/'+modelData+'.svg' // Default to dark version
+                iconName: modelData
+                iconColor: sysPalette.windowText
                 onTriggered: {
                     var newObj = Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
@@ -103,7 +104,7 @@ MenuBar {
         title: qsTr("&Help")
         Action {
             text: qsTr("&About")
-            icon.name: 'about'
+            iconName: 'about'
             onTriggered: about.open()
         }
     }

@@ -112,7 +112,7 @@ def run():
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
 
     engine.addImportPath(os.path.realpath(os.path.join(os.getcwd(), "qml")))
-    engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "LogarithmPlotter.qml")))
+    engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
     os.chdir(pwd)
     if len(argv) > 0 and os.path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
