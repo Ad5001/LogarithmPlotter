@@ -45,6 +45,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
