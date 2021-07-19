@@ -15,7 +15,7 @@ pyinstaller --add-data "LogarithmPlotter/qml:qml" \
             --noconsole \
             --noconfirm \
             --icon=mac/logarithmplotter.icns \
-            --osx-bundle-identifier eu.ad5001.logarithmplotter \
+            --osx-bundle-identifier eu.ad5001.LogarithmPlotter \
             -n LogarithmPlotter \
             LogarithmPlotter/__init__.py 
 

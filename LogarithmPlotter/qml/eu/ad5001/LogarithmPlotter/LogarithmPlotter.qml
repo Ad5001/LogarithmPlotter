@@ -84,7 +84,7 @@ ApplicationWindow {
             anchors.topMargin: 5
             anchors.leftMargin: 5
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 20
+            anchors.bottomMargin: sidebarSelector.height
             width: parent.width - 10
             currentIndex: sidebarSelector.currentIndex
             z: -1
