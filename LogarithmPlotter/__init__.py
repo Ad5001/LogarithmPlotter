@@ -25,13 +25,14 @@ from PySide2 import __version__ as PySide2_version
 import os
 import tempfile
 from platform import release as os_release
-from json import dumps
+from json import dumps, loads
 from sys import platform, argv, version as sys_version
 import webbrowser
 
 __VERSION__ = "0.0.1.dev0"
 
 tempfile = tempfile.mkstemp(suffix='.png')[1]
+pwd = os.getcwd()
 
 def get_linux_theme():
     des = {
@@ -50,19 +51,39 @@ class Helper(QObject):
 
     @Slot(str, str)
     def write(self, filename, filedata):
+        os.chdir(pwd)
         if os.path.exists(os.path.dirname(os.path.realpath(filename))):
+            if filename.split(".")[-1] == "lpf":
+                # Add header to file
+                filedata = "LPFv1" + filedata
             f = open(os.path.realpath(filename), 'w',  -1, 'utf8')
             f.write(filedata)
             f.close()
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
         
     @Slot(str, result=str)
     def load(self, filename):
+        os.chdir(pwd)
+        data = '{}'
         if os.path.exists(os.path.realpath(filename)):
             f = open(os.path.realpath(filename), 'r',  -1, 'utf8')
             data = f.read()
             f.close()
-            return data
-        return '{}'
+            try:
+                if data[:5] == "LPFv1":
+                    # V1 version of the file
+                    data = data[5:]
+                elif data[0] == "{" and "type" in loads(data) and loads(data)["type"] == "logplotv1":
+                    pass
+                else:
+                    raise Exception("Invalid LogarithmPlotter file.")
+            except Exception as e: # If file can't be loaded
+                from PySide2.QtWidgets import QMessageBox
+                QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file "{}":\n{}'.format(filename, e), QMessageBox.Ok) # Cannot parse file
+        else:
+            QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file: "{}"\nFile does not exist.'.format(filename), QMessageBox.Ok) # Cannot parse file
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        return data
 
     @Slot(result=str)
     def gettmpfile(self):
@@ -91,7 +112,6 @@ class Helper(QObject):
         webbrowser.open(url)
         
 def run():
-    pwd = os.getcwd()
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     
     os.environ["QT_QUICK_CONTROLS_STYLE"] = {
@@ -114,10 +134,8 @@ def run():
     engine.addImportPath(os.path.realpath(os.path.join(os.getcwd(), "qml")))
     engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
-    os.chdir(pwd)
     if len(argv) > 0 and os.path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
     if not engine.rootObjects():
         print("No root object")
