@@ -41,6 +41,7 @@ ApplicationWindow {
     
     About {id: about}
     
+    
     Drawer {
         id: sidebar
         width: 300

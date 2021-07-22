@@ -19,7 +19,7 @@
 from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
-from PySide2.QtGui import QIcon, QImage
+from PySide2.QtGui import QIcon, QImage, QKeySequence
 from PySide2 import __version__ as PySide2_version
 
 import os
@@ -122,6 +122,12 @@ def run():
         "darwin": "default"
     }[platform]
 
+    icon_fallbacks = QIcon.fallbackSearchPaths();
+    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
+    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
+    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
+    QIcon.setFallbackSearchPaths(icon_fallbacks);
+    
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")

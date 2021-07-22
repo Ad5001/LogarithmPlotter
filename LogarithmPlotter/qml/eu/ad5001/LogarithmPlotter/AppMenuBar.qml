@@ -23,6 +23,7 @@ import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
 MenuBar {
+    
     Menu {
         title: qsTr("&File")
         Action {
@@ -89,7 +90,6 @@ MenuBar {
                 text: modelData
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
-                iconSource: './icons/'+modelData+'.svg' // Default to dark version
                 iconName: modelData
                 iconColor: sysPalette.windowText
                 onTriggered: {
@@ -104,6 +104,7 @@ MenuBar {
         title: qsTr("&Help")
         Action {
             text: qsTr("&About")
+            shortcut: StandardKey.HelpContents
             iconName: 'about'
             onTriggered: about.open()
         }

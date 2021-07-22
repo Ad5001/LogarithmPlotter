@@ -129,7 +129,6 @@ ListView {
                 anchors.right: colorPickRect.left
                 anchors.rightMargin: 5
                 anchors.topMargin: 5
-                icon.source: './icons/delete.svg'
                 icon.name: 'delete'
                 
                 onClicked: {
@@ -434,7 +433,6 @@ ListView {
                     visible: Objects.types[modelData].createable()
                     height: visible ? implicitHeight : 0
                     display: AbstractButton.TextUnderIcon
-                    icon.source: './icons/'+modelData+'.svg' // Default to dark version
                     icon.name: modelData
                     icon.width: 24
                     icon.height: 24
