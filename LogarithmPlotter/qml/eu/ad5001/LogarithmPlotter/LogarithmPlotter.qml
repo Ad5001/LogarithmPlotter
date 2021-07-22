@@ -41,6 +41,12 @@ ApplicationWindow {
     
     About {id: about}
     
+    Alert {
+        id: alert
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
+        z: 3
+    }
     
     Drawer {
         id: sidebar
@@ -166,10 +172,11 @@ ApplicationWindow {
             "objects":      objs,
             "type":         "logplotv1"
         }))
+        alert.show("Saved plot to " + filename)
     }
     
     function loadDiagram(filename) {
-        console.log("Loading file '" + filename + "'.")
+        alert.show("Loading file '" + filename + "'.")
         var data = JSON.parse(Helper.load(filename))
         var error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
@@ -226,10 +233,11 @@ ApplicationWindow {
         }
         if(error != "") {
             console.log(error)
+            alert.show("Could not save file: " + error)
             // TODO: Error handling
         }
         drawCanvas.requestPaint()
-        console.log("Loaded file '" + filename + "'.")
+        alert.show("Loaded file '" + filename + "'.")
     }
     
     Timer {
@@ -250,5 +258,6 @@ ApplicationWindow {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
+        alert.show("Copied plot to clipboard!")
     }
 }
