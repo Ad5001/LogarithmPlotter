@@ -39,11 +39,6 @@ Rectangle {
         font.pixelSize: 18
     }
     
-    Component.onCompleted: {
-        show("Test")
-        console.log("Width", width, "height", height)
-    }
-    
     
     ParallelAnimation {
         id: fadingAnimation

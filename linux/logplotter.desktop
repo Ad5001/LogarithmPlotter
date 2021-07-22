@@ -8,4 +8,4 @@ Icon=ROOTFOLDER/logplotter.svg
 MimeType=application/x-logarithm-plotter;
 Terminal=false
 StartupNotify=false
-Categories=Graphics;Science;Math;
+Categories=Math
