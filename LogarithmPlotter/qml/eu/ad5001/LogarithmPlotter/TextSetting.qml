@@ -91,10 +91,10 @@ Item {
     
     Popup {
         id: insertPopup
-        x: input.x
-        y: input.y + input.height
-        width: 200
-        height: insertGrid.insertChars/insertGrid.columns
+        x: Math.round((parent.width - width) / 2)
+        y: Math.round((parent.height - height) / 2)
+        width: 280
+        height: insertGrid.insertChars.length/insertGrid.columns*(width/insertGrid.columns)
         modal: true
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
@@ -102,17 +102,18 @@ Item {
         Grid {
             id: insertGrid
             width: parent.width
-            columns: 10
+            columns: 7
             
             property var insertChars: [
-                "α","β","γ","δ","ε","ζ","η","θ","κ","λ",
-                "μ","ξ","ρ","ς","σ","τ","φ","χ","ψ","ω",
-                "Γ","Δ","Θ","Λ","Ξ","Π","Σ","Φ","Ψ","Ω",
-                "∞","∂"," "," "," "," "," "," "," "," ",
-                "¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰",
-                "₁","₂","₃","₄","₅","₆","₇","₈","₉","₀",
-                "ₐ","ₑ","ₒ","ₓ","ₔ","ₕ","ₖ","ₗ","ₘ","ₙ",
-                "ₚ","ₛ","ₜ"," "," "," "," "," "," "," "
+                "α","β","γ","δ","ε","ζ","η",
+                "θ","κ","λ","μ","ξ","ρ","ς",
+                "σ","τ","φ","χ","ψ","ω","Γ",
+                "Δ","Θ","Λ","Ξ","Π","Σ","Φ",
+                "Ψ","Ω","ₐ","ₑ","ₒ","ₓ","ₕ",
+                "ₖ","ₗ","ₘ","ₙ","ₚ","ₛ","ₜ",
+                "¹","²","³","⁴","⁵","⁶","⁷",
+                "⁸","⁹","⁰","₁","₂","₃","₄",
+                "₅","₆","₇","₈","₉","₀"," "
 
             ]
             Repeater {
@@ -124,6 +125,7 @@ Item {
                     height: width
                     text: insertGrid.insertChars[modelData]
                     flat: text == " "
+                    font.pixelSize: 18
                     
                     onClicked: {
                         input.insert(input.cursorPosition, insertGrid.insertChars[modelData])

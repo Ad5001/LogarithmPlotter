@@ -29,7 +29,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/')[settings.saveFilename.split('/').length -1] : "")
+    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -172,13 +172,14 @@ ApplicationWindow {
             "objects":      objs,
             "type":         "logplotv1"
         }))
-        alert.show("Saved plot to " + filename)
+        alert.show("Saved plot to '" + filename.split("/").pop() + "'.")
     }
     
     function loadDiagram(filename) {
-        alert.show("Loading file '" + filename + "'.")
-        var data = JSON.parse(Helper.load(filename))
-        var error = "";
+        let basename = filename.split("/").pop()
+        alert.show("Loading file '" + basename + "'.")
+        let data = JSON.parse(Helper.load(filename))
+        let error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
             history.clear()
             // Importing settings
@@ -237,7 +238,7 @@ ApplicationWindow {
             // TODO: Error handling
         }
         drawCanvas.requestPaint()
-        alert.show("Loaded file '" + filename + "'.")
+        alert.show("Loaded file '" + basename + "'.")
     }
     
     Timer {
@@ -258,6 +259,6 @@ ApplicationWindow {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
-        alert.show("Copied plot to clipboard!")
+        alert.show("Copied plot screenshot to clipboard!")
     }
 }

@@ -49,7 +49,7 @@ Rectangle {
     
     Timer {
         id: fadeTimer
-        interval: text.length * 40
+        interval: 1000 + text.length * 45
         onTriggered: {
             hideTimer.start()
             fadingAnimation.start()
@@ -66,7 +66,7 @@ Rectangle {
     
     function show(alertText) {
         visible = true
-        fadeTimer.start()
+        fadeTimer.restart()
         text = alertText
         opacity = 0.75
         fadingX = parent.width - width - 10
