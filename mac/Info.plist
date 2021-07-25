@@ -24,7 +24,7 @@
 	<array>
 		<dict>
 			<key>UTTypeIdentifier</key>
-			<string>eu.ad5001.x-logarithm-plotter</string>
+			<string>eu.ad5001.x-logarithm-plot</string>
 			<key>UTTypeReferenceURL</key>
 			<string>https://git.ad5001.eu/Ad5001/LogarithmicPlotter/wiki/LogarithmPlotter-file-format-v1.0</string>
 			<key>UTTypeDescription</key>
@@ -58,7 +58,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>eu.ad5001.x-logarithm-plotter</string>
+				<string>eu.ad5001.x-logarithm-plot</string>
 			</array>
 		</dict>
 	</array>

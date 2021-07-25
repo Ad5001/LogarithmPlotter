@@ -2,10 +2,12 @@
 Version=1.0
 Type=Application
 Name=LogarithmPlotter
-Comment=Plotter to make BODE diagrams, sequences and repartition functions.
-Exec=/usr/bin/python3 ROOTFOLDER/run.py %F
-Icon=ROOTFOLDER/logplotter.svg
-MimeType=application/x-logarithm-plotter;
+Comment=2D plotter software to make BODE diagrams, sequences and repartition functions.
+Comment[fr]=Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition.
+
+Exec=/usr/bin/python3 ROOTFOLDER/run.py %f
+Icon=logarithmplotter
+MimeType=application/x-logarithm-plot;
 Terminal=false
 StartupNotify=false
 Categories=Math

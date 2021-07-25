@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-  <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-logarithm-plotter">
+  <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-logarithm-plot">
     <comment>Logarithm Plot File</comment>
     <comment xml:lang="fr">Fichier Graphe Logarithmique</comment>
-    <icon name="application-x-logarithm-plotter"/>
+    <icon name="application-x-logarithm-plot"/>
     <glob-deleteall/>
     <glob pattern="*.json"/>
     <glob pattern="*.lgg"/>

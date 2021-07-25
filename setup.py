@@ -58,8 +58,8 @@ def package_data():
 data_files = []
 if sys.platform == 'linux':
     data_files.append(('/usr/share/applications/', ['linux/logarithmplotter.desktop']))
-    data_files.append(('/usr/share/mime/packages/', ['linux/x-logarithm-plotter.xml']))
-    data_files.append(('/usr/share/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plotter.svg']))
+    data_files.append(('/usr/share/mime/packages/', ['linux/x-logarithm-plot.xml']))
+    data_files.append(('/usr/share/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
     data_files.append(('/usr/share/icons/hicolor/scalable/apps/', ['logplotter.svg']))
 
 setuptools.setup(

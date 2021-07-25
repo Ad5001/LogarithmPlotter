@@ -19,12 +19,11 @@
 
 APPROOT="$(cd -P "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "Adding desktop file..."
-mkdir -p ~/.local/share/applications
-sed "s+ROOTFOLDER+$APPROOT/+g" "$APPROOT/linux/logarithmplotter.desktop" > ~/.local/share/applications/logarithmplotter.desktop
+xdg-desktop-menu install "$APPROOT/linux/logarithmplotter.desktop"
 echo "Installing mime-type..."
-mkdir -p ~/.local/share/applications
-sed "s+ROOTFOLDER+$APPROOT/+g" "$APPROOT/linux/x-logarithm-plotter-old.xml" > ~/.local/share/mime/packages/x-logarithm-plotter.xml
-mkdir -p ~/.local/share/icons/hicolor/scalable/mimetypes
-cp "$APPROOT/logplotterfile.svg" ~/.local/share/icons/hicolor/scalable/mimetypes/application-x-logarithm-plotter.svg
+xdg-mime install "$APPROOT/linux/x-logarithm-plot.xml"
+echo "Installing icons..."
+xdg-icon-resource install --context mimetypes --novendor "$APPROOT/logplotterfile.svg" "application-x-logarithm-plot"
+xdg-icon-resource install --context apps --novendor "$APPROOT/logplotter.svg" "logarithmplotter"
 update-mime-database ~/.local/share/mime/
 update-icon-caches ~/.local/share/icons/hicolor
