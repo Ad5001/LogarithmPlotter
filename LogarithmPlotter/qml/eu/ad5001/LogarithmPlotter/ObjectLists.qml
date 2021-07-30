@@ -237,8 +237,10 @@ ListView {
                 icon: "icons/settings/custom/label.svg"
                 currentIndex: model.indexOf(objEditor.obj.labelContent)
                 onActivated: function(newIndex) {
-                    Objects.currentObjects[objEditor.objType][objEditor.objIndex].labelContent = model[newIndex]
-                    objectListList.update()
+                    if(model[newIndex] != objEditor.obj.labelContent) {
+                        objEditor.obj.labelContent = model[newIndex]
+                        objectListList.update()
+                    }
                 }
             }
             
@@ -282,14 +284,16 @@ ListView {
                                 'string': () => newValue,
                                 'number': () => parseFloat(newValue)
                             }[modelData[1]]()
-                            history.addToHistory(new HistoryLib.EditedProperty(
-                                objEditor.obj.name, objEditor.objType, modelData[0], 
-                                objEditor.obj[modelData[0]], newValue
-                            ))
-                            //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = newValue
-                            objEditor.obj[modelData[0]] = newValue
-                            Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
-                            objectListList.update()
+                            // Ensuring old and new values are different to prevent useless adding to history.
+                            if(objEditor.obj[modelData[0]] != newValue) {
+                                history.addToHistory(new HistoryLib.EditedProperty(
+                                    objEditor.obj.name, objEditor.objType, modelData[0], 
+                                    objEditor.obj[modelData[0]], newValue
+                                ))
+                                objEditor.obj[modelData[0]] = newValue
+                                Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()
+                                objectListList.update()
+                            }
                         }
                     }
                     
@@ -345,14 +349,13 @@ ListView {
                                     objEditor.obj.name, objEditor.objType, modelData[0], 
                                     objEditor.obj[modelData[0]], selectedObj
                                 ))
-                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = selectedObj
                                 objEditor.obj[modelData[0]] = selectedObj
-                            } else {
+                            } else if(model[newIndex] != objEditor.obj[modelData[0]]) { 
+                                // Ensuring new property is different to not add useless history entries.
                                 history.addToHistory(new HistoryLib.EditedProperty(
                                     objEditor.obj.name, objEditor.objType, modelData[0], 
                                     objEditor.obj[modelData[0]], model[newIndex]
                                 ))
-                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex][modelData[0]] = model[newIndex]
                                 objEditor.obj[modelData[0]] = model[newIndex]
                             }
                             // Refreshing

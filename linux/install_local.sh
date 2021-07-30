@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# This script installs the desktop file & mime type for development environment, linking it directly to run.py.
 
 APPROOT="$(cd -P "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "Adding desktop file..."
@@ -24,7 +25,12 @@ xdg-desktop-menu install "$APPROOT/linux/logarithmplotter-local.desktop"
 echo "Installing mime-type..."
 xdg-mime install "$APPROOT/linux/x-logarithm-plot.xml"
 echo "Installing icons..."
-xdg-icon-resource install --context mimetypes --novendor "$APPROOT/logplotterfile.svg" "application-x-logarithm-plot"
-xdg-icon-resource install --context apps --novendor "$APPROOT/logplotter.svg" "logarithmplotter"
+mkdir -p ~/.local/share/icons/hicolor/scalable/mimetypes
+cp "$APPROOT/linux/application-x-logarithm-plot.svg" ~/.local/share/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg
+mkdir -p ~/.local/share/icons/hicolor/scalable/apps
+cp "$APPROOT/logplotter.svg" ~/.local/share/icons/hicolor/scalable/apps/logarithmplotter.svg
+# xdg-icon-resource does not work with SVG yet. See https://bugs.launchpad.net/ubuntu/+source/xdg-utils/+bug/790449.
+#xdg-icon-resource install --context mimetypes --novendor "$APPROOT/linux/application-x-logarithm-plot.svg" "application-x-logarithm-plot"
+#xdg-icon-resource install --context apps --novendor "$APPROOT/logplotter.svg" "logarithmplotter"
 update-mime-database ~/.local/share/mime/
 update-icon-caches ~/.local/share/icons/hicolor

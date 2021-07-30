@@ -2,8 +2,10 @@
 Version=1.0
 Type=Application
 Name=LogarithmPlotter
-Comment=2D plotter software to make BODE diagrams, sequences and repartition functions.
-Comment[fr]=Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition.
+GenericName=2D plotter software
+GenericName[fr]=Logiciel de traçage 2D
+Comment=Create BODE diagrams, sequences and repartition functions.
+Comment[fr]=Créer des diagrammes de BODE, des suites et des fonctions de répartition.
 
 Exec=/usr/bin/python3 ROOTFOLDER/run.py %f
 Icon=logarithmplotter

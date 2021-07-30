@@ -22,6 +22,19 @@ import sys
 
 current_dir = os.path.realpath(os.path.dirname(os.path.realpath(__file__)))
 
+if "PREFIX" not in os.environ and sys.platform == 'linux':
+    if "XDG_DATA_HOME" in os.environ:
+        os.environ["PREFIX"] = os.environ["XDG_DATA_HOME"]
+    else :
+        try:
+            # Checking if we have permission to write to root.
+            from os import makedirs, rmdir
+            makedirs("/usr/share/applications/test")
+            rmdir("/usr/share/applications/test")
+            os.environ["PREFIX"] = "/usr/share"
+        except:
+            os.environ["PREFIX"] = os.environ["home"] + "/local/share"
+
 from LogarithmPlotter import __VERSION__ as pkg_version
 
 CLASSIFIERS = """
@@ -49,7 +62,7 @@ def read_file(file_name):
     return data
 
 def package_data():
-    pkg_data = []
+    pkg_data = ["logarithmplotter.svg"]
     for d,folders,files in os.walk("LogarithmPlotter/qml"):
         d = d[17:]
         pkg_data += [os.path.join(d, f) for f in files]
@@ -57,10 +70,20 @@ def package_data():
 
 data_files = []
 if sys.platform == 'linux':
-    data_files.append(('/usr/share/applications/', ['linux/logarithmplotter.desktop']))
-    data_files.append(('/usr/share/mime/packages/', ['linux/x-logarithm-plot.xml']))
-    data_files.append(('/usr/share/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
-    data_files.append(('/usr/share/icons/hicolor/scalable/apps/', ['logplotter.svg']))
+    data_files.append((os.environ["PREFIX"] + '/applications/', ['linux/logarithmplotter.desktop']))
+    data_files.append((os.environ["PREFIX"] + '/mime/packages/', ['linux/x-logarithm-plot.xml']))
+    data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
+    data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', ['logplotter.svg']))
+    if len(sys.argv) > 1 and sys.argv[1] == "install":
+        from shutil import copyfile
+        os.makedirs(os.environ["PREFIX"] + '/applications/', exist_ok=True)
+        os.makedirs(os.environ["PREFIX"] + '/mime/packages/', exist_ok=True)
+        os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', exist_ok=True)
+        os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', exist_ok=True)
+        copyfile(current_dir + '/linux/logarithmplotter.desktop', os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
+        copyfile(current_dir + '/linux/x-logarithm-plot.xml', os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
+        copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
+        copyfile(current_dir + '/logplotter.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
 
 setuptools.setup(
     install_requires=["PySide2"],
@@ -90,7 +113,7 @@ setuptools.setup(
     data_files = data_files,
     entry_points={
         'console_scripts': [
-            'logarithmplotter = LogarithmPlotter:run',
+            'logarithmplotter = LogarithmPlotter.logarithmplotter:run',
         ],
     }
 )
