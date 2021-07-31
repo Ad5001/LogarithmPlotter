@@ -72,13 +72,13 @@ ApplicationWindow {
             }
             TabButton {
                 text: qsTr("Settings")
-                icon.name: 'preferences-system'
+                icon.name: 'preferences-system-symbolic'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
             TabButton {
                 text: qsTr("History")
-                icon.name: 'history'
+                icon.name: 'view-history'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
