@@ -5,7 +5,7 @@
     <comment xml:lang="fr">Fichier Graphe Logarithmique</comment>
     <icon name="application-x-logarithm-plot"/>
     <glob-deleteall/>
-    <glob weight="60" pattern="*.json"/>
+    <glob pattern="*.json"/>
     <glob weight="60" pattern="*.lgg"/>
     <glob weight="60" pattern="*.lpf"/>
   </mime-type>
