@@ -96,8 +96,6 @@ if sys.platform == 'linux':
             os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
             os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
 
-print("Dependencies:", [] if "FLATPAK_INSTALL" in os.environ else ["PySide2"])
-
 setuptools.setup(
     install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide2"]),
     python_requires='>=3.8',
