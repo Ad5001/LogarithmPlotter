@@ -1,3 +1,21 @@
 #!/bin/bash
 
 python3 setup.py --command-packages=stdeb.command sdist_dsc --package accountfree --copyright-file linux/debian/copyright --suite hirsute --recommends "$(cat linux/debian/recommends)" --depends "$(cat linux/debian/depends)" --section science bdist_deb
+
+# Flatpak building
+FLATPAK_BUILDER=$(which flatpak-builder)
+if [ -z $FLATPAK_BUILDER ]; then
+    echo "flatpak-builder not installed. Will not proceed to build flatpak."
+else
+    cd linux/flatpak
+    flatpak-builder AppDir eu.ad5001.LogarithmPlotter.json --user --force-clean --install
+    cd ../../
+fi
+
+# Snapcraft building
+SNAPCRAFT=$(which snapcraft)
+if [ -z $SNAPCRAFT ]; then
+    echo "snapcraft not installed. Will not proceed to build snap"
+else
+    snapcraft
+fi

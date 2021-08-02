@@ -33,7 +33,7 @@ if "PREFIX" not in os.environ and sys.platform == 'linux':
             rmdir("/usr/share/applications/test")
             os.environ["PREFIX"] = "/usr/share"
         except:
-            os.environ["PREFIX"] = os.environ["home"] + "/local/share"
+            os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
 
 from LogarithmPlotter import __VERSION__ as pkg_version
 
@@ -87,7 +87,6 @@ if sys.platform == 'linux':
             copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', 
                      os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
             copyfile(current_dir + '/logplotter.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
-            print("Wrote icon to ", os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
             if "FLATPAK_INSTALL" in os.environ:
                 copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.flatpak.xml',
                          os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
@@ -96,9 +95,6 @@ if sys.platform == 'linux':
             os.remove(os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
             os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
             os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
-
-print("FLATPAK_INSTALL=", "FLATPAK_INSTALL" in os.environ)
-print("Dependencies:", [] if "FLATPAK_INSTALL" in os.environ else ["PySide2"])
 
 setuptools.setup(
     install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide2"]),

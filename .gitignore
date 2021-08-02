@@ -1,5 +1,7 @@
 build/
 dist/
+linux/flatpak/AppDir
+linux/flatpak/.flatpak-builder
 *.snap
 *.spec
 *.zip
@@ -16,7 +18,6 @@ build
 docs/html
 .directory
 *.kdev4
-*.json
 *.lpf
 *.lgg
 *.spec

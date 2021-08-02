@@ -23,6 +23,8 @@ For all builds, you need [Python 3](https://python.org) with [PySide2](https://p
     - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v0.0.1-dev-setup.dmg installer in the dist/ folder.
 - Linux packages:
     - To build a DEB, you need DPKG and stdeb. You can install the later by using `pip install stdeb`.
+    - To build and install the flatpak, you need [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) installed.
+    - To build the snap, you need [snapcraft](https://snapcraft.io) installed.
     - Run `package-linux.sh`.
 
     
