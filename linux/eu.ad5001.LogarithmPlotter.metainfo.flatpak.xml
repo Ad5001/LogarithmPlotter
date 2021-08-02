@@ -14,18 +14,18 @@
     <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition</summary>
     <description>
         <p>
-            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to <a href="https://geogebra.org">Geogebra</a>'s, it allows dynamic creation of plots with very few limitations.
+            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
         </p>
         <p>
-            It's primary use is to quickly create [asymptotic Bode Diagrams/plots](https://en.wikipedia.org/wiki/Bode_plot), but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
+            It's primary use is to quickly create asymptotic Bode Diagrams, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
         </p>
     </description>
     <description xml:lang="fr">
         <p>
-            LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à <a href="https://geogebra.org">Geogebra</a>, ce qui lui permet de créer des graphes avec peu de limitations.    
+            LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes avec peu de limitations.    
         </p>
         <p>
-            Son intérêt principal est de permettre de créer des [diagrammes asymptotiques de Bode](https://fr.wikipedia.org/wiki/Diagramme_de_Bode), mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
+            Son intérêt principal est de permettre de créer des diagrammes asymptotiques de Bode, mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
         </p>
     </description>
     
