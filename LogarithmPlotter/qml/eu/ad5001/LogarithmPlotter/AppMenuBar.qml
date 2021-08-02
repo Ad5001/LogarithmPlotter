@@ -74,7 +74,7 @@ MenuBar {
         }
         MenuSeparator { }
         Action { 
-            text: qsTr("&Copy diagram")
+            text: qsTr("&Copy plot")
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
             icon.name: 'edit-copy'

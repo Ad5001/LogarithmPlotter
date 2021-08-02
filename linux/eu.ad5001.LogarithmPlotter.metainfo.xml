@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2021 Ad5001 -->
+<application>
+    <id>eu.ad5001.LogarithmPlotter</id>
+    <id type="desktop">logarithmplotter.desktop</id>
+    <launchable type="desktop-id">logarithmplotter.desktop</launchable>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    
+    <name>LogarithmPlotter</name>
+    <name xml:lang="fr">LogarithmPlotter</name>
+    <icon type="remote">http://apps.ad5001.eu/icons/apps/logarithmplotter.svg</icon>
+    <summary>2D plotter software to make BODE plots, sequences and repartition functions</summary>
+    <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition</summary>
+    <description>
+        <p>
+            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to <a href="https://geogebra.org">Geogebra</a>'s, it allows dynamic creation of plots with very few limitations.
+        </p>
+        <p>
+            It's primary use is to quickly create [asymptotic Bode Diagrams/plots](https://en.wikipedia.org/wiki/Bode_plot), but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
+        </p>
+    </description>
+    <description xml:lang="fr">
+        <p>
+            LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à <a href="https://geogebra.org">Geogebra</a>, ce qui lui permet de créer des graphes avec peu de limitations.    
+        </p>
+        <p>
+            Son intérêt principal est de permettre de créer des [diagrammes asymptotiques de Bode](https://fr.wikipedia.org/wiki/Diagramme_de_Bode), mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
+        </p>
+    </description>
+    
+    <categories>
+        <category>Network</category>
+        <category>Feed</category>
+    </categories>
+    <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
+    <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
+    <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
+    <screenshots>
+        <screenshot type="default">http://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
+    </screenshots>
+    <releases>
+        <release version="0.0.1" date="2021-07-15"/>
+    </releases>
+      <content_rating type="oars-1.0">
+    </content_rating>
+    <update_contact>mail@ad5001.eu</update_contact>
+</application>
+
+

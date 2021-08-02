@@ -74,19 +74,33 @@ if sys.platform == 'linux':
     data_files.append((os.environ["PREFIX"] + '/mime/packages/', ['linux/x-logarithm-plot.xml']))
     data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
     data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', ['logplotter.svg']))
-    if len(sys.argv) > 1 and sys.argv[1] == "install":
-        from shutil import copyfile
-        os.makedirs(os.environ["PREFIX"] + '/applications/', exist_ok=True)
-        os.makedirs(os.environ["PREFIX"] + '/mime/packages/', exist_ok=True)
-        os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', exist_ok=True)
-        os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', exist_ok=True)
-        copyfile(current_dir + '/linux/logarithmplotter.desktop', os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
-        copyfile(current_dir + '/linux/x-logarithm-plot.xml', os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
-        copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
-        copyfile(current_dir + '/logplotter.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "install":
+            from shutil import copyfile
+            os.makedirs(os.environ["PREFIX"] + '/applications/', exist_ok=True)
+            os.makedirs(os.environ["PREFIX"] + '/mime/packages/', exist_ok=True)
+            os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', exist_ok=True)
+            os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', exist_ok=True)
+            copyfile(current_dir + '/linux/logarithmplotter.desktop', os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
+            copyfile(current_dir + '/linux/x-logarithm-plot.xml', os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
+            copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', 
+                     os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
+            copyfile(current_dir + '/logplotter.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
+            if "FLATPAK_INSTALL" in os.environ:
+                os.makedirs(os.environ["PREFIX"] + '/metainfo/', exist_ok=True)
+                copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.flatpak.xml',
+                         os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
+        elif sys.argv[1] == "uninstall":
+            os.remove(os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
+            os.remove(os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
+            os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
+            os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
+
+print("FLATPAK_INSTALL=", "FLATPAK_INSTALL" in os.environ)
+print("Dependencies:", [] if "FLATPAK_INSTALL" in os.environ else ["PySide2"])
 
 setuptools.setup(
-    install_requires=["PySide2"],
+    install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide2"]),
     python_requires='>=3.8',
 
     name='logarithmplotter',
