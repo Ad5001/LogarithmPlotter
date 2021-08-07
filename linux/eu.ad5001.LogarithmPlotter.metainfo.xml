@@ -2,7 +2,7 @@
 <!-- Copyright 2021 Ad5001 -->
 <application>
     <id>eu.ad5001.LogarithmPlotter</id>
-    <id type="desktop">logarithmplotter.desktop</id>
+    <id type="desktop">eu.ad5001.LogarithmPlotter.desktop</id>
     <launchable type="desktop-id">logarithmplotter.desktop</launchable>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
