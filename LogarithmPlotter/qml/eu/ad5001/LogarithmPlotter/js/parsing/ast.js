@@ -241,7 +241,7 @@ class StringElement extends AbstractSyntaxElement {
 }
 
 class FunctionElement extends AbstractSyntaxElement {
-    type = ASEType.STRING;
+    type = ASEType.FUNCTION;
     
     constructor(functionName, astArguments) {
         this.function = functionName;

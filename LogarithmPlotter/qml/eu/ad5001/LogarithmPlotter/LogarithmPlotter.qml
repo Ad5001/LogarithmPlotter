@@ -20,6 +20,7 @@ import QtQml 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick 2.12
+import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 import "js/objects.js" as Objects
 
 
@@ -92,7 +93,7 @@ ApplicationWindow {
             anchors.leftMargin: 5
             anchors.bottom: parent.bottom
             anchors.bottomMargin: sidebarSelector.height
-            width: parent.width - 10
+            width: parent.width - 5
             currentIndex: sidebarSelector.currentIndex
             z: -1
             clip: true

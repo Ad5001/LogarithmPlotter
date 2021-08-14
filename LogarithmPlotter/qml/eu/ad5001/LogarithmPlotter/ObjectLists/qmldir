@@ -1,0 +1,6 @@
+module eu.ad5001.LogarithmPlotter.ObjectLists
+
+ObjectLists 1.0 ObjectLists.qml
+ObjectCreationGrid 1.0 ObjectCreationGrid.qml
+EditorDialog 1.0 EditorDialog.qml
+

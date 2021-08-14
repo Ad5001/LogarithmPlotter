@@ -25,7 +25,7 @@ ScrollView {
     
     signal changed()
     
-    property int settingWidth: settings.width
+    property int settingWidth: settings.width - ScrollBar.vertical.width
     
     property int xzoom: 100
     property int yzoom: 10
@@ -46,6 +46,8 @@ ScrollView {
         //height: 30*12 //30*Math.max(1, Math.ceil(7 / columns))
         //columns: Math.floor(width / settingWidth)
         spacing: 10
+        width: parent.width
+        bottomPadding: 20
         
         FileDialog {
             id: fdiag
