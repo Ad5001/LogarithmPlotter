@@ -34,7 +34,7 @@ pwd = os.getcwd()
 
 def get_linux_theme():
     des = {
-        "KDE": "Flat",
+        "KDE": "org.kde.desktop",
         "gnome": "default",
         "lxqt": "fusion",
         "mate": "fusion",

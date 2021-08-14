@@ -26,6 +26,8 @@ var history = null
 var HistoryLib = null
 
 function getNewName(allowedLetters) {
+    // Allows to get a new name, based on the allowed letters, 
+    // as well as adding a sub number when needs be.
     var newid = 0
     var ret
     do {
@@ -40,11 +42,18 @@ function getNewName(allowedLetters) {
 class DrawableObject {
     // Class to extend for every type of object that
     // can be drawn on the canvas.
+    
+    // Base name of the object. Needs to be constant over time.
     static type(){return 'Unknown'}
+    
+    // (Potentially translated) name of the object to be shown to the user. 
+    static displayType(){return 'Unknown'}
+    
     // Label used for the list on the ObjectsList sidebar. 
-    static typeMultiple(){return 'Unknown'}
+    static displayTypeMultiple(){return 'Unknowns'}
+    
     // Whether this object can be created by the user
-    // or are instanciated by other objects.
+    // or are instantiated by other objects.
     static createable() {return true}
     // Properties are set with key as property name and 
     // value as it's type name (e.g 'Expression', 'string'...), 
@@ -117,7 +126,9 @@ class ExecutableObject extends DrawableObject {
 
 class Point extends DrawableObject  {
     static type(){return 'Point'}
-    static typeMultiple(){return 'Points'}
+    static displayType(){return 'Point'}
+    static displayTypeMultiple(){return 'Points'}
+    
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
@@ -200,7 +211,8 @@ class Point extends DrawableObject  {
 
 class Function extends ExecutableObject {
     static type(){return 'Function'}
-    static typeMultiple(){return 'Functions'}
+    static displayType(){return 'Function'}
+    static displayTypeMultiple(){return 'Functions'}
     static properties() {return {
         'expression': 'Expression',
         'definitionDomain': 'Domain',
@@ -353,7 +365,8 @@ class Function extends ExecutableObject {
 
 class GainBode extends ExecutableObject {
     static type(){return 'Gain Bode'}
-    static typeMultiple(){return 'Gains Bode'}
+    static displayType(){return 'Bode Magnitude'}
+    static displayTypeMultiple(){return 'Bode Magnitudes'}
     static properties() {return {
         'om_0': new P.ObjectType('Point'),
         'pass': new P.Enum('high', 'low'),
@@ -493,7 +506,8 @@ class GainBode extends ExecutableObject {
 
 class SommeGainsBode extends DrawableObject {
     static type(){return 'Somme gains Bode'}
-    static typeMultiple(){return 'Somme gains Bode'}
+    static displayType(){return 'Bode Magnitudes Sum'}
+    static displayTypeMultiple(){return 'Bode Magnitudes Sum'}
     static createable() {return false}
     static properties() {return {
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
@@ -637,7 +651,8 @@ class SommeGainsBode extends DrawableObject {
 
 class PhaseBode extends ExecutableObject {
     static type(){return 'Phase Bode'}
-    static typeMultiple(){return 'Phases Bode'}
+    static displayType(){return 'Bode Phase'}
+    static displayTypeMultiple(){return 'Bode Phases'}
     static properties() {return {
         'om_0': new P.ObjectType('Point'),
         'phase': 'Expression',
@@ -767,7 +782,8 @@ class PhaseBode extends ExecutableObject {
 
 class SommePhasesBode extends ExecutableObject {
     static type(){return 'Somme phases Bode'}
-    static typeMultiple(){return 'Somme phases Bode'}
+    static displayType(){return 'Bode Phases Sum'}
+    static displayTypeMultiple(){return 'Bode Phases Sum'}
     static createable() {return false}
     static properties() {return {
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
@@ -895,7 +911,8 @@ class SommePhasesBode extends ExecutableObject {
 
 class XCursor extends DrawableObject {
     static type(){return 'X Cursor'}
-    static typeMultiple(){return 'X Cursors'}
+    static displayType(){return 'X Cursor'}
+    static displayTypeMultiple(){return 'X Cursors'}
     static properties() {
         return {
             'x': 'Expression',
@@ -1026,7 +1043,8 @@ class XCursor extends DrawableObject {
 
 class Sequence extends ExecutableObject {
     static type(){return 'Sequence'}
-    static typeMultiple(){return 'Sequences'}
+    static displayType(){return 'Sequence'}
+    static displayTypeMultiple(){return 'Sequences'}
     static properties() {return {
         'drawPoints': 'boolean',
         'drawDashedLines': 'boolean',
@@ -1141,7 +1159,8 @@ class Sequence extends ExecutableObject {
 
 class RepartitionFunction extends ExecutableObject {
     static type(){return 'Repartition'}
-    static typeMultiple(){return 'Repartitions'}
+    static displayType(){return 'Repartition'}
+    static displayTypeMultiple(){return 'Repartition functions'}
     static properties() {return {
         'beginIncluded': 'boolean',
         'drawLineEnds': 'boolean',
@@ -1290,7 +1309,8 @@ class RepartitionFunction extends ExecutableObject {
 
 class Text extends DrawableObject  {
     static type(){return 'Text'}
-    static typeMultiple(){return 'Texts'}
+    static displayType(){return 'Text'}
+    static displayTypeMultiple(){return 'Texts'}
     static properties() {return {
         'x': 'Expression',
         'y': 'Expression',

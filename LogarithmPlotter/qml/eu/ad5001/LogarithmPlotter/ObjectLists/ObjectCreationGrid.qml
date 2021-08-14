@@ -46,7 +46,7 @@ Column {
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 display: AbstractButton.TextUnderIcon
-                icon.name: modelData
+                icon.name: Objects.types[modelData].displayType()
                 icon.width: 24
                 icon.height: 24
                 icon.color: sysPalette.windowText

@@ -15,8 +15,29 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from shutil import which
 
-__VERSION__ = "0.0.1.dev0"
+__VERSION__ = "0.1"
+is_release = False
+
+
+# Check if development version, if so get the date of the latest git patch
+# and append it to the version string.
+if which('git') is not None and not is_release:
+    from os.path import realpath, join, dirname, exists
+    from subprocess import check_output
+    from datetime import datetime
+    # Command to check date of latest git commit
+    cmd = ['git', 'log', '--format=%ci', '-n 1']
+    cwd = realpath(join(dirname(__file__), '..'))  # Root AccountFree directory.
+    if exists(join(cwd, '.git')):
+        date_str = check_output(cmd, cwd=cwd).decode('utf-8').split(' ')[0]
+        try:
+            date = datetime.fromisoformat(date_str)
+            __VERSION__ += '.dev0+git' + date.strftime('%Y%m%d')
+        except ValueError:
+            # Date cannot be parsed, not git root?
+            pass
 
 if __name__ == "__main__":
     from .logarithmplotter import run

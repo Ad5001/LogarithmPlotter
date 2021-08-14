@@ -10,7 +10,7 @@ Unicode True
 !define APP_NAME "LogarithmPlotter"
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/LogarithmPlotter"
-!define APP_VERSION "0.0.1.0"
+!define APP_VERSION "0.1.0.0"
 !define COPYRIGHT "Ad5001 © 2021"
 !define DESCRIPTION "Create graphs with logarithm scales."
 

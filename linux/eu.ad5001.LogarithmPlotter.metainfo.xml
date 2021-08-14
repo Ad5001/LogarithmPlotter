@@ -17,7 +17,7 @@
             LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
         </p>
         <p>
-            It's primary use is to quickly create asymptotic Bode Diagrams, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
+            It's primary use is to quickly create asymptotic Bode plots, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
         </p>
     </description>
     <description xml:lang="fr">
@@ -40,7 +40,7 @@
         <screenshot type="default">http://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
     </screenshots>
     <releases>
-        <release version="0.0.1" date="2021-07-15"/>
+        <release version="0.1" date="2021-07-15"/>
     </releases>
       <content_rating type="oars-1.0">
     </content_rating>

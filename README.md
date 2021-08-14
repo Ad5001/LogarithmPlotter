@@ -20,7 +20,7 @@ For all builds, you need [Python 3](https://python.org) with [PySide2](https://p
 - MacOS Archive creator installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
     - Run the `build-macosx.sh` script to build an .app for AccountFree which can be found in the dist directory.
-    - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v0.0.1-dev-setup.dmg installer in the dist/ folder.
+    - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v0.1-dev-setup.dmg installer in the dist/ folder.
 - Linux packages:
     - To build a DEB, you need DPKG and stdeb. You can install the later by using `pip install stdeb`.
     - To build and install the flatpak, you need [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) installed.

@@ -1,10 +1,10 @@
 name: logarithmplotter
 title: LogarithmPlotter
-version: '0.0.1'
+version: '0.1'
 summary: 2D plotter software to make BODE plots, sequences and repartition functions.
 description: |
     LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to [Geogebra](https://geogebra.org)'s, it allows dynamic creation of plots with very few limitations.    
-    It's primary use is to quickly create [asymptotic Bode Diagrams/plots](https://en.wikipedia.org/wiki/Bode_plot), but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
+    It's primary use is to quickly create [asymptotic Bode plots](https://en.wikipedia.org/wiki/Bode_plot), but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
 confinement: strict
 base: core20
 grade: devel

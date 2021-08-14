@@ -60,13 +60,13 @@ ListView {
                 }
                 
                 ToolTip.visible: hovered
-                ToolTip.text: checked ? `Hide all ${Objects.types[objType].typeMultiple()}` : `Show all ${Objects.types[objType].typeMultiple()}`
+                ToolTip.text: checked ? `Hide all ${Objects.types[objType].displayTypeMultiple()}` : `Show all ${Objects.types[objType].displayTypeMultiple()}`
             }
             
             Label {
                 id: typeHeaderText
                 verticalAlignment: TextInput.AlignVCenter
-                text: Objects.types[objType].typeMultiple() + ":"
+                text: Objects.types[objType].displayTypeMultiple() + ":"
                 font.pixelSize: 20
             }
         }
