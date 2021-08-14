@@ -33,6 +33,7 @@ Item {
     property bool pickX: true
     property string propertyX: 'x'
     property string propertyY: 'y'
+    property alias precision: precisionSlider.value
     
     Rectangle {
         color: sysPalette.window
@@ -47,7 +48,7 @@ Item {
         cursorShape: Qt.CrossCursor
         onClicked: {
             if(parent.pickX) {
-                var newValue = canvas.px2x(picker.mouseX).toFixed(2)
+                var newValue = canvas.px2x(picker.mouseX).toFixed(parent.precision)
                 newValue = {
                     'Expression': () => new MathLib.Expression(newValue),
                     'number': () => parseFloat(newValue)
@@ -61,7 +62,7 @@ Item {
                 objectLists.update()
             }
             if(parent.pickY) {
-                var newValue = canvas.px2y(picker.mouseY).toFixed(2)
+                var newValue = canvas.px2y(picker.mouseY).toFixed(parent.precision)
                 newValue = {
                     'Expression': () => new MathLib.Expression(newValue),
                     'number': () => parseFloat(newValue)
@@ -78,11 +79,33 @@ Item {
         }
     }
     
+    Row {
+        height: precisionSlider.height
+        Text {
+            text: "  Pointer precision: "
+            color: 'black'
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        
+        Slider {
+            id: precisionSlider
+            from: 0
+            value: 2
+            to: 10
+            stepSize: 1
+            ToolTip {
+                parent: precisionSlider.handle
+                visible: precisionSlider.pressed
+                text: precisionSlider.value.toFixed(0)
+            }
+        }
+    }
+    
     Rectangle {
         id: xCursor
         width: 1
         height: parent.height
-        color: sysPalette.windowText
+        color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: picker.mouseX
@@ -93,25 +116,26 @@ Item {
         id: yCursor
         width: parent.width
         height: 1
-        color: sysPalette.windowText
+        color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.topMargin: picker.mouseY
         visible: parent.pickY
     }
     
-    Label {
+    Text {
         x: picker.mouseX - width - 5
         y: picker.mouseY - height - 5
-        property double mouseX: canvas.px2x(picker.mouseX).toFixed(2)
-        property double mouseY: canvas.px2y(picker.mouseY).toFixed(2)
+        property double mouseX: canvas.px2x(picker.mouseX).toFixed(parent.precision)
+        property double mouseY: canvas.px2y(picker.mouseY).toFixed(parent.precision)
+        color: 'black'
         text: {
             if(parent.pickX && parent.pickY)
                 return `(${mouseX}, ${mouseY})`
             if(parent.pickX)
-                return mouseX + ''
+                return `X = ${mouseX}`
             if(parent.pickY)
-                return mouseY + ''
+                return `Y = ${mouseY}`
         }
     }
 }

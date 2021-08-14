@@ -155,6 +155,7 @@ ApplicationWindow {
         }
         
         PickLocationOverlay {
+            id: positionPicker
             anchors.fill: parent
             canvas: parent
         }

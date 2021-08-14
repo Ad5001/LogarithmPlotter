@@ -35,7 +35,7 @@ Popup {
         height: logo.height
         width: logo.width + 10 + welcomeText.width
         anchors.top: parent.top
-        anchors.topMargin: 50
+        anchors.topMargin: (parent.width-width)/2
         anchors.horizontalCenter: parent.horizontalCenter
         
         Image {

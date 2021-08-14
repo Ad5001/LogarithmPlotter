@@ -121,6 +121,32 @@ ListView {
             }
             
             Button {
+                id: pointerButton
+                width: parent.height - 10
+                height: width
+                anchors.right: deleteButton.left
+                anchors.rightMargin: 5
+                anchors.topMargin: 5
+                icon.name: 'position'
+                property bool hasXProp: Objects.types[objType].properties().hasOwnProperty('x')
+                property bool hasYProp: Objects.types[objType].properties().hasOwnProperty('y')
+                visible: hasXProp || hasYProp
+                ToolTip.visible: hovered
+                ToolTip.text: 'Set ' + Objects.types[objType].displayType() + ' position.'
+                
+                onClicked: {
+                    positionPicker.objType = objType
+                    positionPicker.objName = Objects.currentObjects[objType][index].name
+                    positionPicker.pickX = hasXProp
+                    positionPicker.pickY = hasYProp
+                    positionPicker.propertyX = 'x'
+                    positionPicker.propertyY = 'y'
+                    positionPicker.visible = true
+                    
+                }
+            }
+            
+            Button {
                 id: deleteButton
                 width: parent.height - 10
                 height: width
@@ -131,7 +157,7 @@ ListView {
                 
                 onClicked: {
                     history.addToHistory(new HistoryLib.DeleteObject(
-                        objEditor.obj.name, objEditor.objType, objEditor.obj.export()
+                        Objects.currentObjects[objType][index].name, objType, Objects.currentObjects[objType][index].export()
                     ))
                     Objects.currentObjects[objType][index].delete()
                     Objects.currentObjects[objType].splice(index, 1)
