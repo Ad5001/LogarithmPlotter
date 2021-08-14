@@ -153,6 +153,11 @@ ApplicationWindow {
                 testBuildTimer.start()
             }
         }
+        
+        PickLocationOverlay {
+            anchors.fill: parent
+            canvas: parent
+        }
     }
     
     function saveDiagram(filename) {
