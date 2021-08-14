@@ -15,8 +15,8 @@ steps:
   image: ad5001/ubuntu-pyside2-xvfb:hirsute-5.15.2
   commands:
   - xvfb-run python3 run.py --test-build
-  - xvfb-run python3 run.py --test-build ./.drone/test1.lpf
-  - xvfb-run python3 run.py --test-build ./.drone/test2.lpf
+  - xvfb-run python3 run.py --test-build ./ci/test1.lpf
+  - xvfb-run python3 run.py --test-build ./ci/test2.lpf
   when:
     event: [ push, tag ]
 
@@ -25,8 +25,8 @@ steps:
   commands:
   - # For some reason, launching GUI apps with wine, even with xvfb-run, fails.
   - #xvfb-run python run.py --test-build
-  - #xvfb-run python run.py --test-build ./.drone/test1.lpf
-  - #xvfb-run python run.py --test-build ./.drone/test2.lpf
+  - #xvfb-run python run.py --test-build ./ci/test1.lpf
+  - #xvfb-run python run.py --test-build ./ci/test2.lpf
   when:
     event: [ push, tag ]
 
