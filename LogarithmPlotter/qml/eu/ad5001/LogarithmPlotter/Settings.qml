@@ -43,8 +43,6 @@ ScrollView {
     property bool showygrad: true
     
     Column {
-        //height: 30*12 //30*Math.max(1, Math.ceil(7 / columns))
-        //columns: Math.floor(width / settingWidth)
         spacing: 10
         width: parent.width
         bottomPadding: 20

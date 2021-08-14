@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.12
-//import QtQuick.Controls 2.12
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
@@ -54,6 +53,7 @@ MenuBar {
             icon.name: 'application-exit'
         }
     }
+    
     Menu {
         title: qsTr("&Edit")
         Action { 
@@ -80,6 +80,7 @@ MenuBar {
             icon.name: 'edit-copy'
         }
     }
+    
     Menu {
         title: qsTr("&Create")
         // Services repeater
@@ -100,6 +101,19 @@ MenuBar {
             }
         }
     }
+    
+    Menu {
+        title: qsTr("&Settings")
+        Action {
+            id: checkForUpdatesMenuSetting
+            text: qsTr("Check for updates on startup")
+            checkable: true
+            checked: Helper.getSettingBool("check_for_updates")
+            onTriggered: Helper.setSettingBool("check_for_updates", checked)
+            icon.name: 'update'
+        }
+    }
+    
     Menu {
         title: qsTr("&Help")
         Action {

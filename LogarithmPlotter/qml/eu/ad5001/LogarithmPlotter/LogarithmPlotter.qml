@@ -18,6 +18,7 @@
 
 import QtQml 2.12
 import QtQuick.Controls 2.12
+import eu.ad5001.MixedMenu 1.1
 import QtQuick.Layouts 1.12
 import QtQuick 2.12
 // Auto loading all objects.
@@ -37,11 +38,14 @@ ApplicationWindow {
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
-    History { id: history }
     
     menuBar: appMenu.trueItem
     
+    GreetScreen {}
+    
     AppMenuBar {id: appMenu}
+    
+    History { id: history }
     
     About {id: about}
     
@@ -270,5 +274,25 @@ ApplicationWindow {
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
         alert.show("Copied plot screenshot to clipboard!")
+    }
+    
+    function showAlert(alertText) {
+        // This function is called from the backend and is used to show alerts from there.
+        alert.show(alertText)
+    }
+    
+    
+    Menu {
+        id: updateMenu
+        title: qsTr("&Update")
+        Action {
+            text: qsTr("&Update LogarithmPlotter")
+            icon.name: 'update'
+            onTriggered: Helper.openUrl("https://dev.apps.ad5001.eu/logarithmplotter")
+        }
+    }
+    
+    function showUpdateMenu() {
+        appMenu.addMenu(updateMenu)
     }
 }

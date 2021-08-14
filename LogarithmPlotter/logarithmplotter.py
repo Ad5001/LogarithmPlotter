@@ -26,15 +26,21 @@ from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
 from PySide2.QtGui import QIcon, QImage, QKeySequence
 from PySide2 import __version__ as PySide2_version
 
-import os
-import tempfile
+from tempfile import mkstemp
+from os import getcwd, chdir, environ, path, remove
 from platform import release as os_release
 from json import dumps, loads
 from sys import platform, argv, version as sys_version
-import webbrowser
+from webbrowser import open as openWeb
 
-tempfile = tempfile.mkstemp(suffix='.png')[1]
-pwd = os.getcwd()
+# Create the temporary file for saving copied screenshots
+tmpfile = mkstemp(suffix='.png')[1]
+pwd = getcwd()
+
+from . import config, __VERSION__
+from .update import check_for_updates
+config.init()
+
 
 def get_linux_theme():
     des = {
@@ -43,8 +49,8 @@ def get_linux_theme():
         "lxqt": "fusion",
         "mate": "fusion",
     }
-    if "XDG_SESSION_DESKTOP" in os.environ:
-        return des[os.environ["XDG_SESSION_DESKTOP"]] if os.environ["XDG_SESSION_DESKTOP"] in des else "fusion"
+    if "XDG_SESSION_DESKTOP" in environ:
+        return des[environ["XDG_SESSION_DESKTOP"]] if environ["XDG_SESSION_DESKTOP"] in des else "fusion"
     else:
         # Android
         return "Material"
@@ -53,22 +59,22 @@ class Helper(QObject):
 
     @Slot(str, str)
     def write(self, filename, filedata):
-        os.chdir(pwd)
-        if os.path.exists(os.path.dirname(os.path.realpath(filename))):
+        chdir(pwd)
+        if path.exists(path.dirname(path.realpath(filename))):
             if filename.split(".")[-1] == "lpf":
                 # Add header to file
                 filedata = "LPFv1" + filedata
-            f = open(os.path.realpath(filename), 'w',  -1, 'utf8')
+            f = open(path.realpath(filename), 'w',  -1, 'utf8')
             f.write(filedata)
             f.close()
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        chdir(path.dirname(path.realpath(__file__)))
         
     @Slot(str, result=str)
     def load(self, filename):
-        os.chdir(pwd)
+        chdir(pwd)
         data = '{}'
-        if os.path.exists(os.path.realpath(filename)):
-            f = open(os.path.realpath(filename), 'r',  -1, 'utf8')
+        if path.exists(path.realpath(filename)):
+            f = open(path.realpath(filename), 'r',  -1, 'utf8')
             data = f.read()
             f.close()
             try:
@@ -84,24 +90,39 @@ class Helper(QObject):
                 QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file "{}":\n{}'.format(filename, e), QMessageBox.Ok) # Cannot parse file
         else:
             QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file: "{}"\nFile does not exist.'.format(filename), QMessageBox.Ok) # Cannot parse file
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        chdir(path.dirname(path.realpath(__file__)))
         return data
 
     @Slot(result=str)
     def gettmpfile(self):
-        global tempfile
-        return tempfile
+        global tmpfile
+        return tmpfile
     
     @Slot()
     def copyImageToClipboard(self):
-        global tempfile
+        global tmpfile
         clipboard = QApplication.clipboard()
-        clipboard.setImage(QImage(tempfile))
+        clipboard.setImage(QImage(tmpfile))
     
     @Slot(result=str)
     def getVersion(self):
-        from . import __VERSION__
         return __VERSION__
+    
+    @Slot(str, result=str)
+    def getSetting(self, namespace):
+        return config.getSetting(namespace)
+    
+    @Slot(str, result=bool)
+    def getSettingBool(self, namespace):
+        return config.getSetting(namespace)
+    
+    @Slot(str, str)
+    def setSetting(self, namespace, value):
+        return config.setSetting(namespace, value)
+    
+    @Slot(str, bool)
+    def setSettingBool(self, namespace, value):
+        return config.setSetting(namespace, value)
     
     @Slot(result=str)
     def getDebugInfos(self):
@@ -112,12 +133,12 @@ class Helper(QObject):
     
     @Slot(str)
     def openUrl(self, url):
-        webbrowser.open(url)
+        openWeb(url)
         
 def run():
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    chdir(path.dirname(path.realpath(__file__)))
     
-    os.environ["QT_QUICK_CONTROLS_STYLE"] = {
+    environ["QT_QUICK_CONTROLS_STYLE"] = {
         "linux": get_linux_theme(),
         "freebsd": get_linux_theme(),
         "win32": "universal" if os_release == "10" else "fusion",
@@ -129,35 +150,41 @@ def run():
     print("Loaded dependencies in " + str((dep_time - start_time)*1000) + "ms.")
 
     icon_fallbacks = QIcon.fallbackSearchPaths();
-    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
-    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
-    icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
+    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
+    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
+    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
     QIcon.setFallbackSearchPaths(icon_fallbacks);
     
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
-    app.setWindowIcon(QIcon(os.path.realpath(os.path.join(os.getcwd(), "logarithmplotter.svg"))))
+    app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
     engine = QQmlApplicationEngine()
     helper = Helper()
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
 
-    engine.addImportPath(os.path.realpath(os.path.join(os.getcwd(), "qml")))
-    engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+    engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
+    engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
-    os.chdir(pwd)
-    if len(argv) > 0 and os.path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
+    chdir(pwd)
+    if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    chdir(path.dirname(path.realpath(__file__)))
 
     if not engine.rootObjects():
         print("No root object")
         exit(-1)
+    
+    # Check for updates
+    if config.getSetting("check_for_updates"):
+        check_for_updates(__VERSION__, engine.rootObjects()[0])
+    
     exit_code = app.exec_()
 
-    os.remove(tempfile)
+    remove(tmpfile)
+    config.save()
     exit(exit_code)
 
 if __name__ == "__main__":
