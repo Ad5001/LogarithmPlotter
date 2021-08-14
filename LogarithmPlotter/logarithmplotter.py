@@ -16,6 +16,10 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+from time import time
+
+start_time = time()
+
 from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
@@ -120,6 +124,9 @@ def run():
         "cygwin": "fusion",
         "darwin": "default"
     }[platform]
+    
+    dep_time = time()
+    print("Loaded dependencies in " + str((dep_time - start_time)*1000) + "ms.")
 
     icon_fallbacks = QIcon.fallbackSearchPaths();
     icon_fallbacks.append(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
@@ -135,6 +142,7 @@ def run():
     helper = Helper()
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
+    engine.rootContext().setContextProperty("StartTime", dep_time)
 
     engine.addImportPath(os.path.realpath(os.path.join(os.getcwd(), "qml")))
     engine.load(os.path.realpath(os.path.join(os.getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))

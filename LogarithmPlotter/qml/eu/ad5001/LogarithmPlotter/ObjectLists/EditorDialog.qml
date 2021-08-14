@@ -21,6 +21,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.3 as D
 import eu.ad5001.LogarithmPlotter 1.0
 import "../js/objects.js" as Objects
+import "../js/objs/common.js" as ObjectsCommons
 import "../js/historylib.js" as HistoryLib
 import "../js/utils.js" as Utils
 import "../js/mathlib.js" as MathLib
@@ -65,7 +66,7 @@ D.Dialog {
                 if(newName != '' && objEditor.obj.name != newName) {
                     if(Objects.getObjectByName(newName) != null) {
                         console.log(Objects.getObjectByName(newName).name, newName)
-                        newName = Objects.getNewName(newName)
+                        newName = ObjectsCommons.getNewName(newName)
                     }
                     history.addToHistory(new HistoryLib.NameChanged(
                         objEditor.obj.name, objEditor.objType, newName

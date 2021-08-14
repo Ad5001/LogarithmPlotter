@@ -133,7 +133,6 @@ Item {
     }
     
     Component.onCompleted: {
-        Objects.history = historyObj
-        Objects.HistoryLib = HistoryLib
+        HistoryLib.history = historyObj
     }
 }

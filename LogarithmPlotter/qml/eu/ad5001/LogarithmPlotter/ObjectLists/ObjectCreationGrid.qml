@@ -41,12 +41,12 @@ Column {
             
             Button {
                 id: createBtn
-                text: modelData
+                text: Objects.types[modelData].displayType()
                 width: parent.width/3
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 display: AbstractButton.TextUnderIcon
-                icon.name: Objects.types[modelData].displayType()
+                icon.name: modelData
                 icon.width: 24
                 icon.height: 24
                 icon.color: sysPalette.windowText

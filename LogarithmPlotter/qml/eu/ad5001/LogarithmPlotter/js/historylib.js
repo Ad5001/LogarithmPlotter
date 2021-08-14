@@ -24,6 +24,8 @@
 .import "utils.js" as Utils
 .import "mathlib.js" as MathLib
 
+var history = null;
+
 class Action {
     // Type of the action done.
     type(){return 'Unknown'}

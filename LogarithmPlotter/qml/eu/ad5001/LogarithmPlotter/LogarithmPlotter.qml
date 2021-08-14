@@ -20,8 +20,11 @@ import QtQml 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick 2.12
-import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
+// Auto loading all objects.
+import "js/objs/autoload.js" as ALObjects
+
 import "js/objects.js" as Objects
+import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 
 
 ApplicationWindow {
@@ -136,9 +139,15 @@ ApplicationWindow {
         showxgrad: settings.showxgrad
         showygrad: settings.showygrad
         
-        onPainted: if(TestBuild == true) {
-            console.log("Plot drawn in canvas, terminating test of build in 100ms.")
-            testBuildTimer.start()
+        property bool firstDrawDone: false
+        
+        onPainted: if(!firstDrawDone) {
+            firstDrawDone = true;
+            console.info("First paint done in " + (new Date().getTime()-(StartTime*1000)) + "ms")
+            if(TestBuild == true) {
+                console.log("Plot drawn in canvas, terminating test of build in 100ms.")
+                testBuildTimer.start()
+            }
         }
     }
     
@@ -207,7 +216,7 @@ ApplicationWindow {
             root.height = data["height"]
             root.width = data["width"]
             
-            // Importing objectw
+            // Importing objects
             Objects.currentObjects = {}
             for(var objType in data['objects']) {
                 if(Object.keys(Objects.types).indexOf(objType) > -1) {
