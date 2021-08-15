@@ -46,34 +46,37 @@ Item {
         anchors.fill: parent
         hoverEnabled: parent.visible
         cursorShape: Qt.CrossCursor
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: {
-            if(parent.pickX) {
-                var newValue = canvas.px2x(picker.mouseX).toFixed(parent.precision)
-                newValue = {
-                    'Expression': () => new MathLib.Expression(newValue),
-                    'number': () => parseFloat(newValue)
-                }[Objects.types[objType].properties()[propertyX]]()
-                var obj = Objects.getObjectByName(objName, objType)
-                history.addToHistory(new HistoryLib.EditedProperty(
-                    objName, objType, propertyX, obj[propertyX], newValue
-                ))
-                obj[propertyX] = newValue
-                obj.update()
-                objectLists.update()
-            }
-            if(parent.pickY) {
-                var newValue = canvas.px2y(picker.mouseY).toFixed(parent.precision)
-                newValue = {
-                    'Expression': () => new MathLib.Expression(newValue),
-                    'number': () => parseFloat(newValue)
-                }[Objects.types[objType].properties()[propertyY]]()
-                var obj = Objects.getObjectByName(objName, objType)
-                history.addToHistory(new HistoryLib.EditedProperty(
-                    objName, objType, propertyY, obj[propertyY], newValue
-                ))
-                obj[propertyY] = newValue
-                obj.update()
-                objectLists.update()
+            if(mouse.button == Qt.LeftButton) { // Validate
+                if(parent.pickX) {
+                    var newValue = canvas.px2x(picker.mouseX).toFixed(parent.precision)
+                    newValue = {
+                        'Expression': () => new MathLib.Expression(newValue),
+                        'number': () => parseFloat(newValue)
+                    }[Objects.types[objType].properties()[propertyX]]()
+                    var obj = Objects.getObjectByName(objName, objType)
+                    history.addToHistory(new HistoryLib.EditedProperty(
+                        objName, objType, propertyX, obj[propertyX], newValue
+                    ))
+                    obj[propertyX] = newValue
+                    obj.update()
+                    objectLists.update()
+                }
+                if(parent.pickY) {
+                    var newValue = canvas.px2y(picker.mouseY).toFixed(parent.precision)
+                    newValue = {
+                        'Expression': () => new MathLib.Expression(newValue),
+                        'number': () => parseFloat(newValue)
+                    }[Objects.types[objType].properties()[propertyY]]()
+                    var obj = Objects.getObjectByName(objName, objType)
+                    history.addToHistory(new HistoryLib.EditedProperty(
+                        objName, objType, propertyY, obj[propertyY], newValue
+                    ))
+                    obj[propertyY] = newValue
+                    obj.update()
+                    objectLists.update()
+                }
             }
             pickerRoot.visible = false;
         }

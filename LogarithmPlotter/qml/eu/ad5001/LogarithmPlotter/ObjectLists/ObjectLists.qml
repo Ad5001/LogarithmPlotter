@@ -136,7 +136,7 @@ ListView {
                 
                 onClicked: {
                     positionPicker.objType = objType
-                    positionPicker.objName = Objects.currentObjects[objType][index].name
+                    positionPicker.objName = obj.name
                     positionPicker.pickX = hasXProp
                     positionPicker.pickY = hasYProp
                     positionPicker.propertyX = 'x'
@@ -154,10 +154,12 @@ ListView {
                 anchors.rightMargin: 5
                 anchors.topMargin: 5
                 icon.name: 'delete'
+                ToolTip.visible: hovered
+                ToolTip.text: 'Delete ' + Objects.types[objType].displayType() + '.'
                 
                 onClicked: {
                     history.addToHistory(new HistoryLib.DeleteObject(
-                        Objects.currentObjects[objType][index].name, objType, Objects.currentObjects[objType][index].export()
+                        obj.name, objType, obj.export()
                     ))
                     Objects.currentObjects[objType][index].delete()
                     Objects.currentObjects[objType].splice(index, 1)
