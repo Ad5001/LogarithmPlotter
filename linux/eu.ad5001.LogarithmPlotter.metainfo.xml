@@ -37,10 +37,11 @@
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
     <screenshots>
-        <screenshot type="default">http://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
+        <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
+        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png</screenshot>
     </screenshots>
     <releases>
-        <release version="0.1" date="2021-07-15"/>
+        <release version="0.1" date="2021-08-15"/>
     </releases>
       <content_rating type="oars-1.0">
     </content_rating>

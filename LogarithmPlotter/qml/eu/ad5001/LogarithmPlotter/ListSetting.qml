@@ -24,21 +24,21 @@ Column {
     Row {
         height: 30
         width: parent.width;
-    Icon {
-        id: iconLabel
-        anchors.top: parent.top
-        anchors.topMargin: icon == "" ? 0 : 3
-        source: control.visible ? control.icon : ""
-        width: height
-        height: icon == "" || !visible ? 0 : 24
-        color: sysPalette.windowText
-    }
-    Label {
-        id: labelItem
-        height: 30
-        verticalAlignment: TextInput.AlignVCenter
-        text: control.label +": "
-    }
+        Icon {
+            id: iconLabel
+            anchors.top: parent.top
+            anchors.topMargin: icon == "" ? 0 : 3
+            source: control.visible ? control.icon : ""
+            width: height
+            height: icon == "" || !visible ? 0 : 24
+            color: sysPalette.windowText
+        }
+        Label {
+            id: labelItem
+            height: 30
+            verticalAlignment: TextInput.AlignVCenter
+            text: control.label +": "
+        }
     }
     
     Repeater {
