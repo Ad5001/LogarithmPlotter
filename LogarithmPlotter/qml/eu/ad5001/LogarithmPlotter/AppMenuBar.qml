@@ -88,7 +88,7 @@ MenuBar {
             model: Object.keys(Objects.types)
             
             MenuItem {
-                text: modelData
+                text: Objects.types[modelData].displayType()
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.name: modelData
