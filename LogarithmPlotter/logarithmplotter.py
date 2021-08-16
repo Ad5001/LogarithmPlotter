@@ -37,8 +37,15 @@ from webbrowser import open as openWeb
 tmpfile = mkstemp(suffix='.png')[1]
 pwd = getcwd()
 
-from . import config, __VERSION__
-from .update import check_for_updates
+chdir(path.dirname(path.realpath(__file__)))
+
+from sys import path as sys_path
+if path.realpath(path.join(getcwd(), "..")) not in sys_path:
+    sys_path.append(path.realpath(path.join(getcwd(), "..")))
+
+
+from LogarithmPlotter import config, __VERSION__
+from LogarithmPlotter.update import check_for_updates
 config.init()
 
 
@@ -136,7 +143,6 @@ class Helper(QObject):
         openWeb(url)
         
 def run():
-    chdir(path.dirname(path.realpath(__file__)))
     
     environ["QT_QUICK_CONTROLS_STYLE"] = {
         "linux": get_linux_theme(),
