@@ -24,7 +24,7 @@ D.FileDialog {
     property bool exportMode: false
     
     title: exportMode ? "Export Logarithm Plot file" : "Import Logarithm Plot file"
-    nameFilters: ["Logarithm Plot File (*.lpf *.lgg)", "Old Logarithm Plot Data (*.json)", "All files (*)"]
+    nameFilters: ["Logarithm Plot File (*.lpf)", "All files (*)"]
 
     folder: shortcuts.documents
     selectExisting: !exportMode

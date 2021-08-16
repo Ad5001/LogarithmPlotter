@@ -8,6 +8,7 @@ Unicode True
 ;--------------------------------
 ;Definitions
 !define APP_NAME "LogarithmPlotter"
+!define PROG_ID "LogarithmPlotter.File.1"
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/LogarithmPlotter"
 !define APP_VERSION "0.1.0.0"
@@ -15,6 +16,9 @@ Unicode True
 !define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
+!define REG_APPPATHS "Software\Microsoft\Windows\CurrentVersion\App Paths\logarithmplotter.exe"
+!define REG_LPFCLASS "Software\Classes\${PROG_ID}"
+!define REG_LPFEXT "Software\Classes\.lpf"
 
 ;--------------------------------
 ;General description
@@ -171,7 +175,19 @@ Section ""
     WriteRegStr HKLM ${REG_UNINSTALL} "DisplayVersion" "${APP_VERSION}"
     WriteRegStr HKLM ${REG_UNINSTALL} "Readme" "$INSTDIR\README.md"
     WriteRegStr HKLM ${REG_UNINSTALL} "URLInfoAbout" "${WEBSITE}"
-
+    
+    ; Registering application
+    ;WriteRegStr HKLM ${REG_APPPATHS} "" "$INSTDIR\logarithmplotter.exe"
+    ;WriteRegStr HKLM ${REG_APPPATHS} "SupportedProtocols" "file:"
+    
+    ; Registering mime type
+    WriteRegStr HKLM ${REG_LPFCLASS} "" "Logarithm Plot File"
+    WriteRegStr HKLM "${REG_LPFCLASS}\DefaultIcon" "" "$INSTDIR\logarithmplotter.exe,0" ; I'd like to put the logplotterfile icon, but this seems far too difficult to do.
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\open\command" "" "$INSTDIR\logarithmplotter.exe $\"$$1$\""
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\edit\command" "" "$INSTDIR\logarithmplotter.exe $\"$$1$\""
+    WriteRegStr HKLM ${REG_LPFEXT} "" "${PROG_ID}"
+    WriteRegStr HKLM ${REG_LPFEXT} "Content Type" "application/x-logarithm-plot"
+    WriteRegStr HKLM ${REG_LPFEXT} "PerceivedType" "Application"
 SectionEnd
 
 ;--------------------------------
@@ -182,7 +198,8 @@ Section "Uninstall"
     RMDir /r "$INSTDIR"
 
     Delete "$SMPROGRAMS\LogarithmPlotter.lnk"
-    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
+    DeleteRegKey HKLM $[REG_UNINSTALL}
+    DeleteRegKey HKLM $[REG_APPPATHS}
 ;  ;DeleteRegKey /ifempty HKCU "Software\Modern UI Test"
 ;
 SectionEnd

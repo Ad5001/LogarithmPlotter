@@ -54,6 +54,7 @@ class UpdateCheckerRunnable(QRunnable):
                 update_available = True
             else:
                 show_alert = False
+                msg_text = "No update available."
                 
         except HTTPError as e:
             msg_text = "Could not fetch update information: Server error " + str(e.code) + "."

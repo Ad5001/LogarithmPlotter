@@ -162,7 +162,7 @@ ApplicationWindow {
     }
     
     function saveDiagram(filename) {
-        if(['json', 'lpf', 'lgg'].indexOf(filename.split('.')[filename.split('.').length-1]) == -1)
+        if(['lpf'].indexOf(filename.split('.')[filename.split('.').length-1]) == -1)
             filename += '.lpf'
         settings.saveFilename = filename
         var objs = {}

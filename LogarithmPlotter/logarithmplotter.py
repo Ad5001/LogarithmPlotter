@@ -182,7 +182,7 @@ def run():
     engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
     chdir(pwd)
-    if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['json', 'lgg', 'lpf']:
+    if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
     chdir(path.dirname(path.realpath(__file__)))
 
