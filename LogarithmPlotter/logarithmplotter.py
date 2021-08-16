@@ -44,7 +44,7 @@ if path.realpath(path.join(getcwd(), "..")) not in sys_path:
     sys_path.append(path.realpath(path.join(getcwd(), "..")))
 
 
-from LogarithmPlotter import config, __VERSION__
+from LogarithmPlotter import config, native, __VERSION__
 from LogarithmPlotter.update import check_for_updates
 config.init()
 
@@ -165,6 +165,13 @@ def run():
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
+    
+    # Installing macOS file handler.
+    macOSFileOpenHandler = None
+    if platform == "darwin":
+        macOSFileOpenHandler = native.MacOSFileOpenHandler()
+        app.installEventFilter(macOSFileOpenHandler)
+    
     engine = QQmlApplicationEngine()
     helper = Helper()
     engine.rootContext().setContextProperty("Helper", helper)
@@ -182,6 +189,9 @@ def run():
     if not engine.rootObjects():
         print("No root object")
         exit(-1)
+    
+    if platform == "darwin":
+        macOSFileOpenHandler.init_graphics(engine.rootObjects()[0])
     
     # Check for updates
     if config.getSetting("check_for_updates"):
