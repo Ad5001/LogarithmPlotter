@@ -31,8 +31,8 @@ Canvas {
     
     property double xmin: 0
     property double ymax: 0
-    property int xzoom: 10
-    property int yzoom: 10
+    property double xzoom: 10
+    property double yzoom: 10
     property string xaxisstep: "4"
     property string yaxisstep: "4"
     property string xlabel: ""

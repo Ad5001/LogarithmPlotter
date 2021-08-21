@@ -27,8 +27,8 @@ ScrollView {
     
     property int settingWidth: settings.width - ScrollBar.vertical.width
     
-    property int xzoom: 100
-    property int yzoom: 10
+    property double xzoom: 100
+    property double yzoom: 10
     property double xmin: 5/10
     property double ymax: 25
     property string xaxisstep: "4"
@@ -68,7 +68,7 @@ ScrollView {
         TextSetting {
             id: zoomX
             height: 30
-            isInt: true
+            isDouble: true
             label: "X Zoom"
             min: 1
             icon: "icons/settings/xzoom.svg"
@@ -83,7 +83,7 @@ ScrollView {
         TextSetting {
             id: zoomY
             height: 30
-            isInt: true
+            isDouble: true
             label: "Y Zoom"
             icon: "icons/settings/yzoom.svg"
             width: settings.settingWidth
