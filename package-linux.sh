@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 setup.py --command-packages=stdeb.command sdist_dsc --package accountfree --copyright-file linux/debian/copyright --suite hirsute --recommends "$(cat linux/debian/recommends)" --depends "$(cat linux/debian/depends)" --section science bdist_deb
+python3 setup.py --command-packages=stdeb.command sdist_dsc --package logarithmplotter --copyright-file linux/debian/copyright --suite hirsute --recommends "$(cat linux/debian/recommends)" --depends "$(cat linux/debian/depends)" --section science bdist_deb
 
 # Flatpak building
 FLATPAK_BUILDER=$(which flatpak-builder)

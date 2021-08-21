@@ -50,7 +50,7 @@ Column {
                 icon.source: '../icons/' + modelData + '.svg'
                 icon.width: 24
                 icon.height: 24
-                icon.color: sysPalette.windowText
+                icon.color: sysPalette.buttonText
                 
                 onClicked: {
                     var newObj = Objects.createNewRegisteredObject(modelData)

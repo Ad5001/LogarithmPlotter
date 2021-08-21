@@ -93,7 +93,7 @@ MenuBar {
                 height: visible ? implicitHeight : 0
                 icon.name: modelData
                 icon.source: './icons/' + modelData + '.svg'
-                icon.color: sysPalette.windowText
+                icon.color: sysPalette.buttonText
                 onTriggered: {
                     var newObj = Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
@@ -120,7 +120,7 @@ MenuBar {
             checkable: true
             checked: Helper.getSettingBool("reset_redo_stack")
             onTriggered: Helper.setSettingBool("reset_redo_stack", checked)
-            icon.name: 'history'
+            icon.name: 'timeline'
         }
     }
     

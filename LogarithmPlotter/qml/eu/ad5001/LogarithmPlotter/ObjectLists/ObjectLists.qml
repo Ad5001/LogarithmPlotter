@@ -129,6 +129,7 @@ ListView {
                 anchors.topMargin: 5
                 icon.name: 'position'
                 icon.source: '../icons/position.svg'
+                icon.color: sysPalette.buttonText
                 property bool hasXProp: Objects.types[objType].properties().hasOwnProperty('x')
                 property bool hasYProp: Objects.types[objType].properties().hasOwnProperty('y')
                 visible: hasXProp || hasYProp
@@ -156,6 +157,7 @@ ListView {
                 anchors.topMargin: 5
                 icon.name: 'delete'
                 icon.source: '../icons/delete.svg'
+                icon.color: sysPalette.buttonText
                 ToolTip.visible: hovered
                 ToolTip.text: 'Delete ' + Objects.types[objType].displayType() + '.'
                 

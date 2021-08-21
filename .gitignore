@@ -1,6 +1,9 @@
 build/
 dist/
+deb_dist/
 linux/flatpak/AppDir
+linux/flatpak/repo
+linux/flatpak/build-dir
 linux/flatpak/.flatpak-builder
 *.snap
 *.spec
