@@ -50,12 +50,12 @@ Item {
         onClicked: {
             if(mouse.button == Qt.LeftButton) { // Validate
                 if(parent.pickX) {
-                    var newValue = canvas.px2x(picker.mouseX).toFixed(parent.precision)
+                    let newValue = picked.mouseX.toString()
                     newValue = {
                         'Expression': () => new MathLib.Expression(newValue),
                         'number': () => parseFloat(newValue)
                     }[Objects.types[objType].properties()[propertyX]]()
-                    var obj = Objects.getObjectByName(objName, objType)
+                    let obj = Objects.getObjectByName(objName, objType)
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValue
                     ))
@@ -64,12 +64,12 @@ Item {
                     objectLists.update()
                 }
                 if(parent.pickY) {
-                    var newValue = canvas.px2y(picker.mouseY).toFixed(parent.precision)
+                    let newValue = picked.mouseY.toString()
                     newValue = {
                         'Expression': () => new MathLib.Expression(newValue),
                         'number': () => parseFloat(newValue)
                     }[Objects.types[objType].properties()[propertyY]]()
-                    var obj = Objects.getObjectByName(objName, objType)
+                    let obj = Objects.getObjectByName(objName, objType)
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValue
                     ))
@@ -102,6 +102,12 @@ Item {
                 text: precisionSlider.value.toFixed(0)
             }
         }
+        
+        CheckBox {
+            id: snapToGridCheckbox
+            text: "Snap to grid"
+            checked: false
+        }
     }
     
     Rectangle {
@@ -111,7 +117,7 @@ Item {
         color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: picker.mouseX
+        anchors.leftMargin: canvas.x2px(picked.mouseX)
         visible: parent.pickX
     }
     
@@ -122,15 +128,37 @@ Item {
         color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.topMargin: picker.mouseY
+        anchors.topMargin: canvas.y2px(picked.mouseY)
         visible: parent.pickY
     }
     
     Text {
+        id: picked
         x: picker.mouseX - width - 5
         y: picker.mouseY - height - 5
-        property double mouseX: canvas.px2x(picker.mouseX).toFixed(parent.precision)
-        property double mouseY: canvas.px2y(picker.mouseY).toFixed(parent.precision)
+        property double axisX: canvas.xaxisstep1
+        property double mouseX: {
+            let xpos = canvas.px2x(picker.mouseX)
+            if(snapToGridCheckbox.checked) {
+                if(canvas.logscalex) {
+                    // Calculate the logged power
+                    let pow = Math.pow(10, Math.floor(Math.log10(xpos)))
+                    return pow*Math.round(xpos/pow)
+                } else {
+                    return canvas.xaxisstep1*Math.round(xpos/canvas.xaxisstep1)
+                }
+            } else {
+                return xpos.toFixed(parent.precision)
+            }
+        }
+        property double mouseY: {
+            let ypos = canvas.px2y(picker.mouseY)
+            if(snapToGridCheckbox.checked) {
+                return canvas.yaxisstep1*Math.round(ypos/canvas.yaxisstep1)
+            } else {
+                return ypos.toFixed(parent.precision)
+            }
+        }
         color: 'black'
         text: {
             if(parent.pickX && parent.pickY)
@@ -141,4 +169,6 @@ Item {
                 return `Y = ${mouseY}`
         }
     }
+    
+    
 }
