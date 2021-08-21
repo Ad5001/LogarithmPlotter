@@ -67,8 +67,10 @@ Item {
             console.log("Added new entry to history: " + action.getReadableString())
             undoStack.push(action)
             undoCount++;
-            redoStack = []
-            redoCount = 0
+            if(Helper.getSettingBool("reset_redo_stack")) {
+                redoStack = []
+                redoCount = 0
+            }
         }
     }
 

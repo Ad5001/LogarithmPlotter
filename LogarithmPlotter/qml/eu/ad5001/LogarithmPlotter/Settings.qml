@@ -26,6 +26,7 @@ ScrollView {
     signal changed()
     
     property int settingWidth: settings.width - ScrollBar.vertical.width
+    property Canvas canvas
     
     property double xzoom: 100
     property double yzoom: 10
@@ -73,7 +74,7 @@ ScrollView {
             min: 1
             icon: "icons/settings/xzoom.svg"
             width: settings.settingWidth
-            defValue: settings.xzoom
+            value: settings.xzoom.toFixed(2)
             onChanged: function(newValue) {
                 settings.xzoom = newValue
                 settings.changed()
@@ -87,7 +88,7 @@ ScrollView {
             label: "Y Zoom"
             icon: "icons/settings/yzoom.svg"
             width: settings.settingWidth
-            defValue: settings.yzoom
+            value: settings.yzoom.toFixed(2)
             onChanged: function(newValue) {
                 settings.yzoom = newValue
                 settings.changed()
@@ -105,8 +106,12 @@ ScrollView {
             width: settings.settingWidth
             defValue: settings.xmin
             onChanged: function(newValue) {
-                settings.xmin = newValue
-                settings.changed()
+                if(parseFloat(maxX.value) > newValue) {
+                    settings.xmin = newValue
+                    settings.changed()
+                } else {
+                    alert.show("Minimum x value must be inferior to maximum.")
+                }
             }
         }
         
@@ -114,6 +119,7 @@ ScrollView {
             id: maxY
             height: 30
             isDouble: true
+            min: -Infinity
             label: "Max Y"
             icon: "icons/settings/ymax.svg"
             width: settings.settingWidth
@@ -121,6 +127,44 @@ ScrollView {
             onChanged: function(newValue) {
                 settings.ymax = newValue
                 settings.changed()
+            }
+        }
+        
+        TextSetting {
+            id: maxX
+            height: 30
+            isDouble: true
+            min: -Infinity
+            label: "Max X"
+            icon: "icons/settings/xmax.svg"
+            width: settings.settingWidth
+            value: canvas.px2x(canvas.canvasSize.width).toFixed(2)
+            onChanged: function(xvaluemax) {
+                if(xvaluemax > settings.xmin) {
+                    settings.xzoom = settings.xzoom * canvas.canvasSize.width/(canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.changed()
+                } else {
+                    alert.show("Maximum x value must be superior to minimum.")
+                }
+            }
+        }
+        
+        TextSetting {
+            id: minY
+            height: 30
+            isDouble: true
+            min: -Infinity
+            label: "Min Y"
+            icon: "icons/settings/ymin.svg"
+            width: settings.settingWidth
+            defValue: canvas.px2y(canvas.canvasSize.height).toFixed(2)
+            onChanged: function(yvaluemin) {
+                if(yvaluemin < settings.ymax) {
+                    settings.yzoom = settings.yzoom * canvas.canvasSize.height/(canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.changed()
+                } else {
+                    alert.show("Minimum y value must be inferior to maximum.")
+                }
             }
         }
         

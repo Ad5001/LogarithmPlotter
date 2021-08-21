@@ -22,6 +22,7 @@ from json import load, dumps
 
 DEFAULT_SETTINGS = {
     "check_for_updates": True,
+    "reset_redo_stack": True,
     "last_install_greet": "0",
     "lang": "en"
 }

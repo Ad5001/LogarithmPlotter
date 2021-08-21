@@ -113,6 +113,15 @@ MenuBar {
             onTriggered: Helper.setSettingBool("check_for_updates", checked)
             icon.name: 'update'
         }
+        
+        Action {
+            id: resetRedoStackMenuSetting
+            text: qsTr("Reset redo stack automaticly")
+            checkable: true
+            checked: Helper.getSettingBool("reset_redo_stack")
+            onTriggered: Helper.setSettingBool("reset_redo_stack", checked)
+            icon.name: 'history'
+        }
     }
     
     Menu {

@@ -30,6 +30,7 @@ Item {
     property double min: -1
     property string label
     property string defValue
+    property alias value: input.text
     property string icon: ""
     
     Icon {

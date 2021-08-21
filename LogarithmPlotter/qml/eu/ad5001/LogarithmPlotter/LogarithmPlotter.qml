@@ -112,6 +112,7 @@ ApplicationWindow {
 
             Settings {
                 id: settings
+                canvas: drawCanvas
                 onChanged: drawCanvas.requestPaint()
             }
 

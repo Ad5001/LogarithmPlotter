@@ -97,6 +97,18 @@ Popup {
         }
     }
     
+    CheckBox {
+        id: resetRedoStackSetting
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: checkForUpdatesSetting.bottom
+        checked: Helper.getSettingBool("reset_redo_stack")
+        text: 'Reset redo stack when a new action is added to history'
+        onClicked: {
+            Helper.setSettingBool("reset_redo_stack", checked)
+            resetRedoStackMenuSetting.checked = checked
+        }
+    }
+    
     Button {
         text: "Done"
         font.pixelSize: 20
@@ -107,7 +119,7 @@ Popup {
     }
     
     Timer {
-        running: Helper.getSetting("last_install_greet") != Helper.getVersion()
+        running: Helper.getSetting("last_install_greet") != Helper.getVersion()+"a"
         repeat: false
         interval: 50
         onTriggered: greetingPopup.open()
