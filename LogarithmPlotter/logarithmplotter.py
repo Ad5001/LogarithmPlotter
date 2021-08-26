@@ -30,7 +30,7 @@ from tempfile import mkstemp
 from os import getcwd, chdir, environ, path, remove, close
 from platform import release as os_release
 from json import dumps, loads
-from sys import platform, argv, version as sys_version
+from sys import platform, argv, version as sys_version, exit
 from webbrowser import open as openWeb
 
 # Create the temporary file for saving copied screenshots
