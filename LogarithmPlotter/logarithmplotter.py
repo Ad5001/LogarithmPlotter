@@ -35,13 +35,12 @@ from webbrowser import open as openWeb
 
 # Create the temporary file for saving copied screenshots
 fd, tmpfile = mkstemp(suffix='.png')
-pwd = getcwd()
 
-chdir(path.dirname(path.realpath(__file__)))
+current_dir = path.dirname(path.realpath(__file__))
 
 from sys import path as sys_path
-if path.realpath(path.join(getcwd(), "..")) not in sys_path:
-    sys_path.append(path.realpath(path.join(getcwd(), "..")))
+if path.realpath(path.join(current_dir, "..")) not in sys_path:
+    sys_path.append(path.realpath(path.join(current_dir, "..")))
 
 
 from LogarithmPlotter import config, native, __VERSION__
@@ -66,7 +65,6 @@ class Helper(QObject):
 
     @Slot(str, str)
     def write(self, filename, filedata):
-        chdir(pwd)
         if path.exists(path.dirname(path.realpath(filename))):
             if filename.split(".")[-1] == "lpf":
                 # Add header to file
@@ -74,11 +72,9 @@ class Helper(QObject):
             f = open(path.realpath(filename), 'w',  -1, 'utf8')
             f.write(filedata)
             f.close()
-        chdir(path.dirname(path.realpath(__file__)))
         
     @Slot(str, result=str)
     def load(self, filename):
-        chdir(pwd)
         data = '{}'
         if path.exists(path.realpath(filename)):
             f = open(path.realpath(filename), 'r',  -1, 'utf8')
@@ -97,7 +93,6 @@ class Helper(QObject):
                 QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file "{}":\n{}'.format(filename, e), QMessageBox.Ok) # Cannot parse file
         else:
             QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file: "{}"\nFile does not exist.'.format(filename), QMessageBox.Ok) # Cannot parse file
-        chdir(path.dirname(path.realpath(__file__)))
         return data
 
     @Slot(result=str)
@@ -156,15 +151,15 @@ def run():
     print("Loaded dependencies in " + str((dep_time - start_time)*1000) + "ms.")
 
     icon_fallbacks = QIcon.fallbackSearchPaths();
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
+    icon_fallbacks.append(path.realpath(path.join(current_dir, "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
+    icon_fallbacks.append(path.realpath(path.join(current_dir, "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
+    icon_fallbacks.append(path.realpath(path.join(current_dir, "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
     QIcon.setFallbackSearchPaths(icon_fallbacks);
     
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
-    app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
+    app.setWindowIcon(QIcon(path.realpath(path.join(current_dir, "logarithmplotter.svg"))))
     
     # Installing macOS file handler.
     macOSFileOpenHandler = None
@@ -178,18 +173,16 @@ def run():
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
 
-    engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
-    engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+    engine.addImportPath(path.realpath(path.join(current_dir, "qml")))
+    engine.load(path.realpath(path.join(current_dir, "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
     if not engine.rootObjects():
-        print("No root object", path.realpath(path.join(getcwd(), "qml")))
-        print(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+        print("No root object", path.realpath(path.join(current_dir, "qml")))
+        print(path.realpath(path.join(current_dir, "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
         exit(-1)
 
-    chdir(pwd)
     if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
-    chdir(path.dirname(path.realpath(__file__)))
     
     if platform == "darwin":
         macOSFileOpenHandler.init_graphics(engine.rootObjects()[0])
