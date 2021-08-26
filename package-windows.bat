@@ -4,3 +4,4 @@ XCOPY LICENSE.md dist\logarithmplotter /C /D /Y
 rem Creating installer
 cd dist\logarithmplotter
 "C:\Program Files (x86)\NSIS\makensis" installer.nsi
+cd ..\..

@@ -181,14 +181,15 @@ def run():
     engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
     engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
+    if not engine.rootObjects():
+        print("No root object", path.realpath(path.join(getcwd(), "qml")))
+        print(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+        exit(-1)
+
     chdir(pwd)
     if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
     chdir(path.dirname(path.realpath(__file__)))
-
-    if not engine.rootObjects():
-        print("No root object")
-        exit(-1)
     
     if platform == "darwin":
         macOSFileOpenHandler.init_graphics(engine.rootObjects()[0])

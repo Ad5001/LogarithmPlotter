@@ -56,6 +56,7 @@ VIAddVersionKey "FileVersion"  "${APP_VERSION}"
 
 ;Icons
 Icon "logarithmplotter.ico"
+!define MUI_ICON "logarithmplotter.ico"
 ;!define MUI_HEADERIMAGE
 ;!define MUI_HEADERIMAGE_BITMAP "logarithmplotter.bmp"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "inst_banner.bmp"
