@@ -184,8 +184,8 @@ Section ""
     ; Registering mime type
     WriteRegStr HKLM ${REG_LPFCLASS} "" "Logarithm Plot File"
     WriteRegStr HKLM "${REG_LPFCLASS}\DefaultIcon" "" "$INSTDIR\logarithmplotter.exe,0" ; I'd like to put the logplotterfile icon, but this seems far too difficult to do.
-    WriteRegStr HKLM "${REG_LPFCLASS}\shell\open\command" "" "$INSTDIR\logarithmplotter.exe $\"$$1$\""
-    WriteRegStr HKLM "${REG_LPFCLASS}\shell\edit\command" "" "$INSTDIR\logarithmplotter.exe $\"$$1$\""
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\open\command" "" "$INSTDIR\logarithmplotter.exe $\"$%1$\""
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\edit\command" "" "$INSTDIR\logarithmplotter.exe $\"$%1$\""
     WriteRegStr HKLM ${REG_LPFEXT} "" "${PROG_ID}"
     WriteRegStr HKLM ${REG_LPFEXT} "Content Type" "application/x-logarithm-plot"
     WriteRegStr HKLM ${REG_LPFEXT} "PerceivedType" "Application"
