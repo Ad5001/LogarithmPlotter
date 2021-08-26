@@ -12,7 +12,7 @@ Unicode True
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/LogarithmPlotter"
 !define APP_VERSION "0.1.0.0"
-!define COPYRIGHT "Ad5001 © 2021"
+!define COPYRIGHT "Ad5001 (c) 2021"
 !define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
@@ -184,8 +184,8 @@ Section ""
     ; Registering mime type
     WriteRegStr HKLM ${REG_LPFCLASS} "" "Logarithm Plot File"
     WriteRegStr HKLM "${REG_LPFCLASS}\DefaultIcon" "" "$INSTDIR\logarithmplotter.exe,0" ; I'd like to put the logplotterfile icon, but this seems far too difficult to do.
-    WriteRegStr HKLM "${REG_LPFCLASS}\shell\open\command" "" "$INSTDIR\logarithmplotter.exe $\"$%1$\""
-    WriteRegStr HKLM "${REG_LPFCLASS}\shell\edit\command" "" "$INSTDIR\logarithmplotter.exe $\"$%1$\""
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\open\command" "" "$INSTDIR\logarithmplotter.exe $\"%1$\""
+    WriteRegStr HKLM "${REG_LPFCLASS}\shell\edit\command" "" "$INSTDIR\logarithmplotter.exe $\"%1$\""
     WriteRegStr HKLM ${REG_LPFEXT} "" "${PROG_ID}"
     WriteRegStr HKLM ${REG_LPFEXT} "Content Type" "application/x-logarithm-plot"
     WriteRegStr HKLM ${REG_LPFEXT} "PerceivedType" "Application"
