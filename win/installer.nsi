@@ -198,8 +198,8 @@ Section "Uninstall"
     RMDir /r "$INSTDIR"
 
     Delete "$SMPROGRAMS\LogarithmPlotter.lnk"
-    DeleteRegKey HKLM $[REG_UNINSTALL}
-    DeleteRegKey HKLM $[REG_APPPATHS}
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\logarithmplotter.exe"
 ;  ;DeleteRegKey /ifempty HKCU "Software\Modern UI Test"
 ;
 SectionEnd
