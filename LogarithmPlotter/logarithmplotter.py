@@ -27,14 +27,14 @@ from PySide2.QtGui import QIcon, QImage, QKeySequence
 from PySide2 import __version__ as PySide2_version
 
 from tempfile import mkstemp
-from os import getcwd, chdir, environ, path, remove
+from os import getcwd, chdir, environ, path, remove, close
 from platform import release as os_release
 from json import dumps, loads
 from sys import platform, argv, version as sys_version
 from webbrowser import open as openWeb
 
 # Create the temporary file for saving copied screenshots
-tmpfile = mkstemp(suffix='.png')[1]
+fd, tmpfile = mkstemp(suffix='.png')
 pwd = getcwd()
 
 chdir(path.dirname(path.realpath(__file__)))
@@ -198,7 +198,8 @@ def run():
         check_for_updates(__VERSION__, engine.rootObjects()[0])
     
     exit_code = app.exec_()
-
+    
+    close(fd)
     remove(tmpfile)
     config.save()
     exit(exit_code)
