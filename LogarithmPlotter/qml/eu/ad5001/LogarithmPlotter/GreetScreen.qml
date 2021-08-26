@@ -119,7 +119,7 @@ Popup {
     }
     
     Timer {
-        running: Helper.getSetting("last_install_greet") != Helper.getVersion()+"a"
+        running: Helper.getSetting("last_install_greet") != Helper.getVersion()
         repeat: false
         interval: 50
         onTriggered: greetingPopup.open()

@@ -170,9 +170,10 @@ Section ""
 
     WriteUninstaller $INSTDIR\uninstall.exe
     WriteRegStr HKLM ${REG_UNINSTALL} "DisplayName" "LogarithmPlotter"
+    WriteRegStr HKLM ${REG_UNINSTALL} "Publisher" "Ad5001"
     WriteRegStr HKLM ${REG_UNINSTALL} "UninstallString" "$INSTDIR\uninstall.exe"
     WriteRegStr HKLM ${REG_UNINSTALL} "QuietUninstallString" "$INSTDIR\uninstall.exe /S"
-    WriteRegStr HKLM ${REG_UNINSTALL} "DisplayIcon" "$INSTDIR\logarithmplotter.bmp"
+    WriteRegStr HKLM ${REG_UNINSTALL} "DisplayIcon" "$INSTDIR\logarithmplotter.ico"
     WriteRegStr HKLM ${REG_UNINSTALL} "DisplayVersion" "${APP_VERSION}"
     WriteRegStr HKLM ${REG_UNINSTALL} "Readme" "$INSTDIR\README.md"
     WriteRegStr HKLM ${REG_UNINSTALL} "URLInfoAbout" "${WEBSITE}"
