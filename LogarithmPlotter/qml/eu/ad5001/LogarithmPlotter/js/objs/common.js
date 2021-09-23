@@ -105,7 +105,7 @@ class DrawableObject {
     delete() {
         for(var toRemove of this.requiredBy) {
             toRemove.delete()
-            currentObjects[toRemove.type] = currentObjects[toRemove.type].filter(obj => obj.name != toRemove.name)
+            Objects.currentObjects[toRemove.type] = Objects.currentObjects[toRemove.type].filter(obj => obj.name != toRemove.name)
         }
     }
     
