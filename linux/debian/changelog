@@ -1,3 +1,13 @@
+logarithmplotter (0.1.2) unstable; urgency=medium
+
+  * Fixed bug: Unable to move Bode diagrams elements when having deleted the sum element.
+  * Fixed bug: Names were not not being changed from previous object when editing a new one.
+  * Fixed bug: Bode Magnitude was not drawn far enough
+  * Fixed bug: Bode Magnitude had undefined ending.
+  * Fixed other bugs from v0.1.1.
+
+ -- Ad5001 <mail@ad5001.eu>  Mon, 30 Sep 2021 20:00:00 +0200
+ 
 logarithmplotter (0.1.dev0) UNRELEASED; urgency=medium
 
   * Initial release.

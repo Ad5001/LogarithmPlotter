@@ -83,8 +83,8 @@ class SommeGainsBode extends Common.DrawableObject {
             var drawMin = 0.001
             
             var baseY = 0
-            var om0xGains = {100000: 0} // To draw the last part
-            var om0xPass = {100000: 'high'} // To draw the last part
+            var om0xGains = {1000000000: 0} // To draw the last part
+            var om0xPass = {1000000000: 'high'} // To draw the last part
             Objects.currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their om_0 position.
                 var om0x = gainObj.om_0.x.execute()
                 if(om0xGains[om0x] == undefined) {
@@ -115,7 +115,7 @@ class SommeGainsBode extends Common.DrawableObject {
             }
             // Calculating parts
             var previousPallier = drawMin
-            for(var pallier = 0; pallier <= om0xList.length; pallier++) {
+            for(var pallier = 0; pallier < om0xList.length; pallier++) {
                 var dbfn = new MathLib.Expression(`${gainTotal}*(ln(x)-ln(${previousPallier}))/ln(10)+${baseY}`)
                 var inDrawDom = MathLib.parseDomain(`]${previousPallier};${om0xList[pallier]}]`)
                 this.cachedParts.push([dbfn, inDrawDom])
