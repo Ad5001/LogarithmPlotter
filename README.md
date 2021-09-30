@@ -1,5 +1,5 @@
 # ![icon](https://git.ad5001.eu/Ad5001/LogarithmicPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
-[![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmicPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmicPlotter)
+[![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmicPlotter)
 
 Create graphs with logarithm scales, namely BODE diagrams.
 
