@@ -6,7 +6,7 @@ logarithmplotter (0.1.2) unstable; urgency=medium
   * Fixed bug: Bode Magnitude had undefined ending.
   * Fixed other bugs from v0.1.1.
 
- -- Ad5001 <mail@ad5001.eu>  Mon, 06 Jun 2021 08:48:28 +0200
+ -- Ad5001 <mail@ad5001.eu>  Mon, 30 Sep 2021 20:00:00 +0200
  
 logarithmplotter (0.1.dev0) UNRELEASED; urgency=medium
 
