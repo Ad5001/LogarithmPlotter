@@ -60,7 +60,7 @@ D.Dialog {
             icon: "icons/settings/custom/label.svg"
             min: 1
             width: dlgProperties.width
-            defValue: objEditor.obj.name
+            value: objEditor.obj.name
             onChanged: function(newValue) {
                 var newName = Utils.parseName(newValue)
                 if(newName != '' && objEditor.obj.name != newName) {

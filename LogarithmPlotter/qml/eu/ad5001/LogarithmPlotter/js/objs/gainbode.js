@@ -158,7 +158,7 @@ class GainBode extends Common.ExecutableObject {
     
     update() {
         super.update()
-        if(Objects.currentObjects['Somme gains Bode'] != undefined) {
+        if(Objects.currentObjects['Somme gains Bode'] != undefined && Objects.currentObjects['Somme gains Bode'].length > 0) {
             Objects.currentObjects['Somme gains Bode'][0].recalculateCache()
         } else {
             Objects.createNewRegisteredObject('Somme gains Bode')
