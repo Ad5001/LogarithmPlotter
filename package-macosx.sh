@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=0.1-dev0
+VERSION=0.1.2
 title="LogarithmPlotter v${VERSION} Setup"
 finalDMGName="LogarithmPlotter-v${VERSION}-setup.dmg"
 applicationName=LogarithmPlotter
