@@ -119,7 +119,7 @@ setuptools.setup(
     name='logarithmplotter',
     version=pkg_version,
 
-    description='Browse and use online services, free of account',
+    description='Create graphs with logarithm scales.',
     long_description=read_file("README.md"),
     keywords='logarithm plotter graph creator bode diagram',
 
