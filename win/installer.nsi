@@ -157,7 +157,7 @@ Section ""
     File *.dll
     File *.pyd
     File *.md
-    File *.manifest
+    ;File *.manifest
     File *.zip
     File *.bmp
     File *.ico
