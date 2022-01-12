@@ -1,5 +1,7 @@
-# ![icon](https://git.ad5001.eu/Ad5001/LogarithmicPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
+# ![icon](https://git.ad5001.eu/Ad5001/LogarithmPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
 [![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmPlotter)
+[![On flathub](https://img.shields.io/flathub/v/eu.ad5001.LogarithmPlotter?label=on%20flathub)](https://flathub.org/apps/details/eu.ad5001.LogarithmPlotter)
+[![On Snapcraft](https://badgen.net/snapcraft/v/logarithmplotter?label=on%20snapcraft)](https://snapcraft.io/logarithmplotter)
 
 Create graphs with logarithm scales, namely BODE diagrams.
 

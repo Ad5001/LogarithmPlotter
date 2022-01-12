@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - Create graphs with logarithm scales.
- *  Copyright (C) 2021  Ad5001
+ *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 from PySide2.QtCore import Qt, QRunnable, QThreadPool, QThread, QObject, Signal
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
+from sys import argv
 
 class UpdateInformation(QObject):
     got_update_info = Signal(bool, str, bool)
@@ -67,7 +68,8 @@ def check_for_updates(current_version, window):
     """
     Checks for updates in the background, and sends an alert with information.
     """
-    
+    if "--no-check-for-updates" in argv:
+        return # 
     def cb(show_alert, msg_text, update_available):
         pass
         if show_alert:

@@ -1,3 +1,9 @@
+logarithmplotter (0.1.3) unstable; urgency=medium
+
+  * Fixed bug: Confined packages (snapcraft & flatpak) won't show error messages related to update checks.
+
+ -- Ad5001 <mail@ad5001.eu>  Mon, 30 Sep 2021 20:00:00 +0200
+ 
 logarithmplotter (0.1.2) unstable; urgency=medium
 
   * Fixed bug: Unable to move Bode diagrams elements when having deleted the sum element.
@@ -8,7 +14,7 @@ logarithmplotter (0.1.2) unstable; urgency=medium
 
  -- Ad5001 <mail@ad5001.eu>  Mon, 30 Sep 2021 20:00:00 +0200
  
-logarithmplotter (0.1.dev0) UNRELEASED; urgency=medium
+logarithmplotter (0.1) UNRELEASED; urgency=medium
 
   * Initial release.
 

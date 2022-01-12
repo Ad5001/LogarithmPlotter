@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - Create graphs with logarithm scales.
- *  Copyright (C) 2021  Ad5001
+ *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 """
 from shutil import which
 
-__VERSION__ = "0.1.2"
+__VERSION__ = "0.1.3"
 is_release = False
 
 
