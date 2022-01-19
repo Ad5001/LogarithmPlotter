@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - Create graphs with logarithm scales.
- *  Copyright (C) 2021  Ad5001
+ *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,22 +20,34 @@ import setuptools
 import os
 import sys
 
+print(sys.argv)
+
 current_dir = os.path.realpath(os.path.dirname(os.path.realpath(__file__)))
 
 if "PREFIX" not in os.environ and sys.platform == 'linux':
-    if "XDG_DATA_HOME" in os.environ:
-        os.environ["PREFIX"] = os.environ["XDG_DATA_HOME"]
-    else :
-        try:
-            # Checking if we have permission to write to root.
-            from os import makedirs, rmdir
-            makedirs("/usr/share/applications/test")
-            rmdir("/usr/share/applications/test")
-            os.environ["PREFIX"] = "/usr/share"
-        except:
-            os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
+    from getopt import getopt
+    optlist, args = getopt(sys.argv, '', ['prefix=', 'root='])
+    for arg,value in optlist:
+        if arg == "prefix":
+            os.environ["PREFIX"] = value
+    if "PREFIX" not in os.environ and sys.platform == 'linux':
+        if "XDG_DATA_HOME" in os.environ:
+            os.environ["PREFIX"] = os.environ["XDG_DATA_HOME"]
+        else:
+            try:
+                # Checking if we have permission to write to root.
+                from os import makedirs, rmdir
+                makedirs("/usr/share/applications/test")
+                rmdir("/usr/share/applications/test")
+                os.environ["PREFIX"] = "/usr/share"
+            except:
+                os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
 
 from LogarithmPlotter import __VERSION__ as pkg_version
+
+if "--remove-git-version" in sys.argv:
+    pkg_version = pkg_version.split(".dev0")[0]
+    sys.argv.remove("--remove-git-version")
 
 CLASSIFIERS = """
 Environment :: Graphic
@@ -70,6 +82,10 @@ def package_data():
 
 data_files = []
 if sys.platform == 'linux':
+    data_files.append(('share/applications/', ['linux/logarithmplotter.desktop']))
+    data_files.append(('share/mime/packages/', ['linux/x-logarithm-plot.xml']))
+    data_files.append(('share/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
+    data_files.append(('share/icons/hicolor/scalable/apps/', ['logplotter.svg']))
     data_files.append((os.environ["PREFIX"] + '/applications/', ['linux/logarithmplotter.desktop']))
     data_files.append((os.environ["PREFIX"] + '/mime/packages/', ['linux/x-logarithm-plot.xml']))
     data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
@@ -82,7 +98,6 @@ if sys.platform == 'linux':
             os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', exist_ok=True)
             os.makedirs(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', exist_ok=True)
             os.makedirs(os.environ["PREFIX"] + '/metainfo/', exist_ok=True)
-            copyfile(current_dir + '/linux/logarithmplotter.desktop', os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
             copyfile(current_dir + '/linux/x-logarithm-plot.xml', os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
             copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', 
                      os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
@@ -90,6 +105,13 @@ if sys.platform == 'linux':
             if "FLATPAK_INSTALL" in os.environ:
                 copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.flatpak.xml',
                          os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
+                copyfile(current_dir + '/linux/flatpak/logarithmplotter.desktop', 
+                         os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
+            else:
+                copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.xml',
+                         os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
+                copyfile(current_dir + '/linux/logarithmplotter.desktop', 
+                         os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
         elif sys.argv[1] == "uninstall":
             os.remove(os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
             os.remove(os.environ["PREFIX"] + '/mime/packages/x-logarithm-plot.xml')
@@ -103,7 +125,7 @@ setuptools.setup(
     name='logarithmplotter',
     version=pkg_version,
 
-    description='Browse and use online services, free of account',
+    description='Create graphs with logarithm scales.',
     long_description=read_file("README.md"),
     keywords='logarithm plotter graph creator bode diagram',
 
@@ -111,7 +133,7 @@ setuptools.setup(
     author_email='mail@ad5001.eu',
 
     license=('GPLv3'),
-    url='https://apps.ad5001.eu/logarithmplotter',
+    url='https://apps.ad5001.eu/logarithmplotter/',
 
     classifiers=CLASSIFIERS,
     zip_safe=False,

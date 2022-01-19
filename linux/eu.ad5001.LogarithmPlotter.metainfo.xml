@@ -30,8 +30,8 @@
     </description>
     
     <categories>
-        <category>Network</category>
-        <category>Feed</category>
+        <category>Science</category>
+        <category>Education</category>
     </categories>
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
@@ -42,9 +42,12 @@
     </screenshots>
     <releases>
         <release version="0.1" date="2021-08-15"/>
+        <release version="0.1.2" date="2021-09-30"/>
+        <release version="0.1.3" date="2022-01-19"/>
     </releases>
       <content_rating type="oars-1.0">
     </content_rating>
+    <developer_name>Ad5001</developer_name>
     <update_contact>mail@ad5001.eu</update_contact>
 </application>
 
