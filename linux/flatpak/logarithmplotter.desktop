@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LogarithmPlotter
+GenericName=2D plotter software
+GenericName[fr]=Logiciel de traçage 2D
+Comment=Create BODE diagrams, sequences and repartition functions.
+Comment[fr]=Créer des diagrammes de BODE, des suites et des fonctions de répartition.
+
+TryExec=logarithmplotter
+Exec=logarithmplotter --no-check-for-updates %f
+Icon=logarithmplotter
+MimeType=application/x-logarithm-plot;
+Terminal=false
+StartupNotify=false
+Categories=Math

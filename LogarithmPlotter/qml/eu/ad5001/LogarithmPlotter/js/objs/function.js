@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - Create graphs with logarithm scales.
- *  Copyright (C) 2021  Ad5001
+ *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -135,16 +135,18 @@ class Function extends Common.ExecutableObject {
         var previousY;
         if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {
             // Point based functions.
-            previousX = definitionDomain.previous(previousX)
+            previousX = definitionDomain.next(previousX)
             if(previousX === null) previousX = definitionDomain.next(canvas.px2x(0))
             previousY = expr.execute(previousX)
             if(!drawPoints && !drawDash) return
             while(previousX !== null && canvas.x2px(previousX) < canvas.canvasSize.width) {
-                var currentX = definitionDomain.next(previousX)
+                // Reconverted for canvas to fix for logarithmic scales.
+                var currentX = definitionDomain.next(canvas.px2x(canvas.x2px(previousX)+pxprecision));
                 var currentY = expr.execute(currentX)
                 if(currentX === null) break;
                 if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
                     (destinationDomain.includes(currentY) || destinationDomain.includes(previousY))) {
+                    console.log(drawDash, drawPoints)
                     if(drawDash)
                         canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                     if(drawPoints) {

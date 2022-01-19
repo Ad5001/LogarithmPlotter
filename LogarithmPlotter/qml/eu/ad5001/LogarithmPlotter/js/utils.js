@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - Create graphs with logarithm scales.
- *  Copyright (C) 2021  Ad5001
+ *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -134,7 +134,7 @@ function simplifyExpression(str) {
         ],
         [ // Decomposition way 2
             /(^.?|[+-] |\()\((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\) ([*/]) ([-.\d\w]+)(.?$| [+-]|\))/g,
-            "$1$8 $7 $2 $4 $8 $7 $5$9"
+            "$1$2 $7 $8 $4 $5 $7 $8$9"
         ],
         [ // Factorisation of π elements.
             /(([-\d\w.]+ [*/] )*)(pi|π)(( [/*] [-\d\w.]+)*) ([+-]) (([-\d\w.]+ [*/] )*)(pi|π)(( [/*] [-\d\w.]+)*)?/g,
@@ -199,7 +199,7 @@ function simplifyExpression(str) {
             }
         ],
         [// Starting & ending parenthesis if not needed.
-            /^\((.*)\)$/g,
+            /^\s*\((.*)\)\s*$/g,
             function(match, middle) {
                 var str = middle
                 // Replace all groups

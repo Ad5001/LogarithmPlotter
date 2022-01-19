@@ -11,4 +11,4 @@ set \
 #export QT_QPA_PLATFORMTHEME=kde
 
 # Finally run the next part of the command chain
-exec "${@}"
+exec "${@} --no-check-for-updates"
