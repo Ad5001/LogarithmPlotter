@@ -20,6 +20,8 @@
 
 import "reference.js" as Reference
 
+const DERIVATION_PRECISION = 0.01
+
 const OPERATION_PRIORITY = {
     "+": 10, "-": 10,
     "*": 20, "/": 20
@@ -32,7 +34,8 @@ enum ASEType {
     STRING,
     FUNCTION,
     CONSTANT,
-    OPERATION
+    OPERATION,
+    NEGATION // Example: -x.
 }
 
 class AbstractSyntaxElement {
@@ -44,7 +47,7 @@ class AbstractSyntaxElement {
     simplify() {
         return this;
     }
-    derivative(variable) {
+    derivate(variable) {
         return this;
     }
     integrate(variable) {
@@ -76,7 +79,7 @@ class Variable extends AbstractSyntaxElement {
         }
     }
     
-    derivative(variable) {
+    derivate(variable) {
         if(variable == this.varName)
             return new NumberElement(1);
         return this;
@@ -157,7 +160,7 @@ class Constant extends Variable {
         }
     }
     
-    derivative(variable) {
+    derivate(variable) {
         if(variable == this.varName)
             return new NumberElement(0);
         return this;
@@ -187,7 +190,7 @@ class NumberElement extends AbstractSyntaxElement {
         this.value = parseFloat(number);
     }
     
-    derivative(variable) {
+    derivate(variable) {
         return new NumberElement(0);
     }
     
@@ -219,7 +222,7 @@ class StringElement extends AbstractSyntaxElement {
         return this.str
     }
     
-    derivative(variable) {
+    derivate(variable) {
         return this;
     }
     
@@ -249,12 +252,73 @@ class FunctionElement extends AbstractSyntaxElement {
     }
     
     execute(variables) {
-        if(Reference.FUNCTIONS_LIST.includes(this.function)) {
+        if(this.function == "derivate") {
+            return executeDerivative(variables)
+        } else if(this.function == "integrate") {
+            return executeIntegral(variables)
+        } else if(Reference.FUNCTIONS_LIST.includes(this.function)) {
             let args = this.args.map(arg => arg.execute(variables));
             return Reference.FUNCTIONS[this.function](...args);
         } else {
             throw new EvalError("Unknown function " + this.function + ".");
         }
+    }
+    
+    executeDerivative(variables) {
+        // Calculate derivation.
+        if(this.args.length == 2)
+            if(this.args[1] instanceof Variable) {
+                let d = this.args[1].varName; // derivative variable name.
+                if(Object.keys(variables).includes(d)) {
+                    let plus = this.args[0].execute(Object.assign({}, variables, {d: variables[d]+DERIVATION_PRECISION/2}));
+                    let min = this.args[0].execute(Object.assign({}, variables, {d: variables[d]-DERIVATION_PRECISION/2}));
+                    return (plus-min)/DERIVATION_PRECISION
+                } else
+                    throw new EvalError("Undefined variable " + d + ".");
+            } else
+                throw new EvalError(`Argument 1 of function derivate must be a variable.`)
+        else
+            throw new EvalError(`Function 'derivate' can only have 2 arguments. ${this.args.length} provided.`)
+    }
+    
+    executeIntegral(variables) {
+        // Calculate integral.
+        // Using simons rule
+        // https://en.wikipedia.org/wiki/Simpson%27s_rule
+        let d, f, a, b;
+        if(this.args.length == 2)
+            // Integral(f,var) integral of f by var.
+            if(this.args[1] instanceof Variable)
+                if(Object.keys(variables).includes(d)) {
+                    d = this.args[1].varName; // derivative variable name.
+                    if(!Object.keys(variables).includes(d))
+                        throw new EvalError("Undefined variable " + d + ".")
+                    a = 0;
+                    b = variables[d];
+                    f = this.args[0].execute;
+                } else
+            else
+                throw new EvalError(`Argument 2 of function derivate must be a variable.`)
+        else if(this.args.length == 4)
+            // Integral(a,b,f,var) integral from a to b of f by var.
+            if(this.args[3] instanceof Variable)
+                if(Object.keys(variables).includes(d)) {
+                    a = this.args[0].execute(variables);
+                    b = this.args[1].execute(variables);
+                    f = this.args[2].execute;
+                    d = this.args[3].varName; // derivative variable name.
+                    if(!Object.keys(variables).includes(d))
+                        throw new EvalError("Undefined variable " + d + ".");
+                }
+            else
+                throw new EvalError(`Argument 4 of function derivate must be a variable.`)
+        else
+            throw new EvalError(`Function 'derivate' can only have 2 or 4 arguments. ${this.args.length} provided.`)
+            
+        // (b-a)/6*(f(a)+4*f((a+b)/2)+f(b))
+        let f_a = f(Object.assign({}, variables, {d: a})), f_b = f(Object.assign({}, variables, {d: b}));
+        let f_m = f(Object.assign({}, variables, {d: (a+b)/2}))
+        return (b-a)/6*(f_a+4*f_m+f_b);
     }
     
     simplify() {
@@ -268,14 +332,14 @@ class FunctionElement extends AbstractSyntaxElement {
         }
     }
     
-    derivative(variable) {
+    derivate(variable) {
         //TODO: Use DERIVATIVES elements in reference.
-        return new FunctionElement("derivative", this.toEditableString());
+        return new FunctionElement("derivate", this, variable);
     }
     
     integrate(variable) {
         //TODO: Use INTEGRALS elements in reference.
-        return new FunctionElement("integrate", this.toEditableString());
+        return new FunctionElement("integrate", this, variable);
     }
     
     toEditableString() {
@@ -298,7 +362,12 @@ class FunctionElement extends AbstractSyntaxElement {
     }
     
     isConstant() {
-        return this.args.every(x => x.isConstant());
+        if(this.function == "derivate") 
+            return this.args[0].isConstant();
+        else if(this.function == "integrate")
+            return this.args.length == 4 && this.args[0].isConstant() && this.args[1].isConstant() && this.args[2].isConstant();
+        else
+            return this.args.every(x => x.isConstant());
     }
 }
 
@@ -334,7 +403,7 @@ class Operation extends AbstractSyntaxElement {
         let leftHand = this.leftHand.simplify();
         let rightHand = this.rightHand.simplify();
         let newOpe = new Operation(leftHand, this.ope, rightHand);
-        if(leftHand.type == ASEType.NUMBER && rightHand.type == ASEType.NUMBER && Math.abs(newOpe.value) < 1000000) {
+        if(leftHand.isConstant() && rightHand.isConstant() && Math.abs(newOpe.execute({})) < 1000000) {
             // Do not simplify to too big numbers
             switch(this.ope) {
                 case '+':
@@ -342,10 +411,10 @@ class Operation extends AbstractSyntaxElement {
                 case '*':
                 case '^':
                 case '%':
-                    return new NumberElement(newOpe.value);
+                    return new NumberElement(newOpe.execute({}));
                 case '/':
                     if(result % 1 == 0)
-                        return new NumberElement(newOpe.value);
+                        return new NumberElement(newOpe.execute({}));
                     else {
                         let simplified = simplifyFraction(leftHand.number, rightHand.number)
                         return new Operation(new NumberElement(simplified[0]), '/', new NumberElement(simplified[1]))
@@ -370,7 +439,7 @@ class Operation extends AbstractSyntaxElement {
                 case '*':
                     if((leftHand.type == ASEType.NUMBER && leftHand.value == 0) || (rightHand.type == ASEType.NUMBER && rightHand.value == 0))
                         return new NumberElement(0);
-                    else if(leftHand.type == ASEType.NUMBER && leftHand.value == 0)
+                    else if(leftHand.type == ASEType.NUMBER && leftHand.value == 1)
                         return rightHand;
                     else if(rightHand.type == ASEType.NUMBER && rightHand.value == 1)
                         return leftHand;
@@ -396,26 +465,30 @@ class Operation extends AbstractSyntaxElement {
         }
     }
     
-    derivative(variable) {
+    derivate(variable) {
         switch(this.ope) {
             case '-':
             case '+':
-                return new Operation(this.leftHand.derivative(variable), this.ope, this.rightHand.derivative(variable));
+                return new Operation(this.leftHand.derivate(variable), this.ope, this.rightHand.derivate(variable));
             case '*':
                 return new Operation(
-                    new Operation(this.leftHand.derivative(variable), '*', this.rightHand),
+                    new Operation(this.leftHand, '*', this.rightHand.derivate(variable)),
                     '+',
-                    new Operation(this.leftHand, '*', this.rightHand.derivative(variable))
+                    new Operation(this.leftHand.derivate(variable), '*', this.rightHand),
                 );
             case '/':
                 return new Operation(
-                    new Operation(this.leftHand.derivative(variable), '*', this.rightHand),
-                    '+',
-                    new Operation(this.leftHand, '*', this.rightHand.derivative(variable))
+                    new Operation(
+                        new Operation(this.leftHand, '*', this.rightHand.derivate(variable)),
+                        '-',
+                        new Operation(this.leftHand.derivate(variable), '*', this.rightHand),
+                    ),
+                    '/',
+                    new Operation(this.rightHand, '^', new NumberElement(2))
                 );
             case '^':
             case '%':
-                return new FunctionElement("integrate", this.toEditableString());
+                return new FunctionElement("derivate", this.toEditableString());
             default:
                 throw new EvalError("Unknown operator " + ope + ".");
         }
@@ -428,15 +501,15 @@ class Operation extends AbstractSyntaxElement {
                 return new Operation(this.leftHand.integrate(variable), this.ope, this.rightHand.integrate(variable));
             case '*':
                 return new Operation(
-                    new Operation(this.leftHand.derivative(variable), '*', this.rightHand),
+                    new Operation(this.leftHand.derivate(variable), '*', this.rightHand),
                     '+',
-                    new Operation(this.leftHand, '*', this.rightHand.derivative(variable))
+                    new Operation(this.leftHand, '*', this.rightHand.derivate(variable))
                 );
             case '/':
                 return new Operation(
-                    new Operation(this.leftHand.derivative(variable), '*', this.rightHand),
+                    new Operation(this.leftHand.derivate(variable), '*', this.rightHand),
                     '+',
-                    new Operation(this.leftHand, '*', this.rightHand.derivative(variable))
+                    new Operation(this.leftHand, '*', this.rightHand.derivate(variable))
                 );
             case '^':
             case '%':
@@ -501,4 +574,90 @@ function simplifyFraction(num,den) {
     return [num*mult/gcd, den*mult/gcd]
 }
 
+class Negation extends AbstractSyntaxElement {
+    type = ASEType.NEGATION;
+    
+    constructor(variableName) {
+        this.varName = variableName;
+    }
+    
+    execute(variables) {
+        if(variables.includes(this.varName)) {
+            return variables[this.varName];
+        } else {
+            throw new EvalError("Unknown variable " + this.varName + ".");
+        }
+    }
+    
+    derivate(variable) {
+        if(variable == this.varName)
+            return new NumberElement(1);
+        return this;
+    }
+    
+    integrate(variable) {
+        if(variable == this.varName)
+            // <var>^2/2
+            return new Operation(new Operation(this, '^', new NumberElement(2)), '/', new NumberElement(2));
+        return this;
+    }
+    
+    toEditableString() {
+        return this.varName;
+    }
+    
+    toLatex() {
+        return this.varName;
+    }
+    
+    isConstant() {
+        return false;
+    }
+}
 
+class Negation extends AbstractSyntaxElement {
+    type = ASEType.NEGATION;
+    
+    constructor(expression) {
+        this.expression = expression;
+    }
+    
+    execute(variables) {
+        if(variables.includes(this.arrayName)) {
+            let index = this.astIndex.execute(variables)
+            if(index % 1 != 0 || index < 0) { // Float index.
+                throw new EvalError("Non-integer array index " + index + " used as array index for " + this.varName + ".");
+            } else if(variables[this.arrayName].length <= index) {
+                throw new EvalError("Out-of-range index " + index + " used as array index for " + this.varName + ".");
+            } else {
+                return variables[this.arrayName][index];
+            }
+        } else {
+            throw new EvalError("Unknown variable " + this.varName + ".");
+        }
+    
+        toLatex() {
+            return this.varName;
+        }
+    }
+    
+    simplify() {
+        return new Negation(this.expression.simplify());
+    }
+    
+    derivate(variable) {
+        return new Negation(this.expression.derivate(variable));
+    }
+    
+    integrate(variable) {
+        return new Negation(this.expression.integrate(variable));
+    }
+    
+    toLatex() {
+        return '-' + this.expression.toLatex();
+    }
+    
+    isConstant() {
+        return this.expression.isConstant();
+    }
+}

@@ -18,3 +18,30 @@
 
 .pragma library
 
+import "ast.js" as AST
+import "tokenizer.js" as TK
+
+
+class ExpressionBuilder {
+    constructor(tokenizer) {
+        this.tokenizer = tokenizer;
+    }
+    
+    parseExpression(delimitors = '') {
+        // Parse a sequence of operations, and orders them based on OPERATION_PRIORITY.
+        let elements = []
+        let operators = []
+        let firstToken = this.tokenizer.peek();
+        if(firstToken.type == TK.TokenType.OPERATOR) // First operations.
+            if(firstToken.value == "-") {
+                // TODO: Set initial argument.
+                this.tokenizer.skip(TK.TokenType.OPERATOR)
+            } else
+                tokenizer.input.raise(`Invalid operator ${firstToken.value} at begining of statement.`)
+        else {
+            
+        }
+    }
+    
+    parseOperation()`
+}
