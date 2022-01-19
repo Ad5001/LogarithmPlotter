@@ -199,7 +199,7 @@ function simplifyExpression(str) {
             }
         ],
         [// Starting & ending parenthesis if not needed.
-            /^\((.*)\)$/g,
+            /^\s*\((.*)\)\s*$/g,
             function(match, middle) {
                 var str = middle
                 // Replace all groups
