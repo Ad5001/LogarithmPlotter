@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -28,8 +28,8 @@
 
 class GainBode extends Common.ExecutableObject {
     static type(){return 'Gain Bode'}
-    static displayType(){return 'Bode Magnitude'}
-    static displayTypeMultiple(){return 'Bode Magnitudes'}
+    static displayType(){return qsTr('Bode Magnitude')}
+    static displayTypeMultiple(){return qsTr('Bode Magnitudes')}
     static properties() {return {
         'om_0': new P.ObjectType('Point'),
         'pass': new P.Enum('high', 'low'),
@@ -69,7 +69,8 @@ class GainBode extends Common.ExecutableObject {
     }
     
     getReadableString() {
-        return `${this.name}: ${this.pass}-pass; ${this.om_0.name} = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
+        let pass = this.pass == "low" ? qsTr("low-pass") : qsTr("high-pass");
+        return `${this.name}: ${pass}; ${this.om_0.name} = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
     }
     
     export() {

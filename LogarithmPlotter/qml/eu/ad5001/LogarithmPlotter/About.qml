@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ import QtQuick.Controls 2.12
 
 D.Dialog {
     id: about
-    title: `About LogarithmPlotter`
+    title: qsTr("About LogarithmPlotter")
     width: 400
     height: 600
     
@@ -49,7 +49,7 @@ D.Dialog {
         width: parent.width
         wrapMode: Text.WordWrap
         font.pixelSize: 25
-        text: "LogarithmPlotter v" + Helper.getVersion() 
+        text: qsTr("LogarithmPlotter v%1").arg(Helper.getVersion())
     }
     
     Label {
@@ -61,7 +61,7 @@ D.Dialog {
         width: parent.width
         wrapMode: Text.WordWrap
         font.pixelSize: 18
-        text: "Create graphs with logarithm scales."
+        text: qsTr("2D plotter software to make BODE plots, sequences and repartition functions.")
     }
     
     Label {
@@ -100,7 +100,7 @@ You should have received a copy of the GNU General Public License along with thi
         anchors.top: copyrightInfos.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 10
-        text: 'Report a bug'
+        text: qsTr('Report a bug')
         icon.name: 'bug'
         onClicked: Helper.openUrl('https://git.ad5001.eu/Ad5001/LogarithmPlotter')
     }

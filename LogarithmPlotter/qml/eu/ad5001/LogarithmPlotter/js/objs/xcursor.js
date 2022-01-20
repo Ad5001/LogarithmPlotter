@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@
 
 class XCursor extends Common.DrawableObject {
     static type(){return 'X Cursor'}
-    static displayType(){return 'X Cursor'}
-    static displayTypeMultiple(){return 'X Cursors'}
+    static displayType(){return qsTr('X Cursor')}
+    static displayTypeMultiple(){return qsTr('X Cursors')}
     static properties() {
         return {
             'x': 'Expression',

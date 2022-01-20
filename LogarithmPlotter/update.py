@@ -1,5 +1,5 @@
 """
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PySide2.QtCore import Qt, QRunnable, QThreadPool, QThread, QObject, Signal
+from PySide2.QtCore import Qt, QRunnable, QThreadPool, QThread, QObject, Signal, QCoreApplication
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from sys import argv
@@ -51,17 +51,16 @@ class UpdateCheckerRunnable(QRunnable):
                 current_version_tuple = self.current_version.split(".")
                 is_version_newer = version_tuple > current_version_tuple
             if is_version_newer:
-                msg_text = "An update for LogarithPlotter (v" + version + ") is available."
+                msg_text = QCoreApplication.translate("update","An update for LogarithPlotter (v{}) is available.").format(version)
                 update_available = True
             else:
                 show_alert = False
-                msg_text = "No update available."
+                msg_text = QCoreApplication.translate("update","No update available.")
                 
         except HTTPError as e:
-            msg_text = "Could not fetch update information: Server error " + str(e.code) + "."
+            msg_text = QCoreApplication.translate("update","Could not fetch update information: Server error {}.").format(str(e.code))
         except URLError as e:
-            msg_text = "Could not fetch update information: Could not connect to the update server. " + str(e.reason) + "."
-        print(msg_text)
+            msg_text = QCoreApplication.translate("update","Could not fetch update information: {}.").format(str(e.reason))
         self.callback.got_update_info.emit(show_alert, msg_text,update_available)
 
 def check_for_updates(current_version, window):

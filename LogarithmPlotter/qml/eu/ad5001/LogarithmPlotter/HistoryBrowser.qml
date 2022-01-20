@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ ScrollView {
         Text {
             anchors.left: parent.left
             anchors.bottom: nowRect.top
-            text: "Redo >"
+            text: qsTr("Redo >")
             color: sysPaletteIn.windowText
             transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
             height: 70
@@ -79,7 +79,7 @@ ScrollView {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 5
-                text: "> Now"
+                text: qsTr("> Now")
                 color: sysPalette.windowText
             }
         }
@@ -113,7 +113,7 @@ ScrollView {
         Text {
             anchors.left: parent.left
             anchors.top: undoColumn.top
-            text: "< Undo"
+            text: qsTr("< Undo")
             color: sysPaletteIn.windowText
             transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
             height: 60

@@ -1,6 +1,6 @@
 
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ Popup {
             //width: parent.width
             wrapMode: Text.WordWrap
             font.pixelSize: 32
-            text: "Welcome to LogarithmPlotter"
+            text: qsTr("Welcome to LogarithmPlotter")
         }
     }
         
@@ -69,7 +69,7 @@ Popup {
         width: implicitWidth
         font.pixelSize: 18
         font.italic: true
-        text: "Version " + Helper.getVersion()
+        text: qsTr("Version %1").arg(Helper.getVersion())
     }
         
     Label {
@@ -81,7 +81,7 @@ Popup {
         wrapMode: Text.WordWrap
         font.pixelSize: 14
         width: parent.width - 50
-        text: "Take a few seconds to configure LogarithmPlotter.\nThese settings can always be changed at any time from the \"Settings\" menu."
+        text: qsTr("Take a few seconds to configure LogarithmPlotter.\nThese settings can be changed at any time from the \"Settings\" menu.")
     }
     
     CheckBox {
@@ -90,7 +90,7 @@ Popup {
         anchors.top: helpText.bottom
         anchors.topMargin: 10
         checked: Helper.getSettingBool("check_for_updates")
-        text: 'Check for updates on startup (requires online connectivity)'
+        text: qsTr('Check for updates on startup (requires online connectivity)')
         onClicked: {
             Helper.setSettingBool("check_for_updates", checked)
             checkForUpdatesMenuSetting.checked = checked
@@ -102,7 +102,7 @@ Popup {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: checkForUpdatesSetting.bottom
         checked: Helper.getSettingBool("reset_redo_stack")
-        text: 'Reset redo stack when a new action is added to history'
+        text: qsTr('Reset redo stack when a new action is added to history')
         onClicked: {
             Helper.setSettingBool("reset_redo_stack", checked)
             resetRedoStackMenuSetting.checked = checked

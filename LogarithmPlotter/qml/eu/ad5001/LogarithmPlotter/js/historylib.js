@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -74,7 +74,7 @@ class CreateNewObject extends Action {
     }
     
     getReadableString() {
-        return `New ${this.targetType} ${this.targetName} created.`
+        return qsTr("New %1 %2 created.").arg(this.targetType).arg(this.targetName)
     }
 }
 
@@ -91,7 +91,7 @@ class DeleteObject extends CreateNewObject {
     }
     
     getReadableString() {
-        return `${this.targetType} ${this.targetName} deleted.`
+        return qsTr("%1 %2 deleted.").arg(this.targetType).arg(this.targetName)
     }
 }
 
@@ -130,7 +130,7 @@ class EditedProperty extends Action {
     getReadableString() {
         var prev = this.previousValue == null ? ""+this.previousValue : this.previousValue.toString()
         var next = this.newValue == null ? ""+this.newValue : this.newValue.toString()
-        return `${this.targetPropertyReadable} of ${this.targetType} ${this.targetName} changed from "${prev}" to "${next}".`
+        return qsTr('%1 of %2 %3 changed from "%4" to "%5".').arg(this.targetPropertyReadable).arg(this.targetType).arg(this.targetName).arg(prev).arg(next)
     }
 }
 
@@ -144,9 +144,9 @@ class EditedVisibility extends EditedProperty {
     
     getReadableString() {
         if(this.newValue) {
-            return `${this.targetType} ${this.targetName} shown.`
+            return qsTr('%1 %2 shown.').arg(this.targetType).arg(this.targetName)
         } else {
-            return `${this.targetType} ${this.targetName} hidden.`
+            return qsTr('%1 %2 hidden.').arg(this.targetType).arg(this.targetName)
         }
     }
 }

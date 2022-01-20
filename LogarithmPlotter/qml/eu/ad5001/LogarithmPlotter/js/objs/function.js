@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@
 
 class Function extends Common.ExecutableObject {
     static type(){return 'Function'}
-    static displayType(){return 'Function'}
-    static displayTypeMultiple(){return 'Functions'}
+    static displayType(){return qsTr('Function')}
+    static displayTypeMultiple(){return qsTr('Functions')}
     static properties() {return {
         'expression': 'Expression',
         'definitionDomain': 'Domain',

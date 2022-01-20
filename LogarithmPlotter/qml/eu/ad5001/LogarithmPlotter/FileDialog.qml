@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ D.FileDialog {
     
     property bool exportMode: false
     
-    title: exportMode ? "Export Logarithm Plot file" : "Import Logarithm Plot file"
+    title: exportMode ? qsTr("Export Logarithm Plot file") : qsTr("Import Logarithm Plot file")
     nameFilters: ["Logarithm Plot File (*.lpf)", "All files (*)"]
 
     folder: shortcuts.documents

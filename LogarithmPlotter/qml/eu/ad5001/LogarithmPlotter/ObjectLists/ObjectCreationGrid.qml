@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ Column {
     Label {
         id: createTitle
         verticalAlignment: TextInput.AlignVCenter
-        text: '+ Create new:'
+        text: qsTr('+ Create new:')
         font.pixelSize: 20
     }
     

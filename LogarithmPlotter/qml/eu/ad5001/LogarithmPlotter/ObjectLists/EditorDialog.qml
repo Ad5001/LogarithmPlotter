@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ D.Dialog {
         anchors.left: parent.left
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
-        text: `Edit properties of ${objEditor.objType} ${objEditor.obj.name}`
+        text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
         font.pixelSize: 20
         color: sysPalette.windowText
     }
@@ -56,7 +56,7 @@ D.Dialog {
         TextSetting {
             id: nameProperty
             height: 30
-            label: "Name"
+            label: qsTr("Name")
             icon: "icons/settings/custom/label.svg"
             min: 1
             width: dlgProperties.width
@@ -82,13 +82,14 @@ D.Dialog {
             id: labelContentProperty
             height: 30
             width: dlgProperties.width
-            label: "Label content"
-            model: ["null", "name", "name + value"]
+            label: qsTr("Label content")
+            model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
+            property var idModel: ["null", "name", "name + value"]
             icon: "icons/settings/custom/label.svg"
-            currentIndex: model.indexOf(objEditor.obj.labelContent)
+            currentIndex: idModel.indexOf(objEditor.obj.labelContent)
             onActivated: function(newIndex) {
-                if(model[newIndex] != objEditor.obj.labelContent) {
-                    objEditor.obj.labelContent = model[newIndex]
+                if(idModel[newIndex] != objEditor.obj.labelContent) {
+                    objEditor.obj.labelContent = idModel[newIndex]
                     objectListList.update()
                 }
             }
@@ -109,7 +110,7 @@ D.Dialog {
                     width: parent.width
                     height: visible ? implicitHeight : 0
                     visible: modelData[0].startsWith('comment')
-                    text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
+                    text: visible ? (modelData[1].replace(/\{name\}/g, objEditor.obj.name)) : ''
                     //color: sysPalette.windowText
                     wrapMode: Text.WordWrap
                 }
@@ -181,7 +182,7 @@ D.Dialog {
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                     
                     model: visible ? 
-                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType]) : modelData[1].values) 
+                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())]) : modelData[1].values) 
                         : []
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
                     currentIndex: model.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
@@ -195,7 +196,7 @@ D.Dialog {
                                 // Creating new object.
                                 selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
                                 history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
-                                model = Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType])
+                                model = Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())])
                                 currentIndex = model.indexOf(selectedObj.name)
                             }
                             //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)

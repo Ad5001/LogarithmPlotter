@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@
 
 class SommePhasesBode extends Common.ExecutableObject {
     static type(){return 'Somme phases Bode'}
-    static displayType(){return 'Bode Phases Sum'}
-    static displayTypeMultiple(){return 'Bode Phases Sum'}
+    static displayType(){return qsTr('Bode Phases Sum')}
+    static displayTypeMultiple(){return qsTr('Bode Phases Sum')}
     static createable() {return false}
     static properties() {return {
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),

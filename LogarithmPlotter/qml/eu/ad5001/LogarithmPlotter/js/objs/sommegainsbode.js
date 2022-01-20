@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,8 @@
 
 class SommeGainsBode extends Common.DrawableObject {
     static type(){return 'Somme gains Bode'}
-    static displayType(){return 'Bode Magnitudes Sum'}
-    static displayTypeMultiple(){return 'Bode Magnitudes Sum'}
+    static displayType(){return qsTr('Bode Magnitudes Sum')}
+    static displayTypeMultiple(){return qsTr('Bode Magnitudes Sum')}
     static createable() {return false}
     static properties() {return {
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
