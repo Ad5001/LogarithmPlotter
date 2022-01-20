@@ -35,7 +35,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="29"/>
         <source>&amp;Load...</source>
-        <translation>&amp;Ouvrir...</translation>
+        <translation>&amp;Ouvrir…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="36"/>
@@ -45,7 +45,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="42"/>
         <source>Save &amp;As...</source>
-        <translation>Sauvegarde &amp;Sous...</translation>
+        <translation>Sauvegarde &amp;Sous…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="50"/>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="110"/>
         <source>Check for updates on startup</source>
-        <translation>Vérifier la présence de mise à jour au démarage</translation>
+        <translation>Vérifier la présence de mise à jour au démarrage</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="119"/>
