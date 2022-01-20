@@ -28,4 +28,5 @@ docs/html
 .kdev4
 AccountFree.pro
 AccountFree.pro.user
-AccountFree.egg-info/
+*.egg-info/
+*.tar.gz
