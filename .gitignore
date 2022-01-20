@@ -11,6 +11,7 @@ linux/flatpak/.flatpak-builder
 **/**.qmlc
 **/**.jsc
 **/**.pyc
+**/**.qm
 *.jsc
 *.qmlc
 .DS_Store

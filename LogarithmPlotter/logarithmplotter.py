@@ -176,7 +176,10 @@ def run():
     
     # Installing translators
     translator = QTranslator()
-    if (translator.load(QLocale(), "lp", "_", path.realpath(path.join(getcwd(), "i18n")))):
+    # Check if lang is forced.
+    forcedlang = [p for p in argv if p[:7]=="--lang="]
+    locale = QLocale(forcedlang[0][7:]) if len(forcedlang) > 0 else QLocale()
+    if (translator.load(locale, "lp", "_", path.realpath(path.join(getcwd(), "i18n")))):
         app.installTranslator(translator);
     
     # Installing macOS file handler.
