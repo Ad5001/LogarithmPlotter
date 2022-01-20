@@ -583,7 +583,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../update.py" line="54"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation>Une mise à jour de LogarithPlotter (v{}) est disponible.</translation>
+        <translation>Une mise à jour de LogarithmPlotter (v{}) est disponible.</translation>
     </message>
     <message>
         <location filename="../update.py" line="58"/>
