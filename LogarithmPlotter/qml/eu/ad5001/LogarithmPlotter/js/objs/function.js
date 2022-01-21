@@ -146,7 +146,6 @@ class Function extends Common.ExecutableObject {
                 if(currentX === null) break;
                 if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
                     (destinationDomain.includes(currentY) || destinationDomain.includes(previousY))) {
-                    console.log(drawDash, drawPoints)
                     if(drawDash)
                         canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                     if(drawPoints) {

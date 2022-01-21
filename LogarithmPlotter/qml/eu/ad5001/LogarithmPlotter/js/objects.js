@@ -53,7 +53,6 @@ function getObjectsName(objType) {
         types.forEach(function(elemType){
             elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
         })
-        console.log(elementNames)
         return elementNames
     }
     if(currentObjects[objType] == undefined) return []

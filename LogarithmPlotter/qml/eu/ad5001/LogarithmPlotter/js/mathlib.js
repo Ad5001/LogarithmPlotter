@@ -373,7 +373,6 @@ class SpecialDomain extends Domain {
 class DomainSet extends SpecialDomain {
     constructor(values) {
         super('', x => true, x => x, true)
-        console.log(values)
         var newVals = {}
         this.executedValues = []
         for(var value of values) {
