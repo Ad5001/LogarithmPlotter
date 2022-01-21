@@ -16,7 +16,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
         <source>2D plotter software to make BODE plots, sequences and repartition functions.</source>
-        <translation>2D-Grafiksoftware zur Erstellung von BODE-Diagramms, Folgen und Verteilungsfunktionen.</translation>
+        <translation>2D-Grafiksoftware zur Erstellung von Bode-Diagramms, Folgen und Verteilungsfunktionen.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="103"/>
