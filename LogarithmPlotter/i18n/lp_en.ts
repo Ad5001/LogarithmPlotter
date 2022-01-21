@@ -16,7 +16,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
         <source>2D plotter software to make BODE plots, sequences and repartition functions.</source>
-        <translation>2D plotter software to make BODE plots, sequences and repartition functions.</translation>
+        <translation>2D plotter software to make BODE plots, sequences and distribution functions.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="103"/>
@@ -517,12 +517,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="26"/>
         <source>Repartition</source>
-        <translation>Repartition</translation>
+        <translation>Distribution</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="27"/>
         <source>Repartition functions</source>
-        <translation>Repartition functions</translation>
+        <translation>Distribution functions</translation>
     </message>
 </context>
 <context>
