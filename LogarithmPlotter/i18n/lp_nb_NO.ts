@@ -5,6 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="26"/>
+        <location filename="../logarithmplotter.py" line="197"/>
         <source>About LogarithmPlotter</source>
         <translation>Om</translation>
     </message>
