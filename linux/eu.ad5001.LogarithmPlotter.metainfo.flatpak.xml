@@ -9,9 +9,9 @@
     
     <name>LogarithmPlotter</name>
     <name xml:lang="fr">LogarithmPlotter</name>
-    <icon type="remote">http://apps.ad5001.eu/icons/apps/logarithmplotter.svg</icon>
-    <summary>2D plotter software to make BODE plots, sequences and repartition functions</summary>
-    <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition</summary>
+    <icon type="remote">http://apps.ad5001.eu/icons/apps/svg/logarithmplotter.svg</icon>
+    <summary>2D plotter software to make Bode plots, sequences and repartition functions</summary>
+    <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de Bode, les suites et les fonctions de répartition</summary>
     <description>
         <p>
             LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
@@ -36,6 +36,7 @@
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
+    <url type="translate">https://hosted.weblate.org/engage/logarithmplotter/</url>
     <screenshots>
         <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
         <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png</screenshot>
