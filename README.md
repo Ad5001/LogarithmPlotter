@@ -1,12 +1,16 @@
 # ![icon](https://git.ad5001.eu/Ad5001/LogarithmPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
 [![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmPlotter)
+[![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/svg-badge.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
 [![On flathub](https://img.shields.io/flathub/v/eu.ad5001.LogarithmPlotter?label=on%20flathub&logo=Flathub&logoColor=white&color=4A86CF)](https://flathub.org/apps/details/eu.ad5001.LogarithmPlotter)
 [![On Snapcraft](https://badgen.net/snapcraft/v/logarithmplotter?label=on%20snapstore&color=82BEA0&icon=https://ad5001.eu/icons/skills/snapcraft.svg)](https://snapcraft.io/logarithmplotter)
 
-Create graphs with logarithm scales, namely BODE diagrams.
+2D plotter software to make Bode plots, sequences and distribution functions.
+
 ## Run
 
 You can simply run LogarithmPlotter using `python3 run.py`.
+
+In order to test translations, you can use the `--lang=<lang code>` command line option to force the detected locale of LogarithmPlotter.
 
 ## Install
 
@@ -33,9 +37,17 @@ For all builds, you need [Python 3](https://python.org) with [PySide2](https://p
 
 Run `bash linux/install_local.sh`
 
+## Contribute
+
+There are several ways to contribute to LogarithmPlotter. 
+- You can help to translate [the project on Hosted Weblate](https://hosted.weblate.org/engage/logarithmplotter/):
+[![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/multi-auto.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
+
+- You can help the development of LogarithmPlotter. In order to get started, take a look at the [wiki](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_pages).
+
 ## Legal notice
-        LogarithmPlotter - Create graphs with logarithm scales.
-        Copyright (C) 2021  Ad5001 <mail@ad5001.eu>
+        LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
+        Copyright (C) 2022  Ad5001 <mail@ad5001.eu>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
