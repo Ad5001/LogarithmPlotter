@@ -1,3 +1,6 @@
 [submodule "LogarithmPlotter/qml/eu/ad5001/MixedMenu"]
 	path = LogarithmPlotter/qml/eu/ad5001/MixedMenu
 	url = https://git.ad5001.eu/Ad5001/MixedMenu
+[submodule "linux/flatpak"]
+	path = linux/flatpak
+	url = https://github.com/Ad5001/eu.ad5001.LogarithmPlotter
