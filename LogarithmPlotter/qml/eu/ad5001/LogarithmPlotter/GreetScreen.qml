@@ -24,7 +24,7 @@ Popup {
     id: greetingPopup
     x: (parent.width-width)/2
     y: Math.max(20, (parent.height-height)/2)
-    width: 600
+    width: Math.max(welcome.width, checkForUpdatesSetting.width, resetRedoStackSetting.width)+20
     height: Math.min(parent.height-40, 500)
     modal: true
     focus: true
@@ -110,7 +110,7 @@ Popup {
     }
     
     Button {
-        text: "Done"
+        text: qsTr("Done")
         font.pixelSize: 20
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
@@ -119,7 +119,7 @@ Popup {
     }
     
     Timer {
-        running: Helper.getSetting("last_install_greet") != Helper.getVersion()
+        running: true//Helper.getSetting("last_install_greet") != Helper.getVersion()
         repeat: false
         interval: 50
         onTriggered: greetingPopup.open()

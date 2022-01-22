@@ -127,6 +127,22 @@ MenuBar {
     Menu {
         title: qsTr("&Help")
         Action {
+            text: qsTr("&Source code")
+            icon.name: 'code'
+            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&Report a bug")
+            icon.name: 'bug'
+            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&Help translating!")
+            icon.name: 'translator'
+            onTriggered: Helper.openUrl("https://hosted.weblate.org/engage/logarithmplotter/")
+        }
+        MenuSeparator { }
+        Action {
             text: qsTr("&About")
             shortcut: StandardKey.HelpContents
             icon.name: 'about'
