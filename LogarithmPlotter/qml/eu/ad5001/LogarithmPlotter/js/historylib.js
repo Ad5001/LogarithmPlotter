@@ -74,7 +74,7 @@ class CreateNewObject extends Action {
     }
     
     getReadableString() {
-        return qsTr("New %1 %2 created.").arg(this.targetType).arg(this.targetName)
+        return qsTr("New %1 %2 created.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
     }
 }
 
@@ -91,7 +91,7 @@ class DeleteObject extends CreateNewObject {
     }
     
     getReadableString() {
-        return qsTr("%1 %2 deleted.").arg(this.targetType).arg(this.targetName)
+        return qsTr("%1 %2 deleted.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
     }
 }
 
@@ -130,7 +130,7 @@ class EditedProperty extends Action {
     getReadableString() {
         var prev = this.previousValue == null ? ""+this.previousValue : this.previousValue.toString()
         var next = this.newValue == null ? ""+this.newValue : this.newValue.toString()
-        return qsTr('%1 of %2 %3 changed from "%4" to "%5".').arg(this.targetPropertyReadable).arg(this.targetType).arg(this.targetName).arg(prev).arg(next)
+        return qsTr('%1 of %2 %3 changed from "%4" to "%5".').arg(this.targetPropertyReadable).arg(Objects.types[this.targetType].displayType()).arg(this.targetName).arg(prev).arg(next)
     }
 }
 
