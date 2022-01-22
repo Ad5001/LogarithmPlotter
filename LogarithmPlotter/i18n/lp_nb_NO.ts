@@ -252,12 +252,12 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="284"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation>Kopierte plott-skjermavbildning til utklippstavlen</translation>
+        <translation>Kopierte plott-skjermavbildning til utklippstavlen!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="295"/>
         <source>&amp;Update</source>
-        <translation type="unfinished">&amp;Oppgrader</translation>
+        <translation>&amp;Oppdater</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="297"/>
@@ -389,7 +389,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="286"/>
         <source>X Log scale</source>
-        <translation type="unfinished">X-log-skala</translation>
+        <translation>Logaritmisk skala i x</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="296"/>
@@ -530,12 +530,12 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="29"/>
         <source>Sequence</source>
-        <translation type="unfinished">Sekvens</translation>
+        <translation>Følge</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="30"/>
         <source>Sequences</source>
-        <translation type="unfinished">Sekvenser</translation>
+        <translation type="unfinished">Følger</translation>
     </message>
 </context>
 <context>
@@ -589,7 +589,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../update.py" line="63"/>
         <source>Could not fetch update information: {}.</source>
-        <translation>Kunne ikke hente info om hvorvidt det er nye versjoner: {}</translation>
+        <translation>Kunne ikke hente info om hvorvidt det er nye versjoner: {}.</translation>
     </message>
 </context>
 <context>
