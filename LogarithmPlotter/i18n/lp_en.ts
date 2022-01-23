@@ -100,17 +100,17 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
         <source>&amp;Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Source code</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
         <source>&amp;Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Report a bug</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="140"/>
         <source>&amp;Help translating!</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Help translating!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="146"/>
@@ -202,7 +202,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="113"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Done</translation>
     </message>
 </context>
 <context>
