@@ -34,7 +34,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "")
+    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "") + (history.saved ? "" : "*")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -195,6 +195,7 @@ ApplicationWindow {
             "type":         "logplotv1"
         }))
         alert.show(qsTr("Saved plot to '%1'.").arg(filename.split("/").pop()))
+        history.saved = true
     }
     
     function loadDiagram(filename) {
@@ -258,9 +259,11 @@ ApplicationWindow {
             console.log(error)
             alert.show(qsTr("Could not save file: ") + error)
             // TODO: Error handling
+            return
         }
         drawCanvas.requestPaint()
         alert.show(qsTr("Loaded file '%1'.").arg(basename))
+        history.saved = true
     }
     
     Timer {
@@ -275,6 +278,13 @@ ApplicationWindow {
         repeat: false
         interval: 100
         onTriggered: Qt.quit() // Quit after paint on test build
+    }
+    
+    onClosing: {
+        if(!history.saved) {
+            close.accepted = false
+            appMenu.showSaveUnsavedChangesDialog()
+        }
     }
     
     function copyDiagramToClipboard() {

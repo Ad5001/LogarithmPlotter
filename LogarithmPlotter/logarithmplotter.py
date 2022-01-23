@@ -103,7 +103,7 @@ class Helper(QObject):
             QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok) # Cannot parse file
         chdir(path.dirname(path.realpath(__file__)))
         return data
-
+    
     @Slot(result=str)
     def gettmpfile(self):
         global tmpfile

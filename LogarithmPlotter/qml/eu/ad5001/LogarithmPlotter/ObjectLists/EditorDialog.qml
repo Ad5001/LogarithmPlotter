@@ -65,7 +65,6 @@ D.Dialog {
                 var newName = Utils.parseName(newValue)
                 if(newName != '' && objEditor.obj.name != newName) {
                     if(Objects.getObjectByName(newName) != null) {
-                        console.log(Objects.getObjectByName(newName).name, newName)
                         newName = ObjectsCommons.getNewName(newName)
                     }
                     history.addToHistory(new HistoryLib.NameChanged(
@@ -181,23 +180,25 @@ D.Dialog {
                     // True to select an object of type, false for enums.
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                     
-                    model: visible ? 
+                    property var baseModel: visible ? 
                         (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())]) : modelData[1].values) 
                         : []
+                    // Translate the model if necessary.
+                    model: selectObjMode ? baseModel : baseModel.map(x => qsTr(x))
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
-                    currentIndex: model.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
+                    currentIndex: baseModel.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
 
                     onActivated: function(newIndex) {
                         if(selectObjMode) {
                             // This is only done when what we're selecting are Objects.
                             // Setting object property.
-                            var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1].objType)
+                            var selectedObj = Objects.getObjectByName(baseModel[newIndex], modelData[1].objType)
                             if(selectedObj == null) {
                                 // Creating new object.
                                 selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
                                 history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
-                                model = Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())])
-                                currentIndex = model.indexOf(selectedObj.name)
+                                baseModel = Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())])
+                                currentIndex = baseModel.indexOf(selectedObj.name)
                             }
                             //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
                             objEditor.obj.requiredBy = objEditor.obj.requiredBy.filter((obj) => objEditor.obj.name != obj.name)
@@ -207,13 +208,13 @@ D.Dialog {
                                 objEditor.obj[modelData[0]], selectedObj
                             ))
                             objEditor.obj[modelData[0]] = selectedObj
-                        } else if(model[newIndex] != objEditor.obj[modelData[0]]) { 
+                        } else if(baseModel[newIndex] != objEditor.obj[modelData[0]]) { 
                             // Ensuring new property is different to not add useless history entries.
                             history.addToHistory(new HistoryLib.EditedProperty(
                                 objEditor.obj.name, objEditor.objType, modelData[0], 
-                                objEditor.obj[modelData[0]], model[newIndex]
+                                objEditor.obj[modelData[0]], baseModel[newIndex]
                             ))
-                            objEditor.obj[modelData[0]] = model[newIndex]
+                            objEditor.obj[modelData[0]] = baseModel[newIndex]
                         }
                         // Refreshing
                         Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()

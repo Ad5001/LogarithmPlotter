@@ -28,5 +28,4 @@ D.FileDialog {
 
     folder: shortcuts.documents
     selectExisting: !exportMode
-    
 }

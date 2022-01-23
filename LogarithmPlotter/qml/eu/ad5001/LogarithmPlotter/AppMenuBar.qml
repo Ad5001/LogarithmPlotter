@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.12
+import QtQuick.Dialogs 1.3
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
@@ -49,7 +50,13 @@ MenuBar {
         Action {
             text: qsTr("&Quit")
             shortcut: StandardKey.Quit
-            onTriggered: Qt.quit()
+            onTriggered: {
+                if(settings.saved)
+                    Qt.quit()
+                else
+                    saveUnsavedChangesDialog.visible = true;
+            }
+            
             icon.name: 'application-exit'
         }
     }
@@ -148,5 +155,18 @@ MenuBar {
             icon.name: 'about'
             onTriggered: about.open()
         }
+    }
+    
+    MessageDialog {
+        id: saveUnsavedChangesDialog
+        title: qsTr("Save unsaved changes?")
+        icon: StandardIcon.Question
+        text: qsTr("This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?")
+        standardButtons: StandardButton.Yes | StandardButton.No
+        onYes: Qt.quit()
+    }
+    
+    function showSaveUnsavedChangesDialog() {
+        saveUnsavedChangesDialog.visible = true
     }
 }

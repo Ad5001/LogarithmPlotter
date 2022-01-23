@@ -29,6 +29,8 @@ Item {
     property int redoCount: 0
     property var undoStack: []
     property var redoStack: []
+    // Only true when no modification was done to the current working file.
+    property bool saved: true
     
     function clear() {
         undoStack = []
@@ -71,6 +73,7 @@ Item {
                 redoStack = []
                 redoCount = 0
             }
+            saved = false
         }
     }
 
@@ -82,6 +85,7 @@ Item {
             redoStack.push(action)
             undoCount--;
             redoCount++;
+            saved = false
         }
     }
 
@@ -93,17 +97,22 @@ Item {
             undoStack.push(action)
             undoCount++;
             redoCount--;
+            saved = false
         }
     }
     
     function undoMultipleDefered(toUndoCount) {
         undoTimer.toUndoCount = toUndoCount;
         undoTimer.start()
+        if(toUndoCount > 0)
+            saved = false
     }
     
     function redoMultipleDefered(toRedoCount) {
         redoTimer.toRedoCount = toRedoCount;
         redoTimer.start()
+        if(toRedoCount > 0)
+            saved = false
     }
     
     Timer {

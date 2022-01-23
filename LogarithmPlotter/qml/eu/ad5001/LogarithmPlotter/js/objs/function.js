@@ -29,17 +29,29 @@ class Function extends Common.ExecutableObject {
     static displayType(){return qsTr('Function')}
     static displayTypeMultiple(){return qsTr('Functions')}
     static properties() {return {
-        'expression': 'Expression',
-        'definitionDomain': 'Domain',
-        'destinationDomain': 'Domain',
-        'comment1': 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'displayMode': new P.Enum('application', 'function'),
-        'labelX': 'number',
-        'comment2': 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
-        'drawPoints': 'boolean',
-        'drawDashedLines': 'boolean'
+        'expression':               'Expression',
+        'definitionDomain':         'Domain',
+        'destinationDomain':        'Domain',
+        'comment1':                 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
+        'labelPosition':            P.Enum.Position,
+        'displayMode':              new P.Enum('application', 'function'),
+        'labelX':                   'number',
+        'comment2':                 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
+        'drawPoints':               'boolean',
+        'drawDashedLines':          'boolean'
     }}
+    /*static properties() {return {
+        [QT_TR_NOOP('expression')]:             'Expression',
+        [QT_TR_NOOP('definitionDomain')]:       'Domain',
+        [QT_TR_NOOP('destinationDomain')]:      'Domain',
+                    'comment1':                 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
+        [QT_TR_NOOP('labelPosition')]:          P.Enum.Position,
+        [QT_TR_NOOP('displayMode')]:            new P.Enum('application', 'function'),
+        [QT_TR_NOOP('labelX')]:                 'number',
+                    'comment2':                 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
+        [QT_TR_NOOP('drawPoints')]:             'boolean',
+        [QT_TR_NOOP('drawDashedLines')]:        'boolean'
+    }}*/
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 expression = 'x', definitionDomain = 'RPE', destinationDomain = 'R', 
