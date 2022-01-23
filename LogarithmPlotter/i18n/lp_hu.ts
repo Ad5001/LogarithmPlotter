@@ -7,12 +7,12 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="26"/>
         <location filename="../logarithmplotter.py" line="201"/>
         <source>About LogarithmPlotter</source>
-        <translation>Logaritmus-ábrázoló névjegye</translation>
+        <translation>LogarithmPlotter névjegye</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="52"/>
         <source>LogarithmPlotter v%1</source>
-        <translation>Logaritmus-ábrázoló %1 verzió</translation>
+        <translation>LogarithmPlotter %1 verzió</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="58"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation>Isten hozott a Logaritmus-ábrázoló!</translation>
+        <translation>Isten hozott a LogarithmPlotter!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="72"/>
@@ -196,7 +196,7 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="84"/>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
-        <translation>Szánjon néhány másodpercet a Logaritmus-ábrázoló beállításához.
+        <translation>Szánjon néhány másodpercet a LogarithmPlotter beállításához.
 Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.</translation>
     </message>
     <message>
@@ -293,7 +293,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="307"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>A Logaritmus-ábrázoló &amp;frissítése</translation>
+        <translation>A LogarithmPlotter &amp;frissítése</translation>
     </message>
 </context>
 <context>
