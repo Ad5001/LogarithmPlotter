@@ -22,7 +22,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="103"/>
         <source>Report a bug</source>
-        <translation>Rapporter un bug</translation>
+        <translation>Rapport de bug</translation>
     </message>
 </context>
 <context>
@@ -101,17 +101,17 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
         <source>&amp;Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Code source</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
         <source>&amp;Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapport de bug</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="140"/>
         <source>&amp;Help translating!</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aider à la traduction !</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="146"/>
@@ -194,7 +194,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="113"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <source>Take a few seconds to configure LogarithmPlotter.
