@@ -120,12 +120,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
         <source>Save unsaved changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Save unsaved changes?</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="164"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</translation>
     </message>
 </context>
 <context>
@@ -522,42 +522,42 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="61"/>
         <source>above</source>
-        <translation type="unfinished"></translation>
+        <translation>↑ Above</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="62"/>
         <source>below</source>
-        <translation type="unfinished"></translation>
+        <translation>↓ Below</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="63"/>
         <source>left</source>
-        <translation type="unfinished"></translation>
+        <translation>← Left</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
         <source>right</source>
-        <translation type="unfinished"></translation>
+        <translation>→ Right</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
         <source>above-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↖ Above left</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="66"/>
         <source>above-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↗ Above right</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="67"/>
         <source>below-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↙ Below left</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="68"/>
         <source>below-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↘ Below right</translation>
     </message>
 </context>
 <context>
