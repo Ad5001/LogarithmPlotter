@@ -12,4 +12,4 @@ Icon=logarithmplotter
 MimeType=application/x-logarithm-plot;
 Terminal=false
 StartupNotify=false
-Categories=Math
+Categories=Science

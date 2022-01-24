@@ -4,8 +4,9 @@ Type=Application
 Name=LogarithmPlotter
 GenericName=2D plotter software
 GenericName[fr]=Logiciel de traçage 2D
-Comment=Create BODE diagrams, sequences and repartition functions.
-Comment[fr]=Créer des diagrammes de BODE, des suites et des fonctions de répartition.
+Comment=Create BODE diagrams, sequences and distribution functions
+Comment[fr]=Créer des diagrammes de BODE, des suites et des fonctions de répartition
+Comment[hu]=Bode-ábrák, sorozatok és újraosztási függvények létrehozása
 
 TryExec=logarithmplotter
 Exec=logarithmplotter %f
@@ -13,4 +14,4 @@ Icon=logarithmplotter
 MimeType=application/x-logarithm-plot;
 Terminal=false
 StartupNotify=false
-Categories=Math
+Categories=Science
