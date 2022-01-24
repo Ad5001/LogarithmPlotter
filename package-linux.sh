@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Buiilding translations
+# Building translations
 cd "LogarithmPlotter/i18n/"
 bash release.sh
 cd ../../

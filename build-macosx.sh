@@ -3,7 +3,7 @@ rm $(find . -name "*.qmlc")
 rm $(find . -name "*.pyc")
 python3 -m pip install -U pyinstaller
 
-# Buiilding translations
+# Building translations
 cd "LogarithmPlotter/i18n/"
 bash release.sh
 cd ../../
