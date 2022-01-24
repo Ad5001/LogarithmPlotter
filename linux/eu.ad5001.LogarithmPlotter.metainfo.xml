@@ -9,9 +9,15 @@
     
     <name>LogarithmPlotter</name>
     <name xml:lang="fr">LogarithmPlotter</name>
+    <name xml:lang="de">LogarithmPlotter</name>
+    <name xml:lang="no">LogarithmPlotter</name>
+    <name xml:lang="hu">LogarithmPlotter</name>
     <icon type="remote">http://apps.ad5001.eu/icons/apps/svg/logarithmplotter.svg</icon>
     <summary>2D plotter software to make Bode plots, sequences and repartition functions</summary>
     <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de Bode, les suites et les fonctions de répartition</summary>
+    <summary xml:lang="de">2D-Grafiksoftware zur Erstellung von Bode-Diagramms, Folgen und Verteilungsfunktionen</summary>
+    <summary xml:lang="no">2D-plotterprogramvare laget for opprettelse av Bode-diagram, sekvenser, og distribusjonsfunksjoner</summary>
+    <summary xml:lang="hu">Síkbeli ábrázolásszoftver Bode-ábrák, sorozatok és eloszlási funkciók készítéséhez</summary>
     <description>
         <p>
             LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
