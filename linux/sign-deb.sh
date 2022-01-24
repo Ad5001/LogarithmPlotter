@@ -12,7 +12,7 @@ cd tmp
 rm -rf *
 
 # DSC file variables
-dsc_file="$(find ../ -regextype sed -regex ".*/*\-ppa[0-9]*.dsc" | cut -c 4-)"
+dsc_file="$(find ../ -regextype sed -regex ".*/*.dsc" | cut -c 4-)"
 source_package_name="$(echo $dsc_file | cut -c -$(expr ${#dsc_file} - 4))"
 
 # extract and sign the files
