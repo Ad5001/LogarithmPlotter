@@ -18,12 +18,12 @@
 from shutil import which
 
 __VERSION__ = "0.1.4"
-is_release = False
+is_release = True
 
 
 # Check if development version, if so get the date of the latest git patch
 # and append it to the version string.
-if which('git') is not None and not is_release:
+if not is_release and which('git') is not None:
     from os.path import realpath, join, dirname, exists
     from subprocess import check_output
     from datetime import datetime
