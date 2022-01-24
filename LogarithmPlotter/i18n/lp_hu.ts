@@ -7,17 +7,17 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="26"/>
         <location filename="../logarithmplotter.py" line="201"/>
         <source>About LogarithmPlotter</source>
-        <translation>Logaritmus-ábrázoló névjegye</translation>
+        <translation>LogarithmPlotter névjegye</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="52"/>
         <source>LogarithmPlotter v%1</source>
-        <translation>Logaritmus-ábrázoló %1 verzió</translation>
+        <translation>LogarithmPlotter %1 verzió</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
         <source>2D plotter software to make BODE plots, sequences and repartition functions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Síkbeli ábrázolásszoftver Bode-ábrák, sorozatok és eloszlási funkciók készítéséhez.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="103"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="75"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Ismét</translation>
+        <translation>&amp;Ismétlés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="84"/>
@@ -85,12 +85,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="117"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítések keresése indításkor</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="126"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismétlési verem önműködő visszaállítása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
@@ -120,12 +120,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
         <source>Save unsaved changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Menti a változtatásokat?</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="164"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez az ábra nem mentett változtatásokat tartalmaz. Ezzel az összes nem mentett adat elveszik. Folytatja?</translation>
     </message>
 </context>
 <context>
@@ -133,38 +133,38 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="45"/>
         <source>Edit properties of %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 tulajdonságainak szerkesztése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="59"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="84"/>
         <source>Label content</source>
-        <translation type="unfinished"></translation>
+        <translation>Címke tartalom</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="85"/>
         <source>null</source>
-        <translation type="unfinished"></translation>
+        <translation>üres</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="85"/>
         <source>name</source>
-        <translation type="unfinished"></translation>
+        <translation>név</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="85"/>
         <source>name + value</source>
-        <translation type="unfinished"></translation>
+        <translation>név + érték</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="184"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="200"/>
         <source>+ Create new %1</source>
-        <translation type="unfinished"></translation>
+        <translation>+ Új %1 létrehozása</translation>
     </message>
 </context>
 <context>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/FileDialog.qml" line="26"/>
         <source>Export Logarithm Plot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Logaritmus-ábra-fájl exportálása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/FileDialog.qml" line="26"/>
         <source>Import Logarithm Plot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Logaritmus-ábra-fájl importálása</translation>
     </message>
 </context>
 <context>
@@ -185,34 +185,34 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="58"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation>Isten hozott a Logaritmus-ábrázoló!</translation>
+        <translation>Isten hozott a LogarithmPlotter!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="72"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 verzió</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="84"/>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
-        <translation>Szánjon néhány másodpercet a Logaritmus-ábrázoló beállításához.
+        <translation>Szánjon néhány másodpercet a LogarithmPlotter beállításához.
 Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="93"/>
         <source>Check for updates on startup (requires online connectivity)</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítések keresése indításkor (online kapcsolat szükséges)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="105"/>
         <source>Reset redo stack when a new action is added to history</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismétlési verem alaphelyzet visszaállítása, ha új műveletet adnak az előzményekhez</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="113"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Kész</translation>
     </message>
 </context>
 <context>
@@ -220,17 +220,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/HistoryBrowser.qml" line="63"/>
         <source>Redo &gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismétlés &gt;</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/HistoryBrowser.qml" line="82"/>
         <source>&gt; Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt; Most</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/HistoryBrowser.qml" line="116"/>
         <source>&lt; Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt; Visszavonás</translation>
     </message>
 </context>
 <context>
@@ -293,7 +293,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="307"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>A Logaritmus-ábrázoló &amp;frissítése</translation>
+        <translation>A LogarithmPlotter &amp;frissítése</translation>
     </message>
 </context>
 <context>
@@ -301,7 +301,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectCreationGrid.qml" line="32"/>
         <source>+ Create new:</source>
-        <translation type="unfinished"></translation>
+        <translation>+ Új létrehozása:</translation>
     </message>
 </context>
 <context>
@@ -309,37 +309,37 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="63"/>
         <source>Hide all %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes %1 elrejtése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="63"/>
         <source>Show all %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes %1 megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="100"/>
         <source>Hide %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 elrejtése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="101"/>
         <source>Show %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="139"/>
         <source>Set %1 %2 position</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 helye beállítása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="164"/>
         <source>Delete %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 törlése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="197"/>
         <source>Pick new color for %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -347,7 +347,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="88"/>
         <source>Pointer precision:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mutató pontossága:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="108"/>
@@ -375,12 +375,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="124"/>
         <source>Max Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Legnagyobb Y</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="139"/>
         <source>Max X</source>
-        <translation type="unfinished"></translation>
+        <translation>Legnagyobb X</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="158"/>
@@ -390,67 +390,67 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="175"/>
         <source>X Axis Step</source>
-        <translation type="unfinished"></translation>
+        <translation>X tengely lépésköze</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="189"/>
         <source>Y Axis Step</source>
-        <translation type="unfinished"></translation>
+        <translation>Y tengely lépésköze</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="203"/>
         <source>Line width</source>
-        <translation type="unfinished"></translation>
+        <translation>Vonalvastagság</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="218"/>
         <source>Text size (px)</source>
-        <translation type="unfinished"></translation>
+        <translation>Szövegméret (képpont)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="233"/>
         <source>X Label</source>
-        <translation type="unfinished"></translation>
+        <translation>X címke</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="259"/>
         <source>Y Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Y címke</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="287"/>
         <source>X Log scale</source>
-        <translation type="unfinished"></translation>
+        <translation>X tengely logaritmikus skálával</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="297"/>
         <source>Show X graduation</source>
-        <translation type="unfinished"></translation>
+        <translation>X érettségi megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="307"/>
         <source>Show Y graduation</source>
-        <translation type="unfinished"></translation>
+        <translation>Y érettségi megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="318"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Másolás a vágólapra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="327"/>
         <source>Save plot</source>
-        <translation type="unfinished"></translation>
+        <translation>Ábra mentése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="336"/>
         <source>Save plot as</source>
-        <translation type="unfinished"></translation>
+        <translation>Ábra mentése másként</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="345"/>
         <source>Load plot</source>
-        <translation type="unfinished"></translation>
+        <translation>Ábra betöltése</translation>
     </message>
 </context>
 <context>
@@ -471,12 +471,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="31"/>
         <source>Bode Magnitude</source>
-        <translation>Bode nagysága</translation>
+        <translation>Bode-nagyságrend</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="32"/>
         <source>Bode Magnitudes</source>
-        <translation>Bode nagyságok</translation>
+        <translation>Bode-nagyságrendek</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="72"/>
@@ -522,42 +522,42 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="61"/>
         <source>above</source>
-        <translation type="unfinished"></translation>
+        <translation>↑ Felett</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="62"/>
         <source>below</source>
-        <translation type="unfinished"></translation>
+        <translation>↓ Alatt</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="63"/>
         <source>left</source>
-        <translation type="unfinished"></translation>
+        <translation>← Balra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
         <source>right</source>
-        <translation type="unfinished"></translation>
+        <translation>→ Jobbra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
         <source>above-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↖ Felett, balra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="66"/>
         <source>above-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↗ Felett, jobbra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="67"/>
         <source>below-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↙ Alatt, balra</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="68"/>
         <source>below-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↘ Alatt, jobbra</translation>
     </message>
 </context>
 <context>
@@ -565,12 +565,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="30"/>
         <source>Bode Phase</source>
-        <translation>Bode fázis</translation>
+        <translation>Bode-fázis</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="31"/>
         <source>Bode Phases</source>
-        <translation>Bode fázisok</translation>
+        <translation>Bode-fázisok</translation>
     </message>
 </context>
 <context>
@@ -618,7 +618,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="30"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="31"/>
         <source>Bode Magnitudes Sum</source>
-        <translation>Bode-nagyságok összege</translation>
+        <translation>Bode-nagyságrendek összege</translation>
     </message>
 </context>
 <context>
