@@ -25,12 +25,10 @@
         <p>
             It's primary use is to quickly create asymptotic Bode plots, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
         </p>
-    </description>
-    <description xml:lang="fr">
-        <p>
+        <p xml:lang="fr">
             LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes avec peu de limitations.    
         </p>
-        <p>
+        <p xml:lang="fr">
             Son intérêt principal est de permettre de créer des diagrammes asymptotiques de Bode, mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
         </p>
     </description>
