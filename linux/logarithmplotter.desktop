@@ -9,7 +9,7 @@ GenericName[no]=2D-plotterprogramvare
 GenericName[hu]=Síkbeli ábrázolásszoftver
 Comment=Create BODE diagrams, sequences and distribution functions
 Comment[fr]=Créer des diagrammes de BODE, des suites et des fonctions de répartition
-Comment[de]=Erstellung von Bode-Diagramms, Folgen und Verteilungsfunktionen.
+Comment[de]=Erstellung von Bode-Diagramms, Folgen und Verteilungsfunktionen
 Comment[hu]=Bode-ábrák, sorozatok és újraosztási függvények létrehozása
 
 TryExec=logarithmplotter
