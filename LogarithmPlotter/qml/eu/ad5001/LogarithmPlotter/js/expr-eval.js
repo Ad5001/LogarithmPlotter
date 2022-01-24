@@ -1,5 +1,7 @@
 // https://silentmatt.com/javascript-expression-evaluator/
 
+.pragma library
+
 var INUMBER = 'INUMBER';
 var IOP1 = 'IOP1';
 var IOP2 = 'IOP2';

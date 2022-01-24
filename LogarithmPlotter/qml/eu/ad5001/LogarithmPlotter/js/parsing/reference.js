@@ -63,7 +63,7 @@ const FUNCTIONS = {
     "sqrt": Math.sqrt,
     "tan": Math.tan,
     "tanh": Math.tanh,
-    "trunc": Math.trunc
+    "trunc": Math.trunc,
 }
 const FUNCTIONS_LIST = Object.keys(FUNCTIONS);
 // TODO: Complete

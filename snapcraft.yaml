@@ -7,7 +7,7 @@ description: |
     It's primary use is to quickly create [asymptotic Bode plots](https://en.wikipedia.org/wiki/Bode_plot), but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
 confinement: strict
 base: core20
-grade: devel
+grade: stable
 icon: LogarithmPlotter/logarithmplotter.svg
 adopt-info: linuxfiles
 license: GPL-3.0+
