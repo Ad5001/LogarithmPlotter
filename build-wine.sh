@@ -1,7 +1,7 @@
 #!/bin/bash
 # Giving pyinstaller another run
 rm $(find . -name "*.qmlc")
-rm $(find . -name "*.pyc")
+rm -rf $(find . -name "*.pyc")
 wine python -m pip install -U pyinstaller
 
 # Building translations

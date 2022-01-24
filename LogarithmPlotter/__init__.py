@@ -18,7 +18,7 @@
 from shutil import which
 
 __VERSION__ = "0.1.4"
-is_release = False
+is_release = True
 
 
 # Check if development version, if so get the date of the latest git patch
