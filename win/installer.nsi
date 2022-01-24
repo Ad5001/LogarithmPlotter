@@ -11,7 +11,7 @@ Unicode True
 !define PROG_ID "LogarithmPlotter.File.1"
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/logarithmplotter"
-!define VERSION_SHORT "0.1.4"
+!define VERSION_SHORT "0.1.5"
 !define APP_VERSION "${VERSION_SHORT}.0"
 !define COPYRIGHT "Ad5001 (c) 2022"
 !define DESCRIPTION "Create graphs with logarithm scales."
