@@ -2,9 +2,9 @@
 Version=1.0
 Type=Application
 Name=LogarithmPlotter
-GenericName=2D logarithmic-scaled plotter
-GenericName[de]=2D-Plotter mit logarithmischer Skalierung
-GenericName[fr]=Traceur 2D à échelle logarithmique
+GenericName=2D logarithmic-scaled plotter software
+GenericName[de]=2D-Grafiksoftware mit logarithmischer Skalierung
+GenericName[fr]=Logiciel de traçage à l'échelle logarithmique
 GenericName[hu]=Síkbeli ábrázolásszoftver
 GenericName[no]=2D-plotterprogramvare
 Comment=Create BODE diagrams, sequences and distribution functions
