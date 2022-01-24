@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Building translations
+cd "LogarithmPlotter/i18n/"
+bash release.sh
+cd ../../
+
+# Deb
 python3 setup.py --remove-git-version --command-packages=stdeb.command sdist_dsc \
-    --package logarithmplotter --copyright-file linux/debian/copyright --suite sid --depends3 "$(cat linux/debian/depends)" --section science \
-    --debian-version "ppa1" bdist_deb
+    --package logarithmplotter --copyright-file linux/debian/copyright --suite impish --depends3 "$(cat linux/debian/depends)" --section science \
+    bdist_deb
 
 # Flatpak building
 FLATPAK_BUILDER=$(which flatpak-builder)

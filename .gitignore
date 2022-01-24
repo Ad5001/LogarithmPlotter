@@ -10,6 +10,8 @@ linux/flatpak/.flatpak-builder
 *.zip
 **/**.qmlc
 **/**.jsc
+**/**.pyc
+**/**.qm
 *.jsc
 *.qmlc
 .DS_Store
@@ -27,4 +29,5 @@ docs/html
 .kdev4
 AccountFree.pro
 AccountFree.pro.user
-AccountFree.egg-info/
+*.egg-info/
+*.tar.gz

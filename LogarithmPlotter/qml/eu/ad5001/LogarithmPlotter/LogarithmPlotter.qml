@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -34,10 +34,11 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "")
+    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "") + (history.saved ? "" : "*")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
+    
     
     menuBar: appMenu.trueItem
     
@@ -193,12 +194,13 @@ ApplicationWindow {
             "objects":      objs,
             "type":         "logplotv1"
         }))
-        alert.show("Saved plot to '" + filename.split("/").pop() + "'.")
+        alert.show(qsTr("Saved plot to '%1'.").arg(filename.split("/").pop()))
+        history.saved = true
     }
     
     function loadDiagram(filename) {
         let basename = filename.split("/").pop()
-        alert.show("Loading file '" + basename + "'.")
+        alert.show(qsTr("Loading file '%1'.").arg(basename))
         let data = JSON.parse(Helper.load(filename))
         let error = "";
         if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
@@ -237,7 +239,7 @@ ApplicationWindow {
                         Objects.currentObjects[objType].push(obj)
                     }
                 } else {
-                    error += "Unknown object type: " +objType + "\n";
+                    error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
                 }
             }
             // Refreshing sidebar
@@ -251,15 +253,17 @@ ApplicationWindow {
                 objectLists.update()
             }
         } else {
-            error = "Invalid file provided."
+            error = qsTr("Invalid file provided.")
         }
         if(error != "") {
             console.log(error)
-            alert.show("Could not save file: " + error)
+            alert.show(qsTr("Could not save file: ") + error)
             // TODO: Error handling
+            return
         }
         drawCanvas.requestPaint()
-        alert.show("Loaded file '" + basename + "'.")
+        alert.show(qsTr("Loaded file '%1'.").arg(basename))
+        history.saved = true
     }
     
     Timer {
@@ -276,11 +280,18 @@ ApplicationWindow {
         onTriggered: Qt.quit() // Quit after paint on test build
     }
     
+    onClosing: {
+        if(!history.saved) {
+            close.accepted = false
+            appMenu.showSaveUnsavedChangesDialog()
+        }
+    }
+    
     function copyDiagramToClipboard() {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
-        alert.show("Copied plot screenshot to clipboard!")
+        alert.show(qsTr("Copied plot screenshot to clipboard!"))
     }
     
     function showAlert(alertText) {

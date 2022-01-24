@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
+import QtQuick.Dialogs 1.1
 import "js/utils.js" as Utils
 
 ScrollView {
@@ -70,7 +71,7 @@ ScrollView {
             id: zoomX
             height: 30
             isDouble: true
-            label: "X Zoom"
+            label: qsTr("X Zoom")
             min: 1
             icon: "icons/settings/xzoom.svg"
             width: settings.settingWidth
@@ -85,7 +86,7 @@ ScrollView {
             id: zoomY
             height: 30
             isDouble: true
-            label: "Y Zoom"
+            label: qsTr("Y Zoom")
             icon: "icons/settings/yzoom.svg"
             width: settings.settingWidth
             value: settings.yzoom.toFixed(2)
@@ -101,7 +102,7 @@ ScrollView {
             height: 30
             isDouble: true
             min: -Infinity
-            label: "Min X"
+            label: qsTr("Min X")
             icon: "icons/settings/xmin.svg"
             width: settings.settingWidth
             defValue: settings.xmin
@@ -120,7 +121,7 @@ ScrollView {
             height: 30
             isDouble: true
             min: -Infinity
-            label: "Max Y"
+            label: qsTr("Max Y")
             icon: "icons/settings/ymax.svg"
             width: settings.settingWidth
             defValue: settings.ymax
@@ -135,7 +136,7 @@ ScrollView {
             height: 30
             isDouble: true
             min: -Infinity
-            label: "Max X"
+            label: qsTr("Max X")
             icon: "icons/settings/xmax.svg"
             width: settings.settingWidth
             value: canvas.px2x(canvas.canvasSize.width).toFixed(2)
@@ -154,7 +155,7 @@ ScrollView {
             height: 30
             isDouble: true
             min: -Infinity
-            label: "Min Y"
+            label: qsTr("Min Y")
             icon: "icons/settings/ymin.svg"
             width: settings.settingWidth
             defValue: canvas.px2y(canvas.canvasSize.height).toFixed(2)
@@ -171,7 +172,7 @@ ScrollView {
         TextSetting {
             id: xAxisStep
             height: 30
-            label: "X Axis Step"
+            label: qsTr("X Axis Step")
             icon: "icons/settings/xaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.xaxisstep
@@ -185,7 +186,7 @@ ScrollView {
         TextSetting {
             id: yAxisStep
             height: 30
-            label: "Y Axis Step"
+            label: qsTr("Y Axis Step")
             icon: "icons/settings/yaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.yaxisstep
@@ -199,7 +200,7 @@ ScrollView {
             id: lineWidth
             height: 30
             isDouble: true
-            label: "Line width"
+            label: qsTr("Line width")
             min: 1
             icon: "icons/settings/linewidth.svg"
             width: settings.settingWidth
@@ -214,7 +215,7 @@ ScrollView {
             id: textSize
             height: 30
             isDouble: true
-            label: "Text size (px)"
+            label: qsTr("Text size (px)")
             min: 1
             icon: "icons/settings/textsize.svg"
             width: settings.settingWidth
@@ -229,7 +230,7 @@ ScrollView {
             id: xAxisLabel
             height: 30
             width: settings.settingWidth
-            label: 'X Label'
+            label: qsTr('X Label')
             icon: "icons/settings/xlabel.svg"
             model: ListModel {
                 ListElement { text: "" }
@@ -255,7 +256,7 @@ ScrollView {
             id: yAxisLabel
             height: 30
             width: settings.settingWidth
-            label: 'Y Label'
+            label: qsTr('Y Label')
             icon: "icons/settings/ylabel.svg"
             model: ListModel {
                 ListElement { text: "" }
@@ -283,7 +284,7 @@ ScrollView {
         CheckBox {
             id: logScaleX
             checked: settings.logscalex
-            text: 'X Log scale'
+            text: qsTr('X Log scale')
             onClicked: {
                 settings.logscalex = checked
                 settings.changed()
@@ -293,7 +294,7 @@ ScrollView {
         CheckBox {
             id: showXGrad
             checked: settings.showxgrad
-            text: 'Show X graduation'
+            text: qsTr('Show X graduation')
             onClicked: {
                 settings.showxgrad = checked
                 settings.changed()
@@ -303,7 +304,7 @@ ScrollView {
         CheckBox {
             id: showYGrad
             checked: settings.showygrad
-            text: 'Show Y graduation'
+            text: qsTr('Show Y graduation')
             onClicked: {
                 settings.showygrad = checked
                 settings.changed()
@@ -314,7 +315,7 @@ ScrollView {
             id: copyToClipboard
             height: 30
             width: settings.settingWidth
-            text: "Copy to clipboard"
+            text: qsTr("Copy to clipboard")
             icon.name: 'editcopy'
             onClicked: root.copyDiagramToClipboard()
         }
@@ -323,7 +324,7 @@ ScrollView {
             id: saveDiagram
             height: 30
             width: settings.settingWidth
-            text: "Save plot"
+            text: qsTr("Save plot")
             icon.name: 'document-save'
             onClicked: save()
         }
@@ -332,7 +333,7 @@ ScrollView {
             id: saveDiagramAs
             height: 30
             width: settings.settingWidth
-            text: "Save plot as"
+            text: qsTr("Save plot as")
             icon.name: 'document-save-as'
             onClicked: saveAs()
         }
@@ -341,7 +342,7 @@ ScrollView {
             id: loadDiagram
             height: 30
             width: settings.settingWidth
-            text: "Load plot"
+            text: qsTr("Load plot")
             icon.name: 'document-open'
             onClicked: load()
         }

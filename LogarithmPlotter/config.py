@@ -1,5 +1,5 @@
 """
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,13 @@
 from os import path, environ, makedirs
 from platform import system
 from json import load, dumps
+from PySide2.QtCore import QLocale, QTranslator
+
 
 DEFAULT_SETTINGS = {
     "check_for_updates": True,
     "reset_redo_stack": True,
     "last_install_greet": "0",
-    "lang": "en"
 }
 
 # Create config directory
@@ -35,7 +36,10 @@ CONFIG_PATH = {
 }[system()]
 
 CONFIG_FILE = path.join(CONFIG_PATH, "config.json")
-CONFIG = DEFAULT_SETTINGS
+
+initialized = False
+current_config= DEFAULT_SETTINGS
+
 
 def init():
     """
@@ -47,13 +51,13 @@ def init():
         cfg_data = load(open(CONFIG_FILE, 'r',  -1, 'utf8'))
         for setting_name in cfg_data:
             setSetting(setting_name, cfg_data[setting_name])
-
+    
 def save():
     """
     Saves the config to the path.
     """
     write_file = open(CONFIG_FILE, 'w', -1, 'utf8')
-    write_file.write(dumps(CONFIG))
+    write_file.write(dumps(current_config))
     write_file.close()
 
 def getSetting(namespace):
@@ -63,7 +67,7 @@ def getSetting(namespace):
     by using the "test.foo" namespace.
     """
     names = namespace.split(".")
-    setting = CONFIG
+    setting = current_config
     for name in names:
         if name in setting:
             setting = setting[name]
@@ -79,7 +83,7 @@ def setSetting(namespace, data):
     by using the "test.foo" namespace.
     """
     names = namespace.split(".")
-    setting = CONFIG
+    setting = current_config
     for name in names:
         if name != names[-1]:
             if name in setting:

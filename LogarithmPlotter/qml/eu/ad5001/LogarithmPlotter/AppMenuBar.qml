@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.12
+import QtQuick.Dialogs 1.3
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
@@ -49,7 +50,13 @@ MenuBar {
         Action {
             text: qsTr("&Quit")
             shortcut: StandardKey.Quit
-            onTriggered: Qt.quit()
+            onTriggered: {
+                if(settings.saved)
+                    Qt.quit()
+                else
+                    saveUnsavedChangesDialog.visible = true;
+            }
+            
             icon.name: 'application-exit'
         }
     }
@@ -127,10 +134,39 @@ MenuBar {
     Menu {
         title: qsTr("&Help")
         Action {
+            text: qsTr("&Source code")
+            icon.name: 'code'
+            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&Report a bug")
+            icon.name: 'bug'
+            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&Help translating!")
+            icon.name: 'translator'
+            onTriggered: Helper.openUrl("https://hosted.weblate.org/engage/logarithmplotter/")
+        }
+        MenuSeparator { }
+        Action {
             text: qsTr("&About")
             shortcut: StandardKey.HelpContents
             icon.name: 'about'
             onTriggered: about.open()
         }
+    }
+    
+    MessageDialog {
+        id: saveUnsavedChangesDialog
+        title: qsTr("Save unsaved changes?")
+        icon: StandardIcon.Question
+        text: qsTr("This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?")
+        standardButtons: StandardButton.Yes | StandardButton.No
+        onYes: Qt.quit()
+    }
+    
+    function showSaveUnsavedChangesDialog() {
+        saveUnsavedChangesDialog.visible = true
     }
 }

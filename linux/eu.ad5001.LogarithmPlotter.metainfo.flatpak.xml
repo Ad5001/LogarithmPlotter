@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2021 Ad5001 -->
+<!-- Copyright 2022 Ad5001 -->
 <application>
     <id>eu.ad5001.LogarithmPlotter</id>
     <id type="desktop">eu.ad5001.LogarithmPlotter.desktop</id>
@@ -9,9 +9,15 @@
     
     <name>LogarithmPlotter</name>
     <name xml:lang="fr">LogarithmPlotter</name>
-    <icon type="remote">http://apps.ad5001.eu/icons/apps/logarithmplotter.svg</icon>
-    <summary>2D plotter software to make BODE plots, sequences and repartition functions</summary>
-    <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de BODE, les suites et les fonctions de répartition</summary>
+    <name xml:lang="de">LogarithmPlotter</name>
+    <name xml:lang="no">LogarithmPlotter</name>
+    <name xml:lang="hu">LogarithmPlotter</name>
+    <icon type="remote">http://apps.ad5001.eu/icons/apps/svg/logarithmplotter.svg</icon>
+    <summary>2D plotter software to make Bode plots, sequences and repartition functions</summary>
+    <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de Bode, les suites et les fonctions de répartition</summary>
+    <summary xml:lang="de">2D-Grafiksoftware zur Erstellung von Bode-Diagramms, Folgen und Verteilungsfunktionen</summary>
+    <summary xml:lang="no">2D-plotterprogramvare laget for opprettelse av Bode-diagram, sekvenser, og distribusjonsfunksjoner</summary>
+    <summary xml:lang="hu">Síkbeli ábrázolásszoftver Bode-ábrák, sorozatok és eloszlási funkciók készítéséhez</summary>
     <description>
         <p>
             LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
@@ -36,14 +42,16 @@
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
+    <url type="translate">https://hosted.weblate.org/engage/logarithmplotter/</url>
     <screenshots>
         <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
         <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png</screenshot>
     </screenshots>
     <releases>
-        <release version="0.1" date="2021-08-15"/>
-        <release version="0.1.2" date="2021-09-30"/>
+        <release version="0.1.4" date="2022-01-24"/>
         <release version="0.1.3" date="2022-01-19"/>
+        <release version="0.1.2" date="2021-09-30"/>
+        <release version="0.1" date="2021-08-15"/>
     </releases>
       <content_rating type="oars-1.0">
     </content_rating>

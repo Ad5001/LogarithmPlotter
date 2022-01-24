@@ -11,8 +11,9 @@ Unicode True
 !define PROG_ID "LogarithmPlotter.File.1"
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/logarithmplotter"
-!define APP_VERSION "0.1.0.0"
-!define COPYRIGHT "Ad5001 (c) 2021"
+!define VERSION_SHORT "0.1.4"
+!define APP_VERSION "${VERSION_SHORT}.0"
+!define COPYRIGHT "Ad5001 (c) 2022"
 !define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
@@ -25,7 +26,7 @@ Unicode True
 Name "${APP_NAME}"
 Caption "${APP_NAME}"
 BrandingText "${APP_NAME}"
-OutFile "logarithmplotter-setup.exe"
+OutFile "logarithmplotter-v${VERSION_SHORT}-setup.exe"
 RequestExecutionLevel admin
 
 ;Default installation folder
@@ -45,10 +46,10 @@ VIAddVersionKey "FileVersion"  "${APP_VERSION}"
 ;--------------------------------
 ;defines MUST come before pages to apply to them
 
-!define MUI_PAGE_HEADER_TEXT "${APP_NAME} v${APP_VERSION}"
+!define MUI_PAGE_HEADER_TEXT "${APP_NAME} v${VERSION_SHORT}"
 !define MUI_PAGE_HEADER_SUBTEXT "${COPYRIGHT}"
 
-!define MUI_WELCOMEPAGE_TITLE "Install ${APP_NAME} v${APP_VERSION}"
+!define MUI_WELCOMEPAGE_TITLE "Install ${APP_NAME} v${VERSION_SHORT}"
 !define MUI_WELCOMEPAGE_TEXT "Welcome to the ${APP_NAME} installer! Follow the steps provided by this installer to install ${APP_NAME}"
 !define MUI_HEADERIMAGE_RIGHT
 ;Extra space for the title area
@@ -88,9 +89,9 @@ Icon "logarithmplotter.ico"
 ;!define MUI_DIRECTORYPAGE_VARIABLE $INSTDIR
 
 !define MUI_INSTFILESPAGE_FINISHHEADER_TEXT "Success!"
-!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "${APP_NAME} v${APP_VERSION} was installed on your computer"
+!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "${APP_NAME} v${VERSION_SHORT} was installed on your computer"
 !define MUI_INSTFILESPAGE_ABORTHEADER_TEXT "There was an error during the installation process."
-!define MUI_INSTFILESPAGE_ABORTHEADER_SUBTEXT "${APP_NAME} v${APP_VERSION} was not installed on your computer."
+!define MUI_INSTFILESPAGE_ABORTHEADER_SUBTEXT "${APP_NAME} v${VERSION_SHORT} was not installed on your computer."
 
 !define MUI_FINISHPAGE_TITLE "Finished!"
 ;!define MUI_FINISHPAGE_TITLE_3LINES

@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -373,7 +373,6 @@ class SpecialDomain extends Domain {
 class DomainSet extends SpecialDomain {
     constructor(values) {
         super('', x => true, x => x, true)
-        console.log(values)
         var newVals = {}
         this.executedValues = []
         for(var value of values) {

@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -54,3 +54,16 @@ class Dictionary {
         this.forbidAdding = forbidAdding
     }
 }
+
+// Common parameters of them:
+
+Enum.Position = new Enum(
+    QT_TR_NOOP('above'),
+    QT_TR_NOOP('below'),
+    QT_TR_NOOP('left'),
+    QT_TR_NOOP('right'),
+    QT_TR_NOOP('above-left'),
+    QT_TR_NOOP('above-right'),
+    QT_TR_NOOP('below-left'),  
+    QT_TR_NOOP('below-right')
+)

@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ D.Dialog {
         anchors.left: parent.left
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
-        text: `Edit properties of ${objEditor.objType} ${objEditor.obj.name}`
+        text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
         font.pixelSize: 20
         color: sysPalette.windowText
     }
@@ -56,7 +56,7 @@ D.Dialog {
         TextSetting {
             id: nameProperty
             height: 30
-            label: "Name"
+            label: qsTr("Name")
             icon: "icons/settings/custom/label.svg"
             min: 1
             width: dlgProperties.width
@@ -65,7 +65,6 @@ D.Dialog {
                 var newName = Utils.parseName(newValue)
                 if(newName != '' && objEditor.obj.name != newName) {
                     if(Objects.getObjectByName(newName) != null) {
-                        console.log(Objects.getObjectByName(newName).name, newName)
                         newName = ObjectsCommons.getNewName(newName)
                     }
                     history.addToHistory(new HistoryLib.NameChanged(
@@ -82,13 +81,14 @@ D.Dialog {
             id: labelContentProperty
             height: 30
             width: dlgProperties.width
-            label: "Label content"
-            model: ["null", "name", "name + value"]
+            label: qsTr("Label content")
+            model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
+            property var idModel: ["null", "name", "name + value"]
             icon: "icons/settings/custom/label.svg"
-            currentIndex: model.indexOf(objEditor.obj.labelContent)
+            currentIndex: idModel.indexOf(objEditor.obj.labelContent)
             onActivated: function(newIndex) {
-                if(model[newIndex] != objEditor.obj.labelContent) {
-                    objEditor.obj.labelContent = model[newIndex]
+                if(idModel[newIndex] != objEditor.obj.labelContent) {
+                    objEditor.obj.labelContent = idModel[newIndex]
                     objectListList.update()
                 }
             }
@@ -109,7 +109,7 @@ D.Dialog {
                     width: parent.width
                     height: visible ? implicitHeight : 0
                     visible: modelData[0].startsWith('comment')
-                    text: visible ? modelData[1].replace(/\{name\}/g, objEditor.obj.name) : ''
+                    text: visible ? (modelData[1].replace(/\{name\}/g, objEditor.obj.name)) : ''
                     //color: sysPalette.windowText
                     wrapMode: Text.WordWrap
                 }
@@ -180,23 +180,25 @@ D.Dialog {
                     // True to select an object of type, false for enums.
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                     
-                    model: visible ? 
-                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType]) : modelData[1].values) 
+                    property var baseModel: visible ? 
+                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())]) : modelData[1].values) 
                         : []
+                    // Translate the model if necessary.
+                    model: selectObjMode ? baseModel : baseModel.map(x => qsTr(x))
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
-                    currentIndex: model.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
+                    currentIndex: baseModel.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
 
                     onActivated: function(newIndex) {
                         if(selectObjMode) {
                             // This is only done when what we're selecting are Objects.
                             // Setting object property.
-                            var selectedObj = Objects.getObjectByName(model[newIndex], modelData[1].objType)
+                            var selectedObj = Objects.getObjectByName(baseModel[newIndex], modelData[1].objType)
                             if(selectedObj == null) {
                                 // Creating new object.
                                 selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
                                 history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
-                                model = Objects.getObjectsName(modelData[1].objType).concat(['+ Create new ' + modelData[1].objType])
-                                currentIndex = model.indexOf(selectedObj.name)
+                                baseModel = Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())])
+                                currentIndex = baseModel.indexOf(selectedObj.name)
                             }
                             //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
                             objEditor.obj.requiredBy = objEditor.obj.requiredBy.filter((obj) => objEditor.obj.name != obj.name)
@@ -206,13 +208,13 @@ D.Dialog {
                                 objEditor.obj[modelData[0]], selectedObj
                             ))
                             objEditor.obj[modelData[0]] = selectedObj
-                        } else if(model[newIndex] != objEditor.obj[modelData[0]]) { 
+                        } else if(baseModel[newIndex] != objEditor.obj[modelData[0]]) { 
                             // Ensuring new property is different to not add useless history entries.
                             history.addToHistory(new HistoryLib.EditedProperty(
                                 objEditor.obj.name, objEditor.objType, modelData[0], 
-                                objEditor.obj[modelData[0]], model[newIndex]
+                                objEditor.obj[modelData[0]], baseModel[newIndex]
                             ))
-                            objEditor.obj[modelData[0]] = model[newIndex]
+                            objEditor.obj[modelData[0]] = baseModel[newIndex]
                         }
                         // Refreshing
                         Objects.currentObjects[objEditor.objType][objEditor.objIndex].update()

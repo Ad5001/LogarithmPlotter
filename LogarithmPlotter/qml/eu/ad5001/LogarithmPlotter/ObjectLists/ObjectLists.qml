@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ ListView {
                 }
                 
                 ToolTip.visible: hovered
-                ToolTip.text: checked ? `Hide all ${Objects.types[objType].displayTypeMultiple()}` : `Show all ${Objects.types[objType].displayTypeMultiple()}`
+                ToolTip.text: checked ? qsTr("Hide all %1").arg(Objects.types[objType].displayTypeMultiple()) : qsTr("Show all %1").arg(Objects.types[objType].displayTypeMultiple())
             }
             
             Label {
@@ -96,7 +96,9 @@ ListView {
                 }
                 
                 ToolTip.visible: hovered
-                ToolTip.text: checked ? `Hide ${objType} ${obj.name}` : `Show ${objType} ${obj.name}`
+                ToolTip.text: checked ? 
+                    qsTr("Hide %1 %2").arg(Objects.types[objType].displayType()).arg(obj.name) : 
+                    qsTr("Show %1 %2").arg(Objects.types[objType].displayType()).arg(obj.name)
             }
             
             Label {
@@ -134,7 +136,7 @@ ListView {
                 property bool hasYProp: Objects.types[objType].properties().hasOwnProperty('y')
                 visible: hasXProp || hasYProp
                 ToolTip.visible: hovered
-                ToolTip.text: 'Set ' + Objects.types[objType].displayType() + ' position.'
+                ToolTip.text: qsTr("Set %1 %2 position").arg(Objects.types[objType].displayType()).arg(obj.name)
                 
                 onClicked: {
                     positionPicker.objType = objType
@@ -159,7 +161,7 @@ ListView {
                 icon.source: '../icons/delete.svg'
                 icon.color: sysPalette.buttonText
                 ToolTip.visible: hovered
-                ToolTip.text: 'Delete ' + Objects.types[objType].displayType() + '.'
+                ToolTip.text: qsTr("Delete %1 %2").arg(Objects.types[objType].displayType()).arg(obj.name)
                 
                 onClicked: {
                     history.addToHistory(new HistoryLib.DeleteObject(
@@ -191,8 +193,8 @@ ListView {
             
             D.ColorDialog {
                 id: pickColor
-                color: obj.color
-                title: `Pick new color for ${objType} ${obj.name}`
+                color: obj.color.arg(obj.name)
+                title: qsTr("Pick new color for %1 %2").arg(Objects.types[objType].displayType())
                 onAccepted: {
                     history.addToHistory(new HistoryLib.EditedProperty(
                         obj.name, objType, "color", 

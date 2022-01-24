@@ -1,5 +1,5 @@
 """
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -125,7 +125,7 @@ setuptools.setup(
     name='logarithmplotter',
     version=pkg_version,
 
-    description='Create graphs with logarithm scales.',
+    description='2D plotter software to make BODE plots, sequences and repartition functions.',
     long_description=read_file("README.md"),
     keywords='logarithm plotter graph creator bode diagram',
 

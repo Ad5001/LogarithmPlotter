@@ -1,5 +1,5 @@
 """
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ start_time = time()
 
 from PySide2.QtWidgets import QApplication, QFileDialog
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from PySide2.QtCore import Qt, QObject, Signal, Slot, Property
+from PySide2.QtCore import Qt, QObject, Signal, Slot, Property, QTranslator, QLocale, QCoreApplication
 from PySide2.QtGui import QIcon, QImage, QKeySequence
 from PySide2 import __version__ as PySide2_version
 
@@ -46,8 +46,8 @@ if path.realpath(path.join(getcwd(), "..")) not in sys_path:
 
 from LogarithmPlotter import config, native, __VERSION__
 from LogarithmPlotter.update import check_for_updates
-config.init()
 
+config.init()
 
 def get_linux_theme():
     des = {
@@ -63,6 +63,10 @@ def get_linux_theme():
         return "Material"
 
 class Helper(QObject):
+    
+    def __init__(self, engine: QQmlApplicationEngine):
+        QObject.__init__(self)
+        self.engine = engine;
 
     @Slot(str, str)
     def write(self, filename, filedata):
@@ -80,6 +84,7 @@ class Helper(QObject):
     def load(self, filename):
         chdir(pwd)
         data = '{}'
+        from PySide2.QtWidgets import QMessageBox
         if path.exists(path.realpath(filename)):
             f = open(path.realpath(filename), 'r',  -1, 'utf8')
             data = f.read()
@@ -93,13 +98,12 @@ class Helper(QObject):
                 else:
                     raise Exception("Invalid LogarithmPlotter file.")
             except Exception as e: # If file can't be loaded
-                from PySide2.QtWidgets import QMessageBox
-                QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file "{}":\n{}'.format(filename, e), QMessageBox.Ok) # Cannot parse file
+                QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file "{}":\n{}').format(filename, e), QMessageBox.Ok) # Cannot parse file
         else:
-            QMessageBox.warning(None, 'LogarithmPlotter', 'Could not open file: "{}"\nFile does not exist.'.format(filename), QMessageBox.Ok) # Cannot parse file
+            QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok) # Cannot parse file
         chdir(path.dirname(path.realpath(__file__)))
         return data
-
+    
     @Slot(result=str)
     def gettmpfile(self):
         global tmpfile
@@ -131,12 +135,16 @@ class Helper(QObject):
     def setSettingBool(self, namespace, value):
         return config.setSetting(namespace, value)
     
+    @Slot(str)
+    def setLanguage(self, new_lang):
+        config.setSetting("language", new_lang)
+    
     @Slot(result=str)
     def getDebugInfos(self):
         """
         Returns the version info about Qt, PySide2 & Python
         """
-        return "Built with PySide2 (Qt) v{} and python v{}".format(PySide2_version, sys_version.split("\n")[0])
+        return QCoreApplication.translate('main',"Built with PySide2 (Qt) v{} and python v{}").format(PySide2_version, sys_version.split("\n")[0])
     
     @Slot(str)
     def openUrl(self, url):
@@ -166,6 +174,14 @@ def run():
     app.setOrganizationName("Ad5001")
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
     
+    # Installing translators
+    translator = QTranslator()
+    # Check if lang is forced.
+    forcedlang = [p for p in argv if p[:7]=="--lang="]
+    locale = QLocale(forcedlang[0][7:]) if len(forcedlang) > 0 else QLocale()
+    if (translator.load(locale, "lp", "_", path.realpath(path.join(getcwd(), "i18n")))):
+        app.installTranslator(translator);
+    
     # Installing macOS file handler.
     macOSFileOpenHandler = None
     if platform == "darwin":
@@ -173,13 +189,16 @@ def run():
         app.installEventFilter(macOSFileOpenHandler)
     
     engine = QQmlApplicationEngine()
-    helper = Helper()
+    helper = Helper(engine)
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
+    
+    app.translate("About","About LogarithmPlotter") # FOR SOME REASON, if this isn't included, Qt refuses to load the QML file.
 
     engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
     engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+    
 
     if not engine.rootObjects():
         print("No root object", path.realpath(path.join(getcwd(), "qml")))

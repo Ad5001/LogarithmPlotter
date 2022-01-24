@@ -1,5 +1,5 @@
 /**
- *  LogarithmPlotter - Create graphs with logarithm scales.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,6 @@ function getObjectsName(objType) {
         types.forEach(function(elemType){
             elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
         })
-        console.log(elementNames)
         return elementNames
     }
     if(currentObjects[objType] == undefined) return []
