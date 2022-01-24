@@ -12,7 +12,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="52"/>
         <source>LogarithmPlotter v%1</source>
-        <translation>LogartimePlotter v%1</translation>
+        <translation>LogarithmPlotter v%1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="58"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation>Velkommen til LogaritmePlotter</translation>
+        <translation>Velkommen til LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="72"/>
@@ -196,7 +196,7 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="84"/>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
-        <translation>Sett opp LogartimePlotter.
+        <translation>Sett opp LogarithmPlotter.
 Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</translation>
     </message>
     <message>
