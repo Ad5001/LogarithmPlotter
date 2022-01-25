@@ -142,7 +142,7 @@ class Function extends Common.ExecutableObject {
     static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
         // Drawing small traits every 2px
-        var pxprecision = 2
+        var pxprecision = 0.2
         var previousX = canvas.px2x(0)
         var previousY;
         if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {

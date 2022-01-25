@@ -37,7 +37,7 @@ Canvas {
     property string yaxisstep: "4"
     property string xlabel: ""
     property string ylabel: ""
-    property int maxgradx: 10
+    property int maxgradx: 20
     property double linewidth: 1
     property double textsize: 14
     property bool logscalex: false
