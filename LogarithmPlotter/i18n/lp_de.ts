@@ -238,7 +238,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ListSetting.qml" line="157"/>
         <source>+ Add Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>+ Neuer Eintrag</translation>
     </message>
 </context>
 <context>
