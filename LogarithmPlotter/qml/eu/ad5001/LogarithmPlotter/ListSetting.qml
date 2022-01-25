@@ -154,7 +154,7 @@ Column {
     Button {
         id: addEntryBtn
         visible: !control.forbidAdding
-        text: '+ Add Entry'
+        text: qsTr('+ Add Entry')
         width: control.width
         
         onClicked: {

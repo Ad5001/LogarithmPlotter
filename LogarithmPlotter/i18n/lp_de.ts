@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="26"/>
-        <location filename="../logarithmplotter.py" line="201"/>
+        <location filename="../logarithmplotter.py" line="197"/>
         <source>About LogarithmPlotter</source>
         <translation>Über LogarithmPlotter</translation>
     </message>
@@ -231,6 +231,14 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/HistoryBrowser.qml" line="116"/>
         <source>&lt; Undo</source>
         <translation>&lt; Rückgängig</translation>
+    </message>
+</context>
+<context>
+    <name>ListSetting</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ListSetting.qml" line="157"/>
+        <source>+ Add Entry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

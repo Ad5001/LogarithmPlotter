@@ -6,6 +6,13 @@
 
 2D plotter software to make Bode plots, sequences and distribution functions.
 
+## Screenshots
+![Magnitude example](https://apps.ad5001.eu/img/full/logarithmplotter.png)
+![Phase example](https://apps.ad5001.eu/img/en/logarithmplotter/phase.png)
+![Object settings](https://apps.ad5001.eu/img/en/logarithmplotter/object-settings.png)
+
+You can find more screenshots on the [app website](https://apps.ad5001.eu/logarithmplotter/).
+
 ## Run
 
 You can simply run LogarithmPlotter using `python3 run.py`.

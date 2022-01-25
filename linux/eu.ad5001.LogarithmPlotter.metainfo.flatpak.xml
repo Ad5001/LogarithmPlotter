@@ -14,6 +14,13 @@
     <summary xml:lang="fr">Logiciel de traçage 2D pour les diagrammes de Bode, les suites et les fonctions de répartition</summary>
     <summary xml:lang="hu">Síkbeli ábrázolásszoftver Bode-ábrák, sorozatok és eloszlási funkciók készítéséhez</summary>
     <summary xml:lang="no">2D-plotterprogramvare laget for opprettelse av Bode-diagram, sekvenser, og distribusjonsfunksjoner</summary>
+    
+    <!--
+    NB: While the appstream spec specifies that p tags should have
+        specific lang tags, the appstream validation cli requires to
+        have several description tags in order to see there are
+        several languages
+    -->
     <description>
         <p>
             LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
@@ -21,12 +28,32 @@
         <p>
             It's primary use is to quickly create asymptotic Bode plots, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
         </p>
+        <p>Features:</p>
+        <ul>
+            <li>Graphical objects (points, fonctions, Bode magnitudes...) management system</li>
+            <li>Complete object edition</li>
+            <li>Advanced history system</li>
+            <li>Diagram looks customisation</li>
+        </ul>
+        <p xml:lang="fr">Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
+    </description>
+    <description xml:lang="fr">
         <p xml:lang="fr">
             LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes avec peu de limitations.    
         </p>
         <p xml:lang="fr">
             Son intérêt principal est de permettre de créer des diagrammes asymptotiques de Bode, mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
         </p>
+        <p xml:lang="fr">Fonctionnalités:</p>
+        <ul xml:lang="fr">
+            <li>Système de gestion des objets graphiques (points, fonctions, gains de Bode...)</li>
+            <li>Modification complète des objets</li>
+            <li>Système d'historique avancé</li>
+            <li>Personnalisation de l'apparence des diagrammes</li>
+        </ul>
+        <p xml:lang="fr">En savoir plus: https://apps.ad5001.eu/fr/logarithmplotter/</p>
+    </description>
+    <description xml:lang="hu">
         <p xml:lang="hu">
             A LogarithmPlotter egy logaritmus-ábrázoló, amely logaritmikus léptékek figyelembevételével készült. A Geogebrához hasonló objektumrendszerrel dinamikus parcellák létrehozását teszi lehetővé, nagyon kevés korlátozással.
         </p>
@@ -39,14 +66,41 @@
         <category>Science</category>
         <category>Education</category>
     </categories>
+    
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
     <url type="translate">https://hosted.weblate.org/engage/logarithmplotter/</url>
     <screenshots>
         <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png</screenshot>
+        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/phase.png</screenshot>
         <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png</screenshot>
+        <screenshot xml:lang="de" type="default">https://apps.ad5001.eu/img/de/gain.png</screenshot>
+        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/phase.png</screenshot>
+        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/welcome.png</screenshot>
+        <screenshot xml:lang="fr" type="default">https://apps.ad5001.eu/img/fr/gain.png</screenshot>
+        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/phase.png</screenshot>
+        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/welcome.png</screenshot>
+        <screenshot xml:lang="hu" type="default">https://apps.ad5001.eu/img/hu/gain.png</screenshot>
+        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/phase.png</screenshot>
+        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/welcome.png</screenshot>
+        <screenshot xml:lang="no" type="default">https://apps.ad5001.eu/img/no/gain.png</screenshot>
+        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/phase.png</screenshot>
+        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/welcome.png</screenshot>
     </screenshots>
+    
+    <!-- recommend at least 600 logical pixels of space -->
+    <recommends>
+        <display_length compare="ge">medium</display_length>
+    </recommends>
+
+    <!-- ensure this application is not run on a very large screen, or
+        very small screen (no tiny handhelds or television screens) -->
+    <requires>
+        <display_length compare="lt">xlarge</display_length>
+        <display_length compare="gt">xsmall</display_length>
+    </requires>
+    
     <releases>
         <release version="0.1.4" date="2022-01-24"/>
         <release version="0.1.3" date="2022-01-19"/>
@@ -58,4 +112,5 @@
     <developer_name>Ad5001</developer_name>
     <update_contact>mail@ad5001.eu</update_contact>
 </application>
+
 
