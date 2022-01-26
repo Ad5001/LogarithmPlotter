@@ -100,7 +100,8 @@
         <display_length compare="gt">xsmall</display_length>
     </requires>
     
-    <releases>        <release version="0.1.5" date="2022-01-26">
+    <releases>
+        <release version="0.1.5" date="2022-01-26">
             <p>Changes for v0.1.5:</p>
             <ul>
                 <li>New: LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>

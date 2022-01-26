@@ -17,7 +17,7 @@
 """
 from shutil import which
 
-__VERSION__ = "0.1.5"
+__VERSION__ = "0.1.6"
 is_release = False
 
 
