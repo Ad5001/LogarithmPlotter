@@ -24,9 +24,9 @@ steps:
   image: ad5001/ubuntu-pyside2-xvfb-wine:win7-5.15.2
   commands:
   - # For some reason, launching GUI apps with wine, even with xvfb-run, fails.
-  - xvfb-run python run.py --no-check-for-updates --test-build
-  - #xvfb-run python run.py --test-build ./ci/test1.lpf
-  - #xvfb-run python run.py --test-build ./ci/test2.lpf
+  - xvfb-run python run.py --test-build --no-check-for-updates
+  - xvfb-run python run.py --test-build --no-check-for-updates ./ci/test1.lpf
+  - xvfb-run python run.py --test-build --no-check-for-updates ./ci/test2.lpf
   when:
     event: [ push, tag ]
 
