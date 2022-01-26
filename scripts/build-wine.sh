@@ -1,4 +1,6 @@
 #!/bin/bash
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+
 # Giving pyinstaller another run
 rm $(find . -name "*.qmlc")
 rm -rf $(find . -name "*.pyc")

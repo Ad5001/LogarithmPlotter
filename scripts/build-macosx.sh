@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+
+
 rm $(find . -name "*.qmlc")
 rm $(find . -name "*.pyc")
 python3 -m pip install -U pyinstaller

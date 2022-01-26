@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+
 VERSION=0.1.6
 title="LogarithmPlotter v${VERSION} Setup"
 finalDMGName="LogarithmPlotter-v${VERSION}-setup.dmg"

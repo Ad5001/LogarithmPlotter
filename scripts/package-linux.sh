@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
 
 # Building translations
 cd "LogarithmPlotter/i18n/"

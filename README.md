@@ -22,16 +22,18 @@ In order to test translations, you can use the `--lang=<lang code>` command line
 ## Install
 
 ### Generate installers:
-You can generate installers from AccountFree after installing all the dependencies:   
+All scripts noted here can be found in the `scripts` directory.
+
+You can generate installers from LogarithmPlotter after installing all the dependencies:   
 For all builds, you need [Python 3](https://python.org) with [PySide2](https://pypi.org/project/PySide2/) installable with `pip install PySide2`.    
 - Windows installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
     - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an exe for LogarithmPlotter.
     - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install the [nsis](https://pkgs.org/download/nsis) package).    
-    - Run the `package-windows.bat` script (or `package.wine.sh`if you're cross-compiling on Linux). You will find a logarithmplotter-setup.exe installer in the dist/accountfree/ folder.
+    - Run the `package-windows.bat` script (or `package-wine.sh`if you're cross-compiling on Linux). You will find a logarithmplotter-setup.exe installer in the dist/accountfree/ folder.
 - MacOS Archive creator installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
-    - Run the `build-macosx.sh` script to build an .app for AccountFree which can be found in the dist directory.
+    - Run the `build-macosx.sh` script to build an .app for LogarithmPlotter which can be found in the dist directory.
     - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v0.1-dev-setup.dmg installer in the dist/ folder.
 - Linux packages:
     - To build a DEB, you need DPKG and stdeb. You can install the later by using `pip install stdeb`.
