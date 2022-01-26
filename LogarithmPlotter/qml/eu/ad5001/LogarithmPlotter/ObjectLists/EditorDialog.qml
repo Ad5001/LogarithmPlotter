@@ -181,13 +181,13 @@ D.Dialog {
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                     
                     property var baseModel: visible ? 
-                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())]) : modelData[1].values) 
+                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(modelData[1].objType)]) : modelData[1].values) 
                         : []
                     // Translate the model if necessary.
                     model: selectObjMode ? baseModel : baseModel.map(x => qsTr(x))
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
                     currentIndex: baseModel.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
-
+                    
                     onActivated: function(newIndex) {
                         if(selectObjMode) {
                             // This is only done when what we're selecting are Objects.
