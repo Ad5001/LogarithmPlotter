@@ -1,4 +1,5 @@
 
 recursive-include LogarithmPlotter/qml *.qml *.js *.qdoc qmldir *.svg *.md LICENSE
+recursive-include LogarithmPlotter/i18n *.qm *.ts
 include LogarithmPlotter/ *.svg
 
