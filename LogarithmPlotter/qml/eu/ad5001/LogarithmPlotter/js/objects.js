@@ -28,7 +28,7 @@ var currentObjects = {}
 
 function getObjectByName(objName, objType = null) {
     var objectTypes = Object.keys(currentObjects)
-    if(typeof objType == 'string') {
+    if(typeof objType == 'string' && objType != "") {
         if(objType == "ExecutableObject") {
             objectTypes = getExecutableTypes()
         } else if(currentObjects[objType] != undefined) {
@@ -37,12 +37,14 @@ function getObjectByName(objName, objType = null) {
     }
     if(Array.isArray(objType)) objectTypes = objType
     var retObj = null
-    objectTypes.forEach(function(objType){
-        if(currentObjects[objType] == undefined) return null
-        currentObjects[objType].forEach(function(obj){
-            if(obj.name == objName) retObj = obj
+    if(objName != "" && objName != null) {
+        objectTypes.forEach(function(objType){
+            if(currentObjects[objType] == undefined) return null
+            currentObjects[objType].forEach(function(obj){
+                if(obj.name == objName) retObj = obj
+            })
         })
-    })
+    }
     return retObj
 }
 

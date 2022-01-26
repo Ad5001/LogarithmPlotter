@@ -21,6 +21,7 @@
 .pragma library
 
 .import "objects.js" as Objects
+.import "objs/common.js" as Common
 .import "utils.js" as Utils
 .import "mathlib.js" as MathLib
 
@@ -106,8 +107,17 @@ class EditedProperty extends Action {
         this.previousValue = previousValue
         this.newValue = newValue
         if(valueIsExpressionNeedingImport) {
-            this.previousValue = new MathLib.Expression(this.previousValue);
-            this.newValue = new MathLib.Expression(this.newValue);
+            if(targetType == "Expression") {
+                this.previousValue = new MathLib.Expression(this.previousValue);
+                this.newValue = new MathLib.Expression(this.newValue);
+            } else if(targetType == "Domain") {
+                this.previousValue = MathLib.parseDomain(this.previousValue);
+                this.newValue = MathLib.parseDomain(this.newValue);
+            } else {
+                // Objects
+                this.previousValue = Objects.getObjectByName(this.previousValue);
+                this.newValue = Objects.getObjectByName(this.newValue);
+            }
         }
     }
     
@@ -122,6 +132,9 @@ class EditedProperty extends Action {
     export() {
         if(this.previousValue instanceof MathLib.Expression) {
             return [this.targetName, this.targetType, this.targetProperty, this.previousValue.toEditableString(), this.newValue.toEditableString(), true]
+        } else if(this.previousValue instanceof Common.DrawableObject) {
+            return [this.targetName, this.targetType, this.targetProperty, this.previousValue.name, this.newValue.name, true]
+            
         } else {
             return [this.targetName, this.targetType, this.targetProperty, this.previousValue, this.newValue, false]
         }

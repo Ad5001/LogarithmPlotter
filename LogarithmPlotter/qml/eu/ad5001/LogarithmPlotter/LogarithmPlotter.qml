@@ -224,8 +224,6 @@ ApplicationWindow {
                 settings.linewidth = data["linewidth"]
             if("textsize" in data)
                 settings.textsize = data["textsize"]
-            if("history" in data)
-                history.unserialize(...data["history"])
             root.height = data["height"]
             root.width = data["width"]
             
@@ -242,6 +240,11 @@ ApplicationWindow {
                     error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
                 }
             }
+            
+            // Importing history
+            if("history" in data)
+                history.unserialize(...data["history"])
+            
             // Refreshing sidebar
             if(sidebarSelector.currentIndex == 0) {
                 // For some reason, if we load a file while the tab is on object,

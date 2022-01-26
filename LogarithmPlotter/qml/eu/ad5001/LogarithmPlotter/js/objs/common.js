@@ -110,6 +110,10 @@ class DrawableObject {
     }
     
     draw(canvas, ctx) {}
+    
+    toString() {
+        return this.name;
+    }
 }
 
 class ExecutableObject extends DrawableObject {

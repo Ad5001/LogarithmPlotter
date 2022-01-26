@@ -179,9 +179,13 @@ D.Dialog {
                     icon: visible ? `icons/settings/custom/${parent.label}.svg` : ''
                     // True to select an object of type, false for enums.
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
+                    property bool isRealObject: !selectedObj || (modelData[1].objType != "ExecutableObject" && modelData[1].objType != "DrawableObject")
                     
                     property var baseModel: visible ? 
-                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(modelData[1].objType)]) : modelData[1].values) 
+                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType)
+                                            .concat(
+                                                isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : [])
+                                       : modelData[1].values) 
                         : []
                     // Translate the model if necessary.
                     model: selectObjMode ? baseModel : baseModel.map(x => qsTr(x))
@@ -193,16 +197,20 @@ D.Dialog {
                             // This is only done when what we're selecting are Objects.
                             // Setting object property.
                             var selectedObj = Objects.getObjectByName(baseModel[newIndex], modelData[1].objType)
-                            if(selectedObj == null) {
-                                // Creating new object.
-                                selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
-                                history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
-                                baseModel = Objects.getObjectsName(modelData[1].objType).concat([qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())])
-                                currentIndex = baseModel.indexOf(selectedObj.name)
+                            if(newIndex != 0) {
+                                // Make sure we don't set the object to null.
+                                if(selectedObj == null) {
+                                    // Creating new object.
+                                    selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
+                                    history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
+                                    baseModel = Objects.getObjectsName(modelData[1].objType).concat(
+                                                isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : [])
+                                    currentIndex = baseModel.indexOf(selectedObj.name)
+                                }
+                                selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
+                                //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
                             }
-                            //Objects.currentObjects[objEditor.objType][objEditor.objIndex].requiredBy = objEditor.obj[modelData[0]].filter((obj) => objEditor.obj.name != obj.name)
                             objEditor.obj.requiredBy = objEditor.obj.requiredBy.filter((obj) => objEditor.obj.name != obj.name)
-                            selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
                             history.addToHistory(new HistoryLib.EditedProperty(
                                 objEditor.obj.name, objEditor.objType, modelData[0], 
                                 objEditor.obj[modelData[0]], selectedObj
