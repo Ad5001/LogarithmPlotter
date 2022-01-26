@@ -1,3 +1,14 @@
+logarithmplotter (0.1.5) stable; urgency=medium
+
+  * New: LogarithmPlotter has now better handling of very high values in logarithmic scale.
+  * Added translation for flatpak metadata, including translated image.
+  * [URGENT PATCH] Fixed bug: File saving dialog was not working.
+  * [URGENT PATCH] Fixed bug: Debian packages does include any language file.
+  * Fixed bug: X Cursor pointing does not detect any object.
+
+
+ -- Ad5001 <mail@ad5001.eu>  Wed, 26 Jan 2022 10:00:00 +0100
+ 
 logarithmplotter (0.1.4) stable; urgency=medium
 
   * New feature: LogarithmPlotter detects unsaved changes.

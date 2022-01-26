@@ -102,10 +102,53 @@
     </requires>
     
     <releases>
-        <release version="0.1.4" date="2022-01-24"/>
-        <release version="0.1.3" date="2022-01-19"/>
-        <release version="0.1.2" date="2021-09-30"/>
-        <release version="0.1" date="2021-08-15"/>
+        <release version="0.1.5" date="2022-01-26">
+            <p>Changes for v0.1.5:</p>
+            <ul>
+                <li>New: LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>
+                <li>Added translation for flatpak metadata, including translated image.</li>
+                <li>[URGENT PATCH] Fixed bug: File saving dialog was not working.</li>
+                <li>[URGENT PATCH] Fixed bug: Debian packages does include any language file.</li>
+                <li>Fixed bug: X Cursor pointing does not detect any object.</li>
+            </ul>
+        </release>
+        <release version="0.1.4" date="2022-01-24">
+            <p>Changes for v0.1.4:</p>
+            <ul>
+                <li>New feature: LogarithmPlotter detects unsaved changes.</li>
+                <li>New feature: LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.</li>
+                <li>New translation: English by Ad5001: 100%</li>
+                <li>New translation: French by Ad5001: 100%</li>
+                <li>New translation: German by Ad5001: 100%</li>
+                <li>New translation: Hungarian by Óvári (@ovari on github): 100%</li>
+                <li>New translation: Norvegian by Allan Nordhøy (@comradekingu on github): 80%</li>
+                <li>Fixed bug: No notification when closing LogarithmPlotter with unsaved changes.</li>
+                <li>Fixed bug: π unavailable in symbols.</li>
+            </ul>
+        </release>
+        <release version="0.1.3" date="2022-01-18">
+            <p>Changes for v0.1.3:</p>
+            <ul>
+                <li>Fixed bug: Confined packages (snapcraft &amp; flatpak) won't show error messages related to update checks.</li>
+                <li>FIxed bug: Equations of the form (x + y) / z were not being simplified properly.</li>
+            </ul>
+        </release>
+        <release version="0.1.2" date="2021-09-30">
+            <p>Changes for v0.1.2:</p>
+            <ul>
+                <li>Fixed bug: Unable to move Bode diagrams elements when having deleted the sum element.</li>
+                <li>Fixed bug: Names were not not being changed from previous object when editing a new one.</li>
+                <li>Fixed bug: Bode Magnitude was not drawn far enough.</li>
+                <li>Fixed bug: Bode Magnitude had undefined ending.</li>
+                <li>Fixed other bugs from v0.1.1.</li>
+            </ul>
+        </release>
+        <release version="0.1" date="2021-08-26">
+            <p>Changes for v0.1:</p>
+            <ul>
+                <li>Initial release.</li>
+            </ul>
+        </release>
     </releases>
       <content_rating type="oars-1.0">
     </content_rating>
