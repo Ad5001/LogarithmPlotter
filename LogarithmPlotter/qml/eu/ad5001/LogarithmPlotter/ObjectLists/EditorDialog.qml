@@ -101,7 +101,8 @@ D.Dialog {
             Item {
                 height: customPropComment.height + customPropText.height + customPropCheckBox.height + customPropCombo.height + customPropListDict.height
                 width: dlgProperties.width
-                property string label: Utils.camelCase2readable(modelData[0])
+                property string label: qsTranslate('prop',modelData[0])
+                property string icon: Utils.camelCase2readable(modelData[0])
                 
                 // Item for comments
                 Label {
@@ -109,7 +110,9 @@ D.Dialog {
                     width: parent.width
                     height: visible ? implicitHeight : 0
                     visible: modelData[0].startsWith('comment')
-                    text: visible ? (modelData[1].replace(/\{name\}/g, objEditor.obj.name)) : ''
+                    // Translated text with object name.
+                    property string trText: visible ? qsTranslate('comment', modelData[1]) : ''
+                    text: trText// trText.contains("%1") ? trText.arg(objEditor.obj.name).toString() : trText
                     //color: sysPalette.windowText
                     wrapMode: Text.WordWrap
                 }
@@ -120,7 +123,7 @@ D.Dialog {
                     height: visible ? 30 : 0
                     width: parent.width
                     label: parent.label
-                    icon: `icons/settings/custom/${parent.label}.svg`
+                    icon: `icons/settings/custom/${parent.icon}.svg`
                     isDouble: modelData[1] == 'number'
                     visible: paramTypeIn(modelData[1], ['Expression', 'Domain', 'string', 'number'])
                     defValue: visible ? {
@@ -156,7 +159,7 @@ D.Dialog {
                     height: visible ? 20 : 0
                     width: parent.width
                     text: parent.label
-                    icon: visible ? `icons/settings/custom/${parent.label}.svg` : ''
+                    //icon: visible ? `icons/settings/custom/${parent.icon}.svg` : ''
                     
                     checked: visible ? objEditor.obj[modelData[0]] : false
                     onClicked: {
@@ -176,19 +179,19 @@ D.Dialog {
                     width: dlgProperties.width
                     height: visible ? 30 : 0
                     label: parent.label
-                    icon: visible ? `icons/settings/custom/${parent.label}.svg` : ''
+                    icon: visible ? `icons/settings/custom/${parent.icon}.svg` : ''
                     // True to select an object of type, false for enums.
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
-                    property bool isRealObject: !selectedObj || (modelData[1].objType != "ExecutableObject" && modelData[1].objType != "DrawableObject")
+                    property bool isRealObject: !selectObjMode || (modelData[1].objType != "ExecutableObject" && modelData[1].objType != "DrawableObject")
                     
+                    // Base, untranslated version of the model.
                     property var baseModel: visible ? 
-                        (selectObjMode ? Objects.getObjectsName(modelData[1].objType)
-                                            .concat(
-                                                isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : [])
-                                       : modelData[1].values) 
+                        (selectObjMode ?
+                            Objects.getObjectsName(modelData[1].objType).concat(isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : []) : 
+                            modelData[1].values) 
                         : []
-                    // Translate the model if necessary.
-                    model: selectObjMode ? baseModel : baseModel.map(x => qsTr(x))
+                    // Translated verison of the model.
+                    model: selectObjMode ? baseModel : modelData[1].translatedValues
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
                     currentIndex: baseModel.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
                     
@@ -238,7 +241,7 @@ D.Dialog {
                     
                     visible: paramTypeIn(modelData[1], ['List', 'Dict'])
                     label: parent.label
-                    //icon: `icons/settings/custom/${parent.label}.svg`
+                    //icon: `icons/settings/custom/${parent.icon}.svg`
                     dictionaryMode: paramTypeIn(modelData[1], ['Dict'])
                     keyType: dictionaryMode ? modelData[1].keyType : 'string'
                     valueType: visible ? modelData[1].valueType : 'string'

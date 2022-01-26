@@ -20,6 +20,7 @@ class Enum {
     constructor(...values) {
         this.type = 'Enum'
         this.values = values
+        this.translatedValues = values.map(x => qsTr(x))
     }
 }
 
@@ -55,7 +56,7 @@ class Dictionary {
     }
 }
 
-// Common parameters of them:
+// Common parameters for Enums
 
 Enum.Position = new Enum(
     QT_TR_NOOP('above'),
@@ -67,3 +68,8 @@ Enum.Position = new Enum(
     QT_TR_NOOP('below-left'),  
     QT_TR_NOOP('below-right')
 )
+
+Enum.FunctionDisplayType = new Enum(
+    QT_TR_NOOP('application'), 
+    QT_TR_NOOP('function')
+);

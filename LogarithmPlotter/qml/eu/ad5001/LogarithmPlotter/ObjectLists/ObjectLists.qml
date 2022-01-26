@@ -193,7 +193,7 @@ ListView {
             
             D.ColorDialog {
                 id: pickColor
-                color: obj.color.arg(obj.name)
+                color: obj.color
                 title: qsTr("Pick new color for %1 %2").arg(Objects.types[objType].displayType())
                 onAccepted: {
                     history.addToHistory(new HistoryLib.EditedProperty(

@@ -161,8 +161,8 @@
         <translation>name + value</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="184"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="200"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="187"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="207"/>
         <source>+ Create new %1</source>
         <translation>+ Create new %1</translation>
     </message>
@@ -269,37 +269,37 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>Loading file &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="242"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="240"/>
         <source>Unknown object type: %1.</source>
         <translation>Unknown object type: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="256"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="259"/>
         <source>Invalid file provided.</source>
         <translation>Invalid file provided.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="260"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="263"/>
         <source>Could not save file: </source>
         <translation>Could not save file: </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="265"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="268"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>Loaded file &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="294"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="297"/>
         <source>Copied plot screenshot to clipboard!</source>
         <translation>Copied plot screenshot to clipboard!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="308"/>
         <source>&amp;Update</source>
         <translation>&amp;Update</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="307"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="310"/>
         <source>&amp;Update LogarithmPlotter</source>
         <translation>&amp;Update LogarithmPlotter</translation>
     </message>
@@ -366,99 +366,112 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="74"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="73"/>
         <source>X Zoom</source>
         <translation>X Zoom</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="89"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="88"/>
         <source>Y Zoom</source>
         <translation>Y Zoom</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="104"/>
         <source>Min X</source>
         <translation>Min X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="124"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="123"/>
         <source>Max Y</source>
         <translation>Max Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="139"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="138"/>
         <source>Max X</source>
         <translation>Max X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="158"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="157"/>
         <source>Min Y</source>
         <translation>Min Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="175"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="174"/>
         <source>X Axis Step</source>
         <translation>X Axis Step</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="189"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="188"/>
         <source>Y Axis Step</source>
         <translation>Y Axis Step</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="203"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="202"/>
         <source>Line width</source>
         <translation>Line width</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="218"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="217"/>
         <source>Text size (px)</source>
         <translation>Text size (px)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="233"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="232"/>
         <source>X Label</source>
         <translation>X Label</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="259"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="258"/>
         <source>Y Label</source>
         <translation>Y Label</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="287"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="286"/>
         <source>X Log scale</source>
         <translation>X Log scale</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="297"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="296"/>
         <source>Show X graduation</source>
         <translation>Show X graduation</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="307"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="306"/>
         <source>Show Y graduation</source>
         <translation>Show Y graduation</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="318"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="317"/>
         <source>Copy to clipboard</source>
         <translation>Copy to clipboard</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="327"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="326"/>
         <source>Save plot</source>
         <translation>Save plot</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="336"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="335"/>
         <source>Save plot as</source>
         <translation>Save plot as</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="345"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="344"/>
         <source>Load plot</source>
         <translation>Load plot</translation>
+    </message>
+</context>
+<context>
+    <name>comment</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="47"/>
+        <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
+        <translation>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="54"/>
+        <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
+        <translation>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</translation>
     </message>
 </context>
 <context>
@@ -500,27 +513,27 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 <context>
     <name>historylib</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="78"/>
         <source>New %1 %2 created.</source>
         <translation>New %1 %2 created.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="95"/>
         <source>%1 %2 deleted.</source>
         <translation>%1 %2 deleted.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="133"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="146"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="147"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="160"/>
         <source>%1 %2 shown.</source>
         <translation>%1 %2 shown.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="149"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="162"/>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 hidden.</translation>
     </message>
@@ -528,44 +541,54 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 <context>
     <name>parameters</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="61"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="62"/>
         <source>above</source>
         <translation>↑ Above</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="62"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="63"/>
         <source>below</source>
         <translation>↓ Below</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="63"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
         <source>left</source>
         <translation>← Left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
         <source>right</source>
         <translation>→ Right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="66"/>
         <source>above-left</source>
         <translation>↖ Above left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="67"/>
         <source>above-right</source>
         <translation>↗ Above right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="67"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="68"/>
         <source>below-left</source>
         <translation>↙ Below left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="68"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="69"/>
         <source>below-right</source>
         <translation>↘ Below right</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
+        <source>application</source>
+        <translation>Application</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
+        <source>function</source>
+        <translation>Function</translation>
     </message>
 </context>
 <context>
@@ -592,6 +615,49 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="29"/>
         <source>Points</source>
         <translation>Points</translation>
+    </message>
+</context>
+<context>
+    <name>prop</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="44"/>
+        <source>expression</source>
+        <translation>Expression</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="45"/>
+        <source>definitionDomain</source>
+        <translation>Definition domain</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="46"/>
+        <source>destinationDomain</source>
+        <translation>Destination domain</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="51"/>
+        <source>labelPosition</source>
+        <translation>Label position</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="52"/>
+        <source>displayMode</source>
+        <translation>Display mode</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="53"/>
+        <source>labelX</source>
+        <translation>Label X position</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
+        <source>drawPoints</source>
+        <translation>Show points</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
+        <source>drawDashedLines</source>
+        <translation>Show dashed lines</translation>
     </message>
 </context>
 <context>
