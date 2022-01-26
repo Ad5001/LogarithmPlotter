@@ -9,7 +9,7 @@
 ## Screenshots
 ![Magnitude example](https://apps.ad5001.eu/img/full/logarithmplotter.png)
 ![Phase example](https://apps.ad5001.eu/img/en/logarithmplotter/phase.png)
-![Object settings](https://apps.ad5001.eu/img/en/logarithmplotter/object-settings.png)
+![Object settings](https://apps.ad5001.eu/img/en/logarithmplotter/object-settings.webp)
 
 You can find more screenshots on the [app website](https://apps.ad5001.eu/logarithmplotter/).
 
@@ -70,5 +70,5 @@ There are several ways to contribute to LogarithmPlotter.
         along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Language files translations located at LogarithmPlotter/i18n are licensed under GNU GPL3.0+ and are copyrighted by their original authors. See LICENSE.md for more details:
-- Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
-- Hungarian translation by [Óvári](https://github.com/ovari)
+- 🇳🇴 Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
+- 🇭🇺 Hungarian translation by [Óvári](https://github.com/ovari)
