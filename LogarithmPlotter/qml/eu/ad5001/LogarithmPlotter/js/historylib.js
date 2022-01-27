@@ -134,16 +134,22 @@ class EditedProperty extends Action {
             return [this.targetName, this.targetType, this.targetProperty, this.previousValue.toEditableString(), this.newValue.toEditableString(), true]
         } else if(this.previousValue instanceof Common.DrawableObject) {
             return [this.targetName, this.targetType, this.targetProperty, this.previousValue.name, this.newValue.name, true]
-            
         } else {
             return [this.targetName, this.targetType, this.targetProperty, this.previousValue, this.newValue, false]
         }
     }
     
     getReadableString() {
-        var prev = this.previousValue == null ? ""+this.previousValue : this.previousValue.toString()
-        var next = this.newValue == null ? ""+this.newValue : this.newValue.toString()
-        return qsTr('%1 of %2 %3 changed from "%4" to "%5".').arg(this.targetPropertyReadable).arg(Objects.types[this.targetType].displayType()).arg(this.targetName).arg(prev).arg(next)
+        var prev = this.previousValue == null ? "null" : this.previousValue.toString()
+        var next = this.newValue == null ? "null" : this.newValue.toString()
+        if(prev == "[object Object]") // Oh no!
+            prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
+        if(next == "[object Object]") // Oh no!
+            next = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
+        return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
+                .arg(this.targetPropertyReadable)
+                .arg(Objects.types[this.targetType].displayType())
+                .arg(this.targetName).arg(prev).arg(next)
     }
 }
 
