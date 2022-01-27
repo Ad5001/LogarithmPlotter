@@ -30,15 +30,16 @@ class Sequence extends Common.ExecutableObject {
     static displayTypeMultiple(){return qsTr('Sequences')}
     
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','drawPoints')]:      'boolean',
-        [QT_TRANSLATE_NOOP('prop','drawDashedLines')]: 'boolean',
-                                  'comment1':          QT_TRANSLATE_NOOP(
-                                                           'comment',
-                                                           'Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...'
-                                                       ),
-        [QT_TRANSLATE_NOOP('prop','baseValues')]:      new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[', '] = '),
-        [QT_TRANSLATE_NOOP('prop','labelPosition')]:   P.Enum.Position,
-        [QT_TRANSLATE_NOOP('prop','labelX')]:          'number',
+        [QT_TRANSLATE_NOOP('prop','drawPoints')]:        'boolean',
+        [QT_TRANSLATE_NOOP('prop','drawDashedLines')]:   'boolean',
+        [QT_TRANSLATE_NOOP('prop','defaultExpression')]: new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[n+', '] = ', true),
+                                  'comment1':            QT_TRANSLATE_NOOP(
+                                                             'comment',
+                                                             'Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...'
+                                                         ),
+        [QT_TRANSLATE_NOOP('prop','baseValues')]:        new P.Dictionary('string', 'int', /^.+$/, /^\d+$/, '{name}[', '] = '),
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]:     P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','labelX')]:            'number',
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
