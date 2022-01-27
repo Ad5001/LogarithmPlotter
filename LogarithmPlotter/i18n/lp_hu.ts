@@ -109,21 +109,26 @@
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
+        <source>&amp;Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Segítség a fordításban!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="153"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="158"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="167"/>
         <source>Save unsaved changes?</source>
         <translation>Menti a változtatásokat?</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="164"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="169"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Ez az ábra nem mentett változtatásokat tartalmaz. Ezzel az összes nem mentett adat elveszik. Folytatja?</translation>
     </message>
@@ -510,7 +515,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="36"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
         <translation>Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
     </message>
@@ -574,17 +579,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>%1 %2 törölve.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="146"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="149"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="160"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="166"/>
         <source>%1 %2 shown.</source>
         <translation>%1 %2 megjelenítve.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="168"/>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 rejtve.</translation>
     </message>
@@ -716,7 +721,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="37"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="41"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="39"/>
@@ -734,7 +739,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="44"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="38"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="38"/>
         <source>labelX</source>
@@ -837,7 +842,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>Cél értékpozíciója</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
+        <source>defaultExpression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
         <source>baseValues</source>
         <translation>Kezdeményezési értékek</translation>
     </message>

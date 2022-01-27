@@ -110,21 +110,26 @@
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
+        <source>&amp;Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Aider à la traduction !</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="153"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="158"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="167"/>
         <source>Save unsaved changes?</source>
         <translation>Sauvegarder les modifications ?</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="164"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="169"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Ce graphe contient des modifications non sauvegardées. En faisant cela, toutes les données non sauvegardées seront perdues. Continuer ?</translation>
     </message>
@@ -518,7 +523,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Note : Spécifiez la probabilité pour chaque valeur.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="36"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
         <translatorcomment>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁...</translatorcomment>
         <translation>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁…</translation>
@@ -583,17 +588,17 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>%1 %2 supprimé(e).</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="146"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="149"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="160"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="166"/>
         <source>%1 %2 shown.</source>
         <translation>%1 %2 affiché(e).</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="168"/>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 cachée(e).</translation>
     </message>
@@ -725,7 +730,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="37"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="41"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="39"/>
@@ -743,7 +748,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="44"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="38"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="38"/>
         <source>labelX</source>
@@ -846,7 +851,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Position de la valeur de la cible</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
+        <source>defaultExpression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
         <source>baseValues</source>
         <translation>Valeurs d&apos;initialisation</translation>
     </message>
