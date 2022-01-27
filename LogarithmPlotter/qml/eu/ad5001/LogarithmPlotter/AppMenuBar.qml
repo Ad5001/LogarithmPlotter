@@ -135,13 +135,18 @@ MenuBar {
         title: qsTr("&Help")
         Action {
             text: qsTr("&Source code")
-            icon.name: 'code'
+            icon.name: 'software-sources'
             onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
         }
         Action {
             text: qsTr("&Report a bug")
-            icon.name: 'bug'
+            icon.name: 'tools-report-bug'
             onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&Changelog")
+            icon.name: 'state-information'
+            onTriggered: changelog.open()
         }
         Action {
             text: qsTr("&Help translating!")
