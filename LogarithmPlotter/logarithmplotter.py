@@ -20,18 +20,15 @@ from time import time
 
 start_time = time()
 
-from PySide2.QtWidgets import QApplication, QFileDialog
-from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from PySide2.QtCore import Qt, QObject, Signal, Slot, Property, QTranslator, QLocale, QCoreApplication
-from PySide2.QtGui import QIcon, QImage, QKeySequence
-from PySide2 import __version__ as PySide2_version
+from PySide2.QtWidgets import QApplication
+from PySide2.QtQml import QQmlApplicationEngine
+from PySide2.QtCore import QTranslator, QLocale
+from PySide2.QtGui import QIcon
 
 from tempfile import mkstemp
 from os import getcwd, chdir, environ, path, remove, close
 from platform import release as os_release
-from json import dumps, loads
 from sys import platform, argv, version as sys_version, exit
-from webbrowser import open as openWeb
 
 # Create the temporary file for saving copied screenshots
 fd, tmpfile = mkstemp(suffix='.png')
@@ -46,6 +43,7 @@ if path.realpath(path.join(getcwd(), "..")) not in sys_path:
 
 from LogarithmPlotter import config, native, __VERSION__
 from LogarithmPlotter.update import check_for_updates
+from LogarithmPlotter.helper import Helper
 
 config.init()
 
@@ -61,94 +59,6 @@ def get_linux_theme():
     else:
         # Android
         return "Material"
-
-class Helper(QObject):
-    
-    def __init__(self, engine: QQmlApplicationEngine):
-        QObject.__init__(self)
-        self.engine = engine;
-
-    @Slot(str, str)
-    def write(self, filename, filedata):
-        chdir(pwd)
-        if path.exists(path.dirname(path.realpath(filename))):
-            if filename.split(".")[-1] == "lpf":
-                # Add header to file
-                filedata = "LPFv1" + filedata
-            f = open(path.realpath(filename), 'w',  -1, 'utf8')
-            f.write(filedata)
-            f.close()
-        chdir(path.dirname(path.realpath(__file__)))
-        
-    @Slot(str, result=str)
-    def load(self, filename):
-        chdir(pwd)
-        data = '{}'
-        from PySide2.QtWidgets import QMessageBox
-        if path.exists(path.realpath(filename)):
-            f = open(path.realpath(filename), 'r',  -1, 'utf8')
-            data = f.read()
-            f.close()
-            try:
-                if data[:5] == "LPFv1":
-                    # V1 version of the file
-                    data = data[5:]
-                elif data[0] == "{" and "type" in loads(data) and loads(data)["type"] == "logplotv1":
-                    pass
-                else:
-                    raise Exception("Invalid LogarithmPlotter file.")
-            except Exception as e: # If file can't be loaded
-                QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file "{}":\n{}').format(filename, e), QMessageBox.Ok) # Cannot parse file
-        else:
-            QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok) # Cannot parse file
-        chdir(path.dirname(path.realpath(__file__)))
-        return data
-    
-    @Slot(result=str)
-    def gettmpfile(self):
-        global tmpfile
-        return tmpfile
-    
-    @Slot()
-    def copyImageToClipboard(self):
-        global tmpfile
-        clipboard = QApplication.clipboard()
-        clipboard.setImage(QImage(tmpfile))
-    
-    @Slot(result=str)
-    def getVersion(self):
-        return __VERSION__
-    
-    @Slot(str, result=str)
-    def getSetting(self, namespace):
-        return config.getSetting(namespace)
-    
-    @Slot(str, result=bool)
-    def getSettingBool(self, namespace):
-        return config.getSetting(namespace)
-    
-    @Slot(str, str)
-    def setSetting(self, namespace, value):
-        return config.setSetting(namespace, value)
-    
-    @Slot(str, bool)
-    def setSettingBool(self, namespace, value):
-        return config.setSetting(namespace, value)
-    
-    @Slot(str)
-    def setLanguage(self, new_lang):
-        config.setSetting("language", new_lang)
-    
-    @Slot(result=str)
-    def getDebugInfos(self):
-        """
-        Returns the version info about Qt, PySide2 & Python
-        """
-        return QCoreApplication.translate('main',"Built with PySide2 (Qt) v{} and python v{}").format(PySide2_version, sys_version.split("\n")[0])
-    
-    @Slot(str)
-    def openUrl(self, url):
-        openWeb(url)
         
 def run():
     
@@ -189,7 +99,8 @@ def run():
         app.installEventFilter(macOSFileOpenHandler)
     
     engine = QQmlApplicationEngine()
-    helper = Helper(engine)
+    global tmpfile
+    helper = Helper(pwd, tmpfile)
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
@@ -205,6 +116,7 @@ def run():
         print(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
         exit(-1)
 
+    # Open the current diagram
     chdir(pwd)
     if len(argv) > 0 and path.exists(argv[-1]) and argv[-1].split('.')[-1] in ['lpf']:
         engine.rootObjects()[0].loadDiagram(argv[-1])
