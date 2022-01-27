@@ -471,7 +471,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="54"/>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</translation>
+        <translation>The following parameters are used when the domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}…)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="39"/>
@@ -481,7 +481,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
-        <translation>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</translation>
+        <translation>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁…</translation>
     </message>
 </context>
 <context>
@@ -662,12 +662,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="45"/>
         <source>definitionDomain</source>
-        <translation>Definition domain</translation>
+        <translation>Domain</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="46"/>
         <source>destinationDomain</source>
-        <translation>Destination domain</translation>
+        <translation>Range</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="51"/>
@@ -703,7 +703,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="33"/>
         <source>drawPoints</source>
-        <translation>Afficher les points</translation>
+        <translation>Draw points</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
