@@ -84,9 +84,11 @@ class Point extends Common.DrawableObject  {
         ctx.font = `${canvas.textsize}px sans-serif`
         var textSize = ctx.measureText(text).width
         switch(this.labelPosition) {
+            case 'top':
             case 'above':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY-16)
                 break;
+            case 'bottom':
             case 'below':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY+16)
                 break;
@@ -96,15 +98,19 @@ class Point extends Common.DrawableObject  {
             case 'right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+4)
                 break;
+            case 'top-left':
             case 'above-left':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY-16)
                 break;
+            case 'top-right':
             case 'above-right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY-16)
                 break;
+            case 'bottom-left':
             case 'below-left':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY+16)
                 break;
+            case 'bottom-right':
             case 'below-right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+16)
                 break;
