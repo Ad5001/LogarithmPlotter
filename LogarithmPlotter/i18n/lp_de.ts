@@ -133,12 +133,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="58"/>
         <source>Fetching changelog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog abrufen…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="66"/>
         <source>Done</source>
-        <translation type="unfinished">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -225,7 +225,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="118"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="125"/>
@@ -484,12 +484,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../helper.py" line="49"/>
         <source>Could not fetch changelog: Server error {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog konnte nicht geholt werden: Server-Fehler {}.</translation>
     </message>
     <message>
         <location filename="../helper.py" line="51"/>
         <source>Could not fetch update: {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog konnte nicht geholt werden: {}.</translation>
     </message>
 </context>
 <context>
@@ -522,7 +522,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="54"/>
         <source>%1: </source>
-        <translation type="unfinished"></translation>
+        <translation>%1: </translation>
     </message>
 </context>
 <context>
