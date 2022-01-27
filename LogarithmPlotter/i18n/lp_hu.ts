@@ -238,7 +238,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ListSetting.qml" line="157"/>
         <source>+ Add Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>+ Bejegyzés hozzáadása</translation>
     </message>
 </context>
 <context>
@@ -466,22 +466,22 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="47"/>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation type="unfinished"></translation>
+        <translation>Példák: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="54"/>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation type="unfinished"></translation>
+        <translation>A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="39"/>
         <source>Note: Specify the probability for each value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
     </message>
 </context>
 <context>
@@ -593,37 +593,37 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
         <source>application</source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
         <source>function</source>
-        <translation type="unfinished"></translation>
+        <translation>Függvény</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
         <source>high</source>
-        <translation type="unfinished"></translation>
+        <translation>Magas</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
         <source>low</source>
-        <translation type="unfinished"></translation>
+        <translation>Alul</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
         <source>Next to target</source>
-        <translation type="unfinished"></translation>
+        <translation>Cél mellé</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
         <source>With label</source>
-        <translation type="unfinished"></translation>
+        <translation>Címkével</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Rejtett</translation>
     </message>
 </context>
 <context>
@@ -657,17 +657,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="44"/>
         <source>expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Kifejezés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="45"/>
         <source>definitionDomain</source>
-        <translation type="unfinished"></translation>
+        <translation>Abszcissza tartomány</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="46"/>
         <source>destinationDomain</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordináta tartomány</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="51"/>
@@ -681,12 +681,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="49"/>
         <source>labelPosition</source>
-        <translation type="unfinished"></translation>
+        <translation>Címke helyzete</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="52"/>
         <source>displayMode</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítési mód</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="53"/>
@@ -697,108 +697,108 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="38"/>
         <source>labelX</source>
-        <translation type="unfinished"></translation>
+        <translation>Címke X helyzete</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="33"/>
         <source>drawPoints</source>
-        <translation type="unfinished"></translation>
+        <translation>Pontok rajzolása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="34"/>
         <source>drawDashedLines</source>
-        <translation type="unfinished"></translation>
+        <translation>Szaggatott vonalak megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="40"/>
         <source>om_0</source>
-        <translation type="unfinished"></translation>
+        <translation>ω₀</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="43"/>
         <source>pass</source>
-        <translation type="unfinished"></translation>
+        <translation>Áteresztő</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="44"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagyságrend nyeresége</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="47"/>
         <source>omGraduation</source>
-        <translation type="unfinished"></translation>
+        <translation>ω érettségi megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="41"/>
         <source>phase</source>
-        <translation type="unfinished"></translation>
+        <translation>Fázis</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="42"/>
         <source>unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Egység használata</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="47"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="38"/>
         <source>y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="41"/>
         <source>pointStyle</source>
-        <translation type="unfinished"></translation>
+        <translation>Pontstílus</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="43"/>
         <source>probabilities</source>
-        <translation type="unfinished"></translation>
+        <translation>Valószínűségek listája</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="40"/>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalom</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="48"/>
         <source>targetElement</source>
-        <translation type="unfinished"></translation>
+        <translation>Tárgycél</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="50"/>
         <source>approximate</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzávetőleges érték megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="51"/>
         <source>rounding</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerekítés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="52"/>
         <source>displayStyle</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítési stílus</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="57"/>
         <source>targetValuePosition</source>
-        <translation type="unfinished"></translation>
+        <translation>Cél értékpozíciója</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="39"/>
         <source>baseValues</source>
-        <translation type="unfinished"></translation>
+        <translation>Kezdeményezési értékek</translation>
     </message>
 </context>
 <context>
