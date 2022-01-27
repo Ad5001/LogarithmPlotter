@@ -522,7 +522,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="54"/>
         <source>%1: </source>
-        <translation type="unfinished"></translation>
+        <translation>%1: </translation>
     </message>
 </context>
 <context>
