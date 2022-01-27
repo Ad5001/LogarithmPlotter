@@ -26,6 +26,7 @@ import "js/objs/autoload.js" as ALObjects
 
 import "js/objects.js" as Objects
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
+import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
 
 ApplicationWindow {
@@ -39,18 +40,17 @@ ApplicationWindow {
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     
-    
     menuBar: appMenu.trueItem
-    
-    GreetScreen {}
     
     AppMenuBar {id: appMenu}
     
     History { id: history }
     
-    About {id: about}
+    Popup.GreetScreen {}
     
-    Alert {
+    Popup.About {id: about}
+    
+    Popup.Alert {
         id: alert
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 5

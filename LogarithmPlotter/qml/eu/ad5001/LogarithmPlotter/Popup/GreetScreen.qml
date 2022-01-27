@@ -24,7 +24,7 @@ Popup {
     id: greetingPopup
     x: (parent.width-width)/2
     y: Math.max(20, (parent.height-height)/2)
-    width: Math.max(welcome.width, checkForUpdatesSetting.width, resetRedoStackSetting.width)+20
+    width: Math.max(welcome.width+70, checkForUpdatesSetting.width, resetRedoStackSetting.width)+20
     height: Math.min(parent.height-40, 500)
     modal: true
     focus: true
@@ -40,7 +40,7 @@ Popup {
         
         Image {
             id: logo
-            source: "icons/logarithmplotter.svg"
+            source: "../icons/logarithmplotter.svg"
             sourceSize.width: 48
             sourceSize.height: 48
             width: 48

@@ -31,7 +31,7 @@ class Point extends Common.DrawableObject  {
     /*static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
-        'labelPosition': new P.Enum('top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
+        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'pointStyle': new P.Enum('●', '✕', '＋'),
     }}*/
     static properties() {return {
@@ -42,7 +42,7 @@ class Point extends Common.DrawableObject  {
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                x = 1, y = 0, labelPosition = 'top', pointStyle = '●') {
+                x = 1, y = 0, labelPosition = 'above', pointStyle = '●') {
         if(name == null) name = Common.getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
         this.type = 'Point'
@@ -84,10 +84,10 @@ class Point extends Common.DrawableObject  {
         ctx.font = `${canvas.textsize}px sans-serif`
         var textSize = ctx.measureText(text).width
         switch(this.labelPosition) {
-            case 'top':
+            case 'above':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY-16)
                 break;
-            case 'bottom':
+            case 'below':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY+16)
                 break;
             case 'left':
@@ -96,16 +96,16 @@ class Point extends Common.DrawableObject  {
             case 'right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+4)
                 break;
-            case 'top-left':
+            case 'above-left':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY-16)
                 break;
-            case 'top-right':
+            case 'above-right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY-16)
                 break;
-            case 'bottom-left':
+            case 'below-left':
                 canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY+16)
                 break;
-            case 'bottom-right':
+            case 'below-right':
                 canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+16)
                 break;
                 

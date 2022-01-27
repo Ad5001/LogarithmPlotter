@@ -19,7 +19,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.3 as D
-import eu.ad5001.LogarithmPlotter 1.0
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../js/objects.js" as Objects
 import "../js/objs/common.js" as ObjectsCommons
 import "../js/historylib.js" as HistoryLib
@@ -53,7 +53,7 @@ D.Dialog {
         width: objEditor.width - 20
         spacing: 10
     
-        TextSetting {
+        Setting.TextSetting {
             id: nameProperty
             height: 30
             label: qsTr("Name")
@@ -77,7 +77,7 @@ D.Dialog {
             }
         }
     
-        ComboBoxSetting {
+        Setting.ComboBoxSetting {
             id: labelContentProperty
             height: 30
             width: dlgProperties.width
@@ -118,7 +118,7 @@ D.Dialog {
                 }
                 
                 // Setting for text & number settings as well as domains & expressions
-                TextSetting {
+                Setting.TextSetting {
                     id: customPropText
                     height: visible ? 30 : 0
                     width: parent.width
@@ -174,7 +174,7 @@ D.Dialog {
                 }
                 
                 // Setting when selecting data from an enum, or an object of a certain type.
-                ComboBoxSetting {
+                Setting.ComboBoxSetting {
                     id: customPropCombo
                     width: dlgProperties.width
                     height: visible ? 30 : 0
@@ -234,7 +234,7 @@ D.Dialog {
                 }
                 
                 // Setting to edit lists or dictionaries (e.g sequences & repartition function values)
-                ListSetting {
+                Setting.ListSetting {
                     id: customPropListDict
                     width: parent.width
                     height: visible ? implicitHeight : 0

@@ -30,7 +30,7 @@ class Text extends Common.DrawableObject  {
     /*static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
-        'labelPosition': new P.Enum('center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
+        'labelPosition': new P.Enum('center', 'above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'text': 'string',
     }}*/
     static properties() {return {
@@ -69,10 +69,10 @@ class Text extends Common.DrawableObject  {
             case 'center':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+4)
                 break;
-            case 'top':
+            case 'above':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY-16)
                 break;
-            case 'bottom':
+            case 'below':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+16)
                 break;
             case 'left':
@@ -81,16 +81,16 @@ class Text extends Common.DrawableObject  {
             case 'right':
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+4)
                 break;
-            case 'top-left':
+            case 'above-left':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY-16)
                 break;
-            case 'top-right':
+            case 'above-right':
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY-16)
                 break;
-            case 'bottom-left':
+            case 'below-left':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+16)
                 break;
-            case 'bottom-right':
+            case 'below-right':
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+16)
                 break;
                 

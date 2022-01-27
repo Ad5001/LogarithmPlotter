@@ -4,23 +4,23 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="26"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="26"/>
         <location filename="../logarithmplotter.py" line="197"/>
         <source>About LogarithmPlotter</source>
         <translation>LogarithmPlotter névjegye</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="52"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="52"/>
         <source>LogarithmPlotter v%1</source>
         <translation>LogarithmPlotter %1 verzió</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="64"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="64"/>
         <source>2D plotter software to make BODE plots, sequences and repartition functions.</source>
         <translation>Síkbeli ábrázolásszoftver Bode-ábrák, sorozatok és eloszlási funkciók készítéséhez.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/About.qml" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="103"/>
         <source>Report a bug</source>
         <translation>Hiba bejelentése</translation>
     </message>
@@ -170,12 +170,12 @@
 <context>
     <name>FileDialog</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/FileDialog.qml" line="26"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/FileDialog.qml" line="26"/>
         <source>Export Logarithm Plot file</source>
         <translation>Logaritmus-ábra-fájl exportálása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/FileDialog.qml" line="26"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/FileDialog.qml" line="26"/>
         <source>Import Logarithm Plot file</source>
         <translation>Logaritmus-ábra-fájl importálása</translation>
     </message>
@@ -183,34 +183,34 @@
 <context>
     <name>GreetScreen</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="58"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="58"/>
         <source>Welcome to LogarithmPlotter</source>
         <translation>Isten hozott a LogarithmPlotter!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="72"/>
         <source>Version %1</source>
         <translation>%1 verzió</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="84"/>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
         <translation>Szánjon néhány másodpercet a LogarithmPlotter beállításához.
 Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="93"/>
         <source>Check for updates on startup (requires online connectivity)</source>
         <translation>Frissítések keresése indításkor (online kapcsolat szükséges)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="105"/>
         <source>Reset redo stack when a new action is added to history</source>
         <translation>Ismétlési verem alaphelyzet visszaállítása, ha új műveletet adnak az előzményekhez</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/GreetScreen.qml" line="113"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="113"/>
         <source>Done</source>
         <translation>Kész</translation>
     </message>
@@ -236,7 +236,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>ListSetting</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ListSetting.qml" line="157"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="157"/>
         <source>+ Add Entry</source>
         <translation>+ Bejegyzés hozzáadása</translation>
     </message>
@@ -366,97 +366,97 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="73"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="75"/>
         <source>X Zoom</source>
         <translation>X-nagyítás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="88"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="90"/>
         <source>Y Zoom</source>
         <translation>Y-nagyítás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="104"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="106"/>
         <source>Min X</source>
         <translation>Legkisebb X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="123"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="125"/>
         <source>Max Y</source>
         <translation>Legnagyobb Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="138"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="140"/>
         <source>Max X</source>
         <translation>Legnagyobb X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="157"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="159"/>
         <source>Min Y</source>
         <translation>Legkisebb Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="174"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="176"/>
         <source>X Axis Step</source>
         <translation>X tengely lépésköze</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="188"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="190"/>
         <source>Y Axis Step</source>
         <translation>Y tengely lépésköze</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="202"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="204"/>
         <source>Line width</source>
         <translation>Vonalvastagság</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="217"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="219"/>
         <source>Text size (px)</source>
         <translation>Szövegméret (képpont)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="232"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="234"/>
         <source>X Label</source>
         <translation>X címke</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="258"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="260"/>
         <source>Y Label</source>
         <translation>Y címke</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="286"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="288"/>
         <source>X Log scale</source>
         <translation>X tengely logaritmikus skálával</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="296"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="298"/>
         <source>Show X graduation</source>
         <translation>X érettségi megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="306"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="308"/>
         <source>Show Y graduation</source>
         <translation>Y érettségi megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="317"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="319"/>
         <source>Copy to clipboard</source>
         <translation>Másolás a vágólapra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="326"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="328"/>
         <source>Save plot</source>
         <translation>Ábra mentése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="335"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="337"/>
         <source>Save plot as</source>
         <translation>Ábra mentése másként</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="344"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="346"/>
         <source>Load plot</source>
         <translation>Ábra betöltése</translation>
     </message>

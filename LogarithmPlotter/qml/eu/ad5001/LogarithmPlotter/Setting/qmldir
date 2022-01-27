@@ -1,0 +1,7 @@
+module eu.ad5001.LogarithmPlotter.Setting
+
+ComboBoxSetting 1.0 ComboBoxSetting.qml
+Icon 1.0 Icon.qml
+ListSetting 1.0 ListSetting.qml
+TextSetting 1.0 TextSetting.qml
+

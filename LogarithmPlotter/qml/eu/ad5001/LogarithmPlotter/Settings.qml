@@ -18,6 +18,8 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
+import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 import "js/utils.js" as Utils
 
 ScrollView {
@@ -48,7 +50,7 @@ ScrollView {
         width: parent.width
         bottomPadding: 20
         
-        FileDialog {
+        Popup.FileDialog {
             id: fdiag
             onAccepted: {
                 var filePath = fileUrl.toString().substr(7)
@@ -66,7 +68,7 @@ ScrollView {
         }
         
         // Zoom
-        TextSetting {
+        Setting.TextSetting {
             id: zoomX
             height: 30
             isDouble: true
@@ -81,7 +83,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: zoomY
             height: 30
             isDouble: true
@@ -96,7 +98,7 @@ ScrollView {
         }
         
         // Positioning the graph
-        TextSetting {
+        Setting.TextSetting {
             id: minX
             height: 30
             isDouble: true
@@ -115,7 +117,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: maxY
             height: 30
             isDouble: true
@@ -130,7 +132,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: maxX
             height: 30
             isDouble: true
@@ -149,7 +151,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: minY
             height: 30
             isDouble: true
@@ -168,7 +170,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: xAxisStep
             height: 30
             label: qsTr("X Axis Step")
@@ -182,7 +184,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: yAxisStep
             height: 30
             label: qsTr("Y Axis Step")
@@ -195,7 +197,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: lineWidth
             height: 30
             isDouble: true
@@ -210,7 +212,7 @@ ScrollView {
             }
         }
         
-        TextSetting {
+        Setting.TextSetting {
             id: textSize
             height: 30
             isDouble: true
@@ -225,7 +227,7 @@ ScrollView {
             }
         }
         
-        ComboBoxSetting {
+        Setting.ComboBoxSetting {
             id: xAxisLabel
             height: 30
             width: settings.settingWidth
@@ -251,7 +253,7 @@ ScrollView {
             Component.onCompleted: editText = settings.xaxislabel
         }
         
-        ComboBoxSetting {
+        Setting.ComboBoxSetting {
             id: yAxisLabel
             height: 30
             width: settings.settingWidth
