@@ -37,7 +37,7 @@ Column {
             id: labelItem
             height: 30
             verticalAlignment: TextInput.AlignVCenter
-            text: control.label +": "
+            text: qsTranslate("control", "%1: ").arg(control.label)
         }
     }
     

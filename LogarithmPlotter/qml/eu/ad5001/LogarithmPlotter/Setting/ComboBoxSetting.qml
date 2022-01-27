@@ -54,7 +54,7 @@ Item {
         height: 30
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
-        text: control.label +": "
+        text: qsTranslate("control", "%1: ").arg(control.label)
     }
     
     ComboBox {
