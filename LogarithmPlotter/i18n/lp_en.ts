@@ -133,12 +133,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="58"/>
         <source>Fetching changelog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fetching changelog…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="66"/>
         <source>Done</source>
-        <translation type="unfinished">Done</translation>
+        <translation>Done</translation>
     </message>
 </context>
 <context>
@@ -225,7 +225,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="118"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="125"/>
@@ -484,12 +484,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../helper.py" line="49"/>
         <source>Could not fetch changelog: Server error {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not fetch changelog: Server error {}.</translation>
     </message>
     <message>
         <location filename="../helper.py" line="51"/>
         <source>Could not fetch update: {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not fetch changelog: {}.</translation>
     </message>
 </context>
 <context>
