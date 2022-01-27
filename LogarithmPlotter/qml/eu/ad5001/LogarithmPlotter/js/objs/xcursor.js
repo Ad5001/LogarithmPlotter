@@ -28,7 +28,7 @@ class XCursor extends Common.DrawableObject {
     static type(){return 'X Cursor'}
     static displayType(){return qsTr('X Cursor')}
     static displayTypeMultiple(){return qsTr('X Cursors')}
-    static properties() {
+    /*static properties() {
         return {
             'x': 'Expression',
             'targetElement': new P.ObjectType('ExecutableObject'),
@@ -42,7 +42,20 @@ class XCursor extends Common.DrawableObject {
             ),
             'targetValuePosition' : new P.Enum('Next to target', 'With label', 'Hidden')
         }
-    }
+    }*/
+    static properties() {return {
+        [QT_TRANSLATE_NOOP('prop','x')]:                   'Expression',
+        [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject'),
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]:       P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','approximate')]:         'boolean',
+        [QT_TRANSLATE_NOOP('prop','rounding')]:            'number',
+        [QT_TRANSLATE_NOOP('prop','displayStyle')]:        new P.Enum(
+                                                               '— — — — — — —',
+                                                               '⸺⸺⸺⸺⸺⸺',
+                                                               '• • • • • • • • • •'
+                                                           ),
+        [QT_TRANSLATE_NOOP('prop','targetValuePosition')]: P.Enum.XCursorValuePosition,
+    }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 x = 1, targetElement = null, labelPosition = 'left', approximate = true,

@@ -29,12 +29,19 @@ class PhaseBode extends Common.ExecutableObject {
     static type(){return 'Phase Bode'}
     static displayType(){return qsTr('Bode Phase')}
     static displayTypeMultiple(){return qsTr('Bode Phases')}
-    static properties() {return {
+    /*static properties() {return {
         'om_0': new P.ObjectType('Point'),
         'phase': 'Expression',
         'unit': new P.Enum('°', 'deg', 'rad'),
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number'
+    }}*/
+    static properties() {return {
+        [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
+        [QT_TRANSLATE_NOOP('prop','phase')]:         'Expression',
+        [QT_TRANSLATE_NOOP('prop','unit')]:          new P.Enum('°', 'deg', 'rad'),
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','labelX')]:        'number'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 

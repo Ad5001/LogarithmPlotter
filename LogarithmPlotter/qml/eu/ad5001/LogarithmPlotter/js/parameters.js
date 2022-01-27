@@ -72,4 +72,18 @@ Enum.Position = new Enum(
 Enum.FunctionDisplayType = new Enum(
     QT_TR_NOOP('application'), 
     QT_TR_NOOP('function')
-);
+)
+
+Enum.BodePass = new Enum(
+    QT_TR_NOOP('high'),
+    QT_TR_NOOP('low')
+)
+
+
+Enum.XCursorValuePosition = new Enum(
+    QT_TR_NOOP('Next to target'),
+    QT_TR_NOOP('With label'),
+    QT_TR_NOOP('Hidden')
+)
+
+

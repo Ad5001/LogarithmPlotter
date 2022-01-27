@@ -28,11 +28,17 @@ class Point extends Common.DrawableObject  {
     static displayType(){return qsTr('Point')}
     static displayTypeMultiple(){return qsTr('Points')}
     
-    static properties() {return {
+    /*static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
         'labelPosition': new P.Enum('top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
         'pointStyle': new P.Enum('●', '✕', '＋'),
+    }}*/
+    static properties() {return {
+        [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','pointStyle')]:    new P.Enum('●', '✕', '＋')
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 

@@ -30,13 +30,21 @@ class GainBode extends Common.ExecutableObject {
     static type(){return 'Gain Bode'}
     static displayType(){return qsTr('Bode Magnitude')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes')}
-    static properties() {return {
+    /*static properties() {return {
         'om_0': new P.ObjectType('Point'),
         'pass': new P.Enum('high', 'low'),
         'gain': 'Expression',
         'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
         'labelX': 'number',
         'omGraduation': 'boolean'
+    }}*/
+    static properties() {return {
+        [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
+        [QT_TRANSLATE_NOOP('prop','pass')]:          P.Enum.BodePass,
+        [QT_TRANSLATE_NOOP('prop','gain')]:          'Expression',
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
+        [QT_TRANSLATE_NOOP('prop','omGraduation')]:  'boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 

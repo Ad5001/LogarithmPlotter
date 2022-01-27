@@ -34,7 +34,7 @@ D.Dialog {
     property QtObject editingRow: QtObject{}
     property var objectLists
     title: `LogarithmPlotter`
-    width: 300
+    width: 350
     height: 400
     
     Label {
@@ -111,8 +111,8 @@ D.Dialog {
                     height: visible ? implicitHeight : 0
                     visible: modelData[0].startsWith('comment')
                     // Translated text with object name.
-                    property string trText: visible ? qsTranslate('comment', modelData[1]) : ''
-                    text: trText// trText.contains("%1") ? trText.arg(objEditor.obj.name).toString() : trText
+                    property string trText: visible ? qsTranslate('comment', modelData[1]).toString() : ''
+                    text: (visible && trText.includes("%1") ? trText.arg(objEditor.obj.name) : trText).toString()
                     //color: sysPalette.windowText
                     wrapMode: Text.WordWrap
                 }

@@ -106,7 +106,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="142"/>
         <source>&amp;Report a bug</source>
-        <translation>Rapport de bug</translation>
+        <translation>&amp;Rapport de bug</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
@@ -162,8 +162,8 @@
         <translation>nom + valeur</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="187"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="207"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="190"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="210"/>
         <source>+ Create new %1</source>
         <translatorcomment>Traduction non litéralle pour éviter les problèmes de genre.</translatorcomment>
         <translation>+ Créer un nouvel objet %1</translation>
@@ -474,12 +474,23 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="47"/>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation type="unfinished"></translation>
+        <translation>Par exemple: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="54"/>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Les paramètres suivants sont utilisés lorsque le domaine de définition est un ensemble non-continu. (Ex : ℕ, ℤ, des ensembles comme {0;3}...)</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="39"/>
+        <source>Note: Specify the probability for each value.</source>
+        <translation>Note : Spécifiez la probabilité pour chaque valeur.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
+        <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
+        <translatorcomment>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁...</translatorcomment>
+        <translation>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</translation>
     </message>
 </context>
 <context>
@@ -508,12 +519,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Gains de Bode</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="80"/>
         <source>low-pass</source>
         <translation>passe-bas</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="80"/>
         <source>high-pass</source>
         <translation>passe-haut</translation>
     </message>
@@ -591,12 +602,37 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
         <source>application</source>
-        <translation type="unfinished"></translation>
+        <translation>Application</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
         <source>function</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonction</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
+        <source>high</source>
+        <translation>Haut</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
+        <source>low</source>
+        <translation>Bas</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
+        <source>Next to target</source>
+        <translation>A côté de la cible</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
+        <source>With label</source>
+        <translation>Avec l&apos;étiquette</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
+        <source>Hidden</source>
+        <translation>Caché</translation>
     </message>
 </context>
 <context>
@@ -630,42 +666,148 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="44"/>
         <source>expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Expression</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="45"/>
         <source>definitionDomain</source>
-        <translation type="unfinished"></translation>
+        <translation>Domaine de définition</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="46"/>
         <source>destinationDomain</source>
-        <translation type="unfinished"></translation>
+        <translation>Portée</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="51"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="45"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="43"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="49"/>
         <source>labelPosition</source>
-        <translation type="unfinished"></translation>
+        <translation>Position de l&apos;étiquette</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="52"/>
         <source>displayMode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode d&apos;affichage</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="53"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="44"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="38"/>
         <source>labelX</source>
-        <translation type="unfinished"></translation>
+        <translation>Position en X de l&apos;étiquette</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="33"/>
         <source>drawPoints</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les points</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="34"/>
         <source>drawDashedLines</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les pointillés</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="42"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="40"/>
+        <source>om_0</source>
+        <translation>ω₀</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="43"/>
+        <source>pass</source>
+        <translation>Passe</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="44"/>
+        <source>gain</source>
+        <translation>Gain</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="47"/>
+        <source>omGraduation</source>
+        <translation>Afficher la graduation sur ω₀</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="41"/>
+        <source>phase</source>
+        <translation>Phase</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="42"/>
+        <source>unit</source>
+        <translation>Unité de la phase</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="47"/>
+        <source>x</source>
+        <translation>X</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="38"/>
+        <source>y</source>
+        <translation>Y</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.js" line="41"/>
+        <source>pointStyle</source>
+        <translation>Style du point</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="43"/>
+        <source>probabilities</source>
+        <translation>Liste de probabilités</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="40"/>
+        <source>text</source>
+        <translation>Contenu</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="48"/>
+        <source>targetElement</source>
+        <translation>Objet à cibler</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="50"/>
+        <source>approximate</source>
+        <translation>Afficher la valeur approximative</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="51"/>
+        <source>rounding</source>
+        <translation>Arrondi</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="52"/>
+        <source>displayStyle</source>
+        <translation>Style d&apos;affichage</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="57"/>
+        <source>targetValuePosition</source>
+        <translation>Position de la valeur de la cible</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="39"/>
+        <source>baseValues</source>
+        <translation>Valeurs d&apos;initialisation</translation>
     </message>
 </context>
 <context>

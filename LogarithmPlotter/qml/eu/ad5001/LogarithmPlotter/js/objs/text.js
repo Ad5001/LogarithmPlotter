@@ -27,11 +27,17 @@ class Text extends Common.DrawableObject  {
     static type(){return 'Text'}
     static displayType(){return qsTr('Text')}
     static displayTypeMultiple(){return qsTr('Texts')}
-    static properties() {return {
+    /*static properties() {return {
         'x': 'Expression',
         'y': 'Expression',
         'labelPosition': new P.Enum('center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
         'text': 'string',
+    }}*/
+    static properties() {return {
+        [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','text')]:          'string'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'null', 
