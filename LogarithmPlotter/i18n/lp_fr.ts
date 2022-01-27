@@ -474,12 +474,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="47"/>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation>Par exemple: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
+        <translation>Par exemple : R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="54"/>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation>Les paramètres suivants sont utilisés lorsque le domaine de définition est un ensemble non-continu. (Ex : ℕ, ℤ, des ensembles comme {0;3}...)</translation>
+        <translation>Les paramètres suivants sont utilisés lorsque le domaine de définition est un ensemble non-continu. (Ex : ℕ, ℤ, des ensembles comme {0;3}…)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.js" line="39"/>
@@ -490,7 +490,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
         <translatorcomment>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁...</translatorcomment>
-        <translation>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</translation>
+        <translation>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁…</translation>
     </message>
 </context>
 <context>
