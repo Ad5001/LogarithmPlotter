@@ -48,6 +48,8 @@ ApplicationWindow {
     
     Popup.GreetScreen {}
     
+    Popup.Changelog {id: changelog}
+    
     Popup.About {id: about}
     
     Popup.Alert {

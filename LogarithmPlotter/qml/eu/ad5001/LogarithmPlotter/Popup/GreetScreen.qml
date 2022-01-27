@@ -108,13 +108,24 @@ Popup {
         }
     }
     
-    Button {
-        text: qsTr("Done")
-        font.pixelSize: 20
+    Row {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: greetingPopup.close()
+        
+        Button {
+            id: changelogBtn
+            text: qsTr("Changelog")
+            font.pixelSize: 18
+            onClicked: changelog.open()
+        }
+        
+        Button {
+            id: doneBtn
+            text: qsTr("Done")
+            font.pixelSize: 18
+            onClicked: greetingPopup.close()
+        }
     }
     
     Timer {
