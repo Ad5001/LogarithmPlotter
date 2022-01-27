@@ -134,12 +134,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="58"/>
         <source>Fetching changelog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de l&apos;historique des modifications…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="66"/>
         <source>Done</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
@@ -217,7 +217,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="118"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Historique des modifications</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="125"/>
@@ -492,12 +492,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../helper.py" line="49"/>
         <source>Could not fetch changelog: Server error {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de récupérer l&apos;historique des modifications : Erreur de serveur {}.</translation>
     </message>
     <message>
         <location filename="../helper.py" line="51"/>
         <source>Could not fetch update: {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de récupérer l&apos;historique des modifications : {}.</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="54"/>
         <source>%1: </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 : </translation>
     </message>
 </context>
 <context>
