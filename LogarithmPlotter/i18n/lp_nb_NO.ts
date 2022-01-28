@@ -608,11 +608,13 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="76"/>
         <source>left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="77"/>
         <source>right</source>
         <translation type="unfinished"></translation>
     </message>
@@ -638,36 +640,71 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
-        <source>application</source>
+        <source>center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
-        <source>function</source>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
+        <source>bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
-        <source>high</source>
+        <source>top-left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
-        <source>low</source>
+        <source>top-right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
-        <source>Next to target</source>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
+        <source>bottom-left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
+        <source>bottom-right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
-        <source>With label</source>
+        <source>application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
+        <source>function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="90"/>
+        <source>high</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="91"/>
+        <source>low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="96"/>
+        <source>Next to target</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="97"/>
+        <source>With label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="98"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>

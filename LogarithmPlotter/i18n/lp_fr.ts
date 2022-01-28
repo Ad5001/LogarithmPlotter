@@ -617,11 +617,13 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="76"/>
         <source>left</source>
         <translation>← À gauche</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="77"/>
         <source>right</source>
         <translation>→ À droite</translation>
     </message>
@@ -647,36 +649,71 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
+        <source>center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
+        <source>top-left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
+        <source>top-right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
+        <source>bottom-left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
+        <source>bottom-right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
         <source>application</source>
         <translation>Application</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
         <source>function</source>
         <translation>Fonction</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="90"/>
         <source>high</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="91"/>
         <source>low</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="96"/>
         <source>Next to target</source>
         <translation>A côté de la cible</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="97"/>
         <source>With label</source>
         <translation>Avec l&apos;étiquette</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="98"/>
         <source>Hidden</source>
         <translation>Caché</translation>
     </message>
