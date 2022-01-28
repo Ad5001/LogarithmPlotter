@@ -69,6 +69,18 @@ Enum.Position = new Enum(
     QT_TR_NOOP('below-right')
 )
 
+Enum.Positioning = new Enum(
+    QT_TR_NOOP('center'),
+    QT_TR_NOOP('top'),
+    QT_TR_NOOP('bottom'),
+    QT_TR_NOOP('left'),
+    QT_TR_NOOP('right'),
+    QT_TR_NOOP('top-left'),
+    QT_TR_NOOP('top-right'),
+    QT_TR_NOOP('bottom-left'),  
+    QT_TR_NOOP('bottom-right')
+)
+
 Enum.FunctionDisplayType = new Enum(
     QT_TR_NOOP('application'), 
     QT_TR_NOOP('function')

@@ -36,7 +36,7 @@ class Text extends Common.DrawableObject  {
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
-        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Positioning,
         [QT_TRANSLATE_NOOP('prop','text')]:          'string'
     }}
     
@@ -70,11 +70,9 @@ class Text extends Common.DrawableObject  {
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+4)
                 break;
             case 'top':
-            case 'above':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY-16)
                 break;
             case 'bottom':
-            case 'below':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+16)
                 break;
             case 'left':
@@ -84,19 +82,15 @@ class Text extends Common.DrawableObject  {
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+4)
                 break;
             case 'top-left':
-            case 'above-left':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY-16)
                 break;
             case 'top-right':
-            case 'above-right':
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY-16)
                 break;
             case 'bottom-left':
-            case 'below-left':
                 canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+16)
                 break;
             case 'bottom-right':
-            case 'below-right':
                 canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+16)
                 break;
                 
