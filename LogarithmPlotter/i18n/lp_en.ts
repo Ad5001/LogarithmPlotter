@@ -641,37 +641,37 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
         <source>center</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;|&lt; Center</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
         <source>top</source>
-        <translation type="unfinished"></translation>
+        <translation>↑ Top</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
         <source>bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>↓ Bottom</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
         <source>top-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↖ Top left</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
         <source>top-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↗ Top right</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
         <source>bottom-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↙ Bottom left</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
         <source>bottom-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↘ Bottom right</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
