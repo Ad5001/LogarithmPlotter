@@ -743,13 +743,13 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.js" line="39"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.js" line="38"/>
         <source>labelX</source>
-        <translation>Label X position</translation>
+        <translation>Label&apos;s X position</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="33"/>
         <source>drawPoints</source>
-        <translation>Draw points</translation>
+        <translation>Show points</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
@@ -776,7 +776,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="47"/>
         <source>omGraduation</source>
-        <translation>Show graduation on ω</translation>
+        <translation>Show graduation on ω₀</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="41"/>
