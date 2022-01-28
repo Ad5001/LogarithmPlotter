@@ -110,7 +110,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Changelog</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
@@ -844,7 +844,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
         <source>defaultExpression</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardausdruck</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
