@@ -23,7 +23,7 @@
     -->
     <description>
         <p>
-            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of plots with very few limitations.
+            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of both logarithmic-scaled and non logarithmic-scaled plots with very few limitations.
         </p>
         <p>
             It's primary use is to quickly create asymptotic Bode plots, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
@@ -35,11 +35,19 @@
             <li>Advanced history system</li>
             <li>Diagram looks customisation</li>
         </ul>
+        <p>LogarithmPlotter is available in:</p>
+        <ul>
+            <li>🇬🇧 English</li>
+            <li>🇫🇷 French</li>
+            <li>🇩🇪 German</li>
+            <li>🇭🇺 Hungarian</li>
+            <li>🇳🇴 Norwergian</li>
+        </ul>
         <p xml:lang="fr">Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
     </description>
     <description xml:lang="fr">
         <p xml:lang="fr">
-            LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes avec peu de limitations.    
+            LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes à échelle logarithmique et non logarithmique avec peu de limitations.    
         </p>
         <p xml:lang="fr">
             Son intérêt principal est de permettre de créer des diagrammes asymptotiques de Bode, mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.
@@ -50,6 +58,14 @@
             <li>Modification complète des objets</li>
             <li>Système d'historique avancé</li>
             <li>Personnalisation de l'apparence des diagrammes</li>
+        </ul>
+        <p xml:lang="fr">LogarithmPlotter est disponible en:</p>
+        <ul xml:lang="fr">
+            <li>🇬🇧 Anglais</li>
+            <li>🇫🇷 Français</li>
+            <li>🇩🇪 Allemand</li>
+            <li>🇭🇺 Hongrois</li>
+            <li>🇳🇴 Norvégien</li>
         </ul>
         <p xml:lang="fr">En savoir plus: https://apps.ad5001.eu/fr/logarithmplotter/</p>
     </description>
