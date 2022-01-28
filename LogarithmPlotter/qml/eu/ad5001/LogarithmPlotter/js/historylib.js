@@ -21,6 +21,7 @@
 .pragma library
 
 .import "objects.js" as Objects
+.import "parameters.js" as P
 .import "objs/common.js" as Common
 .import "utils.js" as Utils
 .import "mathlib.js" as MathLib
@@ -103,14 +104,15 @@ class EditedProperty extends Action {
     constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true, valueIsExpressionNeedingImport = false) {
         super(targetName, targetType)
         this.targetProperty = targetProperty
-        this.targetPropertyReadable = Utils.camelCase2readable(this.targetProperty)
+        this.targetPropertyReadable = qsTranslate("prop", this.targetProperty)
         this.previousValue = previousValue
         this.newValue = newValue
+        this.propertyType = Objects.types[targetType].properties()[targetProperty]
         if(valueIsExpressionNeedingImport) {
-            if(targetType == "Expression") {
+            if(propertyType == "Expression") {
                 this.previousValue = new MathLib.Expression(this.previousValue);
                 this.newValue = new MathLib.Expression(this.newValue);
-            } else if(targetType == "Domain") {
+            } else if(propertyType == "Domain") {
                 this.previousValue = MathLib.parseDomain(this.previousValue);
                 this.newValue = MathLib.parseDomain(this.newValue);
             } else {
@@ -140,12 +142,33 @@ class EditedProperty extends Action {
     }
     
     getReadableString() {
-        var prev = this.previousValue == null ? "null" : this.previousValue.toString()
-        var next = this.newValue == null ? "null" : this.newValue.toString()
-        if(prev == "[object Object]") // Oh no!
-            prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
-        if(next == "[object Object]") // Oh no!
-            next = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
+        let prev = "";
+        let next = "";
+        if(this.propertyType instanceof Object) {
+            console.log(this.propertyType.type)
+            switch(this.propertyType.type) {
+                case "Enum":
+                    console.log(this.propertyType.translatedValues, this.previousValue, this.propertyType.values.indexOf(this.previousValue))
+                    prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
+                    next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
+                    break;
+                case "ObjectType":
+                    prev = this.previousValue.name
+                    next = this.newValue.name
+                    break;
+                case "List":
+                    prev = this.previousValue.join(",")
+                    next = this.newValue.name.join(",")
+                    break;
+                case "Dict":
+                    prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
+                    next = JSON.stringify(this.newValue).replace("'", "\\'").replace('"', "'")
+                    break;
+            }
+        } else {
+            prev = this.previousValue == null ? "null" : this.previousValue.toString()
+            next = this.newValue == null ? "null" : this.newValue.toString()
+        }
         return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
                 .arg(this.targetPropertyReadable)
                 .arg(Objects.types[this.targetType].displayType())

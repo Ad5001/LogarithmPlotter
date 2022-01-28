@@ -33,7 +33,7 @@ D.Dialog {
     property var obj: Objects.currentObjects[objType][objIndex]
     property QtObject editingRow: QtObject{}
     property var objectLists
-    title: `LogarithmPlotter`
+    title: "LogarithmPlotter"
     width: 350
     height: 400
     

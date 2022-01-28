@@ -569,27 +569,27 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
 <context>
     <name>historylib</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="79"/>
         <source>New %1 %2 created.</source>
         <translation>Ny %1 %2 opprettet.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="96"/>
         <source>%1 %2 deleted.</source>
         <translation>%1 %2 slettet.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="149"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="172"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 av %2 %3 endret fra «%4» til «%5».</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="166"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="189"/>
         <source>%1 %2 shown.</source>
         <translation>%1 %2 vist.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="168"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="191"/>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 skjult.</translation>
     </message>
