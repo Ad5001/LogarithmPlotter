@@ -145,7 +145,7 @@ class Helper(QObject):
     
     @Slot()
     def fetchChangelog(self):
-        changelog_cache_path = path.join(path.dirname(path.realpath(__file__), "CHANGELOG.md"))
+        changelog_cache_path = path.join(path.dirname(path.realpath(__file__)), "CHANGELOG.md")
         if path.exists(changelog_cache_path): 
             # We have a cached version of the changelog, for env that don't have access to the internet.
             f = open(changelog_cache_path);
@@ -154,5 +154,5 @@ class Helper(QObject):
         else:
             # Fetch it from the internet.
             runnable = ChangelogFetcher(self)
-            ^QThreadPool.globalInstance().start(runnable)
+            QThreadPool.globalInstance().start(runnable)
 
