@@ -19,20 +19,82 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 
+/*!
+    \qmltype ComboBoxSetting
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Setting
+    \brief Combo box with an icon and label to make a proper setting.
+            
+    \sa EditorDialog, Settings, Icon
+*/
 Item {
     id: control
     height: 30
     
+    /*!
+        \qmlsignal ComboBoxSetting::activated(int newIndex)
+        
+        Alias of ComboBox.activated.
+        The corresponding handler is \c onActivated.
+        \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#activated-signal
+    */
     signal activated(int newIndex)
+    /*!
+        \qmlsignal ComboBoxSetting::accepted()
+        
+        Alias of ComboBox.accepted.
+        The corresponding handler is \c onAccepted.
+        \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#accepted-signal
+    */
     signal accepted()
     
+    /*!
+       \qmlproperty string ComboBoxSetting::label
+       Label of the setting.
+    */
     property string label: ''
-    property alias model: combox.model
-    property alias editable: combox.editable
-    property alias editText: combox.editText
-    property alias currentIndex: combox.currentIndex
+    /*!
+       \qmlproperty string ComboBoxSetting::icon
+       Icon path of the setting.
+    */
     property string icon: ""
     
+    /*!
+       \qmlproperty var ComboBoxSetting::model
+       Model of the combo box.
+       \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#model-prop
+    */
+    property alias model: combox.model
+    /*!
+       \qmlproperty bool ComboBoxSetting::editable
+       Whether the combo box accepts user-inputed values.
+       \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#editable-prop
+    */
+    property alias editable: combox.editable
+    /*!
+       \qmlproperty string ComboBoxSetting::editText
+       Text in the text field of an editable combo box.
+       \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#editText-prop
+    */
+    property alias editText: combox.editText
+    /*!
+       \qmlproperty string ComboBoxSetting::currentIndex
+       Index of the current item in the combo box.
+       The default value is -1 when count is 0, and 0 otherwise
+       \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#currentIndex-prop
+    */
+    property alias currentIndex: combox.currentIndex
+    /*!
+       \qmlproperty string ComboBoxSetting::currentIndex
+       Input text validator for an editable combo box
+       \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#validator-prop
+    */
+    property alias validator: combox.validator
+    
+    /*!
+        \qmlmethod int ComboBoxSetting::find(string elementName)
+        Returns the index of the specified \a elementName, or -1 if no match is found.
+        \sa https://doc.qt.io/qt-5/qml-qtquick-controls2-combobox.html#find-method
+    */
     function find(elementName) {
         return combox.find(elementName)
     }

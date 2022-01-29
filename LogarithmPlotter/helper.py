@@ -90,6 +90,9 @@ class Helper(QObject):
                     data = data[5:]
                 elif data[0] == "{" and "type" in loads(data) and loads(data)["type"] == "logplotv1":
                     pass
+                elif data[:3] == "LPF":
+                    # More recent version of LogarithmPlotter file, but incompatible with the current format
+                    raise Exception(QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.".format(__VERSION__)))
                 else:
                     raise Exception("Invalid LogarithmPlotter file.")
             except Exception as e: # If file can't be loaded

@@ -28,7 +28,13 @@ import "js/objects.js" as Objects
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
-
+/*!
+    \qmltype LogarithmPlotter
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief Main window of LogarithmPlotter
+        
+    \sa AppMenuBar, History, GreetScreen, Changelog, Alert, ObjectLists, Settings, HistoryBrowser, LogGraphCanvas, PickLocationOverlay.
+*/
 ApplicationWindow {
     id: root
     visible: true
@@ -137,8 +143,8 @@ ApplicationWindow {
         ymax: settings.ymax
         xzoom: settings.xzoom
         yzoom: settings.yzoom
-        xlabel: settings.xaxislabel
-        ylabel: settings.yaxislabel
+        xlabel: settings.xlabel
+        ylabel: settings.ylabel
         yaxisstep: settings.yaxisstep
         xaxisstep: settings.xaxisstep
         logscalex: settings.logscalex
@@ -165,6 +171,10 @@ ApplicationWindow {
         }
     }
     
+    /*!
+        \qmlmethod void LogarithmPlotter::saveDiagram(string filename)
+        Saves the diagram to a certain \c filename.
+    */
     function saveDiagram(filename) {
         if(['lpf'].indexOf(filename.split('.')[filename.split('.').length-1]) == -1)
             filename += '.lpf'
@@ -183,8 +193,8 @@ ApplicationWindow {
             "ymax":         settings.ymax,
             "xaxisstep":    settings.xaxisstep,
             "yaxisstep":    settings.yaxisstep,
-            "xaxislabel":   settings.xaxislabel,
-            "yaxislabel":   settings.yaxislabel,
+            "xaxislabel":   settings.xlabel,
+            "yaxislabel":   settings.ylabel,
             "logscalex":    settings.logscalex,
             "linewidth":    settings.linewidth,
             "showxgrad":    settings.showxgrad,
@@ -200,6 +210,10 @@ ApplicationWindow {
         history.saved = true
     }
     
+    /*!
+        \qmlmethod void LogarithmPlotter::saveDiagram(string filename)
+        Loads the diagram from a certain \c filename.
+    */
     function loadDiagram(filename) {
         let basename = filename.split("/").pop()
         alert.show(qsTr("Loading file '%1'.").arg(basename))
@@ -215,8 +229,8 @@ ApplicationWindow {
             settings.ymax = data["ymax"]
             settings.xaxisstep = data["xaxisstep"]
             settings.yaxisstep = data["yaxisstep"]
-            settings.xaxislabel = data["xaxislabel"]
-            settings.yaxislabel = data["yaxislabel"]
+            settings.xlabel = data["xaxislabel"]
+            settings.ylabel = data["yaxislabel"]
             settings.logscalex = data["logscalex"]
             if("showxgrad" in data)
                 settings.showxgrad = data["showxgrad"]
@@ -292,6 +306,10 @@ ApplicationWindow {
         }
     }
     
+    /*!
+        \qmlmethod void LogarithmPlotter::copyDiagramToClipboard()
+        Copies the current diagram image to the clipboard.
+    */
     function copyDiagramToClipboard() {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
@@ -299,6 +317,10 @@ ApplicationWindow {
         alert.show(qsTr("Copied plot screenshot to clipboard!"))
     }
     
+    /*!
+        \qmlmethod void LogarithmPlotter::showAlert(string alertText)
+        Shows an alert on the diagram.
+    */
     function showAlert(alertText) {
         // This function is called from the backend and is used to show alerts from there.
         alert.show(alertText)
@@ -315,6 +337,10 @@ ApplicationWindow {
         }
     }
     
+    /*!
+        \qmlmethod void LogarithmPlotter::showUpdateMenu()
+        Shows the update menu in the AppMenuBar.
+    */
     function showUpdateMenu() {
         appMenu.addMenu(updateMenu)
     }

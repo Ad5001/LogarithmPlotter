@@ -18,8 +18,23 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
 
+/*!
+    \qmltype Icon
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Setting
+    \brief Colorable image.
+            
+    \sa ComboBoxSetting, ListSetting, TextSetting
+*/
 Item {
+    /*!
+       \qmlproperty string Icon::color
+       Overlay color of the icon.
+    */
     property color color: "#000000"
+    /*!
+       \qmlproperty string Icon::source
+       Path of the icon image source.
+    */
     property alias source: img.source
     
     Image {

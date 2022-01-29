@@ -145,10 +145,8 @@ class EditedProperty extends Action {
         let prev = "";
         let next = "";
         if(this.propertyType instanceof Object) {
-            console.log(this.propertyType.type)
             switch(this.propertyType.type) {
                 case "Enum":
-                    console.log(this.propertyType.translatedValues, this.previousValue, this.propertyType.values.indexOf(this.previousValue))
                     prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
                     next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
                     break;

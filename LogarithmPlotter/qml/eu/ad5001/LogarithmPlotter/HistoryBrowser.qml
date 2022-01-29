@@ -20,10 +20,32 @@ import QtQuick.Controls 2.12
 import QtQuick 2.12 
 import "js/utils.js" as Utils
 
+
+/*!
+    \qmltype HistoryBrowser
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief Tab of the drawer that allows to navigate through the undo and redo history.
+
+    Creates a scrollable view containing a list of history actions based on the redo stack, then a "Now" indicator
+    followed by the entirety of the saved undo stack. Each action can be click to restore a state of the graph at
+    some point of the history.
+    
+    \sa LogarithmPlotter, Settings, ObjectLists
+*/
 ScrollView {
     id: historyBrowser
     
+    /*!
+       \qmlproperty int HistoryBrowser::actionWidth
+       Width of the actions.
+    */
     property int actionWidth: width-20
+    
+    /*!
+       \qmlproperty int HistoryBrowser::actionHeight
+       Height of the actions.
+    */
+    property int actionHeight: 30
     
     Flickable {
         width: parent.width
@@ -43,7 +65,7 @@ ScrollView {
                 Button {
                     id: redoButton
                     width: historyBrowser.actionWidth
-                    height: 30
+                    height: actionHeight
                     flat: true
                     text: history.redoStack[index].getReadableString()
                     
@@ -73,7 +95,7 @@ ScrollView {
             anchors.right: parent.right
             anchors.top: redoColumn.bottom
             width: historyBrowser.actionWidth
-            height: 30
+            height: actionHeight
             color: sysPalette.highlight
             Text {
                 anchors.verticalCenter: parent.verticalCenter
@@ -96,7 +118,7 @@ ScrollView {
                 Button {
                     id: undoButton
                     width: historyBrowser.actionWidth
-                    height: 30
+                    height: actionHeight
                     flat: true
                     text: history.undoStack[history.undoCount-index-1].getReadableString()
                     

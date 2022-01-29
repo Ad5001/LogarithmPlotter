@@ -2,23 +2,81 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQml.Models 2.12
 
+/*!
+    \qmltype ListSetting
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Setting
+    \brief Setting to create and edit lists and dictionaries.
+            
+    \sa EditorDialog, Settings, Icon
+*/
 Column {
     id: control
     
+    /*!
+        \qmlsignal ListSetting::changed()
+        
+        Emitted when an entry of the setting has been changed.
+        The corresponding handler is \c onChanged.
+    */
     signal changed()
     
+    /*!
+       \qmlproperty string ListSetting::label
+       Label of the setting.
+    */
     property string label: ''
+    /*!
+       \qmlproperty string ListSetting::icon
+       Icon path of the setting.
+    */
     property string icon: ''
+    /*!
+       \qmlproperty bool ListSetting::dictionaryMode
+       true to set the export mode to dictionary, false for list.
+    */
     property bool dictionaryMode: false
+    /*!
+       \qmlproperty string ListSetting::keyType
+       Type for keys for dictionary, can be either "string" or "number".
+    */
     property string keyType: "string"
+    /*!
+       \qmlproperty string ListSetting::keyType
+       Type for values of the dictionary or list, can be either "string" or "number".
+    */
     property string valueType: "string"
+    /*!
+       \qmlproperty string ListSetting::preKeyLabel
+       Text to be put before the key for each entry.
+    */
     property string preKeyLabel: ""
+    /*!
+       \qmlproperty string ListSetting::postKeyLabel
+       Text to be put after the key for each entry. Only for dictionaries.
+    */
     property string postKeyLabel: ": "
+    /*!
+       \qmlproperty var ListSetting::keyRegexp
+       Regular expression used in the validator for keys. Only for dictionaries.
+    */
     property var keyRegexp: /^.+$/
+    /*!
+       \qmlproperty var ListSetting::valueRegexp
+       Regular expression used in the validator for values.
+    */
     property var valueRegexp: /^.+$/
+    /*!
+       \qmlproperty bool ListSetting::forbidAdding
+       If true, prevents the user from adding or removing new entries.
+    */
     property bool forbidAdding: false
     
-    
+    /*!
+       \qmlproperty bool ListSetting::model
+       Model of the list/dictionnary, in the form of [{key: < key >, val: < value > }].
+       
+       Use the \a importModel method to set the model.
+    */
     property alias model: repeater.model
     
     Row {
@@ -165,6 +223,10 @@ Column {
         }
     }
     
+    /*!
+        \qmlmethod void ListSetting::importModel(var importer)
+        Imports either a list or a dictionnary in the model.
+    */
     function importModel(importer) {
         model.clear()
         for(var key in importer) 
@@ -174,6 +236,11 @@ Column {
             })
     }
     
+    
+    /*!
+        \qmlmethod void ListSetting::exportModel()
+        Exports the model either a list or a dictionnary in the model depending on \a dictionaryMode.
+    */
     function exportModel() {
         if(dictionaryMode) {
             var ret = {}

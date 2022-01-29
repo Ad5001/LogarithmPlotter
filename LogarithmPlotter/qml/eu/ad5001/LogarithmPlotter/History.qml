@@ -21,22 +21,60 @@ import QtQml 2.12
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
-
+/*!
+    \qmltype History
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief QObject holding persistantly for undo & redo stacks.
+        
+    \sa HistoryBrowser, historylib
+*/
 Item {
     // Using a QtObject is necessary in order to have proper property propagation in QML
     id: historyObj
+
+    /*!
+       \qmlproperty int History::undoCount
+       Count of undo actions.
+    */
     property int undoCount: 0
+    /*!
+       \qmlproperty int History::redoCount
+       Count of redo actions.
+    */
     property int redoCount: 0
+    /*!
+       \qmlproperty var History::undoStack
+       Stack of undo actions.
+    */
     property var undoStack: []
+    /*!
+       \qmlproperty var History::redoStack
+       Stack of redo actions.
+    */
     property var redoStack: []
-    // Only true when no modification was done to the current working file.
+    /*!
+       \qmlproperty bool History::saved
+       true when no modification was done to the current working file, false otherwise.
+    */
     property bool saved: true
     
+    
+    /*!
+        \qmlmethod void History::clear()
+        Clears both undo and redo stacks completly.
+    */
     function clear() {
+        undoCount = 0
+        redoCount = 0
         undoStack = []
         redoStack = []
     }
     
+    
+    /*!
+        \qmlmethod var History::serialize()
+        Serializes history into JSON-able content.
+    */
     function serialize() {
         let undoSt = [], redoSt = [];
         for(let i = 0; i < undoCount; i++)
@@ -52,6 +90,10 @@ Item {
         return [undoSt, redoSt]
     }
     
+    /*!
+        \qmlmethod void History::unserialize(var undoSt, var redoSt)
+        Unserializes both \c undoSt stack and \c redoSt stack from serialized content.
+    */
     function unserialize(undoSt, redoSt) {
         clear();
         for(let i = 0; i < undoSt.length; i++)
@@ -63,7 +105,10 @@ Item {
         objectLists.update()
     }
     
-
+    /*!
+        \qmlmethod void History::addToHistory(var action)
+        Adds an instance of historylib.Action to history.
+    */
     function addToHistory(action) {
         if(action instanceof HistoryLib.Action) {
             console.log("Added new entry to history: " + action.getReadableString())
@@ -76,7 +121,11 @@ Item {
             saved = false
         }
     }
-
+    
+    /*!
+        \qmlmethod void History::undo()
+        Undoes the historylib.Action at the top of the undo stack and pushes it to the top of the redo stack.
+    */
     function undo() {
         if(undoStack.length > 0) {
             var action = undoStack.pop()
@@ -88,7 +137,11 @@ Item {
             saved = false
         }
     }
-
+    
+    /*!
+        \qmlmethod void History::redo()
+        Redoes the historylib.Action at the top of the redo stack and pushes it to the top of the undo stack.
+    */
     function redo() {
         if(redoStack.length > 0) {
             var action = redoStack.pop()
@@ -101,6 +154,11 @@ Item {
         }
     }
     
+    /*!
+        \qmlmethod void History::undoMultipleDefered(int toUndoCount)
+        Undoes several historylib.Action at the top of the undo stack and pushes them to the top of the redo stack.
+        It undoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
+    */
     function undoMultipleDefered(toUndoCount) {
         undoTimer.toUndoCount = toUndoCount;
         undoTimer.start()
@@ -108,6 +166,12 @@ Item {
             saved = false
     }
     
+    
+    /*!
+        \qmlmethod void History::redoMultipleDefered(int toRedoCount)
+        Redoes several historylib.Action at the top of the redo stack and pushes them to the top of the undo stack.
+        It redoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
+    */
     function redoMultipleDefered(toRedoCount) {
         redoTimer.toRedoCount = toRedoCount;
         redoTimer.start()

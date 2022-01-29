@@ -18,6 +18,13 @@
 
 import QtQuick.Dialogs 1.3 as D
 
+/*!
+    \qmltype FileDialog
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief Dialog used to prompt the user to save or load Logarithm Plot Files.
+        
+    \sa LogarithmPlotter, Settings
+*/
 D.FileDialog {
     id: fileDialog
     

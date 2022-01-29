@@ -19,6 +19,15 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 
+/*!
+    \qmltype Changelog
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief Overlay used to display the current changelog to the user.
+    
+    \note The changelog is either fetched from https://api.ad5001.eu/changelog/logarithmplotter/ or taken locally when a file named CHANGELOG.md exists within the main source code.
+    
+    \sa LogarithmPlotter, GreetScreen
+*/
 Popup {
     id: changelogPopup
     x: (parent.width-width)/2
@@ -29,6 +38,10 @@ Popup {
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     
+    /*!
+       \qmlproperty string Changelog::changelogNeedsFetching
+       true when the changelog has yet to be loaded, set to false the moment it's loaded.
+    */
     property bool changelogNeedsFetching: true
     
     onAboutToShow: if(changelogNeedsFetching) Helper.fetchChangelog()

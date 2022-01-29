@@ -22,17 +22,60 @@ import "js/objects.js" as Objects
 import "js/mathlib.js" as MathLib
 import "js/historylib.js" as HistoryLib
 
+/*!
+    \qmltype PickLocationOverlay
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief Overlay used to pick a new location for an object.
+
+    Provides an overlay over the canvas that can be shown when the user clicks the "Set position" button
+    on a specific object. It allows the user to pick a new location on the canvas to place the object at.
+    This overlay allows to set the precision of the pick as well as whether the pick should be on the plot grid.
+    
+    \sa LogarithmPlotter, LogGraphCanvas
+*/
 Item {
     id: pickerRoot
     visible: false
     
+    /*!
+       \qmlproperty var PickLocationOverlay::canvas
+       logGraphCanvas instance.
+    */
     property var canvas
+    /*!
+       \qmlproperty string PickLocationOverlay::objType
+       Type of object whose position the user is picking.
+    */
     property string objType: 'Point'
+    /*!
+       \qmlproperty string PickLocationOverlay::objType
+       Name of the object whose position the user is picking.
+    */
     property string objName: 'A'
-    property bool pickY: true
+    /*!
+       \qmlproperty bool PickLocationOverlay::pickX
+       true if the user should be picking a position on the x axis.
+    */
     property bool pickX: true
+    /*!
+       \qmlproperty bool PickLocationOverlay::pickY
+       true if the user should be picking a position on the y axis.
+    */
+    property bool pickY: true
+    /*!
+       \qmlproperty string PickLocationOverlay::propertyX
+       Name of the object's property whose x value is being changed.
+    */
     property string propertyX: 'x'
+    /*!
+       \qmlproperty string PickLocationOverlay::propertyY
+       Name of the object's property whose y value is being changed.
+    */
     property string propertyY: 'y'
+    /*!
+       \qmlproperty int PickLocationOverlay::precision
+       Precision of the picked value (post-dot precision).
+    */
     property alias precision: precisionSlider.value
     
     Rectangle {

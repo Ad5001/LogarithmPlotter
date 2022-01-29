@@ -22,7 +22,17 @@ import QtQuick.Controls 2.12
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
 
+/*!
+    \qmltype ObjectLists
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief Tab of the drawer that allows the user to manage the objects.
 
+    This item allows the user to syntheticly see all objects, while giving the user the ability
+    to show, hide, delete, change the location and color, as well as opening the editor dialog
+    for each object.
+    
+    \sa LogarithmPlotter, ObjectCreationGrid, ObjectLists
+*/
 ListView {
     id: objectListList
     
@@ -116,7 +126,7 @@ ListView {
                         objEditor.obj = Objects.currentObjects[objType][index]
                         objEditor.objType = objType
                         objEditor.objIndex = index
-                        objEditor.editingRow = controlRow
+                        //objEditor.editingRow = controlRow
                         objEditor.show()
                     }
                 }
@@ -211,7 +221,6 @@ ListView {
     // Object editor
     EditorDialog {
         id: objEditor
-        objectLists: objectListList
     }
     
     // Create items
@@ -222,6 +231,10 @@ ListView {
         objectLists: objectListList
     }
     
+    /*!
+        \qmlmethod void ObjectLists::update()
+        Updates the view of the ObjectLists.
+    */
     function update() {
         objectListList.changed()
         for(var objType in objectListList.listViews) {
@@ -229,6 +242,11 @@ ListView {
         }
     }
     
+    /*!
+        \qmlmethod void ObjectLists::paramTypeIn(var parameter, var types)
+        Checks if the type of the provided \c parameter is in \c types.
+        \note The type can be normal string types ('boolean', 'string', 'number'...) or object types (Enum, Dictionay, Object types...). If the latter, only the type of object type should be provided in \c types. E.g: if you want to check if the parameter is an enum, add "Enum" to types.
+    */
     function paramTypeIn(parameter, types = []) {
         if(types.includes(parameter.toString())) return true
         if(typeof parameter == 'object' && 'type' in parameter) 

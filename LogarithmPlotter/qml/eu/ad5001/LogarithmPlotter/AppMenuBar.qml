@@ -22,6 +22,15 @@ import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
+/*!
+    \qmltype AppMenuBar
+    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \brief MenuBar for LogarithmPlotter.
+    
+    Makes use of eu.ad5001.LogarithmPlotter.
+    
+    \sa LogarithmPlotter
+*/
 MenuBar {
     
     Menu {

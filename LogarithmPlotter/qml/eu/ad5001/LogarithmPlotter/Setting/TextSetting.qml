@@ -19,18 +19,59 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
 
+/*!
+    \qmltype TextSetting
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Setting
+    \brief Setting to edit strings and numbers.
+            
+    \sa EditorDialog, Settings, Icon
+*/
 Item {
     id: control
     height: 30
     
+    /*!
+        \qmlsignal TextSetting::changed(string newValue)
+        
+        Emitted when the value of the text has been changed.
+        The corresponding handler is \c onChanged.
+    */
     signal changed(string newValue)
     
+    /*!
+       \qmlproperty bool TextSetting::isInt
+       If true, the input is being parsed an int before being emitting the \a changed signal.
+    */
     property bool isInt: false
+    /*!
+       \qmlproperty bool TextSetting::isDouble
+       If true, the input is being parsed an double before being emitting the \a changed signal.
+    */
     property bool isDouble: false
+    /*!
+       \qmlproperty double TextSetting::min
+       Minimum value for numbers that can be entered into the input.
+    */
     property double min: -1
-    property string label
+    /*!
+       \qmlproperty string TextSetting::defValue
+       Default value of the input.
+    */
     property string defValue
+    /*!
+       \qmlproperty string TextSetting::value
+       Value of the input.
+    */
     property alias value: input.text
+    /*!
+       \qmlproperty string TextSetting::label
+       Label of the setting.
+    */
+    property string label
+    /*!
+       \qmlproperty string TextSetting::icon
+       Icon path of the setting.
+    */
     property string icon: ""
     
     Icon {

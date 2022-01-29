@@ -20,7 +20,13 @@ import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
 import QtQuick.Controls 2.12
 
-
+/*!
+    \qmltype About
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief About popup of LogarithmPlotter.
+    
+    \sa LogarithmPlotter
+*/
 D.Dialog {
     id: about
     title: qsTr("About LogarithmPlotter")

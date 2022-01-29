@@ -19,6 +19,15 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 
+/*!
+    \qmltype GreetScreen
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief Overlay displayed when LogarithmPlotter is launched for the first time or when it was just updated.
+    
+    It contains several settings as well as an easy access to the changelog
+        
+    \sa LogarithmPlotter, Settings, AppMenuBar, Changelog
+*/
 Popup {
     id: greetingPopup
     x: (parent.width-width)/2

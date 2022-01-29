@@ -21,6 +21,13 @@ import QtQuick.Controls 2.12
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
 
+/*!
+    \qmltype ObjectCreationGrid
+    \inqmlmodule eu.ad5001.LogarithmPlotter.ObjectLists
+    \brief Grid with buttons to create objects.
+
+    \sa LogarithmPlotter, ObjectLists
+*/
 Column {
     id: createRow
     property var objectEditor
@@ -59,7 +66,6 @@ Column {
                     objectEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
                     objectEditor.objType = modelData
                     objectEditor.objIndex = Objects.currentObjects[modelData].length - 1
-                    objectEditor.editingRow = objectLists.listViews[modelData].editingRows[objectEditor.objIndex]
                     objectEditor.show()
                 }
             }

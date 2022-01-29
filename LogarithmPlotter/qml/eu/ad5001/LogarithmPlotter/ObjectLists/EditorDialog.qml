@@ -26,13 +26,34 @@ import "../js/historylib.js" as HistoryLib
 import "../js/utils.js" as Utils
 import "../js/mathlib.js" as MathLib
 
+/*!
+    \qmltype EditorDialog
+    \inqmlmodule eu.ad5001.LogarithmPlotter.ObjectLists
+    \brief Dialog used to edit properties of objects.
+
+    This class contains the dialog that allows to edit all properties of objects.
+    \todo In the future, this class should be optimized so that each property doesn't instanciate one instance of each setting type.
+    
+    \sa LogarithmPlotter, ObjectLists
+*/
 D.Dialog {
     id: objEditor
+    /*!
+       \qmlproperty string EditorDialog::objType
+       Type of object being edited by the dialog.
+    */
     property string objType: 'Point'
+    /*!
+       \qmlproperty int EditorDialog::objIndex
+       Index of the objects amongst the ones of it's type.
+    */
     property int objIndex: 0
+    /*!
+       \qmlproperty var EditorDialog::obj
+       Instance of the object being edited.
+    */
     property var obj: Objects.currentObjects[objType][objIndex]
-    property QtObject editingRow: QtObject{}
-    property var objectLists
+    
     title: "LogarithmPlotter"
     width: 350
     height: 400
@@ -272,9 +293,13 @@ D.Dialog {
         }
     }
     
+    /*!
+        \qmlmethod void EditorDialog::show()
+        Shows the editor after the object to be edited is set.
+    */
     function show() {
         dlgCustomProperties.model = [] // Reset
-        var objProps = Objects.types[objEditor.objType].properties()
+        let objProps = Objects.types[objEditor.objType].properties()
         dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
         objEditor.open()
     }

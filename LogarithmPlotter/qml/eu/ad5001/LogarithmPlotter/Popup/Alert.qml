@@ -17,7 +17,15 @@
  */
 
 import QtQuick 2.12
-
+/*!
+    \qmltype Alert
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief Alert used to show status messages to the user.
+    
+    This class (only one instance) allows messages to be displayed to the user that will fade in time.
+    
+    \sa LogarithmPlotter
+*/
 Rectangle {
     id: alert
     color: "black"
@@ -27,8 +35,20 @@ Rectangle {
     width: textItem.width + 10
     height: textItem.height + 10
     
+    /*!
+       \qmlproperty int Alert::fadingX
+       X of the object that is being animated.
+    */
     property int fadingX: parent.width - width - 10
+    /*!
+       \qmlproperty int Alert::fadeTime
+       Length in millisecond of the animation.
+    */
     property int fadeTime: 200
+    /*!
+       \qmlproperty string Alert::text
+       Text of the alert.
+    */
     property alias text: textItem.text
     
     Text {
@@ -64,6 +84,10 @@ Rectangle {
         }
     }
     
+    /*!
+        \qmlmethod void Alert::show(string alertText)
+        Show an alert with a certain \c alertText.
+    */
     function show(alertText) {
         visible = true
         fadeTimer.restart()
