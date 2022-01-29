@@ -85,6 +85,8 @@ def package_data():
     for d,folders,files in os.walk("LogarithmPlotter/i18n"):
         d = d[17:]
         pkg_data += [os.path.join(d, f) for f in files]
+    if "FLATPAK_INSTALL" in os.environ:
+        pkg_data += ["CHANGELOG.md"]
         
     return pkg_data
 
