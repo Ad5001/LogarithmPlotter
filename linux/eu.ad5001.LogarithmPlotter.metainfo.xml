@@ -117,6 +117,24 @@
     </requires>
     
     <releases>
+        <release version="0.1.6" date="2022-01-29">
+            <p>Changes for v0.1.6:</p>
+            <ul>
+                <li>New: A new changelog popup is available at startup and in the help menu.</li>
+                <li>Added translation: Object properties names.</li>
+                <li>Added translation: Object properties enum values.</li>
+                <li>Added translation: Object comments.</li>
+                <li>Added translation: Most elements using a ":".</li>
+                <li>Fixed bug: X Cursor's targets can now be set to null.</li>
+                <li>Fixed bug: History now imports domains and objects properly.</li>
+                <li>Fixed bug: Proper handling for future LogarithmPlotter files.</li>
+                <li>Fixed bug (debian): Fixing bug that created a /build directory and didn't put the icons in the right directories.</li>
+                <li>Other: Refractoring done on helper.</li>
+                <li>Other: All QML elements are now properly commented.</li>
+                <li>Other: Scripts have been moved to it's own directory.</li>
+                <li>Other: Added changelog to metainfo for flathub.</li>
+            </ul>
+        </release>
         <release version="0.1.5" date="2022-01-26">
             <p>Changes for v0.1.5:</p>
             <ul>

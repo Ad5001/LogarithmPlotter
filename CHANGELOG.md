@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.6 (29 Jan 2022)
+
+  * New: A new changelog popup is available at startup and in the help menu.
+  * Added translation: Object properties names.
+  * Added translation: Object properties enum values.
+  * Added translation: Object comments.
+  * Added translation: Most elements using a ":".
+  * Fixed bug: X Cursor's targets can now be set to null.
+  * Fixed bug: History now imports domains and objects properly.
+  * Fixed bug: Proper handling for future LogarithmPlotter files.
+  * Fixed bug (debian): Fixing bug that created a /build directory and didn't put the icons in the right directories.
+  * Other: Refractoring done on helper.
+  * Other: All QML elements are now properly commented.
+  * Other: Scripts have been moved to it's own directory.
+  * Other: Added changelog to metainfo for flathub.
+
+ -- Ad5001 <mail@ad5001.eu>  Sat, 29 Jan 2022 20:00:00 +0100
+
 ## v0.1.5 (26 Jan 2022)
 
   * New: LogarithmPlotter has now better handling of very high values in logarithmic scale.
@@ -22,7 +40,7 @@
   * Fixed bug: No notification when closing LogarithmPlotter with unsaved changes.
   * Fixed bug: π unavailable in symbols.
 
- -- Ad5001 <mail@ad5001.eu>  Wed, 24 Jan 2022 20:00:00 +0100
+ -- Ad5001 <mail@ad5001.eu>  Mon, 24 Jan 2022 20:00:00 +0100
 
 ## v0.1.3 (18 Jan 2022)
 
