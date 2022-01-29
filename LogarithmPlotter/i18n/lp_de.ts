@@ -951,7 +951,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../update.py" line="54"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation>Ein Aktualisierung für LogarithPlotter (v{}) ist verfügbar.</translation>
+        <translation>Ein Aktualisierung für LogarithmPlotter (v{}) ist verfügbar.</translation>
     </message>
     <message>
         <location filename="../update.py" line="58"/>
