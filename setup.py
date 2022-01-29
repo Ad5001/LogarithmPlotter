@@ -43,7 +43,7 @@ if "PREFIX" not in os.environ and sys.platform == 'linux':
                 os.environ["PREFIX"] = "/usr/share"
             except:
                 if ".pybuild" in os.environ["HOME"]: # Launchpad building.
-                    os.environ["PREFIX"] = "/usr/share"
+                    os.environ["PREFIX"] = "usr/share"
                 else:
                     os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
 
