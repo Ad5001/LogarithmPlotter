@@ -110,7 +110,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Változásnapló</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
@@ -138,12 +138,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="58"/>
         <source>Fetching changelog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Változásnapló lekérése…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="66"/>
         <source>Done</source>
-        <translation type="unfinished">Kész</translation>
+        <translation>Kész</translation>
     </message>
 </context>
 <context>
@@ -230,7 +230,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="118"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Változásnapló</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="125"/>
@@ -489,12 +489,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../helper.py" line="49"/>
         <source>Could not fetch changelog: Server error {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült lekérni a változásnaplót: Kiszolgálóhiba: {}.</translation>
     </message>
     <message>
         <location filename="../helper.py" line="51"/>
         <source>Could not fetch update: {}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült lekérni a változásnaplót: {}.</translation>
     </message>
 </context>
 <context>
@@ -527,7 +527,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="54"/>
         <source>%1: </source>
-        <translation type="unfinished"></translation>
+        <translation>%1: </translation>
     </message>
 </context>
 <context>
@@ -641,37 +641,37 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
         <source>center</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;|&lt; Középre</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
         <source>top</source>
-        <translation type="unfinished"></translation>
+        <translation>↑ Felső</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
         <source>bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>↓ Alsó</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
         <source>top-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↖ Bal felső</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
         <source>top-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↗ Jobb felső</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
         <source>bottom-left</source>
-        <translation type="unfinished"></translation>
+        <translation>↙ Bal alsó</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
         <source>bottom-right</source>
-        <translation type="unfinished"></translation>
+        <translation>↘ Jobb alsó</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
@@ -786,7 +786,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="58"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="33"/>
         <source>drawPoints</source>
-        <translation>Pontok rajzolása</translation>
+        <translation>Pontok megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.js" line="59"/>
@@ -813,7 +813,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.js" line="47"/>
         <source>omGraduation</source>
-        <translation>ω érettségi megjelenítése</translation>
+        <translation>ω₀ érettségi megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.js" line="41"/>
@@ -881,7 +881,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="35"/>
         <source>defaultExpression</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett kifejezés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.js" line="40"/>
