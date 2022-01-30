@@ -597,7 +597,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="250"/>
         <source>Name of %1 %2 changed to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Name of %1 %2 changed to %3.</translation>
     </message>
 </context>
 <context>
@@ -897,7 +897,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="267"/>
         <source>color</source>
-        <translation type="unfinished"></translation>
+        <translation>Color</translation>
     </message>
 </context>
 <context>
