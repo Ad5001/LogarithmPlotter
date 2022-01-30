@@ -43,9 +43,7 @@
             <li>🇭🇺 Hungarian</li>
             <li>🇳🇴 Norwergian</li>
         </ul>
-        <p xml:lang="fr">Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
-    </description>
-    <description xml:lang="fr">
+        <p>Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
         <p xml:lang="fr">
             LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes à échelle logarithmique et non logarithmique avec peu de limitations.    
         </p>
@@ -68,8 +66,6 @@
             <li>🇳🇴 Norvégien</li>
         </ul>
         <p xml:lang="fr">En savoir plus: https://apps.ad5001.eu/fr/logarithmplotter/</p>
-    </description>
-    <description xml:lang="hu">
         <p xml:lang="hu">
             A LogarithmPlotter egy logaritmus-ábrázoló, amely logaritmikus léptékek figyelembevételével készült. A Geogebrához hasonló objektumrendszerrel dinamikus parcellák létrehozását teszi lehetővé, nagyon kevés korlátozással.
         </p>

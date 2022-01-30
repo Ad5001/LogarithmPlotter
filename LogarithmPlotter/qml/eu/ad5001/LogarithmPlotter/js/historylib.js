@@ -243,7 +243,7 @@ class NameChanged extends EditedProperty {
     }
     
     redo() {
-        Objects.getObjectByName(this.previousValue, this.targetType)[this.targetProperty] = this.newValue
+        Objects.getObjectByName(this.previousValue, this.targetType)['name'] = this.newValue
     }
     
     getReadableString() {
