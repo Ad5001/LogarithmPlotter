@@ -108,7 +108,7 @@ MenuBar {
                 visible: Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.name: modelData
-                icon.source: './icons/' + modelData + '.svg'
+                icon.source: './icons/objects/' + modelData + '.svg'
                 icon.color: sysPalette.buttonText
                 onTriggered: {
                     var newObj = Objects.createNewRegisteredObject(modelData)

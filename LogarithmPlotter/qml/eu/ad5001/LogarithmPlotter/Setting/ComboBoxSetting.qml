@@ -103,7 +103,7 @@ Item {
         id: iconLabel
         anchors.top: parent.top
         anchors.topMargin: icon == "" ? 0 : 3
-        source: control.visible ? "../" + control.icon : ""
+        source: control.visible ? "../icons/" + control.icon : ""
         width: height
         height: icon == "" && visible ? 0 : 24
         color: sysPalette.windowText

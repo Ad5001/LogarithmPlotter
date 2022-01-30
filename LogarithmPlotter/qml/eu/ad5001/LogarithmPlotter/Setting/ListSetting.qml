@@ -86,7 +86,7 @@ Column {
             id: iconLabel
             anchors.top: parent.top
             anchors.topMargin: icon == "" ? 0 : 3
-            source: control.visible ? "../" + control.icon : ""
+            source: control.visible ? "../icons/" + control.icon : ""
             width: height
             height: icon == "" || !visible ? 0 : 24
             color: sysPalette.windowText
@@ -198,7 +198,7 @@ Column {
                 id: deleteButton
                 width: visible ? parent.height : 0
                 height: width
-                icon.source: './icons/delete.svg'
+                icon.source: './icons/common/delete.svg'
                 icon.name: 'delete'
                 visible: !control.forbidAdding
                 

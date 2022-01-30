@@ -54,7 +54,7 @@ Column {
                 height: visible ? implicitHeight : 0
                 display: AbstractButton.TextUnderIcon
                 icon.name: modelData
-                icon.source: '../icons/' + modelData + '.svg'
+                icon.source: '../icons/objects/' + modelData + '.svg'
                 icon.width: 24
                 icon.height: 24
                 icon.color: sysPalette.buttonText

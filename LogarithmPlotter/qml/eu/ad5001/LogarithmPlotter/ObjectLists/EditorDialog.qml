@@ -78,7 +78,7 @@ D.Dialog {
             id: nameProperty
             height: 30
             label: qsTr("Name")
-            icon: "icons/common/label.svg"
+            icon: "common/label.svg"
             min: 1
             width: dlgProperties.width
             value: objEditor.obj.name
@@ -105,7 +105,7 @@ D.Dialog {
             label: qsTr("Label content")
             model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
             property var idModel: ["null", "name", "name + value"]
-            icon: "icons/common/label.svg"
+            icon: "common/label.svg"
             currentIndex: idModel.indexOf(objEditor.obj.labelContent)
             onActivated: function(newIndex) {
                 if(idModel[newIndex] != objEditor.obj.labelContent) {
@@ -144,7 +144,7 @@ D.Dialog {
                     height: visible ? 30 : 0
                     width: parent.width
                     label: parent.label
-                    icon: `icons/settings/custom/${parent.icon}.svg`
+                    icon: `settings/custom/${parent.icon}.svg`
                     isDouble: modelData[1] == 'number'
                     visible: paramTypeIn(modelData[1], ['Expression', 'Domain', 'string', 'number'])
                     defValue: visible ? {
@@ -180,7 +180,7 @@ D.Dialog {
                     height: visible ? 20 : 0
                     width: parent.width
                     text: parent.label
-                    //icon: visible ? `icons/settings/custom/${parent.icon}.svg` : ''
+                    //icon: visible ? `settings/custom/${parent.icon}.svg` : ''
                     
                     checked: visible ? objEditor.obj[modelData[0]] : false
                     onClicked: {
@@ -200,7 +200,7 @@ D.Dialog {
                     width: dlgProperties.width
                     height: visible ? 30 : 0
                     label: parent.label
-                    icon: visible ? `icons/settings/custom/${parent.icon}.svg` : ''
+                    icon: visible ? `settings/custom/${parent.icon}.svg` : ''
                     // True to select an object of type, false for enums.
                     property bool selectObjMode: paramTypeIn(modelData[1], ['ObjectType'])
                     property bool isRealObject: !selectObjMode || (modelData[1].objType != "ExecutableObject" && modelData[1].objType != "DrawableObject")
@@ -262,7 +262,7 @@ D.Dialog {
                     
                     visible: paramTypeIn(modelData[1], ['List', 'Dict'])
                     label: parent.label
-                    //icon: `icons/settings/custom/${parent.icon}.svg`
+                    //icon: `settings/custom/${parent.icon}.svg`
                     dictionaryMode: paramTypeIn(modelData[1], ['Dict'])
                     keyType: dictionaryMode ? modelData[1].keyType : 'string'
                     valueType: visible ? modelData[1].valueType : 'string'

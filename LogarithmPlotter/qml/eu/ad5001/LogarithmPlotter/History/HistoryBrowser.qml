@@ -45,7 +45,12 @@ ScrollView {
        \qmlproperty int HistoryBrowser::actionHeight
        Height of the actions.
     */
-    property int actionHeight: 30
+    property int actionHeight: 40
+    /*!
+       \qmlproperty int HistoryBrowser::darkTheme
+       true when the system is running with a dark theme, false otherwise.
+    */
+    property bool darkTheme: isDarkTheme()
     
     Flickable {
         width: parent.width
@@ -68,6 +73,7 @@ ScrollView {
                     height: actionHeight
                     isRedo: true
                     idx: index
+                    darkTheme: historyBrowser.darkTheme
                 }
             }
         }
@@ -115,6 +121,7 @@ ScrollView {
                     height: actionHeight
                     isRedo: false
                     idx: index
+                    darkTheme: historyBrowser.darkTheme
                 }
             }
         }
@@ -129,5 +136,16 @@ ScrollView {
             width: 20
             visible: history.undoCount > 0
         }
+    }
+    
+    /*!
+        \qmlmethod bool HistoryBrowser::isDarkTheme()
+        Checks whether the system is running with a light or dark theme.
+    */
+    function isDarkTheme() {
+        let hex = sysPalette.windowText.toString()
+        // We only check the first parameter, as on all normal OSes, text color is grayscale.
+        return parseInt(hex.substr(1,2), 16) > 128
+        
     }
 }

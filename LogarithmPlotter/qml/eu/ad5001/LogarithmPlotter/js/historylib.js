@@ -32,6 +32,12 @@ class Action {
     // Type of the action done.
     type(){return 'Unknown'}
     
+    // Icon of the action to be used in history browser.
+    icon(){return 'unknown'}
+    
+    // Color associated with the action.
+    color(darkVer=false){return darkVer ? 'black' : 'white'}
+    
     // TargetName is the name of the object that's targeted by the event.
     constructor(targetName = "", targetType = "Point") {
         this.targetName = targetName
@@ -54,6 +60,10 @@ class Action {
 class CreateNewObject extends Action {
     // Action used for the creation of an object
     type(){return 'CreateNewObject'}
+    
+    icon(){return 'create'}
+    
+    color(darkVer=false){return darkVer ? 'green' : 'lime'}
     
     constructor(targetName = "", targetType = "Point", properties = []) {
         super(targetName, targetType)
@@ -84,6 +94,10 @@ class DeleteObject extends CreateNewObject {
     // Action used at the deletion of an object. Basicly the same thing as creating a new object, except Redo & Undo are reversed.
     type(){return 'DeleteObject'}
     
+    icon(){return 'delete'}
+    
+    color(darkVer=false){return darkVer ? 'darkred' : 'salmon'}
+    
     undo() {
         super.redo()
     }
@@ -101,6 +115,10 @@ class EditedProperty extends Action {
     // Action used everytime an object's property has been changed
     type(){return 'EditedProperty'}
     
+    icon(){return 'modify'}
+    
+    color(darkVer=false){return darkVer ? 'darkslateblue' : 'cyan'}
+    
     constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true, valueIsExpressionNeedingImport = false) {
         super(targetName, targetType)
         this.targetProperty = targetProperty
@@ -109,10 +127,10 @@ class EditedProperty extends Action {
         this.newValue = newValue
         this.propertyType = Objects.types[targetType].properties()[targetProperty]
         if(valueIsExpressionNeedingImport) {
-            if(propertyType == "Expression") {
+            if(this.propertyType == "Expression") {
                 this.previousValue = new MathLib.Expression(this.previousValue);
                 this.newValue = new MathLib.Expression(this.newValue);
-            } else if(propertyType == "Domain") {
+            } else if(this.propertyType == "Domain") {
                 this.previousValue = MathLib.parseDomain(this.previousValue);
                 this.newValue = MathLib.parseDomain(this.newValue);
             } else {
@@ -178,8 +196,20 @@ class EditedVisibility extends EditedProperty {
     // Action used everytime an object's property has been changed
     type(){return 'EditedVisibility'}
     
+    icon(){return 'visibility'}
+    
+    color(darkVer=false){
+        return this.newValue ?
+            (darkVer ? 'darkgray' : 'whitesmoke') :
+            (darkVer ? 'dimgray' : 'lightgray')
+    }
+    
     constructor(targetName = "", targetType = "Point", newValue = true) {
         super(targetName, targetType, "visible", !newValue, newValue)
+    }
+    
+    export() {
+        return [this.targetName, this.targetType, this.newValue]
     }
     
     getReadableString() {
@@ -193,10 +223,19 @@ class EditedVisibility extends EditedProperty {
 
 class NameChanged extends EditedProperty {
     // Action used everytime an object's property has been changed
-    type(){return 'EditedVisibility'}
+    type(){return 'NameChanged'}
     
+    icon(){return 'name'}
+    
+    
+    color(darkVer=false){return darkVer ? 'darkorange' : 'orange'}
+        
     constructor(targetName = "", targetType = "Point", newName = "") {
         super(targetName, targetType, "name", targetName, newName)
+    }
+    
+    export() {
+        return [this.targetName, this.targetType, this.newValue]
     }
     
     undo() {
@@ -206,6 +245,29 @@ class NameChanged extends EditedProperty {
     redo() {
         Objects.getObjectByName(this.previousValue, this.targetType)[this.targetProperty] = this.newValue
     }
+    
+    getReadableString() {
+        return qsTr('Name of %1 %2 changed to %3.')
+                .arg(Objects.types[this.targetType].displayType())
+                .arg(this.targetName).arg(this.newValue)
+    }
+}
+
+class ColorChanged extends EditedProperty {
+    // Action used everytime an object's property has been changed
+    type(){return 'ColorChanged'}
+    
+    icon(){return 'appearance'}
+    
+    
+    color(darkVer=false){return darkVer ? 'purple' : 'plum'}
+    
+    getReadableString() {
+        return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
+                .arg(QT_TRANSLATE_NOOP('prop','color'))
+                .arg(Objects.types[this.targetType].displayType())
+                .arg(this.targetName).arg(this.previousValue).arg(this.newValue)
+    }
 }
 
 var Actions = {
@@ -214,4 +276,6 @@ var Actions = {
     "DeleteObject": DeleteObject,
     "EditedProperty": EditedProperty,
     "EditedVisibility": EditedVisibility,
+    "NameChanged": NameChanged,
+    "ColorChanged": ColorChanged,
 }
