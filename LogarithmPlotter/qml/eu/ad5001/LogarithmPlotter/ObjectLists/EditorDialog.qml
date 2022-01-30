@@ -78,7 +78,7 @@ D.Dialog {
             id: nameProperty
             height: 30
             label: qsTr("Name")
-            icon: "icons/settings/custom/label.svg"
+            icon: "icons/common/label.svg"
             min: 1
             width: dlgProperties.width
             value: objEditor.obj.name
@@ -105,7 +105,7 @@ D.Dialog {
             label: qsTr("Label content")
             model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
             property var idModel: ["null", "name", "name + value"]
-            icon: "icons/settings/custom/label.svg"
+            icon: "icons/common/label.svg"
             currentIndex: idModel.indexOf(objEditor.obj.labelContent)
             onActivated: function(newIndex) {
                 if(idModel[newIndex] != objEditor.obj.labelContent) {
