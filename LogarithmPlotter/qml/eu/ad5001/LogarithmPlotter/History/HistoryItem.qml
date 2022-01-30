@@ -96,6 +96,7 @@ Button {
     //text: historyAction.getReadableString()
     
     ToolTip.visible: hovered
+    ToolTip.delay: 200
     ToolTip.text: label.text
     
     onClicked: {

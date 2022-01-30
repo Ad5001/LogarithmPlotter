@@ -58,6 +58,9 @@ Column {
                 icon.width: 24
                 icon.height: 24
                 icon.color: sysPalette.buttonText
+                ToolTip.visible: hovered
+                ToolTip.delay: 200
+                ToolTip.text: text
                 
                 onClicked: {
                     var newObj = Objects.createNewRegisteredObject(modelData)

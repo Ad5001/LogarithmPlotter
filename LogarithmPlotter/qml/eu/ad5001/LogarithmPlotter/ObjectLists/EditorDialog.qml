@@ -208,7 +208,9 @@ D.Dialog {
                     // Base, untranslated version of the model.
                     property var baseModel: visible ? 
                         (selectObjMode ?
-                            Objects.getObjectsName(modelData[1].objType).concat(isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : []) : 
+                            Objects.getObjectsName(modelData[1].objType).concat(
+                                isRealObject ? [qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())] : 
+                            []) : 
                             modelData[1].values) 
                         : []
                     // Translated verison of the model.
@@ -228,7 +230,8 @@ D.Dialog {
                                     selectedObj = Objects.createNewRegisteredObject(modelData[1].objType)
                                     history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, modelData[1].objType, selectedObj.export()))
                                     baseModel = Objects.getObjectsName(modelData[1].objType).concat(
-                                                isRealObject ? [qsTr("+ Create new %1").arg(modelData[1].objType)] : [])
+                                                isRealObject ? [qsTr("+ Create new %1").arg(Objects.types[modelData[1].objType].displayType())] : 
+                                                [])
                                     currentIndex = baseModel.indexOf(selectedObj.name)
                                 }
                                 selectedObj.requiredBy.push(Objects.currentObjects[objEditor.objType][objEditor.objIndex])
