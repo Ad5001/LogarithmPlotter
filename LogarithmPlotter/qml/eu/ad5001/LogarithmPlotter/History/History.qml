@@ -18,12 +18,12 @@
 
 import QtQuick 2.12
 import QtQml 2.12
-import "js/objects.js" as Objects
-import "js/historylib.js" as HistoryLib
+import "../js/objects.js" as Objects
+import "../js/historylib.js" as HistoryLib
 
 /*!
     \qmltype History
-    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \inqmlmodule eu.ad5001.LogarithmPlotter.History
     \brief QObject holding persistantly for undo & redo stacks.
         
     \sa HistoryBrowser, historylib

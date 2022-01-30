@@ -18,12 +18,12 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
-import "js/utils.js" as Utils
+import "../js/utils.js" as Utils
 
 
 /*!
     \qmltype HistoryBrowser
-    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \inqmlmodule eu.ad5001.LogarithmPlotter.History
     \brief Tab of the drawer that allows to navigate through the undo and redo history.
 
     Creates a scrollable view containing a list of history actions based on the redo stack, then a "Now" indicator
@@ -57,24 +57,17 @@ ScrollView {
             id: redoColumn
             anchors.right: parent.right
             anchors.top: parent.top
-            width: historyBrowser.actionWidth
+            width: actionWidth
             
             Repeater {
                 model: history.redoCount
             
-                Button {
+                HistoryItem {
                     id: redoButton
-                    width: historyBrowser.actionWidth
+                    width: actionWidth
                     height: actionHeight
-                    flat: true
-                    text: history.redoStack[index].getReadableString()
-                    
-                    ToolTip.visible: hovered
-                    ToolTip.text: text
-                    
-                    onClicked: {
-                        history.redoMultipleDefered(history.redoCount-index)
-                    }
+                    isRedo: true
+                    idx: index
                 }
             }
         }
@@ -94,7 +87,7 @@ ScrollView {
             id: nowRect
             anchors.right: parent.right
             anchors.top: redoColumn.bottom
-            width: historyBrowser.actionWidth
+            width: actionWidth
             height: actionHeight
             color: sysPalette.highlight
             Text {
@@ -110,24 +103,18 @@ ScrollView {
             id: undoColumn
             anchors.right: parent.right
             anchors.top: nowRect.bottom
-            width: historyBrowser.actionWidth
+            width: actionWidth
             
             Repeater {
                 model: history.undoCount
             
-                Button {
+                
+                HistoryItem {
                     id: undoButton
-                    width: historyBrowser.actionWidth
+                    width: actionWidth
                     height: actionHeight
-                    flat: true
-                    text: history.undoStack[history.undoCount-index-1].getReadableString()
-                    
-                    ToolTip.visible: hovered
-                    ToolTip.text: text
-                    
-                    onClicked: {
-                        history.undoMultipleDefered(index+1)
-                    }
+                    isRedo: false
+                    idx: index
                 }
             }
         }
