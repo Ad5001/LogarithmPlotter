@@ -57,7 +57,7 @@ Column {
                 icon.source: '../icons/objects/' + modelData + '.svg'
                 icon.width: 24
                 icon.height: 24
-                icon.color: sysPalette.buttonText
+                icon.color: sysPalette.windowText
                 ToolTip.visible: hovered
                 ToolTip.delay: 200
                 ToolTip.text: text

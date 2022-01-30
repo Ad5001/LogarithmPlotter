@@ -77,6 +77,7 @@
     <categories>
         <category>Science</category>
         <category>Education</category>
+        <category>Qt</category>
     </categories>
     
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
@@ -184,6 +185,21 @@
     </content_rating>
     <developer_name>Ad5001</developer_name>
     <update_contact>mail@ad5001.eu</update_contact>
+    
+    <keywords>
+        <keyword>Plot</keyword>
+        <keyword>Plotter</keyword>
+        <keyword>Log</keyword>
+        <keyword>Logarithm</keyword>
+        <keyword>Logarithmic</keyword>
+        <keyword>Bode</keyword>
+        <keyword>Magnitude</keyword>
+        <keyword>Diagram</keyword>
+        <keyword>Graph</keyword>
+        <keyword>Phase</keyword>
+        <keyword>Sequence</keyword>
+        <keyword>Distribution</keyword>
+    </keywords>
 </application>
 
 
