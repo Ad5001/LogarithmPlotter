@@ -334,7 +334,7 @@ ApplicationWindow {
         Action {
             text: qsTr("&Update LogarithmPlotter")
             icon.name: 'update'
-            onTriggered: Helper.openUrl("https://dev.apps.ad5001.eu/logarithmplotter")
+            onTriggered: Qt.openUrlExternally("https://dev.apps.ad5001.eu/logarithmplotter")
         }
     }
     

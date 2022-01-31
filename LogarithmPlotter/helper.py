@@ -24,7 +24,6 @@ from PySide2 import __version__ as PySide2_version
 
 from os import chdir, path
 from json import loads
-from webbrowser import open as openWeb
 from sys import version as sys_version
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
@@ -141,10 +140,6 @@ class Helper(QObject):
         Returns the version info about Qt, PySide2 & Python
         """
         return QCoreApplication.translate('main',"Built with PySide2 (Qt) v{} and python v{}").format(PySide2_version, sys_version.split("\n")[0])
-    
-    @Slot(str)
-    def openUrl(self, url):
-        openWeb(url)
     
     @Slot()
     def fetchChangelog(self):

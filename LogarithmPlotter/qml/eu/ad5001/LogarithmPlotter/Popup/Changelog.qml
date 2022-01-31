@@ -69,7 +69,7 @@ Popup {
             textFormat: TextEdit.MarkdownText
 
             text: qsTr("Fetching changelog...")
-            onLinkActivated: Helper.openUrl(link)
+            onLinkActivated: Qt.openUrlExternally(link)
 
         }
     }

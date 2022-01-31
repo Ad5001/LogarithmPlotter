@@ -98,7 +98,7 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br>
 <br>
 You should have received a copy of the GNU General Public License along with this program.  If not, see <a href='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</a>."
-        onLinkActivated: Helper.openUrl(link)
+        onLinkActivated: Qt.openUrlExternally(link)
     }
     
     Button {
@@ -108,6 +108,6 @@ You should have received a copy of the GNU General Public License along with thi
         anchors.topMargin: 10
         text: qsTr('Report a bug')
         icon.name: 'bug'
-        onClicked: Helper.openUrl('https://git.ad5001.eu/Ad5001/LogarithmPlotter')
+        onClicked: Qt.openUrlExternally('https://git.ad5001.eu/Ad5001/LogarithmPlotter')
     }
 }

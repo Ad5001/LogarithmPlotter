@@ -48,7 +48,7 @@ class NameChanged extends EP.EditedProperty {
     }
     
     getReadableString() {
-        return qsTr('Name of %1 %2 changed to %3.')
+        return qsTr('%1 %2 renamed to %3.')
                 .arg(Objects.types[this.targetType].displayType())
                 .arg(this.targetName).arg(this.newValue)
     }

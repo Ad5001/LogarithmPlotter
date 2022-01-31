@@ -146,12 +146,12 @@ MenuBar {
         Action {
             text: qsTr("&Source code")
             icon.name: 'software-sources'
-            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
         }
         Action {
             text: qsTr("&Report a bug")
             icon.name: 'tools-report-bug'
-            onTriggered: Helper.openUrl("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
         }
         Action {
             text: qsTr("&Changelog")
@@ -161,7 +161,7 @@ MenuBar {
         Action {
             text: qsTr("&Help translating!")
             icon.name: 'translator'
-            onTriggered: Helper.openUrl("https://hosted.weblate.org/engage/logarithmplotter/")
+            onTriggered: Qt.openUrlExternally("https://hosted.weblate.org/engage/logarithmplotter/")
         }
         MenuSeparator { }
         Action {
