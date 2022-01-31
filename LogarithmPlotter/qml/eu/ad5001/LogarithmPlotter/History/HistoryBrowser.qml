@@ -35,6 +35,8 @@ import "../js/utils.js" as Utils
 ScrollView {
     id: historyBrowser
     
+    ScrollBar.horizontal.visible: false
+    
     /*!
        \qmlproperty int HistoryBrowser::actionWidth
        Width of the actions.
