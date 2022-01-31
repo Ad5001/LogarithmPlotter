@@ -18,41 +18,27 @@
 
 .pragma library
 
-var themeTextColor;
+.import "../objects.js" as Objects
+.import "create.js" as Create
 
 
-class Action {
-    // Type of the action done.
-    type(){return 'Unknown'}
+class DeleteObject extends Create.CreateNewObject {
+    // Action used at the deletion of an object. Basicly the same thing as creating a new object, except Redo & Undo are reversed.
+    type(){return 'DeleteObject'}
     
-    // Icon associated with the item
+    icon(){return 'delete'}
     
-    // TargetName is the name of the object that's targeted by the event.
-    constructor(targetName = "", targetType = "Point") {
-        this.targetName = targetName
-        this.targetType = targetType
+    color(darkVer=false){return darkVer ? 'darkred' : 'salmon'}
+    
+    undo() {
+        super.redo()
     }
     
-    undo() {}
-    
-    redo() {}
-    
-    export() {
-        return [this.targetName, this.targetType]
+    redo() {
+        super.undo()
     }
     
-    // String used in the toolkit
     getReadableString() {
-        return 'Unknown action'
-    }
-    
-    // Returns an HTML tag containing the icon of a type
-    getIconRichText(type) {
-        return `<img source="../icons/objects/${type}.svg" style="color: ${themeTextColor};" width=18 height=18></img>`
-    }
-    
-    // String used in the preview
-    getHTMLString() {
-        return this.getReadableString()
+        return qsTr("%1 %2 deleted.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
     }
 }

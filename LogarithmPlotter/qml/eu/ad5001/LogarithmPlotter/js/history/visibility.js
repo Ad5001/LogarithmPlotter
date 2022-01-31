@@ -18,41 +18,35 @@
 
 .pragma library
 
-var themeTextColor;
+.import "editproperty.js" as EP
 
 
-class Action {
-    // Type of the action done.
-    type(){return 'Unknown'}
+class EditedVisibility extends EP.EditedProperty {
+    // Action used when an object's shown or hidden.
+    type(){return 'EditedVisibility'}
     
-    // Icon associated with the item
+    icon(){return 'visibility'}
     
-    // TargetName is the name of the object that's targeted by the event.
-    constructor(targetName = "", targetType = "Point") {
-        this.targetName = targetName
-        this.targetType = targetType
+    color(darkVer=false){
+        return this.newValue ?
+            (darkVer ? 'darkgray' : 'whitesmoke') :
+            (darkVer ? 'dimgray' : 'lightgray')
     }
     
-    undo() {}
-    
-    redo() {}
+    constructor(targetName = "", targetType = "Point", newValue = true) {
+        super(targetName, targetType, "visible", !newValue, newValue)
+    }
     
     export() {
-        return [this.targetName, this.targetType]
+        return [this.targetName, this.targetType, this.newValue]
     }
     
-    // String used in the toolkit
     getReadableString() {
-        return 'Unknown action'
-    }
-    
-    // Returns an HTML tag containing the icon of a type
-    getIconRichText(type) {
-        return `<img source="../icons/objects/${type}.svg" style="color: ${themeTextColor};" width=18 height=18></img>`
-    }
-    
-    // String used in the preview
-    getHTMLString() {
-        return this.getReadableString()
+        if(this.newValue) {
+            return qsTr('%1 %2 shown.').arg(this.targetType).arg(this.targetName)
+        } else {
+            return qsTr('%1 %2 hidden.').arg(this.targetType).arg(this.targetName)
+        }
     }
 }
+

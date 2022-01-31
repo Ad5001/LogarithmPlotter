@@ -59,6 +59,14 @@ Button {
     */
     readonly property var historyAction: isRedo ? history.redoStack[idx] : history.undoStack[history.undoCount-idx-1]
     
+    /*!
+       \qmlproperty int HistoryItem::actionHeight
+       Base height of the action.
+    */
+    readonly property int actionHeight: 40
+    
+    height: Math.max(actionHeight, label.height + 15)
+    
     LinearGradient {
         anchors.fill: parent
         start: Qt.point(0, 0)
@@ -74,7 +82,7 @@ Button {
         width: 18
         height: 18
         anchors.left: parent.left
-        anchors.leftMargin: (parent.height-height)/2
+        anchors.leftMargin: 6
         anchors.verticalCenter: parent.verticalCenter
         
         color: sysPalette.windowText
@@ -85,25 +93,35 @@ Button {
         id: label
         anchors.left: icon.right
         anchors.right: parent.right
-        anchors.leftMargin: 4
-        anchors.rightMargin: (parent.height-height)/2
+        anchors.leftMargin: 6
+        anchors.rightMargin: 10
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 14
-        text: historyAction.getReadableString()
+        text: historyAction.getHTMLString()
+        textFormat: Text.RichText
         clip: true
+        wrapMode: Text.WordWrap
     }
     
     //text: historyAction.getReadableString()
     
     ToolTip.visible: hovered
     ToolTip.delay: 200
-    ToolTip.text: label.text
+    ToolTip.text: historyAction.getReadableString()
     
     onClicked: {
         if(isRedo)
             history.redoMultipleDefered(history.redoCount-idx)
         else
             history.undoMultipleDefered(+idx+1)
+    }
+    
+    Rectangle {
+        color: sysPalette. window
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: 1
     }
 }
 

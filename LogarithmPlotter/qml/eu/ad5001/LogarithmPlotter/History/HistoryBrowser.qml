@@ -44,11 +44,6 @@ ScrollView {
     property int actionWidth: width-20
     
     /*!
-       \qmlproperty int HistoryBrowser::actionHeight
-       Height of the actions.
-    */
-    property int actionHeight: 40
-    /*!
        \qmlproperty int HistoryBrowser::darkTheme
        true when the system is running with a dark theme, false otherwise.
     */
@@ -72,7 +67,7 @@ ScrollView {
                 HistoryItem {
                     id: redoButton
                     width: actionWidth
-                    height: actionHeight
+                    //height: actionHeight
                     isRedo: true
                     idx: index
                     darkTheme: historyBrowser.darkTheme
@@ -96,7 +91,7 @@ ScrollView {
             anchors.right: parent.right
             anchors.top: redoColumn.bottom
             width: actionWidth
-            height: actionHeight
+            height: 40
             color: sysPalette.highlight
             Text {
                 anchors.verticalCenter: parent.verticalCenter
@@ -120,7 +115,7 @@ ScrollView {
                 HistoryItem {
                     id: undoButton
                     width: actionWidth
-                    height: actionHeight
+                    //height: actionHeight
                     isRedo: false
                     idx: index
                     darkTheme: historyBrowser.darkTheme
