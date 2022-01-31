@@ -19,6 +19,7 @@
 .pragma library
 
 .import "editproperty.js" as EP
+.import "../objects.js" as Objects
 
 
 class EditedVisibility extends EP.EditedProperty {
@@ -42,11 +43,15 @@ class EditedVisibility extends EP.EditedProperty {
     }
     
     getReadableString() {
-        if(this.newValue) {
-            return qsTr('%1 %2 shown.').arg(this.targetType).arg(this.targetName)
-        } else {
-            return qsTr('%1 %2 hidden.').arg(this.targetType).arg(this.targetName)
-        }
+        return (this.newValue ? qsTr('%1 %2 shown.') : qsTr('%1 %2 hidden.'))
+            .arg(Objects.types[this.targetType].displayType())
+            .arg(this.targetName)
+    }
+    
+    getHTMLString() {
+        return (this.newValue ? qsTr('%1 %2 shown.') : qsTr('%1 %2 hidden.'))
+            .arg(Objects.types[this.targetType].displayType())
+            .arg('<b style="font-size: 15px;">' + this.targetName + "</b>")
     }
 }
 

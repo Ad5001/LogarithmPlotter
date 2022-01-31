@@ -29,7 +29,9 @@ class EditedProperty extends C.Action {
     
     icon(){return 'modify'}
     
-    color(darkVer=false){return darkVer ? 'darkslateblue' : 'cyan'}
+    color(darkVer=false){
+        return darkVer ? 'darkslateblue' : 'cyan';
+    }
     
     constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true, valueIsExpressionNeedingImport = false) {
         super(targetName, targetType)
@@ -51,6 +53,7 @@ class EditedProperty extends C.Action {
                 this.newValue = Objects.getObjectByName(this.newValue);
             }
         }
+        this.setReadableValues()
     }
     
     undo() {
@@ -71,35 +74,48 @@ class EditedProperty extends C.Action {
         }
     }
     
-    getReadableString() {
-        let prev = "";
-        let next = "";
+    setReadableValues() {
+        this.prev = "";
+        this.next = "";
         if(this.propertyType instanceof Object) {
             switch(this.propertyType.type) {
                 case "Enum":
-                    prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
-                    next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
+                    this.prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
+                    this.next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
                     break;
                 case "ObjectType":
-                    prev = this.previousValue.name
-                    next = this.newValue.name
+                    this.prev = this.previousValue.name
+                    this.next = this.newValue.name
                     break;
                 case "List":
-                    prev = this.previousValue.join(",")
-                    next = this.newValue.name.join(",")
+                    this.prev = this.previousValue.join(",")
+                    this.next = this.newValue.name.join(",")
                     break;
                 case "Dict":
-                    prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
-                    next = JSON.stringify(this.newValue).replace("'", "\\'").replace('"', "'")
+                    this.prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
+                    this.next = JSON.stringify(this.newValue).replace("'", "\\'").replace('"', "'")
                     break;
             }
         } else {
-            prev = this.previousValue == null ? "null" : this.previousValue.toString()
-            next = this.newValue == null ? "null" : this.newValue.toString()
+            this.prev = this.previousValue == null ? "null" : this.previousValue.toString()
+            this.next = this.newValue == null ? "null" : this.newValue.toString()
         }
+    }
+    
+    getReadableString() {
         return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
                 .arg(this.targetPropertyReadable)
                 .arg(Objects.types[this.targetType].displayType())
-                .arg(this.targetName).arg(prev).arg(next)
+                .arg(this.targetName).arg(this.prev).arg(this.next)
+    }
+    
+    getHTMLString() {
+        return qsTr('%1 of %2 changed from %3 to %4.')
+                .arg(this.targetPropertyReadable)
+                .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
+                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prev+'&nbsp;</tt>')
+                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.next+'</tt>')
+//                 .arg('<b style="font-size: 15px;">' + Objects.types[this.targetType].displayType())
+                
     }
 }

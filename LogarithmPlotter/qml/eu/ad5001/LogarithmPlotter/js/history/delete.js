@@ -41,4 +41,10 @@ class DeleteObject extends Create.CreateNewObject {
     getReadableString() {
         return qsTr("%1 %2 deleted.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
     }
+    
+    getHTMLString() {
+        return qsTr("%1 %2 deleted.")
+                .arg(Objects.types[this.targetType].displayType())
+                .arg('<b style="font-size: 15px;">' + this.targetName + "</b>")
+    }
 }

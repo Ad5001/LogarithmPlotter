@@ -216,8 +216,7 @@ ListView {
                 title: qsTr("Pick new color for %1 %2").arg(Objects.types[objType].displayType()).arg(obj.name)
                 onAccepted: {
                     history.addToHistory(new HistoryLib.ColorChanged(
-                        obj.name, objType, "color", 
-                        obj.color, color.toString()
+                        obj.name, objType, obj.color, color.toString()
                     ))
                     obj.color = color.toString()
                     controlRow.obj = Objects.currentObjects[objType][index]

@@ -64,8 +64,14 @@ Button {
        Base height of the action.
     */
     readonly property int actionHeight: 40
+    /*!
+       \qmlproperty color HistoryItem::clr
+       Color of the history action.
+    */
+    readonly property color clr: historyAction.color(darkTheme)
     
     height: Math.max(actionHeight, label.height + 15)
+    
     
     LinearGradient {
         anchors.fill: parent
@@ -73,7 +79,7 @@ Button {
         end: Qt.point(parent.width, 0)
         gradient: Gradient {
             GradientStop { position: 0.1; color: "transparent" }
-            GradientStop { position: 1.5; color: historyAction.color(darkTheme) }
+            GradientStop { position: 1.5; color: clr }
         }
     }
     
@@ -94,10 +100,10 @@ Button {
         anchors.left: icon.right
         anchors.right: parent.right
         anchors.leftMargin: 6
-        anchors.rightMargin: 10
+        anchors.rightMargin: 20
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 14
-        text: historyAction.getHTMLString()
+        text: historyAction.getHTMLString().replace(/\$\{tag_color\}/g, clr)
         textFormat: Text.RichText
         clip: true
         wrapMode: Text.WordWrap

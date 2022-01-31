@@ -52,6 +52,12 @@ class NameChanged extends EP.EditedProperty {
                 .arg(Objects.types[this.targetType].displayType())
                 .arg(this.targetName).arg(this.newValue)
     }
+    
+    getHTMLString() {
+        return qsTr('%1 %2 renamed to %3.')
+                .arg(Objects.types[this.targetType].displayType())
+                .arg('<b style="font-size: 15px;">' + this.targetName + "</b>").arg('<b>'+this.newValue+'</b>')
+    }
 }
 
 

@@ -29,6 +29,14 @@ class ColorChanged extends EP.EditedProperty {
     icon(){return 'appearance'}
     
     
+    constructor(targetName = "", targetType = "Point", oldColor = "black", newColor = "white") {
+        super(targetName, targetType, "color", oldColor, newColor)
+    }
+    
+    export() {
+        return [this.targetName, this.targetType, this.previousValue, this.newValue]
+    }
+    
     color(darkVer=false){return darkVer ? 'purple' : 'plum'}
     
     getReadableString() {
@@ -38,12 +46,13 @@ class ColorChanged extends EP.EditedProperty {
     }
     
     formatColor(color) {
-        return `<span style="background: ${color}; color: white; font-family: monospace; border: solid 1px ${color}; border-style: outset; padding: 4px;">&nbsp;&nbsp;</span>`
+        return `<span style="color: ${color}; font-family: monospace; padding: 2px;">██</span>`
     }
     
     getHTMLString() {
         return qsTr("%1 %2's color changed from %3 to %4.")
-                .arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
+                .arg(Objects.types[this.targetType].displayType())
+                .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + "&nbsp;</b>")
                 .arg(this.formatColor(this.previousValue)).arg(this.formatColor(this.newValue))
     }
 }

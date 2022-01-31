@@ -52,5 +52,11 @@ class CreateNewObject extends C.Action {
     getReadableString() {
         return qsTr("New %1 %2 created.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
     }
+    
+    getHTMLString() {
+        return qsTr("New %1 %2 created.")
+                .arg(Objects.types[this.targetType].displayType())
+                .arg('<b style="font-size: 15px;">' + this.targetName + "</b>")
+    }
 }
 

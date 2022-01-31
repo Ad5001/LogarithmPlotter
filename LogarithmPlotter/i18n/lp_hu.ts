@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="32"/>
-        <location filename="../logarithmplotter.py" line="111"/>
+        <location filename="../logarithmplotter.py" line="112"/>
         <source>About LogarithmPlotter</source>
         <translation>LogarithmPlotter névjegye</translation>
     </message>
@@ -28,107 +28,107 @@
 <context>
     <name>AppMenuBar</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="38"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="40"/>
         <source>&amp;Load...</source>
         <translation>&amp;Betöltés…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="47"/>
         <source>&amp;Save</source>
         <translation>&amp;Mentés</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="52"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="53"/>
         <source>Save &amp;As...</source>
         <translation>Me&amp;ntés másként…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="60"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="61"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="74"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="75"/>
         <source>&amp;Edit</source>
         <translation>S&amp;zerkesztés</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="77"/>
         <source>&amp;Undo</source>
         <translation>&amp;Visszavonás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="85"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ismétlés</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="94"/>
         <source>&amp;Copy plot</source>
         <translation>Ábra má&amp;solása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="101"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="102"/>
         <source>&amp;Create</source>
         <translation>&amp;Létrehozás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="123"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="124"/>
         <source>&amp;Settings</source>
         <translation>&amp;Beállítások</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="126"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="127"/>
         <source>Check for updates on startup</source>
         <translation>Frissítések keresése indításkor</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="136"/>
         <source>Reset redo stack automaticly</source>
         <translation>Ismétlési verem önműködő visszaállítása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="144"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="145"/>
         <source>&amp;Help</source>
         <translation>&amp;Súgó</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="146"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;Source code</source>
         <translation>&amp;Forráskód</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="151"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
         <source>&amp;Report a bug</source>
         <translation>&amp;Hiba bejelentése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="156"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="157"/>
         <source>&amp;Changelog</source>
         <translation>&amp;Változásnapló</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="161"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Segítség a fordításban!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="167"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="168"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="176"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="177"/>
         <source>Save unsaved changes?</source>
         <translation>Menti a változtatásokat?</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="178"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="179"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Ez az ábra nem mentett változtatásokat tartalmaz. Ezzel az összes nem mentett adat elveszik. Folytatja?</translation>
     </message>
@@ -179,8 +179,8 @@
         <translation>név + érték</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="211"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="231"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="212"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/EditorDialog.qml" line="233"/>
         <source>+ Create new %1</source>
         <translation>+ Új %1 létrehozása</translation>
     </message>
@@ -241,17 +241,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="81"/>
         <source>Redo &gt;</source>
         <translation>Ismétlés &gt;</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="100"/>
         <source>&gt; Now</source>
         <translation>&gt; Most</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="132"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="129"/>
         <source>&lt; Undo</source>
         <translation>&lt; Visszavonás</translation>
     </message>
@@ -330,7 +330,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>ObjectCreationGrid</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectCreationGrid.qml" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectCreationGrid.qml" line="41"/>
         <source>+ Create new:</source>
         <translation>+ Új létrehozása:</translation>
     </message>
@@ -338,37 +338,37 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>ObjectLists</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="73"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="74"/>
         <source>Hide all %1</source>
         <translation>Összes %1 elrejtése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="73"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="74"/>
         <source>Show all %1</source>
         <translation>Összes %1 megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="110"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="111"/>
         <source>Hide %1 %2</source>
         <translation>%1 %2 elrejtése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="111"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="112"/>
         <source>Show %1 %2</source>
         <translation>%1 %2 megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="149"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="158"/>
         <source>Set %1 %2 position</source>
         <translation>%1 %2 helye beállítása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="174"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="183"/>
         <source>Delete %1 %2</source>
         <translation>%1 %2 törlése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="207"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="216"/>
         <source>Pick new color for %1 %2</source>
         <translation>Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
@@ -487,14 +487,23 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../helper.py" line="49"/>
+        <location filename="../helper.py" line="48"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: Kiszolgálóhiba: {}.</translation>
     </message>
     <message>
-        <location filename="../helper.py" line="51"/>
+        <location filename="../helper.py" line="50"/>
         <source>Could not fetch update: {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: {}.</translation>
+    </message>
+</context>
+<context>
+    <name>color</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="43"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="53"/>
+        <source>%1 %2&apos;s color changed from %3 to %4.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -528,6 +537,37 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="95"/>
         <source>%1: </source>
         <translation>%1: </translation>
+    </message>
+</context>
+<context>
+    <name>create</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="53"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="57"/>
+        <source>New %1 %2 created.</source>
+        <translation type="unfinished">Új %1 %2 létrehozva.</translation>
+    </message>
+</context>
+<context>
+    <name>delete</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="42"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="46"/>
+        <source>%1 %2 deleted.</source>
+        <translation type="unfinished">%1 %2 törölve.</translation>
+    </message>
+</context>
+<context>
+    <name>editproperty</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="106"/>
+        <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
+        <translation type="unfinished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="113"/>
+        <source>%1 of %2 changed from %3 to %4.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -569,34 +609,32 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>historylib</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="89"/>
         <source>New %1 %2 created.</source>
-        <translation>Új %1 %2 létrehozva.</translation>
+        <translation type="vanished">Új %1 %2 létrehozva.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="110"/>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 törölve.</translation>
+        <translation type="vanished">%1 %2 törölve.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="188"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="266"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation type="vanished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="217"/>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 megjelenítve.</translation>
+        <translation type="vanished">%1 %2 megjelenítve.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="219"/>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 rejtve.</translation>
+        <translation type="vanished">%1 %2 rejtve.</translation>
     </message>
+</context>
+<context>
+    <name>name</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="250"/>
-        <source>Name of %1 %2 changed to %3.</source>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="51"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="57"/>
+        <source>%1 %2 renamed to %3.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -894,11 +932,6 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <source>baseValues</source>
         <translation>Kezdeményezési értékek</translation>
     </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/historylib.js" line="267"/>
-        <source>color</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>repartition</name>
@@ -978,6 +1011,21 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../update.py" line="63"/>
         <source>Could not fetch update information: {}.</source>
         <translation>Nem sikerült lekérni a frissítési adatokat: {}.</translation>
+    </message>
+</context>
+<context>
+    <name>visibility</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
+        <source>%1 %2 shown.</source>
+        <translation type="unfinished">%1 %2 megjelenítve.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
+        <source>%1 %2 hidden.</source>
+        <translation type="unfinished">%1 %2 rejtve.</translation>
     </message>
 </context>
 <context>
