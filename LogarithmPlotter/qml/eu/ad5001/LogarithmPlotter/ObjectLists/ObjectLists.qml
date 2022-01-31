@@ -19,6 +19,7 @@
 import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
 import QtQuick.Controls 2.12
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
 
@@ -139,9 +140,17 @@ ListView {
                 anchors.right: deleteButton.left
                 anchors.rightMargin: 5
                 anchors.topMargin: 5
-                icon.name: 'position'
-                icon.source: '../icons/common/position.svg'
-                icon.color: sysPalette.buttonText
+                
+                Setting.Icon {
+                    id: icon
+                    width: 18
+                    height: 18
+                    anchors.centerIn: parent
+                    
+                    color: sysPalette.windowText
+                    source: '../icons/common/position.svg'
+                }
+                
                 property bool hasXProp: Objects.types[objType].properties().hasOwnProperty('x')
                 property bool hasYProp: Objects.types[objType].properties().hasOwnProperty('y')
                 visible: hasXProp || hasYProp
