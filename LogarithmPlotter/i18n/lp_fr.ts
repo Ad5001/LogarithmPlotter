@@ -654,7 +654,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="51"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="57"/>
         <source>%1 %2 renamed to %3.</source>
-        <translation>L&apos;objet %1 %2 a été renommé en %3.</translation>
+        <translation>%1 %2 renommé(e) en %3.</translation>
     </message>
 </context>
 <context>
