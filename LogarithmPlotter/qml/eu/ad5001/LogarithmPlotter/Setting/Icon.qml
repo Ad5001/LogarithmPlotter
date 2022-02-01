@@ -36,13 +36,19 @@ Item {
        Path of the icon image source.
     */
     property alias source: img.source
+    /*!
+       \qmlproperty string Icon::source
+       Path of the icon image source.
+    */
+    property alias sourceSize: img.sourceSize.width
     
     Image {
         id: img
         height: parent.height
         width: parent.width
-        smooth: true
+        //smooth: true
         visible: false
+        sourceSize.height: sourceSize.width 
     }
     ColorOverlay {
         anchors.fill: img

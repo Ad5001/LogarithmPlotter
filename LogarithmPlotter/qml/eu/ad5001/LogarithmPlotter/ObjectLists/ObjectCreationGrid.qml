@@ -52,7 +52,7 @@ Column {
                 id: createBtn
                 width: parent.width/3
                 visible: Objects.types[modelData].createable()
-                height: visible ? width*0.6 : 0
+                height: visible ? width*0.8 : 0
                 // The KDE SDK is kinda buggy, so it respects neither specified color nor display propreties.
                 //display: AbstractButton.TextUnderIcon
     
@@ -63,7 +63,7 @@ Column {
                     anchors.left: parent.left
                     anchors.leftMargin: (parent.width-width)/2
                     anchors.top: parent.top
-                    anchors.topMargin: 8
+                    anchors.topMargin: (label.y-height)/2
                     
                     color: sysPalette.windowText
                     source: '../icons/objects/'+modelData+'.svg'
@@ -80,6 +80,7 @@ Column {
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 14
                     text: Objects.types[modelData].displayType()
+                    wrapMode: Text.WordWrap
                     clip: true
                 }
                 
