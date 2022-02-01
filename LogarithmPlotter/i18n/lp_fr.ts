@@ -511,7 +511,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="53"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>La couleur de %1 %2 a été modifiée de %3 à %4.</translation>
     </message>
 </context>
 <context>
@@ -554,7 +554,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="53"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="57"/>
         <source>New %1 %2 created.</source>
-        <translation type="unfinished">Nouvel objet %1 %2 créé.</translation>
+        <translation>Nouvel objet %1 %2 créé.</translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="46"/>
         <source>%1 %2 deleted.</source>
-        <translation type="unfinished">%1 %2 supprimé(e).</translation>
+        <translation>%1 %2 supprimé(e).</translation>
     </message>
 </context>
 <context>
@@ -571,12 +571,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="106"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="unfinished">%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
+        <translation>%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="113"/>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 de %2 modifiée de %3 à %4.</translation>
     </message>
 </context>
 <context>
@@ -648,7 +648,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="51"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="57"/>
         <source>%1 %2 renamed to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;objet %1 %2 a été renommé en %3.</translation>
     </message>
 </context>
 <context>
@@ -1036,13 +1036,13 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 shown.</source>
-        <translation type="unfinished">%1 %2 affiché(e).</translation>
+        <translation>%1 %2 affiché(e).</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 hidden.</source>
-        <translation type="unfinished">%1 %2 cachée(e).</translation>
+        <translation>%1 %2 cachée(e).</translation>
     </message>
 </context>
 <context>
