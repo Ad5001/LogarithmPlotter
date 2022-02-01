@@ -121,14 +121,6 @@ Button {
         else
             history.undoMultipleDefered(+idx+1)
     }
-    
-    Rectangle {
-        color: sysPalette. window
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        height: 1
-    }
 }
 
 
