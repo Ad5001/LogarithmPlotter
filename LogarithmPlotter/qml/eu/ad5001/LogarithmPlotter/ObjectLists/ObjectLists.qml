@@ -77,7 +77,7 @@ ListView {
             Label {
                 id: typeHeaderText
                 verticalAlignment: TextInput.AlignVCenter
-                text: Objects.types[objType].displayTypeMultiple() + ":"
+                text: qsTranslate("control", "%1: ").arg(Objects.types[objType].displayTypeMultiple())
                 font.pixelSize: 20
             }
         }

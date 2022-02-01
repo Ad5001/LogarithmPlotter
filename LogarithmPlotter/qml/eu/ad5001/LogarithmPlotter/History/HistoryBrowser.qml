@@ -18,6 +18,7 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../js/utils.js" as Utils
 
 
@@ -32,10 +33,8 @@ import "../js/utils.js" as Utils
     
     \sa LogarithmPlotter, Settings, ObjectLists
 */
-ScrollView {
+Item {
     id: historyBrowser
-    
-    ScrollBar.horizontal.visible: false
     
     /*!
        \qmlproperty int HistoryBrowser::actionWidth
@@ -49,89 +48,108 @@ ScrollView {
     */
     property bool darkTheme: isDarkTheme()
     
-    Flickable {
-        width: parent.width
-        height: parent.height
-        contentHeight: redoColumn.height + nowRect.height + undoColumn.height
-        contentWidth: parent.width
+    Setting.TextSetting {
+        id: filterInput
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        placeholderText: "Filter..."
+    }
+    
+    ScrollView {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.top: filterInput.bottom
+    
+        ScrollBar.horizontal.visible: false
         
-        Column {
-            id: redoColumn
-            anchors.right: parent.right
-            anchors.top: parent.top
-            width: actionWidth
+        Flickable {
+            width: parent.width
+            height: parent.height
+            contentHeight: redoColumn.height + nowRect.height + undoColumn.height
+            contentWidth: parent.width
             
-            Repeater {
-                model: history.redoCount
-            
-                HistoryItem {
-                    id: redoButton
-                    width: actionWidth
-                    //height: actionHeight
-                    isRedo: true
-                    idx: index
-                    darkTheme: historyBrowser.darkTheme
-                }
-            }
-        }
-        
-        Text {
-            anchors.left: parent.left
-            anchors.bottom: nowRect.top
-            text: qsTr("Redo >")
-            color: sysPaletteIn.windowText
-            transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
-            height: 70
-            width: 20
-            visible: history.redoCount > 0
-        }
-        
-        Rectangle {
-            id: nowRect
-            anchors.right: parent.right
-            anchors.top: redoColumn.bottom
-            width: actionWidth
-            height: 40
-            color: sysPalette.highlight
-            Text {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 5
-                text: qsTr("> Now")
-                color: sysPalette.windowText
-            }
-        }
-        
-        Column {
-            id: undoColumn
-            anchors.right: parent.right
-            anchors.top: nowRect.bottom
-            width: actionWidth
-            
-            Repeater {
-                model: history.undoCount
-            
+            Column {
+                id: redoColumn
+                anchors.right: parent.right
+                anchors.top: parent.top
+                width: actionWidth
                 
-                HistoryItem {
-                    id: undoButton
-                    width: actionWidth
-                    //height: actionHeight
-                    isRedo: false
-                    idx: index
-                    darkTheme: historyBrowser.darkTheme
+                Repeater {
+                    model: history.redoCount
+                
+                    HistoryItem {
+                        id: redoButton
+                        width: actionWidth
+                        //height: actionHeight
+                        isRedo: true
+                        idx: index
+                        darkTheme: historyBrowser.darkTheme
+                        hidden: !(filterInput.value == "" || content.includes(filterInput.value))
+                    }
                 }
             }
-        }
-        
-        Text {
-            anchors.left: parent.left
-            anchors.top: undoColumn.top
-            text: qsTr("< Undo")
-            color: sysPaletteIn.windowText
-            transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
-            height: 60
-            width: 20
-            visible: history.undoCount > 0
+            
+            Text {
+                anchors.left: parent.left
+                anchors.bottom: nowRect.top
+                text: qsTr("Redo >")
+                color: sysPaletteIn.windowText
+                transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
+                height: 70
+                width: 20
+                visible: history.redoCount > 0
+            }
+            
+            Rectangle {
+                id: nowRect
+                anchors.right: parent.right
+                anchors.top: redoColumn.bottom
+                width: actionWidth
+                height: 40
+                color: sysPalette.highlight
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 5
+                    text: qsTr("> Now")
+                    color: sysPalette.windowText
+                }
+            }
+            
+            Column {
+                id: undoColumn
+                anchors.right: parent.right
+                anchors.top: nowRect.bottom
+                width: actionWidth
+                
+                Repeater {
+                    model: history.undoCount
+                
+                    
+                    HistoryItem {
+                        id: undoButton
+                        width: actionWidth
+                        //height: actionHeight
+                        isRedo: false
+                        idx: index
+                        darkTheme: historyBrowser.darkTheme
+                        hidden: !(filterInput.value == "" || content.includes(filterInput.value))
+                    }
+                }
+            }
+            
+            Text {
+                anchors.left: parent.left
+                anchors.top: undoColumn.top
+                text: qsTr("< Undo")
+                color: sysPaletteIn.windowText
+                transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
+                height: 60
+                width: 20
+                visible: history.undoCount > 0
+            }
         }
     }
     

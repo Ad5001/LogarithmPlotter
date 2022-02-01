@@ -49,10 +49,15 @@ Button {
     */
     property int idx
     /*!
-       \qmlproperty int HistoryItem::idx
+       \qmlproperty bool HistoryItem::darkTheme
        true when the system is running with a dark theme, false otherwise.
     */
     property bool darkTheme
+    /*!
+       \qmlproperty bool HistoryItem::hidden
+       true when the item is filtered out, false otherwise.
+    */
+    property bool hidden: false
     /*!
        \qmlproperty int HistoryItem::historyAction
        Associated history action.
@@ -69,12 +74,18 @@ Button {
        Color of the history action.
     */
     readonly property color clr: historyAction.color(darkTheme)
+    /*!
+       \qmlproperty string HistoryItem::clr
+       Label description of the history item.
+    */
+    readonly property string content: historyAction.getReadableString()
     
-    height: Math.max(actionHeight, label.height + 15)
+    height: hidden ? 8 : Math.max(actionHeight, label.height + 15)
     
     
     LinearGradient {
         anchors.fill: parent
+        visible: !hidden
         start: Qt.point(0, 0)
         end: Qt.point(parent.width, 0)
         gradient: Gradient {
@@ -85,11 +96,12 @@ Button {
     
     Setting.Icon {
         id: icon
-        width: 18
-        height: 18
         anchors.left: parent.left
         anchors.leftMargin: 6
         anchors.verticalCenter: parent.verticalCenter
+        visible: !hidden
+        width: 18
+        height: 18
         
         color: sysPalette.windowText
         source: `../icons/history/${historyAction.icon()}.svg`
@@ -102,6 +114,7 @@ Button {
         anchors.leftMargin: 6
         anchors.rightMargin: 20
         anchors.verticalCenter: parent.verticalCenter
+        visible: !hidden
         font.pixelSize: 14
         text: historyAction.getHTMLString().replace(/\$\{tag_color\}/g, clr)
         textFormat: Text.RichText
@@ -109,11 +122,21 @@ Button {
         wrapMode: Text.WordWrap
     }
     
-    //text: historyAction.getReadableString()
+    Rectangle {
+        id: hiddenDot
+        anchors.centerIn: parent
+        visible: hidden
+        width: 5
+        height: 5
+        radius: 5
+        color: sysPalette.windowText
+    }
+    
+    //text: content
     
     ToolTip.visible: hovered
     ToolTip.delay: 200
-    ToolTip.text: historyAction.getReadableString()
+    ToolTip.text: content
     
     onClicked: {
         if(isRedo)
