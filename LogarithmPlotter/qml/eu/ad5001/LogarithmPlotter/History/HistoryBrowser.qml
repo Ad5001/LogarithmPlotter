@@ -53,7 +53,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        placeholderText: "Filter..."
+        placeholderText: qsTr("Filter...")
     }
     
     ScrollView {
