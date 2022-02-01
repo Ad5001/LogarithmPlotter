@@ -243,7 +243,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
         <source>Filter...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="97"/>
