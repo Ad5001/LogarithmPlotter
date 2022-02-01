@@ -251,7 +251,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
         <source>Filter...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="97"/>
@@ -516,7 +516,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="53"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation>La couleur de %1 %2 a été modifiée de %3 à %4.</translation>
+        <translation>%1 %2 a été re colorisé du %3 au %4.</translation>
     </message>
 </context>
 <context>
