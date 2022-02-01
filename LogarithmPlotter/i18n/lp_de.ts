@@ -243,7 +243,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
         <source>Filter...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtern…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="97"/>
@@ -508,7 +508,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="53"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 wurde von %3 bis %4 umgefärbt.</translation>
     </message>
 </context>
 <context>
@@ -551,7 +551,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="53"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="57"/>
         <source>New %1 %2 created.</source>
-        <translation type="unfinished">Neu %1 %2 erstellt.</translation>
+        <translation>Neu %1 %2 erstellt.</translation>
     </message>
 </context>
 <context>
@@ -560,7 +560,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="46"/>
         <source>%1 %2 deleted.</source>
-        <translation type="unfinished">%1 %2 gelöscht.</translation>
+        <translation>%1 %2 gelöscht.</translation>
     </message>
 </context>
 <context>
@@ -568,12 +568,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="106"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="unfinished">%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
+        <translation>%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="113"/>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 wurde von %3 auf %4 geändert.</translation>
     </message>
 </context>
 <context>
@@ -645,7 +645,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="51"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="57"/>
         <source>%1 %2 renamed to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 umbenannt in %3.</translation>
     </message>
 </context>
 <context>
@@ -1033,13 +1033,13 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 shown.</source>
-        <translation type="unfinished">%1 %2 angezeigt.</translation>
+        <translation>%1 %2 angezeigt.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 hidden.</source>
-        <translation type="unfinished">%1 %2 ausgeblendet.</translation>
+        <translation>%1 %2 ausgeblendet.</translation>
     </message>
 </context>
 <context>
