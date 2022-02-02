@@ -63,6 +63,7 @@ Item {
         anchors.top: filterInput.bottom
     
         ScrollBar.horizontal.visible: false
+        clip: true
         
         Flickable {
             width: parent.width
