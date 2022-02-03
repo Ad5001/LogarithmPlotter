@@ -20,6 +20,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
+
 
 /*!
     \qmltype ObjectCreationGrid
@@ -48,16 +50,43 @@ Column {
             
             Button {
                 id: createBtn
-                text: Objects.types[modelData].displayType()
                 width: parent.width/3
                 visible: Objects.types[modelData].createable()
-                height: visible ? implicitHeight : 0
-                display: AbstractButton.TextUnderIcon
-                icon.name: modelData
-                icon.source: '../icons/' + modelData + '.svg'
-                icon.width: 24
-                icon.height: 24
-                icon.color: sysPalette.buttonText
+                height: visible ? width*0.8 : 0
+                // The KDE SDK is kinda buggy, so it respects neither specified color nor display propreties.
+                //display: AbstractButton.TextUnderIcon
+    
+                Setting.Icon {
+                    id: icon
+                    width: 24
+                    height: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: (parent.width-width)/2
+                    anchors.top: parent.top
+                    anchors.topMargin: (label.y-height)/2
+                    
+                    color: sysPalette.windowText
+                    source: '../icons/objects/'+modelData+'.svg'
+                }
+    
+                Label {
+                    id: label
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 5
+                    anchors.left: parent.left
+                    anchors.leftMargin: 4
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 14
+                    text: Objects.types[modelData].displayType()
+                    wrapMode: Text.WordWrap
+                    clip: true
+                }
+                
+                ToolTip.visible: hovered
+                ToolTip.delay: 200
+                ToolTip.text: label.text
                 
                 onClicked: {
                     var newObj = Objects.createNewRegisteredObject(modelData)

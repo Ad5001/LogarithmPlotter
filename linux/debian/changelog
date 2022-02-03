@@ -1,3 +1,34 @@
+logarithmplotter (0.1.7) stable; urgency=medium
+
+  * New: The history browser has been completly redesigned, improving UX.
+  * New: The history browser now features a filter bar.
+  * New: All side panel tabs now have a visually identifiable scrollbar.
+  * Changed: Shorter rich text representations of history entries to improve readability.
+  * Changed: Usage of gradiants and icons to better identify history entries at a glance.
+  * Changed: History entries are now showing the whole label on several lines, instead of cutting it at the end.
+  * Changed: New history action for renaming.
+  * Changed: New history action for coloring. Note: color changing history items created in previous versions of LogarithmPlotter will not be updated to the new action.
+  * Changed: Tooltips for object creation buttons have been added.
+  * Changed: Tooltips have been set to have a delay of 200ms to match most software's handling of them.
+  * Changed: Object creation buttons now have a unified style accross all platforms.
+  * Added translation: History action of renaming objects.
+  * Added translation: History action of changing the color of objects.
+  * Added translation: Filtering for history browser.
+  * Fixed bug: Visibility history actions (shown and hidden) are now properly saved, solving the issue that when loading file with one, it's not automaticly changed to "Show".
+  * Fixed bug: Name changes history actions are now properly saved.
+  * Fixed bug: Non translated object type on the "+ Create new object" item selection combobox for Bode Magnitude and Phase.
+  * Fixed bug: Proper handling for future LogarithmPlotter files.
+  * Fixed bug: Shortcuts not being displayed in the menu bar are now properly shown.
+  * Fixed bug (flatpak): Black versions of the icons when using a black theme with the KDE SDK.
+  * Fixed bug (debian): Fixed launchpad building properly.
+  * Internal changes: Better organisation on icons.
+  * Internal changes: Historylib has been separated in several files.
+  * Internal changes: Trying to switch metainfo once more to try and fix another bug.
+  * Internal changes: Keywords added to metainfo.
+
+
+ -- Ad5001 <mail@ad5001.eu>  Thu, 03 Jan 2022 00:00:00 +0100
+ 
 logarithmplotter (0.1.6) stable; urgency=medium
 
   * New: A new changelog popup is available at startup and in the help menu.

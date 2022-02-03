@@ -20,193 +20,24 @@
 // Each type of event is repertoried as an action that can be listed for everything that's undoable.
 .pragma library
 
-.import "objects.js" as Objects
-.import "parameters.js" as P
-.import "objs/common.js" as Common
-.import "utils.js" as Utils
-.import "mathlib.js" as MathLib
+.import "history/common.js" as Common
+.import "history/create.js" as Create
+.import "history/delete.js" as Delete
+.import "history/editproperty.js" as EP
+.import "history/visibility.js" as V
+.import "history/name.js" as Name
+.import "history/color.js" as Color
 
 var history = null;
 
-class Action {
-    // Type of the action done.
-    type(){return 'Unknown'}
-    
-    // TargetName is the name of the object that's targeted by the event.
-    constructor(targetName = "", targetType = "Point") {
-        this.targetName = targetName
-        this.targetType = targetType
-    }
-    
-    undo() {}
-    
-    redo() {}
-    
-    export() {
-        return [this.targetName, this.targetType]
-    }
-    
-    getReadableString() {
-        return 'Unknown action'
-    }
-}
 
-class CreateNewObject extends Action {
-    // Action used for the creation of an object
-    type(){return 'CreateNewObject'}
-    
-    constructor(targetName = "", targetType = "Point", properties = []) {
-        super(targetName, targetType)
-        this.targetProperties = properties
-    }
-
-    
-    undo() {
-        var targetIndex = Objects.getObjectsName(this.targetType).indexOf(this.targetName)
-        Objects.currentObjects[this.targetType][targetIndex].delete()
-        Objects.currentObjects[this.targetType].splice(targetIndex, 1)
-    }
-    
-    redo() {
-        Objects.createNewRegisteredObject(this.targetType, this.targetProperties)
-    }
-    
-    export() {
-        return [this.targetName, this.targetType, this.targetProperties]
-    }
-    
-    getReadableString() {
-        return qsTr("New %1 %2 created.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
-    }
-}
-
-class DeleteObject extends CreateNewObject {
-    // Action used at the deletion of an object. Basicly the same thing as creating a new object, except Redo & Undo are reversed.
-    type(){return 'DeleteObject'}
-    
-    undo() {
-        super.redo()
-    }
-    
-    redo() {
-        super.undo()
-    }
-    
-    getReadableString() {
-        return qsTr("%1 %2 deleted.").arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
-    }
-}
-
-class EditedProperty extends Action {
-    // Action used everytime an object's property has been changed
-    type(){return 'EditedProperty'}
-    
-    constructor(targetName = "", targetType = "Point", targetProperty = "visible", previousValue = false, newValue = true, valueIsExpressionNeedingImport = false) {
-        super(targetName, targetType)
-        this.targetProperty = targetProperty
-        this.targetPropertyReadable = qsTranslate("prop", this.targetProperty)
-        this.previousValue = previousValue
-        this.newValue = newValue
-        this.propertyType = Objects.types[targetType].properties()[targetProperty]
-        if(valueIsExpressionNeedingImport) {
-            if(propertyType == "Expression") {
-                this.previousValue = new MathLib.Expression(this.previousValue);
-                this.newValue = new MathLib.Expression(this.newValue);
-            } else if(propertyType == "Domain") {
-                this.previousValue = MathLib.parseDomain(this.previousValue);
-                this.newValue = MathLib.parseDomain(this.newValue);
-            } else {
-                // Objects
-                this.previousValue = Objects.getObjectByName(this.previousValue);
-                this.newValue = Objects.getObjectByName(this.newValue);
-            }
-        }
-    }
-    
-    undo() {
-        Objects.getObjectByName(this.targetName, this.targetType)[this.targetProperty] = this.previousValue
-    }
-    
-    redo() {
-        Objects.getObjectByName(this.targetName, this.targetType)[this.targetProperty] = this.newValue
-    }
-    
-    export() {
-        if(this.previousValue instanceof MathLib.Expression) {
-            return [this.targetName, this.targetType, this.targetProperty, this.previousValue.toEditableString(), this.newValue.toEditableString(), true]
-        } else if(this.previousValue instanceof Common.DrawableObject) {
-            return [this.targetName, this.targetType, this.targetProperty, this.previousValue.name, this.newValue.name, true]
-        } else {
-            return [this.targetName, this.targetType, this.targetProperty, this.previousValue, this.newValue, false]
-        }
-    }
-    
-    getReadableString() {
-        let prev = "";
-        let next = "";
-        if(this.propertyType instanceof Object) {
-            switch(this.propertyType.type) {
-                case "Enum":
-                    prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
-                    next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
-                    break;
-                case "ObjectType":
-                    prev = this.previousValue.name
-                    next = this.newValue.name
-                    break;
-                case "List":
-                    prev = this.previousValue.join(",")
-                    next = this.newValue.name.join(",")
-                    break;
-                case "Dict":
-                    prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
-                    next = JSON.stringify(this.newValue).replace("'", "\\'").replace('"', "'")
-                    break;
-            }
-        } else {
-            prev = this.previousValue == null ? "null" : this.previousValue.toString()
-            next = this.newValue == null ? "null" : this.newValue.toString()
-        }
-        return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
-                .arg(this.targetPropertyReadable)
-                .arg(Objects.types[this.targetType].displayType())
-                .arg(this.targetName).arg(prev).arg(next)
-    }
-}
-
-class EditedVisibility extends EditedProperty {
-    // Action used everytime an object's property has been changed
-    type(){return 'EditedVisibility'}
-    
-    constructor(targetName = "", targetType = "Point", newValue = true) {
-        super(targetName, targetType, "visible", !newValue, newValue)
-    }
-    
-    getReadableString() {
-        if(this.newValue) {
-            return qsTr('%1 %2 shown.').arg(this.targetType).arg(this.targetName)
-        } else {
-            return qsTr('%1 %2 hidden.').arg(this.targetType).arg(this.targetName)
-        }
-    }
-}
-
-class NameChanged extends EditedProperty {
-    // Action used everytime an object's property has been changed
-    type(){return 'EditedVisibility'}
-    
-    constructor(targetName = "", targetType = "Point", newName = "") {
-        super(targetName, targetType, "name", targetName, newName)
-    }
-    
-    undo() {
-        Objects.getObjectByName(this.newValue, this.targetType)['name'] = this.previousValue
-    }
-    
-    redo() {
-        Objects.getObjectByName(this.previousValue, this.targetType)[this.targetProperty] = this.newValue
-    }
-}
+var Action = Common.Action
+var CreateNewObject = Create.CreateNewObject
+var DeleteObject = Delete.DeleteObject
+var EditedProperty = EP.EditedProperty
+var EditedVisibility = V.EditedVisibility
+var NameChanged = Name.NameChanged
+var ColorChanged = Color.ColorChanged
 
 var Actions = {
     "Action": Action,
@@ -214,4 +45,6 @@ var Actions = {
     "DeleteObject": DeleteObject,
     "EditedProperty": EditedProperty,
     "EditedVisibility": EditedVisibility,
+    "NameChanged": NameChanged,
+    "ColorChanged": ColorChanged,
 }

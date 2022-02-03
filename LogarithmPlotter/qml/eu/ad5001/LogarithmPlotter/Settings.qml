@@ -156,7 +156,7 @@ ScrollView {
             isDouble: true
             label: qsTr("X Zoom")
             min: 1
-            icon: "icons/settings/xzoom.svg"
+            icon: "settings/xzoom.svg"
             width: settings.settingWidth
             value: settings.xzoom.toFixed(2)
             onChanged: function(newValue) {
@@ -170,7 +170,7 @@ ScrollView {
             height: 30
             isDouble: true
             label: qsTr("Y Zoom")
-            icon: "icons/settings/yzoom.svg"
+            icon: "settings/yzoom.svg"
             width: settings.settingWidth
             value: settings.yzoom.toFixed(2)
             onChanged: function(newValue) {
@@ -186,7 +186,7 @@ ScrollView {
             isDouble: true
             min: -Infinity
             label: qsTr("Min X")
-            icon: "icons/settings/xmin.svg"
+            icon: "settings/xmin.svg"
             width: settings.settingWidth
             defValue: settings.xmin
             onChanged: function(newValue) {
@@ -205,7 +205,7 @@ ScrollView {
             isDouble: true
             min: -Infinity
             label: qsTr("Max Y")
-            icon: "icons/settings/ymax.svg"
+            icon: "settings/ymax.svg"
             width: settings.settingWidth
             defValue: settings.ymax
             onChanged: function(newValue) {
@@ -220,7 +220,7 @@ ScrollView {
             isDouble: true
             min: -Infinity
             label: qsTr("Max X")
-            icon: "icons/settings/xmax.svg"
+            icon: "settings/xmax.svg"
             width: settings.settingWidth
             value: canvas.px2x(canvas.canvasSize.width).toFixed(2)
             onChanged: function(xvaluemax) {
@@ -239,7 +239,7 @@ ScrollView {
             isDouble: true
             min: -Infinity
             label: qsTr("Min Y")
-            icon: "icons/settings/ymin.svg"
+            icon: "settings/ymin.svg"
             width: settings.settingWidth
             defValue: canvas.px2y(canvas.canvasSize.height).toFixed(2)
             onChanged: function(yvaluemin) {
@@ -256,7 +256,7 @@ ScrollView {
             id: xAxisStep
             height: 30
             label: qsTr("X Axis Step")
-            icon: "icons/settings/xaxisstep.svg"
+            icon: "settings/xaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.xaxisstep
             visible: !settings.logscalex
@@ -270,7 +270,7 @@ ScrollView {
             id: yAxisStep
             height: 30
             label: qsTr("Y Axis Step")
-            icon: "icons/settings/yaxisstep.svg"
+            icon: "settings/yaxisstep.svg"
             width: settings.settingWidth
             defValue: settings.yaxisstep
             onChanged: function(newValue) {
@@ -285,7 +285,7 @@ ScrollView {
             isDouble: true
             label: qsTr("Line width")
             min: 1
-            icon: "icons/settings/linewidth.svg"
+            icon: "settings/linewidth.svg"
             width: settings.settingWidth
             defValue: settings.linewidth
             onChanged: function(newValue) {
@@ -300,7 +300,7 @@ ScrollView {
             isDouble: true
             label: qsTr("Text size (px)")
             min: 1
-            icon: "icons/settings/textsize.svg"
+            icon: "settings/textsize.svg"
             width: settings.settingWidth
             defValue: settings.textsize
             onChanged: function(newValue) {
@@ -314,7 +314,7 @@ ScrollView {
             height: 30
             width: settings.settingWidth
             label: qsTr('X Label')
-            icon: "icons/settings/xlabel.svg"
+            icon: "settings/xlabel.svg"
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "x" }
@@ -340,7 +340,7 @@ ScrollView {
             height: 30
             width: settings.settingWidth
             label: qsTr('Y Label')
-            icon: "icons/settings/ylabel.svg"
+            icon: "settings/ylabel.svg"
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "y" }

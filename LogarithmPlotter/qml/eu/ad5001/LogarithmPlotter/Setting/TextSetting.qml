@@ -64,6 +64,11 @@ Item {
     */
     property alias value: input.text
     /*!
+       \qmlproperty string TextSetting::placeholderText
+       Value of the input.
+    */
+    property alias placeholderText: input.placeholderText
+    /*!
        \qmlproperty string TextSetting::label
        Label of the setting.
     */
@@ -78,7 +83,7 @@ Item {
         id: iconLabel
         anchors.top: parent.top
         anchors.topMargin: icon == "" ? 0 : 3
-        source: control.visible ? "../" + control.icon : ""
+        source: control.visible ? "../icons/" + control.icon : ""
         width: height
         height: icon == "" || !visible ? 0 : 24
         color: sysPalette.windowText
@@ -92,7 +97,8 @@ Item {
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
         //color: sysPalette.windowText
-        text: qsTranslate("control", "%1: ").arg(control.label)
+        text: visible ? qsTranslate("control", "%1: ").arg(control.label) : ""
+        visible: control.label != ""
     }
     
         
@@ -101,10 +107,10 @@ Item {
         anchors.top: parent.top
         anchors.left: labelItem.right
         anchors.leftMargin: 5
-        width: control.width - labelItem.width - iconLabel.width - 10
+        width: control.width - (labelItem.visible ? labelItem.width + 5 : 0) - iconLabel.width - 5
         height: parent.height
         verticalAlignment: TextInput.AlignVCenter
-        horizontalAlignment: TextInput.AlignHCenter
+        horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
         color: sysPalette.windowText
         focus: true
         text: control.defValue

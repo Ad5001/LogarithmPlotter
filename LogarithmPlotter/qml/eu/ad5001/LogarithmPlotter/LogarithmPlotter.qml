@@ -25,6 +25,7 @@ import QtQuick 2.12
 import "js/objs/autoload.js" as ALObjects
 
 import "js/objects.js" as Objects
+import eu.ad5001.LogarithmPlotter.History 1.0
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
@@ -333,7 +334,7 @@ ApplicationWindow {
         Action {
             text: qsTr("&Update LogarithmPlotter")
             icon.name: 'update'
-            onTriggered: Helper.openUrl("https://dev.apps.ad5001.eu/logarithmplotter")
+            onTriggered: Qt.openUrlExternally("https://dev.apps.ad5001.eu/logarithmplotter")
         }
     }
     

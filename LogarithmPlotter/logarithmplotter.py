@@ -74,14 +74,18 @@ def run():
     print("Loaded dependencies in " + str((dep_time - start_time)*1000) + "ms.")
 
     icon_fallbacks = QIcon.fallbackSearchPaths();
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")))
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings")))
-    icon_fallbacks.append(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons", "settings", "custom")))
+    base_icon_path = path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")
+    icon_fallbacks.append(path.realpath(path.join(base_icon_path, "common")))
+    icon_fallbacks.append(path.realpath(path.join(base_icon_path, "objects")))
+    icon_fallbacks.append(path.realpath(path.join(base_icon_path, "history")))
+    icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings")))
+    icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings", "custom")))
     QIcon.setFallbackSearchPaths(icon_fallbacks);
     
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
+    app.styleHints().setShowShortcutsInContextMenus(True)
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
     
     # Installing translators

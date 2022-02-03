@@ -43,9 +43,7 @@
             <li>🇭🇺 Hungarian</li>
             <li>🇳🇴 Norwergian</li>
         </ul>
-        <p xml:lang="fr">Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
-    </description>
-    <description xml:lang="fr">
+        <p>Learn more: https://apps.ad5001.eu/logarithmplotter/</p>
         <p xml:lang="fr">
             LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes à échelle logarithmique et non logarithmique avec peu de limitations.    
         </p>
@@ -68,8 +66,6 @@
             <li>🇳🇴 Norvégien</li>
         </ul>
         <p xml:lang="fr">En savoir plus: https://apps.ad5001.eu/fr/logarithmplotter/</p>
-    </description>
-    <description xml:lang="hu">
         <p xml:lang="hu">
             A LogarithmPlotter egy logaritmus-ábrázoló, amely logaritmikus léptékek figyelembevételével készült. A Geogebrához hasonló objektumrendszerrel dinamikus parcellák létrehozását teszi lehetővé, nagyon kevés korlátozással.
         </p>
@@ -81,6 +77,7 @@
     <categories>
         <category>Science</category>
         <category>Education</category>
+        <category>Qt</category>
     </categories>
     
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
@@ -118,18 +115,71 @@
     </requires>
     
     <releases>
-        <release version="0.1.6" date="2022-01-29">
-            <p>Changes for v0.1.6:</p>
+        <release version="0.1.7" date="2022-02-03">
+            <p><b>Changes for v0.1.7:</b></p>
+            <p>New</p>
             <ul>
-                <li>New: A new changelog popup is available at startup and in the help menu.</li>
-                <li>Added translation: Object properties names.</li>
-                <li>Added translation: Object properties enum values.</li>
-                <li>Added translation: Object comments.</li>
-                <li>Added translation: Most elements using a ":".</li>
-                <li>Fixed bug: X Cursor's targets can now be set to null.</li>
-                <li>Fixed bug: History now imports domains and objects properly.</li>
-                <li>Fixed bug: Proper handling for future LogarithmPlotter files.</li>
-                <li>Fixed bug (debian): Fixing bug that created a /build directory and didn't put the icons in the right directories.</li>
+                <li>The history browser has been completly redesigned, improving UX.</li>
+                <li>The history browser now features a filter bar.</li>
+                <li>All side panel tabs now have a visually identifiable scrollbar.</li>
+            </ul>
+            <p>Changes</p>
+            <ul>
+                <li>Shorter rich text representations of history entries to improve readability.</li>
+                <li>Usage of gradiants and icons to better identify history entries at a glance.</li>
+                <li>History entries are now showing the whole label on several lines, instead of cutting it at the end.</li>
+                <li>New history action for renaming.</li>
+                <li>New history action for coloring. Note: color changing history items created in previous versions of LogarithmPlotter will not be updated to the new action.</li>
+                <li>Tooltips for object creation buttons have been added.</li>
+                <li>Tooltips have been set to have a delay of 200ms to match most software's handling of them.</li>
+                <li>Object creation buttons now have a unified style accross all platforms.</li>
+            </ul>
+            <p>Added translations</p>
+            <ul>
+                <li>History action of renaming objects.</li>
+                <li>History action of changing the color of objects.</li>
+                <li>Filtering for history browser.</li>
+            </ul>
+            <p>Fixed bugs</p>
+            <ul>
+                <li>Visibility history actions (shown and hidden) are now properly saved, solving the issue that when loading file with one, it's not automaticly changed to "Show".</li>
+                <li>Name changes history actions are now properly saved.</li>
+                <li>Non translated object type on the "+ Create new object" item selection combobox for Bode Magnitude and Phase.</li>
+                <li>Proper handling for future LogarithmPlotter files.</li>
+                <li>Shortcuts not being displayed in the menu bar are now properly shown.</li>
+                <li>(flatpak) Black versions of the icons when using a black theme with the KDE SDK.</li>
+                <li>(debian) Fixed launchpad building properly.</li>
+            </ul>
+            <p>Internal changes</p>
+            <ul>
+                <li>Better organisation on icons.</li>
+                <li>Historylib has been separated in several files.</li>
+                <li>Trying to switch metainfo once more to try and fix another bug.</li>
+                <li>Keywords added to metainfo.</li>
+            </ul>
+        </release>
+        <release version="0.1.6" date="2022-01-29">
+            <p><b>Changes for v0.1.6:</b></p>
+            <p>New</p>
+            <ul>
+                <li>A new changelog popup is available at startup and in the help menu.</li>
+            </ul>
+            <p>Added translations</p>
+            <ul>
+                <li>Object properties names.</li>
+                <li>Object properties enum values.</li>
+                <li>Object comments.</li>
+                <li>Most elements using a ":".</li>
+            </ul>
+            <p>Fixed bugs</p>
+            <ul>
+                <li>X Cursor's targets can now be set to null.</li>
+                <li>History now imports domains and objects properly.</li>
+                <li>Proper handling for future LogarithmPlotter files.</li>
+                <li>(debian) Fixing bug that created a /build directory and didn't put the icons in the right directories.</li>
+            </ul>
+            <p>Other</p>
+            <ul>
                 <li>Other: Refractoring done on helper.</li>
                 <li>Other: All QML elements are now properly commented.</li>
                 <li>Other: Scripts have been moved to it's own directory.</li>
@@ -137,57 +187,85 @@
             </ul>
         </release>
         <release version="0.1.5" date="2022-01-26">
-            <p>Changes for v0.1.5:</p>
+            <p><b>Changes for v0.1.5:</b></p>
+            <p>New</p>
             <ul>
-                <li>New: LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>
-                <li>Added translation for flatpak metadata, including translated image.</li>
-                <li>[URGENT PATCH] Fixed bug: File saving dialog was not working.</li>
-                <li>[URGENT PATCH] Fixed bug: Debian packages does include any language file.</li>
-                <li>Fixed bug: X Cursor pointing does not detect any object.</li>
+                <li>LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>
+            </ul>
+            <p>Added translations</p>
+            <ul>
+                <li>Flatpak metadata, including translated image.</li>
+            </ul>
+            <p>Fixed bugs</p>
+            <ul>
+                <li>(!) File saving dialog was not working.</li>
+                <li>(!) Debian packages does include any language file.</li>
+                <li>X Cursor pointing does not detect any object.</li>
             </ul>
         </release>
         <release version="0.1.4" date="2022-01-24">
-            <p>Changes for v0.1.4:</p>
+            <p><b>Changes for v0.1.4:</b></p>
+            <p>New</p>
             <ul>
-                <li>New feature: LogarithmPlotter detects unsaved changes.</li>
-                <li>New feature: LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.</li>
+                <li>LogarithmPlotter detects unsaved changes.</li>
+                <li>LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.</li>
                 <li>New translation: English by Ad5001: 100%</li>
                 <li>New translation: French by Ad5001: 100%</li>
                 <li>New translation: German by Ad5001: 100%</li>
                 <li>New translation: Hungarian by Óvári (@ovari on github): 100%</li>
                 <li>New translation: Norvegian by Allan Nordhøy (@comradekingu on github): 80%</li>
+            </ul>
+            <p>Fixed bugs</p>
+            <ul>
                 <li>Fixed bug: No notification when closing LogarithmPlotter with unsaved changes.</li>
                 <li>Fixed bug: π unavailable in symbols.</li>
             </ul>
         </release>
         <release version="0.1.3" date="2022-01-18">
-            <p>Changes for v0.1.3:</p>
+            <p><b>Changes for v0.1.3:</b></p>
+            <p>Fixed bugs</p>
             <ul>
-                <li>Fixed bug: Confined packages (snapcraft &amp; flatpak) won't show error messages related to update checks.</li>
-                <li>FIxed bug: Equations of the form (x + y) / z were not being simplified properly.</li>
+                <li>Confined packages (snapcraft & flatpak) won't show error messages related to update checks.</li>
+                <li>Equations of the form (x + y) / z were not being simplified properly.</li>
             </ul>
         </release>
         <release version="0.1.2" date="2021-09-30">
-            <p>Changes for v0.1.2:</p>
+            <p><b>Changes for v0.1.2:</b></p>
+            <p>Fixed bugs</p>
             <ul>
-                <li>Fixed bug: Unable to move Bode diagrams elements when having deleted the sum element.</li>
-                <li>Fixed bug: Names were not not being changed from previous object when editing a new one.</li>
-                <li>Fixed bug: Bode Magnitude was not drawn far enough.</li>
-                <li>Fixed bug: Bode Magnitude had undefined ending.</li>
-                <li>Fixed other bugs from v0.1.1.</li>
+                <li>Unable to move Bode diagrams elements when having deleted the sum element.</li>
+                <li>Names were not not being changed from previous object when editing a new one.</li>
+                <li>Bode Magnitude was not drawn far enough.</li>
+                <li>Bode Magnitude had undefined ending.</li>
+                <li>Other bugs patched in v0.1.1.</li>
             </ul>
         </release>
         <release version="0.1" date="2021-08-26">
-            <p>Changes for v0.1:</p>
+            <p><b>Changes for v0.1:</b></p>
             <ul>
                 <li>Initial release.</li>
             </ul>
         </release>
     </releases>
-      <content_rating type="oars-1.0">
+    <content_rating type="oars-1.0">
     </content_rating>
     <developer_name>Ad5001</developer_name>
     <update_contact>mail@ad5001.eu</update_contact>
+    
+    <keywords>
+        <keyword>Plot</keyword>
+        <keyword>Plotter</keyword>
+        <keyword>Log</keyword>
+        <keyword>Logarithm</keyword>
+        <keyword>Logarithmic</keyword>
+        <keyword>Bode</keyword>
+        <keyword>Magnitude</keyword>
+        <keyword>Diagram</keyword>
+        <keyword>Graph</keyword>
+        <keyword>Phase</keyword>
+        <keyword>Sequence</keyword>
+        <keyword>Distribution</keyword>
+    </keywords>
 </application>
 
 
