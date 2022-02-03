@@ -1,6 +1,6 @@
 Package: logarithmplotter
 Source: logarithmplotter
-Version: 0.1.7
+Version: 0.1.8
 Architecture: all
 Maintainer: Ad5001 <mail@ad5001.eu>
 Depends: python3, python3-pip, qml-module-qtquick-controls2 (>= 5.12.0), qml-module-qtmultimedia (>= 5.12.0), qml-module-qtgraphicaleffects (>= 5.12.0), qml-module-qtquick2 (>= 5.12.0), qml-module-qtqml-models2 (>= 5.12.0), qml-module-qtquick-controls (>= 5.12.0), python3-pyside2.qtcore (>= 5.12.0), python3-pyside2.qtqml (>= 5.12.0), python3-pyside2.qtgui (>= 5.12.0), python3-pyside2.qtquick (>= 5.12.0), python3-pyside2.qtwidgets (>= 5.12.0), python3-pyside2.qtmultimedia (>= 5.12.0), python3-pyside2.qtnetwork (>= 5.12.0)
