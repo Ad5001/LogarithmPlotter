@@ -225,7 +225,7 @@
             <p><b>Changes for v0.1.3:</b></p>
             <p>Fixed bugs</p>
             <ul>
-                <li>Confined packages (snapcraft & flatpak) won't show error messages related to update checks.</li>
+                <li>Confined packages (snapcraft &amp; flatpak) won't show error messages related to update checks.</li>
                 <li>Equations of the form (x + y) / z were not being simplified properly.</li>
             </ul>
         </release>
