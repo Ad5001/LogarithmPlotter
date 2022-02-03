@@ -14,7 +14,7 @@
   * Usage of gradiants and icons to better identify history entries at a glance.
   * History entries are now showing the whole label on several lines, instead of cutting it at the end.
   * New history action for renaming.
-  * New history action for coloring. Note: color changing history items created in previous versions of LogarithmPlotter will not be updated to the new action.
+  * New history action for coloring. Note: color changing history entries created in previous versions of LogarithmPlotter will not be updated.
   * Tooltips for object creation buttons have been added.
   * Tooltips have been set to have a delay of 200ms to match most software's handling of them.
   * Object creation buttons now have a unified style accross all platforms.
@@ -27,7 +27,7 @@
 
 **Fixed bugs**
 
-  * Visibility history actions (shown and hidden) are now properly saved, solving the issue that when loading file with one, it's not automaticly changed to "Show".
+  * Visibility history actions (shown and hidden) are now properly savedmaking loading them not automaticly changed to "Show".
   * Name changes history actions are now properly saved.
   * Non translated object type on the "+ Create new object" item selection combobox for Bode Magnitude and Phase.
   * Proper handling for future LogarithmPlotter files.
