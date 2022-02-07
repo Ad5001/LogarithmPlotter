@@ -47,7 +47,7 @@ ApplicationWindow {
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     
-    menuBar: appMenu//.trueItem
+    menuBar: appMenu.trueItem
     
     AppMenuBar {id: appMenu}
     
@@ -66,15 +66,16 @@ ApplicationWindow {
         z: 3
     }
     
-    Drawer {
+    Item {
         id: sidebar
         width: 300
         height: parent.height
-        y: root.menuBar.height
+        //y: root.menuBar.height
         readonly property bool inPortrait: root.width < root.height
-        modal: inPortrait
+        /*modal: true// inPortrait
         interactive: inPortrait
         position: inPortrait ? 0 : 1
+        */
         visible: !inPortrait
 
         
@@ -137,8 +138,8 @@ ApplicationWindow {
         anchors.top: parent.top
         anchors.left: sidebar.inPortrait ? parent.left : sidebar.right
         height: parent.height
-        width: sidebar.inPortrait ? parent.width : parent.width - sidebar.position*sidebar.width
-        x: sidebar.position*sidebar.width
+        width: sidebar.inPortrait ? parent.width : parent.width - sidebar.width//*sidebar.position
+        x: sidebar.width//*sidebar.position
         
         xmin: settings.xmin
         ymax: settings.ymax

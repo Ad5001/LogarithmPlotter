@@ -18,8 +18,8 @@
 
 import QtQuick 2.12
 import QtQuick.Dialogs 1.3
-import QtQuick.Controls 2.15
-//import eu.ad5001.MixedMenu 1.1
+//import QtQuick.Controls 2.15
+import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
