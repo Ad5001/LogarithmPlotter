@@ -47,7 +47,7 @@ ApplicationWindow {
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     
-    menuBar: appMenu.trueItem
+    menuBar: appMenu//.trueItem
     
     AppMenuBar {id: appMenu}
     

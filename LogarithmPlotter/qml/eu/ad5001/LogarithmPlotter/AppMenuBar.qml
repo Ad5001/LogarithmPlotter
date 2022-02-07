@@ -18,8 +18,8 @@
 
 import QtQuick 2.12
 import QtQuick.Dialogs 1.3
-//import QtQuick.Controls 2.12
-import eu.ad5001.MixedMenu 1.1
+import QtQuick.Controls 2.15
+//import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
 
@@ -146,12 +146,17 @@ MenuBar {
         Action {
             text: qsTr("&Source code")
             icon.name: 'software-sources'
-            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter")
         }
         Action {
             text: qsTr("&Report a bug")
             icon.name: 'tools-report-bug'
             onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
+        }
+        Action {
+            text: qsTr("&User manual")
+            icon.name: 'documentation'
+            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki")
         }
         Action {
             text: qsTr("&Changelog")
