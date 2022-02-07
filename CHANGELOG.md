@@ -106,7 +106,7 @@
 
 **Fixed bugs**
 
-  * Confined packages (snapcraft & flatpak) won't show error messages related to update checks.
+  * Sandboxed packages (snapcraft and flatpak) won't show error messages related to update checks.
   * Equations of the form (x + y) / z were not being simplified properly.
  
 ## v0.1.2 (30 Sep 2021)

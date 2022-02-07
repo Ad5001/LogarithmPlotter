@@ -50,7 +50,7 @@ Column {
             
             Button {
                 id: createBtn
-                width: parent.width/3
+                width: 96
                 visible: Objects.types[modelData].createable()
                 height: visible ? width*0.8 : 0
                 // The KDE SDK is kinda buggy, so it respects neither specified color nor display propreties.
