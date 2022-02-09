@@ -494,7 +494,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="428"/>
         <source>Load plot</source>
-        <translation>Charger un graphe</translation>
+        <translation>Ouvrir un graphe</translation>
     </message>
 </context>
 <context>
