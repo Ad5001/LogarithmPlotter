@@ -35,7 +35,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="40"/>
         <source>&amp;Load...</source>
-        <translation>&amp;Load…</translation>
+        <translation>&amp;Open…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="47"/>
@@ -486,7 +486,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="428"/>
         <source>Load plot</source>
-        <translation>Load plot</translation>
+        <translation>Open plot</translation>
     </message>
 </context>
 <context>
