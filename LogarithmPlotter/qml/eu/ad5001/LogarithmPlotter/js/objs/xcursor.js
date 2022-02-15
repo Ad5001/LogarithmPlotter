@@ -146,9 +146,15 @@ class XCursor extends Common.DrawableObject {
         
         switch(this.labelPosition) {
             case 'left':
+            case 'above-left':
+            case 'below-left':
+            case 'below':
+            case 'above':
                 canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, textSize.height+5)
                 break;
             case 'right':
+            case 'above-right':
+            case 'below-right':
                 canvas.drawVisibleText(ctx, text, xpos+5, textSize.height+5)
                 break;
         }
@@ -159,10 +165,24 @@ class XCursor extends Common.DrawableObject {
             var ypox = canvas.y2px(this.targetElement.execute(this.x.execute()))
             switch(this.labelPosition) {
                 case 'left':
+                case 'below':
+                case 'above':
                     canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height)
+                    break;
+                case 'above-left':
+                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height+12)
+                    break;
+                case 'below-left':
+                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height-12)
                     break;
                 case 'right':
                     canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height)
+                    break;
+                case 'above-right':
+                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height+12)
+                    break;
+                case 'below-right':
+                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height-12)
                     break;
             }
         }

@@ -84,8 +84,8 @@ class EditedProperty extends C.Action {
                     this.next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
                     break;
                 case "ObjectType":
-                    this.prev = this.previousValue.name
-                    this.next = this.newValue.name
+                    this.prev = this.previousValue == null ? "null" : this.previousValue.name
+                    this.next = this.newValue == null ? "null" : this.newValue.name
                     break;
                 case "List":
                     this.prev = this.previousValue.join(",")
