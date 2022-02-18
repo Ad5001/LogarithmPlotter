@@ -27,7 +27,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="119"/>
         <source>Official website</source>
-        <translation type="unfinished"></translation>
+        <translation>Site officiel</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="157"/>
         <source>&amp;User manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuel d&apos;&amp;utilisation</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
@@ -232,7 +232,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="128"/>
         <source>User manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuel d&apos;utilisation</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="135"/>
