@@ -156,7 +156,7 @@ MenuBar {
         Action {
             text: qsTr("&User manual")
             icon.name: 'documentation'
-            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/User-Manual")
+            onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_Sidebar")
         }
         Action {
             text: qsTr("&Changelog")

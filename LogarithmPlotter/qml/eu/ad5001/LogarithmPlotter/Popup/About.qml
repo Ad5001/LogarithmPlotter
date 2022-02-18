@@ -101,13 +101,24 @@ You should have received a copy of the GNU General Public License along with thi
         onLinkActivated: Qt.openUrlExternally(link)
     }
     
-    Button {
-        id: openIssueButton
+    Row {
         anchors.top: copyrightInfos.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 10
-        text: qsTr('Report a bug')
-        icon.name: 'bug'
-        onClicked: Qt.openUrlExternally('https://git.ad5001.eu/Ad5001/LogarithmPlotter')
+        spacing: 5
+        
+        Button {
+            id: openIssueButton
+            text: qsTr('Report a bug')
+            icon.name: 'tools-report-bug'
+            onClicked: Qt.openUrlExternally('https://git.ad5001.eu/Ad5001/LogarithmPlotter')
+        }
+        
+        Button {
+            id: officialWebsiteButton
+            text: qsTr('Official website')
+            icon.name: 'web-browser'
+            onClicked: Qt.openUrlExternally('https://apps.ad5001.eu/logarithmplotter/')
+        }
     }
 }

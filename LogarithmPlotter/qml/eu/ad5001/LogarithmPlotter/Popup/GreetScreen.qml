@@ -120,7 +120,15 @@ Popup {
     Row {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
+        spacing: 10
         anchors.horizontalCenter: parent.horizontalCenter
+        
+        Button {
+            id: userManualBtn
+            text: qsTr("User manual")
+            font.pixelSize: 18
+            onClicked: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_Sidebar")
+        }
         
         Button {
             id: changelogBtn
