@@ -121,7 +121,7 @@
 **New**
 
   * LogarithmPlotter detects unsaved changes.
-  * LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.
+  * LogarithmPlotter is now translated!
   * New translation: English by Ad5001: 100%
   * New translation: French by Ad5001: 100%
   * New translation: German by Ad5001: 100%
