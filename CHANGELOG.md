@@ -1,5 +1,36 @@
 # Changelog
 
+## v0.1.8 (19 Feb 2022)
+
+**New**
+
+  * There is now a [user manual](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_Sidebar) for LogarithmPlotter! Contributions apprecriated.
+
+**Changes**
+
+  * A link to [LogarithmPlotter's official website](https://apps.ad5001.eu/logarithmplotter/) has been added in the about dialog.
+  * A link to the [user manual](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_Sidebar) has been added both on the greeting screen and the `Help` menu.
+
+**Added translations**
+
+  * User manual.
+  * Official website.
+  
+**Fixed bugs**
+  
+  * The label position of X Cursors now display the label even when unexpected values are entered.
+  * X Cursors target object in history are now properly rendered when no object were selected
+  * Fixed slight clipping at the bottom of the border.
+  * TextInput no longer allow to input forbidden characters for numbers.
+  * ALT+ shortcuts on the menu bar now work. NOTE: May break some mobile configuration. [Qt bug report](https://bugreports.qt.io/browse/QTBUG-100539)
+  * (flatpak) Buttons on side menu to create object now have proper width on startup.
+
+**Internal changes**
+
+  * There is now a script to generate offline versions of the manual based on their online version.
+  * Sidebar button width is now fixed.
+  * Artifacts have been added to appstream metadata.
+
 ## v0.1.7 (03 Feb 2022)
 
 **New**

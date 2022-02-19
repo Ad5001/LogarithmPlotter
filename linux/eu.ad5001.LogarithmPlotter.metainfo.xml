@@ -115,130 +115,253 @@
     </requires>
     
     <releases>
+        <release version="0.1.8" date="2022-02-19">
+            <description>
+                <p><b>Changes for v0.1.8:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>There is now a user manual for LogarithmPlotter! Contributions apprecriated.</li>
+                </ul>
+                <p>Changes</p>
+                <ul>
+                    <li>A link to LogarithmPlotter's official website has been added in the about dialog.</li>
+                    <li>A link to the user manual has been added both on the greeting screen and the `Help` menu.</li>
+                </ul>
+                <p>Added translations</p>
+                <ul>
+                    <li>User manual.</li>
+                    <li>Official website.</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>The label position of X Cursors now display the label even when unexpected values are entered.</li>
+                    <li>X Cursors target object in history are now properly rendered when no object were selected</li>
+                    <li>Fixed slight clipping at the bottom of the border.</li>
+                    <li>TextInput no longer allow to input forbidden characters for numbers.</li>
+                    <li>ALT+ shortcuts on the menu bar now work. NOTE: May break some mobile configuration. Qt bug report</li>
+                    <li>(flatpak) Buttons on side menu to create object now have proper width on startup.</li>
+                </ul>
+                <p>Internal changes</p>
+                <ul>
+                    <li>There is now a script to generate offline versions of the manual based on their online version.</li>
+                    <li>Sidebar button width is now fixed.</li>
+                    <li>Artifacts have been added to appstream metadata.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.8/logarithmplotter-v0.1.8-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.8/logarithmplotter-v0.1.8-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.8/logarithmplotter-0.1.8.tar.gz</location>
+                </artifact>
+            </artifacts>
+        </release>
         <release version="0.1.7" date="2022-02-03">
-            <p><b>Changes for v0.1.7:</b></p>
-            <p>New</p>
-            <ul>
-                <li>The history browser has been completly redesigned, improving UX.</li>
-                <li>The history browser now features a filter bar.</li>
-                <li>All side panel tabs now have a visually identifiable scrollbar.</li>
-            </ul>
-            <p>Changes</p>
-            <ul>
-                <li>Shorter rich text representations of history entries to improve readability.</li>
-                <li>Usage of gradiants and icons to better identify history entries at a glance.</li>
-                <li>History entries are now showing the whole label on several lines, instead of cutting it at the end.</li>
-                <li>New history action for renaming.</li>
-                <li>New history action for coloring. Note: color changing history items created in previous versions of LogarithmPlotter will not be updated to the new action.</li>
-                <li>Tooltips for object creation buttons have been added.</li>
-                <li>Tooltips have been set to have a delay of 200ms to match most software's handling of them.</li>
-                <li>Object creation buttons now have a unified style accross all platforms.</li>
-            </ul>
-            <p>Added translations</p>
-            <ul>
-                <li>History action of renaming objects.</li>
-                <li>History action of changing the color of objects.</li>
-                <li>Filtering for history browser.</li>
-            </ul>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>Visibility history actions (shown and hidden) are now properly saved, solving the issue that when loading file with one, it's not automaticly changed to "Show".</li>
-                <li>Name changes history actions are now properly saved.</li>
-                <li>Non translated object type on the "+ Create new object" item selection combobox for Bode Magnitude and Phase.</li>
-                <li>Proper handling for future LogarithmPlotter files.</li>
-                <li>Shortcuts not being displayed in the menu bar are now properly shown.</li>
-                <li>(flatpak) Black versions of the icons when using a black theme with the KDE SDK.</li>
-                <li>(debian) Fixed launchpad building properly.</li>
-            </ul>
-            <p>Internal changes</p>
-            <ul>
-                <li>Better organisation on icons.</li>
-                <li>Historylib has been separated in several files.</li>
-                <li>Trying to switch metainfo once more to try and fix another bug.</li>
-                <li>Keywords added to metainfo.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.7:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>The history browser has been completly redesigned, improving UX.</li>
+                    <li>The history browser now features a filter bar.</li>
+                    <li>All side panel tabs now have a visually identifiable scrollbar.</li>
+                </ul>
+                <p>Changes</p>
+                <ul>
+                    <li>Shorter rich text representations of history entries to improve readability.</li>
+                    <li>Usage of gradiants and icons to better identify history entries at a glance.</li>
+                    <li>History entries are now showing the whole label on several lines, instead of cutting it at the end.</li>
+                    <li>New history action for renaming.</li>
+                    <li>New history action for coloring. Note: color changing history entries created in previous versions of LogarithmPlotter will not be updated.</li>
+                    <li>Tooltips for object creation buttons have been added.</li>
+                    <li>Tooltips have been set to have a delay of 200ms to match most software's handling of them.</li>
+                    <li>Object creation buttons now have a unified style accross all platforms.</li>
+                </ul>
+                <p>Added translations</p>
+                <ul>
+                    <li>History action of renaming objects.</li>
+                    <li>History action of changing the color of objects.</li>
+                    <li>Filtering for history browser.</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>Visibility history actions (shown and hidden) are now properly savedmaking loading them not automaticly changed to "Show".</li>
+                    <li>Name changes history actions are now properly saved.</li>
+                    <li>Non translated object type on the "+ Create new object" item selection combobox for Bode Magnitude and Phase.</li>
+                    <li>Proper handling for future LogarithmPlotter files.</li>
+                    <li>Shortcuts not being displayed in the menu bar are now properly shown.</li>
+                    <li>(flatpak) Black versions of the icons when using a black theme with the KDE SDK.</li>
+                    <li>(debian) Fixed launchpad building properly.</li>
+                </ul>
+                <p>Internal changes</p>
+                <ul>
+                    <li>Better organisation on icons.</li>
+                    <li>Historylib has been separated in several files.</li>
+                    <li>Trying to switch metainfo once more to try and fix another bug.</li>
+                    <li>Keywords added to metainfo.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.7/logarithmplotter-v0.1.7-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.7/logarithmplotter-v0.1.7-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.7/logarithmplotter-0.1.7.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1.6" date="2022-01-29">
-            <p><b>Changes for v0.1.6:</b></p>
-            <p>New</p>
-            <ul>
-                <li>A new changelog popup is available at startup and in the help menu.</li>
-            </ul>
-            <p>Added translations</p>
-            <ul>
-                <li>Object properties names.</li>
-                <li>Object properties enum values.</li>
-                <li>Object comments.</li>
-                <li>Most elements using a ":".</li>
-            </ul>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>X Cursor's targets can now be set to null.</li>
-                <li>History now imports domains and objects properly.</li>
-                <li>Proper handling for future LogarithmPlotter files.</li>
-                <li>(debian) Fixing bug that created a /build directory and didn't put the icons in the right directories.</li>
-            </ul>
-            <p>Other</p>
-            <ul>
-                <li>Other: Refractoring done on helper.</li>
-                <li>Other: All QML elements are now properly commented.</li>
-                <li>Other: Scripts have been moved to it's own directory.</li>
-                <li>Other: Added changelog to metainfo for flathub.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.6:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>A new changelog popup is available at startup and in the help menu.</li>
+                </ul>
+                <p>Added translations</p>
+                <ul>
+                    <li>Object properties names.</li>
+                    <li>Object properties enum values.</li>
+                    <li>Object comments.</li>
+                    <li>Most elements using a ":".</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>X Cursor's targets can now be set to null.</li>
+                    <li>History now imports domains and objects properly.</li>
+                    <li>Proper handling for future LogarithmPlotter files.</li>
+                    <li>(debian) Fixing bug that created a /build directory and didn't put the icons in the right directories.</li>
+                </ul>
+                <p>Other</p>
+                <ul>
+                    <li>Other: Refractoring done on helper.</li>
+                    <li>Other: All QML elements are now properly commented.</li>
+                    <li>Other: Scripts have been moved to it's own directory.</li>
+                    <li>Other: Added changelog to metainfo for flathub.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.6/logarithmplotter-v0.1.6-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.6/logarithmplotter-v0.1.6-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.6/LogarithmPlotter-v0.1.6.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1.5" date="2022-01-26">
-            <p><b>Changes for v0.1.5:</b></p>
-            <p>New</p>
-            <ul>
-                <li>LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>
-            </ul>
-            <p>Added translations</p>
-            <ul>
-                <li>Flatpak metadata, including translated image.</li>
-            </ul>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>(!) File saving dialog was not working.</li>
-                <li>(!) Debian packages does include any language file.</li>
-                <li>X Cursor pointing does not detect any object.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.5:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>LogarithmPlotter has now better handling of very high values in logarithmic scale.</li>
+                </ul>
+                <p>Added translations</p>
+                <ul>
+                    <li>Flatpak metadata, including translated image.</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>(!) File saving dialog was not working.</li>
+                    <li>(!) Debian packages does include any language file.</li>
+                    <li>X Cursor pointing does not detect any object.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.5/logarithmplotter-v0.1.5-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.5/logarithmplotter-v0.1.5-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.5/LogarithmPlotter-v0.1.5.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1.4" date="2022-01-24">
-            <p><b>Changes for v0.1.4:</b></p>
-            <p>New</p>
-            <ul>
-                <li>LogarithmPlotter detects unsaved changes.</li>
-                <li>LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.</li>
-                <li>New translation: English by Ad5001: 100%</li>
-                <li>New translation: French by Ad5001: 100%</li>
-                <li>New translation: German by Ad5001: 100%</li>
-                <li>New translation: Hungarian by Óvári (@ovari on github): 100%</li>
-                <li>New translation: Norvegian by Allan Nordhøy (@comradekingu on github): 80%</li>
-            </ul>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>Fixed bug: No notification when closing LogarithmPlotter with unsaved changes.</li>
-                <li>Fixed bug: π unavailable in symbols.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.4:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>LogarithmPlotter detects unsaved changes.</li>
+                    <li>LogarithmPlotter is now translated! See https://hosted.weblate.org/engage/logarithmplotter/ to help.</li>
+                    <li>New translation: English by Ad5001: 100%</li>
+                    <li>New translation: French by Ad5001: 100%</li>
+                    <li>New translation: German by Ad5001: 100%</li>
+                    <li>New translation: Hungarian by Óvári (@ovari on github): 100%</li>
+                    <li>New translation: Norvegian by Allan Nordhøy (@comradekingu on github): 80%</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>Fixed bug: No notification when closing LogarithmPlotter with unsaved changes.</li>
+                    <li>Fixed bug: π unavailable in symbols.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.4/logarithmplotter-v0.1.4-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.4/logarithmplotter-v0.1.4-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.4/LogarithmPlotter-v0.1.4.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1.3" date="2022-01-18">
-            <p><b>Changes for v0.1.3:</b></p>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>Confined packages (snapcraft &amp; flatpak) won't show error messages related to update checks.</li>
-                <li>Equations of the form (x + y) / z were not being simplified properly.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.3:</b></p>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>Sandboxed packages (snapcraft and flatpak) won't show error messages related to update checks.</li>
+                    <li>Equations of the form (x + y) / z were not being simplified properly.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.3/logarithmplotter-v0.1.3-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.3/logarithmplotter-v0.1.3-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.3/LogarithmPlotter-v0.1.3.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1.2" date="2021-09-30">
-            <p><b>Changes for v0.1.2:</b></p>
-            <p>Fixed bugs</p>
-            <ul>
-                <li>Unable to move Bode diagrams elements when having deleted the sum element.</li>
-                <li>Names were not not being changed from previous object when editing a new one.</li>
-                <li>Bode Magnitude was not drawn far enough.</li>
-                <li>Bode Magnitude had undefined ending.</li>
-                <li>Other bugs patched in v0.1.1.</li>
-            </ul>
+            <description>
+                <p><b>Changes for v0.1.2:</b></p>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>Unable to move Bode diagrams elements when having deleted the sum element.</li>
+                    <li>Names were not not being changed from previous object when editing a new one.</li>
+                    <li>Bode Magnitude was not drawn far enough.</li>
+                    <li>Bode Magnitude had undefined ending.</li>
+                    <li>Other bugs patched in v0.1.1.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.2/logarithmplotter-v0.1.2-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.2/logarithmplotter-v0.1.2-setup.exe</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.1.2/LogarithmPlotter-v0.1.2.tar.gz</location>
+                </artifact>
+            </artifacts>
         </release>
         <release version="0.1" date="2021-08-26">
             <p><b>Changes for v0.1:</b></p>

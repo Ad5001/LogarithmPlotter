@@ -1,3 +1,23 @@
+logarithmplotter (0.1.8) stable; urgency=medium
+
+  * New: There is now a user manual for LogarithmPlotter! Contributions apprecriated.
+  * Changed: A link to LogarithmPlotter's official website (https://apps.ad5001.eu/logarithmplotter/) has been added in the about dialog.
+  * Changed: A link to the user manual has been added both on the greeting screen and the `Help` menu.
+  * Added translation: User manual.
+  * Added translation: Official website.
+  * Added translation: Filtering for history browser.
+  * Fixed bug: The label position of X Cursors now display the label even when unexpected values are entered.
+  * Fixed bug: X Cursors target object in history are now properly rendered when no object were selected
+  * Fixed bug: Fixed slight clipping at the bottom of the border.
+  * Fixed bug: TextInput no longer allow to input forbidden characters for numbers.
+  * Fixed bug: ALT+ shortcuts on the menu bar now work. NOTE: May break some mobile configuration. Qt bug report: https://bugreports.qt.io/browse/QTBUG-100539
+  * Fixed bug (flatpak): Buttons on side menu to create object now have proper width on startup.
+  * Internal changes: There is now a script to generate offline versions of the manual based on their online version.
+  * Internal changes: Sidebar button width is now fixed.
+  * Internal changes: Artifacts have been added to appstream metadata.
+
+ -- Ad5001 <mail@ad5001.eu>  Sat, 19 Jan 2022 20:00:00 +0100
+ 
 logarithmplotter (0.1.7) stable; urgency=medium
 
   * New: The history browser has been completly redesigned, improving UX.
@@ -25,7 +45,6 @@ logarithmplotter (0.1.7) stable; urgency=medium
   * Internal changes: Historylib has been separated in several files.
   * Internal changes: Trying to switch metainfo once more to try and fix another bug.
   * Internal changes: Keywords added to metainfo.
-
 
  -- Ad5001 <mail@ad5001.eu>  Thu, 03 Jan 2022 00:00:00 +0100
  
