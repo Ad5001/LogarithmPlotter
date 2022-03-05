@@ -41,9 +41,10 @@ if path.realpath(path.join(getcwd(), "..")) not in sys_path:
     sys_path.append(path.realpath(path.join(getcwd(), "..")))
 
 
-from LogarithmPlotter import config, native, __VERSION__
-from LogarithmPlotter.update import check_for_updates
-from LogarithmPlotter.helper import Helper
+from LogarithmPlotter import __VERSION__
+from LogarithmPlotter.util import config, native
+from LogarithmPlotter.util.update import check_for_updates
+from LogarithmPlotter.util.helper import Helper
 
 config.init()
 

@@ -28,8 +28,8 @@ from sys import version as sys_version
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 
-
-from LogarithmPlotter import config, __VERSION__
+from LogarithmPlotter import __VERSION__
+from LogarithmPlotter.util import config
 
 class ChangelogFetcher(QRunnable):
     def __init__(self, helper):
@@ -98,7 +98,12 @@ class Helper(QObject):
                 QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file "{}":\n{}').format(filename, e), QMessageBox.Ok) # Cannot parse file
         else:
             QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok) # Cannot parse file
-        chdir(path.dirname(path.realpath(__file__)))
+        try:
+            chdir(path.dirname(path.realpath(__file__)))
+        except NotADirectoryError as e:
+            # Triggered on bundled versions of MacOS when it shouldn't. Prevents opening files.
+            # See more at https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/1
+            pass
         return data
     
     @Slot(result=str)

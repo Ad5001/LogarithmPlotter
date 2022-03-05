@@ -85,7 +85,7 @@ Button {
     
     LinearGradient {
         anchors.fill: parent
-        visible: !hidden
+        //opacity: hidden ? 0.6 : 1
         start: Qt.point(0, 0)
         end: Qt.point(parent.width, 0)
         gradient: Gradient {
