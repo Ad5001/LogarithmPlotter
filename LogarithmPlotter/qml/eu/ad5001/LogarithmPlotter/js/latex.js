@@ -19,17 +19,34 @@
 
 .import "expr-eval.js" as ExprEval
 
-// Puts element within parenthesis
+/**
+ * Puts element within parenthesis.
+ * 
+ * @param {string} elem - element to put within parenthesis.
+ * @returns {string}
+ */
 function par(elem) {
     return '(' + elem + ')'
 }
 
-// checks if the element contains a string, and returns the parenthesis version if so.
+/**
+ * Checks if the element contains at least one of the elements of 
+ * the string array contents , and returns the parenthesis version if so.
+ * 
+ * @param {string} elem - element to put within parenthesis.
+ * @param {Array} contents - Array of elements to put within parenthesis.
+ * @returns {string}
+ */
 function parif(elem, contents) {
     return contents.some(elem.includes) ? par(elem) : elem
 }
 
-// Adpation of expressionToString for latex
+/**
+ * This function converts expr-eval tokens to a latex string.
+ * 
+ * @param {Array} tokens - expr-eval tokens list
+ * @returns {string}
+ */
 function expressionToLatex(tokens) {
     var nstack = [];
     var n1, n2, n3;
