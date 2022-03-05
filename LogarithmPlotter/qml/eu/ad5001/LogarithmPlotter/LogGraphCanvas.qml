@@ -334,7 +334,7 @@ Canvas {
         \note The \c x, \c y \c width and \c height properties here are relative to the canvas, not the plot.
     */
     function drawVisibleImage(ctx, image, x, y, width, height) {
-        console.log("Drawing image", isImageLoaded(image), isImageError(image))
+        //console.log("Drawing image", isImageLoaded(image), isImageError(image))
         markDirty(Qt.rect(x, y, width, height));
         ctx.drawImage(image, x, y, width, height)
         /*if(true || (x > 0 && x < canvasSize.width && y > 0 && y < canvasSize.height)) {

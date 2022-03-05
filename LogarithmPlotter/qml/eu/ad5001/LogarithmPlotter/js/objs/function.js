@@ -22,6 +22,7 @@
 .import "../utils.js" as Utils
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class Function extends Common.ExecutableObject {
@@ -87,6 +88,14 @@ class Function extends Common.ExecutableObject {
         }
     }
     
+    toLatexString() {
+        if(this.displayMode == 'application') {
+            return `${Latex.variableToLatex(this.name)}:\\begin{array}{llll}${this.definitionDomain.latexMarkup} & \\rightarrow & ${this.destinationDomain.latexMarkup}\\\\x & \\mapsto & ${this.expression.latexMarkup}\\end{array}`
+        } else {
+            return `\\begin{array}{l}${Latex.variableToLatex(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
+        }
+    }
+    
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
         this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(), 
@@ -117,7 +126,41 @@ class Function extends Common.ExecutableObject {
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
+        
+        let drawLabel = function(canvas, ctx, ltxImg) {
+            switch(this.labelPosition) {
+                case 'above':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'below':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY+10, ltxImg.width, ltxImg.height)
+                    break;
+                case 'left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
+                    break;
+                case 'right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
+                    break;
+                case 'above-left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'above-right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'below-left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY+10, ltxImg.width, ltxImg.height)
+                    break;
+                case 'below-right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY+10, ltxImg.width, ltxImg.height)
+                    break;
+            }
+        }
+        let ltxLabel = this.getLatexLabel();
+        if(ltxLabel != "")
+            canvas.renderLatexImage(ltxLabel, this.color, drawLabel.bind(this))
+        //canvas.drawVisibleImage(ctx, ltxImg.source, posX, posY)
+
+        /*switch(this.labelPosition) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
                 break;
@@ -142,13 +185,13 @@ class Function extends Common.ExecutableObject {
             case 'below-right':
                 canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
-        }
+        }*/
     }
     
     static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
-        // Drawing small traits every 2px
-        var pxprecision = 0.2
+        // Drawing small traits every 0.2px
+        var pxprecision = 1
         var previousX = canvas.px2x(0)
         var previousY;
         if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {

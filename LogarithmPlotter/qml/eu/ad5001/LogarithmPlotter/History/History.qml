@@ -124,14 +124,16 @@ Item {
     }
     
     /*!
-        \qmlmethod void History::undo()
+        \qmlmethod void History::undo(bool updateObjectList = true)
         Undoes the historylib.Action at the top of the undo stack and pushes it to the top of the redo stack.
+        By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
-    function undo() {
+    function undo(updateObjectList = true) {
         if(undoStack.length > 0) {
             var action = undoStack.pop()
             action.undo()
-            objectLists.update()
+            if(updateObjectList)
+                objectLists.update()
             redoStack.push(action)
             undoCount--;
             redoCount++;
@@ -140,14 +142,16 @@ Item {
     }
     
     /*!
-        \qmlmethod void History::redo()
+        \qmlmethod void History::redo(bool updateObjectList = true)
         Redoes the historylib.Action at the top of the redo stack and pushes it to the top of the undo stack.
+        By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
-    function redo() {
+    function redo(updateObjectList = true) {
         if(redoStack.length > 0) {
             var action = redoStack.pop()
             action.redo()
-            objectLists.update()
+            if(updateObjectList)
+                objectLists.update()
             undoStack.push(action)
             undoCount++;
             redoCount--;
@@ -186,7 +190,7 @@ Item {
         property int toUndoCount: 0
         onTriggered: {
             if(toUndoCount > 0) {
-                historyObj.undo()
+                historyObj.undo(toUndoCount % 4 == 1) // Only redraw once every 4 changes.
                 toUndoCount--;
             } else {
                 running = false;
@@ -200,7 +204,7 @@ Item {
         property int toRedoCount: 0
         onTriggered: {
             if(toRedoCount > 0) {
-                historyObj.redo()
+                historyObj.redo(toRedoCount % 4 == 1) // Only redraw once every 4 changes.
                 toRedoCount--;
             } else {
                 running = false;

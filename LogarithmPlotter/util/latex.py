@@ -38,14 +38,14 @@ class Latex(QObject):
         if not path.exists(exprpath):
             fg = color.convertTo(QColor.Rgb)
             fg = f'rgb {fg.redF()} {fg.greenF()} {fg.blueF()}'
-            preview('$$' + latexstring + '$$', viewer='file', filename=exprpath, dvioptions=[
+            preview('$${' + latexstring + '}$$', viewer='file', filename=exprpath, dvioptions=[
                 "-T", "tight", 
                 "-z", "0", 
                 "--truecolor", 
-                f"-D {font_size * 72.27 / 10}", # See https://linux.die.net/man/1/dvipng#-D for convertion
+                f"-D {int(font_size * 72.27 / 100) * 10}", # See https://linux.die.net/man/1/dvipng#-D for convertion
                 "-bg", "Transparent", 
                 "-fg", fg],
-            euler=True)
+            euler=False)
         img = QImage(exprpath);
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{exprpath},{img.width()},{img.height()}'

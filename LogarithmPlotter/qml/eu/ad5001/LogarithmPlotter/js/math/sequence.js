@@ -34,7 +34,7 @@ class Sequence extends Expr.Expression {
         this.calcValues = Object.assign({}, baseValues)
         for(var n in this.calcValues)
             if(['string', 'number'].includes(typeof this.calcValues[n]))
-                this.calcValues[n] = parser.parse(this.calcValues[n].toString()).simplify().evaluate(C.evalVariables)
+                this.calcValues[n] = C.parser.parse(this.calcValues[n].toString()).simplify().evaluate(C.evalVariables)
         this.valuePlus = parseInt(valuePlus)
     }
     
@@ -58,11 +58,11 @@ class Sequence extends Expr.Expression {
     
     cache(n = 1) {
         var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
-        var expr = parser.parse(str).simplify()
+        var expr = C.parser.parse(str).simplify()
         var l = {'n': n-this.valuePlus} // Just in case, add n (for custom functions)
         l[this.name] = this.calcValues
-        currentVars = Object.assign(l, C.evalVariables)
-        this.calcValues[n] = expr.evaluate(currentVars)
+        C.currentVars = Object.assign(l, C.evalVariables)
+        this.calcValues[n] = expr.evaluate(C.currentVars)
     }
     
     toString(forceSign=false) {

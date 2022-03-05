@@ -152,10 +152,15 @@ class Domain {
  * Represents an empty set.
  */
 class EmptySet extends Domain {
+    constructor() {
+        super()
+        this.displayName = "∅"
+        this.latexMarkup = "\\emptyset"
+    }
     
     includes(x) { return false }
     
-    toString() { return "∅" }
+    toString() { return this.displayName }
     
     union(domain) { return domain }
     
@@ -177,6 +182,7 @@ class Range extends Domain {
         this.openBegin = openBegin
         this.openEnd = openEnd
         this.displayName = (openBegin ? "]" : "[") + begin.toString() + ";" + end.toString() + (openEnd ? "[" : "]")
+        this.latexMarkup = `\\mathopen${openBegin ? "]" : "["}${this.begin.latexMarkup};${this.end.latexMarkup}\\mathclose${openEnd ? "[" : "]"}`
     }
     
     includes(x) {
@@ -292,6 +298,8 @@ class DomainSet extends SpecialDomain {
         }
         this.executedValues.sort((a,b) => a-b)
         this.values = this.executedValues.map(val => newVals[val])
+        this.displayName = "{" + this.values.join(";") + "}"
+        this.latexMarkup = `\\{${this.values.join(";")}\\}`
     }
     
     includes(x) {
@@ -325,7 +333,7 @@ class DomainSet extends SpecialDomain {
     }
     
     toString() {
-        return "{" + this.values.join(";") + "}"
+        return this.displayName
     }
     
     union(domain) {
@@ -397,6 +405,8 @@ class UnionDomain extends Domain {
         super()
         this.dom1 = dom1
         this.dom2 = dom2
+        this.displayName = this.dom1.toString() + " ∪ " + this.dom2.toString()
+        this.latexMarkup = `${dom1.latexMarkup}\\cup${dom2.latexMarkup}`
     }
     
     includes(x) {
@@ -404,7 +414,7 @@ class UnionDomain extends Domain {
     }
     
     toString() {
-        return this.dom1.toString() + " ∪ " + this.dom2.toString()
+        return this.displayName
     }
     
     union(domain) {
@@ -441,6 +451,8 @@ class IntersectionDomain extends Domain {
         super()
         this.dom1 = dom1
         this.dom2 = dom2
+        this.displayName = dom1.toString() + " ∩ " + dom2.toString()
+        this.latexMarkup = `${dom1.latexMarkup}\\cap${dom2.latexMarkup}`
     }
     
     includes(x) {
@@ -448,7 +460,7 @@ class IntersectionDomain extends Domain {
     }
     
     toString() {
-        return this.dom1.toString() + " ∩ " + this.dom2.toString()
+        return this.displayName
     }
     
     union(domain) {
@@ -484,6 +496,8 @@ class MinusDomain extends Domain {
         super()
         this.dom1 = dom1
         this.dom2 = dom2
+        this.displayName = dom1.toString() + "∖" + dom2.toString()
+        this.latexMarkup = `${dom1.latexMarkup}\\setminus${dom2.latexMarkup}`
     }
     
     includes(x) {
@@ -491,7 +505,7 @@ class MinusDomain extends Domain {
     }
     
     toString() {
-        return this.dom1.toString() + "∖" + this.dom2.toString()
+        return this.displayName
     }
     
     static import(frm) {
@@ -505,33 +519,45 @@ class MinusDomain extends Domain {
 
 Domain.RE = new MinusDomain("R", "{0}")
 Domain.RE.displayName = "ℝ*"
+Domain.RE.latexMarkup = "\\mathbb{R}^{*}"
 
 Domain.R = new Range(-Infinity,Infinity,true,true)
 Domain.R.displayName = "ℝ"
+Domain.R.latexMarkup = "\\mathbb{R}"
 Domain.RP = new Range(0,Infinity,true,false)
 Domain.RP.displayName = "ℝ⁺"
+Domain.RP.latexMarkup = "\\mathbb{R}^{+}"
 Domain.RM = new Range(-Infinity,0,true,false)
 Domain.RM.displayName = "ℝ⁻"
+Domain.RM.latexMarkup = "\\mathbb{R}^{-}"
 Domain.RPE = new Range(0,Infinity,true,true)
 Domain.RPE.displayName = "ℝ⁺*"
+Domain.RPE.latexMarkup = "\\mathbb{R}^{+*}"
 Domain.RME = new Range(-Infinity,0,true,true)
 Domain.RME.displayName = "ℝ⁻*"
+Domain.RME.latexMarkup = "\\mathbb{R}^{+*}"
 Domain.N = new SpecialDomain('ℕ', x => x%1==0 && x >= 0, 
                              x => Math.max(Math.floor(x)+1, 0), 
                              x => Math.max(Math.ceil(x)-1, 0))
+Domain.N.latexMarkup = "\\mathbb{N}"
 Domain.NE = new SpecialDomain('ℕ*', x => x%1==0 && x > 0, 
                               x => Math.max(Math.floor(x)+1, 1), 
                               x => Math.max(Math.ceil(x)-1, 1))
+Domain.NE.latexMarkup = "\\mathbb{N}^{*}"
 Domain.Z = new SpecialDomain('ℤ', x => x%1==0, x => Math.floor(x)+1, x => Math.ceil(x)-1)
+Domain.Z.latexMarkup = "\\mathbb{Z}"
 Domain.ZE = new SpecialDomain('ℤ*', x => x%1==0 && x != 0, 
                               x => Math.floor(x)+1 == 0 ? Math.floor(x)+2 : Math.floor(x)+1, 
                               x => Math.ceil(x)-1 == 0 ? Math.ceil(x)-2 : Math.ceil(x)-1)
+Domain.ZE.latexMarkup = "\\mathbb{Z}^{*}"
 Domain.ZM = new SpecialDomain('ℤ⁻', x => x%1==0 && x <= 0,
                               x => Math.min(Math.floor(x)+1, 0),
                               x => Math.min(Math.ceil(x)-1, 0))
+Domain.ZM.latexMarkup = "\\mathbb{Z}^{-}"
 Domain.ZME = new SpecialDomain('ℤ⁻*', x => x%1==0 && x < 0, 
                                x => Math.min(Math.floor(x)+1, -1), 
                                x => Math.min(Math.ceil(x)-1, -1))
+Domain.ZME.latexMarkup = "\\mathbb{Z}^{-*}"
 Domain.NLog = new SpecialDomain('ℕˡᵒᵍ', 
                                 x => x/Math.pow(10, x.toString().length-1) % 1 == 0 && x > 0, 
                                 function(x) {
@@ -542,6 +568,7 @@ Domain.NLog = new SpecialDomain('ℕˡᵒᵍ',
                                     var x10pow = Math.pow(10, x.toString().length-1)
                                     return Math.max(1, (Math.ceil(x/x10pow)-1)*x10pow)
                                 })
+Domain.NLog.latexMarkup = "\\mathbb{N}^{log}"
 
 var refedDomains = []
 

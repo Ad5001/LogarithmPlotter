@@ -53,10 +53,10 @@ function parif(elem, contents) {
 function functionToLatex(f, args) {
     switch(f) {
         case "derivative":
-            return '\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(by, 'g'), 'x') + '}{dx}';
+            return '\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(args[1].substr(1, args[1].length-2), 'g'), 'x') + '}{dx}';
             break;
         case "integral":
-            return '\\int\\limits^{' + args[0] + '}_{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3];
+            return '\\int\\limits_{' + args[0] + '}^{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3].substr(1, args[3].length-2);
             break;
         case "sqrt":
             return '\\sqrt\\left(' + args.join(', ') + '\\right)';
@@ -92,19 +92,22 @@ function variableToLatex(vari) {
                         "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
                         "ₜ","¹","²","³","⁴","⁵","⁶",
                         "⁷","⁸","⁹","⁰","₁","₂","₃",
-                        "₄","₅","₆","₇","₈","₉","₀"]
-    let equivalchars = ["alpha","beta","gamma","delta","epsilon","zeta","eta",
-                        "pi","theta","kappa","lambda","mu","xi","rho",
-                        "sigma","sigma","tau","phi","chi","psi","omega",
-                        "Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma",
-                        "Phy","Psi","Omega","{}_{a}","{}_{e}","{}_{o}","{}_{x}",
+                        "₄","₅","₆","₇","₈","₉","₀",
+                        "pi"]
+    let equivalchars = ["\\alpha","\\beta","\\gamma","\\delta","\\epsilon","\\zeta","\\eta",
+                        "\\pi","\\theta","\\kappa","\\lambda","\\mu","\\xi","\\rho",
+                        "\\sigma","\\sigma","\\tau","\\phi","\\chi","\\psi","\\omega",
+                        "\\Gamma","\\Delta","\\Theta","\\Lambda","\\Xi","\\Pi","\\Sigma",
+                        "\\Phy","\\Psi","\\Omega","{}_{a}","{}_{e}","{}_{o}","{}_{x}",
                         "{}_{h}","{}_{k}","{}_{l}","{}_{m}","{}_{n}","{}_{p}","{}_{s}",
                         "{}_{t}","{}^{1}","{}^{2}","{}^{3}","{}^{4}","{}^{5}","{}^{6}",
                         "{}^{7}","{}^{8}","{}^{9}","{}^{0}","{}_{1}","{}_{2}","{}_{3}",
-                        "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}"]
+                        "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}",
+                        "\\pi"]
     for(let i = 0; i < unicodechars.length; i++) {
+        //console.log(vari, unicodechars[i], equivalchars[i]);
         if(vari.includes(unicodechars[i]))
-            vari = vari.replaceAll(unicodechars[i], equivalchars[i])
+            vari = vari.replace(new RegExp(unicodechars[i], 'g'), equivalchars[i])
     }
     return vari;
 }
@@ -140,7 +143,7 @@ function expressionToLatex(tokens) {
                 switch(f) {
                     case '-':
                     case '+':
-                        nstack.push(n1 + this.ope + n2);
+                        nstack.push(n1 + f + n2);
                         break;
                     case '||':
                     case 'or':
@@ -148,7 +151,7 @@ function expressionToLatex(tokens) {
                     case 'and':
                     case '==':
                     case '!=':
-                        nstack.push(par(n1) + this.ope + par(n2));
+                        nstack.push(par(n1) + f + par(n2));
                         break;
                     case '*':
                         nstack.push(parif(n1,['+','-']) + " \\times " + parif(n2,['+','-']));
@@ -182,7 +185,7 @@ function expressionToLatex(tokens) {
                 break;
             case ExprEval.IVAR:
             case ExprEval.IVARNAME:
-                nstack.push(variableToLatex(item.value));
+                nstack.push(variableToLatex(item.value.toString()));
                 break;
             case ExprEval.IOP1: // Unary operator
                 n1 = nstack.pop();
@@ -209,6 +212,7 @@ function expressionToLatex(tokens) {
                 f = nstack.pop();
                 // Handling various functions
                 nstack.push(functionToLatex(f, args))
+                break;
             case ExprEval.IFUNDEF:
                 nstack.push(par(n1 + '(' + args.join(', ') + ') = ' + n2));
                 break;
@@ -235,12 +239,7 @@ function expressionToLatex(tokens) {
         }
     }
     if (nstack.length > 1) {
-        if (toJS) {
-            nstack = [ nstack.join(',') ];
-        } else {
-            nstack = [ nstack.join(';') ];
-        }
+        nstack = [ nstack.join(';') ]
     }
-    console.log(nstack[0]);
     return String(nstack[0]);
 }
