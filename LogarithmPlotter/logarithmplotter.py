@@ -1,5 +1,5 @@
 """
- *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
  *  Copyright (C) 2022  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -25,13 +25,14 @@ from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QTranslator, QLocale
 from PySide2.QtGui import QIcon
 
-from tempfile import mkstemp
+from tempfile import TemporaryDirectory
 from os import getcwd, chdir, environ, path, remove, close
 from platform import release as os_release
 from sys import platform, argv, version as sys_version, exit
 
-# Create the temporary file for saving copied screenshots
-fd, tmpfile = mkstemp(suffix='.png')
+# Create the temporary directory for saving copied screenshots and latex files
+tempdir = TemporaryDirectory()
+tmpfile = path.join(tempdir.name, 'graph.png')
 pwd = getcwd()
 
 chdir(path.dirname(path.realpath(__file__)))
@@ -136,8 +137,7 @@ def run():
     
     exit_code = app.exec_()
     
-    close(fd)
-    remove(tmpfile)
+    tempdir.cleanup()
     config.save()
     exit(exit_code)
 
