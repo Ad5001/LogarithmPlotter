@@ -16,8 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.pragma library
 
-.import "expr-eval.js" as ExprEval
+.import "../expr-eval.js" as ExprEval
 
 /**
  * Puts element within parenthesis.
@@ -38,7 +39,7 @@ function par(elem) {
  * @returns {string}
  */
 function parif(elem, contents) {
-    return contents.some(elem.includes) ? par(elem) : elem
+    return contents.some(x => elem.toString().includes(x)) ? par(elem) : elem
 }
 
 /**
@@ -60,9 +61,9 @@ function expressionToLatex(tokens) {
                 if (typeof item.value === 'number' && item.value < 0) {
                     nstack.push(par(item.value));
                 } else if (Array.isArray(item.value)) {
-                    nstack.push('[' + item.value.map(escapeValue).join(', ') + ']');
+                    nstack.push('[' + item.value.map(ExprEval.escapeValue).join(', ') + ']');
                 } else {
-                    nstack.push(escapeValue(item.value));
+                    nstack.push(ExprEval.escapeValue(item.value));
                 }
                 break;
             case ExprEval.IOP2:
@@ -114,7 +115,10 @@ function expressionToLatex(tokens) {
                 break;
             case ExprEval.IVAR:
             case ExprEval.IVARNAME:
-                nstack.push(item.value);
+                if(item.value == "pi")
+                    nstack.push("π")
+                else
+                    nstack.push(item.value);
                 break;
             case ExprEval.IOP1: // Unary operator
                 n1 = nstack.pop();
@@ -139,7 +143,21 @@ function expressionToLatex(tokens) {
                     args.unshift(nstack.pop());
                 }
                 f = nstack.pop();
-                nstack.push(f + '(' + args.join(', ') + ')');
+                // Handling various functions
+                if(f == "derivative")
+                    nstack.push('\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(by, 'g'), 'x') + '}{dx}');
+                else if(f == "integral")
+                    nstack.push('\\int\\limits^{' + args[0] + '}_{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3]);
+                else if(f == "sqrt")
+                    nstack.push('\\sqrt\\left(' + args.join(', ') + '\\right)');
+                else if(f == "abs")
+                    nstack.push('\\left|' + args.join(', ') + '\\right|');
+                else if(f == "floor")
+                    nstack.push('\\left\\lfloor' + args.join(', ') + '\\right\\rfloor');
+                else if(f == "ceil")
+                    nstack.push('\\left\\lceil' + args.join(', ') + '\\right\\rceil');
+                else
+                    nstack.push('\\mathrm{' + f + '}\\left(' + args.join(', ') + '\\right)');
                 break;
             case ExprEval.IFUNDEF:
                 nstack.push(par(n1 + '(' + args.join(', ') + ') = ' + n2));
@@ -173,5 +191,5 @@ function expressionToLatex(tokens) {
             nstack = [ nstack.join(';') ];
         }
     }
-    return Utils.makeExpressionReadable(String(nstack[0]));
+    return String(nstack[0]);
 }
