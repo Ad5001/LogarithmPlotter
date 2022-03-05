@@ -84,12 +84,16 @@ class DrawableObject {
         return `${this.name} = Unknown`
     }
     
+    toLatexString() {
+        return this.getReadableString()
+    }
+    
     getLabel() {
         switch(this.labelContent) {
             case 'name':
                 return this.name
             case 'name + value':
-                return this.getReadableString()
+                return this.toLatexString()
             case 'null':
                 return ''
                 

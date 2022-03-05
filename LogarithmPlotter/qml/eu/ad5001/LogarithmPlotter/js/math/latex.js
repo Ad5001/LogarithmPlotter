@@ -42,8 +42,75 @@ function parif(elem, contents) {
     return contents.some(x => elem.toString().includes(x)) ? par(elem) : elem
 }
 
+
 /**
- * This function converts expr-eval tokens to a latex string.
+ * Creates a latex expression for a function.
+ * 
+ * @param {string} f - Function to convert
+ * @param {Array} args - Arguments of the function
+ * @returns {string}
+ */
+function functionToLatex(f, args) {
+    switch(f) {
+        case "derivative":
+            return '\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(by, 'g'), 'x') + '}{dx}';
+            break;
+        case "integral":
+            return '\\int\\limits^{' + args[0] + '}_{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3];
+            break;
+        case "sqrt":
+            return '\\sqrt\\left(' + args.join(', ') + '\\right)';
+            break;
+        case "abs":
+            return '\\left|' + args.join(', ') + '\\right|';
+            break;
+        case "floor":
+            return '\\left\\lfloor' + args.join(', ') + '\\right\\rfloor';
+            break;
+        case "ceil":
+            return '\\left\\lceil' + args.join(', ') + '\\right\\rceil';
+            break;
+        default:
+            return '\\mathrm{' + f + '}\\left(' + args.join(', ') + '\\right)';
+            break;
+    }
+}
+
+
+/**
+ * Creates a latex variable from a variable.
+ * 
+ * @param {string} vari - variable to convert
+ * @returns {string}
+ */
+function variableToLatex(vari) {
+    unicodechars = ["α","β","γ","δ","ε","ζ","η",
+                    "π","θ","κ","λ","μ","ξ","ρ",
+                    "ς","σ","τ","φ","χ","ψ","ω",
+                    "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
+                    "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
+                    "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
+                    "ₜ","¹","²","³","⁴","⁵","⁶",
+                    "⁷","⁸","⁹","⁰","₁","₂","₃",
+                    "₄","₅","₆","₇","₈","₉","₀"]
+    equivalchars = ["alpha","beta","gamma","delta","epsilon","zeta","eta",
+                    "pi","theta","kappa","lambda","mu","xi","rho",
+                    "sigma","sigma","tau","phi","chi","psi","omega",
+                    "Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma",
+                    "Phy","Psi","Omega","{}_{a}","{}_{e}","{}_{o}","{}_{x}",
+                    "{}_{h}","{}_{k}","{}_{l}","{}_{m}","{}_{n}","{}_{p}","{}_{s}",
+                    "{}_{t}","{}^{1}","{}^{2}","{}^{3}","{}^{4}","{}^{5}","{}^{6}",
+                    "{}^{7}","{}^{8}","{}^{9}","{}^{0}","{}_{1}","{}_{2}","{}_{3}",
+                    "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}"]
+    for(int i = 0; i < unicodechars.length; i++) {
+        if(vari.includes(unicodechars[i]))
+            vari = vari.replaceAll(unicodechars[i], equivalchars[i])
+    }
+    return vari;
+}
+
+/**
+ * Converts expr-eval tokens to a latex string.
  * 
  * @param {Array} tokens - expr-eval tokens list
  * @returns {string}
@@ -115,10 +182,7 @@ function expressionToLatex(tokens) {
                 break;
             case ExprEval.IVAR:
             case ExprEval.IVARNAME:
-                if(item.value == "pi")
-                    nstack.push("π")
-                else
-                    nstack.push(item.value);
+                nstack.push(variableToLatex(item.value));
                 break;
             case ExprEval.IOP1: // Unary operator
                 n1 = nstack.pop();
@@ -144,21 +208,7 @@ function expressionToLatex(tokens) {
                 }
                 f = nstack.pop();
                 // Handling various functions
-                if(f == "derivative")
-                    nstack.push('\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(by, 'g'), 'x') + '}{dx}');
-                else if(f == "integral")
-                    nstack.push('\\int\\limits^{' + args[0] + '}_{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3]);
-                else if(f == "sqrt")
-                    nstack.push('\\sqrt\\left(' + args.join(', ') + '\\right)');
-                else if(f == "abs")
-                    nstack.push('\\left|' + args.join(', ') + '\\right|');
-                else if(f == "floor")
-                    nstack.push('\\left\\lfloor' + args.join(', ') + '\\right\\rfloor');
-                else if(f == "ceil")
-                    nstack.push('\\left\\lceil' + args.join(', ') + '\\right\\rceil');
-                else
-                    nstack.push('\\mathrm{' + f + '}\\left(' + args.join(', ') + '\\right)');
-                break;
+                nstack.push(functionToLatex(f, args))
             case ExprEval.IFUNDEF:
                 nstack.push(par(n1 + '(' + args.join(', ') + ') = ' + n2));
                 break;
@@ -191,5 +241,6 @@ function expressionToLatex(tokens) {
             nstack = [ nstack.join(';') ];
         }
     }
+    console.log(nstack[0]);
     return String(nstack[0]);
 }

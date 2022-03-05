@@ -31,16 +31,13 @@ class Latex(QObject):
         self.palette = palette
         fg = self.palette.windowText().color().convertTo(QColor.Rgb)
         
-    @Slot(str, float, bool, result=str)
-    def render(self, latexstring, font_size, themeFg = True):
-        exprpath = path.join(self.tempdir.name, str(hash(latexstring)) + '.png')
-        print(latexstring, exprpath)
+    @Slot(str, float, QColor, result=str)
+    def render(self, latexstring, font_size, color = True):
+        exprpath = path.join(self.tempdir.name, f'{hash(latexstring)}_{font_size}_{color.rgb()}.png')
+        print("Rendering", latexstring, exprpath)
         if not path.exists(exprpath):
-            if themeFg:
-                fg = self.palette.windowText().color().convertTo(QColor.Rgb)
-                fg = f'rgb {fg.redF()} {fg.greenF()} {fg.blueF()}'
-            else:
-                fg = 'rgb 1.0 1.0 1.0'
+            fg = color.convertTo(QColor.Rgb)
+            fg = f'rgb {fg.redF()} {fg.greenF()} {fg.blueF()}'
             preview('$$' + latexstring + '$$', viewer='file', filename=exprpath, dvioptions=[
                 "-T", "tight", 
                 "-z", "0", 
@@ -48,11 +45,13 @@ class Latex(QObject):
                 f"-D {font_size * 72.27 / 10}", # See https://linux.die.net/man/1/dvipng#-D for convertion
                 "-bg", "Transparent", 
                 "-fg", fg],
-            euler=False)
-        return exprpath
+            euler=True)
+        img = QImage(exprpath);
+        # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
+        return f'{exprpath},{img.width()},{img.height()}'
     
     @Slot(str)
     def copyLatexImageToClipboard(self, latexstring):
         global tempfile
         clipboard = QApplication.clipboard()
-        clipboard.setImage(QImage(self.render(latexstring)))
+        clipboard.setImage(self.render(latexstring))

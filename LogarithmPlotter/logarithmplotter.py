@@ -110,6 +110,7 @@ def run():
     helper = Helper(pwd, tmpfile)
     latex = Latex(tempdir, app.palette())
     engine.rootContext().setContextProperty("Helper", helper)
+    engine.rootContext().setContextProperty("Latex", latex)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
     
