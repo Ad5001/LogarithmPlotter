@@ -46,6 +46,7 @@ from LogarithmPlotter import __VERSION__
 from LogarithmPlotter.util import config, native
 from LogarithmPlotter.util.update import check_for_updates
 from LogarithmPlotter.util.helper import Helper
+from LogarithmPlotter.util.latex import Latex
 
 config.init()
 
@@ -107,6 +108,7 @@ def run():
     engine = QQmlApplicationEngine()
     global tmpfile
     helper = Helper(pwd, tmpfile)
+    latex = Latex(tempdir, app.palette())
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
