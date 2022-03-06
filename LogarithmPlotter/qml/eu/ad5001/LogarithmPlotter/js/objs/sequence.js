@@ -22,6 +22,7 @@
 .import "function.js" as F
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class Sequence extends Common.ExecutableObject {
@@ -76,9 +77,12 @@ class Sequence extends Common.ExecutableObject {
             )
     }
     
-    
     getReadableString() {
         return this.sequence.toString()
+    }
+    
+    getLatexString() {
+        return this.sequence.toLatexString()
     }
     
     execute(x = 1) {
@@ -103,7 +107,17 @@ class Sequence extends Common.ExecutableObject {
                 return this.getReadableString()
             case 'null':
                 return ''
-                
+        }
+    }
+    
+    getLatexLabel() {
+        switch(this.labelContent) {
+            case 'name':
+                return `(${Latex.variable(this.name)}_n)`
+            case 'name + value':
+                return this.getLatexString()
+            case 'null':
+                return ''
         }
     }
     
@@ -111,7 +125,8 @@ class Sequence extends Common.ExecutableObject {
         F.Function.drawFunction(canvas, ctx, this.sequence, canvas.logscalex ? MathLib.Domain.NE : MathLib.Domain.N, MathLib.Domain.R, this.drawPoints, this.drawDashedLines)
         
         // Label
-        var text = this.getLabel()
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        /*var text = this.getLabel()
         ctx.font = `${canvas.textsize}px sans-serif`
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
@@ -141,7 +156,7 @@ class Sequence extends Common.ExecutableObject {
             case 'below-right':
                 canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
-        }
+        }*/
     }
 }
 
