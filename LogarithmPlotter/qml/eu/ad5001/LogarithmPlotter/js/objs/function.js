@@ -29,18 +29,6 @@ class Function extends Common.ExecutableObject {
     static type(){return 'Function'}
     static displayType(){return qsTr('Function')}
     static displayTypeMultiple(){return qsTr('Functions')}
-    /*static properties() {return {
-        'expression':               'Expression',
-        'definitionDomain':         'Domain',
-        'destinationDomain':        'Domain',
-        'comment1':                 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
-        'labelPosition':            P.Enum.Position,
-        'displayMode':              new P.Enum('application', 'function'),
-        'labelX':                   'number',
-        'comment2':                 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
-        'drawPoints':               'boolean',
-        'drawDashedLines':          'boolean'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','expression')]:         'Expression',
         [QT_TRANSLATE_NOOP('prop','definitionDomain')]:   'Domain',
@@ -88,11 +76,11 @@ class Function extends Common.ExecutableObject {
         }
     }
     
-    toLatexString() {
+    getLatexString() {
         if(this.displayMode == 'application') {
-            return `${Latex.variableToLatex(this.name)}:\\begin{array}{llll}${this.definitionDomain.latexMarkup} & \\rightarrow & ${this.destinationDomain.latexMarkup}\\\\x & \\mapsto & ${this.expression.latexMarkup}\\end{array}`
+            return `${Latex.variable(this.name)}:\\begin{array}{llll}${this.definitionDomain.latexMarkup} & \\rightarrow & ${this.destinationDomain.latexMarkup}\\\\x & \\mapsto & ${this.expression.latexMarkup}\\end{array}`
         } else {
-            return `\\begin{array}{l}${Latex.variableToLatex(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
+            return `\\begin{array}{l}${Latex.variable(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
         }
     }
     
@@ -121,71 +109,7 @@ class Function extends Common.ExecutableObject {
     draw(canvas, ctx) {
         Function.drawFunction(canvas, ctx, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        
-        let drawLabel = function(canvas, ctx, ltxImg) {
-            switch(this.labelPosition) {
-                case 'above':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'below':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'above-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'above-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'below-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'below-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY+10, ltxImg.width, ltxImg.height)
-                    break;
-            }
-        }
-        let ltxLabel = this.getLatexLabel();
-        if(ltxLabel != "")
-            canvas.renderLatexImage(ltxLabel, this.color, drawLabel.bind(this))
-        //canvas.drawVisibleImage(ctx, ltxImg.source, posX, posY)
-
-        /*switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }*/
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {

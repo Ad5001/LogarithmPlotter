@@ -22,7 +22,7 @@ start_time = time()
 
 from PySide2.QtWidgets import QApplication
 from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtCore import QTranslator, QLocale
+from PySide2.QtCore import Qt, QTranslator, QLocale
 from PySide2.QtGui import QIcon
 
 from tempfile import TemporaryDirectory
@@ -89,6 +89,7 @@ def run():
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
     app.styleHints().setShowShortcutsInContextMenus(True)
+    app.setAttribute(Qt.AA_EnableHighDpiScaling) 
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
     
     # Installing translators

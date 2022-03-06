@@ -83,7 +83,7 @@ function functionToLatex(f, args) {
  * @param {string} vari - variable to convert
  * @returns {string}
  */
-function variableToLatex(vari) {
+function variable(vari) {
     let unicodechars = ["α","β","γ","δ","ε","ζ","η",
                         "π","θ","κ","λ","μ","ξ","ρ",
                         "ς","σ","τ","φ","χ","ψ","ω",
@@ -185,7 +185,7 @@ function expressionToLatex(tokens) {
                 break;
             case ExprEval.IVAR:
             case ExprEval.IVARNAME:
-                nstack.push(variableToLatex(item.value.toString()));
+                nstack.push(variable(item.value.toString()));
                 break;
             case ExprEval.IOP1: // Unary operator
                 n1 = nstack.pop();

@@ -68,9 +68,9 @@ class RepartitionFunction extends Common.ExecutableObject {
         return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
     }
     
-    toLatexString() {
+    getLatexString() {
         let keys = Object.keys(this.probabilities).sort((a,b) => a-b);
-        let varName = Latex.variableToLatex(this.name)
+        let varName = Latex.variable(this.name)
         return `\\begin{array}{l}F_{${varName}}(x) = P(${varName} \\le x)\\\\` + keys.map(idx => `P(${varName}=${idx})=${this.probabilities[idx]}`).join("; ") + '\\end{array}'
     }
     
@@ -153,71 +153,7 @@ class RepartitionFunction extends Common.ExecutableObject {
         }
         
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        
-        let drawLabel = function(canvas, ctx, ltxImg) {
-            switch(this.labelPosition) {
-                case 'above':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'below':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'above-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'above-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'below-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'below-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY+10, ltxImg.width, ltxImg.height)
-                    break;
-            }
-        }
-        let ltxLabel = this.getLatexLabel();
-        console.log(ltxLabel)
-        if(ltxLabel != "")
-            canvas.renderLatexImage(ltxLabel, this.color, drawLabel.bind(this))
-        /*
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }*/
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 

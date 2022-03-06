@@ -29,12 +29,6 @@ class Point extends Common.DrawableObject  {
     static displayType(){return qsTr('Point')}
     static displayTypeMultiple(){return qsTr('Points')}
     
-    /*static properties() {return {
-        'x': 'Expression',
-        'y': 'Expression',
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'pointStyle': new P.Enum('●', '✕', '＋'),
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
@@ -59,8 +53,8 @@ class Point extends Common.DrawableObject  {
         return `${this.name} = (${this.x}, ${this.y})`
     }
     
-    toLatexString() {
-        return `${Latex.variableToLatex(this.name)} = \\left(${this.x.latexMarkup}, ${this.y.latexMarkup}\\right)`
+    getLatexString() {
+        return `${Latex.variable(this.name)} = \\left(${this.x.latexMarkup}, ${this.y.latexMarkup}\\right)`
     }
     
     export() {
@@ -85,44 +79,6 @@ class Point extends Common.DrawableObject  {
                 ctx.fillRect(canvasX-1, canvasY-pointSize/2, 2, pointSize)
                 break;
         }
-    
-        let drawLabel = function(canvas, ctx, ltxImg) {
-            switch(this.labelPosition) {
-                case 'top':
-                case 'above':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX-ltxImg.width/2, canvasY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'bottom':
-                case 'below':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX-ltxImg.width/2, canvasY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX-(ltxImg.width+10), canvasY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX+10, canvasY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                    break;
-                case 'top-left':
-                case 'above-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX-(ltxImg.width+10), canvasY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'top-right':
-                case 'above-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX+10, canvasY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
-                    break;
-                case 'bottom-left':
-                case 'below-left':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX-(ltxImg.width+10), canvasY+10, ltxImg.width, ltxImg.height)
-                    break;
-                case 'bottom-right':
-                case 'below-right':
-                    canvas.drawVisibleImage(ctx, ltxImg.source, canvasX+10, canvasY+10, ltxImg.width, ltxImg.height)
-                    break;
-            }
-        }
-        let ltxLabel = this.getLatexLabel();
-        if(ltxLabel != "")
-            canvas.renderLatexImage(ltxLabel, this.color, drawLabel.bind(this))
-        //canvas.drawVisibleImage(ctx, ltxImg.source, canvasX, canvasY)
+        this.drawLabel(canvas, ctx, this.labelPosition, canvasX, canvasY)
     }
 }
