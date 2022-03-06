@@ -200,7 +200,7 @@ Canvas {
         // Reset
         ctx.fillStyle = "#FFFFFF"
         ctx.strokeStyle = "#000000"
-        ctx.font = `${canvas.textsize-2}px sans-serif`
+        ctx.font = `${canvas.textsize}px sans-serif`
         ctx.fillRect(0,0,width,height)
     }
     
@@ -257,12 +257,12 @@ Canvas {
         var axisxpx = y2px(0) // Y coordinate of X axis
         // Labels
         ctx.fillStyle = "#000000"
-        ctx.font = `${canvas.textsize+2}px sans-serif`
+        ctx.font = `${canvas.textsize}px sans-serif`
         ctx.fillText(ylabel, axisypx+10, 24)
         var textSize = ctx.measureText(xlabel).width
         ctx.fillText(xlabel, canvasSize.width-14-textSize, axisxpx-5)
         // Axis graduation labels
-        ctx.font = `${canvas.textsize-2}px sans-serif`
+        ctx.font = `${canvas.textsize-4}px sans-serif`
         
         var txtMinus = ctx.measureText('-').width
         if(showxgrad) {

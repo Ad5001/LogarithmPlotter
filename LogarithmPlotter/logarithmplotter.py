@@ -18,8 +18,6 @@
 
 from time import time
 
-start_time = time()
-
 from PySide2.QtWidgets import QApplication
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import Qt, QTranslator, QLocale
@@ -29,6 +27,9 @@ from tempfile import TemporaryDirectory
 from os import getcwd, chdir, environ, path, remove, close
 from platform import release as os_release
 from sys import platform, argv, version as sys_version, exit
+from sys import path as sys_path
+
+start_time = time()
 
 # Create the temporary directory for saving copied screenshots and latex files
 tempdir = TemporaryDirectory()
@@ -37,7 +38,6 @@ pwd = getcwd()
 
 chdir(path.dirname(path.realpath(__file__)))
 
-from sys import path as sys_path
 if path.realpath(path.join(getcwd(), "..")) not in sys_path:
     sys_path.append(path.realpath(path.join(getcwd(), "..")))
 
@@ -85,11 +85,11 @@ def run():
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings", "custom")))
     QIcon.setFallbackSearchPaths(icon_fallbacks);
     
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling) 
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setOrganizationName("Ad5001")
     app.styleHints().setShowShortcutsInContextMenus(True)
-    app.setAttribute(Qt.AA_EnableHighDpiScaling) 
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
     
     # Installing translators
@@ -109,7 +109,7 @@ def run():
     engine = QQmlApplicationEngine()
     global tmpfile
     helper = Helper(pwd, tmpfile)
-    latex = Latex(tempdir, app.palette())
+    latex = Latex(tempdir)
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("Latex", latex)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
@@ -134,6 +134,8 @@ def run():
     
     if platform == "darwin":
         macOSFileOpenHandler.init_graphics(engine.rootObjects()[0])
+    
+    latex.check_latex_install()
     
     # Check for updates
     if config.getSetting("check_for_updates"):
