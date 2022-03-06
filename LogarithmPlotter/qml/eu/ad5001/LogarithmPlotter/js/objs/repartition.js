@@ -20,6 +20,8 @@
 
 .import "common.js" as Common
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 class RepartitionFunction extends Common.ExecutableObject {
     static type(){return 'Repartition'}
@@ -64,6 +66,12 @@ class RepartitionFunction extends Common.ExecutableObject {
     getReadableString() {
         var keys = Object.keys(this.probabilities).sort((a,b) => a-b);
         return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
+    }
+    
+    toLatexString() {
+        let keys = Object.keys(this.probabilities).sort((a,b) => a-b);
+        let varName = Latex.variableToLatex(this.name)
+        return `\\begin{array}{l}F_{${varName}}(x) = P(${varName} \\le x)\\\\` + keys.map(idx => `P(${varName}=${idx})=${this.probabilities[idx]}`).join("; ") + '\\end{array}'
     }
     
     execute(x = 1) {
@@ -150,6 +158,40 @@ class RepartitionFunction extends Common.ExecutableObject {
         var textSize = canvas.measureText(ctx, text)
         var posX = canvas.x2px(this.labelX)
         var posY = canvas.y2px(this.execute(this.labelX))
+        
+        let drawLabel = function(canvas, ctx, ltxImg) {
+            switch(this.labelPosition) {
+                case 'above':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'below':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY+10, ltxImg.width, ltxImg.height)
+                    break;
+                case 'left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
+                    break;
+                case 'right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
+                    break;
+                case 'above-left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'above-right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY-(ltxImg.height+10), ltxImg.width, ltxImg.height)
+                    break;
+                case 'below-left':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+10), posY+10, ltxImg.width, ltxImg.height)
+                    break;
+                case 'below-right':
+                    canvas.drawVisibleImage(ctx, ltxImg.source, posX+10, posY+10, ltxImg.width, ltxImg.height)
+                    break;
+            }
+        }
+        let ltxLabel = this.getLatexLabel();
+        console.log(ltxLabel)
+        if(ltxLabel != "")
+            canvas.renderLatexImage(ltxLabel, this.color, drawLabel.bind(this))
+        /*
         switch(this.labelPosition) {
             case 'above':
                 canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
@@ -175,7 +217,7 @@ class RepartitionFunction extends Common.ExecutableObject {
             case 'below-right':
                 canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
                 break;
-        }
+        }*/
     }
 }
 
