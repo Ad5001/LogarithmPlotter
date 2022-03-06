@@ -20,6 +20,7 @@
 
 .import "../expr-eval.js" as ExprEval
 
+
 /**
  * Puts element within parenthesis.
  * 
@@ -32,14 +33,20 @@ function par(elem) {
 
 /**
  * Checks if the element contains at least one of the elements of 
- * the string array contents , and returns the parenthesis version if so.
+ * the string array contents, but not at the first position of the string,
+ * and returns the parenthesis version if so.
  * 
  * @param {string} elem - element to put within parenthesis.
  * @param {Array} contents - Array of elements to put within parenthesis.
  * @returns {string}
  */
 function parif(elem, contents) {
-    return contents.some(x => elem.toString().includes(x)) ? par(elem) : elem
+    elem = elem.toString()
+    if(elem[0] != "(" && elem[elem.length-1] != ")" && contents.some(x => elem.indexOf(x) > 0))
+        return par(elem)
+    if(elem[0] == "(" && elem[elem.length-1] == ")")
+        return elem.substr(1, elem.length-2)
+    return elem
 }
 
 
@@ -154,7 +161,10 @@ function expressionToLatex(tokens) {
                         nstack.push(par(n1) + f + par(n2));
                         break;
                     case '*':
-                        nstack.push(parif(n1,['+','-']) + " \\times " + parif(n2,['+','-']));
+                        if(n2 == "\\pi" || n2 == "e" || n2 == "x" || n2 == "n")
+                            nstack.push(parif(n1,['+','-']) + n2)
+                        else
+                            nstack.push(parif(n1,['+','-']) + " \\times " + parif(n2,['+','-']));
                         break;
                     case '/':
                         nstack.push("\\frac{" + n1 + "}{" + n2 + "}");

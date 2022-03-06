@@ -22,6 +22,7 @@
 .import "../objects.js" as Objects
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class SommePhasesBode extends Common.ExecutableObject {
@@ -53,6 +54,10 @@ class SommePhasesBode extends Common.ExecutableObject {
     
     getReadableString() {
         return `${this.name} = ${Objects.getObjectsName('Phase Bode').join(' + ')}`
+    }
+    
+    getLatexString() {
+        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Phase Bode').map(Latex.variable).join(' + ')}`
     }
     
     execute(x=1) {
@@ -122,37 +127,7 @@ class SommePhasesBode extends Common.ExecutableObject {
         }
         
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 

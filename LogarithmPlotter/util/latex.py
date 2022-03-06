@@ -81,8 +81,8 @@ class Latex(QObject):
         Renders a latex string into a png file.
         """
         export_path = path.join(self.tempdir.name, f'{hash(latex_markup)}_{font_size}_{color.rgb()}')
-        print(export_path)
         if self.latexSupported and not path.exists(export_path + ".png"):
+            print("Rendering", latex_markup, export_path)
             # Generating file
             try:
                 self.create_latex_doc(export_path, latex_markup)
@@ -90,7 +90,7 @@ class Latex(QObject):
                 self.convert_dvi_to_png(export_path, font_size, color)
                 self.cleanup(export_path)
             except Exception as e: # One of the processes failed. A message will be sent every time.
-                raise e
+                pass
         img = QImage(export_path + ".png");
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
@@ -146,7 +146,6 @@ class Latex(QObject):
                                 QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
                                 .format(" ".join(process), proc.returncode, str(out, 'utf8')+"\n"+str(err,'utf8')))
                 raise Exception(" ".join(process) + " process exited with return code " + str(proc.returncode) + ":\n" + str(out, 'utf8')+"\n"+str(err,'utf8'))
-            print(out)
         except TimeoutExpired as e:
             # Process timed out
             proc.kill()

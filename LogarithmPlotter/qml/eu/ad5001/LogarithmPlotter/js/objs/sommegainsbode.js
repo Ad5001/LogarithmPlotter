@@ -23,6 +23,7 @@
 .import "../objects.js" as Objects
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class SommeGainsBode extends Common.DrawableObject {
@@ -30,10 +31,6 @@ class SommeGainsBode extends Common.DrawableObject {
     static displayType(){return qsTr('Bode Magnitudes Sum')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes Sum')}
     static createable() {return false}
-    /*static properties() {return {
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
@@ -54,6 +51,10 @@ class SommeGainsBode extends Common.DrawableObject {
     
     getReadableString() {
         return `${this.name} = ${Objects.getObjectsName('Gain Bode').join(' + ')}`
+    }
+    
+    getLatexString() {
+        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Gain Bode').map(Latex.variable).join(' + ')}`
     }
     
     execute(x = 0) {
@@ -136,37 +137,7 @@ class SommeGainsBode extends Common.DrawableObject {
                 F.Function.drawFunction(canvas, ctx, dbfn, inDrawDom, MathLib.Domain.R)
                 if(inDrawDom.includes(this.labelX)) {
                     // Label
-                    var text = this.getLabel()
-                    ctx.font = `${canvas.textsize}px sans-serif`
-                    var textSize = canvas.measureText(ctx, text)
-                    var posX = canvas.x2px(this.labelX)
-                    var posY = canvas.y2px(dbfn.execute(this.labelX))
-                    switch(this.labelPosition) {
-                        case 'above':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                            break;
-                        case 'below':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                            break;
-                        case 'left':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                            break;
-                        case 'right':
-                            canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                            break;
-                        case 'above-left':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                            break;
-                        case 'above-right':
-                            canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                            break;
-                        case 'below-left':
-                            canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                            break;
-                        case 'below-right':
-                            canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                            break;
-                    }
+                    this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
                 }
             }
         }
