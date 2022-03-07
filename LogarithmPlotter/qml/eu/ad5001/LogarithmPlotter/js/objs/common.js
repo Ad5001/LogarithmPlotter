@@ -279,7 +279,7 @@ class DrawableObject {
      * @param {function|null} getLatexFunction - Function (no argument) to get the latex markup to be displayed
      * @param {function|null} getTextFunction - Function (no argument) to get the text to be displayed
      * @param {function|null} drawFunctionLatex - Function (x,y,imageData) to display the latex image
-     * @param {function|null} drawFunctionText - Function (x,y,text) to display the text
+     * @param {function|null} drawFunctionText - Function (x,y,text,textSize) to display the text
      */
     drawLabel(canvas, ctx, labelPosition, posX, posY, forceText = false,
               getLatexFunction = null, getTextFunction = null, drawFunctionLatex = null, drawFunctionText = null) {
@@ -291,13 +291,13 @@ class DrawableObject {
         if(drawFunctionLatex == null)
             drawFunctionLatex = (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height)
         if(drawFunctionText == null)
-            drawFunctionText = (x,y,text) => canvas.drawVisibleText(ctx, text, x, textSize.height+5)
+            drawFunctionText = (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, y+textSize.height) // Positioned from left bottom
         // Drawing the label
         let offset
-        if(!forceText && true) { // TODO: Check for user setting with Latex.
+        if(!forceText && Latex.enabled) { // TODO: Check for user setting with Latex.
             // With latex
             let drawLblCb = function(canvas, ctx, ltxImg) {
-                this.drawPositionDivergence(labelPosition, 8, ltxImg, posX, posY, (x,y) => drawFunctionLatex(x,y,ltxImg))
+                this.drawPositionDivergence(labelPosition, 8+ctx.lineWidth/2, ltxImg, posX, posY, (x,y) => drawFunctionLatex(x,y,ltxImg))
             }
             let ltxLabel = getLatexFunction();
             if(ltxLabel != "")
@@ -306,7 +306,8 @@ class DrawableObject {
             // Without latex
             let text = getTextFunction()
             ctx.font = `${canvas.textsize}px sans-serif`
-            this.drawPositionDivergence(labelPosition, 4, canvas.measureText(ctx, text), posX, posY, (x,y) => drawFunctionText(x,y,text))
+            let textSize = canvas.measureText(ctx, text)
+            this.drawPositionDivergence(labelPosition, 8+ctx.lineWidth/2, textSize, posX, posY, (x,y) => drawFunctionText(x,y,text,textSize))
         }
     }
     

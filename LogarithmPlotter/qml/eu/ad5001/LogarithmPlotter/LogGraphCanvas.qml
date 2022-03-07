@@ -355,10 +355,11 @@ Canvas {
         Return format: dictionary {"width": width, "height": height}
     */
     function measureText(ctx, text) {
-        var theight = 0
-        var twidth = 0
+        let theight = 0
+        let twidth = 0
+        let defaultHeight = ctx.measureText("M").width // Approximate but good enough!
         text.split("\n").forEach(function(txt, i){
-            theight += canvas.textsize
+            theight += defaultHeight 
             if(ctx.measureText(txt).width > twidth) twidth = ctx.measureText(txt).width
         })
         return {'width': twidth, 'height': theight}

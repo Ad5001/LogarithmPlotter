@@ -22,6 +22,11 @@
 
 
 /**
+ * true if latex has been enabled by the user, false otherwise.
+ */
+var enabled = false
+
+/**
  * Puts element within parenthesis.
  * 
  * @param {string} elem - element to put within parenthesis.

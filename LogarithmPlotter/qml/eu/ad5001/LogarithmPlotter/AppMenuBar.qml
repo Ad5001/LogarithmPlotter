@@ -22,6 +22,8 @@ import QtQuick.Dialogs 1.3
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
+import "js/math/latex.js" as Latex
+
 
 /*!
     \qmltype AppMenuBar
@@ -138,6 +140,21 @@ MenuBar {
             checked: Helper.getSettingBool("reset_redo_stack")
             onTriggered: Helper.setSettingBool("reset_redo_stack", checked)
             icon.name: 'timeline'
+        }
+        
+        Action {
+            id: enableLatexSetting
+            text: qsTr("Enable LaTeX rendering")
+            checkable: true
+            checked: Helper.getSettingBool("enable_latex")
+            onTriggered: {
+                Helper.setSettingBool("enable_latex", checked)
+                Latex.enabled = checked
+                drawCanvas.requestPaint()
+            }
+            icon.name: 'Expression'
+            
+            Component.onCompleted: Latex.enabled = checked
         }
     }
     

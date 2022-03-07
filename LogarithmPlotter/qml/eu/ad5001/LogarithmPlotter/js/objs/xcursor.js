@@ -168,7 +168,7 @@ class XCursor extends Common.DrawableObject {
         // Drawing label at the top of the canvas.
         this.drawLabel(canvas, ctx, this.labelPosition, xpos, 0, false, null, null,
                        (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, 5, ltxImg.width, ltxImg.height),
-                       (x,y,text) => canvas.drawVisibleText(ctx, text, x, textSize.height+5))
+                       (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, textSize.height+5))
         
         // Drawing label at the position of the target element.
         if(this.targetValuePosition == 'Next to target' && this.targetElement != null) {
@@ -176,7 +176,7 @@ class XCursor extends Common.DrawableObject {
             this.drawLabel(canvas, ctx, this.labelPosition, xpos, ypos, false,
                            this.getTargetValueLatexLabel.bind(this), this.getTargetValueLabel.bind(this),
                            (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height),
-                           (x,y,text) => canvas.drawVisibleText(ctx, text, x, y))
+                           (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, y+textSize.height))
         }
     }
 }
