@@ -672,12 +672,14 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune installation de Latex trouvée.
+Si vous avez déjà installé une distribution Latex, assurez-vous qu&apos;elle est installée sur votre PATH.
+Sinon, vous pouvez télécharger une distribution Latex comme TeX Live à l&apos;adresse https://tug.org/texlive/.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="72"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>DVIPNG n&apos;a pas été trouvé. Assurez-vous de l&apos;inclure dans votre distribution Latex.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="150"/>
@@ -686,7 +688,11 @@ Process &apos;{}&apos; ended with a non-zero return code {}:
 
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une exception s&apos;est produite lors de la création de la formule latex.
+Le processus &apos;{}&apos; s&apos;est terminé par un code de retour non nul {} :
+
+{}
+Vérifiez que votre installation de latex est correcte et signalez un bogue si c&apos;est le cas.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="158"/>
@@ -694,7 +700,10 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 Process &apos;{}&apos; took too long to finish:
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une exception s&apos;est produite lors de la création de la formule latex.
+Le processus &apos;{}&apos; a mis trop de temps à se terminer :
+{}
+Vérifiez que votre installation de latex est correcte et signalez un bogue si c&apos;est le cas.</translation>
     </message>
 </context>
 <context>
@@ -968,7 +977,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="41"/>
         <source>disableLatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver le rendu latex pour ce texte</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="48"/>
