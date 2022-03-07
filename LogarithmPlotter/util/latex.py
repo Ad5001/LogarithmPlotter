@@ -26,6 +26,7 @@ from tempfile import TemporaryDirectory
 from subprocess import Popen, TimeoutExpired, PIPE
 from platform import system
 from shutil import which
+from sys import argv
 
 """
 Searches for a valid Latex and DVIPNG (http://savannah.nongnu.org/projects/dvipng/)
@@ -67,9 +68,15 @@ class Latex(QObject):
         Checks if the current latex installation is valid.
         """
         if LATEX_PATH is None:
-            QMessageBox.warning(None, "LogarithmPlotter - Latex setup", QCoreApplication.translate("latex", "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/."))
+            if "--test-build" in argv:
+                print("No Latex installation found.")
+            else:
+                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", QCoreApplication.translate("latex", "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/."))
         elif DVIPNG_PATH is None:
-            QMessageBox.warning(None, "LogarithmPlotter - Latex setup", QCoreApplication.translate("latex", "DVIPNG was not found. Make sure you include it from your Latex distribution."))    
+            if "--test-build" in argv:
+                print("DVIPNG not found.")
+            else:
+                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", QCoreApplication.translate("latex", "DVIPNG was not found. Make sure you include it from your Latex distribution."))    
     
     @Property(bool)
     def latexSupported(self):
