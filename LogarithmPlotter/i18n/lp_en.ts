@@ -663,12 +663,14 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
-        <translation type="unfinished"></translation>
+        <translation>No Latex installation found.
+If you already have a latex distribution installed, make sure it&apos;s installed on your path.
+Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="72"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>DVIPNG was not found. Make sure you include it from your Latex distribution.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="150"/>
@@ -677,7 +679,11 @@ Process &apos;{}&apos; ended with a non-zero return code {}:
 
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>An exception occurred within the creation of the latex formula.
+Process &apos;{}&apos; ended with a non-zero return code {}:
+
+{}
+Please make sure your latex installation is correct and report a bug if so.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="158"/>
@@ -685,7 +691,10 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 Process &apos;{}&apos; took too long to finish:
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>An exception occurred within the creation of the latex formula.
+Process &apos;{}&apos; took too long to finish:
+{}
+Please make sure your latex installation is correct and report a bug if so.</translation>
     </message>
 </context>
 <context>
@@ -959,7 +968,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="41"/>
         <source>disableLatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Disable latex rendering for this text</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="48"/>
