@@ -219,47 +219,15 @@ class DrawableObject {
      * @param {string|Enum} labelPosition - Position of the label relative to the marked position
      * @param {number} posX - Component of the marked position on the x-axis 
      * @param {number} posY - Component of the marked position on the y-axis 
+     * @param {bool} forceText - Force the rendering of the label as text. 
      */
-    drawLabel(canvas, ctx, labelPosition, posX, posY) {
-        if(true) { // TODO: Check for user setting with Latex.
+    drawLabel(canvas, ctx, labelPosition, posX, posY, forceText = false) {
+        let offset
+        if(!forceText && true) { // TODO: Check for user setting with Latex.
             // With latex
-            let offset = 8
             let drawLblCb = function(canvas, ctx, ltxImg) {
-                switch(this.labelPosition) {
-                    case 'center':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                        break;
-                    case 'top':
-                    case 'above':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY-(ltxImg.height+offset), ltxImg.width, ltxImg.height)
-                        break;
-                    case 'bottom':
-                    case 'below':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-ltxImg.width/2, posY+offset, ltxImg.width, ltxImg.height)
-                        break;
-                    case 'left':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+offset), posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                        break;
-                    case 'right':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX+offset, posY-ltxImg.height/2, ltxImg.width, ltxImg.height)
-                        break;
-                    case 'top-left':
-                    case 'above-left':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+offset), posY-(ltxImg.height+offset), ltxImg.width, ltxImg.height)
-                        break;
-                    case 'top-right':
-                    case 'above-right':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX+offset, posY-(ltxImg.height+offset), ltxImg.width, ltxImg.height)
-                        break;
-                    case 'bottom-left':
-                    case 'below-left':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX-(ltxImg.width+offset), posY+offset, ltxImg.width, ltxImg.height)
-                        break;
-                    case 'bottom-right':
-                    case 'below-right':
-                        canvas.drawVisibleImage(ctx, ltxImg.source, posX+offset, posY+offset, ltxImg.width, ltxImg.height)
-                        break;
-                }
+                this.drawLabelDivergence(labelPosition, 8, ltxImg, posX, posY, 
+                                            (x,y) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height))
             }
             let ltxLabel = this.getLatexLabel();
             if(ltxLabel != "")
@@ -269,43 +237,59 @@ class DrawableObject {
             // Without latex
             let text = this.getLabel()
             ctx.font = `${canvas.textsize}px sans-serif`
-            let textSize = canvas.measureText(ctx, text)
-            let offset = 4
-            switch(labelPosition) {
-                case 'center':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height/2)
-                    break;
-                case 'top':
-                case 'above':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height-offset)
-                    break;
-                case 'bottom':
-                case 'below':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+offset)
-                    break;
-                case 'left':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width-offset, posY-textSize.height/2)
-                    break;
-                case 'right':
-                    canvas.drawVisibleText(ctx, text, posX+offset, posY-textSize.height/2)
-                    break;
-                case 'top-left':
-                case 'above-left':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height-offset)
-                    break;
-                case 'top-right':
-                case 'above-right':
-                    canvas.drawVisibleText(ctx, text, posX+offset, posY-textSize.height-offset)
-                    break;
-                case 'bottom-left':
-                case 'below-left':
-                    canvas.drawVisibleText(ctx, text, posX-textSize.width-offset, posY+offset)
-                    break;
-                case 'bottom-right':
-                case 'below-right':
-                    canvas.drawVisibleText(ctx, text, posX+offset, posY+offset)
-                    break;
-            }
+            this.drawLabelDivergence(labelPosition, 4, canvas.measureText(ctx, text), posX, posY, 
+                                (x,y) => canvas.drawVisibleText(ctx, text, x, y))
+        }
+    }
+    
+    
+    /**
+     * Applicates a \c drawFunction with two position arguments depending on 
+     * both the \c posX and \c posY of where the label should be displayed, 
+     * and the \c labelPosition which declares the label should be displayed
+     * relatively to that position.
+     * @param {string|Enum} labelPosition - Position of the label relative to the marked position
+     * @param {number} offset - Margin between the position and the object to be drawn
+     * @param {Dictionary} size - Size of the label item, containing two properties, "width" and "height" 
+     * @param {number} posX - Component of the marked position on the x-axis 
+     * @param {number} posY - Component of the marked position on the y-axis 
+     * @param {function} drawFunction - Function with two arguments (x, y) that will be called to draw the label 
+     */
+    drawLabelDivergence(labelPosition, offset, size, posX, posY, drawFunction) {
+        switch(labelPosition) {
+            case 'center':
+                drawFunction(posX-size.width/2, posY-size.height/2)
+                break;
+            case 'top':
+            case 'above':
+                drawFunction(posX-size.width/2, posY-size.height-offset)
+                break;
+            case 'bottom':
+            case 'below':
+                drawFunction(posX-size.width/2, posY+offset)
+                break;
+            case 'left':
+                drawFunction(posX-size.width-offset, posY-size.height/2)
+                break;
+            case 'right':
+                drawFunction(posX+offset, posY-size.height/2)
+                break;
+            case 'top-left':
+            case 'above-left':
+                drawFunction(posX-size.width, posY-size.height-offset)
+                break;
+            case 'top-right':
+            case 'above-right':
+                drawFunction(posX+offset, posY-size.height-offset)
+                break;
+            case 'bottom-left':
+            case 'below-left':
+                drawFunction(posX-size.width-offset, posY+offset)
+                break;
+            case 'bottom-right':
+            case 'below-right':
+                drawFunction(posX+offset, posY+offset)
+                break;
         }
     }
     

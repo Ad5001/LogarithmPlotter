@@ -143,11 +143,11 @@ class Latex(QObject):
         """
         proc = Popen(process, stdout=PIPE, stderr=PIPE, cwd=self.tempdir.name)
         try:
-            out, err = proc.communicate(timeout=5) # 5 seconds is already FAR too long.
+            out, err = proc.communicate(timeout=2) # 2 seconds is already FAR too long.
             if proc.returncode != 0:
                 # Process errored
                 QMessageBox.warning(None, "LogarithmPlotter - Latex", 
-                                QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
+                                QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
                                 .format(" ".join(process), proc.returncode, str(out, 'utf8')+"\n"+str(err,'utf8')))
                 raise Exception(" ".join(process) + " process exited with return code " + str(proc.returncode) + ":\n" + str(out, 'utf8')+"\n"+str(err,'utf8'))
         except TimeoutExpired as e:
