@@ -38,7 +38,7 @@ class Sequence extends Expr.Expression {
         for(var n in this.calcValues)
             if(['string', 'number'].includes(typeof this.calcValues[n])) {
                 let parsed = C.parser.parse(this.calcValues[n].toString()).simplify()
-                this.latexValues[n] = Latex.expressionToLatex(parsed.tokens)
+                this.latexValues[n] = Latex.expression(parsed.tokens)
                 this.calcValues[n] = parsed.evaluate(C.evalVariables)
             }
         this.valuePlus = parseInt(valuePlus)

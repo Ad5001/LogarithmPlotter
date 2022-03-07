@@ -157,7 +157,15 @@ Canvas {
     */
     property int drawMaxX: Math.ceil(Math.max(Math.abs(xmin), Math.abs(px2x(canvasSize.width)))/xaxisstep1)
     
+    /*!
+       \qmlproperty var LogGraphCanvas::imageLoaders
+       Dictionary of format {image: [callback.image data]} containing data for defered image loading.
+    */
     property var imageLoaders: {}
+    /*!
+       \qmlproperty var LogGraphCanvas::ctx
+       Cache for the 2D context so that it may be used asynchronously.
+    */
     property var ctx
     
     Component.onCompleted: imageLoaders = {}

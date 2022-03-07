@@ -209,45 +209,12 @@ class DrawableObject {
      */
     draw(canvas, ctx) {}
     
-    
-    /**
-     * Automaticly draw the label of the object on the \c canvas with the 2D context \c ctx.
-     * This method takes into account both the \c posX and \c posY of where the label 
-     * should be displayed, including the \c labelPosition relative to it.
-     * @param {Canvas} canvas
-     * @param {Context2D} ctx
-     * @param {string|Enum} labelPosition - Position of the label relative to the marked position
-     * @param {number} posX - Component of the marked position on the x-axis 
-     * @param {number} posY - Component of the marked position on the y-axis 
-     * @param {bool} forceText - Force the rendering of the label as text. 
-     */
-    drawLabel(canvas, ctx, labelPosition, posX, posY, forceText = false) {
-        let offset
-        if(!forceText && true) { // TODO: Check for user setting with Latex.
-            // With latex
-            let drawLblCb = function(canvas, ctx, ltxImg) {
-                this.drawLabelDivergence(labelPosition, 8, ltxImg, posX, posY, 
-                                            (x,y) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height))
-            }
-            let ltxLabel = this.getLatexLabel();
-            if(ltxLabel != "")
-                canvas.renderLatexImage(ltxLabel, this.color, drawLblCb.bind(this))
-            //canvas.drawVisibleImage(ctx, ltxImg.source, posX, posY)
-        } else {
-            // Without latex
-            let text = this.getLabel()
-            ctx.font = `${canvas.textsize}px sans-serif`
-            this.drawLabelDivergence(labelPosition, 4, canvas.measureText(ctx, text), posX, posY, 
-                                (x,y) => canvas.drawVisibleText(ctx, text, x, y))
-        }
-    }
-    
-    
     /**
      * Applicates a \c drawFunction with two position arguments depending on 
      * both the \c posX and \c posY of where the label should be displayed, 
      * and the \c labelPosition which declares the label should be displayed
      * relatively to that position.
+     * 
      * @param {string|Enum} labelPosition - Position of the label relative to the marked position
      * @param {number} offset - Margin between the position and the object to be drawn
      * @param {Dictionary} size - Size of the label item, containing two properties, "width" and "height" 
@@ -255,7 +222,7 @@ class DrawableObject {
      * @param {number} posY - Component of the marked position on the y-axis 
      * @param {function} drawFunction - Function with two arguments (x, y) that will be called to draw the label 
      */
-    drawLabelDivergence(labelPosition, offset, size, posX, posY, drawFunction) {
+    drawPositionDivergence(labelPosition, offset, size, posX, posY, drawFunction) {
         switch(labelPosition) {
             case 'center':
                 drawFunction(posX-size.width/2, posY-size.height/2)
@@ -290,6 +257,56 @@ class DrawableObject {
             case 'below-right':
                 drawFunction(posX+offset, posY+offset)
                 break;
+        }
+    }
+    
+    /**
+     * Automaticly draw text (by default the label of the object on the \c canvas with
+     * the 2D context \c ctx depending on user settings.
+     * This method takes into account both the \c posX and \c posY of where the label
+     * should be displayed, including the \c labelPosition relative to it.
+     * The text is get both through the \c getLatexFunction and \c getTextFunction
+     * depending on whether to use latex.
+     * Then, it's displayed using the \c drawFunctionLatex (x,y,imageData) and
+     * \c drawFunctionText (x,y,text) depending on whether to use latex.
+     * 
+     * @param {Canvas} canvas
+     * @param {Context2D} ctx
+     * @param {string|Enum} labelPosition - Position of the label relative to the marked position
+     * @param {number} posX - Component of the marked position on the x-axis 
+     * @param {number} posY - Component of the marked position on the y-axis 
+     * @param {bool} forceText - Force the rendering of the label as text
+     * @param {function|null} getLatexFunction - Function (no argument) to get the latex markup to be displayed
+     * @param {function|null} getTextFunction - Function (no argument) to get the text to be displayed
+     * @param {function|null} drawFunctionLatex - Function (x,y,imageData) to display the latex image
+     * @param {function|null} drawFunctionText - Function (x,y,text) to display the text
+     */
+    drawLabel(canvas, ctx, labelPosition, posX, posY, forceText = false,
+              getLatexFunction = null, getTextFunction = null, drawFunctionLatex = null, drawFunctionText = null) {
+        // Default functions
+        if(getLatexFunction == null)
+            getLatexFunction = this.getLatexLabel.bind(this)
+        if(getTextFunction == null)
+            getTextFunction = this.getLabel.bind(this)
+        if(drawFunctionLatex == null)
+            drawFunctionLatex = (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height)
+        if(drawFunctionText == null)
+            drawFunctionText = (x,y,text) => canvas.drawVisibleText(ctx, text, x, textSize.height+5)
+        // Drawing the label
+        let offset
+        if(!forceText && true) { // TODO: Check for user setting with Latex.
+            // With latex
+            let drawLblCb = function(canvas, ctx, ltxImg) {
+                this.drawPositionDivergence(labelPosition, 8, ltxImg, posX, posY, (x,y) => drawFunctionLatex(x,y,ltxImg))
+            }
+            let ltxLabel = getLatexFunction();
+            if(ltxLabel != "")
+                canvas.renderLatexImage(ltxLabel, this.color, drawLblCb.bind(this))
+        } else {
+            // Without latex
+            let text = getTextFunction()
+            ctx.font = `${canvas.textsize}px sans-serif`
+            this.drawPositionDivergence(labelPosition, 4, canvas.measureText(ctx, text), posX, posY, (x,y) => drawFunctionText(x,y,text))
         }
     }
     

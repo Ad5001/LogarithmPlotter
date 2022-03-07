@@ -125,7 +125,7 @@ function variable(vari) {
  * @param {Array} tokens - expr-eval tokens list
  * @returns {string}
  */
-function expressionToLatex(tokens) {
+function expression(tokens) {
     var nstack = [];
     var n1, n2, n3;
     var f, args, argCount;
@@ -239,7 +239,7 @@ function expressionToLatex(tokens) {
                 nstack.push('[' + args.join(', ') + ']');
                 break;
             case ExprEval.IEXPR:
-                nstack.push('(' + expressionToLatex(item.value) + ')');
+                nstack.push('(' + expression(item.value) + ')');
                 break;
             case ExprEval.IENDSTATEMENT:
                 break;
