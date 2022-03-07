@@ -80,17 +80,21 @@ class Latex(QObject):
         """
         Renders a latex string into a png file.
         """
-        export_path = path.join(self.tempdir.name, f'{hash(latex_markup)}_{font_size}_{color.rgb()}')
+        markup_hash = hash(latex_markup)
+        export_path = path.join(self.tempdir.name, f'{markup_hash}_{font_size}_{color.rgb()}')
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
             # Generating file
             try:
-                self.create_latex_doc(export_path, latex_markup)
-                self.convert_latex_to_dvi(export_path)
-                self.convert_dvi_to_png(export_path, font_size, color)
-                self.cleanup(export_path)
+                latex_path = path.join(self.tempdir.name, str(markup_hash))
+                # If the formula is just recolored or the font is just changed, no need to recreate the DVI.
+                if not path.exists(latex_path + ".dvi"):
+                    self.create_latex_doc(latex_path, latex_markup)
+                    self.convert_latex_to_dvi(latex_path)
+                    self.cleanup(latex_path)
+                self.convert_dvi_to_png(latex_path, export_path, font_size, color)
             except Exception as e: # One of the processes failed. A message will be sent every time.
-                pass
+                raise e
         img = QImage(export_path + ".png");
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
@@ -114,7 +118,7 @@ class Latex(QObject):
         ])
         
     
-    def convert_dvi_to_png(self, export_path: str, font_size: float, color: QColor):
+    def convert_dvi_to_png(self, dvi_path: str, export_path: str, font_size: float, color: QColor):
         """
         Converts a DVI file to a PNG file.
         Documentation: https://linux.die.net/man/1/dvipng
@@ -129,7 +133,7 @@ class Latex(QObject):
             '-D',f'{depth}',            # Depth of the image
             '-bg', 'Transparent',       # Transparent background
             '-fg',f'{fg}',              # Foreground of the wanted color.
-            f'{export_path}.dvi',       # Input file
+            f'{dvi_path}.dvi',          # Input file
             '-o',f'{export_path}.png',  # Output file
         ])
     
@@ -157,9 +161,9 @@ class Latex(QObject):
     
     def cleanup(self, export_path): 
         """
-        Removes Tex, auxiliary, logs and DVI temporary files.
+        Removes auxiliary, logs and Tex temporary files.
         """
-        for i in [".tex", ".dvi", ".aux", ".log"]:
+        for i in [".tex", ".aux", ".log"]:
             remove(export_path + i)
         
         
