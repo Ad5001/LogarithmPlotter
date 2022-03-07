@@ -21,6 +21,8 @@
 .import "common.js" as Common
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 
 class Text extends Common.DrawableObject  {
@@ -38,7 +40,11 @@ class Text extends Common.DrawableObject  {
         [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Positioning,
         [QT_TRANSLATE_NOOP('prop','text')]:          'string',
-        [QT_TRANSLATE_NOOP('prop','disableLatex')]:     'boolean'
+                            'comment1':              QT_TRANSLATE_NOOP(
+                                                         'comment',
+                                                         'If you have latex enabled, you can use use latex markup in between $$ to create equations.'
+                                                     ),
+        [QT_TRANSLATE_NOOP('prop','disableLatex')]:  'boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'null', 
@@ -60,7 +66,7 @@ class Text extends Common.DrawableObject  {
     }
     
     latexMarkupText() {
-        let txt = this.text
+        let txt = Latex.variable(this.text)
         let i
         for(i = 0; txt.includes('$$'); i++)
             if(i & 0x01) // Every odd number
