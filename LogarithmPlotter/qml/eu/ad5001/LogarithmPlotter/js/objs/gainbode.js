@@ -78,8 +78,8 @@ class GainBode extends Common.ExecutableObject {
     getLatexString() {
         let pass = this.pass == "low" ? qsTr("low-pass") : qsTr("high-pass");
         return `\\mathrm{${Latex.variable(this.name)}:}\\begin{array}{l}
-        \\textrm{${pass}};${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup} \\\\
-        ${this.gain.latexMarkup}\\textrm{ dB/dec}
+        \\textsf{${pass}};${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup} \\\\
+        ${this.gain.latexMarkup}\\textsf{ dB/dec}
         \\end{array}`
     }
     

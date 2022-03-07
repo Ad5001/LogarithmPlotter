@@ -81,7 +81,7 @@ class Function extends Common.ExecutableObject {
             return `${Latex.variable(this.name)}:\\begin{array}{llll}${this.definitionDomain.latexMarkup}\\textrm{ } & \\rightarrow & \\textrm{ }${this.destinationDomain.latexMarkup}\\\\
             x\\textrm{ } & \\mapsto & \\textrm{ }${this.expression.latexMarkup}\\end{array}`
         } else {
-            return `\\begin{array}{l}${Latex.variable(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
+            return `\\begin{array}{l}${Latex.variable(this.name)}(x) = ${this.expression.latexMarkup}\\\\ textD_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
         }
     }
     

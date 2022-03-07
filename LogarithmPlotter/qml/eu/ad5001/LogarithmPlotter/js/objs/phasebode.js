@@ -77,7 +77,7 @@ class PhaseBode extends Common.ExecutableObject {
     }
     
     getLatexString() {
-        return `${Latex.variable(this.name)}: ${this.phase.latexMarkup}\\textrm{${this.unit} at }${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup}`
+        return `${Latex.variable(this.name)}: ${this.phase.latexMarkup}\\textsf{${this.unit} at }${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup}`
     }
     
     execute(x=1) {

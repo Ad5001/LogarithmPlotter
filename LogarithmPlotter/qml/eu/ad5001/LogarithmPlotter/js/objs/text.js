@@ -70,7 +70,7 @@ class Text extends Common.DrawableObject  {
         let i
         for(i = 0; txt.includes('$$'); i++)
             if(i & 0x01) // Every odd number
-                txt = txt.replace('$$', '\\textrm{')
+                txt = txt.replace('$$', '\\textsf{')
             else
                 txt = txt.replace('$$', '}')
         if(i & 0x01) // Finished by a }
@@ -79,7 +79,7 @@ class Text extends Common.DrawableObject  {
     }
     
     getLatexString() {
-        return `${Latex.variable(this.name)} = "\\textrm{${this.latexMarkupText()}}"`
+        return `${Latex.variable(this.name)} = "\\textsf{${this.latexMarkupText()}}"`
     }
     
     export() {
@@ -91,7 +91,7 @@ class Text extends Common.DrawableObject  {
     }
     
     getLatexLabel() {
-        return `\\textrm{${this.latexMarkupText()}}`
+        return `\\textsf{${this.latexMarkupText()}}`
     }
     
     draw(canvas, ctx) {
