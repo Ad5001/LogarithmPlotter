@@ -145,7 +145,7 @@ setuptools.setup(
 
     classifiers=CLASSIFIERS,
     zip_safe=False,
-    packages=["LogarithmPlotter"],
+    packages=["LogarithmPlotter", "LogarithmPlotter.util"],
     
     package_data={
         'LogarithmPlotter':package_data(),
