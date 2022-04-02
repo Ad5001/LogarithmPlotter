@@ -8,15 +8,24 @@ set \
 	-o pipefail
 
 # GTK theme integration (we have Qt fetch the GTK theme mirroring the host Qt theme...)
+# Currently broken with portals
 #export QT_QPA_PLATFORMTHEME=kde
 
 # Check if the last parameter is a file, and if so, add the argument "--no-checks-for-updates" BEFORE it.
-last="${@:$#}" # last parameter 
-length=$(($#-1))
-args=("${@:1:$length}")  # all parameters except the last
 
-if [ -f "$last" ]; then
-	${args} --no-check-for-updates "$last"
+length=$(($#-1))
+
+echo "Len: $length"
+
+if [ $length -gt 0 ]; then 
+	last="${@:$#}" # last parameter 
+	args=("${@:1:$length}")  # all parameters except the last
+
+	if [ -f "$last" ]; then
+		${args} --no-check-for-updates "$last"
+	else
+		${@} --no-check-for-updates
+	fi
 else
 	${@} --no-check-for-updates
 fi
