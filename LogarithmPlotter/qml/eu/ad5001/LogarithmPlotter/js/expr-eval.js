@@ -1826,10 +1826,12 @@ Parser.prototype.isOperatorEnabled = function (op) {
 };
 
 /*!
- Based on ndef.parser, by Raphael Graf(r@undefined.ch)
+ Based on ndef.parser, by Raphael Graf <r@undefined.ch>
  http://www.undefined.ch/mparser/index.html
 
- Ported to JavaScript and modified by Matthew Crumley (email@matthewcrumley.com, http://silentmatt.com/)
+ Ported to JavaScript and modified by Matthew Crumley <email@matthewcrumley.com> (http://silentmatt.com/)
+ 
+ Ported to QMLJS with modifications done accordingly done by Ad5001 <mail@ad5001.eu> (https://ad5001.eu)
 
  You are free to use and modify this code in anyway you find useful. Please leave this comment in the code
  to acknowledge its original source. If you feel like it, I enjoy hearing about projects that use my code,

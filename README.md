@@ -74,3 +74,9 @@ There are several ways to contribute to LogarithmPlotter.
 Language files translations located at LogarithmPlotter/i18n are licensed under GNU GPL3.0+ and are copyrighted by their original authors. See LICENSE.md for more details:
 - 🇳🇴 Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
 - 🇭🇺 Hungarian translation by [Óvári](https://github.com/ovari)
+
+### Libraries used
+
+LogarithmPlotter includes [expr-eval](https://github.com/silentmatt/expr-eval) a port of [ndef.parser](https://web.archive.org/web/20111023001618/http://www.undefined.ch/mparser/index.html) by Raphael Graf &lt;r@undefined.ch&gt;, ported to javascript by Matthew Crumley &lt;email@matthewcrumley.com&gt; (http://silentmatt.com/), and then to QMLJS by Ad5001.
+
+The code is licensed under the [MIT License](https://raw.githubusercontent.com/silentmatt/expr-eval/master/LICENSE.txt).

@@ -59,6 +59,8 @@ ApplicationWindow {
     
     Popup.About {id: about}
     
+    Popup.ThanksTo {id: thanksTo}
+    
     Popup.Alert {
         id: alert
         anchors.bottom: parent.bottom

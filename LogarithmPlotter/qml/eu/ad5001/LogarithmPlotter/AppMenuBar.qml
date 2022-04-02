@@ -170,6 +170,11 @@ MenuBar {
         }
         MenuSeparator { }
         Action {
+            text: qsTr("&Thanks")
+            icon.name: 'about'
+            onTriggered: thanksTo.open()
+        }
+        Action {
             text: qsTr("&About")
             shortcut: StandardKey.HelpContents
             icon.name: 'about'
