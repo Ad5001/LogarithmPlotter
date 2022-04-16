@@ -100,7 +100,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-Rendering aktivieren</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
@@ -135,7 +135,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="190"/>
         <source>&amp;Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Danksagungen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="195"/>
@@ -250,7 +250,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="126"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-Rendering aktivieren</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="142"/>
@@ -524,27 +524,27 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="32"/>
         <source>Thanks and Contributions - LogarithmPlotter</source>
-        <translation type="unfinished"></translation>
+        <translation>Danksagungen und Beiträge - LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="53"/>
         <source>Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellcode</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="56"/>
         <source>Original library by Raphael Graf</source>
-        <translation type="unfinished"></translation>
+        <translation>Originalbibliothek von Raphael Graf</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="59"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelle</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="61"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation type="unfinished"></translation>
+        <translation>Portiert auf Javascript von Matthew Crumley</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="64"/>
@@ -553,63 +553,63 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="205"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="214"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="66"/>
         <source>Ported to QMLJS by Ad5001</source>
-        <translation type="unfinished"></translation>
+        <translation>Portiert auf QMLJS von Ad5001</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Libraries included</source>
-        <translation type="unfinished"></translation>
+        <translation>Einschließlich Bibliotheken</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="160"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>E-Mail</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="190"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="200"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>Französisch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="209"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="218"/>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungarisch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="223"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="232"/>
         <source>Github</source>
-        <translation type="unfinished"></translation>
+        <translation>Github</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="227"/>
         <source>Norwegian</source>
-        <translation type="unfinished"></translation>
+        <translation>Norwegisch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="242"/>
         <source>Translations included</source>
-        <translation type="unfinished"></translation>
+        <translation>Einschließlich Übersetzungen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="271"/>
         <source>Improve</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbessern</translation>
     </message>
 </context>
 <context>
@@ -659,7 +659,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="43"/>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie Latex aktiviert haben, können Sie Latex-Auszeichnungen zwischen $$ verwenden, um Gleichungen zu erstellen.</translation>
     </message>
 </context>
 <context>
@@ -776,12 +776,14 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine LaTeX-Installation gefunden.
+Wenn Sie bereits eine LaTeX-Distribution installiert haben, vergewissern Sie sich, dass sie in Ihrem Pfad installiert ist.
+Andernfalls können Sie eine LaTeX-Distribution wie TeX Live unter https://tug.org/texlive/ herunterladen.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="77"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>DVIPNG wurde nicht gefunden. Stellen Sie sicher, dass Sie es aus Ihrer LaTeX-Distribution einbinden.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="155"/>
@@ -790,7 +792,11 @@ Process &apos;{}&apos; ended with a non-zero return code {}:
 
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei der Erstellung der LaTeX-Formel ist eine Exception aufgetreten.
+Der Prozess &apos;{}&apos; wurde mit einem Rückgabecode ungleich Null beendet {}:
+
+{}
+Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melden Sie einen Fehler, falls dies der Fall ist.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="163"/>
@@ -798,7 +804,10 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 Process &apos;{}&apos; took too long to finish:
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei der Erstellung der LaTeX-Formel ist eine Exception aufgetreten.
+Der Prozess &apos;{}&apos; brauchte zu lange, um beendet zu werden:
+{}
+Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melden Sie einen Fehler, falls dies der Fall ist.</translation>
     </message>
 </context>
 <context>
@@ -1072,7 +1081,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="47"/>
         <source>disableLatex</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-Rendering für diesen Text deaktivieren</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="35"/>
