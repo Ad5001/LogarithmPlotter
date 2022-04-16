@@ -100,7 +100,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable LaTeX rendering</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
@@ -245,7 +245,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="126"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable LaTeX rendering</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="142"/>
@@ -561,7 +561,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="43"/>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation type="unfinished"></translation>
+        <translation>If you have latex enabled, you can use use latex markup in between $$ to create equations.</translation>
     </message>
 </context>
 <context>
