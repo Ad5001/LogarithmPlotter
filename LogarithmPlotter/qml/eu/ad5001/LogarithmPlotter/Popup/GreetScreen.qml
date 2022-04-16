@@ -18,6 +18,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "../js/math/latex.js" as Latex
 
 /*!
     \qmltype GreetScreen
@@ -101,7 +102,7 @@ Popup {
         text: qsTr('Check for updates on startup (requires online connectivity)')
         onClicked: {
             Helper.setSettingBool("check_for_updates", checked)
-            checkForUpdatesMenuSetting.checked = checked
+            //checkForUpdatesMenuSetting.checked = checked
         }
     }
     
@@ -113,7 +114,20 @@ Popup {
         text: qsTr('Reset redo stack when a new action is added to history')
         onClicked: {
             Helper.setSettingBool("reset_redo_stack", checked)
-            resetRedoStackMenuSetting.checked = checked
+            //resetRedoStackMenuSetting.checked = checked
+        }
+    }
+    
+    CheckBox {
+        id: enableLatexSetting
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: resetRedoStackSetting.bottom
+        checked: Helper.getSettingBool("enable_latex")
+        text: qsTr('Enable LaTeX rendering')
+        onClicked: {
+            Helper.setSettingBool("enable_latex", checked)
+            Latex.enabled = checked
+            drawCanvas.requestPaint()
         }
     }
     

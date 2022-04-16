@@ -21,6 +21,7 @@
 .import "common.js" as Common
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class Point extends Common.DrawableObject  {
@@ -28,12 +29,6 @@ class Point extends Common.DrawableObject  {
     static displayType(){return qsTr('Point')}
     static displayTypeMultiple(){return qsTr('Points')}
     
-    /*static properties() {return {
-        'x': 'Expression',
-        'y': 'Expression',
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'pointStyle': new P.Enum('●', '✕', '＋'),
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
@@ -58,6 +53,10 @@ class Point extends Common.DrawableObject  {
         return `${this.name} = (${this.x}, ${this.y})`
     }
     
+    getLatexString() {
+        return `${Latex.variable(this.name)} = \\left(${this.x.latexMarkup}, ${this.y.latexMarkup}\\right)`
+    }
+    
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.pointStyle]
     }
@@ -80,41 +79,6 @@ class Point extends Common.DrawableObject  {
                 ctx.fillRect(canvasX-1, canvasY-pointSize/2, 2, pointSize)
                 break;
         }
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = ctx.measureText(text).width
-        switch(this.labelPosition) {
-            case 'top':
-            case 'above':
-                canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY-16)
-                break;
-            case 'bottom':
-            case 'below':
-                canvas.drawVisibleText(ctx, text, canvasX-textSize/2, canvasY+16)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY+4)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+4)
-                break;
-            case 'top-left':
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY-16)
-                break;
-            case 'top-right':
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, canvasX+10, canvasY-16)
-                break;
-            case 'bottom-left':
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, canvasX-textSize-10, canvasY+16)
-                break;
-            case 'bottom-right':
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, canvasX+10, canvasY+16)
-                break;
-                
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvasX, canvasY)
     }
 }

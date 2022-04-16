@@ -23,19 +23,13 @@
 .import "../mathlib.js" as MathLib
 .import "../historylib.js" as HistoryLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class PhaseBode extends Common.ExecutableObject {
     static type(){return 'Phase Bode'}
     static displayType(){return qsTr('Bode Phase')}
     static displayTypeMultiple(){return qsTr('Bode Phases')}
-    /*static properties() {return {
-        'om_0': new P.ObjectType('Point'),
-        'phase': 'Expression',
-        'unit': new P.Enum('°', 'deg', 'rad'),
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
         [QT_TRANSLATE_NOOP('prop','phase')]:         'Expression',
@@ -61,7 +55,7 @@ class PhaseBode extends Common.ExecutableObject {
                 om_0.name = Common.getNewName('ω')
                 om_0.color = this.color
                 om_0.labelContent = 'name'
-                om_0.labelPosition = this.phase.execute() >= 0 ? 'bottom' : 'top'
+                om_0.labelPosition = this.phase.execute() >= 0 ? 'above' : 'below'
                 HistoryLib.history.addToHistory(new HistoryLib.CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'
             }
@@ -80,6 +74,10 @@ class PhaseBode extends Common.ExecutableObject {
     
     getReadableString() {
         return `${this.name}: ${this.phase.toString(true)}${this.unit} at ${this.om_0.name} = ${this.om_0.x}`
+    }
+    
+    getLatexString() {
+        return `${Latex.variable(this.name)}: ${this.phase.latexMarkup}\\textsf{${this.unit} at }${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup}`
     }
     
     execute(x=1) {
@@ -120,37 +118,7 @@ class PhaseBode extends Common.ExecutableObject {
         canvas.drawLine(ctx, Math.max(0, baseX), augmtY, canvas.canvasSize.width, augmtY)
         
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     update() {

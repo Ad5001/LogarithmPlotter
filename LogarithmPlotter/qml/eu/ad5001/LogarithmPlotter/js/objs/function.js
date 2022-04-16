@@ -22,24 +22,13 @@
 .import "../utils.js" as Utils
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
 
 
 class Function extends Common.ExecutableObject {
     static type(){return 'Function'}
     static displayType(){return qsTr('Function')}
     static displayTypeMultiple(){return qsTr('Functions')}
-    /*static properties() {return {
-        'expression':               'Expression',
-        'definitionDomain':         'Domain',
-        'destinationDomain':        'Domain',
-        'comment1':                 'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}',
-        'labelPosition':            P.Enum.Position,
-        'displayMode':              new P.Enum('application', 'function'),
-        'labelX':                   'number',
-        'comment2':                 'The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)',
-        'drawPoints':               'boolean',
-        'drawDashedLines':          'boolean'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','expression')]:         'Expression',
         [QT_TRANSLATE_NOOP('prop','definitionDomain')]:   'Domain',
@@ -87,6 +76,15 @@ class Function extends Common.ExecutableObject {
         }
     }
     
+    getLatexString() {
+        if(this.displayMode == 'application') {
+            return `${Latex.variable(this.name)}:\\begin{array}{llll}${this.definitionDomain.latexMarkup}\\textrm{ } & \\rightarrow & \\textrm{ }${this.destinationDomain.latexMarkup}\\\\
+            x\\textrm{ } & \\mapsto & \\textrm{ }${this.expression.latexMarkup}\\end{array}`
+        } else {
+            return `\\begin{array}{l}${Latex.variable(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
+        }
+    }
+    
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, 
         this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(), 
@@ -112,43 +110,13 @@ class Function extends Common.ExecutableObject {
     draw(canvas, ctx) {
         Function.drawFunction(canvas, ctx, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
-        // Drawing small traits every 2px
-        var pxprecision = 0.2
+        // Drawing small traits every 0.2px
+        var pxprecision = 1
         var previousX = canvas.px2x(0)
         var previousY;
         if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {

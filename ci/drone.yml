@@ -14,6 +14,7 @@ steps:
 - name: Linux test
   image: ad5001/ubuntu-pyside2-xvfb:hirsute-5.15.2
   commands:
+  - apt install -y texlive-latex-base dvipng
   - xvfb-run python3 run.py --test-build --no-check-for-updates
   - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
   - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf

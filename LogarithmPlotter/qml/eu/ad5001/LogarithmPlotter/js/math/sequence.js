@@ -21,6 +21,8 @@
 .import "common.js" as C
 .import "expression.js" as Expr
 .import "../utils.js" as Utils
+.import "../math/latex.js" as Latex
+
 
 /**
  * Represents mathematical object for sequences.
@@ -32,9 +34,13 @@ class Sequence extends Expr.Expression {
         this.name = name
         this.baseValues = baseValues
         this.calcValues = Object.assign({}, baseValues)
+        this.latexValues = Object.assign({}, baseValues)
         for(var n in this.calcValues)
-            if(['string', 'number'].includes(typeof this.calcValues[n]))
-                this.calcValues[n] = parser.parse(this.calcValues[n].toString()).simplify().evaluate(C.evalVariables)
+            if(['string', 'number'].includes(typeof this.calcValues[n])) {
+                let parsed = C.parser.parse(this.calcValues[n].toString()).simplify()
+                this.latexValues[n] = Latex.expression(parsed.tokens)
+                this.calcValues[n] = parsed.evaluate(C.evalVariables)
+            }
         this.valuePlus = parseInt(valuePlus)
     }
     
@@ -58,11 +64,11 @@ class Sequence extends Expr.Expression {
     
     cache(n = 1) {
         var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
-        var expr = parser.parse(str).simplify()
+        var expr = C.parser.parse(str).simplify()
         var l = {'n': n-this.valuePlus} // Just in case, add n (for custom functions)
         l[this.name] = this.calcValues
-        currentVars = Object.assign(l, C.evalVariables)
-        this.calcValues[n] = expr.evaluate(currentVars)
+        C.currentVars = Object.assign(l, C.evalVariables)
+        this.calcValues[n] = expr.evaluate(C.currentVars)
     }
     
     toString(forceSign=false) {
@@ -73,6 +79,17 @@ class Sequence extends Expr.Expression {
         ret += Object.keys(this.baseValues).map(
             n => `${this.name}${Utils.textsub(n)} = ${this.baseValues[n]}`
         ).join('; ')
+        return ret
+    }
+    
+    toLatexString(forceSign=false) {
+        var str = this.latexMarkup
+        if(str[0] != '-' && forceSign) str = '+' + str
+        var subtxt = '_{n' + (this.valuePlus == 0 ? '' : '+' + this.valuePlus) + '}'
+        var ret = `\\begin{array}{l}${Latex.variable(this.name)}${subtxt} = ${str}${this.latexValues.length == 0 ? '' : "\n"}\\\\`
+        ret += Object.keys(this.latexValues).map(
+            n => `${this.name}_{${n}} = ${this.latexValues[n]}`
+        ).join('; ') + "\\end{array}"
         return ret
     }
 }

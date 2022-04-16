@@ -1,6 +1,6 @@
 name: logarithmplotter
 title: LogarithmPlotter
-version: '0.1.9'
+version: '0.2.0'
 summary: 2D logarithmic-scaled plotter software to create asymptotic Bode plots
 confinement: strict
 base: core20
@@ -79,6 +79,9 @@ parts:
     source: .
     stage-packages:
     - breeze-icon-theme
+    # Latex dependencies
+    - texlive-latex-base
+    - dvipng
     # Additional dependencies
     - libxcomposite1
     - libxcursor1
@@ -131,7 +134,7 @@ parts:
     - libxcb-render-util0
     - libdouble-conversion3
     - libpcre2-16-0
-  snapcraft-preload: # Fixes error related to multiprocessing on python.
+  snapcraft-preload:
     source: https://github.com/sergiusens/snapcraft-preload.git
     plugin: cmake
     cmake-parameters:
@@ -142,6 +145,11 @@ parts:
         - g++-multilib
     stage-packages:
       - lib32stdc++6
+  changelog:
+    source: .
+    plugin: dump
+    organize:
+      CHANGELOG.md: lib/python3.8/site-packages/LogarithmPlotter/CHANGELOG.md
     
 apps:
   logarithmplotter:

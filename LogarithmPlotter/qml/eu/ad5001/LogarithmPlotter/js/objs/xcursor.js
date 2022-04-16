@@ -22,27 +22,14 @@
 .import "../objects.js" as Objects
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 
 class XCursor extends Common.DrawableObject {
     static type(){return 'X Cursor'}
     static displayType(){return qsTr('X Cursor')}
     static displayTypeMultiple(){return qsTr('X Cursors')}
-    /*static properties() {
-        return {
-            'x': 'Expression',
-            'targetElement': new P.ObjectType('ExecutableObject'),
-            'labelPosition': new P.Enum('left', 'right'),
-            'approximate': 'boolean',
-            'rounding': 'number',
-            'displayStyle': new P.Enum(
-                '— — — — — — —',
-                '⸺⸺⸺⸺⸺⸺',
-                '• • • • • • • • • •'
-            ),
-            'targetValuePosition' : new P.Enum('Next to target', 'With label', 'Hidden')
-        }
-    }*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:                   'Expression',
         [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject'),
@@ -87,6 +74,13 @@ class XCursor extends Common.DrawableObject {
         return `${this.name} = ${this.x.toString()}\n${this.getTargetValueLabel()}`
     }
     
+    getLatexString() {
+        if(this.targetElement == null) return `${Latex.variable(this.name)} = ${this.x.latexMarkup}`
+        return `\\begin{array}{l}
+        ${Latex.variable(this.name)} = ${this.x.latexMarkup} \\\\
+        ${this.getTargetValueLatexLabel()}`
+    }
+    
     getTargetValueLabel() {
         var t = this.targetElement
         var approx = ''
@@ -96,6 +90,18 @@ class XCursor extends Common.DrawableObject {
         }
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
             (this.approximate ? ' ≈ ' + approx : '')
+    }
+    
+    getTargetValueLatexLabel() {
+        var t = this.targetElement
+        var approx = ''
+        if(this.approximate) {
+            approx = t.execute(this.x.execute())
+            approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
+        }
+        let simpl = t.simplify(this.x.toEditableString())
+        return `${Latex.variable(t.name)}(${Latex.variable(this.name)}) = ${simpl.tokens ? Latex.expression(simpl.tokens) : simpl}` +
+            (this.approximate ? ' \\simeq ' + approx : '')
     }
     
     getLabel() {
@@ -118,8 +124,28 @@ class XCursor extends Common.DrawableObject {
         }
     }
     
+    getLatexLabel() {
+        switch(this.labelContent) {
+            case 'name':
+                return Latex.variable(this.name)
+                break;
+            case 'name + value':
+                switch(this.targetValuePosition) {
+                    case 'Next to target':
+                    case 'Hidden':
+                        return `${Latex.variable(this.name)} = ${this.x.latexMarkup}`
+                        break;
+                    case 'With label':
+                        return this.getLatexString()
+                        break;
+                }
+            case 'null':
+                return ''
+        }
+    }
+    
     draw(canvas, ctx) {
-        var xpos = canvas.x2px(this.x.execute())
+        let xpos = canvas.x2px(this.x.execute())
         switch(this.displayStyle) {
             case '— — — — — — —':
                 var dashPxSize = 10
@@ -139,52 +165,18 @@ class XCursor extends Common.DrawableObject {
                 break;
         }
         
-        // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
+        // Drawing label at the top of the canvas.
+        this.drawLabel(canvas, ctx, this.labelPosition, xpos, 0, false, null, null,
+                       (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, 5, ltxImg.width, ltxImg.height),
+                       (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, textSize.height+5))
         
-        switch(this.labelPosition) {
-            case 'left':
-            case 'above-left':
-            case 'below-left':
-            case 'below':
-            case 'above':
-                canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, textSize.height+5)
-                break;
-            case 'right':
-            case 'above-right':
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, xpos+5, textSize.height+5)
-                break;
-        }
-        
+        // Drawing label at the position of the target element.
         if(this.targetValuePosition == 'Next to target' && this.targetElement != null) {
-            var text = this.getTargetValueLabel()
-            var textSize = canvas.measureText(ctx, text)
-            var ypox = canvas.y2px(this.targetElement.execute(this.x.execute()))
-            switch(this.labelPosition) {
-                case 'left':
-                case 'below':
-                case 'above':
-                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height)
-                    break;
-                case 'above-left':
-                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height+12)
-                    break;
-                case 'below-left':
-                    canvas.drawVisibleText(ctx, text, xpos-textSize.width-5, ypox+textSize.height-12)
-                    break;
-                case 'right':
-                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height)
-                    break;
-                case 'above-right':
-                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height+12)
-                    break;
-                case 'below-right':
-                    canvas.drawVisibleText(ctx, text, xpos+5, ypox+textSize.height-12)
-                    break;
-            }
+            let ypos = canvas.y2px(this.targetElement.execute(this.x.execute()))
+            this.drawLabel(canvas, ctx, this.labelPosition, xpos, ypos, false,
+                           this.getTargetValueLatexLabel.bind(this), this.getTargetValueLabel.bind(this),
+                           (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height),
+                           (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, y+textSize.height))
         }
     }
 }

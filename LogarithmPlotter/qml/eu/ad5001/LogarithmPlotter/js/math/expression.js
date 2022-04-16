@@ -31,7 +31,7 @@ class Expression {
         this.calc = C.parser.parse(expr).simplify()
         this.cached = this.isConstant()
         this.cachedValue = this.cached ? this.calc.evaluate(C.evalVariables) : null
-        this.latexMarkup = Latex.expressionToLatex(this.calc.tokens)
+        this.latexMarkup = Latex.expression(this.calc.tokens)
     }
     
     isConstant() {

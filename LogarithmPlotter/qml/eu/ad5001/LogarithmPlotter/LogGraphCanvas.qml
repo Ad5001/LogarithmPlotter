@@ -157,26 +157,48 @@ Canvas {
     */
     property int drawMaxX: Math.ceil(Math.max(Math.abs(xmin), Math.abs(px2x(canvasSize.width)))/xaxisstep1)
     
+    /*!
+       \qmlproperty var LogGraphCanvas::imageLoaders
+       Dictionary of format {image: [callback.image data]} containing data for defered image loading.
+    */
+    property var imageLoaders: {}
+    /*!
+       \qmlproperty var LogGraphCanvas::ctx
+       Cache for the 2D context so that it may be used asynchronously.
+    */
+    property var ctx
     
-    onPaint: {
+    Component.onCompleted: imageLoaders = {}
+    
+    onPaint: function(rect) {
         //console.log('Redrawing')
-        var ctx = getContext("2d");
-        reset(ctx)
-        drawGrille(ctx)
-        drawAxises(ctx)
-        ctx.lineWidth = linewidth
-        for(var objType in Objects.currentObjects) {
-            for(var obj of Objects.currentObjects[objType]){
-                ctx.strokeStyle = obj.color
-                ctx.fillStyle = obj.color
-                if(obj.visible) obj.draw(canvas, ctx)
+        if(rect.width == canvas.width) { // Redraw full canvas
+            ctx = getContext("2d");
+            reset(ctx)
+            drawGrille(ctx)
+            drawAxises(ctx)
+            drawLabels(ctx)
+            ctx.lineWidth = linewidth
+            for(var objType in Objects.currentObjects) {
+                for(var obj of Objects.currentObjects[objType]){
+                    ctx.strokeStyle = obj.color
+                    ctx.fillStyle = obj.color
+                    if(obj.visible) obj.draw(canvas, ctx)
+                }
             }
+            ctx.lineWidth = 1
         }
-        ctx.lineWidth = 1
-        drawLabels(ctx)
-        
     }
     
+    onImageLoaded: {
+        Object.keys(imageLoaders).forEach((key) => {
+            if(isImageLoaded(key)) {
+                // Calling callback
+                imageLoaders[key][0](canvas, ctx, imageLoaders[key][1])
+                delete imageLoaders[key]
+            }
+        })
+    }
     
     /*!
         \qmlmethod void LogGraphCanvas::reset(var ctx)
@@ -186,7 +208,7 @@ Canvas {
         // Reset
         ctx.fillStyle = "#FFFFFF"
         ctx.strokeStyle = "#000000"
-        ctx.font = `${canvas.textsize-2}px sans-serif`
+        ctx.font = `${canvas.textsize}px sans-serif`
         ctx.fillRect(0,0,width,height)
     }
     
@@ -243,12 +265,12 @@ Canvas {
         var axisxpx = y2px(0) // Y coordinate of X axis
         // Labels
         ctx.fillStyle = "#000000"
-        ctx.font = `${canvas.textsize+2}px sans-serif`
+        ctx.font = `${canvas.textsize}px sans-serif`
         ctx.fillText(ylabel, axisypx+10, 24)
         var textSize = ctx.measureText(xlabel).width
         ctx.fillText(xlabel, canvasSize.width-14-textSize, axisxpx-5)
         // Axis graduation labels
-        ctx.font = `${canvas.textsize-2}px sans-serif`
+        ctx.font = `${canvas.textsize-4}px sans-serif`
         
         var txtMinus = ctx.measureText('-').width
         if(showxgrad) {
@@ -315,15 +337,29 @@ Canvas {
     }
     
     /*!
+        \qmlmethod void LogGraphCanvas::drawVisibleImage(var ctx, var image, double x, double y)
+        Draws an \c image onto the canvas using 2D \c ctx.
+        \note The \c x, \c y \c width and \c height properties here are relative to the canvas, not the plot.
+    */
+    function drawVisibleImage(ctx, image, x, y, width, height) {
+        //console.log("Drawing image", isImageLoaded(image), isImageError(image))
+        markDirty(Qt.rect(x, y, width, height));
+        ctx.drawImage(image, x, y, width, height)
+        /*if(true || (x > 0 && x < canvasSize.width && y > 0 && y < canvasSize.height)) {
+        }*/
+    }
+    
+    /*!
         \qmlmethod var LogGraphCanvas::measureText(var ctx, string text)
         Measures the wicth and height of a multiline \c text that would be drawn onto the canvas using 2D \c ctx.
         Return format: dictionary {"width": width, "height": height}
     */
     function measureText(ctx, text) {
-        var theight = 0
-        var twidth = 0
+        let theight = 0
+        let twidth = 0
+        let defaultHeight = ctx.measureText("M").width // Approximate but good enough!
         text.split("\n").forEach(function(txt, i){
-            theight += canvas.textsize
+            theight += defaultHeight 
             if(ctx.measureText(txt).width > twidth) twidth = ctx.measureText(txt).width
         })
         return {'width': twidth, 'height': theight}
@@ -414,5 +450,26 @@ Canvas {
             ctx.moveTo(x1-(x1-x2)*(i+progPerc/2), y1-(y1-y2)*(i+progPerc/2))
         }
         ctx.stroke();
+    }
+
+    /*!
+        \qmlmethod var LogGraphCanvas::renderLatexImage(string ltxText, color)
+        Renders latex markup \c ltxText to an image and loads it. Returns a dictionary with three values: source, width and height.
+    */
+    function renderLatexImage(ltxText, color, callback) {
+        let [ltxSrc, ltxWidth, ltxHeight] = Latex.render(ltxText, textsize, color).split(",")
+        let imgData = {
+            "source": ltxSrc,
+            "width": parseFloat(ltxWidth),
+            "height": parseFloat(ltxHeight)
+        };
+        if(!isImageLoaded(ltxSrc) && !isImageLoading(ltxSrc)){
+            // Wait until the image is loaded to callback.
+            loadImage(ltxSrc)
+            imageLoaders[ltxSrc] = [callback, imgData]
+        } else {
+            // Callback directly
+            callback(canvas, ctx, imgData)
+        }
     }
 }

@@ -21,6 +21,8 @@
 .import "common.js" as Common
 .import "../mathlib.js" as MathLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 
 class Text extends Common.DrawableObject  {
@@ -37,11 +39,16 @@ class Text extends Common.DrawableObject  {
         [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Positioning,
-        [QT_TRANSLATE_NOOP('prop','text')]:          'string'
+        [QT_TRANSLATE_NOOP('prop','text')]:          'string',
+                            'comment1':              QT_TRANSLATE_NOOP(
+                                                         'comment',
+                                                         'If you have latex enabled, you can use use latex markup in between $$ to create equations.'
+                                                     ),
+        [QT_TRANSLATE_NOOP('prop','disableLatex')]:  'boolean'
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'null', 
-                x = 1, y = 0, labelPosition = 'center', text = 'New text') {
+                x = 1, y = 0, labelPosition = 'center', text = 'New text', disableLatex = false) {
         if(name == null) name = Common.getNewName('t')
         super(name, visible, color, labelContent)
         this.type = 'Point'
@@ -51,50 +58,45 @@ class Text extends Common.DrawableObject  {
         this.y = y
         this.labelPosition = labelPosition
         this.text = text
+        this.disableLatex = disableLatex
     }
     
     getReadableString() {
         return `${this.name} = "${this.text}"`
     }
     
+    latexMarkupText() {
+        let txt = Latex.variable(this.text)
+        let i
+        for(i = 0; txt.includes('$$'); i++)
+            if(i & 0x01) // Every odd number
+                txt = txt.replace('$$', '\\textsf{')
+            else
+                txt = txt.replace('$$', '}')
+        if(i & 0x01) // Finished by a }
+            txt += "{"
+        return txt
+    }
+    
+    getLatexString() {
+        return `${Latex.variable(this.name)} = "\\textsf{${this.latexMarkupText()}}"`
+    }
+    
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.text]
     }
     
+    getLabel() {
+        return this.text
+    }
+    
+    getLatexLabel() {
+        return `\\textsf{${this.latexMarkupText()}}`
+    }
+    
     draw(canvas, ctx) {
-        var [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = ctx.measureText(this.text).width
-        switch(this.labelPosition) {
-            case 'center':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+4)
-                break;
-            case 'top':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY-16)
-                break;
-            case 'bottom':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize/2, canvasY+16)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+4)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+4)
-                break;
-            case 'top-left':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY-16)
-                break;
-            case 'top-right':
-                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY-16)
-                break;
-            case 'bottom-left':
-                canvas.drawVisibleText(ctx, this.text, canvasX-textSize-5, canvasY+16)
-                break;
-            case 'bottom-right':
-                canvas.drawVisibleText(ctx, this.text, canvasX+5, canvasY+16)
-                break;
-                
-        }
+        let yOffset = this.disableLatex ? canvas.textsize-4 : 0
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())+yOffset, this.disableLatex)
     }
 }
 

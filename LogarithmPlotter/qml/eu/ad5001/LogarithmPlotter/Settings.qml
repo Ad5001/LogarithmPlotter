@@ -99,7 +99,7 @@ ScrollView {
        Font size of the text that will be drawn into the canvas, provided from settings.
        \sa Settings
     */
-    property double textsize: 14
+    property double textsize: 18
     /*!
        \qmlproperty bool Settings::logscalex
        true if the canvas should be in logarithmic mode, false otherwise.

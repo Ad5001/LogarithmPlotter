@@ -25,19 +25,13 @@
 .import "../mathlib.js" as MathLib
 .import "../historylib.js" as HistoryLib
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 class GainBode extends Common.ExecutableObject {
     static type(){return 'Gain Bode'}
     static displayType(){return qsTr('Bode Magnitude')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes')}
-    /*static properties() {return {
-        'om_0': new P.ObjectType('Point'),
-        'pass': new P.Enum('high', 'low'),
-        'gain': 'Expression',
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number',
-        'omGraduation': 'boolean'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
         [QT_TRANSLATE_NOOP('prop','pass')]:          P.Enum.BodePass,
@@ -79,6 +73,14 @@ class GainBode extends Common.ExecutableObject {
     getReadableString() {
         let pass = this.pass == "low" ? qsTr("low-pass") : qsTr("high-pass");
         return `${this.name}: ${pass}; ${this.om_0.name} = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
+    }
+    
+    getLatexString() {
+        let pass = this.pass == "low" ? qsTr("low-pass") : qsTr("high-pass");
+        return `\\mathrm{${Latex.variable(this.name)}:}\\begin{array}{l}
+        \\textsf{${pass}};${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup} \\\\
+        ${this.gain.latexMarkup}\\textsf{ dB/dec}
+        \\end{array}`
     }
     
     export() {
@@ -131,38 +133,9 @@ class GainBode extends Common.ExecutableObject {
         var dashPxSize = 10
         for(var i = 0; i < canvas.canvasSize.height && this.omGraduation; i += dashPxSize*2)
             canvas.drawLine(ctx, xpos, i, xpos, i+dashPxSize)
+            
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     update() {

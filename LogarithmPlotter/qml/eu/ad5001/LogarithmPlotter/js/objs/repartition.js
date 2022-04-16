@@ -20,6 +20,8 @@
 
 .import "common.js" as Common
 .import "../parameters.js" as P
+.import "../math/latex.js" as Latex
+
 
 class RepartitionFunction extends Common.ExecutableObject {
     static type(){return 'Repartition'}
@@ -64,6 +66,12 @@ class RepartitionFunction extends Common.ExecutableObject {
     getReadableString() {
         var keys = Object.keys(this.probabilities).sort((a,b) => a-b);
         return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
+    }
+    
+    getLatexString() {
+        let keys = Object.keys(this.probabilities).sort((a,b) => a-b);
+        let varName = Latex.variable(this.name)
+        return `\\begin{array}{l}F_{${varName}}(x) = P(${varName} \\le x)\\\\` + keys.map(idx => `P(${varName}=${idx})=${this.probabilities[idx]}`).join("; ") + '\\end{array}'
     }
     
     execute(x = 1) {
@@ -145,37 +153,7 @@ class RepartitionFunction extends Common.ExecutableObject {
         }
         
         // Label
-        var text = this.getLabel()
-        ctx.font = `${canvas.textsize}px sans-serif`
-        var textSize = canvas.measureText(ctx, text)
-        var posX = canvas.x2px(this.labelX)
-        var posY = canvas.y2px(this.execute(this.labelX))
-        switch(this.labelPosition) {
-            case 'above':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY-textSize.height)
-                break;
-            case 'below':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width/2, posY+textSize.height)
-                break;
-            case 'left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height/2)
-                break;
-            case 'right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height/2)
-                break;
-            case 'above-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY-textSize.height)
-                break;
-            case 'above-right':
-                canvas.drawVisibleText(ctx, text, posX, posY-textSize.height)
-                break;
-            case 'below-left':
-                canvas.drawVisibleText(ctx, text, posX-textSize.width, posY+textSize.height)
-                break;
-            case 'below-right':
-                canvas.drawVisibleText(ctx, text, posX, posY+textSize.height)
-                break;
-        }
+        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 
