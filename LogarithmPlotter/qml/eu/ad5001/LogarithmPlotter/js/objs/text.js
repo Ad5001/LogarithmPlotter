@@ -83,7 +83,7 @@ class Text extends Common.DrawableObject  {
     }
     
     export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.text]
+        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.text, this.disableLatex]
     }
     
     getLabel() {
