@@ -26,7 +26,7 @@ DEFAULT_SETTINGS = {
     "check_for_updates": True,
     "reset_redo_stack": True,
     "last_install_greet": "0",
-    "enable_latex": True
+    "enable_latex": False
 }
 
 # Create config directory
