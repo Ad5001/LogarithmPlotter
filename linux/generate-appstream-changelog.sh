@@ -48,6 +48,8 @@ BEGIN {
     text = substr(s,2)
     # Removing links
     text = gensub(/\[([^\]]+)\]\(([^\)]+)\)/, "\\1", "g", text);
+    # Fixing & in text.
+    text = gensub(/&/, "&amp;", "g", text)
     print "                    <li>"text"</li>" 
 }
 /^\s*--/ {
@@ -75,7 +77,7 @@ END {
     print "                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v"version"/logarithmplotter-v"version"-setup.exe</location>"
     print "                </artifact>"
     print "                <artifact type=\"binary\" platform=\"x86_64-macos-any\">"
-    print "                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v"version"/logarithmplotter-v"version"-setup.exe</location>"
+    print "                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v"version"/LogarithmPlotter-v"version"-setup.dmg</location>"
     print "                </artifact>"
     print "                <artifact type=\"source\">"
     print "                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v"version"/logarithmplotter-"version".tar.gz</location>"
