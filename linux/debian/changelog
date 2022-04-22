@@ -1,4 +1,30 @@
-logarithmplotter (0.1.8) stable; urgency=medium
+logarithmplotter (0.2.0) stable; urgency=medium
+
+  * New: (EXPERIMENTAL) LogarithmPlotter now has an optional LaTeX integration.
+  * It requires a LaTeX installation, including `latexmk` and `dvipng` available in the PATH.
+  * NOTE: LaTeX support is disabled by default and is only for working for the rendering on the graph.
+  * NOTE: The objects and history tab still use the legacy text based expression rendering.
+  * New: Thanks and contributions dialog, showing included libraries and translations, their license and author(s).
+  * New: LaTeX rendering can be disabled for texts, even if LaTeX is enabled.
+  * Changed: History re/undos only redraw the graph every 4 change at most in order to speed up the process when re/undoing a lot of changes.
+  * Changed: Gradients are no longer hidden when filtered out in the history tab.
+  * Added translation: LaTeX options and error messages
+  * Added translation: Thanks and contribution dialog
+  * Added translation: New option for text.
+  * Fixed translation: "repartition" which should be "distribution" in certain remaining strings.
+  * Fixed bug: (macos) #1 - Opening files don't work on compiled versions of LogarithmPlotter on MacOS
+  * Fixed bug: (snapcraft) Fixed bug preventing from launching LogarithmPlotter. This fix has been backported to v0.1.8.
+  * Fixed bug: (snapcraft) Files are now properly opened.
+  * Fixed bug: (snapcraft) Added changelog support.
+  * Internal changes: Moved python modules to "util" directory for more clarity.
+  * Internal changes: Moved flatpak metainfo to eu.ad5001.LogarithmPlotter repository.
+  * Internal changes: Componented the Mathlib library in order to have a more readable source.
+  * Internal changes: Added documentation for most internal JavaScript modules.
+  * Internal changes: (flatpak) Updated SDK version to v5.15-21.08.
+
+ -- Ad5001 <mail@ad5001.eu>  Fri, 22 Apr 2022 20:00:00 +0100
+
+ logarithmplotter (0.1.8) stable; urgency=medium
 
   * New: There is now a user manual for LogarithmPlotter! Contributions apprecriated.
   * Changed: A link to LogarithmPlotter's official website (https://apps.ad5001.eu/logarithmplotter/) has been added in the about dialog.
@@ -16,7 +42,7 @@ logarithmplotter (0.1.8) stable; urgency=medium
   * Internal changes: Sidebar button width is now fixed.
   * Internal changes: Artifacts have been added to appstream metadata.
 
- -- Ad5001 <mail@ad5001.eu>  Sat, 19 Jan 2022 20:00:00 +0100
+ -- Ad5001 <mail@ad5001.eu>  Sat, 19 Feb 2022 20:00:00 +0100
  
 logarithmplotter (0.1.7) stable; urgency=medium
 
@@ -46,7 +72,7 @@ logarithmplotter (0.1.7) stable; urgency=medium
   * Internal changes: Trying to switch metainfo once more to try and fix another bug.
   * Internal changes: Keywords added to metainfo.
 
- -- Ad5001 <mail@ad5001.eu>  Thu, 03 Jan 2022 00:00:00 +0100
+ -- Ad5001 <mail@ad5001.eu>  Thu, 03 Feb 2022 00:00:00 +0100
  
 logarithmplotter (0.1.6) stable; urgency=medium
 

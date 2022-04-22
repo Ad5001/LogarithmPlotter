@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.2.0 (22 Apr 2022)
+
+**New**
+
+  * (EXPERIMENTAL) LogarithmPlotter now has an optional LaTeX integration.
+  * It requires a LaTeX installation, including `latexmk` and `dvipng` available in the PATH.
+  * NOTE: LaTeX support is disabled by default and is only for working for the rendering on the graph.
+  * NOTE: The objects and history tab still use the legacy text based expression rendering.
+  * Thanks and contributions dialog, showing included libraries and translations, their license and author(s).
+  * LaTeX rendering can be disabled for texts, even if LaTeX is enabled.
+  
+**Changes**
+  
+  * History re/undos only redraw the graph every 4 change at most in order to speed up the process when re/undoing a lot of changes.
+  * Gradients are no longer hidden when filtered out in the history tab.
+  
+**Added translations**
+
+  * LaTeX options and error messages
+  * Thanks and contribution dialog
+  * New option for text.
+  * Fixed translation of "repartition" which should be "distribution" in certain remaining strings.
+
+**Fixed bugs**
+
+  * (macos) #1 - Opening files don't work on compiled versions of LogarithmPlotter on MacOS
+  * (snapcraft) Fixed bug preventing from launching LogarithmPlotter. This fix has been backported to v0.1.8.
+  * (snapcraft) Files are now properly opened.
+  * (snapcraft) Added changelog support.
+
+**Internal changes**
+
+  * Moved python modules to "util" directory for more clarity.
+  * Moved flatpak metainfo to eu.ad5001.LogarithmPlotter repository.
+  * Componented the Mathlib library in order to have a more readable source.
+  * Added documentation for most internal JavaScript modules.
+  * Merge label drawing methods due to it's complexity.
+  * (flatpak) Updated SDK version to v5.15-21.08.
+
 ## v0.1.8 (19 Feb 2022)
 
 **New**
