@@ -135,7 +135,9 @@ def run():
     if platform == "darwin":
         macOSFileOpenHandler.init_graphics(engine.rootObjects()[0])
     
-    latex.check_latex_install()
+    # Check for LaTeX installation if LaTeX support is enabled
+    if config.getSetting("enable_latex"):
+        latex.check_latex_install()
     
     # Check for updates
     if config.getSetting("check_for_updates"):

@@ -12,8 +12,10 @@ linux/flatpak/.flatpak-builder
 **/**.jsc
 **/**.pyc
 **/**.qm
+**/**.log
 *.jsc
 *.qmlc
+*.log
 .DS_Store
 **/.DS_Store
 **/__pycache__/
