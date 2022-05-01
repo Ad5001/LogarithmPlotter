@@ -27,7 +27,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="119"/>
         <source>Official website</source>
-        <translation type="unfinished"></translation>
+        <translation>Hivatalos honlap</translation>
     </message>
 </context>
 <context>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-megjelenítés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
@@ -120,7 +120,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="174"/>
         <source>&amp;User manual</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Használati utasítás</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="179"/>
@@ -135,7 +135,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="190"/>
         <source>&amp;Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Köszönjük</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="195"/>
@@ -250,12 +250,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="126"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-megjelenítés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="142"/>
         <source>User manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Használati utasítás</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="149"/>
@@ -273,7 +273,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
         <source>Filter...</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="98"/>
@@ -524,27 +524,27 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="32"/>
         <source>Thanks and Contributions - LogarithmPlotter</source>
-        <translation type="unfinished"></translation>
+        <translation>Köszönet és hozzájárulás - LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="53"/>
         <source>Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>Forráskód</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="56"/>
         <source>Original library by Raphael Graf</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredeti könyvtár: Graf Raphael</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="59"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Forrás</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="61"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation type="unfinished"></translation>
+        <translation>JavaScript-átalakítás: Crumley Máté</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="64"/>
@@ -553,63 +553,63 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="205"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="214"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Honlap</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="66"/>
         <source>Ported to QMLJS by Ad5001</source>
-        <translation type="unfinished"></translation>
+        <translation>QMLJS-átalakítás: Ad5001</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Libraries included</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalmazott könyvtárak</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="160"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="190"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>angol</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="200"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>francia</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="209"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>német</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="218"/>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>magyar</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="223"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="232"/>
         <source>Github</source>
-        <translation type="unfinished"></translation>
+        <translation>GitHub</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="227"/>
         <source>Norwegian</source>
-        <translation type="unfinished"></translation>
+        <translation>norvég</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="242"/>
         <source>Translations included</source>
-        <translation type="unfinished"></translation>
+        <translation>A felhasználói felület nyelvei</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="271"/>
         <source>Improve</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlesztés</translation>
     </message>
 </context>
 <context>
@@ -631,7 +631,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="43"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.js" line="53"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 színe %3-ról %4-re változott.</translation>
     </message>
 </context>
 <context>
@@ -659,7 +659,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="43"/>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a LaTeX engedélyezve van, a LaTeX-jelölés használható egyenletek létrehozására $$ között.</translation>
     </message>
 </context>
 <context>
@@ -679,7 +679,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="53"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.js" line="57"/>
         <source>New %1 %2 created.</source>
-        <translation type="unfinished">Új %1 %2 létrehozva.</translation>
+        <translation>Új %1 %2 létrehozva.</translation>
     </message>
 </context>
 <context>
@@ -688,7 +688,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.js" line="46"/>
         <source>%1 %2 deleted.</source>
-        <translation type="unfinished">%1 %2 törölve.</translation>
+        <translation>%1 %2 törölve.</translation>
     </message>
 </context>
 <context>
@@ -696,12 +696,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="106"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="unfinished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="113"/>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
     </message>
 </context>
 <context>
@@ -772,12 +772,14 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem található LaTeX telepítés.
+Ha már telepítve van egy LaTeX disztribúció, győződjön meg arról, hogy az telepítve van az elérési útján.
+Egyébként letölthet egy LaTeX disztribúciót, például a TeX Live-t a https://tug.org/texlive/ címről.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="77"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>DVIPNG nem található. Ügyeljen arra, hogy a LaTeX disztribúciójából tartalmazza.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="155"/>
@@ -786,7 +788,11 @@ Process &apos;{}&apos; ended with a non-zero return code {}:
 
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kivétel történt a LaTeX-képlet létrehozása során.
+A(z) „{}” folyamat nullától eltérő visszatérési kóddal ({}) végződött:
+
+{}
+Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelentse a hibát.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="163"/>
@@ -794,7 +800,10 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 Process &apos;{}&apos; took too long to finish:
 {}
 Please make sure your latex installation is correct and report a bug if so.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kivétel történt a LaTeX-képlet létrehozása során.
+A(z) „{}” folyamat túl sokáig tartott a befejezéshez:
+{}
+Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelentse a hibát.</translation>
     </message>
 </context>
 <context>
@@ -803,7 +812,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="51"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.js" line="57"/>
         <source>%1 %2 renamed to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 átnevezve erre: %3.</translation>
     </message>
 </context>
 <context>
@@ -1068,7 +1077,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.js" line="47"/>
         <source>disableLatex</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX-megjelenítés letiltása ennél a szövegnél</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.js" line="35"/>
@@ -1192,13 +1201,13 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 shown.</source>
-        <translation type="unfinished">%1 %2 megjelenítve.</translation>
+        <translation>%1 %2 megjelenítve.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="46"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.js" line="52"/>
         <source>%1 %2 hidden.</source>
-        <translation type="unfinished">%1 %2 rejtve.</translation>
+        <translation>%1 %2 rejtve.</translation>
     </message>
 </context>
 <context>
