@@ -90,62 +90,62 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="129"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobación de las actualizaciones al arrancar</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="138"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="unfinished"></translation>
+        <translation>Restablecer la pila de rehacer automáticamente</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar el renderizado de LaTeX</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="164"/>
         <source>&amp;Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Código fuente</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="169"/>
         <source>&amp;Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Informar de un error</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="174"/>
         <source>&amp;User manual</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Manual del usuario</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="179"/>
         <source>&amp;Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Registro de cambios</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="184"/>
         <source>&amp;Help translating!</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;¡Ayuda a la traducción!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="190"/>
         <source>&amp;Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Agradecimientos</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="195"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Acerca de</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="204"/>
         <source>Save unsaved changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Guardar los cambios no guardados?</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="206"/>
