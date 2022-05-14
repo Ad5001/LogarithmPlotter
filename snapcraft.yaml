@@ -80,8 +80,8 @@ parts:
     stage-packages:
     - breeze-icon-theme
     # Latex dependencies
-    - texlive-latex-base
-    - dvipng
+    #- texlive-latex-base Causes symlink issues and being rejected by the Snap store.
+    #- dvipng
     # Additional dependencies
     - libxcomposite1
     - libxcursor1
@@ -149,7 +149,7 @@ parts:
     source: .
     plugin: dump
     organize:
-      CHANGELOG.md: lib/python3.8/site-packages/LogarithmPlotter/CHANGELOG.md
+      CHANGELOG.md: lib/python3.8/site-packages/LogarithmPlotter/util/
     
 apps:
   logarithmplotter:
