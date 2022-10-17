@@ -22,6 +22,8 @@ import QtQuick.Controls 2.12
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
+import "../js/math/latex.js" as LatexJS
+
 
 /*!
     \qmltype ObjectRow
@@ -74,8 +76,18 @@ Item {
         anchors.right: deleteButton.left
         height: parent.height
         verticalAlignment: TextInput.AlignVCenter
-        text: obj.getReadableString()
+        text: LatexJS.enabled ? "" : obj.getReadableString()
         font.pixelSize: 14
+        
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            visible: LatexJS.enabled
+            property var ltxInfo: visible ? Latex.render(obj.getLatexLabel(), 2*parent.font.pixelSize, parent.color).split(",") : ["","0","0"]
+            source: visible ? ltxInfo[0] : ""
+            width: parseInt(ltxInfo[1])/2
+            height: parseInt(ltxInfo[2])/2
+        }
         
         MouseArea {
             anchors.fill: parent

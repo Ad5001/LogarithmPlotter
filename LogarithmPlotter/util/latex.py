@@ -79,11 +79,11 @@ class Latex(QObject):
     @Property(bool)
     def latexSupported(self):
         return LATEX_PATH is not None and DVIPNG_PATH is not None
-        
+    
     @Slot(str, float, QColor, result=str)
-    def render(self, latex_markup: str, font_size: float, color: QColor = True) -> str:
+    def render(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
-        Renders a latex string into a png file.
+        Prepares and renders a latex string into a png file.
         """
         markup_hash = hash(latex_markup)
         export_path = path.join(self.tempdir.name, f'{markup_hash}_{font_size}_{color.rgb()}')
@@ -100,7 +100,7 @@ class Latex(QObject):
                 self.convert_dvi_to_png(latex_path, export_path, font_size, color)
             except Exception as e: # One of the processes failed. A message will be sent every time.
                 raise e
-        img = QImage(export_path + ".png");
+        img = QImage(export_path);
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
         
@@ -171,7 +171,7 @@ class Latex(QObject):
         for i in [".tex", ".aux", ".log"]:
             remove(export_path + i)
         
-        
+    """
     @Slot(str, float, QColor, result=str)
     def render_legacy(self, latexstring, font_size, color = True):
         exprpath = path.join(self.tempdir.name, f'{hash(latexstring)}_{font_size}_{color.rgb()}.png')
@@ -190,3 +190,4 @@ class Latex(QObject):
         img = QImage(exprpath);
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{exprpath},{img.width()},{img.height()}'
+    """
