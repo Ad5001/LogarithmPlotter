@@ -194,6 +194,7 @@ function evaluate(tokens, expr, values) {
         nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values), resolveExpression(n3, values)));
       }
     } else if (type === IVAR) {
+      // Check for variable value
       if (item.value in expr.functions) {
         nstack.push(expr.functions[item.value]);
       } else if (item.value in expr.unaryOps && expr.parser.isOperatorEnabled(item.value)) {
@@ -219,8 +220,11 @@ function evaluate(tokens, expr, values) {
       f = nstack.pop();
       if (f.apply && f.call) {
         nstack.push(f.apply(undefined, args));
+      } else if(f.execute) {
+        // Objects & expressions execution
+        nstack.push(f.execute.apply(undefined, args));
       } else {
-        throw new Error(f + ' is not a function');
+        throw new Error(f + ' cannot be executed');
       }
     } else if (type === IFUNDEF) {
       // Create closure to keep references to arguments and expression

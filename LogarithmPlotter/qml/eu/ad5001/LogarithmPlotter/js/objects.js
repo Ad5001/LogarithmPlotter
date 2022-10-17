@@ -19,14 +19,15 @@
 .pragma library
 
 .import "utils.js" as Utils
-.import "mathlib.js" as MathLib
+.import "math/common.js" as MathCommons
 .import "parameters.js" as P
 
 var types = {}
 
 var currentObjects = {}
 var currentObjectsByName = {}
-
+MathCommons.currentObjectsByName = currentObjectsByName // Required for using objects in variables.
+ 
 function renameObject(oldName, newName) {
     /**
      * Renames an object from its old name to the new one.
@@ -46,7 +47,7 @@ function deleteObject(objName) {
      */
     let obj = currentObjectsByName[objName]
     delete currentObjectsByName[objName]
-    currentObjects[obj.type].splice(currentObjects.indexOf(obj),1)
+    currentObjects[obj.type].splice(currentObjects[obj.type].indexOf(obj),1)
     obj.delete()
 }
 

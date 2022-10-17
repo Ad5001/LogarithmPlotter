@@ -30,23 +30,25 @@ class Expression {
         this.expr = expr
         this.calc = C.parser.parse(expr).simplify()
         this.cached = this.isConstant()
-        this.cachedValue = this.cached ? this.calc.evaluate(C.evalVariables) : null
+        this.cachedValue = this.cached ? this.calc.evaluate(C.currentObjectsByName) : null
         this.latexMarkup = Latex.expression(this.calc.tokens)
     }
     
     isConstant() {
-        return !this.expr.includes("x") && !this.expr.includes("n")
+        let vars = this.calc.variables()
+        return !vars.includes("x") && !vars.includes("n")
     }
     
     execute(x = 1) {
         if(this.cached) return this.cachedValue
-        C.currentVars = Object.assign({'x': x}, C.evalVariables)
+        C.currentVars = Object.assign({'x': x}, C.currentObjectsByName)
+        //console.log("Executing", this.expr, "with", JSON.stringify(C.currentVars))
         return this.calc.evaluate(C.currentVars)
     }
     
     simplify(x) {
         var expr = this.calc.substitute('x', x).simplify()
-        if(expr.evaluate(C.evalVariables) == 0) return '0'
+        if(expr.evaluate() == 0) return '0'
         var str = Utils.makeExpressionReadable(expr.toString());
         if(str != undefined && str.match(/^\d*\.\d+$/)) {
             if(str.split('.')[1].split('0').length > 7) {

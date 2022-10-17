@@ -187,7 +187,7 @@ class DrawableObject {
      * Callback method when one of the properties of the object is updated.
      */
     update() {
-        for(var req of this.requiredBy) {
+        for(let req of this.requiredBy) {
             req.update()
         }
     }
