@@ -40,11 +40,15 @@ class NameChanged extends EP.EditedProperty {
     }
     
     undo() {
-        Objects.getObjectByName(this.newValue, this.targetType)['name'] = this.previousValue
+        Objects.renameObject(this.newValue, this.previousValue)
     }
     
     redo() {
-        Objects.getObjectByName(this.previousValue, this.targetType)['name'] = this.newValue
+        Objects.renameObject(this.previousValue, this.newValue)
+        //let obj = Objects.currentObjectsByName[this.previousValue]
+        //obj.name = this.newValue
+        //Objects.currentObjectsByName[this.newValue] = obj
+        //delete Objects.currentObjectsByName[this.previousValue]
     }
     
     getReadableString() {

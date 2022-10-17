@@ -40,7 +40,7 @@ function getNewName(allowedLetters) {
         var num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
         ret = letter + (num > 0 ? Utils.textsub(num-1) : '')
         newid += 1
-    } while(Objects.getObjectByName(ret) != null)
+    } while(ret in Objects.currentObjectsByName)
     return ret
 }
 

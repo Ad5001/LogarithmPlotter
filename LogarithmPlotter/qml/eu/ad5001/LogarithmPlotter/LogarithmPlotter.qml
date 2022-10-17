@@ -255,6 +255,7 @@ ApplicationWindow {
                     for(var objData of data['objects'][objType]) {
                         var obj = new Objects.types[objType](...objData)
                         Objects.currentObjects[objType].push(obj)
+                        Objects.currentObjectsByName[obj.name] = obj
                     }
                 } else {
                     error += qsTr("Unknown object type: %1.").arg(objType) + "\n";

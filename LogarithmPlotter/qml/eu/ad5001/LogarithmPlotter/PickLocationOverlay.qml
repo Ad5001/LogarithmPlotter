@@ -98,7 +98,7 @@ Item {
                         'Expression': () => new MathLib.Expression(newValue),
                         'number': () => parseFloat(newValue)
                     }[Objects.types[objType].properties()[propertyX]]()
-                    let obj = Objects.getObjectByName(objName, objType)
+                    let obj = Objects.currentObjectsByName[objName] // getObjectByName(objName, objType)
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValue
                     ))
@@ -112,7 +112,7 @@ Item {
                         'Expression': () => new MathLib.Expression(newValue),
                         'number': () => parseFloat(newValue)
                     }[Objects.types[objType].properties()[propertyY]]()
-                    let obj = Objects.getObjectByName(objName, objType)
+                    let obj = Objects.currentObjectsByName[objName] // Objects.getObjectByName(objName, objType)
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValue
                     ))

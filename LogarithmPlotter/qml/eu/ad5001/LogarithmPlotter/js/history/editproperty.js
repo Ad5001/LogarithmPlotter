@@ -49,19 +49,19 @@ class EditedProperty extends C.Action {
                 this.newValue = MathLib.parseDomain(this.newValue);
             } else {
                 // Objects
-                this.previousValue = Objects.getObjectByName(this.previousValue);
-                this.newValue = Objects.getObjectByName(this.newValue);
+                this.previousValue = Objects.currentObjectsByName[this.previousValue] // Objects.getObjectByName(this.previousValue);
+                this.newValue = Objects.currentObjectsByName[this.newValue] // Objects.getObjectByName(this.newValue);
             }
         }
         this.setReadableValues()
     }
     
     undo() {
-        Objects.getObjectByName(this.targetName, this.targetType)[this.targetProperty] = this.previousValue
+        Objects.currentObjectsByName[this.targetName][this.targetProperty] = this.previousValue
     }
     
     redo() {
-        Objects.getObjectByName(this.targetName, this.targetType)[this.targetProperty] = this.newValue
+        Objects.currentObjectsByName[this.targetName][this.targetProperty] = this.newValue
     }
     
     export() {

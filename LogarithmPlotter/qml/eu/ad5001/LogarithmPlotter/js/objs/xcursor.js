@@ -56,7 +56,7 @@ class XCursor extends Common.DrawableObject {
         this.x = x
         this.targetElement = targetElement
         if(typeof targetElement == "string") {
-            this.targetElement = Objects.getObjectByName(targetElement, elementTypes)
+            this.targetElement = Objects.currentObjectsByName[targetElement]
         }
         this.labelPosition = labelPosition
         this.displayStyle = displayStyle

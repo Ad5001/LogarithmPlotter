@@ -49,7 +49,7 @@ class GainBode extends Common.ExecutableObject {
         this.type = 'Gain Bode'
         if(typeof om_0 == "string") {
             // Point name or create one
-            om_0 = Objects.getObjectByName(om_0, 'Point')
+            om_0 = Objects.currentObjectsByName[om_0]
             if(om_0 == null) {
                 // Create new point
                 om_0 = Objects.createNewRegisteredObject('Point')

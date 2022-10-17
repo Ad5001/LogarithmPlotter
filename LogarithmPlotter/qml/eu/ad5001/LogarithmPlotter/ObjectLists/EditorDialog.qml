@@ -73,27 +73,37 @@ D.Dialog {
         anchors.top: dlgTitle.bottom
         width: objEditor.width - 20
         spacing: 10
+        
+        D.MessageDialog {
+            id: invalidNameDialog
+            title: qsTr("LogarithmPlotter - Invalid object name")
+            text: ""
+            function showDialog(objectName) {
+                text = qsTr("An object with the name '%1' already exists.").arg(objectName)
+                open()
+            }
+        }
     
         Setting.TextSetting {
             id: nameProperty
             height: 30
             label: qsTr("Name")
             icon: "common/label.svg"
-            min: 1
             width: dlgProperties.width
             value: objEditor.obj.name
             onChanged: function(newValue) {
-                var newName = Utils.parseName(newValue)
+                let newName = Utils.parseName(newValue)
                 if(newName != '' && objEditor.obj.name != newName) {
-                    if(Objects.getObjectByName(newName) != null) {
-                        newName = ObjectsCommons.getNewName(newName)
+                    if(newName in Objects.currentObjectsByName) {
+                        invalidNameDialog.showDialog(newName)
+                    } else {
+                        history.addToHistory(new HistoryLib.NameChanged(
+                            objEditor.obj.name, objEditor.objType, newName
+                        ))
+                        Objects.renameObject(obj.name, newName)
+                        objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                        objectListList.update()
                     }
-                    history.addToHistory(new HistoryLib.NameChanged(
-                        objEditor.obj.name, objEditor.objType, newName
-                    ))
-                    Objects.currentObjects[objEditor.objType][objEditor.objIndex].name = newName
-                    objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
-                    objectListList.update()
                 }
             }
         }
@@ -213,7 +223,7 @@ D.Dialog {
                             []) : 
                             modelData[1].values) 
                         : []
-                    // Translated verison of the model.
+                    // Translated version of the model.
                     model: selectObjMode ? baseModel : modelData[1].translatedValues
                     visible: paramTypeIn(modelData[1], ['ObjectType', 'Enum'])
                     currentIndex: baseModel.indexOf(selectObjMode ? objEditor.obj[modelData[0]].name : objEditor.obj[modelData[0]])
@@ -222,7 +232,7 @@ D.Dialog {
                         if(selectObjMode) {
                             // This is only done when what we're selecting are Objects.
                             // Setting object property.
-                            var selectedObj = Objects.getObjectByName(baseModel[newIndex], modelData[1].objType)
+                            var selectedObj = Objects.currentObjectsByName[baseModel[newIndex]]
                             if(newIndex != 0) {
                                 // Make sure we don't set the object to null.
                                 if(selectedObj == null) {

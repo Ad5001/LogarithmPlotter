@@ -36,9 +36,11 @@ class CreateNewObject extends C.Action {
 
     
     undo() {
-        var targetIndex = Objects.getObjectsName(this.targetType).indexOf(this.targetName)
-        Objects.currentObjects[this.targetType][targetIndex].delete()
-        Objects.currentObjects[this.targetType].splice(targetIndex, 1)
+        Objects.deleteObject(this.targetName)
+        //let targetIndex = Objects.getObjectsName(this.targetType).indexOf(this.targetName)
+        //delete Objects.currentObjectsByName[this.targetName]
+        //Objects.currentObjects[this.targetType][targetIndex].delete()
+        //Objects.currentObjects[this.targetType].splice(targetIndex, 1)
     }
     
     redo() {

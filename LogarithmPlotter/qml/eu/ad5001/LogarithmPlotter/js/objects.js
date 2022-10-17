@@ -25,30 +25,37 @@
 var types = {}
 
 var currentObjects = {}
+var currentObjectsByName = {}
 
-function getObjectByName(objName, objType = null) {
-    var objectTypes = Object.keys(currentObjects)
-    if(typeof objType == 'string' && objType != "") {
-        if(objType == "ExecutableObject") {
-            objectTypes = getExecutableTypes()
-        } else if(currentObjects[objType] != undefined) {
-            objectTypes = [objType]
-        }
-    }
-    if(Array.isArray(objType)) objectTypes = objType
-    var retObj = null
-    if(objName != "" && objName != null) {
-        objectTypes.forEach(function(objType){
-            if(currentObjects[objType] == undefined) return null
-            currentObjects[objType].forEach(function(obj){
-                if(obj.name == objName) retObj = obj
-            })
-        })
-    }
-    return retObj
+function renameObject(oldName, newName) {
+    /**
+     * Renames an object from its old name to the new one.
+     * @param {string} oldName - Current name of the object.
+     * @param {string} newName - Name to rename the object to.
+     */
+    let obj = currentObjectsByName[oldName]
+    delete currentObjectsByName[oldName]
+    currentObjectsByName[newName] = obj
+    obj.name = newName
+}
+
+function deleteObject(objName) {
+    /**
+     * Deletes an object by its given name.
+     * @param {string} objName - Current name of the object.
+     */
+    let obj = currentObjectsByName[objName]
+    delete currentObjectsByName[objName]
+    currentObjects[obj.type].splice(currentObjects.indexOf(obj),1)
+    obj.delete()
 }
 
 function getObjectsName(objType) {
+    /**
+     * Gets a list of all names of a certain object type.
+     * @param {string} objType - Type of the object to query. Can be ExecutableObject for all ExecutableObjects.
+     * @return {array} List of names of the objects.
+     */
     if(objType == "ExecutableObject") {
         var types = getExecutableTypes()
         var elementNames = ['']
@@ -62,15 +69,26 @@ function getObjectsName(objType) {
 }
 
 function getExecutableTypes() {
+    /**
+     * Returns a list of all object types which are executable objects.
+     * @return {array} List of all object types which are executable objects.
+     */
     return Object.keys(currentObjects).filter(objType => types[objType].executable())
 }
 
 function createNewRegisteredObject(objType, args=[]) {
+    /**
+     * Creates and register an object in the database.
+     * @param {string} objType - Type of the object to create.
+     * @param {string} args - List of arguments for the objects (can be empty).
+     * @return {[objType]} Newly created object.
+     */
     if(Object.keys(types).indexOf(objType) == -1) return null // Object type does not exist.
     var newobj = new types[objType](...args)
     if(Object.keys(currentObjects).indexOf(objType) == -1) {
         currentObjects[objType] = []
     }
     currentObjects[objType].push(newobj)
+    currentObjectsByName[newobj.name] = newobj
     return newobj
 }

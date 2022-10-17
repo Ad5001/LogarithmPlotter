@@ -193,8 +193,7 @@ ScrollView {
                         history.addToHistory(new HistoryLib.DeleteObject(
                             obj.name, objType, obj.export()
                         ))
-                        Objects.currentObjects[objType][index].delete()
-                        Objects.currentObjects[objType].splice(index, 1)
+                        Objects.deleteObject(obj.name)
                         objectListList.update()
                     }
                 }
