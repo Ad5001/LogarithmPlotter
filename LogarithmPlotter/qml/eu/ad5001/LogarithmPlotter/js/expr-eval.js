@@ -222,7 +222,7 @@ function evaluate(tokens, expr, values) {
         nstack.push(f.apply(undefined, args));
       } else if(f.execute) {
         // Objects & expressions execution
-        nstack.push(f.execute.apply(undefined, args));
+        nstack.push(f.execute.apply(f, args));
       } else {
         throw new Error(f + ' cannot be executed');
       }
