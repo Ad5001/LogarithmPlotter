@@ -249,11 +249,12 @@ ApplicationWindow {
             
             // Importing objects
             Objects.currentObjects = {}
-            for(var objType in data['objects']) {
+            Objects.currentObjectsByName = {}
+            for(let objType in data['objects']) {
                 if(Object.keys(Objects.types).indexOf(objType) > -1) {
                     Objects.currentObjects[objType] = []
-                    for(var objData of data['objects'][objType]) {
-                        var obj = new Objects.types[objType](...objData)
+                    for(let objData of data['objects'][objType]) {
+                        let obj = new Objects.types[objType](...objData)
                         Objects.currentObjects[objType].push(obj)
                         Objects.currentObjectsByName[obj.name] = obj
                     }
@@ -261,6 +262,10 @@ ApplicationWindow {
                     error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
                 }
             }
+            
+            // Updating object dependencies.
+            for(let objName in Objects.currentObjectsByName)
+                Objects.currentObjectsByName[objName].update()
             
             // Importing history
             if("history" in data)

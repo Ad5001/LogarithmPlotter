@@ -30,10 +30,6 @@ class SommePhasesBode extends Common.ExecutableObject {
     static displayType(){return qsTr('Bode Phases Sum')}
     static displayTypeMultiple(){return qsTr('Bode Phases Sum')}
     static createable() {return false}
-    /*static properties() {return {
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',

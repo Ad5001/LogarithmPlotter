@@ -21,6 +21,8 @@
 .import "../utils.js" as Utils
 .import "../objects.js" as Objects
 .import "../math/latex.js" as Latex
+.import "../parameters.js" as P
+.import "../math/common.js" as C
 
 // This file contains the default data to be imported from all other objects
 
@@ -116,6 +118,7 @@ class DrawableObject {
         this.color = color
         this.labelContent = labelContent // "null", "name", "name + value"
         this.requiredBy = []
+        this.requires = []
     }
     
     /**
@@ -187,18 +190,40 @@ class DrawableObject {
      * Callback method when one of the properties of the object is updated.
      */
     update() {
-        for(let req of this.requiredBy) {
+        // Refreshing dependencies.
+        for(let obj of this.requires)
+            obj.requiredBy = obj.requiredBy.filter(dep => dep != this)
+        // Checking objects this one depends on
+        this.requires = []
+        let properties = this.constructor.properties()
+        for(let property in properties)
+            if(properties[property] == 'Expression' && this[property] != null) {
+                // Expressions with dependencies
+                for(let objName of this[property].requiredObjects()) {
+                    this.requires.push(C.currentObjectsByName[objName])
+                    C.currentObjectsByName[objName].requiredBy.push(this)
+                }
+                if(this[property].cached && this[property].requiredObjects().length > 0)
+                    // Recalculate
+                    this[property].recache()
+                    
+            } else if(typeof properties[property] == 'object' && 'type' in properties[property] && properties[property] == 'ObjectType' && this[property] != null) {
+                // Object dependency
+                this.requires.push(this[property])
+                this[property].requiredBy.push(this)
+            }
+        
+        // Updating objects dependent on this one
+        for(let req of this.requiredBy)
             req.update()
-        }
     }
     
     /**
      * Callback method when the object is about to get deleted.
      */
     delete() {
-        for(var toRemove of this.requiredBy) {
-            toRemove.delete()
-            Objects.currentObjects[toRemove.type] = Objects.currentObjects[toRemove.type].filter(obj => obj.name != toRemove.name)
+        for(let toRemove of this.requiredBy) {
+            Objects.deleteObject(toRemove.name)
         }
     }
     
@@ -261,7 +286,7 @@ class DrawableObject {
     }
     
     /**
-     * Automaticly draw text (by default the label of the object on the \c canvas with
+     * Automatically draw text (by default the label of the object on the \c canvas with
      * the 2D context \c ctx depending on user settings.
      * This method takes into account both the \c posX and \c posY of where the label
      * should be displayed, including the \c labelPosition relative to it.

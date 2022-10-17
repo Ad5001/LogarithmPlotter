@@ -30,7 +30,7 @@ class Expression {
         this.expr = expr
         this.calc = C.parser.parse(expr).simplify()
         this.cached = this.isConstant()
-        this.cachedValue = this.cached ? this.calc.evaluate(C.currentObjectsByName) : null
+        this.cachedValue = this.cached && this.allRequirementsFullfilled() ? this.calc.evaluate(C.currentObjectsByName) : null
         this.latexMarkup = Latex.expression(this.calc.tokens)
     }
     
@@ -39,8 +39,25 @@ class Expression {
         return !vars.includes("x") && !vars.includes("n")
     }
     
+    requiredObjects() {
+        return this.calc.variables().filter(objName => objName != "x" && objName != "n")
+    }
+    
+    allRequirementsFullfilled() {
+        return this.requiredObjects().every(objName => objName in C.currentObjectsByName)
+    }
+    
+    recache() {
+        if(this.cached)
+            this.cachedValue = this.calc.evaluate(C.currentObjectsByName)
+    }
+    
     execute(x = 1) {
-        if(this.cached) return this.cachedValue
+        if(this.cached) {
+            if(this.cachedValue == null)
+                this.cachedValue = this.calc.evaluate(C.currentObjectsByName)
+            return this.cachedValue
+        }
         C.currentVars = Object.assign({'x': x}, C.currentObjectsByName)
         //console.log("Executing", this.expr, "with", JSON.stringify(C.currentVars))
         return this.calc.evaluate(C.currentVars)
@@ -68,7 +85,7 @@ class Expression {
     }
     
     toString(forceSign=false) {
-        var str = Utils.makeExpressionReadable(this.calc.toString())
+        let str = Utils.makeExpressionReadable(this.calc.toString())
         if(str[0] != '-' && forceSign) str = '+' + str
         return str
     }

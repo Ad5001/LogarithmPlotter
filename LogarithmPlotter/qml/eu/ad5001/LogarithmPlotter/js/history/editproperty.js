@@ -58,10 +58,12 @@ class EditedProperty extends C.Action {
     
     undo() {
         Objects.currentObjectsByName[this.targetName][this.targetProperty] = this.previousValue
+        Objects.currentObjectsByName[this.targetName].update()
     }
     
     redo() {
         Objects.currentObjectsByName[this.targetName][this.targetProperty] = this.newValue
+        Objects.currentObjectsByName[this.targetName].update()
     }
     
     export() {

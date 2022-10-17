@@ -27,14 +27,6 @@ class RepartitionFunction extends Common.ExecutableObject {
     static type(){return 'Repartition'}
     static displayType(){return qsTr('Repartition')}
     static displayTypeMultiple(){return qsTr('Repartition functions')}
-    /*static properties() {return {
-        'beginIncluded': 'boolean',
-        'drawLineEnds': 'boolean',
-        'comment1': 'Note: Specify the properties for each potential result.',
-        'probabilities': new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d\.,]+$/, 'P({name} = ', ') = '),
-        'labelPosition': new P.Enum('above', 'below', 'left', 'right', 'above-left', 'above-right', 'below-left', 'below-right'),
-        'labelX': 'number'
-    }}*/
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',

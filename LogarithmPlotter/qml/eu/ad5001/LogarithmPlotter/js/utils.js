@@ -129,11 +129,11 @@ function simplifyExpression(str) {
     var replacements = [
         // Operations not done by parser.
         [// Decomposition way 2
-            /(^.?|[+-] |\()([-.\d\w]+) ([*/]) \((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\)(.?$| [+-]|\))/g,
+            /(^|[+-] |\()([-.\d\w]+) ([*/]) \((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\)($| [+-]|\))/g,
             "$1$2 $3 $4 $6 $2 $3 $7$9"
         ],
         [ // Decomposition way 2
-            /(^.?|[+-] |\()\((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\) ([*/]) ([-.\d\w]+)(.?$| [+-]|\))/g,
+            /(^|[+-] |\()\((([-.\d\w] [*/] )?[-\d\w.]+) ([+\-]) (([-.\d\w] [*/] )?[\d\w.+]+)\) ([*/]) ([-.\d\w]+)($| [+-]|\))/g,
             "$1$2 $7 $8 $4 $5 $7 $8$9"
         ],
         [ // Factorisation of π elements.
@@ -159,19 +159,19 @@ function simplifyExpression(str) {
             }
         ],
         [ // Removing parenthesis when content is only added from both sides.
-            /(^.?|[+-] |\()\(([^)(]+)\)(.?$| [+-]|\))/g,
+            /(^|[+-] |\()\(([^)(]+)\)($| [+-]|\))/g,
             function(match, b4, middle, after) {return `${b4}${middle}${after}`}
         ],
         [ // Removing parenthesis when content is only multiplied.
-            /(^.?|[*\/] |\()\(([^)(+-]+)\)(.?$| [*\/+-]|\))/g,
+            /(^|[*\/] |\()\(([^)(+-]+)\)($| [*\/+-]|\))/g,
             function(match, b4, middle, after) {return `${b4}${middle}${after}`}
         ],
         [ // Removing parenthesis when content is only multiplied.
-            /(^.?|[*\/-+] |\()\(([^)(+-]+)\)(.?$| [*\/]|\))/g,
+            /(^|[*\/-+] |\()\(([^)(+-]+)\)($| [*\/]|\))/g,
             function(match, b4, middle, after) {return `${b4}${middle}${after}`}
         ],
         [// Simplification additions/substractions.
-            /(^.?|[^*\/] |\()([-.\d]+) (\+|\-) (\([^)(]+\)|[^)(]+) (\+|\-) ([-.\d]+)(.?$| [^*\/]|\))/g,
+            /(^|[^*\/] |\()([-.\d]+) (\+|\-) (\([^)(]+\)|[^)(]+) (\+|\-) ([-.\d]+)($| [^*\/]|\))/g,
             function(match, b4, n1, op1, middle, op2, n2, after) {
                 var total
                 if(op2 == '+') {
@@ -258,7 +258,7 @@ function makeExpressionReadable(str) {
         [/\[([^\[\]]+)\]/g, function(match, p1) { return textsub(p1) }],
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
-        [/\(([^)(+.\/-]+)\)/g, "$1"],
+        [/[^a-z]\(([^)(+.\/-]+)\)/g, "$1"],
         [/integral\((.+),\s?(.+),\s?("|')(.+)("|'),\s?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
             if(a.length < b.length) {
                 return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
