@@ -116,7 +116,7 @@ class EditedProperty extends C.Action {
                 .arg(this.targetPropertyReadable)
                 .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
                 .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prev+'&nbsp;</tt>')
-                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.next+'</tt>')
+                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.next+'&nbsp;</tt>')
 //                 .arg('<b style="font-size: 15px;">' + Objects.types[this.targetType].displayType())
                 
     }
