@@ -36,7 +36,7 @@ import "../../js/mathlib.js" as MathLib
     \sa Dialog
 */
 Repeater {
-    id: dlgCustomProperties
+    id: root
     
     signal changed()
     
@@ -90,21 +90,52 @@ Repeater {
                 }
             }
             onChanged: function(newValue) {
-                var newValue = {
-                    'Expression': () => new MathLib.Expression(newValue),
-                    'Domain': () => MathLib.parseDomain(newValue),
-                    'string': () => newValue,
-                    'number': () => parseFloat(newValue)
-                }[propertyType]()
-                // Ensuring old and new values are different to prevent useless adding to history.
-                if(obj[propertyName] != newValue) {
-                    history.addToHistory(new HistoryLib.EditedProperty(
-                        obj.name, objType, propertyName, 
-                        obj[propertyName], newValue
-                    ))
-                    obj[propertyName] = newValue
-                    Objects.currentObjects[objType][objIndex].update()
-                    objectListList.update()
+                try {
+                    var newValueParsed = {
+                        'Expression': () => {
+                            let expr = new MathLib.Expression(newValue)
+                            // Check if the expression is valid, throws error otherwise.
+                            if(!expr.allRequirementsFullfilled()) {
+                                let undefVars = expr.undefinedVariables()
+                                console.log(JSON.stringify(undefVars), undefVars.join(', '))
+                                if(undefVars.length > 1)
+                                    throw new Error(qsTranslate('error', 'No object found with names %1.').arg(undefVars.join(', ')))
+                                else
+                                    throw new Error(qsTranslate('error', 'No object found with name %1.').arg(undefVars.join(', ')))
+                            }
+                            if(expr.requiredObjects().includes(obj.name))
+                                throw new Error(qsTranslate('error', 'Object cannot be dependent on itself.'))
+                                // TODO: Check for recursive dependencies.
+                            return expr
+                        },
+                        'Domain': () => MathLib.parseDomain(newValue),
+                        'string': () => newValue,
+                        'number': () => parseFloat(newValue)
+                    }[propertyType]()
+                                        
+                    // Ensuring old and new values are different to prevent useless adding to history.
+                    if(obj[propertyName] != newValueParsed) {
+                        history.addToHistory(new HistoryLib.EditedProperty(
+                            obj.name, objType, propertyName, 
+                            obj[propertyName], newValueParsed
+                        ))
+                        obj[propertyName] = newValueParsed
+                        root.changed()
+                    }
+                } catch(e) {
+                    // Error in expression or domain
+                    parsingErrorDialog.showDialog(propertyName, newValue, e.message)
+                }
+            }
+            
+        
+            D.MessageDialog {
+                id: parsingErrorDialog
+                title: qsTr("LogarithmPlotter - Parsing error")
+                text: ""
+                function showDialog(propName, propValue, error) {
+                    text = qsTr("Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
+                    open()
                 }
             }
         }
@@ -126,8 +157,7 @@ Repeater {
                     obj[propertyName], this.checked
                 ))
                 obj[propertyName] = this.checked
-                Objects.currentObjects[objType][objIndex].update()
-                objectListList.update()
+                root.changed()
             }
         }
     }
@@ -187,8 +217,7 @@ Repeater {
                     obj[propertyName] = baseModel[newIndex]
                 }
                 // Refreshing
-                Objects.currentObjects[objType][objIndex].update()
-                objectListList.update()
+                root.changed()
             }
         }
     }
@@ -217,9 +246,7 @@ Repeater {
                 ))
                 //Objects.currentObjects[objType][objIndex][propertyName] = exported
                 obj[propertyName] = exported
-                //Objects.currentObjects[objType][objIndex].update()
-                obj.update()
-                objectListList.update()
+                root.changed()
             }
             
             Component.onCompleted: {

@@ -120,6 +120,7 @@ D.Dialog {
             onActivated: function(newIndex) {
                 if(idModel[newIndex] != objEditor.obj.labelContent) {
                     objEditor.obj.labelContent = idModel[newIndex]
+                    objEditor.obj.update()
                     objectListList.update()
                 }
             }
@@ -129,6 +130,11 @@ D.Dialog {
         CustomPropertyList {
             id: dlgCustomProperties
             obj: objEditor.obj
+            
+            onChanged: {
+                obj.update()
+                objectListList.update()
+            }
         }
     }
     

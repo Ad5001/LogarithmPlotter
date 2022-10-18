@@ -47,6 +47,10 @@ class Expression {
         return this.requiredObjects().every(objName => objName in C.currentObjectsByName)
     }
     
+    undefinedVariables() {
+        return this.requiredObjects().filter(objName => !(objName in C.currentObjectsByName))
+    }
+    
     recache() {
         if(this.cached)
             this.cachedValue = this.calc.evaluate(C.currentObjectsByName)

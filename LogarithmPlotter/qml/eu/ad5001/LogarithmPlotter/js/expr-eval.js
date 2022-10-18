@@ -18,16 +18,16 @@ var IARRAY = 'IARRAY';
 
 // Additional variable characters.
 var ADDITIONAL_VARCHARS = [
-                "α","β","γ","δ","ε","ζ","η",
-                "π","θ","κ","λ","μ","ξ","ρ",
-                "ς","σ","τ","φ","χ","ψ","ω",
-                "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
-                "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
-                "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
-                "ₜ","¹","²","³","⁴","⁵","⁶",
-                "⁷","⁸","⁹","⁰","₁","₂","₃",
-                "₄","₅","₆","₇","₈","₉","₀"
-            ]
+  "α","β","γ","δ","ε","ζ","η",
+  "π","θ","κ","λ","μ","ξ","ρ",
+  "ς","σ","τ","φ","χ","ψ","ω",
+  "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
+  "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
+  "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
+  "ₜ","¹","²","³","⁴","⁵","⁶",
+  "⁷","⁸","⁹","⁰","₁","₂","₃",
+  "₄","₅","₆","₇","₈","₉","₀"
+]
 
 function Instruction(type, value) {
   this.type = type;
@@ -117,7 +117,11 @@ function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
       newexpression.push(new Instruction(IEXPR, simplify(item.value, unaryOps, binaryOps, ternaryOps, values)));
     } else if (type === IMEMBER && nstack.length > 0) {
       n1 = nstack.pop();
-      nstack.push(new Instruction(INUMBER, n1.value[item.value]));
+      //console.log("Getting property ", item.value, "of", n1)
+      if(item.value in n1.value)
+        nstack.push(new Instruction(INUMBER, n1.value[item.value]));
+      else
+        throw new Error(qsTranslate('error', 'Cannot find property %1 of object %2.').arg(item.value).arg(n1))
     } /* else if (type === IARRAY && nstack.length >= item.value) {
       var length = item.value;
       while (length-- > 0) {
@@ -217,7 +221,7 @@ function evaluate(tokens, expr, values) {
         if (v !== undefined) {
           nstack.push(v);
         } else {
-          throw new Error('undefined variable: ' + item.value);
+          throw new Error(qsTranslate('error', 'Undefined variable %1.').arg(item.value));
         }
       }
     } else if (type === IOP1) {
@@ -237,7 +241,7 @@ function evaluate(tokens, expr, values) {
         // Objects & expressions execution
         nstack.push(f.execute.apply(f, args));
       } else {
-        throw new Error(f + ' cannot be executed');
+        throw new Error(qsTranslate('error', '%1 cannot be executed.').arg(f));
       }
     } else if (type === IFUNDEF) {
       // Create closure to keep references to arguments and expression
@@ -270,7 +274,11 @@ function evaluate(tokens, expr, values) {
       nstack.push(item);
     } else if (type === IMEMBER) {
       n1 = nstack.pop();
-      nstack.push(n1[item.value]);
+      //console.log("Getting property", item.value, "of", n1)
+      if(item.value in n1)
+        nstack.push(n1[item.value]);
+      else
+        throw new Error(qsTranslate('error', 'Cannot find property %1 of object %2.').arg(item.value).arg(n1))
     } else if (type === IENDSTATEMENT) {
       nstack.pop();
     } else if (type === IARRAY) {
@@ -281,11 +289,11 @@ function evaluate(tokens, expr, values) {
       }
       nstack.push(args);
     } else {
-      throw new Error('invalid Expression');
+      throw new Error(qsTranslate('error', 'Invalid expression.'));
     }
   }
   if (nstack.length > 1) {
-    throw new Error('invalid Expression (parity)');
+    throw new Error(qsTranslate('error', 'Invalid expression (parity).'));
   }
   // Explicitly return zero to avoid test issues caused by -0
   return nstack[0] === 0 ? 0 : resolveExpression(nstack[0], values);
@@ -361,7 +369,7 @@ function expressionToString(tokens, toJS) {
       if (f === '?') {
         nstack.push('(' + n1 + ' ? ' + n2 + ' : ' + n3 + ')');
       } else {
-        throw new Error('invalid Expression');
+        throw new Error(qsTranslate('error', 'Invalid expression.'));
       }
     } else if (type === IVAR || type === IVARNAME) {
       nstack.push(item.value);
@@ -417,7 +425,7 @@ function expressionToString(tokens, toJS) {
     } else if (type === IEXPR) {
       nstack.push('(' + expressionToString(item.value, toJS) + ')');
     } else if (type === IENDSTATEMENT) ; else {
-      throw new Error('invalid Expression');
+      throw new Error(qsTranslate('error', 'Invalid expression.'));
     }
   }
   if (nstack.length > 1) {
@@ -605,7 +613,7 @@ TokenStream.prototype.next = function () {
       this.isName()) {
     return this.current;
   } else {
-    this.parseError('Unknown character "' + this.expression.charAt(this.pos) + '"');
+    this.parseError(qsTranslate('error', 'Unknown character "%1".').arg(this.expression.charAt(this.pos)));
   }
 };
 
@@ -799,13 +807,13 @@ TokenStream.prototype.unescape = function (v) {
         // interpret the following 4 characters as the hex of the unicode code point
         var codePoint = v.substring(index + 1, index + 5);
         if (!codePointPattern.test(codePoint)) {
-          this.parseError('Illegal escape sequence: \\u' + codePoint);
+          this.parseError(qsTranslate('error', 'Illegal escape sequence: %1.').arg("\\u" + codePoint));
         }
         buffer += String.fromCharCode(parseInt(codePoint, 16));
         index += 4;
         break;
       default:
-        throw this.parseError('Illegal escape sequence: "\\' + c + '"');
+        throw this.parseError(qsTranslate('error', 'Illegal escape sequence: %1.').arg('\\' + c));
     }
     ++index;
     var backslash = v.indexOf('\\', index);
@@ -1007,7 +1015,7 @@ TokenStream.prototype.getCoordinates = function () {
 
 TokenStream.prototype.parseError = function (msg) {
   var coords = this.getCoordinates();
-  throw new Error('parse error [' + coords.line + ':' + coords.column + ']: ' + msg);
+  throw new Error(qsTranslate('error', 'Parse error [%1:%2]: %3').arg(coords.line).arg(coords.column).arg(msg));
 };
 
 function ParserState(parser, tokenStream, options) {
@@ -1061,7 +1069,9 @@ ParserState.prototype.accept = function (type, value) {
 ParserState.prototype.expect = function (type, value) {
   if (!this.accept(type, value)) {
     var coords = this.tokens.getCoordinates();
-    throw new Error('parse error [' + coords.line + ':' + coords.column + ']: Expected ' + (value || type));
+    throw new Error(qsTranslate('error', 'Parse error [%1:%2]: %3')
+      .arg(coords.line).arg(coords.column)
+      .arg(qsTranslate('error', 'Expected %1').arg(qsTranslate('error',value) || type)));
   }
 };
 
@@ -1088,7 +1098,7 @@ ParserState.prototype.parseAtom = function (instr) {
       instr.push(new Instruction(IARRAY, argCount));
     }
   } else {
-    throw new Error('unexpected ' + this.nextToken);
+    throw new Error(qsTranslate('error', 'Unexpected %1').arg(this.nextToken));
   }
 };
 
@@ -1145,7 +1155,7 @@ ParserState.prototype.parseVariableAssignmentExpression = function (instr) {
     var lastInstrIndex = instr.length - 1;
     if (varName.type === IFUNCALL) {
       if (!this.tokens.isOperatorEnabled('()=')) {
-        throw new Error('function definition is not permitted');
+        throw new Error(qsTranslate('error', 'Function definition is not permitted.'));
       }
       for (var i = 0, len = varName.value + 1; i < len; i++) {
         var index = lastInstrIndex - i;
@@ -1159,7 +1169,7 @@ ParserState.prototype.parseVariableAssignmentExpression = function (instr) {
       continue;
     }
     if (varName.type !== IVAR && varName.type !== IMEMBER) {
-      throw new Error('expected variable for assignment');
+      throw new Error(qsTranslate('error', 'Expected variable for assignment.'));
     }
     this.parseVariableAssignmentExpression(varValue);
     instr.push(new Instruction(IVARNAME, varName.value));
@@ -1323,21 +1333,21 @@ ParserState.prototype.parseMemberExpression = function (instr) {
 
     if (op.value === '.') {
       if (!this.allowMemberAccess) {
-        throw new Error('unexpected ".", member access is not permitted');
+        throw new Error(qsTranslate('error', 'Unexpected ".": member access is not permitted'));
       }
 
       this.expect(TNAME);
       instr.push(new Instruction(IMEMBER, this.current.value));
     } else if (op.value === '[') {
       if (!this.tokens.isOperatorEnabled('[')) {
-        throw new Error('unexpected "[]", arrays are disabled');
+        throw new Error(qsTranslate('error', 'Unexpected "[]": arrays are disabled.'));
       }
 
       this.parseExpression(instr);
       this.expect(TBRACKET, ']');
       instr.push(binaryInstruction('['));
     } else {
-      throw new Error('unexpected symbol: ' + op.value);
+      throw new Error(qsTranslate('error', 'Unexpected symbol: %1.').arg(op.value));
     }
   }
 };
@@ -1614,10 +1624,10 @@ function min(array) {
 
 function arrayMap(f, a) {
   if (typeof f !== 'function') {
-    throw new Error('First argument to map is not a function');
+    throw new Error(qsTranslate('error', 'First argument to map is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error('Second argument to map is not an array');
+    throw new Error(qsTranslate('error', 'Second argument to map is not an array.'));
   }
   return a.map(function (x, i) {
     return f(x, i);
@@ -1626,10 +1636,10 @@ function arrayMap(f, a) {
 
 function arrayFold(f, init, a) {
   if (typeof f !== 'function') {
-    throw new Error('First argument to fold is not a function');
+    throw new Error(qsTranslate('error', 'First argument to fold is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error('Second argument to fold is not an array');
+    throw new Error(qsTranslate('error', 'Second argument to fold is not an array.'));
   }
   return a.reduce(function (acc, x, i) {
     return f(acc, x, i);
@@ -1638,10 +1648,10 @@ function arrayFold(f, init, a) {
 
 function arrayFilter(f, a) {
   if (typeof f !== 'function') {
-    throw new Error('First argument to filter is not a function');
+    throw new Error(qsTranslate('error', 'First argument to filter is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error('Second argument to filter is not an array');
+    throw new Error(qsTranslate('error', 'Second argument to filter is not an array.'));
   }
   return a.filter(function (x, i) {
     return f(x, i);
@@ -1650,7 +1660,7 @@ function arrayFilter(f, a) {
 
 function stringOrArrayIndexOf(target, s) {
   if (!(Array.isArray(s) || typeof s === 'string')) {
-    throw new Error('Second argument to indexOf is not a string or array');
+    throw new Error(qsTranslate('error', 'Second argument to indexOf is not a string or array.'));
   }
 
   return s.indexOf(target);
@@ -1658,7 +1668,7 @@ function stringOrArrayIndexOf(target, s) {
 
 function arrayJoin(sep, a) {
   if (!Array.isArray(a)) {
-    throw new Error('Second argument to join is not an array');
+    throw new Error(qsTranslate('error', 'Second argument to join is not an array.'));
   }
 
   return a.join(sep);
@@ -1785,7 +1795,7 @@ class Parser {
     );
     
     parserState.parseExpression(instr);
-    parserState.expect(TEOF, 'EOF');
+    parserState.expect(TEOF, QT_TRANSLATE_NOOP('error','EOF'));
     
     return new Expression(instr, this);
   }

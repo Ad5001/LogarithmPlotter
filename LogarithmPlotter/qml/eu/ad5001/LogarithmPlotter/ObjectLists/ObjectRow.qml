@@ -144,7 +144,6 @@ Item {
         ToolTip.text: qsTr("Set %1 %2 position").arg(obj.constructor.displayType()).arg(obj.name)
         
         onClicked: {
-            console.log(obj.type, obj.name)
             posPicker.objType = obj.type
             posPicker.objName = obj.name
             posPicker.pickX = hasXProp
