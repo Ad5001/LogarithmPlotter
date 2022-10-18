@@ -272,15 +272,15 @@ ApplicationWindow {
                 history.unserialize(...data["history"])
             
             // Refreshing sidebar
-            if(sidebarSelector.currentIndex == 0) {
-                // For some reason, if we load a file while the tab is on object,
-                // we get stuck in a Qt-side loop? Qt bug or side-effect here, I don't know.
-                sidebarSelector.currentIndex = 1
+            //if(sidebarSelector.currentIndex == 0) {
+            //    // For some reason, if we load a file while the tab is on object,
+            //    // we get stuck in a Qt-side loop? Qt bug or side-effect here, I don't know.
+            //    sidebarSelector.currentIndex = 1
+            //    objectLists.update()
+            //    delayRefreshTimer.start()
+            //} else {
                 objectLists.update()
-                delayRefreshTimer.start()
-            } else {
-                objectLists.update()
-            }
+            //}
         } else {
             error = qsTr("Invalid file provided.")
         }
