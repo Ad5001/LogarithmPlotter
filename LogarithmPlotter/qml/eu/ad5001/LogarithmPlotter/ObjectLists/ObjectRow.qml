@@ -27,13 +27,12 @@ import "../js/math/latex.js" as LatexJS
 
 /*!
     \qmltype ObjectRow
-    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \inqmlmodule eu.ad5001.LogarithmPlotter.ObjectLists
     \brief Row describing an object.
 
     This item allows the user to see, control, and modify a graph object.
     It includes the visibility checkbox, the description label (optionally latex if enabled),
     the reposition and delete buttons, and the color picker.
-    
     
     \sa LogarithmPlotter, ObjectCreationGrid, ObjectLists
 */
@@ -42,11 +41,27 @@ Item {
     
     signal changed()
     
+    /*!
+       \qmlproperty var ObjectRow::obj
+       Object to show.
+    */
     property var obj
+    /*!
+       \qmlproperty var ObjectRow::posPicker
+       Reference to the global PositionPicker QML object.
+    */
     property var posPicker
     
+    /*!
+       \qmlproperty bool ObjectRow::objVisible
+       True if the object should be visible, false otherwise.
+    */
     property alias objVisible: objVisibilityCheckBox.checked
-    property int minHeight: 40
+    /*!
+       \qmlproperty bool ObjectRow::minHeight
+       Minimum height of the row.
+    */
+    readonly property int minHeight: 40
     
     height: objDescription.height
     width: obj.typeList.width

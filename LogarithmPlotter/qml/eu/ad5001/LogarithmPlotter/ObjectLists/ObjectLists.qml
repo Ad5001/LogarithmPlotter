@@ -20,11 +20,12 @@ import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
 import QtQuick.Controls 2.12
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
+import eu.ad5001.LogarithmPlotter.ObjectLists.Editor 1.0 as Editor
 import "../js/objects.js" as Objects
 
 /*!
     \qmltype ObjectLists
-    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \inqmlmodule eu.ad5001.LogarithmPlotter.ObjectLists
     \brief Tab of the drawer that allows the user to manage the objects.
 
     This item allows the user to synthetically see all objects, while giving the user the ability
@@ -113,7 +114,7 @@ ScrollView {
     }
     
     // Object editor
-    EditorDialog {
+    Editor.Dialog {
         id: objEditor
     }
     

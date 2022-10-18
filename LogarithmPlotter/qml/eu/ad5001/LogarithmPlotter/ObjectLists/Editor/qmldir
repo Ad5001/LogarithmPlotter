@@ -1,0 +1,5 @@
+module eu.ad5001.LogarithmPlotter.ObjectLists.Editor
+
+Dialog 1.0 Dialog.qml
+CustomPropertyList 1.0 CustomPropertyList.qml
+
