@@ -48,6 +48,7 @@ Item {
         width: parent.width
         //smooth: true
         visible: false
+        sourceSize.width: width*2
         sourceSize.height: sourceSize.width 
     }
     ColorOverlay {

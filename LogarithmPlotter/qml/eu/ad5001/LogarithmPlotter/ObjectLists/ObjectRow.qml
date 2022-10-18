@@ -83,10 +83,11 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             visible: LatexJS.enabled
-            property var ltxInfo: visible ? Latex.render(obj.getLatexLabel(), 2*parent.font.pixelSize, parent.color).split(",") : ["","0","0"]
+            property double depth: 2
+            property var ltxInfo: visible ? Latex.render(obj.getLatexLabel(), depth*parent.font.pixelSize, parent.color).split(",") : ["","0","0"]
             source: visible ? ltxInfo[0] : ""
-            width: parseInt(ltxInfo[1])/2
-            height: parseInt(ltxInfo[2])/2
+            width: parseInt(ltxInfo[1])/depth
+            height: parseInt(ltxInfo[2])/depth
         }
         
         MouseArea {
