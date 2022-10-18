@@ -46,7 +46,6 @@ class GainBode extends Common.ExecutableObject {
         if(name == null) name = Common.getNewName('G')
         if(name == 'G') name = 'G₀' // G is reserved for sum of BODE magnitudes (Somme gains Bode).
         super(name, visible, color, labelContent)
-        this.type = 'Gain Bode'
         if(typeof om_0 == "string") {
             // Point name or create one
             om_0 = Objects.currentObjectsByName[om_0]

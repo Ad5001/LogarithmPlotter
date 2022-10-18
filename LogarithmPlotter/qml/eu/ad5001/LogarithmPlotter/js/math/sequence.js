@@ -66,9 +66,10 @@ class Sequence extends Expr.Expression {
         var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
         var expr = C.parser.parse(str).simplify()
         C.currentVars = Object.assign(
-            {'n': n-this.valuePlus, [this.name]: this.calcValues}, // Just in case, add n (for custom functions)
+            {'n': n-this.valuePlus}, // Just in case, add n (for custom functions)
             C.currentObjectsByName
         )
+        C.currentVars[this.name] = this.calcValues
         this.calcValues[n] = expr.evaluate(C.currentVars)
     }
     

@@ -112,7 +112,7 @@ class DrawableObject {
      */
     constructor(name, visible = true, color = null, labelContent = 'name + value') {
         if(color == null) color = Utils.getRandomColor()
-        this.type = 'Unknown'
+        this.type = this.constructor.type()
         this.name = name
         this.visible = visible
         this.color = color

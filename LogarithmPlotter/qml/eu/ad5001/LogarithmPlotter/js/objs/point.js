@@ -40,7 +40,6 @@ class Point extends Common.DrawableObject  {
                 x = 1, y = 0, labelPosition = 'above', pointStyle = '●') {
         if(name == null) name = Common.getNewName('ABCDEFJKLMNOPQRSTUVW')
         super(name, visible, color, labelContent)
-        this.type = 'Point'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
         this.x = x
         if(typeof y == 'number' || typeof y == 'string') y = new MathLib.Expression(y.toString())

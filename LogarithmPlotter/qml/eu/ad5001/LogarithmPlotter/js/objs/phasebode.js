@@ -43,7 +43,6 @@ class PhaseBode extends Common.ExecutableObject {
         if(name == null) name = Common.getNewName('φ')
         if(name == 'φ') name = 'φ₀' // φ is reserved for sum of BODE phases (Somme phases Bode).
         super(name, visible, color, labelContent)
-        this.type = 'Phase Bode'
         if(typeof phase == 'number' || typeof phase == 'string') phase = new MathLib.Expression(phase.toString())
         this.phase = phase
         if(typeof om_0 == "string") {

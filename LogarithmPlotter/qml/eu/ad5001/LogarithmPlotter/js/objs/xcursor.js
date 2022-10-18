@@ -49,7 +49,6 @@ class XCursor extends Common.DrawableObject {
                 rounding = 3, displayStyle = '— — — — — — —', targetValuePosition = 'Next to target') {
         if(name == null) name = Common.getNewName('X')
         super(name, visible, color, labelContent)
-        this.type = 'X Cursor'
         this.approximate = approximate
         this.rounding = rounding
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
@@ -78,7 +77,8 @@ class XCursor extends Common.DrawableObject {
         if(this.targetElement == null) return `${Latex.variable(this.name)} = ${this.x.latexMarkup}`
         return `\\begin{array}{l}
         ${Latex.variable(this.name)} = ${this.x.latexMarkup} \\\\
-        ${this.getTargetValueLatexLabel()}`
+        ${this.getTargetValueLatexLabel()}
+        \\end{array}`
     }
     
     getTargetValueLabel() {

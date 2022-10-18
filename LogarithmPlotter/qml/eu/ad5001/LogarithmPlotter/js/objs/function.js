@@ -54,7 +54,6 @@ class Function extends Common.ExecutableObject {
                 drawPoints = true, drawDashedLines = true) {
         if(name == null) name = Common.getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
-        this.type = 'Function'
         if(typeof expression == 'number' || typeof expression == 'string') expression = new MathLib.Expression(expression.toString())
         this.expression = expression
         if(typeof definitionDomain == 'string') definitionDomain = MathLib.parseDomain(definitionDomain)

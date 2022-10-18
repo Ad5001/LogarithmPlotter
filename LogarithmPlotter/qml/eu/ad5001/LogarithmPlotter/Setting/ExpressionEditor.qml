@@ -252,7 +252,6 @@ Item {
         let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
         let parsedText = ""
         let token
-        console.log("Parsing text:", parsedText)
         while((token = tokenizer.next()) != null) {
             switch(token.type) {
                 case Parsing.TokenType.VARIABLE:
@@ -280,7 +279,6 @@ Item {
                     break;
             }
         }
-        console.log("Parsed text:", parsedText)
         return parsedText
     }
 }
