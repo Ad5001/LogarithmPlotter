@@ -45,7 +45,7 @@ class Text extends Common.DrawableObject  {
                 x = 1, y = 0, labelPosition = 'center', text = 'New text', disableLatex = false) {
         if(name == null) name = Common.getNewName('t')
         super(name, visible, color, labelContent)
-        this.type = 'Point'
+        this.type = 'Text'
         if(typeof x == 'number' || typeof x == 'string') x = new MathLib.Expression(x.toString())
         this.x = x
         if(typeof y == 'number' || typeof y == 'string') y = new MathLib.Expression(y.toString())

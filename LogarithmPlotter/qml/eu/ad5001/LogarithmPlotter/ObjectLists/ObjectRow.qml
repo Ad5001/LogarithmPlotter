@@ -110,6 +110,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                console.log(obj.type)
                 objEditor.obj = Objects.currentObjects[obj.type][index]
                 objEditor.objType = obj.type
                 objEditor.objIndex = index
@@ -169,10 +170,7 @@ Item {
         ToolTip.text: qsTr("Delete %1 %2").arg(obj.constructor.displayType()).arg(obj.name)
         
         onClicked: {
-            history.addToHistory(new HistoryLib.DeleteObject(
-                obj.name, obj.type, obj.export()
-            ))
-            Objects.deleteObject(obj.name)
+            deleteRecursively(obj)
             changed()
         }
     }
@@ -206,5 +204,19 @@ Item {
             obj.color = color.toString()
             changed()
         }
+    }
+    
+    /*!
+        \qmlmethod void ObjectRow::deleteRecursively(var object)
+        Deletes an object and it's dependencies recursively.
+    */
+    function deleteRecursively(object) {
+        console.log(object.name, object.requiredBy.length)
+        for(let toRemove of object.requiredBy)
+            deleteRecursively(toRemove)
+        history.addToHistory(new HistoryLib.DeleteObject(
+            object.name, object.type, object.export()
+        ))
+        Objects.deleteObject(object.name)
     }
 }

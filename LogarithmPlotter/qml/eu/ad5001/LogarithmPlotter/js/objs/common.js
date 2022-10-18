@@ -200,7 +200,7 @@ class DrawableObject {
             if(properties[property] == 'Expression' && this[property] != null) {
                 // Expressions with dependencies
                 for(let objName of this[property].requiredObjects()) {
-                    if(objName in C.currentObjectsByName) {
+                    if(objName in C.currentObjectsByName && !this.requires.includes(objName)) {
                         this.requires.push(C.currentObjectsByName[objName])
                         C.currentObjectsByName[objName].requiredBy.push(this)
                     }
@@ -224,7 +224,7 @@ class DrawableObject {
      * Callback method when the object is about to get deleted.
      */
     delete() {
-        for(let toRemove of this.requiredBy) {
+        for(let toRemove of this.requiredBy) { // Normally, there should be none here, but better leave nothing just in case.
             Objects.deleteObject(toRemove.name)
         }
     }

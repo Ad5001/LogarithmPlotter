@@ -46,8 +46,8 @@ function deleteObject(objName) {
      * @param {string} objName - Current name of the object.
      */
     let obj = currentObjectsByName[objName]
-    delete currentObjectsByName[objName]
     currentObjects[obj.type].splice(currentObjects[obj.type].indexOf(obj),1)
+    delete currentObjectsByName[objName]
     obj.delete()
 }
 
