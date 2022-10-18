@@ -46,8 +46,9 @@ Item {
     property var posPicker
     
     property alias objVisible: objVisibilityCheckBox.checked
+    property int minHeight: 40
     
-    height: 40
+    height: objDescription.height
     width: obj.typeList.width
     
     CheckBox {
@@ -74,17 +75,18 @@ Item {
         id: objDescription
         anchors.left: objVisibilityCheckBox.right
         anchors.right: deleteButton.left
-        height: parent.height
+        height: LatexJS.enabled ? Math.max(parent.minHeight, latexDescription.height+4) : parent.minHeight
         verticalAlignment: TextInput.AlignVCenter
         text: LatexJS.enabled ? "" : obj.getReadableString()
         font.pixelSize: 14
         
         Image {
+            id: latexDescription
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             visible: LatexJS.enabled
             property double depth: 2
-            property var ltxInfo: visible ? Latex.render(obj.getLatexLabel(), depth*parent.font.pixelSize, parent.color).split(",") : ["","0","0"]
+            property var ltxInfo: visible ? Latex.render(obj.getLatexString(), depth*parent.font.pixelSize+4, parent.color).split(",") : ["","0","0"]
             source: visible ? ltxInfo[0] : ""
             width: parseInt(ltxInfo[1])/depth
             height: parseInt(ltxInfo[2])/depth
@@ -94,7 +96,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 objEditor.obj = Objects.currentObjects[obj.type][index]
-                objEditor.obj.type = obj.type
+                objEditor.objType = obj.type
                 objEditor.objIndex = index
                 //objEditor.editingRow = objectRow
                 objEditor.show()
@@ -108,7 +110,7 @@ Item {
         height: width
         anchors.right: deleteButton.left
         anchors.rightMargin: 5
-        anchors.topMargin: 5
+        anchors.verticalCenter: parent.verticalCenter
         
         Setting.Icon {
             id: icon
@@ -127,6 +129,7 @@ Item {
         ToolTip.text: qsTr("Set %1 %2 position").arg(obj.constructor.displayType()).arg(obj.name)
         
         onClicked: {
+            console.log(obj.type, obj.name)
             posPicker.objType = obj.type
             posPicker.objName = obj.name
             posPicker.pickX = hasXProp
@@ -140,11 +143,11 @@ Item {
     
     Button {
         id: deleteButton
-        width: parent.height - 10
+        width: parent.minHeight - 10
         height: width
         anchors.right: colorPickRect.left
         anchors.rightMargin: 5
-        anchors.topMargin: 5
+        anchors.verticalCenter: parent.verticalCenter
         icon.name: 'delete'
         icon.source: '../icons/common/delete.svg'
         icon.color: sysPalette.buttonText
@@ -164,9 +167,9 @@ Item {
         id: colorPickRect
         anchors.right: parent.right
         anchors.rightMargin: 5
-        anchors.topMargin: 5
+        anchors.verticalCenter: parent.verticalCenter
         color: obj.color
-        width: parent.height - 10
+        width: parent.minHeight - 10
         height: width
         radius: Math.min(width, height)
         border.width: 2

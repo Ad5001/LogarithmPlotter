@@ -51,10 +51,7 @@ class PhaseBode extends Common.ExecutableObject {
             om_0 = Objects.currentObjectsByName[om_0]
             if(om_0 == null) {
                 // Create new point
-                om_0 = Objects.createNewRegisteredObject('Point')
-                om_0.name = Common.getNewName('ω')
-                om_0.color = this.color
-                om_0.labelContent = 'name'
+                om_0 = Objects.createNewRegisteredObject('Point', [Common.getNewName('ω'), this.color, 'name'])
                 om_0.labelPosition = this.phase.execute() >= 0 ? 'above' : 'below'
                 HistoryLib.history.addToHistory(new HistoryLib.CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'

@@ -16,6 +16,19 @@ var IMEMBER = 'IMEMBER';
 var IENDSTATEMENT = 'IENDSTATEMENT';
 var IARRAY = 'IARRAY';
 
+// Additional variable characters.
+var ADDITIONAL_VARCHARS = [
+                "α","β","γ","δ","ε","ζ","η",
+                "π","θ","κ","λ","μ","ξ","ρ",
+                "ς","σ","τ","φ","χ","ψ","ω",
+                "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
+                "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
+                "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
+                "ₜ","¹","²","³","⁴","⁵","⁶",
+                "⁷","⁸","⁹","⁰","₁","₂","₃",
+                "₄","₅","₆","₇","₈","₉","₀"
+            ]
+
 function Instruction(type, value) {
   this.type = type;
   this.value = (value !== undefined && value !== null) ? value : 0;
@@ -707,7 +720,7 @@ TokenStream.prototype.isName = function () {
   var hasLetter = false;
   for (; i < this.expression.length; i++) {
     var c = this.expression.charAt(i);
-    if (c.toUpperCase() === c.toLowerCase()) {
+    if (c.toUpperCase() === c.toLowerCase() && !ADDITIONAL_VARCHARS.includes(c)) {
       if (i === this.pos && (c === '$' || c === '_')) {
         if (c === '_') {
           hasLetter = true;

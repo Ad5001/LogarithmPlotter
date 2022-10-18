@@ -49,7 +49,7 @@ Item {
         //smooth: true
         visible: false
         sourceSize.width: width*2
-        sourceSize.height: sourceSize.width 
+        sourceSize.height: width*2
     }
     ColorOverlay {
         anchors.fill: img
