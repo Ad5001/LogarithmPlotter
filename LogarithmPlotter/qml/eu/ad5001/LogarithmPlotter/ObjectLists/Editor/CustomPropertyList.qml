@@ -18,10 +18,8 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Dialogs 1.3 as D
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../../js/objects.js" as Objects
-import "../../js/objs/common.js" as ObjectsCommons
 import "../../js/historylib.js" as HistoryLib
 import "../../js/utils.js" as Utils
 import "../../js/mathlib.js" as MathLib
@@ -46,7 +44,7 @@ Repeater {
     */
     property var obj
     
-    readonly property var textTypes: ['Expression', 'Domain', 'string', 'number']
+    readonly property var textTypes: ['Domain', 'string', 'number']
     readonly property var comboBoxTypes: ['ObjectType', 'Enum']
     readonly property var listTypes: ['List', 'Dict']
     
@@ -67,47 +65,42 @@ Repeater {
     }
     
     Component {
+        id: expressionEditorComponent
+        
+        // Setting for expressions
+        Setting.ExpressionEditor {
+            height: 30
+            label: propertyLabel
+            icon: `settings/custom/${propertyIcon}.svg`
+            defValue: Utils.simplifyExpression(obj[propertyName].toEditableString())
+            self: obj.name
+            onChanged: function(newExpr) {
+                if(obj[propertyName].toString() != newExpr.toString()) {
+                    history.addToHistory(new HistoryLib.EditedProperty(
+                        obj.name, objType, propertyName, 
+                        obj[propertyName], newExpr
+                    ))
+                    obj[propertyName] = newExpr
+                    root.changed()
+                }
+            }
+        }
+    }
+
+    
+    Component {
         id: textEditorComponent
         
-        // Setting for text & number settings as well as domains & expressions
+        // Setting for text & number settings as well as domains
         Setting.TextSetting {
             height: 30            
             label: propertyLabel
             icon: `settings/custom/${propertyIcon}.svg`
             isDouble: propertyType == 'number'
-            defValue: {
-                switch(propertyType) {
-                    case 'Expression':
-                        return Utils.simplifyExpression(obj[propertyName].toEditableString())
-                        break
-                    case 'string':
-                        return obj[propertyName]
-                        break
-                    case 'Domain':
-                    case 'number':
-                    default:
-                        return obj[propertyName].toString()
-                }
-            }
+            defValue: obj[propertyName] == null ? '' : obj[propertyName].toString()
             onChanged: function(newValue) {
                 try {
                     var newValueParsed = {
-                        'Expression': () => {
-                            let expr = new MathLib.Expression(newValue)
-                            // Check if the expression is valid, throws error otherwise.
-                            if(!expr.allRequirementsFullfilled()) {
-                                let undefVars = expr.undefinedVariables()
-                                console.log(JSON.stringify(undefVars), undefVars.join(', '))
-                                if(undefVars.length > 1)
-                                    throw new Error(qsTranslate('error', 'No object found with names %1.').arg(undefVars.join(', ')))
-                                else
-                                    throw new Error(qsTranslate('error', 'No object found with name %1.').arg(undefVars.join(', ')))
-                            }
-                            if(expr.requiredObjects().includes(obj.name))
-                                throw new Error(qsTranslate('error', 'Object cannot be dependent on itself.'))
-                                // TODO: Check for recursive dependencies.
-                            return expr
-                        },
                         'Domain': () => MathLib.parseDomain(newValue),
                         'string': () => newValue,
                         'number': () => parseFloat(newValue)
@@ -129,15 +122,15 @@ Repeater {
             }
             
         
-            D.MessageDialog {
-                id: parsingErrorDialog
-                title: qsTr("LogarithmPlotter - Parsing error")
-                text: ""
-                function showDialog(propName, propValue, error) {
-                    text = qsTr("Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
-                    open()
-                }
-            }
+            // D.MessageDialog {
+            //     id: parsingErrorDialog
+            //     title: qsTranslate("expression", "LogarithmPlotter - Parsing error")
+            //     text: ""
+            //     function showDialog(propName, propValue, error) {
+            //         text = qsTranslate("error", "Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
+            //         open()
+            //     }
+            // }
         }
     }
     
@@ -150,7 +143,12 @@ Repeater {
             text: propertyLabel
             //icon: `settings/custom/${propertyIcon}.svg`
             
-            checked: obj[propertyName]
+            checked: {
+                //if(obj[propertyName] == null) {
+                //    return false
+                //}
+                return obj[propertyName]
+            }
             onClicked: {
                 history.addToHistory(new HistoryLib.EditedProperty(
                     obj.name, objType, propertyName, 
@@ -269,6 +267,8 @@ Repeater {
                     return commentComponent
                 else if(propertyType == 'boolean')
                     return checkboxComponent
+                else if(propertyType == 'Expression')
+                    return expressionEditorComponent
                 else if(paramTypeIn(propertyType, textTypes))
                     return textEditorComponent
                 else if(paramTypeIn(propertyType, comboBoxTypes))

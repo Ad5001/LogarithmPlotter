@@ -18,6 +18,7 @@
 
 import QtQuick.Controls 2.12
 import QtQuick 2.12 
+import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
 /*!
     \qmltype TextSetting
@@ -119,6 +120,7 @@ Item {
         text: control.defValue
         selectByMouse: true
         onEditingFinished: {
+            if(insertButton.focus || insertPopup.focus) return
             var value = text
             if(control.isInt) value = Math.max(control.min,parseInt(value).toString()=="NaN"?control.min:parseInt(value))
             if(control.isDouble) value = Math.max(control.min,parseFloat(value).toString()=="NaN"?control.min:parseFloat(value))
@@ -130,6 +132,7 @@ Item {
     }
     
     Button {
+        id: insertButton
         text: "α"
         anchors.right: parent.right
         anchors.rightMargin: 5
@@ -137,53 +140,22 @@ Item {
         width: 20
         height: width
         visible: !isInt && !isDouble
-        onClicked: insertPopup.open()
+        onClicked: {
+            insertPopup.open()
+            insertPopup.focus = true
+        }
     }
     
-    Popup {
+    Popup.InsertCharacter {
         id: insertPopup
+        
         x: Math.round((parent.width - width) / 2)
         y: Math.round((parent.height - height) / 2)
-        width: 280
-        height: insertGrid.insertChars.length/insertGrid.columns*(width/insertGrid.columns)
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
         
-        Grid {
-            id: insertGrid
-            width: parent.width
-            columns: 7
-            
-            property var insertChars: [
-                "α","β","γ","δ","ε","ζ","η",
-                "π","θ","κ","λ","μ","ξ","ρ",
-                "ς","σ","τ","φ","χ","ψ","ω",
-                "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
-                "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
-                "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
-                "ₜ","¹","²","³","⁴","⁵","⁶",
-                "⁷","⁸","⁹","⁰","₁","₂","₃",
-                "₄","₅","₆","₇","₈","₉","₀"
-            ]
-            Repeater {
-                model: parent.insertChars.length
-                
-                Button {
-                    id: insertBtn
-                    width: insertGrid.width/insertGrid.columns
-                    height: width
-                    text: insertGrid.insertChars[modelData]
-                    flat: text == " "
-                    font.pixelSize: 18
-                    
-                    onClicked: {
-                        input.insert(input.cursorPosition, insertGrid.insertChars[modelData])
-                        insertPopup.close()
-                        input.focus = true
-                    }
-                }
-            }
+        onSelected: function(c) {
+            input.insert(input.cursorPosition, c)
+            insertPopup.close()
+            input.focus = true
         }
     }
 }
