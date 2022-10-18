@@ -100,6 +100,8 @@ if sys.platform == 'linux':
     data_files.append((os.environ["PREFIX"] + '/mime/packages/', ['linux/x-logarithm-plot.xml']))
     data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/', ['linux/application-x-logarithm-plot.svg']))
     data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', ['logplotter.svg']))
+    if "FLATPAK_INSTALL" not in os.environ:
+        data_files.append((os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/', ['logplotter.svg']))
     if len(sys.argv) > 1:
         if sys.argv[1] == "install":
             os.makedirs(os.environ["PREFIX"] + '/applications/', exist_ok=True)
@@ -111,14 +113,7 @@ if sys.platform == 'linux':
             copyfile(current_dir + '/linux/application-x-logarithm-plot.svg', 
                      os.environ["PREFIX"] + '/icons/hicolor/scalable/mimetypes/application-x-logarithm-plot.svg')
             copyfile(current_dir + '/logplotter.svg', os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
-            if "FLATPAK_INSTALL" in os.environ:
-                copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.flatpak.xml',
-                         os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
-                copyfile(current_dir + '/linux/flatpak/logarithmplotter.desktop', 
-                         os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
-            else:
-                copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.xml',
-                         os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
+                #copyfile(current_dir + '/linux/eu.ad5001.LogarithmPlotter.metainfo.xml', os.environ["PREFIX"] + '/metainfo/eu.ad5001.LogarithmPlotter.metainfo.xml')
                 #copyfile(current_dir + '/linux/logarithmplotter.desktop', os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
         elif sys.argv[1] == "uninstall":
             os.remove(os.environ["PREFIX"] + '/applications/logarithmplotter.desktop')
