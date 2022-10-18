@@ -145,7 +145,7 @@ Item {
         height: parent.height
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
-        font.pixelSize: 14
+        //font.pixelSize: 14
         text: control.defValue
         color: "transparent"//sysPalette.windowText
         focus: true
@@ -183,7 +183,7 @@ Item {
             textFormat: Text.StyledText
             text: colorize(editor.text)
             color: sysPalette.windowText
-            font.pixelSize: parent.font.pixelSize
+            //font.pixelSize: parent.font.pixelSize
             //opacity: editor.activeFocus ? 0 : 1
         }
     }
