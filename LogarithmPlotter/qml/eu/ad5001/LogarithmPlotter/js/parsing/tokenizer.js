@@ -22,20 +22,22 @@
 
 const WHITESPACES = " \t\n\r"
 const STRING_LIMITORS = '"\'`';
-const OPERATORS = "+-*/^%";
-const PUNCTUTATION = "()[]{},";
+const OPERATORS = "+-*/^%?:=!><";
+const PUNCTUTATION = "()[]{},.";
 const NUMBER_CHARS = "0123456789."
 const IDENTIFIER_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789_₀₁₂₃₄₅₆₇₈₉αβγδεζηθκλμξρςστφχψωₐₑₒₓₔₕₖₗₘₙₚₛₜ"
 
-enum TokenType {
+var TokenType = {
     // Expression type
-    VARIABLE,
-    CONSTANT,
-    FUNCTION,
-    OPERATOR,
-    PUNCT,
-    NUMBER,
-    STRING
+    "WHITESPACE": "WHITESPACE",
+    "VARIABLE": "VARIABLE",
+    "CONSTANT": "CONSTANT",
+    "FUNCTION": "FUNCTION",
+    "OPERATOR": "OPERATOR",
+    "PUNCT": "PUNCT",
+    "NUMBER": "NUMBER",
+    "STRING": "STRING",
+    "UNKNOWN": "UNKNOWN"
 }
 
 class Token {
@@ -46,14 +48,24 @@ class Token {
 }
 
 class ExpressionTokenizer {
-    constructor(input) {
+    constructor(input, tokenizeWhitespaces = false, errorOnUnknown = true) {
         this.input = input;
         this.currentToken = null;
+        this.tokenizeWhitespaces = tokenizeWhitespaces
+        this.errorOnUnknown = errorOnUnknown
     }
     
     skipWhitespaces() {
         while(!this.input.atEnd() && WHITESPACES.includes(this.input.peek()))
             this.input.next();
+    }
+    
+    readWhitespaces() {
+        let included = "";
+        while(!this.input.atEnd() && WHITESPACES.includes(this.input.peek())) {
+            included += this.input.next();
+        }
+        return new Token(TokenType.WHITESPACE, included)
     }
     
     readString() {
@@ -68,7 +80,9 @@ class ExpressionTokenizer {
                     included += this.input.next();
             }
             this.input.skip(delimitation)
-            return new Token(TokenType.STRING, included);
+            let token = new Token(TokenType.STRING, included)
+            token.limitator = delimitation
+            return token
         } else {
             this.input.raise("Unexpected " + delimitation + ". Expected  string delimitator")
         }
@@ -84,12 +98,20 @@ class ExpressionTokenizer {
             }
             included += this.input.next();
         }
+        return new Token(TokenType.NUMBER, included)
+    }
+    
+    readOperator() {
+        let included = "";
+        while(!this.input.atEnd() && OPERATORS.includes(this.input.peek())) {
+            included += this.input.next();
+        }
+        return new Token(TokenType.OPERATOR, included)
     }
     
     readIdentifier() {
         let identifier = "";
-        let hasDot = false;
-        while(!this.input.atEnd() && IDENTIFIER_CHARS.includes(this.input.peek())) {
+        while(!this.input.atEnd() && IDENTIFIER_CHARS.includes(this.input.peek().toLowerCase())) {
             identifier += this.input.next();
         }
         if(Reference.CONSTANTS_LIST.includes(identifier.toLowerCase())) {
@@ -102,16 +124,21 @@ class ExpressionTokenizer {
     }
     
     readNextToken() {
-        this.skipWhitespaces()
-        if(input.atEnd()) return null;
-        let c = input.peek();
+        if(!this.tokenizeWhitespaces)
+            this.skipWhitespaces()
+        if(this.input.atEnd()) return null;
+        let c = this.input.peek();
+        if(this.tokenizeWhitespaces && WHITESPACES.includes(c)) return this.readWhitespaces();
         if(STRING_LIMITORS.includes(c)) return this.readString();
         if(NUMBER_CHARS.includes(c)) return this.readNumber();
-        if(IDENTIFIER_CHARS.includes(c)) return this.readIdentifier();
+        if(IDENTIFIER_CHARS.includes(c.toLowerCase())) return this.readIdentifier();
+        if(OPERATORS.includes(c)) return this.readOperator();
         if(Reference.CONSTANTS_LIST.includes(c)) return new Token(TokenType.CONSTANT, c);
-        if(OPERATORS.includes(c)) return new Token(TokenType.OPERATOR, c);
-        if(PUNCTUTATION.includes(c)) return new Token(TokenType.PUNCT, c);
-        this.input.throw("Unknown token character " + c)
+        if(PUNCTUTATION.includes(c)) return new Token(TokenType.PUNCT, this.input.next());
+        if(this.errorOnUnknown)
+            this.input.throw("Unknown token character " + c)
+        else
+            return new Token(TokenType.UNKNOWN, this.input.next());
     }
 
     peek() {
@@ -134,8 +161,8 @@ class ExpressionTokenizer {
     }
     
     skip(type) {
-        Token next = Next();
+        let next = this.next();
         if(next.type != type)
-            input.raise("Unexpected token " + next.type.oLowerCase() + ' "' + next.value + '". Expected ' + type.toLowerCase());
+            input.raise("Unexpected token " + next.type.toLowerCase() + ' "' + next.value + '". Expected ' + type.toLowerCase());
     }
 }

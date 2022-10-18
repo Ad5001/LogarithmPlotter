@@ -21,6 +21,8 @@ import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 import "../js/mathlib.js" as MathLib
+import "../js/utils.js" as Utils
+import "../js/parsing/parsing.js" as Parsing
 
 
 /*!
@@ -77,12 +79,28 @@ Item {
     /*!
        \qmlproperty string ExpressionEditor::openAndCloseMatches
        Characters that when pressed, should be immediately followed up by their closing character.
+       TODO: Make it configurable.
     */
     readonly property var openAndCloseMatches: {
         "(": ")",
         "[": "]",
         "'": "'",
         '"': '"'
+    }
+    
+    /*!
+       \qmlproperty string ExpressionEditor::colorScheme
+       Color scheme of the editor, currently based on Breeze Light.
+       TODO: Make it configurable.
+    */
+    readonly property var colorScheme: {
+        'NORMAL': "#1F1C1B",
+        'VARIABLE': "#0057AE",
+        'CONSTANT': "#5E2F00",
+        'FUNCTION': "#644A9B",
+        'OPERATOR': "#A44EA4",
+        'STRING': "#9C0E0E",
+        'NUMBER': "#805C00"
     }
     
     Icon {
@@ -117,6 +135,7 @@ Item {
         }
     }
     
+    
     TextField {
         id: editor
         anchors.top: parent.top
@@ -126,8 +145,9 @@ Item {
         height: parent.height
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
+        font.pixelSize: 14
         text: control.defValue
-        color: sysPalette.windowText
+        color: "transparent"//sysPalette.windowText
         focus: true
         selectByMouse: true
         
@@ -153,6 +173,18 @@ Item {
                 cursorPosition = start+1
                 event.accepted = true
             }
+        }
+        
+        Text {
+            id: colorizedEditor
+            anchors.fill: editor
+            verticalAlignment: TextInput.AlignVCenter
+            horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
+            textFormat: Text.StyledText
+            text: colorize(editor.text)
+            color: sysPalette.windowText
+            font.pixelSize: parent.font.pixelSize
+            //opacity: editor.activeFocus ? 0 : 1
         }
     }
     
@@ -209,6 +241,47 @@ Item {
             parsingErrorDialog.showDialog(propertyName, newExpression, e.message)
         }
         return expr
+    }
+    
+    /*!
+        \qmlmethod var ExpressionEditor::colorize(string expressionText)
+        Creates an HTML colorized string of the incomplete \c expressionText.
+        Returns the colorized and escaped expression if possible, null otherwise..
+    */
+    function colorize(text) {
+        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
+        let parsedText = ""
+        let token
+        console.log("Parsing text:", parsedText)
+        while((token = tokenizer.next()) != null) {
+            switch(token.type) {
+                case Parsing.TokenType.VARIABLE:
+                    parsedText += `<font color="${colorScheme.VARIABLE}">${token.value}</font>`
+                    break;
+                case Parsing.TokenType.CONSTANT:
+                    parsedText += `<font color="${colorScheme.CONSTANT}">${token.value}</font>`
+                    break;
+                case Parsing.TokenType.FUNCTION:
+                    parsedText += `<font color="${Utils.escapeHTML(colorScheme.FUNCTION)}">${token.value}</font>`
+                    break;
+                case Parsing.TokenType.OPERATOR:
+                    parsedText += `<font color="${colorScheme.OPERATOR}">${Utils.escapeHTML(token.value)}</font>`
+                    break;
+                case Parsing.TokenType.NUMBER:
+                    parsedText += `<font color="${colorScheme.NUMBER}">${Utils.escapeHTML(token.value)}</font>`
+                    break;
+                case Parsing.TokenType.STRING:
+                    parsedText += `<font color="${colorScheme.STRING}">${token.limitator}${Utils.escapeHTML(token.value)}${token.limitator}</font>`
+                    break;
+                case Parsing.TokenType.WHITESPACE:
+                case Parsing.TokenType.PUNCT:
+                default:
+                    parsedText += Utils.escapeHTML(token.value).replace(/ /g, '&nbsp;')
+                    break;
+            }
+        }
+        console.log("Parsed text:", parsedText)
+        return parsedText
     }
 }
 

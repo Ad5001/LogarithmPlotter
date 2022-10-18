@@ -18,8 +18,8 @@
 
 .pragma library
 
-import "ast.js" as AST
-import "tokenizer.js" as TK
+.import "ast.js" as AST
+.import "tokenizer.js" as TK
 
 
 class ExpressionBuilder {
