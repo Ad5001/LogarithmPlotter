@@ -1836,9 +1836,9 @@ var optionNameMap = {
   'not': 'logical',
   '?': 'conditional',
   ':': 'conditional',
-  '=': 'assignment',
+  //'=': 'assignment', // Disable assignment
   '[': 'array',
-  '()=': 'fndef'
+  //'()=': 'fndef' // Diable function definition
 };
 
 function getOptionName(op) {

@@ -45,6 +45,7 @@ class CreateNewObject extends C.Action {
     
     redo() {
         Objects.createNewRegisteredObject(this.targetType, this.targetProperties)
+        Objects.currentObjectsByName[this.targetName].update()
     }
     
     export() {

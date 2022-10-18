@@ -47,8 +47,8 @@ function deleteObject(objName) {
      */
     let obj = currentObjectsByName[objName]
     currentObjects[obj.type].splice(currentObjects[obj.type].indexOf(obj),1)
-    delete currentObjectsByName[objName]
     obj.delete()
+    delete currentObjectsByName[objName]
 }
 
 function getObjectsName(objType) {

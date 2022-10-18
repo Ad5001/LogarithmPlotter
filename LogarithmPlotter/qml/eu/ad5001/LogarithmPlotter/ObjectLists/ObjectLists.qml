@@ -96,7 +96,7 @@ ScrollView {
                 posPicker: positionPicker
                 
                 onChanged: {
-                    //obj = Objects.currentObjects[objType][index]
+                    obj = Objects.currentObjects[objType][index]
                     objectListList.update()
                 }
                 

@@ -249,7 +249,11 @@ ApplicationWindow {
             
             // Importing objects
             Objects.currentObjects = {}
-            Objects.currentObjectsByName = {}
+            Object.keys(Objects.currentObjectsByName).forEach(key => {
+                delete Objects.currentObjectsByName[key];
+                // Required to keep the same reference for the copy of the object used in expression variable detection.
+                // Another way would be to change the reference as well, but I feel like the code would be less clean.
+            })
             for(let objType in data['objects']) {
                 if(Object.keys(Objects.types).indexOf(objType) > -1) {
                     Objects.currentObjects[objType] = []

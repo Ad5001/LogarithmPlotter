@@ -110,7 +110,6 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                console.log(obj.type)
                 objEditor.obj = Objects.currentObjects[obj.type][index]
                 objEditor.objType = obj.type
                 objEditor.objIndex = index
@@ -211,9 +210,9 @@ Item {
         Deletes an object and it's dependencies recursively.
     */
     function deleteRecursively(object) {
-        console.log(object.name, object.requiredBy.length)
         for(let toRemove of object.requiredBy)
             deleteRecursively(toRemove)
+        object.requiredBy = []
         history.addToHistory(new HistoryLib.DeleteObject(
             object.name, object.type, object.export()
         ))

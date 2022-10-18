@@ -200,7 +200,7 @@ class DrawableObject {
             if(properties[property] == 'Expression' && this[property] != null) {
                 // Expressions with dependencies
                 for(let objName of this[property].requiredObjects()) {
-                    if(objName in C.currentObjectsByName && !this.requires.includes(objName)) {
+                    if(objName in C.currentObjectsByName && !this.requires.includes(C.currentObjectsByName[objName])) {
                         this.requires.push(C.currentObjectsByName[objName])
                         C.currentObjectsByName[objName].requiredBy.push(this)
                     }
