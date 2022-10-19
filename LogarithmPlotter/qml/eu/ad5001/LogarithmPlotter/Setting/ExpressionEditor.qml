@@ -211,6 +211,7 @@ Item {
         onSelected: function(c) {
             editor.insert(editor.cursorPosition, c)
             insertPopup.close()
+            focus = false
             editor.focus = true
         }
     }

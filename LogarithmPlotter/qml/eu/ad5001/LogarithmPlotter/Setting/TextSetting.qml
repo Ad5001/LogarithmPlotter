@@ -155,6 +155,7 @@ Item {
         onSelected: function(c) {
             input.insert(input.cursorPosition, c)
             insertPopup.close()
+            focus = false
             input.focus = true
         }
     }
