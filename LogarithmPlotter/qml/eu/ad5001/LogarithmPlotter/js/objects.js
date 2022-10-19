@@ -58,11 +58,12 @@ function getObjectsName(objType) {
      * @return {array} List of names of the objects.
      */
     if(objType == "ExecutableObject") {
-        var types = getExecutableTypes()
-        var elementNames = ['']
-        types.forEach(function(elemType){
+        // NOTE: QMLJS does not support flatMap.
+        // return getExecutableTypes().flatMap(elemType => currentObjects[elemType].map(obj => obj.name))
+        let types = getExecutableTypes()
+        let elementNames = ['']
+        for(let elemType of types)
             elementNames = elementNames.concat(currentObjects[elemType].map(obj => obj.name))
-        })
         return elementNames
     }
     if(currentObjects[objType] == undefined) return []

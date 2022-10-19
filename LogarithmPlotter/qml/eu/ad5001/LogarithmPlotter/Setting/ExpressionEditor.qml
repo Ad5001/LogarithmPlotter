@@ -22,6 +22,7 @@ import QtQuick.Dialogs 1.3 as D
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
 import "../js/mathlib.js" as MathLib
 import "../js/utils.js" as Utils
+import "../js/objects.js" as Objects
 import "../js/parsing/parsing.js" as Parsing
 
 
@@ -30,7 +31,7 @@ import "../js/parsing/parsing.js" as Parsing
     \inqmlmodule eu.ad5001.LogarithmPlotter.Setting
     \brief Setting to edit strings and numbers.
             
-    \sa EditorDialog, Settings, Icon
+    \sa EditorDialog, AutocompletionCategory
 */
 Item {
     id: control
@@ -177,12 +178,18 @@ Item {
         }
         
         Keys.onUpPressed: function(event) {
-            acPopupContent.itemSelected = Math.max(0, acPopupContent.itemSelected-1)
+            if(acPopupContent.itemSelected == 0)
+                acPopupContent.itemSelected = acPopupContent.itemCount-1
+            else
+                acPopupContent.itemSelected = acPopupContent.itemSelected-1
             event.accepted = true
         }
         
         Keys.onDownPressed: function(event) {
-            acPopupContent.itemSelected = Math.max(0,Math.min(acPopupContent.itemCount-1, acPopupContent.itemSelected+1))
+            if(acPopupContent.itemSelected == Math.min(acPopupContent.itemCount-1))
+                acPopupContent.itemSelected = 0
+            else
+                acPopupContent.itemSelected = acPopupContent.itemSelected+1
             event.accepted = true
         }
         
@@ -243,8 +250,8 @@ Item {
                 visible: currentToken != null && identifierTokenTypes.includes(currentToken.type)
                 
                 // Focus handling.
-                readonly property var lists: [functionsList]
-                readonly property int itemCount: functionsList.model.length
+                readonly property var lists: [constantsList, functionsList, executableObjectList]
+                readonly property int itemCount: constantsList.model.length + functionsList.model.length + executableObjectList.model.length
                 property int itemSelected: 0
                 
                 /*!
@@ -275,52 +282,34 @@ Item {
                     editor.cursorPosition = startPos+autotext.autocomplete.length+autotext.cursorFinalOffset
                 }
                 
-                ListView {
-                    id: functionsList
-                    //anchors.fill: parent
-                    property int itemStartIndex: 0
-                    width: parent.width
-                    visible: model.length > 0
-                    implicitHeight: contentItem.childrenRect.height + headerItem.height
-                    model: parent.visible ? 
-                        Parsing.FUNCTIONS_LIST.filter((name) => name.includes(acPopupContent.currentToken.value))
-                        .map((name) => {return {'text': name, 'autocomplete': name+'()', 'cursorFinalOffset': -1}}) : []
+                AutocompletionCategory {
+                    id: constantsList
                     
-                    header: Column {
-                        width: functionsList.width
-                        spacing: 2
-                        topPadding: 5
-                        bottomPadding: 5
-                        
-                        Text {
-                            leftPadding: 5
-                            text: qsTr("Functions")
-                        }
-                        
-                        Rectangle {
-                            height: 1
-                            color: 'black'
-                            width: parent.width
-                        }
-                    }
+                    itemStartIndex: 0
+                    category: qsTr("Constants")
+                    categoryItems: Parsing.CONSTANTS_LIST
+                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item + " ", 'cursorFinalOffset': 0}}
+                    baseText: parent.currentToken.value
+                }
                 
-                    delegate: Rectangle {
-                        property bool selected: index + functionsList.itemStartIndex == acPopupContent.itemSelected
-                        
-                        width: funcText.width
-                        height: funcText.height
-                        color: selected ? sysPalette.highlight : 'transparent'
-                        
-                        Text {
-                            id: funcText
-                            topPadding: 2
-                            bottomPadding: 2
-                            leftPadding: 15
-                            text: functionsList.model[index].text
-                            width: functionsList.width
-                            color: parent.selected ? sysPalette.highlightedText : sysPalette.windowText
-                        }
-                    }
+                AutocompletionCategory {
+                    id: functionsList
+                    
+                    itemStartIndex: constantsList.model.length
+                    category: qsTr("Functions")
+                    categoryItems: Parsing.FUNCTIONS_LIST
+                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item+'()', 'cursorFinalOffset': -1}}
+                    baseText: parent.currentToken.value
+                }
+                
+                AutocompletionCategory {
+                    id: executableObjectList
+                    
+                    itemStartIndex: constantsList.model.length + functionsList.model.length
+                    category: qsTr("Executable Objects")
+                    categoryItems: Objects.getObjectsName("ExecutableObject")
+                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item+'()', 'cursorFinalOffset': -1}}
+                    baseText: parent.currentToken.value
                 }
             }
         }

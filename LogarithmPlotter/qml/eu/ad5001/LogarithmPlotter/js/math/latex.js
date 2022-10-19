@@ -148,9 +148,11 @@ function expression(tokens) {
         
         switch(type) {
             case ExprEval.INUMBER:
-                if (typeof item.value === 'number' && item.value < 0) {
+                if(item.value == Infinity) {
+                    nstack.push("\\infty")
+                } else if(typeof item.value === 'number' && item.value < 0) {
                     nstack.push(par(item.value));
-                } else if (Array.isArray(item.value)) {
+                } else if(Array.isArray(item.value)) {
                     nstack.push('[' + item.value.map(ExprEval.escapeValue).join(', ') + ']');
                 } else {
                     nstack.push(ExprEval.escapeValue(item.value));

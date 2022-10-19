@@ -28,6 +28,7 @@ var evalVariables = { // Variables not provided by expr-eval.js, needs to be pro
     "pi": Math.PI,
     "π": Math.PI,
     "inf": Infinity,
+    "infinity": Infinity,
     "Infinity": Infinity,
     "∞": Infinity,
     "e": Math.E,

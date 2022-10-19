@@ -5,3 +5,4 @@ Icon 1.0 Icon.qml
 ListSetting 1.0 ListSetting.qml
 TextSetting 1.0 TextSetting.qml
 ExpressionEditor 1.0 ExpressionEditor.qml
+AutocompletionCategory 1.0 AutocompletionCategory.qml
