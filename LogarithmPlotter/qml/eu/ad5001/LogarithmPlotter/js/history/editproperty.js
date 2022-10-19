@@ -19,6 +19,7 @@
 .pragma library
 
 .import "../objects.js" as Objects
+.import "../math/latex.js" as Latex
 .import "../mathlib.js" as MathLib
 .import "../objs/common.js" as Common
 .import "common.js" as C
@@ -77,30 +78,37 @@ class EditedProperty extends C.Action {
     }
     
     setReadableValues() {
-        this.prev = "";
-        this.next = "";
+        this.prevString = "";
+        this.nextString = "";
         if(this.propertyType instanceof Object) {
             switch(this.propertyType.type) {
                 case "Enum":
-                    this.prev = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
-                    this.next = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
+                    this.prevString = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.previousValue)]
+                    this.nextString = this.propertyType.translatedValues[this.propertyType.values.indexOf(this.newValue)]
                     break;
                 case "ObjectType":
-                    this.prev = this.previousValue == null ? "null" : this.previousValue.name
-                    this.next = this.newValue == null ? "null" : this.newValue.name
+                    this.prevString = this.previousValue == null ? "null" : this.previousValue.name
+                    this.nextString = this.newValue == null ? "null" : this.newValue.name
                     break;
                 case "List":
-                    this.prev = this.previousValue.join(",")
-                    this.next = this.newValue.name.join(",")
+                    this.prevString = this.previousValue.join(",")
+                    this.nextString = this.newValue.name.join(",")
                     break;
                 case "Dict":
-                    this.prev = JSON.stringify(this.previousValue)
-                    this.next = JSON.stringify(this.newValue)
+                    this.prevString = JSON.stringify(this.previousValue)
+                    this.nextString = JSON.stringify(this.newValue)
                     break;
             }
         } else {
-            this.prev = this.previousValue == null ? "null" : this.previousValue.toString()
-            this.next = this.newValue == null ? "null" : this.newValue.toString()
+            this.prevString = this.previousValue == null ? "null" : this.previousValue.toString()
+            this.nextString = this.newValue == null ? "null" : this.newValue.toString()
+        }
+        // HTML
+        this.prevHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prevString+'&nbsp;</tt>'
+        this.nextHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.nextString+'&nbsp;</tt>'
+        if(Latex.enabled && this.propertyType == "Expression") {
+            this.prevHTML= this.renderLatexAsHtml(this.previousValue.latexMarkup)
+            this.nextHTML= this.renderLatexAsHtml(this.newValue.latexMarkup)
         }
     }
     
@@ -108,16 +116,14 @@ class EditedProperty extends C.Action {
         return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
                 .arg(this.targetPropertyReadable)
                 .arg(Objects.types[this.targetType].displayType())
-                .arg(this.targetName).arg(this.prev).arg(this.next)
+                .arg(this.targetName).arg(this.prevString).arg(this.nextString)
     }
     
     getHTMLString() {
         return qsTr('%1 of %2 changed from %3 to %4.')
                 .arg(this.targetPropertyReadable)
                 .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
-                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prev+'&nbsp;</tt>')
-                .arg('<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.next+'&nbsp;</tt>')
-//                 .arg('<b style="font-size: 15px;">' + Objects.types[this.targetType].displayType())
-                
+                .arg(this.prevHTML)
+                .arg(this.nextHTML)                
     }
 }
