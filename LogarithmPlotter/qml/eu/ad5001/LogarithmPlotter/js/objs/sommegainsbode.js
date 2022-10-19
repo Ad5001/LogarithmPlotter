@@ -26,7 +26,7 @@
 .import "../math/latex.js" as Latex
 
 
-class SommeGainsBode extends Common.DrawableObject {
+class SommeGainsBode extends Common.ExecutableObject {
     static type(){return 'Somme gains Bode'}
     static displayType(){return qsTr('Bode Magnitudes Sum')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes Sum')}

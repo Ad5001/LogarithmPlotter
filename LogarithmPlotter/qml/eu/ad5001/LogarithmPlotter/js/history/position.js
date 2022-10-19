@@ -75,7 +75,7 @@ class EditedPosition extends C.Action {
     }
     
     export() {
-        return [this.targetName, this.targetType, this.targetProperty, 
+        return [this.targetName, this.targetType,
                 this.previousXValue.toEditableString(), this.newXValue.toEditableString(),
                 this.previousYValue.toEditableString(), this.newYValue.toEditableString()]
     }

@@ -30,8 +30,8 @@ class Text extends Common.DrawableObject  {
     static displayType(){return qsTr('Text')}
     static displayTypeMultiple(){return qsTr('Texts')}
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
-        [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','x')]:             new P.Expression(),
+        [QT_TRANSLATE_NOOP('prop','y')]:             new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Positioning,
         [QT_TRANSLATE_NOOP('prop','text')]:          'string',
                             'comment1':              QT_TRANSLATE_NOOP(

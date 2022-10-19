@@ -30,7 +30,7 @@ class Function extends Common.ExecutableObject {
     static displayType(){return qsTr('Function')}
     static displayTypeMultiple(){return qsTr('Functions')}
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','expression')]:         'Expression',
+        [QT_TRANSLATE_NOOP('prop','expression')]:         new P.Expression('x'),
         [QT_TRANSLATE_NOOP('prop','definitionDomain')]:   'Domain',
         [QT_TRANSLATE_NOOP('prop','destinationDomain')]:  'Domain',
                                   'comment1':             QT_TRANSLATE_NOOP(

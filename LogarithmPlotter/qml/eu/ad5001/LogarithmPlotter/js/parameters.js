@@ -16,6 +16,13 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+class Expression {
+    constructor(...variables) {
+        this.type = 'Expression'
+        this.variables = variables
+    }
+}
+
 class Enum {
     constructor(...values) {
         this.type = 'Enum'

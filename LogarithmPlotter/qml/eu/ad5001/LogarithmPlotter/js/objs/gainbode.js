@@ -35,7 +35,7 @@ class GainBode extends Common.ExecutableObject {
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
         [QT_TRANSLATE_NOOP('prop','pass')]:          P.Enum.BodePass,
-        [QT_TRANSLATE_NOOP('prop','gain')]:          'Expression',
+        [QT_TRANSLATE_NOOP('prop','gain')]:          new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
         [QT_TRANSLATE_NOOP('prop','omGraduation')]:  'boolean'

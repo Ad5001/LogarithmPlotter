@@ -32,7 +32,7 @@ class PhaseBode extends Common.ExecutableObject {
     static displayTypeMultiple(){return qsTr('Bode Phases')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
-        [QT_TRANSLATE_NOOP('prop','phase')]:         'Expression',
+        [QT_TRANSLATE_NOOP('prop','phase')]:         new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','unit')]:          new P.Enum('°', 'deg', 'rad'),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number'

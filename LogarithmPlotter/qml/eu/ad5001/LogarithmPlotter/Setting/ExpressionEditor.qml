@@ -62,6 +62,11 @@ Item {
     */
     property string self: ""
     /*!
+       \qmlproperty var ExpressionEditor::variables
+       Accepted variables for the expression.
+    */
+    property var variables: []
+    /*!
        \qmlproperty string ExpressionEditor::placeholderText
        Value of the editor.
     */
@@ -250,8 +255,8 @@ Item {
                 visible: currentToken != null && identifierTokenTypes.includes(currentToken.type)
                 
                 // Focus handling.
-                readonly property var lists: [constantsList, functionsList, executableObjectList]
-                readonly property int itemCount: constantsList.model.length + functionsList.model.length + executableObjectList.model.length
+                readonly property var lists: [variablesList, constantsList, functionsList, executableObjectsList, objectsList]
+                readonly property int itemCount: variablesList.model.length, constantsList.model.length + functionsList.model.length + executableObjectsList.model.length + objectsList.model.length
                 property int itemSelected: 0
                 
                 /*!
@@ -276,40 +281,79 @@ Item {
                 function autocomplete() {
                     let autotext = autocompleteAt(itemSelected)
                     let startPos = currentToken.startPosition
-                    console.log("Autocompleting",autotext.text,startPos)
                     editor.remove(startPos, startPos+currentToken.value.length)
                     editor.insert(startPos, autotext.autocomplete)
                     editor.cursorPosition = startPos+autotext.autocomplete.length+autotext.cursorFinalOffset
                 }
                 
                 AutocompletionCategory {
+                    id: variablesList
+                    
+                    category: qsTr("Variables")
+                    itemStartIndex: 0
+                    itemSelected: parent.itemSelected
+                    categoryItems: control.variables
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': '',
+                        'autocomplete': item + " ", 'cursorFinalOffset': 0
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
+                }
+                
+                AutocompletionCategory {
                     id: constantsList
                     
-                    itemStartIndex: 0
                     category: qsTr("Constants")
+                    itemStartIndex: variablesList.model.length
+                    itemSelected: parent.itemSelected
                     categoryItems: Parsing.CONSTANTS_LIST
-                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item + " ", 'cursorFinalOffset': 0}}
-                    baseText: parent.currentToken.value
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': '',
+                        'autocomplete': item + " ", 'cursorFinalOffset': 0
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
                 }
                 
                 AutocompletionCategory {
                     id: functionsList
                     
-                    itemStartIndex: constantsList.model.length
                     category: qsTr("Functions")
+                    itemStartIndex: variablesList.model.length + constantsList.model.length
+                    itemSelected: parent.itemSelected
                     categoryItems: Parsing.FUNCTIONS_LIST
-                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item+'()', 'cursorFinalOffset': -1}}
-                    baseText: parent.currentToken.value
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': '',
+                        'autocomplete': item+'()', 'cursorFinalOffset': -1
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
                 }
                 
                 AutocompletionCategory {
-                    id: executableObjectList
+                    id: executableObjectsList
                     
-                    itemStartIndex: constantsList.model.length + functionsList.model.length
                     category: qsTr("Executable Objects")
-                    categoryItems: Objects.getObjectsName("ExecutableObject")
-                    autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item+'()', 'cursorFinalOffset': -1}}
-                    baseText: parent.currentToken.value
+                    itemStartIndex: variablesList.model.length + constantsList.model.length + functionsList.model.length
+                    itemSelected: parent.itemSelected
+                    categoryItems: Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': `${Objects.currentObjectsByName[item].constructor.displayType()}`,
+                        'autocomplete': item+'()', 'cursorFinalOffset': -1
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
+                }
+                
+                AutocompletionCategory {
+                    id: objectsList
+                    
+                    category: qsTr("Objects")
+                    itemStartIndex: executableObjectsList.model.length + variablesList.model.length + constantsList.model.length + functionsList.model.length
+                    itemSelected: parent.itemSelected
+                    categoryItems: Object.keys(Objects.currentObjectsByName).filter(obj => obj != self)
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': `${Objects.currentObjectsByName[item].constructor.displayType()}`,
+                        'autocomplete': item+'.', 'cursorFinalOffset': 0
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
                 }
             }
         }

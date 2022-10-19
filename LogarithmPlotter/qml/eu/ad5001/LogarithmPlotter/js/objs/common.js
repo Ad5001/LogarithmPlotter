@@ -30,9 +30,10 @@
  * Creates a new name for an object, based on the \c allowedLetters.
  * If variables with each of the allowedLetters is created, a subscript
  * number is added to the name.
+ * @param {string} prefix - Prefix to the name.
  * @return {string} New unused name for a new object.
  */
-function getNewName(allowedLetters) {
+function getNewName(allowedLetters, prefix='') {
     // Allows to get a new name, based on the allowed letters, 
     // as well as adding a sub number when needs be.
     var newid = 0
@@ -40,7 +41,7 @@ function getNewName(allowedLetters) {
     do {
         var letter = allowedLetters[newid % allowedLetters.length]
         var num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
-        ret = letter + (num > 0 ? Utils.textsub(num-1) : '')
+        ret = prefix + letter + (num > 0 ? Utils.textsub(num-1) : '')
         newid += 1
     } while(ret in Objects.currentObjectsByName)
     return ret
@@ -80,10 +81,10 @@ class DrawableObject {
      * List of properties used in the Object Editor.
      * 
      * Properties are set with key as property name and
-     * value as it's type name (e.g 'Expression', 'string'...),
+     * value as it's type name (e.g 'numbers', 'string'...),
      * an Enum for enumerations, an ObjectType for DrawableObjects
      * with a specific type, a List instance for lists, a 
-     * Dictionary instance for dictionaries...
+     * Dictionary instance for dictionaries, an Expression for expressions...
      * 
      * If the property is to be translated, the key should be passed
      * through the QT_TRANSLATE_NOOP macro in that form:

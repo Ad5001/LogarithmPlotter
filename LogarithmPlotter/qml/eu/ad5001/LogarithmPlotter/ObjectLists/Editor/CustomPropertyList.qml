@@ -74,6 +74,7 @@ Repeater {
             icon: `settings/custom/${propertyIcon}.svg`
             defValue: Utils.simplifyExpression(obj[propertyName].toEditableString())
             self: obj.name
+            variables: propertyType.variables
             onChanged: function(newExpr) {
                 if(obj[propertyName].toString() != newExpr.toString()) {
                     history.addToHistory(new HistoryLib.EditedProperty(
@@ -267,7 +268,7 @@ Repeater {
                     return commentComponent
                 else if(propertyType == 'boolean')
                     return checkboxComponent
-                else if(propertyType == 'Expression')
+                else if(paramTypeIn(propertyType, ['Expression']))
                     return expressionEditorComponent
                 else if(paramTypeIn(propertyType, textTypes))
                     return textEditorComponent

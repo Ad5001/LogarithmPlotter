@@ -30,8 +30,8 @@ class Point extends Common.DrawableObject  {
     static displayTypeMultiple(){return qsTr('Points')}
     
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','x')]:             'Expression',
-        [QT_TRANSLATE_NOOP('prop','y')]:             'Expression',
+        [QT_TRANSLATE_NOOP('prop','x')]:             new P.Expression(),
+        [QT_TRANSLATE_NOOP('prop','y')]:             new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','pointStyle')]:    new P.Enum('●', '✕', '＋')
     }}

@@ -33,6 +33,11 @@ ListView {
        Start index of the first element in this list compared to the global autocompletion index.
     */
     property int itemStartIndex: 0
+    /*!
+       \qmlproperty int AutocompletionCategory::itemSelected
+       The global autocompletion index.
+    */
+    property int itemSelected: 0
     
     /*!
        \qmlproperty string AutocompletionCategory::category
@@ -49,9 +54,9 @@ ListView {
     /*!
        \qmlproperty var AutocompletionCategory::autocompleteGenerator
        Javascript function taking the name of the item to create an autocompletion item (dictionary with
-       a 'text', 'autocomplete', and 'cursorFinalOffset' keys.
+       a 'text', 'annotation' 'autocomplete', and 'cursorFinalOffset' keys.
     */
-    property var autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item, 'cursorFinalOffset': 0}}
+    property var autocompleteGenerator: (item) => {return {'text': item, 'autocomplete': item, 'annotation': '', 'cursorFinalOffset': 0}}
     
     /*!
        \qmlproperty string AutocompletionCategory::baseText
@@ -60,7 +65,7 @@ ListView {
     property string baseText: ""
     width: parent.width
     visible: model.length > 0
-    implicitHeight: contentItem.childrenRect.height + headerItem.height
+    implicitHeight: contentItem.childrenRect.height
     model: parent.visible ? categoryItems.filter((item) => item.includes(baseText)).map(autocompleteGenerator) : []
     
     header: Column {
@@ -82,10 +87,10 @@ ListView {
     }
 
     delegate: Rectangle {
-        property bool selected: index + listFiltered.itemStartIndex == acPopupContent.itemSelected
+        property bool selected: index + listFiltered.itemStartIndex == listFiltered.itemSelected
         
-        width: autocompleteText.width
-        height: autocompleteText.height
+        width: listFiltered.width
+        height: Math.max(autocompleteText.height, annotationText.height)
         color: selected ? sysPalette.highlight : 'transparent'
         
         Text {
@@ -94,8 +99,17 @@ ListView {
             bottomPadding: 2
             leftPadding: 15
             text: listFiltered.model[index].text
-            width: listFiltered.width
             color: parent.selected ? sysPalette.highlightedText : sysPalette.windowText
+        }
+        
+        Text {
+            id: annotationText
+            anchors.right: parent.right
+            topPadding: 2
+            bottomPadding: 2
+            rightPadding: 15
+            text: listFiltered.model[index].annotation
+            color: parent.selected ? sysPaletteIn.highlightedText : sysPaletteIn.windowText
         }
     }
 }
