@@ -231,8 +231,8 @@ Repeater {
             dictionaryMode: paramTypeIn(propertyType, ['Dict'])
             keyType: dictionaryMode ? propertyType.keyType : 'string'
             valueType: propertyType.valueType
-            preKeyLabel: (dictionaryMode ? propertyType.preKeyLabel : propertyType.label).replace(/\{name\}/g, obj.name)
-            postKeyLabel: (dictionaryMode ? propertyType.postKeyLabel : '').replace(/\{name\}/g, obj.name)
+            preKeyLabel: (dictionaryMode ? propertyType.preKeyLabel : propertyType.label).replace(/\{name\}/g, obj.name).replace(/\{name_\}/g, obj.name.substring(obj.name.indexOf("_")+1))
+            postKeyLabel: (dictionaryMode ? propertyType.postKeyLabel : '').replace(/\{name\}/g, obj.name).replace(/\{name_\}/g, obj.name.substring(obj.name.indexOf("_")+1))
             keyRegexp: dictionaryMode ? propertyType.keyFormat : /^.+$/
             valueRegexp: propertyType.format
             forbidAdding: propertyType.forbidAdding

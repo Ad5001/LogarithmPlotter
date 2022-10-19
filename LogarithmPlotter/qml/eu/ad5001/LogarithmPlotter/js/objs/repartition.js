@@ -34,12 +34,12 @@ class RepartitionFunction extends Common.ExecutableObject {
                                                          'comment',
                                                          'Note: Specify the probability for each value.'
                                                      ),
-        [QT_TRANSLATE_NOOP('prop','probabilities')]: new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d\.,]+$/, 'P({name} = ', ') = '),
+        [QT_TRANSLATE_NOOP('prop','probabilities')]: new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d\.,]+$/, 'P({name_} = ', ') = '),
     }}
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 beginIncluded = true, drawLineEnds = true, probabilities = {'0': '0'}, labelPosition = 'above', labelX = 1) {
-        if(name == null) name = Common.getNewName('XYZUVW')
+        if(name == null) name = Common.getNewName('XYZUVW', "F_")
         super(name, visible, color, labelContent)
         this.beginIncluded = beginIncluded
         this.drawLineEnds = drawLineEnds
@@ -56,14 +56,16 @@ class RepartitionFunction extends Common.ExecutableObject {
     
     
     getReadableString() {
-        var keys = Object.keys(this.probabilities).sort((a,b) => a-b);
-        return `F_${this.name}(x) = P(${this.name} ≤ x)\n` + keys.map(idx => `P(${this.name}=${idx})=${this.probabilities[idx]}`).join("; ")
+        let keys = Object.keys(this.probabilities).sort((a,b) => a-b);
+        let varname = this.name.substring(this.name.indexOf("_")+1)
+        return `${this.name}(x) = P(${varname} ≤ x)\n` + keys.map(idx => `P(${varname}=${idx})=${this.probabilities[idx]}`).join("; ")
     }
     
     getLatexString() {
         let keys = Object.keys(this.probabilities).sort((a,b) => a-b);
-        let varName = Latex.variable(this.name)
-        return `\\begin{array}{l}F_{${varName}}(x) = P(${varName} \\le x)\\\\` + keys.map(idx => `P(${varName}=${idx})=${this.probabilities[idx]}`).join("; ") + '\\end{array}'
+        let funcName = Latex.variable(this.name)
+        let varName = Latex.variable(this.name.substring(this.name.indexOf("_")+1))
+        return `\\begin{array}{l}{${funcName}}(x) = P(${varName} \\le x)\\\\` + keys.map(idx => `P(${varName}=${idx})=${this.probabilities[idx]}`).join("; ") + '\\end{array}'
     }
     
     execute(x = 1) {
@@ -83,7 +85,7 @@ class RepartitionFunction extends Common.ExecutableObject {
     getLabel() {
         switch(this.labelContent) {
             case 'name':
-                return `P(${this.name} ≤ x)`
+                return `${this.name}(x)`
             case 'name + value':
                 return this.getReadableString()
             case 'null':
