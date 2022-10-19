@@ -254,32 +254,32 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="292"/>
         <source>Object Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekteigenschaften</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="307"/>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Variablen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="321"/>
         <source>Constants</source>
-        <translation type="unfinished"></translation>
+        <translation>Konstanten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="335"/>
         <source>Functions</source>
-        <translation type="unfinished">Funktionen</translation>
+        <translation>Funktion</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="349"/>
         <source>Executable Objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsobjekte</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="363"/>
         <source>Objects</source>
-        <translation type="unfinished">Objekte</translation>
+        <translation>Objekte</translation>
     </message>
 </context>
 <context>
