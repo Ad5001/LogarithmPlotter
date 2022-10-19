@@ -1071,7 +1071,7 @@ ParserState.prototype.expect = function (type, value) {
     var coords = this.tokens.getCoordinates();
     throw new Error(qsTranslate('error', 'Parse error [%1:%2]: %3')
       .arg(coords.line).arg(coords.column)
-      .arg(qsTranslate('error', 'Expected %1').arg(qsTranslate('error',value) || type)));
+      .arg(qsTranslate('error', 'Expected %1').arg(value || type)));
   }
 };
 
