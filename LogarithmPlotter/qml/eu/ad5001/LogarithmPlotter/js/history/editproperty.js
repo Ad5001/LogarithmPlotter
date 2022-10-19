@@ -94,8 +94,8 @@ class EditedProperty extends C.Action {
                     this.next = this.newValue.name.join(",")
                     break;
                 case "Dict":
-                    this.prev = JSON.stringify(this.previousValue).replace("'", "\\'").replace('"', "'")
-                    this.next = JSON.stringify(this.newValue).replace("'", "\\'").replace('"', "'")
+                    this.prev = JSON.stringify(this.previousValue)
+                    this.next = JSON.stringify(this.newValue)
                     break;
             }
         } else {

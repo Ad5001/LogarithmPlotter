@@ -92,34 +92,29 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: {
             if(mouse.button == Qt.LeftButton) { // Validate
-                if(parent.pickX) {
-                    let newValue = picked.mouseX.toString()
-                    newValue = {
-                        'Expression': () => new MathLib.Expression(newValue),
-                        'number': () => parseFloat(newValue)
-                    }[Objects.types[objType].properties()[propertyX]]()
-                    let obj = Objects.currentObjectsByName[objName] // getObjectByName(objName, objType)
-                    history.addToHistory(new HistoryLib.EditedProperty(
-                        objName, objType, propertyX, obj[propertyX], newValue
+                let newValueX = !parent.pickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
+                let newValueY = !parent.pickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
+                let obj = Objects.currentObjectsByName[objName]
+                // Set values
+                if(parent.pickX && parent.pickY) {
+                    history.addToHistory(new HistoryLib.EditedPosition(
+                        objName, objType, obj[propertyX], newValueX, obj[propertyY], newValueY
                     ))
-                    obj[propertyX] = newValue
-                    obj.update()
-                    objectLists.update()
-                }
-                if(parent.pickY) {
-                    let newValue = picked.mouseY.toString()
-                    newValue = {
-                        'Expression': () => new MathLib.Expression(newValue),
-                        'number': () => parseFloat(newValue)
-                    }[Objects.types[objType].properties()[propertyY]]()
-                    let obj = Objects.currentObjectsByName[objName] // Objects.getObjectByName(objName, objType)
+                    obj[propertyX] = newValueX
+                    obj[propertyY] = newValueY
+                } else if(parent.pickX) {
                     history.addToHistory(new HistoryLib.EditedProperty(
-                        objName, objType, propertyY, obj[propertyY], newValue
+                        objName, objType, propertyX, obj[propertyX], newValueX
                     ))
-                    obj[propertyY] = newValue
-                    obj.update()
-                    objectLists.update()
+                    obj[propertyX] = newValueX
+                } else if(parent.pickY) {
+                    history.addToHistory(new HistoryLib.EditedProperty(
+                        objName, objType, propertyY, obj[propertyY], newValueY
+                    ))
+                    obj[propertyY] = newValueY
                 }
+                obj.update()
+                objectLists.update()
             }
             pickerRoot.visible = false;
         }
@@ -214,4 +209,14 @@ Item {
     }
     
     
+    /*!
+        \qmlmethod void History::parseValue(string value, string objType, string propertyName)
+        Parses a given \c value as an expression or a number depending on the type of \c propertyName of all \c objType.
+    */
+    function parseValue(value, objType, propertyName) {
+        return {
+            'Expression': () => new MathLib.Expression(value),
+            'number': () => parseFloat(value)
+        }[Objects.types[objType].properties()[propertyName]]()
+    }
 }

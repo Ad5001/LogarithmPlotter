@@ -18,14 +18,27 @@
 
 .pragma library
 
+.import "../math/latex.js" as Latex
+
 var themeTextColor;
+var imageDepth = 2;
+var fontSize = 14;
 
 
 class Action {
-    // Type of the action done.
+    /**
+     * Type of the action.
+     * 
+     * @returns {string}
+     */
     type(){return 'Unknown'}
     
-    // Icon associated with the item
+    /**
+     * Icon associated with the action.
+     * 
+     * @returns {string}
+     */
+    icon(){return 'position'}
     
     // TargetName is the name of the object that's targeted by the event.
     constructor(targetName = "", targetType = "Point") {
@@ -33,25 +46,67 @@ class Action {
         this.targetType = targetType
     }
     
+    /**
+     * Undoes the action.
+     * 
+     * @returns {string}
+     */
     undo() {}
     
+    /**
+     * Redoes the action.
+     * 
+     * @returns {string}
+     */
     redo() {}
     
+    /**
+     * Export the action to a serializable format.
+     * NOTE: These arguments will be reinputed in the constructor in this order.
+     * 
+     * @returns {string}
+     */
     export() {
         return [this.targetName, this.targetType]
     }
     
-    // String used in the toolkit
+    /**
+     * Returns a string with the human readable description of the action.
+     * 
+     * @returns {string}
+     */
     getReadableString() {
         return 'Unknown action'
     }
     
-    // Returns an HTML tag containing the icon of a type
+    /**
+     * Returns a string containing an HTML tag describing the icon of a type
+     * 
+     * @param {string} type - Name of the icon to put in rich text.
+     * @returns {string}
+     */
     getIconRichText(type) {
         return `<img source="../icons/objects/${type}.svg" style="color: ${themeTextColor};" width=18 height=18></img>`
     }
     
-    // String used in the preview
+    /**
+     * Renders a LaTeX-formatted string to an image and wraps it in an HTML tag in a string.
+     * 
+     * @param {string} latexString - Source string of the latex.
+     * @returns {string}
+     */
+    renderLatexAsHtml(latexString) {
+        if(!Latex.enabled)
+            throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
+        let latexInfo = Latex.Renderer.render(latexString, imageDepth*fontSize+4, themeTextColor).split(",")
+        return `<img src="${latexInfo[0]}" width="${parseInt(latexInfo[1])/imageDepth}" height="${parseInt(latexInfo[2])/imageDepth}" style="vertical-align: middle"></img>`
+    }
+    
+    /**
+     * Returns a string with the HTML-formated description of the action.
+     * 
+     * @returns {string}
+     */
     getHTMLString() {
         return this.getReadableString()
     }

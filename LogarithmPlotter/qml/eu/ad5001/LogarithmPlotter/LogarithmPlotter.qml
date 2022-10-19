@@ -25,6 +25,7 @@ import QtQuick 2.12
 import "js/objs/autoload.js" as ALObjects
 
 import "js/objects.js" as Objects
+import "js/math/latex.js" as LatexJS
 import eu.ad5001.LogarithmPlotter.History 1.0
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
@@ -44,7 +45,16 @@ ApplicationWindow {
     color: sysPalette.window
     title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "") + (history.saved ? "" : "*")
     
-    SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
+    SystemPalette { 
+        id: sysPalette; colorGroup: SystemPalette.Active
+        
+        Component.onCompleted: {
+            // LatexJS initialization.
+            LatexJS.enabled = Helper.getSettingBool("enable_latex")
+            LatexJS.Renderer = Latex
+            LatexJS.defaultColor = sysPalette.windowText
+        }
+    }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     
     menuBar: appMenu.trueItem

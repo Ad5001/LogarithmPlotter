@@ -22,7 +22,7 @@ import QtQuick.Dialogs 1.3
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
 import "js/historylib.js" as HistoryLib
-import "js/math/latex.js" as Latex
+import "js/math/latex.js" as LatexJS
 
 
 /*!
@@ -143,18 +143,16 @@ MenuBar {
         }
         
         Action {
-            id: enableLatexSetting
+            id: enableLatexJSSetting
             text: qsTr("Enable LaTeX rendering")
             checkable: true
             checked: Helper.getSettingBool("enable_latex")
             onTriggered: {
                 Helper.setSettingBool("enable_latex", checked)
-                Latex.enabled = checked
+                LatexJS.enabled = checked
                 drawCanvas.requestPaint()
             }
             icon.name: 'Expression'
-            
-            Component.onCompleted: Latex.enabled = checked
         }
     }
     

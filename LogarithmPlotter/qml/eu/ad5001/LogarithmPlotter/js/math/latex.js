@@ -25,6 +25,14 @@
  * true if latex has been enabled by the user, false otherwise.
  */
 var enabled = false
+/**
+ * LaTeX python backend QObject.
+ */
+var Renderer = null
+/**
+ * Default window color used to render LaTeX formulas.
+ */
+var defaultColor = "black"
 
 /**
  * Puts element within parenthesis.

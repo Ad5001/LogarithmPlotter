@@ -24,6 +24,7 @@
 .import "history/create.js" as Create
 .import "history/delete.js" as Delete
 .import "history/editproperty.js" as EP
+.import "history/position.js" as Pos
 .import "history/visibility.js" as V
 .import "history/name.js" as Name
 .import "history/color.js" as Color
@@ -35,6 +36,7 @@ var Action = Common.Action
 var CreateNewObject = Create.CreateNewObject
 var DeleteObject = Delete.DeleteObject
 var EditedProperty = EP.EditedProperty
+var EditedPosition = Pos.EditedPosition
 var EditedVisibility = V.EditedVisibility
 var NameChanged = Name.NameChanged
 var ColorChanged = Color.ColorChanged
@@ -44,6 +46,7 @@ var Actions = {
     "CreateNewObject": CreateNewObject,
     "DeleteObject": DeleteObject,
     "EditedProperty": EditedProperty,
+    "EditedPosition": EditedPosition,
     "EditedVisibility": EditedVisibility,
     "NameChanged": NameChanged,
     "ColorChanged": ColorChanged,
