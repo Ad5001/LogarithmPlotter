@@ -1195,12 +1195,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.js" line="84"/>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 wurde von &quot;%3&quot; nach &quot;%4&quot; verschoben.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.js" line="90"/>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 wurde von %2 nach %3 verschoben.</translation>
     </message>
 </context>
 <context>
