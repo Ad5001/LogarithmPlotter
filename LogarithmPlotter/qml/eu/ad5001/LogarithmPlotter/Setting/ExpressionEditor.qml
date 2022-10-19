@@ -255,8 +255,8 @@ Item {
                 visible: currentToken != null && identifierTokenTypes.includes(currentToken.type)
                 
                 // Focus handling.
-                readonly property var lists: [variablesList, constantsList, functionsList, executableObjectsList, objectsList]
-                readonly property int itemCount: variablesList.model.length, constantsList.model.length + functionsList.model.length + executableObjectsList.model.length + objectsList.model.length
+                readonly property var lists: [objectPropertiesList, variablesList, constantsList, functionsList, executableObjectsList, objectsList]
+                readonly property int itemCount: objectPropertiesList.model.length + variablesList.model.length, constantsList.model.length + functionsList.model.length + executableObjectsList.model.length + objectsList.model.length
                 property int itemSelected: 0
                 
                 /*!
@@ -287,10 +287,25 @@ Item {
                 }
                 
                 AutocompletionCategory {
+                    id: objectPropertiesList
+                    
+                    category: qsTr("Object Properties")
+                    itemStartIndex: 0
+                    itemSelected: parent.itemSelected
+                    categoryItems: []
+                    property var objectName: null
+                    autocompleteGenerator: (item) => {return {
+                        'text': item, 'annotation': Objects.currentObjectsByName[objectName].constructor.properties()[item],
+                        'autocomplete': item + " ", 'cursorFinalOffset': 0
+                    }}
+                    baseText: parent.visible ? parent.currentToken.value : ""
+                }
+                
+                AutocompletionCategory {
                     id: variablesList
                     
                     category: qsTr("Variables")
-                    itemStartIndex: 0
+                    itemStartIndex: objectPropertiesList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: control.variables
                     autocompleteGenerator: (item) => {return {
@@ -304,7 +319,7 @@ Item {
                     id: constantsList
                     
                     category: qsTr("Constants")
-                    itemStartIndex: variablesList.model.length
+                    itemStartIndex: variablesList.itemStartIndex + variablesList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.CONSTANTS_LIST
                     autocompleteGenerator: (item) => {return {
@@ -318,7 +333,7 @@ Item {
                     id: functionsList
                     
                     category: qsTr("Functions")
-                    itemStartIndex: variablesList.model.length + constantsList.model.length
+                    itemStartIndex: constantsList.itemStartIndex + constantsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.FUNCTIONS_LIST
                     autocompleteGenerator: (item) => {return {
@@ -332,7 +347,7 @@ Item {
                     id: executableObjectsList
                     
                     category: qsTr("Executable Objects")
-                    itemStartIndex: variablesList.model.length + constantsList.model.length + functionsList.model.length
+                    itemStartIndex: functionsList.itemStartIndex + functionsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
@@ -346,7 +361,7 @@ Item {
                     id: objectsList
                     
                     category: qsTr("Objects")
-                    itemStartIndex: executableObjectsList.model.length + variablesList.model.length + constantsList.model.length + functionsList.model.length
+                    itemStartIndex: executableObjectsList.itemStartIndex + executableObjectsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Object.keys(Objects.currentObjectsByName).filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {

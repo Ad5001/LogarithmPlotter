@@ -169,8 +169,8 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="178"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="196"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="179"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="197"/>
         <source>+ Create new %1</source>
         <translation>+ Create new %1</translation>
     </message>
@@ -178,42 +178,42 @@
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="69"/>
         <source>Edit properties of %1 %2</source>
         <translation>Edit properties of %1 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="82"/>
         <source>LogarithmPlotter - Invalid object name</source>
         <translation>LogarithmPlotter - Invalid object name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="82"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="85"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
         <translation>An object with the name &apos;%1&apos; already exists.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="90"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="93"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="115"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="118"/>
         <source>Label content</source>
         <translation>Label content</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="116"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>null</source>
         <translation>null</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="116"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>name</source>
         <translation>name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="116"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>name + value</source>
         <translation>name + value</translation>
     </message>
@@ -247,6 +247,39 @@
     <message>
         <source>+ Create new %1</source>
         <translation type="vanished">+ Create new %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExpressionEditor</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="292"/>
+        <source>Object Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="307"/>
+        <source>Variables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="321"/>
+        <source>Constants</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="335"/>
+        <source>Functions</source>
+        <translation type="unfinished">Functions</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="349"/>
+        <source>Executable Objects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="363"/>
+        <source>Objects</source>
+        <translation type="unfinished">Objects</translation>
     </message>
 </context>
 <context>
@@ -734,7 +767,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="87"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ComboBoxSetting.qml" line="119"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="124"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="130"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="116"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="101"/>
         <source>%1: </source>
@@ -762,12 +795,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 <context>
     <name>editproperty</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="108"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="116"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="115"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="123"/>
         <source>%1 of %2 changed from %3 to %4.</source>
         <translation>%1 of %2 changed from %3 to %4.</translation>
     </message>
@@ -900,17 +933,17 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>End of expression</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="232"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="418"/>
         <source>No object found with names %1.</source>
         <translation>No object found with names %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="234"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="420"/>
         <source>No object found with name %1.</source>
         <translation>No object found with name %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="237"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="423"/>
         <source>Object cannot be dependent on itself.</source>
         <translation>Object cannot be dependent on itself.</translation>
     </message>
@@ -918,12 +951,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 <context>
     <name>expression</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="130"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="136"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Parsing error</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="133"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="139"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1052,114 +1085,114 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
 <context>
     <name>parameters</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="62"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="69"/>
         <source>above</source>
         <translation>↑ Above</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="63"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="70"/>
         <source>below</source>
         <translation>↓ Below</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="64"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="71"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="83"/>
         <source>left</source>
         <translation>← Left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="65"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
         <source>right</source>
         <translation>→ Right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
         <source>above-left</source>
         <translation>↖ Above left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="67"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
         <source>above-right</source>
         <translation>↗ Above right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="68"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
         <source>below-left</source>
         <translation>↙ Below left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="76"/>
         <source>below-right</source>
         <translation>↘ Below right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
         <source>center</source>
         <translation>&gt;|&lt; Center</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
         <source>top</source>
         <translation>↑ Top</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="82"/>
         <source>bottom</source>
         <translation>↓ Bottom</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
         <source>top-left</source>
         <translation>↖ Top left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
         <source>top-right</source>
         <translation>↗ Top right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="87"/>
         <source>bottom-left</source>
         <translation>↙ Bottom left</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="88"/>
         <source>bottom-right</source>
         <translation>↘ Bottom right</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="92"/>
         <source>application</source>
         <translation>Application</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="93"/>
         <source>function</source>
         <translation>Function</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="90"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="97"/>
         <source>high</source>
         <translation>High</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="91"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="98"/>
         <source>low</source>
         <translation>Low</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="96"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="103"/>
         <source>Next to target</source>
         <translation>Next to target</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="97"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="104"/>
         <source>With label</source>
         <translation>With label</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="98"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="105"/>
         <source>Hidden</source>
         <translation>Hidden</translation>
     </message>
