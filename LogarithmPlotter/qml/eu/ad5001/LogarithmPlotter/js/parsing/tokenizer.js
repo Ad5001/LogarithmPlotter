@@ -41,9 +41,10 @@ var TokenType = {
 }
 
 class Token {
-    constructor(type, value) {
+    constructor(type, value, startPosition) {
         this.type = type;
         this.value = value;
+        this.startPosition = startPosition
     }
 }
 
@@ -65,7 +66,7 @@ class ExpressionTokenizer {
         while(!this.input.atEnd() && WHITESPACES.includes(this.input.peek())) {
             included += this.input.next();
         }
-        return new Token(TokenType.WHITESPACE, included)
+        return new Token(TokenType.WHITESPACE, included, this.input.position-included.length)
     }
     
     readString() {
@@ -80,7 +81,7 @@ class ExpressionTokenizer {
                     included += this.input.next();
             }
             this.input.skip(delimitation)
-            let token = new Token(TokenType.STRING, included)
+            let token = new Token(TokenType.STRING, included, this.input.position-included.length)
             token.limitator = delimitation
             return token
         } else {
@@ -98,7 +99,7 @@ class ExpressionTokenizer {
             }
             included += this.input.next();
         }
-        return new Token(TokenType.NUMBER, included)
+        return new Token(TokenType.NUMBER, included, this.input.position-included.length)
     }
     
     readOperator() {
@@ -106,7 +107,7 @@ class ExpressionTokenizer {
         while(!this.input.atEnd() && OPERATORS.includes(this.input.peek())) {
             included += this.input.next();
         }
-        return new Token(TokenType.OPERATOR, included)
+        return new Token(TokenType.OPERATOR, included, this.input.position-included.length)
     }
     
     readIdentifier() {
@@ -115,11 +116,11 @@ class ExpressionTokenizer {
             identifier += this.input.next();
         }
         if(Reference.CONSTANTS_LIST.includes(identifier.toLowerCase())) {
-            return new Token(TokenType.CONSTANT, identifier.toLowerCase())
+            return new Token(TokenType.CONSTANT, identifier.toLowerCase(), this.input.position-identifier.length)
         } else if(Reference.FUNCTIONS_LIST.includes(identifier.toLowerCase())) {
-            return new Token(TokenType.FUNCTION, identifier.toLowerCase())
+            return new Token(TokenType.FUNCTION, identifier.toLowerCase(), this.input.position-identifier.length)
         } else {
-            return new Token(TokenType.VARIABLE, identifier)
+            return new Token(TokenType.VARIABLE, identifier, this.input.position-identifier.length)
         }
     }
     
@@ -133,12 +134,12 @@ class ExpressionTokenizer {
         if(NUMBER_CHARS.includes(c)) return this.readNumber();
         if(IDENTIFIER_CHARS.includes(c.toLowerCase())) return this.readIdentifier();
         if(OPERATORS.includes(c)) return this.readOperator();
-        if(Reference.CONSTANTS_LIST.includes(c)) return new Token(TokenType.CONSTANT, c);
-        if(PUNCTUTATION.includes(c)) return new Token(TokenType.PUNCT, this.input.next());
+        if(Reference.CONSTANTS_LIST.includes(c)) return new Token(TokenType.CONSTANT, this.input.next(), this.input.position-1);
+        if(PUNCTUTATION.includes(c)) return new Token(TokenType.PUNCT, this.input.next(), this.input.position-1);
         if(this.errorOnUnknown)
             this.input.throw("Unknown token character " + c)
         else
-            return new Token(TokenType.UNKNOWN, this.input.next());
+            return new Token(TokenType.UNKNOWN, this.input.next(), this.input.position-1);
     }
 
     peek() {

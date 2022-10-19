@@ -58,6 +58,9 @@ D.Dialog {
     width: 350
     height: 400
     
+    // Disable closing on return/enter, causing issues with autocomplete.
+    onActionChosen: if(action.key == Qt.Key_Enter || action.key == Qt.Key_Return) action.accepted = false
+    
     Label {
         id: dlgTitle
         anchors.left: parent.left

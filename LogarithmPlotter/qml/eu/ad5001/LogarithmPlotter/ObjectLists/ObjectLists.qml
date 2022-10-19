@@ -49,7 +49,7 @@ ScrollView {
         id: objectsListView
         model: Object.keys(Objects.types)
         //width: implicitWidth //objectListList.width - (implicitHeight > objectListList.parent.height ? 20 : 0)
-        implicitHeight: contentItem.childrenRect.height + footer.height + 10
+        implicitHeight: contentItem.childrenRect.height + footerItem.height + 10
         
         delegate: ListView {
             id: objTypeList

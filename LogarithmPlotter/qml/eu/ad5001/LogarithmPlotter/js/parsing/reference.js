@@ -64,6 +64,8 @@ const FUNCTIONS = {
     "tan": Math.tan,
     "tanh": Math.tanh,
     "trunc": Math.trunc,
+    "integral": () => 0, // TODO: Implement
+    "derivative": () => 0,
 }
 const FUNCTIONS_LIST = Object.keys(FUNCTIONS);
 // TODO: Complete

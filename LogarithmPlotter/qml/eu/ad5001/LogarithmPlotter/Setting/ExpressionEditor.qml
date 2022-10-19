@@ -19,7 +19,7 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
-import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
+import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
 import "../js/mathlib.js" as MathLib
 import "../js/utils.js" as Utils
 import "../js/parsing/parsing.js" as Parsing
@@ -151,6 +151,8 @@ Item {
         focus: true
         selectByMouse: true
         
+        property var tokens: parent.tokens(text)
+        
         Keys.priority: Keys.BeforeItem // Required for knowing which key the user presses.
         
         onEditingFinished: {
@@ -165,7 +167,38 @@ Item {
             }
         }
         
+        //onTextEdited: acPopupContent.itemSelected = 0
+        
+        onActiveFocusChanged: {
+            if(activeFocus)
+                autocompletePopup.open()
+            else
+                autocompletePopup.close()
+        }
+        
+        Keys.onUpPressed: function(event) {
+            acPopupContent.itemSelected = Math.max(0, acPopupContent.itemSelected-1)
+            event.accepted = true
+        }
+        
+        Keys.onDownPressed: function(event) {
+            acPopupContent.itemSelected = Math.max(0,Math.min(acPopupContent.itemCount-1, acPopupContent.itemSelected+1))
+            event.accepted = true
+        }
+        
         Keys.onPressed: function(event) {
+            // Autocomplete popup events
+            //console.log("Pressed key:", event.key, Qt.Key_Return, Qt.Key_Enter, event.text)
+            if((event.key == Qt.Key_Enter || event.key == Qt.Key_Return) && acPopupContent.itemCount > 0) {
+                acPopupContent.autocomplete()
+                event.accepted = true
+            } else 
+                acPopupContent.itemSelected = 0
+            /*if(event.key == Qt.Key_Left) { // TODO: Don't reset the position when the key moved is still on the same word
+                if(!acPopupContent.identifierTokenTypes.includes())
+            }*/
+                
+                
             if(event.text in openAndCloseMatches) {
                 let start = selectionStart
                 insert(selectionStart, event.text)
@@ -181,10 +214,115 @@ Item {
             verticalAlignment: TextInput.AlignVCenter
             horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
             textFormat: Text.StyledText
-            text: colorize(editor.text)
+            text: colorize(parent.tokens)
             color: sysPalette.windowText
             //font.pixelSize: parent.font.pixelSize
             //opacity: editor.activeFocus ? 0 : 1
+        }
+    
+        Popup {
+            id: autocompletePopup
+            x: 0
+            y: parent.height
+            closePolicy: Popup.NoAutoClose
+            
+            width: editor.width
+            height: acPopupContent.height
+            padding: 0
+            
+            Column {
+                id: acPopupContent
+                width: parent.width
+                
+                readonly property var identifierTokenTypes: [
+                    Parsing.TokenType.VARIABLE,
+                    Parsing.TokenType.FUNCTION,
+                    Parsing.TokenType.CONSTANT
+                ]
+                property var currentToken: getTokenAt(editor.tokens, editor.cursorPosition)
+                visible: currentToken != null && identifierTokenTypes.includes(currentToken.type)
+                
+                // Focus handling.
+                readonly property var lists: [functionsList]
+                readonly property int itemCount: functionsList.model.length
+                property int itemSelected: 0
+                
+                /*!
+                    \qmlmethod var ExpressionEditor::autocompleteAt(int idx)
+                    Returns the autocompletion text information at a given position.
+                    The information contains key 'text' (description text), 'autocomplete' (text to insert)
+                    and 'cursorFinalOffset' (amount to add to the cursor's position after the end of the autocomplete)
+                */
+                function autocompleteAt(idx) {
+                    if(idx >= itemCount) return ""
+                    let startIndex = 0
+                    for(let list of lists) {
+                        if(idx < startIndex + list.model.length)
+                            return list.model[idx-startIndex]
+                        startIndex += list.model.length
+                    }
+                }
+                /*!
+                    \qmlmethod var ExpressionEditor::autocomplete()
+                    Autocompletes with the current selected word.
+                */
+                function autocomplete() {
+                    let autotext = autocompleteAt(itemSelected)
+                    let startPos = currentToken.startPosition
+                    console.log("Autocompleting",autotext.text,startPos)
+                    editor.remove(startPos, startPos+currentToken.value.length)
+                    editor.insert(startPos, autotext.autocomplete)
+                    editor.cursorPosition = startPos+autotext.autocomplete.length+autotext.cursorFinalOffset
+                }
+                
+                ListView {
+                    id: functionsList
+                    //anchors.fill: parent
+                    property int itemStartIndex: 0
+                    width: parent.width
+                    visible: model.length > 0
+                    implicitHeight: contentItem.childrenRect.height + headerItem.height
+                    model: parent.visible ? 
+                        Parsing.FUNCTIONS_LIST.filter((name) => name.includes(acPopupContent.currentToken.value))
+                        .map((name) => {return {'text': name, 'autocomplete': name+'()', 'cursorFinalOffset': -1}}) : []
+                    
+                    header: Column {
+                        width: functionsList.width
+                        spacing: 2
+                        topPadding: 5
+                        bottomPadding: 5
+                        
+                        Text {
+                            leftPadding: 5
+                            text: qsTr("Functions")
+                        }
+                        
+                        Rectangle {
+                            height: 1
+                            color: 'black'
+                            width: parent.width
+                        }
+                    }
+                
+                    delegate: Rectangle {
+                        property bool selected: index + functionsList.itemStartIndex == acPopupContent.itemSelected
+                        
+                        width: funcText.width
+                        height: funcText.height
+                        color: selected ? sysPalette.highlight : 'transparent'
+                        
+                        Text {
+                            id: funcText
+                            topPadding: 2
+                            bottomPadding: 2
+                            leftPadding: 15
+                            text: functionsList.model[index].text
+                            width: functionsList.width
+                            color: parent.selected ? sysPalette.highlightedText : sysPalette.windowText
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -202,7 +340,7 @@ Item {
         }
     }
     
-    Popup.InsertCharacter {
+    P.InsertCharacter {
         id: insertPopup
         
         x: Math.round((parent.width - width) / 2)
@@ -228,7 +366,6 @@ Item {
             // Check if the expression is valid, throws error otherwise.
             if(!expr.allRequirementsFullfilled()) {
                 let undefVars = expr.undefinedVariables()
-                console.log(JSON.stringify(undefVars), undefVars.join(', '))
                 if(undefVars.length > 1)
                     throw new Error(qsTranslate('error', 'No object found with names %1.').arg(undefVars.join(', ')))
                 else
@@ -245,15 +382,41 @@ Item {
     }
     
     /*!
-        \qmlmethod var ExpressionEditor::colorize(string expressionText)
-        Creates an HTML colorized string of the incomplete \c expressionText.
+        \qmlmethod var ExpressionEditor::tokens(string expressionText)
+        Generates a list of tokens from the given.
+    */
+    function tokens(text) {
+        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
+        let tokenList = []
+        let token
+        while((token = tokenizer.next()) != null)
+            tokenList.push(token)
+        return tokenList
+    }
+    
+    /*!
+        \qmlmethod var ExpressionEditor::getTokenAt(var tokens, int position)
+        Gets the token at the given position within the text.
+        Returns null if out of bounds.
+    */
+    function getTokenAt(tokenList, position) {
+        let currentPosition = 0
+        for(let token of tokenList)
+            if(position <= (currentPosition + token.value.length))
+                return token
+            else
+                currentPosition += token.value.length
+        return null
+    }
+    
+    /*!
+        \qmlmethod var ExpressionEditor::colorize(var tokenList)
+        Creates an HTML colorized string of the given tokens.
         Returns the colorized and escaped expression if possible, null otherwise..
     */
-    function colorize(text) {
-        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
+    function colorize(tokenList) {
         let parsedText = ""
-        let token
-        while((token = tokenizer.next()) != null) {
+        for(let token of tokenList) {
             switch(token.type) {
                 case Parsing.TokenType.VARIABLE:
                     parsedText += `<font color="${colorScheme.VARIABLE}">${token.value}</font>`

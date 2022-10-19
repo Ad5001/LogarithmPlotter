@@ -26,3 +26,5 @@ var Input = Common.InputExpression
 var TokenType = TK.TokenType
 var Token = TK.Token
 var Tokenizer = TK.ExpressionTokenizer
+
+var FUNCTIONS_LIST = Reference.FUNCTIONS_LIST
