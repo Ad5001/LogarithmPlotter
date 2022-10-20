@@ -484,7 +484,7 @@ Item {
                 throw new Error(qsTranslate('error', 'Circular dependency detected. Object %1 depends on %2.').arg(dependentOnSelfObjects[0].toString()).arg(control.self))
             else if(dependentOnSelfObjects.length > 1)
                 throw new Error(qsTranslate('error', 'Circular dependency detected. Objects %1 depend on %2.').arg(dependentOnSelfObjects.map(obj => obj.toString()).join(', ')).arg(control.self))
-            console.log(control.self, propertyName, expr.execute())
+            //console.log(control.self, propertyName, expr.execute())
             return expr                 
         } catch(e) {
             // Error in expression
