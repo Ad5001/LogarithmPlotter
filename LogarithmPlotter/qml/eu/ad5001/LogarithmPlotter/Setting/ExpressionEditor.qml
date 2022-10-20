@@ -475,12 +475,13 @@ Item {
             }
             if(expr.requiredObjects().includes(control.self))
                 throw new Error(qsTranslate('error', 'Object cannot be dependent on itself.'))
-                // TODO: Check for recursive dependencies.                    
+                // TODO: Check for recursive dependencies.   
+            return expr                 
         } catch(e) {
             // Error in expression
             parsingErrorDialog.showDialog(propertyName, newExpression, e.message)
+            return null
         }
-        return expr
     }
     
     /*!
