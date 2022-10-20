@@ -95,39 +95,81 @@ Popup {
     
     CheckBox {
         id: checkForUpdatesSetting
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: helpText.bottom
         anchors.topMargin: 10
         checked: Helper.getSettingBool("check_for_updates")
         text: qsTr('Check for updates on startup (requires online connectivity)')
         onClicked: {
             Helper.setSettingBool("check_for_updates", checked)
-            //checkForUpdatesMenuSetting.checked = checked
+            // Set in the menu bar
+            appMenu.settings.children[0].checked = checked
         }
     }
     
     CheckBox {
         id: resetRedoStackSetting
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: checkForUpdatesSetting.bottom
         checked: Helper.getSettingBool("reset_redo_stack")
         text: qsTr('Reset redo stack when a new action is added to history')
         onClicked: {
             Helper.setSettingBool("reset_redo_stack", checked)
-            //resetRedoStackMenuSetting.checked = checked
+            appMenu.settings.children[1].checked = checked
         }
     }
     
     CheckBox {
         id: enableLatexSetting
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: resetRedoStackSetting.bottom
         checked: Helper.getSettingBool("enable_latex")
         text: qsTr('Enable LaTeX rendering')
         onClicked: {
             Helper.setSettingBool("enable_latex", checked)
-            Latex.enabled = checked
-            drawCanvas.requestPaint()
+            appMenu.settings.children[2].checked = checked
+        }
+    }
+    
+    CheckBox {
+        id: autocloseFormulaSetting
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: enableLatexSetting.bottom
+        checked: Helper.getSettingBool("expression_editor.autoclose")
+        text: qsTr('Automatically close parenthesises and brackets in expressions')
+        onClicked: {
+            Helper.setSettingBool("expression_editor.autoclose", checked)
+            appMenu.settings.children[3].children[0].checked = checked
+        }
+    }
+    
+    CheckBox {
+        id: colorizeFormulaSetting
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: autocloseFormulaSetting.bottom
+        checked: Helper.getSettingBool("expression_editor.colorize")
+        text: qsTr('Enable syntax highlighting for expressions')
+        onClicked: {
+            Helper.setSettingBool("expression_editor.colorize", checked)
+            appMenu.settings.children[3].children[1].checked = checked
+        }
+    }
+    
+    CheckBox {
+        id: autocompleteFormulaSetting
+        anchors.left: parent.left
+        //anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: colorizeFormulaSetting.bottom
+        checked: Helper.getSettingBool("autocompletion.enabled")
+        text: qsTr('Enable autocompletion interface in expression editor')
+        onClicked: {
+            Helper.setSettingBool("autocompletion.enabled", checked)
+            appMenu.settings.children[3].children[2].checked = checked
         }
     }
     
@@ -159,7 +201,7 @@ Popup {
         }
     }
     
-    Component.onCompleted: if(Helper.getSetting("last_install_greet") != Helper.getVersion()) {
+    Component.onCompleted: if(Helper.getSetting("last_install_greet") != Helper.getVersion()+"a") {
         greetingPopup.open()
     }
     

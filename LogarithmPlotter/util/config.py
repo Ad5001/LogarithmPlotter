@@ -26,7 +26,15 @@ DEFAULT_SETTINGS = {
     "check_for_updates": True,
     "reset_redo_stack": True,
     "last_install_greet": "0",
-    "enable_latex": False
+    "enable_latex": False,
+    "expression_editor": {
+        "autoclose": True,
+        "colorize": True,
+        "color_scheme": 0,
+    },
+    "autocompletion": {
+        "enabled": True
+    }
 }
 
 # Create config directory
@@ -51,7 +59,11 @@ def init():
     if path.exists(CONFIG_FILE):
         cfg_data = load(open(CONFIG_FILE, 'r',  -1, 'utf8'))
         for setting_name in cfg_data:
-            setSetting(setting_name, cfg_data[setting_name])
+            if type(cfg_data[setting_name]) == dict:
+                for setting_name2 in cfg_data[setting_name]:
+                    setSetting(setting_name+"."+setting_name2, cfg_data[setting_name][setting_name2])
+            else:
+                setSetting(setting_name, cfg_data[setting_name])
     
 def save():
     """

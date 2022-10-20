@@ -151,13 +151,15 @@ Item {
         height: parent.height
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
-        //font.pixelSize: 14
         text: control.defValue
-        color: "transparent"//sysPalette.windowText
+        color: syntaxHighlightingEnabled ? "transparent" : sysPalette.windowText
         focus: true
         selectByMouse: true
         
-        property var tokens: parent.tokens(text)
+        property bool autocompleteEnabled: Helper.getSettingBool("autocompletion.enabled")
+        property bool syntaxHighlightingEnabled: Helper.getSettingBool("expression_editor.colorize")
+        property bool autoClosing: Helper.getSettingBool("expression_editor.autoclose")
+        property var tokens: autocompleteEnabled || syntaxHighlightingEnabled ? parent.tokens(text) : []
         
         Keys.priority: Keys.BeforeItem // Required for knowing which key the user presses.
         
@@ -176,25 +178,27 @@ Item {
         //onTextEdited: acPopupContent.itemSelected = 0
         
         onActiveFocusChanged: {
-            if(activeFocus)
+            if(activeFocus && autocompleteEnabled)
                 autocompletePopup.open()
             else
                 autocompletePopup.close()
         }
         
         Keys.onUpPressed: function(event) {
-            if(acPopupContent.itemSelected == 0)
-                acPopupContent.itemSelected = acPopupContent.itemCount-1
-            else
-                acPopupContent.itemSelected = acPopupContent.itemSelected-1
+            if(autocompleteEnabled)
+                if(acPopupContent.itemSelected == 0)
+                    acPopupContent.itemSelected = acPopupContent.itemCount-1
+                else
+                    acPopupContent.itemSelected = acPopupContent.itemSelected-1
             event.accepted = true
         }
         
         Keys.onDownPressed: function(event) {
-            if(acPopupContent.itemSelected == Math.min(acPopupContent.itemCount-1))
-                acPopupContent.itemSelected = 0
-            else
-                acPopupContent.itemSelected = acPopupContent.itemSelected+1
+            if(autocompleteEnabled)
+                if(acPopupContent.itemSelected == Math.min(acPopupContent.itemCount-1))
+                    acPopupContent.itemSelected = 0
+                else
+                    acPopupContent.itemSelected = acPopupContent.itemSelected+1
             event.accepted = true
         }
         
@@ -202,7 +206,7 @@ Item {
             // Autocomplete popup events
             //console.log(acPopupContent.currentToken.dot, acPopupContent.previousToken.dot, "@", acPopupContent.currentToken.identifier, acPopupContent.previousToken.identifier, acPopupContent.previousToken2.identifier, objectPropertiesList.objectName, JSON.stringify(objectPropertiesList.baseText), objectPropertiesList.model.length, JSON.stringify(objectPropertiesList.categoryItems))
             //console.log("Pressed key:", event.key, Qt.Key_Return, Qt.Key_Enter, event.text, acPopupContent.itemCount)
-            if((event.key == Qt.Key_Enter || event.key == Qt.Key_Return) && acPopupContent.itemCount > 0) {
+            if(autocompleteEnabled && (event.key == Qt.Key_Enter || event.key == Qt.Key_Return) && acPopupContent.itemCount > 0) {
                 acPopupContent.autocomplete()
                 event.accepted = true
             } else 
@@ -212,7 +216,7 @@ Item {
             }*/
                 
                 
-            if(event.text in openAndCloseMatches) {
+            if(event.text in openAndCloseMatches && autoClosing) {
                 let start = selectionStart
                 insert(selectionStart, event.text)
                 insert(selectionEnd, openAndCloseMatches[event.text])
@@ -227,8 +231,9 @@ Item {
             verticalAlignment: TextInput.AlignVCenter
             horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
             textFormat: Text.StyledText
-            text: colorize(parent.tokens)
+            text: parent.syntaxHighlightingEnabled ? colorize(parent.tokens) : ""
             color: sysPalette.windowText
+            visible: parent.syntaxHighlightingEnabled
             //font.pixelSize: parent.font.pixelSize
             //opacity: editor.activeFocus ? 0 : 1
         }
@@ -537,7 +542,7 @@ Item {
                     parsedText += `<font color="${colorScheme.CONSTANT}">${token.value}</font>`
                     break;
                 case Parsing.TokenType.FUNCTION:
-                    parsedText += `<font color="${Utils.escapeHTML(colorScheme.FUNCTION)}">${token.value}</font>`
+                    parsedText += `<font color="${colorScheme.FUNCTION}">${Utils.escapeHTML(token.value)}</font>`
                     break;
                 case Parsing.TokenType.OPERATOR:
                     parsedText += `<font color="${colorScheme.OPERATOR}">${Utils.escapeHTML(token.value)}</font>`

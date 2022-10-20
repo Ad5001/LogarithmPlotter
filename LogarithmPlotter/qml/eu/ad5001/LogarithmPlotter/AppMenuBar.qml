@@ -35,6 +35,7 @@ import "js/math/latex.js" as LatexJS
     \sa LogarithmPlotter
 */
 MenuBar {
+    property var settings: settingsMenu
     
     Menu {
         title: qsTr("&File")
@@ -123,6 +124,7 @@ MenuBar {
     }
     
     Menu {
+        id: settingsMenu
         title: qsTr("&Settings")
         Action {
             id: checkForUpdatesMenuSetting
@@ -153,6 +155,43 @@ MenuBar {
                 drawCanvas.requestPaint()
             }
             icon.name: 'Expression'
+        }
+        
+        Menu {
+            title: qsTr("Expression editor")
+        
+            Action {
+                id: autocloseFormulaSetting
+                text: qsTr("Automatically close parenthesises and brackets")
+                checkable: true
+                checked: Helper.getSettingBool("expression_editor.autoclose")
+                onTriggered: {
+                    Helper.setSettingBool("expression_editor.autoclose", checked)
+                }
+                icon.name: 'Text'
+            }
+        
+            Action {
+                id: colorizeFormulaSetting
+                text: qsTr("Enable syntax highlighting")
+                checkable: true
+                checked: Helper.getSettingBool("expression_editor.colorize")
+                onTriggered: {
+                    Helper.setSettingBool("expression_editor.colorize", checked)
+                }
+                icon.name: 'appearance'
+            }
+        
+            Action {
+                id: autocompleteFormulaSetting
+                text: qsTr("Enable autocompletion")
+                checkable: true
+                checked: Helper.getSettingBool("autocompletion.enabled")
+                onTriggered: {
+                    Helper.setSettingBool("autocompletion.enabled", checked)
+                }
+                icon.name: 'label'
+            }
         }
     }
     
