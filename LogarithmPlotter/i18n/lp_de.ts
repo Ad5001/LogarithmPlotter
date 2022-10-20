@@ -105,22 +105,22 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="159"/>
         <source>Expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausdruckseditor</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="unfinished"></translation>
+        <translation>Klammern automatisch schließen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="174"/>
         <source>Enable syntax highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaxhervorhebung einschalten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="185"/>
         <source>Enable autocompletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Vervollständigung einschalten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="197"/>
@@ -352,17 +352,17 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="143"/>
         <source>Automatically close parenthesises and brackets in expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisches Schließen von Klammern in Ausdrücken</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="157"/>
         <source>Enable syntax highlighting for expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaxhervorhebung für Ausdrücke einschalten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="171"/>
         <source>Enable autocompletion interface in expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Schnittstelle zur automatischen Vervollständigung im Ausdruckseditor aktivieren</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="187"/>
@@ -985,12 +985,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="484"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zirkuläre Abhängigkeit entdeckt. Objekt %1 hängt von %2 ab.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zirkuläre Abhängigkeit entdeckt. Objekte %1 hängen von %2 ab.</translation>
     </message>
 </context>
 <context>
