@@ -105,22 +105,22 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="159"/>
         <source>Expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Expression editor</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatically close parentheses and brackets</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="174"/>
         <source>Enable syntax highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable syntax highlighting</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="185"/>
         <source>Enable autocompletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable autocompletion</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="197"/>
@@ -352,17 +352,17 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="143"/>
         <source>Automatically close parenthesises and brackets in expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatically close parentheses and brackets in expressions</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="157"/>
         <source>Enable syntax highlighting for expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable syntax highlighting for expressions</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="171"/>
         <source>Enable autocompletion interface in expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable autocompletion interface in expression editor</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="187"/>
@@ -985,12 +985,12 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="484"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Circular dependency detected. Object %1 depends on %2.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Circular dependency detected. Objects %1 depend on %2.</translation>
     </message>
 </context>
 <context>
