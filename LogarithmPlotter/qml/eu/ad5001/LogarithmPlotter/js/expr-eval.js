@@ -274,9 +274,12 @@ function evaluate(tokens, expr, values) {
       nstack.push(item);
     } else if (type === IMEMBER) {
       n1 = nstack.pop();
-      //console.log("Getting property", item.value, "of", n1)
+      //console.log("Getting property", item.value, "of", n1,":",n1[item.value])
       if(item.value in n1)
-        nstack.push(n1[item.value]);
+        if(n1[item.value].execute && n1[item.value].cached)
+          nstack.push(n1[item.value].execute())
+        else
+          nstack.push(n1[item.value]);
       else
         throw new Error(qsTranslate('error', 'Cannot find property %1 of object %2.').arg(item.value).arg(n1))
     } else if (type === IENDSTATEMENT) {

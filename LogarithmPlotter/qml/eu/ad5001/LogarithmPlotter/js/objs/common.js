@@ -188,6 +188,17 @@ class DrawableObject {
     }
     
     /**
+     * Returns the recursive list of objects this one depends on.
+     * @return {array}
+     */
+    getDependenciesList() {
+        let dependencies = this.requires.map(obj => obj)
+        for(let obj of this.requires)
+            dependencies = dependencies.concat(obj.getDependenciesList())
+        return dependencies
+    }
+    
+    /**
      * Callback method when one of the properties of the object is updated.
      */
     update() {
@@ -198,24 +209,24 @@ class DrawableObject {
         this.requires = []
         let properties = this.constructor.properties()
         for(let property in properties)
-            if(properties[property] == 'Expression' && this[property] != null) {
-                // Expressions with dependencies
-                for(let objName of this[property].requiredObjects()) {
-                    if(objName in C.currentObjectsByName && !this.requires.includes(C.currentObjectsByName[objName])) {
-                        this.requires.push(C.currentObjectsByName[objName])
-                        C.currentObjectsByName[objName].requiredBy.push(this)
+            if(typeof properties[property] == 'object' && 'type' in properties[property])
+                if(properties[property].type == 'Expression' && this[property] != null) {
+                    // Expressions with dependencies
+                    for(let objName of this[property].requiredObjects()) {
+                        if(objName in C.currentObjectsByName && !this.requires.includes(C.currentObjectsByName[objName])) {
+                            this.requires.push(C.currentObjectsByName[objName])
+                            C.currentObjectsByName[objName].requiredBy.push(this)
+                        }
                     }
+                    if(this[property].cached && this[property].requiredObjects().length > 0)
+                        // Recalculate
+                        this[property].recache()
+                        
+                } else if(properties[property].type == 'ObjectType' && this[property] != null) {
+                    // Object dependency
+                    this.requires.push(this[property])
+                    this[property].requiredBy.push(this)
                 }
-                if(this[property].cached && this[property].requiredObjects().length > 0)
-                    // Recalculate
-                    this[property].recache()
-                    
-            } else if(typeof properties[property] == 'object' && 'type' in properties[property] && properties[property] == 'ObjectType' && this[property] != null) {
-                // Object dependency
-                this.requires.push(this[property])
-                this[property].requiredBy.push(this)
-            }
-        
         // Updating objects dependent on this one
         for(let req of this.requiredBy)
             req.update()

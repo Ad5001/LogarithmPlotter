@@ -254,32 +254,32 @@
 <context>
     <name>ExpressionEditor</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="292"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="325"/>
         <source>Object Properties</source>
         <translation>Propriétés de l&apos;objet</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="307"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="356"/>
         <source>Variables</source>
         <translation>Variables</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="321"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="371"/>
         <source>Constants</source>
         <translation>Constantes</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="335"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="386"/>
         <source>Functions</source>
         <translation>Fonctions</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="349"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="401"/>
         <source>Executable Objects</source>
         <translation>Objets fonction</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="363"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="416"/>
         <source>Objects</source>
         <translation>Objets</translation>
     </message>
@@ -804,12 +804,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 <context>
     <name>editproperty</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="116"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="120"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="123"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.js" line="127"/>
         <source>%1 of %2 changed from %3 to %4.</source>
         <translation>%1 de %2 modifiée de %3 à %4.</translation>
     </message>
@@ -818,7 +818,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <name>error</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="124"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="281"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="284"/>
         <source>Cannot find property %1 of object %2.</source>
         <translation>Impossible de trouver la propriété %1 de l&apos;objet %2.</translation>
     </message>
@@ -833,128 +833,138 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>%1 n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="292"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="372"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="428"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="295"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="375"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="431"/>
         <source>Invalid expression.</source>
         <translation>Formule invalide.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="296"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="299"/>
         <source>Invalid expression (parity).</source>
         <translation>Formule invalide (parité).</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="616"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="619"/>
         <source>Unknown character &quot;%1&quot;.</source>
         <translation>Le caractère &quot;%1&quot; est inconnu.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="810"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="816"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="813"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="819"/>
         <source>Illegal escape sequence: %1.</source>
         <translation>Séquence d&apos;échappement illégale : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1018"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1072"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1021"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1075"/>
         <source>Parse error [%1:%2]: %3</source>
         <translation>Erreur de syntaxe [%1:%2] : %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1074"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1077"/>
         <source>Expected %1</source>
         <translation>%1 attendu</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1101"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1104"/>
         <source>Unexpected %1</source>
         <translation>%1 inattendu</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1158"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1161"/>
         <source>Function definition is not permitted.</source>
         <translation>La définition de fonctions n&apos;est pas autorisée.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1172"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1175"/>
         <source>Expected variable for assignment.</source>
         <translation>Une variable est attendue pour l&apos;affectation.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1336"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1339"/>
         <source>Unexpected &quot;.&quot;: member access is not permitted</source>
         <translation>&quot;.&quot; inattendu : l&apos;accès aux propriétés n&apos;est pas autorisé</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1343"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1346"/>
         <source>Unexpected &quot;[]&quot;: arrays are disabled.</source>
         <translation>&quot;[]&quot; inattendu : les tableaux sont désactivés.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1350"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1353"/>
         <source>Unexpected symbol: %1.</source>
         <translation>Symbole inconnu : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1627"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1630"/>
         <source>First argument to map is not a function.</source>
         <translation>Le premier argument de map n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1630"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1633"/>
         <source>Second argument to map is not an array.</source>
         <translation>Le deuxième argument de map n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1639"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1642"/>
         <source>First argument to fold is not a function.</source>
         <translation>Le premier argument de fold n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1642"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1645"/>
         <source>Second argument to fold is not an array.</source>
         <translation>Le deuxième argument de fold n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1651"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1654"/>
         <source>First argument to filter is not a function.</source>
         <translation>Le premier argument de filter n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1654"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1657"/>
         <source>Second argument to filter is not an array.</source>
         <translation>Le deuxième argument de filter n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1663"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1666"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Le deuxième argument de indexOf n&apos;est ni chaîne de caractères ni un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1671"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1674"/>
         <source>Second argument to join is not an array.</source>
         <translation>Le deuxième argument de join n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1798"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1801"/>
         <source>EOF</source>
         <translation>Fin de la formule</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="418"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="472"/>
         <source>No object found with names %1.</source>
         <translation>Aucun objet trouvé ayant pour noms %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="420"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="474"/>
         <source>No object found with name %1.</source>
         <translation>Aucun objet avec le nom %1 n&apos;a été trouvé.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="423"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="477"/>
         <source>Object cannot be dependent on itself.</source>
         <translation>Un objet ne peut pas dépendre de lui-même.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="484"/>
+        <source>Circular dependency detected. Object %1 depends on %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
+        <source>Circular dependency detected. Objects %1 depend on %2.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1094,114 +1104,114 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
 <context>
     <name>parameters</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="89"/>
         <source>above</source>
         <translation>↑ Au dessus</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="90"/>
         <source>below</source>
         <translation>↓ En dessous</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="71"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="83"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="91"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="103"/>
         <source>left</source>
         <translation>← À gauche</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="104"/>
         <source>right</source>
         <translation>→ À droite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="73"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="93"/>
         <source>above-left</source>
         <translation>↖ Au dessus à gauche</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="74"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="94"/>
         <source>above-right</source>
         <translation>↗ Au dessus à droite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="75"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="95"/>
         <source>below-left</source>
         <translation>↙ En dessous à gauche</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="96"/>
         <source>below-right</source>
         <translation>↘ En dessous à droite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="80"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="100"/>
         <source>center</source>
         <translation>&gt;|&lt; Centré</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="81"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="101"/>
         <source>top</source>
         <translation>↑ Au dessus</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="82"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="102"/>
         <source>bottom</source>
         <translation>↓ En dessous</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="85"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="105"/>
         <source>top-left</source>
         <translation>↖ Au dessus à gauche</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="86"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="106"/>
         <source>top-right</source>
         <translation>↗ Au dessus à droite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="87"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="107"/>
         <source>bottom-left</source>
         <translation>↙ En dessous à gauche</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="88"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="108"/>
         <source>bottom-right</source>
         <translation>↘ En dessous à droite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="112"/>
         <source>application</source>
         <translation>Application</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="113"/>
         <source>function</source>
         <translation>Fonction</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="97"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="117"/>
         <source>high</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="98"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="118"/>
         <source>low</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="123"/>
         <source>Next to target</source>
         <translation>A côté de la cible</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="104"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="124"/>
         <source>With label</source>
         <translation>Avec l&apos;étiquette</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.js" line="125"/>
         <source>Hidden</source>
         <translation>Caché</translation>
     </message>
