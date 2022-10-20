@@ -42,7 +42,7 @@ class EditedProperty extends C.Action {
         this.newValue = newValue
         this.propertyType = Objects.types[targetType].properties()[targetProperty]
         if(valueIsExpressionNeedingImport) {
-            if(this.propertyType == "Expression") {
+            if(typeof this.propertyType == 'object' && this.propertyType.type == "Expression") {
                 this.previousValue = new MathLib.Expression(this.previousValue);
                 this.newValue = new MathLib.Expression(this.newValue);
             } else if(this.propertyType == "Domain") {
@@ -98,6 +98,10 @@ class EditedProperty extends C.Action {
                     this.prevString = JSON.stringify(this.previousValue)
                     this.nextString = JSON.stringify(this.newValue)
                     break;
+                case "Expression":
+                    this.prevString = this.previousValue == null ? "null" : this.previousValue.toString()
+                    this.nextString = this.newValue == null ? "null" : this.newValue.toString()
+                    break;
             }
         } else {
             this.prevString = this.previousValue == null ? "null" : this.previousValue.toString()
@@ -106,7 +110,7 @@ class EditedProperty extends C.Action {
         // HTML
         this.prevHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prevString+'&nbsp;</tt>'
         this.nextHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.nextString+'&nbsp;</tt>'
-        if(Latex.enabled && this.propertyType == "Expression") {
+        if(Latex.enabled && typeof this.propertyType == 'object' && this.propertyType.type == "Expression") {
             this.prevHTML= this.renderLatexAsHtml(this.previousValue.latexMarkup)
             this.nextHTML= this.renderLatexAsHtml(this.newValue.latexMarkup)
         }

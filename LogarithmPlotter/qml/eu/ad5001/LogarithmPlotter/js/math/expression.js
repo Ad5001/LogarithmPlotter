@@ -63,7 +63,6 @@ class Expression {
             return this.cachedValue
         }
         C.currentVars = Object.assign({'x': x}, C.currentObjectsByName)
-        //console.log("Executing", this.expr, "with", JSON.stringify(C.currentVars))
         return this.calc.evaluate(C.currentVars)
     }
     
