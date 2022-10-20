@@ -21,6 +21,10 @@ class Expression {
         this.type = 'Expression'
         this.variables = variables
     }
+    
+    toString() {
+        return this.variables.length == 0 ? 'Number' : `Expression(${this.variables.join(', ')})`
+    }
 }
 
 class Enum {
@@ -29,12 +33,20 @@ class Enum {
         this.values = values
         this.translatedValues = values.map(x => qsTr(x))
     }
+    
+    toString() {
+        return this.type
+    }
 }
 
 class ObjectType {
     constructor(objType) {
         this.type = 'ObjectType'
         this.objType = objType
+    }
+    
+    toString() {
+        return this.objType
     }
 }
 
@@ -46,6 +58,10 @@ class List {
         this.format = format
         this.label = label
         this.forbidAdding = forbidAdding
+    }
+    
+    toString() {
+        return this.objType
     }
 }
 
@@ -60,6 +76,10 @@ class Dictionary {
         this.preKeyLabel = preKeyLabel
         this.postKeyLabel = postKeyLabel
         this.forbidAdding = forbidAdding
+    }
+    
+    toString() {
+        return 'Dictionary'
     }
 }
 

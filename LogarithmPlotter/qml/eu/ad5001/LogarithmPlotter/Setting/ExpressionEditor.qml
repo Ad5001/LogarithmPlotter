@@ -200,7 +200,8 @@ Item {
         
         Keys.onPressed: function(event) {
             // Autocomplete popup events
-            //console.log("Pressed key:", event.key, Qt.Key_Return, Qt.Key_Enter, event.text)
+            //console.log(acPopupContent.currentToken.dot, acPopupContent.previousToken.dot, "@", acPopupContent.currentToken.identifier, acPopupContent.previousToken.identifier, acPopupContent.previousToken2.identifier, objectPropertiesList.objectName, JSON.stringify(objectPropertiesList.baseText), objectPropertiesList.model.length, JSON.stringify(objectPropertiesList.categoryItems))
+            //console.log("Pressed key:", event.key, Qt.Key_Return, Qt.Key_Enter, event.text, acPopupContent.itemCount)
             if((event.key == Qt.Key_Enter || event.key == Qt.Key_Return) && acPopupContent.itemCount > 0) {
                 acPopupContent.autocomplete()
                 event.accepted = true
@@ -251,21 +252,40 @@ Item {
                     Parsing.TokenType.FUNCTION,
                     Parsing.TokenType.CONSTANT
                 ]
-                property var currentToken: getTokenAt(editor.tokens, editor.cursorPosition)
-                visible: currentToken != null && identifierTokenTypes.includes(currentToken.type)
+                property var currentToken: generateTokenInformation(getTokenAt(editor.tokens, editor.cursorPosition))
+                property var previousToken: generateTokenInformation(getPreviousToken(currentToken.token))
+                property var previousToken2: generateTokenInformation(getPreviousToken(previousToken.token))
+                property var previousToken3: generateTokenInformation(getPreviousToken(previousToken2.token))
+                visible: currentToken.exists
                 
                 // Focus handling.
                 readonly property var lists: [objectPropertiesList, variablesList, constantsList, functionsList, executableObjectsList, objectsList]
-                readonly property int itemCount: objectPropertiesList.model.length + variablesList.model.length, constantsList.model.length + functionsList.model.length + executableObjectsList.model.length + objectsList.model.length
+                readonly property int itemCount: objectPropertiesList.model.length + variablesList.model.length + constantsList.model.length + functionsList.model.length + executableObjectsList.model.length + objectsList.model.length
                 property int itemSelected: 0
                 
                 /*!
-                    \qmlmethod var ExpressionEditor::autocompleteAt(int idx)
+                    \qmlmethod var ExpressionEditor::generateTokenInformation(var token)
+                    Generates basic information about the given token (existence and type) used in autocompletion).
+                */
+                function generateTokenInformation(token) {
+                    let exists = token != null
+                    return {
+                        'token': token,
+                        'exists': exists,
+                        'value': exists ? token.value : null,
+                        'type': exists ? token.type : null,
+                        'startPosition': exists ? token.startPosition : 0,
+                        'dot': exists ? (token.type == Parsing.TokenType.PUNCT && token.value == ".") : false,
+                        'identifier': exists ? identifierTokenTypes.includes(token.type) : false
+                    }
+                }
+                /*!
+                    \qmlmethod void ExpressionEditor::autocompleteInfoAt(int idx)
                     Returns the autocompletion text information at a given position.
                     The information contains key 'text' (description text), 'autocomplete' (text to insert)
                     and 'cursorFinalOffset' (amount to add to the cursor's position after the end of the autocomplete)
                 */
-                function autocompleteAt(idx) {
+                function autocompleteInfoAt(idx) {
                     if(idx >= itemCount) return ""
                     let startIndex = 0
                     for(let list of lists) {
@@ -274,37 +294,67 @@ Item {
                         startIndex += list.model.length
                     }
                 }
+                
                 /*!
-                    \qmlmethod var ExpressionEditor::autocomplete()
+                    \qmlmethod void ExpressionEditor::autocomplete()
                     Autocompletes with the current selected word.
                 */
                 function autocomplete() {
-                    let autotext = autocompleteAt(itemSelected)
+                    let autotext = autocompleteInfoAt(itemSelected)
                     let startPos = currentToken.startPosition
+                    console.log("Replacing", currentToken.value, "at", startPos, "with", autotext.autocomplete)
                     editor.remove(startPos, startPos+currentToken.value.length)
                     editor.insert(startPos, autotext.autocomplete)
                     editor.cursorPosition = startPos+autotext.autocomplete.length+autotext.cursorFinalOffset
+                }
+                
+                /*!
+                    \qmlmethod var ExpressionEditor::getPreviousToken(var token)
+                    Returns the token before this one.
+                */
+                function getPreviousToken(token) {
+                    let newToken = getTokenAt(editor.tokens, token.startPosition)
+                    if(newToken != null && newToken.type == Parsing.TokenType.WHITESPACE)
+                        return getPreviousToken(newToken)
+                    return newToken
                 }
                 
                 AutocompletionCategory {
                     id: objectPropertiesList
                     
                     category: qsTr("Object Properties")
+                    visbilityCondition: isEnteringProperty
                     itemStartIndex: 0
                     itemSelected: parent.itemSelected
-                    categoryItems: []
-                    property var objectName: null
-                    autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Objects.currentObjectsByName[objectName].constructor.properties()[item],
-                        'autocomplete': item + " ", 'cursorFinalOffset': 0
-                    }}
-                    baseText: parent.visible ? parent.currentToken.value : ""
+                    property bool isEnteringProperty: (
+                        // Current token is dot.
+                        (parent.currentToken.dot && parent.previousToken.identifier && !parent.previousToken2.dot) ||
+                        // Current token is property identifier
+                        (parent.currentToken.identifier && parent.previousToken.dot && parent.previousToken2.identifier && !parent.previousToken3.dot))
+                    property string objectName: isEnteringProperty ? 
+                        (parent.currentToken.dot ? parent.previousToken.value : parent.previousToken2.value)
+                    : ""
+                    property var objectProperties: isEnteringProperty ? 
+                                                    Objects.currentObjectsByName[objectName].constructor.properties() : 
+                                                    {}
+                    categoryItems: Object.keys(objectProperties)
+                    autocompleteGenerator: (item) => {
+                        let propType = objectProperties[item]
+                        return {
+                            'text': item, 'annotation': propType == null ? '' : propType.toString(),
+                            'autocomplete': parent.currentToken.dot ? `.${item} ` : `${item} `,
+                            'cursorFinalOffset': 0
+                        }
+                        
+                    }
+                    baseText: parent.visible && !parent.currentToken.dot ? parent.currentToken.value : ""
                 }
                 
                 AutocompletionCategory {
                     id: variablesList
                     
                     category: qsTr("Variables")
+                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: objectPropertiesList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: control.variables
@@ -319,6 +369,7 @@ Item {
                     id: constantsList
                     
                     category: qsTr("Constants")
+                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: variablesList.itemStartIndex + variablesList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.CONSTANTS_LIST
@@ -333,6 +384,7 @@ Item {
                     id: functionsList
                     
                     category: qsTr("Functions")
+                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: constantsList.itemStartIndex + constantsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.FUNCTIONS_LIST
@@ -347,11 +399,12 @@ Item {
                     id: executableObjectsList
                     
                     category: qsTr("Executable Objects")
+                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: functionsList.itemStartIndex + functionsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': `${Objects.currentObjectsByName[item].constructor.displayType()}`,
+                        'text': item, 'annotation': Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -361,6 +414,7 @@ Item {
                     id: objectsList
                     
                     category: qsTr("Objects")
+                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: executableObjectsList.itemStartIndex + executableObjectsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Object.keys(Objects.currentObjectsByName).filter(obj => obj != self)

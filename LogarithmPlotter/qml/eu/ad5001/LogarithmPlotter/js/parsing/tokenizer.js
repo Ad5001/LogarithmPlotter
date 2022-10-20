@@ -24,7 +24,7 @@ const WHITESPACES = " \t\n\r"
 const STRING_LIMITORS = '"\'`';
 const OPERATORS = "+-*/^%?:=!><";
 const PUNCTUTATION = "()[]{},.";
-const NUMBER_CHARS = "0123456789."
+const NUMBER_CHARS = "0123456789"
 const IDENTIFIER_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789_₀₁₂₃₄₅₆₇₈₉αβγδεζηθκλμξρςστφχψωₐₑₒₓₔₕₖₗₘₙₚₛₜ"
 
 var TokenType = {
@@ -92,7 +92,7 @@ class ExpressionTokenizer {
     readNumber() {
         let included = "";
         let hasDot = false;
-        while(!this.input.atEnd() && NUMBER_CHARS.includes(this.input.peek())) {
+        while(!this.input.atEnd() && (NUMBER_CHARS.includes(this.input.peek()) || this.input.peek() == '.')) {
             if(this.input.peek() == ".") {
                 if(hasDot) this.input.raise("Unexpected '.'. Expected digit")
                 hasDot = true;

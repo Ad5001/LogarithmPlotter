@@ -214,9 +214,9 @@ Item {
         Parses a given \c value as an expression or a number depending on the type of \c propertyName of all \c objType.
     */
     function parseValue(value, objType, propertyName) {
-        return {
-            'Expression': () => new MathLib.Expression(value),
-            'number': () => parseFloat(value)
-        }[Objects.types[objType].properties()[propertyName]]()
+        if(Objects.types[objType].properties()[propertyName] == 'number')
+            return parseFloat(value)
+        else
+            return new MathLib.Expression(value)
     }
 }

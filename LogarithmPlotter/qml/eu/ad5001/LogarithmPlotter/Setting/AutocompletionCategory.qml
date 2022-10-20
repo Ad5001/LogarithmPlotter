@@ -63,10 +63,17 @@ ListView {
        Text to autocomplete.
     */
     property string baseText: ""
+    
+    /*!
+       \qmlproperty bool AutocompletionCategory::visbilityCondition
+       Condition to be met for the category to be visible.
+    */
+    property bool visbilityCondition: true
+    
     width: parent.width
     visible: model.length > 0
     implicitHeight: contentItem.childrenRect.height
-    model: parent.visible ? categoryItems.filter((item) => item.includes(baseText)).map(autocompleteGenerator) : []
+    model: visbilityCondition ? categoryItems.filter((item) => item.includes(baseText)).map(autocompleteGenerator) : []
     
     header: Column {
         width: listFiltered.width
