@@ -328,7 +328,7 @@ Item {
                     id: objectPropertiesList
                     
                     category: qsTr("Object Properties")
-                    visbilityCondition: isEnteringProperty
+                    visbilityCondition: doesObjectExist
                     itemStartIndex: 0
                     itemSelected: parent.itemSelected
                     property bool isEnteringProperty: (
@@ -339,7 +339,8 @@ Item {
                     property string objectName: isEnteringProperty ? 
                         (parent.currentToken.dot ? parent.previousToken.value : parent.previousToken2.value)
                     : ""
-                    property var objectProperties: isEnteringProperty ? 
+                    property bool doesObjectExist: isEnteringProperty && objectName in Objects.currentObjectsByName
+                    property var objectProperties: doesObjectExist ? 
                                                     Objects.currentObjectsByName[objectName].constructor.properties() : 
                                                     {}
                     categoryItems: Object.keys(objectProperties)
