@@ -35,7 +35,7 @@ import "js/math/latex.js" as LatexJS
     \sa LogarithmPlotter
 */
 MenuBar {
-    property var settings: settingsMenu
+    property var settingsMenu: settingsSubMenu
     
     Menu {
         title: qsTr("&File")
@@ -124,7 +124,7 @@ MenuBar {
     }
     
     Menu {
-        id: settingsMenu
+        id: settingsSubMenu
         title: qsTr("&Settings")
         Action {
             id: checkForUpdatesMenuSetting

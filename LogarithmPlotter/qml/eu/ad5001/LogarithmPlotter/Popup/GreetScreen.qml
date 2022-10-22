@@ -104,7 +104,7 @@ Popup {
         onClicked: {
             Helper.setSettingBool("check_for_updates", checked)
             // Set in the menu bar
-            appMenu.settings.children[0].checked = checked
+            appMenu.settingsMenu.children[0].checked = checked
         }
     }
     
@@ -117,7 +117,7 @@ Popup {
         text: qsTr('Reset redo stack when a new action is added to history')
         onClicked: {
             Helper.setSettingBool("reset_redo_stack", checked)
-            appMenu.settings.children[1].checked = checked
+            appMenu.settingsMenu.children[1].checked = checked
         }
     }
     
@@ -130,7 +130,7 @@ Popup {
         text: qsTr('Enable LaTeX rendering')
         onClicked: {
             Helper.setSettingBool("enable_latex", checked)
-            appMenu.settings.children[2].checked = checked
+            appMenu.settingsMenu.children[2].checked = checked
         }
     }
     
@@ -143,7 +143,7 @@ Popup {
         text: qsTr('Automatically close parenthesises and brackets in expressions')
         onClicked: {
             Helper.setSettingBool("expression_editor.autoclose", checked)
-            appMenu.settings.children[3].children[0].checked = checked
+            appMenu.settingsMenu.children[3].children[0].checked = checked
         }
     }
     
@@ -156,7 +156,7 @@ Popup {
         text: qsTr('Enable syntax highlighting for expressions')
         onClicked: {
             Helper.setSettingBool("expression_editor.colorize", checked)
-            appMenu.settings.children[3].children[1].checked = checked
+            appMenu.settingsMenu.children[3].children[1].checked = checked
         }
     }
     
@@ -169,7 +169,7 @@ Popup {
         text: qsTr('Enable autocompletion interface in expression editor')
         onClicked: {
             Helper.setSettingBool("autocompletion.enabled", checked)
-            appMenu.settings.children[3].children[2].checked = checked
+            appMenu.settingsMenu.children[3].children[2].checked = checked
         }
     }
     
