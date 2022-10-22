@@ -18,54 +18,81 @@
 
 .pragma library
 
+.import "polyfill.js" as Polyfill
+
+
 const CONSTANTS = {
     "π": Math.PI,
     "pi": Math.PI,
     "inf": Infinity,
     "infinity": Infinity,
     "∞": Infinity,
-    "e": Infinity
+    "e": Math.E
 };
 const CONSTANTS_LIST = Object.keys(CONSTANTS);
 
 const FUNCTIONS = {
-    "abs": Math.abs,
-    "acos": Math.acos,
-    "acosh": Math.acosh,
-    "asin": Math.asin,
-    "asinh": Math.asinh,
-    "atan": Math.atan,
-    "atan2": Math.atan2,
-    "atanh": Math.atanh,
-    "cbrt": Math.cbrt,
-    "ceil": Math.ceil,
-    "clz32": Math.clz32,
-    "cos": Math.cos,
-    "cosh": Math.cosh,
-    "exp": Math.exp,
-    "expm1": Math.expm1,
-    "floor": Math.floor,
-    "fround": Math.fround,
-    "hypot": Math.hypot,
-    "imul": Math.imul,
-    "log": Math.log,
-    "log10": Math.log10,
-    "log1p": Math.log1p,
-    "log2": Math.log2,
-    "max": Math.max,
-    "min": Math.min,
-    "pow": Math.log2,
-    "random": Math.random,
-    "round": Math.round,
-    "sign": Math.sign,
-    "sin": Math.sin,
-    "sinh": Math.sinh,
-    "sqrt": Math.sqrt,
-    "tan": Math.tan,
-    "tanh": Math.tanh,
-    "trunc": Math.trunc,
-    "integral": () => 0, // TODO: Implement
-    "derivative": () => 0,
+    // The functions commented are the one either not implemented 
+    // in the parser, or not to be used for autocompletion.
+    // Unary operators
+    //'+': Number,
+    //'-': (x) => -x,
+    //'!'
+    // Other operations
+    'length': (s) => Array.isArray(s) ? s.length : String(s).length,
+    // Boolean functions
+    'not': (x) => !x,
+    // Math functions
+    'abs': Math.abs,
+    'acos': Math.acos,
+    'acosh': Math.acosh,
+    'asin': Math.asin,
+    'asinh': Math.asinh,
+    'atan': Math.atan,
+    'atan2': Math.atan2,
+    'atanh': Math.atanh,
+    'cbrt': Math.cbrt,
+    'ceil': Math.ceil,
+    //'clz32': Math.clz32,
+    'cos': Math.cos,
+    'cosh': Math.cosh,
+    'exp': Math.exp,
+    'expm1': Math.expm1,
+    'floor': Math.floor,
+    //'fround': Math.fround,
+    'hypot': Math.hypot,
+    //'imul': Math.imul,
+    'lg': Math.log10,
+    'ln': Math.log,
+    'log': Math.log,
+    'log10': Math.log10,
+    'log1p': Math.log1p,
+    'log2': Math.log2,
+    'max': Math.max,
+    'min': Math.min,
+    'pow': Math.log2,
+    'random': Math.random,
+    'round': Math.round,
+    'sign': Math.sign,
+    'sin': Math.sin,
+    'sinh': Math.sinh,
+    'sqrt': Math.sqrt,
+    'tan': Math.tan,
+    'tanh': Math.tanh,
+    'trunc': Math.trunc,
+    // Functions in expr-eval, ported here.
+    'fac': Polyfill.factorial,
+    'gamma': Polyfill.gamma,
+    'Γ': Polyfill.gamma,
+    'roundTo': (x, exp) => Number(x).toFixed(exp),
+    'map': Polyfill.arrayMap,
+    'fold': Polyfill.arrayFold,
+    'filter': Polyfill.arrayFilter,
+    'indexOf': Polyfill.indexOf,
+    'join': Polyfill.arrayJoin,
+    // Integral & derivative (only here for autocomplete).
+    'integral': () => 0, // TODO: Implement
+    'derivative': () => 0,
 }
 const FUNCTIONS_LIST = Object.keys(FUNCTIONS);
 // TODO: Complete

@@ -1627,10 +1627,10 @@ function min(array) {
 
 function arrayMap(f, a) {
   if (typeof f !== 'function') {
-    throw new Error(qsTranslate('error', 'First argument to map is not a function.'));
+    throw new EvalError(qsTranslate('error', 'First argument to map is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error(qsTranslate('error', 'Second argument to map is not an array.'));
+    throw new EvalError(qsTranslate('error', 'Second argument to map is not an array.'));
   }
   return a.map(function (x, i) {
     return f(x, i);
@@ -1639,10 +1639,10 @@ function arrayMap(f, a) {
 
 function arrayFold(f, init, a) {
   if (typeof f !== 'function') {
-    throw new Error(qsTranslate('error', 'First argument to fold is not a function.'));
+    throw new EvalError(qsTranslate('error', 'First argument to fold is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error(qsTranslate('error', 'Second argument to fold is not an array.'));
+    throw new EvalError(qsTranslate('error', 'Second argument to fold is not an array.'));
   }
   return a.reduce(function (acc, x, i) {
     return f(acc, x, i);
@@ -1651,10 +1651,10 @@ function arrayFold(f, init, a) {
 
 function arrayFilter(f, a) {
   if (typeof f !== 'function') {
-    throw new Error(qsTranslate('error', 'First argument to filter is not a function.'));
+    throw new EvalError(qsTranslate('error', 'First argument to filter is not a function.'));
   }
   if (!Array.isArray(a)) {
-    throw new Error(qsTranslate('error', 'Second argument to filter is not an array.'));
+    throw new EvalError(qsTranslate('error', 'Second argument to filter is not an array.'));
   }
   return a.filter(function (x, i) {
     return f(x, i);
@@ -1773,6 +1773,7 @@ class Parser {
       atan2: Math.atan2,
       'if': condition,
       gamma: gamma,
+      'Γ': gamma,
       roundTo: roundTo,
       map: arrayMap,
       fold: arrayFold,

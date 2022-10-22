@@ -112,7 +112,7 @@ class GainBode extends Common.ExecutableObject {
     
     draw(canvas, ctx) {
         var base = [canvas.x2px(this.om_0.x), canvas.y2px(this.om_0.y)]
-        var dbfn = new MathLib.Expression(`${this.gain.execute()}*(ln(x)-ln(${this.om_0.x}))/ln(10)+${this.om_0.y}`)
+        var dbfn = new MathLib.Expression(`${this.gain.execute()}*(log10(x)-log10(${this.om_0.x}))+${this.om_0.y}`)
         var inDrawDom = new MathLib.EmptySet()
 
         if(this.pass == 'high') {
