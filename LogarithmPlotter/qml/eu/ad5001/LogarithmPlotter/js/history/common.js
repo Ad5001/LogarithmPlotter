@@ -98,7 +98,7 @@ class Action {
     renderLatexAsHtml(latexString) {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
-        let latexInfo = Latex.Renderer.render(latexString, imageDepth*fontSize+4, themeTextColor).split(",")
+        let latexInfo = Latex.Renderer.render(latexString, imageDepth*(fontSize+2), themeTextColor).split(",")
         return `<img src="${latexInfo[0]}" width="${parseInt(latexInfo[1])/imageDepth}" height="${parseInt(latexInfo[2])/imageDepth}" style="vertical-align: middle"></img>`
     }
     

@@ -18,6 +18,7 @@
 
 import QtQuick 2.12
 import QtQml 2.12
+import QtQuick.Window 2.12
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
 import "../js/history/common.js" as HistoryCommon
@@ -215,5 +216,6 @@ Item {
     Component.onCompleted: {
         HistoryLib.history = historyObj
         HistoryCommon.themeTextColor = sysPalette.windowText
+        HistoryCommon.imageDepth = Screen.devicePixelRatio
     }
 }

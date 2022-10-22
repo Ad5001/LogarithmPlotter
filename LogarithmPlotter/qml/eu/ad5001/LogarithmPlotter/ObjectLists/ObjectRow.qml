@@ -19,6 +19,7 @@
 import QtQuick 2.12
 import QtQuick.Dialogs 1.3 as D
 import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
@@ -100,8 +101,8 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             visible: LatexJS.enabled
-            property double depth: 2
-            property var ltxInfo: visible ? Latex.render(obj.getLatexString(), depth*parent.font.pixelSize+4, parent.color).split(",") : ["","0","0"]
+            property double depth: Screen.devicePixelRatio
+            property var ltxInfo: visible ? Latex.render(obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color).split(",") : ["","0","0"]
             source: visible ? ltxInfo[0] : ""
             width: parseInt(ltxInfo[1])/depth
             height: parseInt(ltxInfo[2])/depth
