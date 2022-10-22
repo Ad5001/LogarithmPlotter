@@ -105,22 +105,22 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="159"/>
         <source>Expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Kifejezésszerkesztő</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zárójelek automatikus bezárása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="174"/>
         <source>Enable syntax highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Mondattani kiemelés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="185"/>
         <source>Enable autocompletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus befejezés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="197"/>
@@ -192,7 +192,7 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="179"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="197"/>
         <source>+ Create new %1</source>
-        <translation type="unfinished">+ Új %1 létrehozása</translation>
+        <translation>+ Új %1 létrehozása</translation>
     </message>
 </context>
 <context>
@@ -200,42 +200,42 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="69"/>
         <source>Edit properties of %1 %2</source>
-        <translation type="unfinished">%1 %2 tulajdonságainak szerkesztése</translation>
+        <translation>%1 %2 tulajdonságainak szerkesztése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="82"/>
         <source>LogarithmPlotter - Invalid object name</source>
-        <translation type="unfinished"></translation>
+        <translation>LogarithmPlotter - Érvénytelen objektumnév</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="85"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) „%1” nevű objektum már létezik.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="93"/>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="118"/>
         <source>Label content</source>
-        <translation type="unfinished">Címke tartalom</translation>
+        <translation>Címketartalom</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>null</source>
-        <translation type="unfinished">üres</translation>
+        <translation>üres</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>name</source>
-        <translation type="unfinished">név</translation>
+        <translation>név</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="119"/>
         <source>name + value</source>
-        <translation type="unfinished">név + érték</translation>
+        <translation>név + érték</translation>
     </message>
 </context>
 <context>
@@ -274,32 +274,32 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="325"/>
         <source>Object Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Objektumtulajdonságok</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="356"/>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Változók</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="371"/>
         <source>Constants</source>
-        <translation type="unfinished"></translation>
+        <translation>Állandók</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="386"/>
         <source>Functions</source>
-        <translation type="unfinished">Függvények</translation>
+        <translation>Függvények</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="401"/>
         <source>Executable Objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Függvényobjektumok</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="416"/>
         <source>Objects</source>
-        <translation type="unfinished">Tárgyak</translation>
+        <translation>Objektumok</translation>
     </message>
 </context>
 <context>
@@ -352,17 +352,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="143"/>
         <source>Automatically close parenthesises and brackets in expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Zárójelek automatikus bezárása a kifejezésekben</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="157"/>
         <source>Enable syntax highlighting for expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Mondattani kiemelés engedélyezése a kifejezésekhez</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="171"/>
         <source>Enable autocompletion interface in expression editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus befejezési felület engedélyezése a kifejezésszerkesztőben</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="187"/>
@@ -520,27 +520,27 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="85"/>
         <source>Hide %1 %2</source>
-        <translation type="unfinished">%1 %2 elrejtése</translation>
+        <translation>%1 %2 elrejtése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="86"/>
         <source>Show %1 %2</source>
-        <translation type="unfinished">%1 %2 megjelenítése</translation>
+        <translation>%1 %2 megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="144"/>
         <source>Set %1 %2 position</source>
-        <translation type="unfinished">%1 %2 helye beállítása</translation>
+        <translation>%1 %2 helye beállítása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="169"/>
         <source>Delete %1 %2</source>
-        <translation type="unfinished">%1 %2 törlése</translation>
+        <translation>%1 %2 törlése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="198"/>
         <source>Pick new color for %1 %2</source>
-        <translation type="unfinished">Válasszon új színt a következőhöz: %1 %2</translation>
+        <translation>Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -846,151 +846,151 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="124"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="284"/>
         <source>Cannot find property %1 of object %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %2 objektum %1 tulajdonsága nem található.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="224"/>
         <source>Undefined variable %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 változó nincs meghatározva.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="244"/>
         <source>%1 cannot be executed.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="295"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="375"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="431"/>
         <source>Invalid expression.</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen kifejezés.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="299"/>
         <source>Invalid expression (parity).</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen kifejezés (paritás).</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="619"/>
         <source>Unknown character &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen karakter „%1”.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="813"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="819"/>
         <source>Illegal escape sequence: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen kilépési sorozat: %1.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1021"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1075"/>
         <source>Parse error [%1:%2]: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Elemzési hiba [%1:%2]: %3</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1077"/>
         <source>Expected %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Várható %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1104"/>
         <source>Unexpected %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Váratlan %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1161"/>
         <source>Function definition is not permitted.</source>
-        <translation type="unfinished"></translation>
+        <translation>A függvény meghatározása nem engedélyezett.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1175"/>
         <source>Expected variable for assignment.</source>
-        <translation type="unfinished"></translation>
+        <translation>A hozzárendeléshez várt változó.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1339"/>
         <source>Unexpected &quot;.&quot;: member access is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation>Váratlan „.”: a tagok hozzáférése nem engedélyezett</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1346"/>
         <source>Unexpected &quot;[]&quot;: arrays are disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váratlan „[]”: a tömbök le vannak tiltva.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1353"/>
         <source>Unexpected symbol: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váratlan szimbólum: %1.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1630"/>
         <source>First argument to map is not a function.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az első leképezési argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1633"/>
         <source>Second argument to map is not an array.</source>
-        <translation type="unfinished"></translation>
+        <translation>A második leképezési argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1642"/>
         <source>First argument to fold is not a function.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az első behajtási argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1645"/>
         <source>Second argument to fold is not an array.</source>
-        <translation type="unfinished"></translation>
+        <translation>A második behajtási argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1654"/>
         <source>First argument to filter is not a function.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az első szűrési argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1657"/>
         <source>Second argument to filter is not an array.</source>
-        <translation type="unfinished"></translation>
+        <translation>A második szűrési argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1666"/>
         <source>Second argument to indexOf is not a string or array.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az indexOf második argumentuma nem karakterlánc vagy tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1674"/>
         <source>Second argument to join is not an array.</source>
-        <translation type="unfinished"></translation>
+        <translation>A második csatlakozási argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1801"/>
         <source>EOF</source>
-        <translation type="unfinished"></translation>
+        <translation>Kifejezés vége</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="472"/>
         <source>No object found with names %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 nevű objektum nem található.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="474"/>
         <source>No object found with name %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 nevű objektum nem található.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="477"/>
         <source>Object cannot be dependent on itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az objektum nem függhet önmagától.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="484"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Körkörös függőség észlelve. A(z) %1-objektum a(z) %2-objektumtól függ.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Körkörös függőség észlelve. A(z) %1-objektumok a(z) %2-objektumtól függenek.</translation>
     </message>
 </context>
 <context>
@@ -998,7 +998,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="136"/>
         <source>LogarithmPlotter - Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>LogarithmPlotter - Elemzési hiba</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="139"/>
@@ -1006,7 +1006,10 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 %2
 
 Evaluated expression: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a(z) %1 tulajdonság kifejezésének elemzésekor:
+%2
+
+Kiértékelt kifejezés: %3</translation>
     </message>
 </context>
 <context>
@@ -1266,12 +1269,12 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.js" line="84"/>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 áthelyezve innen: „%3” ide: „%4”.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.js" line="90"/>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 áthelyezve innen: %2 ide: %3.</translation>
     </message>
 </context>
 <context>
