@@ -25,6 +25,7 @@
 class ExpressionBuilder {
     constructor(tokenizer) {
         this.tokenizer = tokenizer;
+        this.stack = []
     }
     
     parseExpression(delimitors = '') {
