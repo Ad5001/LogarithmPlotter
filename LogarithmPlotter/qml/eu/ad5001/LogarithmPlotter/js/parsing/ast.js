@@ -614,6 +614,9 @@ class IntegralElement extends FunctionElement {
     }
 }
 
+
+class UnaryOperation extends AbstractSyntaxElement {}
+
 class BinaryOperation extends AbstractSyntaxElement {
     type = ASEType.BINARY_OPERATION
     
@@ -884,49 +887,5 @@ class Negation extends AbstractSyntaxElement {
     }
 }
 
-class Negation extends AbstractSyntaxElement {
-    type = ASEType.NEGATION
-    
-    constructor(expression) {
-        this.expression = expression
-    }
-    
-    execute(variables) {
-        if(variables.includes(this.arrayName)) {
-            let index = this.astIndex.execute(variables)
-            if(index % 1 != 0 || index < 0) { // Float index.
-                throw new EvalError("Non-integer array index " + index + " used as array index for " + this.variableName + ".")
-            } else if(variables[this.arrayName].length <= index) {
-                throw new EvalError("Out-of-range index " + index + " used as array index for " + this.variableName + ".")
-            } else {
-                return variables[this.arrayName][index]
-            }
-        } else {
-            throw new EvalError("Unknown variable " + this.variableName + ".")
-        }
-    
-        toLatex() {
-            return this.variableName
-        }
-    }
-    
-    simplify() {
-        return new Negation(this.expression.simplify())
-    }
-    
-    derivation(variable) {
-        return new Negation(this.expression.derivation(variable))
-    }
-    
-    integral(variable) {
-        return new Negation(this.expression.integral(variable))
-    }
-    
-    toLatex() {
-        return '-' + this.expression.toLatex()
-    }
-    
-    isConstant() {
-        return this.expression.isConstant()
-    }
-}
+
+class TertiaryOperation extends AbstractSyntaxElement {}

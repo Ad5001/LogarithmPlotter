@@ -39,7 +39,9 @@ const BINARY_OPERATION_PRIORITY = {
     '*': 40, '/': 40,
     '^': 50
 }
-const BINARY_OPERATORS = Object.keys(BINARY_OPERATION_PRIORITY)
+
+// Sorted by priority (most to least)
+const BINARY_OPERATORS = Object.keys(BINARY_OPERATION_PRIORITY).sort((ope1, ope2) => BINARY_OPERATION_PRIORITY[ope2]-BINARY_OPERATION_PRIORITY[ope1])
 
 const TERTIARY_OPERATORS = ['?']
 

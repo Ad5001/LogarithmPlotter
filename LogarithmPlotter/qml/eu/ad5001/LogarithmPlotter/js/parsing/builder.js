@@ -94,9 +94,13 @@ class ExpressionBuilder {
      */
     handleSingle(token) {
         switch(token.type) {
-            case TK.TokenType.IDENTIFIER:
-                this.parseIdentifier()
+            case TK.TokenType.NUMBER:
+                this.stack.push(new AST.NumberElement(this.tokenizer.next().value))
                 break
+            case TK.TokenType.STRING:
+                this.stack.push(new AST.StringElement(this.tokenizer.next().value))
+                break
+            case TK.TokenType.IDENTIFIER:
             case TK.TokenType.OPERATOR:
                 if(this.stack.length == 0 && Reference.UNARY_OPERATORS.includes(token.value))
                     this.parseSingleOperation()
@@ -104,12 +108,11 @@ class ExpressionBuilder {
                     this.parseBinaryOperations()
                 else if(this.stack.length > 0 && Reference.TERTIARY_OPERATORS.includes(token.value))
                     this.parseTertiaryOperation()
-                break
-            case TK.TokenType.NUMBER:
-                this.stack.push(new AST.NumberElement(this.tokenizer.next().value))
-                break
-            case TK.TokenType.STRING:
-                this.stack.push(new AST.StringElement(this.tokenizer.next().value))
+                else if(token.type == TK.TokenType.IDENTIFIER)
+                    // If it isn't a reserved keyword for operators (e.g and, or...), then it *is* and identifier.
+                    this.parseIdentifier()
+                else
+                    this.tokenizer.raise(`Unknown operator: ${token.value}.`)
                 break
             case TK.TokenType.PUNCT:
                 if(token.value == '(') {
@@ -202,7 +205,7 @@ class ExpressionBuilder {
     
     /**
      * Checks for followup tokens following a value getting.
-     * E.g: getting the property of an object, an array member, or calling a function.
+     * E.g: getting the property of an object, an array member, or calling a function.^
      * NOTE: Expects to have at least one stack element for previous calling object.
      */
     checkIdentifierFollowupTokens() {
@@ -231,9 +234,47 @@ class ExpressionBuilder {
             throw new Error(`The operator ${this.tokenizer.peek().value} can only be used after a value.`)
         // Parse a sequence of operations, and orders them based on OPERATION_PRIORITY.
         let elements = [this.stack.pop()]
-        let operators = [this.tokenizer.next()]
+        let operators = [this.tokenizer.next().value]
+        let nextIsOperator = false
         let token
         while((token = this.tokenizer.peek()) != null) {
+            if(nextIsOperator)
+                if(token.type == TK.TokenType.PUNCT)
+                    if(token.value == ')')
+                        // Don't skip that token, but stop the parsing,
+                        // as it may be an unopened expression.
+                        break
+                    else
+                        this.tokenizer.raise(`Unexpected ${token.value}. Expected an operator, or ')'.`)
+                else if(token.type == TK.TokenType.IDENTIFIER)
+                    if(Reference.BINARY_OPERATORS.includes(token.value))
+                        this.operartors.push(this.tokenizer.next().value)
+                    else if(Reference.TERTIARY_OPERATORS.includes(token.value))
+                        // Break to let the hand back to the parser.
+                        break
+                    else if(Reference.UNARY_OPERATORS.includes(token.value))
+                        this.tokenizer.raise(`Invalid use of operator ${token.value} after ${elements.pop().value}.`)
+                    else
+                        this.tokenizer.raise(`Unknown operator: ${token.value}.`)
+            else {
+                handleSingle(token)
+                let value = this.stack.pop()
+                if(token.value != '(' && (value instanceof AST.BinaryOperation || value instanceof AST.TertiaryOperation))
+                    // In case you chain something like 'or' and '*'
+                    // Unary operations are exempted from this as they are used for a single value.
+                    this.tokenizer.raise(`Cannot chain operations ${operators.pop().value} and ${value.ope}.`)
+                elements.push(value)
+            }
         }
+        // Now we have our full chain, we need to match by operation priority
+        // TODO: Implement FlatBinaryOperations for better simplification and smarter trees.
+        for(let ope of AST.BINARY_OPERATORS)
+            while(operators.includes(ope)) { // Skip if not in priority.
+                let index = operators.indexOf(ope)
+                operators.splice(index, 1) // Remove operator from array.
+                elements.splice(index, 2, new BinaryOperation(elements[index], ope, elements[index+1]))
+            }
+        // At the end, there should be no more operators and only one element.
+        this.stack.push(elements.pop())
     }
 }
