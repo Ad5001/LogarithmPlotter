@@ -24,10 +24,7 @@
 const DERIVATION_PRECISION = 0.01
 const ZERO_EPISLON = 5e-11 // Number under which a variable is considered 0 when dealing with floating point rounding errors.
 
-const BINARY_OPERATION_PRIORITY = {
-    "+": 10, "-": 10,
-    "*": 20, "/": 20
-}
+const BINARY_OPERATION_PRIORITY = Reference.BINARY_OPERATION_PRIORITY
 
 enum ASEType {
     UNKNOWN,
@@ -417,16 +414,17 @@ class FunctionElement extends AbstractSyntaxElement {
     }
     
     substitute(variable, substitution) {
+        return new FunctionElement(this.functionName, this.args.map(arg => arg.substitute(variable, substitution)))
     }
     
     derivation(variable) {
         //TODO: Use DERIVATIVES elements in reference.
-        return new DerivationElement([this, variable])
+        return new DerivationElement([this, new Variable(variable)])
     }
     
     integral(variable) {
         //TODO: Use INTEGRALS elements in reference.
-        return new IntegralElement([this, variable])
+        return new IntegralElement([this, new Variable(variable)])
     }
     
     toEditableString() {
@@ -487,12 +485,20 @@ class DerivationElement extends FunctionElement {
     }
     
     simplify() {
-        return new DerivationElement([this.args[0].simplify(variables), this.args[1]])
+        return this.args[0].simplify().derivation(this.args[1].variableName).simplify()
+    }
+    
+    substitute(variable, substitution) {
+        if(variable == this.args[1].variableName) {
+            // Simplifu, 
+            return this.simplify().substitute(variable, substitution)
+        } else
+            return new DerivationElement([this.args[0].substitute(variable, substitution), this.args[1]])
     }
     
     integral(variable) {
         // Check if we're integrating and derivating by the same variable
-        return variable.variableName == this.args[1].variableName ? this.args[1] : super(variable)
+        return variable == this.args[1].variableName ? this.args[1] : super(variable)
     }
     
     toLatex() {
@@ -557,26 +563,44 @@ class IntegralElement extends FunctionElement {
     
     simplify() {
         // TODO: When full derivation and integrals are implemented, use dedicated functions for simplification.
-        let func = this.args[this.args.length-2].simplify(variables)
+        let func = this.f.simplify(variables)
         let newElem
         if(func.isConstant() && this.args.length == 4)
             // Simplify integral.
             newElem = new BinaryOperation(
-                new BinaryOperation(this.args[1], '-', this.args[0]).simplify(),
+                new BinaryOperation(this.b, '-', this.a).simplify(),
                 '*',
                 func
-            )
-        else
-            newElem = new IntegralElement(this.args.length == 4 ?
-                [this.a.simplify(), this.b.simplify(), func, this.d] :
-                [func, this.d]
-            )
+            ).simplify()
+        else {
+            let integrated = this.func.integral(this.d.variableName)
+            newElem = new BinaryOperation(
+                integrated.substitute(this.d.variableName, this.b),
+                '-',
+                integrated.substitute(this.d.variableName, this.a)
+            ).simplify()
+            //newElem = new IntegralElement(this.args.length == 4 ?
+            //    [this.a.simplify(), this.b.simplify(), func, this.d] :
+            //    [func, this.d]
+            //)
+        }
         return newElem
+    }
+    
+    substitute(variable, substitution) {
+        if(variable == this.args[1].variableName) {
+            // Simplify
+            return this.simplify().substitute(variable, substitution)
+        } else
+            return new IntegralElement(this.args.length == 4 ?
+                [this.a.substitute(variable, substitution), this.b.simplify(variable, substitution), 
+                                       this.f.substitute(variable, substitution), this.d] :
+                [this.f.substitute(variable, substitution), this.d])
     }
     
     derivation(variable) {
         // Check if we're integrating and derivating by the same variable
-        return variable.variableName == this.args[1].variableName ? this.args[1] : super(variable)
+        return variable == this.args[1].variableName ? this.args[1] : super(variable)
     }
     
     toLatex() {
@@ -689,6 +713,7 @@ class BinaryOperation extends AbstractSyntaxElement {
                     throw new EvalError("Unknown operator " + ope + ".")
             }
         }
+        // TODO: Check for all nearby operations simplifications
         return result
     }
     

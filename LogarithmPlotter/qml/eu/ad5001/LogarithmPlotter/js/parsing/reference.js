@@ -28,6 +28,21 @@ const CONSTANTS = {
 };
 const CONSTANTS_LIST = Object.keys(CONSTANTS);
 
+const UNARY_OPERATORS = []
+
+const BINARY_OPERATION_PRIORITY = {
+    'and': 0, 'or': 0, 'in': 0,
+    '==': 10, '!=' : 10,
+    '>': 10, '<': 10, '>=': 10, '<=': 10,
+    '%': 20, '||': 20,
+    '+': 30, '-': 30,
+    '*': 40, '/': 40,
+    '^': 50
+}
+const BINARY_OPERATORS = Object.keys(BINARY_OPERATION_PRIORITY)
+
+const TERTIARY_OPERATORS = ['?']
+
 const FUNCTIONS = {
     "abs": Math.abs,
     "acos": Math.acos,

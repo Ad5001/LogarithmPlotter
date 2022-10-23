@@ -504,7 +504,7 @@ Item {
         Generates a list of tokens from the given.
     */
     function tokens(text) {
-        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
+        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, true, false)
         let tokenList = []
         let token
         while((token = tokenizer.next()) != null)
