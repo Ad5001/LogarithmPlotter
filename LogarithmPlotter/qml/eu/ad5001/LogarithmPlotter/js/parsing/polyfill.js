@@ -83,7 +83,7 @@ function gamma(n) {
 
     --n
     let x = GAMMA_P[0]
-    for (let i = 1 i < GAMMA_P.length ++i) {
+    for (let i = 1; i < GAMMA_P.length; ++i) {
         x += GAMMA_P[i] / (n + i)
     }
 
