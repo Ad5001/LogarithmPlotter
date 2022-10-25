@@ -38,6 +38,7 @@ enum ASEType {
     UNARY_OPERATION,
     BINARY_OPERATION,
     TERTIARY_OPERATION,
+    FLAT_PLUS_OPERATIONS
 }
 
 /**
@@ -826,6 +827,170 @@ class BinaryOperation extends AbstractSyntaxElement {
     }
 }
 
+/**
+ * This class is used to contain chains of + and - operations for simplification purposes
+ */
+class FlatPlusOperations extends AbstractSyntaxElement {
+    type = ASEType.FLAT_PLUS_OPERATIONS
+    
+    constructor(elements, operators) {
+        if(this.operators.some(ope => ope != '+' && ope != '-'))
+            throw new Error(`Unallowed operators in flat plus operation: ${this.operators.filter(ope => ope != '+' && ope != '-').join(',')}.`)
+        if(this.operators.length != this.elements.length+1)
+            throw new Error(`Unmatched elements and error count.`)
+        this.elements = elements
+        this.operators = operators
+    }
+    
+    
+    evaluate(variables) {
+        let result = this.elements[0].evaluate(variables);
+        for(let i = 0; i < this.operators.length; i++)
+            if(this.operators[i] == '+')
+                result += this.elements[i+1].evaluate(variables)
+            else
+                result -= this.elements[i+1].evaluate(variables)
+        return result
+    }
+    
+    simplify() {
+        let elements = this.elements.map(elem => elem.simplify())
+        let units = 0
+        let variablesNoms = {} // Polynom elements for each variable.
+        let others = {'-': [], '+': []}
+        let nome
+        for(let i = 0; i < elements.length; i++)
+            if(elements[i].isConstant())
+                if(i == 0 || this.operators[i-1] == '+')
+                    units += elements[i].evaluate({})
+                else
+                    units -= elements[i].evaluate({})
+            else if((nome = isNome(elements[i]))[0]) {
+                let [nom, variable, power] = nome
+                if(!(variable in variablesNoms))
+                    variablesNoms[variable] = {}
+                if(variablesNoms[variable][power] == undefined)
+                    variablesNoms[variable][power] = 0
+                if(i == 0 || this.operators[i-1] == '+')
+                    variablesNoms[variable][power]++
+                else
+                    variablesNoms[varName][power]--
+            } else if(elements[i] instanceof BinaryOperation && elements[i].ope == '*' &&
+            elements[i].leftHand.isConstant() && (nome = isNome(elements[i].rightHand instanceof Variable))[0]) {
+                // Simple constant by variable product
+                let number = elements[i].leftHand.evaluate({})
+                let [nom, variable, power] = nome
+                // Add to counter
+                if(!(variable in variablesNoms))
+                    variablesNoms[variable] = {}
+                if(variablesNoms[variable][power] == undefined)
+                    variablesNoms[variable][power] = 0
+                if(i == 0 || this.operators[i-1] == '+')
+                    variablesNoms[variable][power] += number
+                else
+                    variablesNoms[variable][power] -= number
+            } else if(elements[i] instanceof BinaryOperation && elements[i].ope == '*' && 
+            (nome = isNome(elements[i].leftHand))[0] && elements[i].rightHand.isConstant()) {
+                // Simple constant by variable product
+                let number = elements[i].rightHand.evaluate({})
+                let [nom, variable, power] = nome
+                // Add to counter
+                if(!(variable in variablesNoms))
+                    variablesNoms[variable] = {}
+                if(variablesNoms[variable][power] == undefined)
+                    variablesNoms[variable][power] = 0
+                if(i == 0 || this.operators[i-1] == '+')
+                    variablesNoms[variable][power] += number
+                else
+                    variablesNoms[variable][power] -= number
+            } else if(elements[i] instanceof BinaryOperation && elements[i].ope == '/' && 
+            (nome = isNome(elements[i].leftHand))[0] && elements[i].rightHand.isConstant()) {
+                // Simple constant by variable divided by constant
+                let number = elements[i].rightHand.evaluate({})
+                let [nom, variable, power] = nome
+                // Register in counter
+                if(!(variable in variablesNoms))
+                    variablesNoms[variable] = {}
+                if(variablesNoms[variable][power] == undefined)
+                    variablesNoms[variable][power] = 0
+                // Division so we remove from count
+                if(i == 0 || this.operators[i-1] == '+')
+                    variablesNoms[variable][power] -= number.evaluate({})
+                else
+                    variablesNoms[variable][power] += number.evaluate({})
+            } else {
+                let sign = this.operators[i-1]
+                let element = elements[i]
+                if(element instanceof UnaryOperation && element.ope == '-') {
+                    // Negation, inverse signs
+                    sign = sign == '+' ? '-' : '+'
+                    element = element.element
+                }
+                others[sign] = element
+            }
+        // Creating new flat operation.
+        let newElements = [new NumberElement(units)] // Yes, I know units should be in last, but this simplifies the implementation a lot.
+        let newOperators = []
+        for(let variable in variablesNoms)
+            for(let power in Object.keys(variablesNoms[variable]).reverse()) {
+                power = parseFloat(power)
+                let times = variablesNoms[variable][nom]
+                if(power < 0) {
+                    power = -power
+                    newOperators.push('-')
+                } else
+                    newOperators.push('+')
+                newElements.push(new Variable(variable))
+                if(power != 1)
+                    newElements.push(new BinaryOperation(newElements.pop(), '^', new NumberElement(power)))
+                if(times != 1)
+                    newElements.push(new BinaryOperation(new NumberElement(times), '*', newElements.pop()))
+            }
+        for(let sign in others)
+            for(let element of others[sign]) {
+                newOperators.push(sign)
+                newElements.push(element)
+            }
+        return new FlatPlusOperations(newElements, newOperators)
+    }
+    
+    derivation(variable) {
+        return new FlatPlusOperations(this.elements.map(elem => elem.derivation(variable)), this.operators)
+    }
+    
+    integral(variable) {
+        return new FlatPlusOperations(this.elements.map(elem => elem.integral(variable)), this.operators)
+    }
+    
+    toEditableString() {
+        let ret = this.elements[0].toEditableString()
+        for(let i = 0; i < this.operators.length; i++) {
+            ret += ' ' + this.operators[i] + ' '
+            if(this.elements[i+1] instanceof BinaryOperation && Reference.BINARY_OPERATION_PRIORITY[this.elements[i+1].ope] < Reference.BINARY_OPERATION_PRIORITY['+'])
+                ret += `(${this.elements[i+1].toEditableString()})`
+            else
+                ret += this.elements[i+1].toEditableString()
+        }
+        return ret
+    }
+    
+    toLatex() {
+        let ret = this.elements[0].toLatex()
+        for(let i = 0; i < this.operators.length; i++) {
+            ret += ' ' + this.operators[i] + ' '
+            if(this.elements[i+1] instanceof BinaryOperation && Reference.BINARY_OPERATION_PRIORITY[this.elements[i+1].ope] < Reference.BINARY_OPERATION_PRIORITY['+'])
+                ret += `\\left(${this.elements[i+1].toLatex()}\\right)`
+            else
+                ret += this.elements[i+1].toLatex()
+        }
+        return ret
+    }
+    
+    isConstant() {
+        return this.elements.every(elem => elem.isConstant())
+    }
+}
+
 function simplifyFraction(num,den) {
     // More than gcd because it allows decimals fractions.
     let mult = 1
@@ -845,6 +1010,17 @@ function simplifyFraction(num,den) {
     }
     return [num*mult/gcd, den*mult/gcd]
 }
+
+function isNome(element) {
+    // Checks if the elements is a part of a polynomial, which variable, and to which degree
+    if(element instanceof Variable)
+        return [true, element.variableName, 1]
+    else if(element instanceof BinaryOperation && element.ope == '^' && element.leftHand instanceof Variable && element.rightHand.isConstant())
+        return [true, element.leftHand.variableName, element.rightHand.evaluate({})]
+    else
+        return [false, '', 0]
+}
+    
 
 class Negation extends AbstractSyntaxElement {
     type = ASEType.NEGATION
