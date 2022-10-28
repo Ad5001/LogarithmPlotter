@@ -115,6 +115,72 @@
     </requires>
     
     <releases>
+        <release version="0.3.0" date="2022-10-28">
+            <description>
+                <p><b>Changes for v0.3.0:</b></p>
+                <p>New</p>
+                <ul>
+                    <li>New completely revamped expression editor:</li>
+                    <li>Automatic closing of parentheses and brackets (can be disabled in settings).</li>
+                    <li>Syntax highlighting (can be disabled in the settings).</li>
+                    <li>Autocompletion is now available (for function names, variables and constants, object names and properties) (can be disabled in the settings).</li>
+                    <li>Object properties can now be used in expressions (e.g. if you have a point named A, you can use A.x to access its x value).</li>
+                    <li>Similarly executable objects (Functions, bode magnitudes and phases, distributions, and sequences) can be now be used in expressions (e.g. if you have a function named 'f', you can access its value using `f(<value>)`).</li>
+                    <li>LaTeX-rendered formulas are now used in the Objects and History tabs when LaTeX rendering is enabled.</li>
+                    <li>Errors in formulas are now reported in message boxes.</li>
+                </ul>
+                <p>Changes</p>
+                <ul>
+                    <li>The Object Editor dialog has been completely reworked internally, resulting in notable performance improvements.</li>
+                    <li>Vast improvements to the objects system: names are now consistently reported and cannot be shared amongst different objects.</li>
+                    <li>Disabled access to custom variable and function definition in expressions (can cause issues and vulnerabilities)</li>
+                    <li>When using the set position cursor on Points and Texts, the position change is now saved a single history action: the position setting.</li>
+                    <li>Distribution are now prefixed with an 'F_' to prevent confusion with X Cursors.</li>
+                </ul>
+                <p>Added translations</p>
+                <ul>
+                    <li>Autocompletion categories (English, French, German, Hungarian).</li>
+                    <li>Expression editor settings (English, French, German, Hungarian).</li>
+                    <li>Expression syntax errors (English, French, German, Hungarian).</li>
+                    <li>On top of the above:</li>
+                    <li>Hungarian: v0.2.0 added text (thanks @ovari!)</li>
+                    <li>Spanish: Menu bars (thanks @Sergio Varela)</li>
+                    <li>You can contribute to translation on Weblate.</li>
+                </ul>
+                <p>Fixed bugs</p>
+                <ul>
+                    <li>Fixing Texts not being properly recognized as texts when saving.</li>
+                    <li>Text's 'Disable LaTeX' property is now properly saved.</li>
+                    <li>X Cursors LaTeX rendering made the app crash.</li>
+                    <li>Attempting to insert special character no longer automatically saves the expression you're editing.</li>
+                    <li>Proper HDPI support for icons and buttons (note: HDPI is not available for the rendered canvas yet).</li>
+                    <li>Support for non-latin characters in variables (e.g. greek letters, subtext, suptext)</li>
+                    <li>Silent error when misentering variable names in the expression editor causing internal issues preventing you from changing the expression ever again and causing issues and rendering.</li>
+                    <li>Fixing some utils function simplifying parentheses when they shouldn't have (note: you may see more parentheses than before in expressions).</li>
+                    <li>(flatpak and KDE SDK) Fixing the sometimes invisible buttons on the objects tab on startup.</li>
+                    <li>(macos) Application string version does not match LogarithmPlotter's version.</li>
+                    <li>(debian) (Normally) Fixing deb building.</li>
+                </ul>
+                <p>Internal changes</p>
+                <ul>
+                    <li>Object dependencies are now registered on both the dependant object, and the object it's depending on.</li>
+                    <li>Objects now have a proper per-name registry.</li>
+                    <li>Object Editor Dialog has been reworked to use loaders instead of loading and hiding every property editor for each property.</li>
+                    <li>Reworked the file loading system to be able to load dependencies properly.</li>
+                </ul>
+            </description>
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.3.0/logarithmplotter-v0.3.0-setup.exe</location>
+                </artifact>
+                <artifact type="binary" platform="x86_64-macos-any">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.3.0/LogarithmPlotter-v0.3.0-setup.dmg</location>
+                </artifact>
+                <artifact type="source">
+                    <location>https://artifacts.accountfree.org/repository/apps.ad5001.eu-apps/logarithmplotter/v0.3.0/logarithmplotter-0.3.0.tar.gz</location>
+                </artifact>
+            </artifacts>
+        </release>
         <release version="0.2.0" date="2022-04-22">
             <description>
                 <p><b>Changes for v0.2.0:</b></p>

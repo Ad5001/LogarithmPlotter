@@ -1,3 +1,44 @@
+logarithmplotter (0.3.0) stable; urgency=medium
+
+  * New: Completely revamped expression editor:
+  * Automatic closing of parentheses and brackets (can be disabled in settings).
+  * Syntax highlighting (can be disabled in the settings).
+  * Autocompletion is now available (for function names, variables and constants, object names and properties) (can be disabled in the settings).
+  * New: Object properties can now be used in expressions (e.g. if you have a point named A, you can use A.x to access its x value).
+  * Similarly executable objects (Functions, bode magnitudes and phases, distributions, and sequences) can be now be used in expressions (e.g. if you have a function named 'f', you can access its value using `f(<value>)`).
+  * New LaTeX-rendered formulas are now used in the Objects and History tabs when LaTeX rendering is enabled.
+  * New: Errors in formulas are now reported in message boxes.
+  
+  * Changed: The Object Editor dialog has been completely reworked internally, resulting in notable performance improvements.
+  * Changed: Vast improvements to the objects system: names are now consistently reported and cannot be shared amongst different objects.
+  * Changed: Disabled access to custom variable and function definition in expressions (can cause issues and vulnerabilities)
+  * Changed: When using the set position cursor on Points and Texts, the position change is now saved a single history action: the position setting.
+  * Changed: Distribution are now prefixed with an 'F_' to prevent confusion with X Cursors.
+  
+  * Translated: Autocompletion categories (English, French, German, Hungarian).
+  * Translated: Expression editor settings (English, French, German, Hungarian).
+  * Translated: Expression syntax errors (English, French, German, Hungarian).
+  * On top of the above:
+  * Translated: (Hungarian) v0.2.0 added text (thanks @ovari!)
+  * Translated: (Spanish) Menu bars (thanks @Sergio Varela)
+  * Fixing Texts not being properly recognized as texts when saving.
+  
+  * Fixed bug: Text's 'Disable LaTeX' property is now properly saved.
+  * Fixed bug: X Cursors LaTeX rendering made the app crash.
+  * Fixed bug: Attempting to insert special character no longer automatically saves the expression you're editing.
+  * Fixed bug: Proper HDPI support for icons and buttons (note: HDPI is not available for the rendered canvas yet).
+  * Fixed bug: Support for non-latin characters in variables (e.g. greek letters, subtext, suptext)
+  * Fixed bug: Silent error when misentering variable names in the expression editor causing internal issues preventing you from changing the expression ever again and causing issues and rendering.
+  * Fixed bug: Some utils function simplifying parentheses when they shouldn't have (note: you may see more parentheses than before in expressions).
+  * Fixed bug: (Normally) Fixing deb building.
+  
+  * Internal changes: Object dependencies are now registered on both the dependant object, and the object it's depending on.
+  * Internal changes: Objects now have a proper per-name registry.
+  * Internal changes: Object Editor Dialog has been reworked to use loaders instead of loading and hiding every property editor for each property.
+  * Internal changes: Reworked the file loading system to be able to load dependencies properly.
+
+ -- Ad5001 <mail@ad5001.eu>  Fri, 28 Oct 2022 17:00:00 +0100
+
 logarithmplotter (0.2.0) stable; urgency=medium
 
   * New: (EXPERIMENTAL) LogarithmPlotter now has an optional LaTeX integration.

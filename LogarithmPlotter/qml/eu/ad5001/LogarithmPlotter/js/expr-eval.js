@@ -212,7 +212,9 @@ function evaluate(tokens, expr, values) {
       }
     } else if (type === IVAR) {
       // Check for variable value
-      if (item.value in expr.functions) {
+      if (/^__proto__|prototype|constructor$/.test(item.value)) {
+        throw new Error('WARNING: Prototype access detected and denied. If you downloaded this file from the internet, this file might be a virus.');
+      } else if (item.value in expr.functions) {
         nstack.push(expr.functions[item.value]);
       } else if (item.value in expr.unaryOps && expr.parser.isOperatorEnabled(item.value)) {
         nstack.push(expr.unaryOps[item.value]);
