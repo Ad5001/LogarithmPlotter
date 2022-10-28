@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2022 Ad5001 -->
 <application>
+    <component type="desktop-application">
     <id>eu.ad5001.LogarithmPlotter</id>
     <id type="desktop">eu.ad5001.LogarithmPlotter.desktop</id>
     <launchable type="desktop-id">logarithmplotter.desktop</launchable>
@@ -85,21 +86,21 @@
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
     <url type="translate">https://hosted.weblate.org/engage/logarithmplotter/</url>
     <screenshots>
-        <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png?v=0.2</screenshot>
-        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/phase.png?v=0.2</screenshot>
-        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png?v=0.2</screenshot>
-        <screenshot xml:lang="de" type="default">https://apps.ad5001.eu/img/de/gain.png?v=0.2</screenshot>
-        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/phase.png?v=0.2</screenshot>
-        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/welcome.png?v=0.2</screenshot>
-        <screenshot xml:lang="fr" type="default">https://apps.ad5001.eu/img/fr/gain.png?v=0.2</screenshot>
-        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/phase.png?v=0.2</screenshot>
-        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/welcome.png?v=0.2</screenshot>
-        <screenshot xml:lang="hu" type="default">https://apps.ad5001.eu/img/hu/gain.png</screenshot>
-        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/phase.png</screenshot>
-        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/welcome.png</screenshot>
-        <screenshot xml:lang="no" type="default">https://apps.ad5001.eu/img/no/gain.png</screenshot>
-        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/phase.png</screenshot>
-        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/welcome.png</screenshot>
+        <screenshot type="default">https://apps.ad5001.eu/img/full/logarithmplotter.png?v=0.3</screenshot>
+        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/phase.png?v=0.3</screenshot>
+        <screenshot>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png?v=0.3</screenshot>
+        <screenshot xml:lang="de" type="default">https://apps.ad5001.eu/img/de/gain.png?v=0.3</screenshot>
+        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/phase.png?v=0.3</screenshot>
+        <screenshot xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/welcome.png?v=0.3</screenshot>
+        <screenshot xml:lang="fr" type="default">https://apps.ad5001.eu/img/fr/gain.png?v=0.3</screenshot>
+        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/phase.png?v=0.3</screenshot>
+        <screenshot xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/welcome.png?v=0.3</screenshot>
+        <screenshot xml:lang="hu" type="default">https://apps.ad5001.eu/img/hu/gain.png?v=0.3</screenshot>
+        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/phase.png?v=0.3</screenshot>
+        <screenshot xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/welcome.png?v=0.3</screenshot>
+        <screenshot xml:lang="no" type="default">https://apps.ad5001.eu/img/no/gain.png?v=0.3</screenshot>
+        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/phase.png?v=0.3</screenshot>
+        <screenshot xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/welcome.png?v=0.3</screenshot>
     </screenshots>
     
     <!-- recommend at least 600 logical pixels of space -->
