@@ -125,7 +125,7 @@
                     <li>Syntax highlighting (can be disabled in the settings).</li>
                     <li>Autocompletion is now available (for function names, variables and constants, object names and properties) (can be disabled in the settings).</li>
                     <li>Object properties can now be used in expressions (e.g. if you have a point named A, you can use A.x to access its x value).</li>
-                    <li>Similarly executable objects (Functions, bode magnitudes and phases, distributions, and sequences) can be now be used in expressions (e.g. if you have a function named 'f', you can access its value using `f(<value>)`).</li>
+                    <li>Similarly executable objects (Functions, bode magnitudes and phases, distributions, and sequences) can be now be used in expressions (e.g. if you have a function named 'f', you can access its value using `f(value)`).</li>
                     <li>LaTeX-rendered formulas are now used in the Objects and History tabs when LaTeX rendering is enabled.</li>
                     <li>Errors in formulas are now reported in message boxes.</li>
                 </ul>
