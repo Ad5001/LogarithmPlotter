@@ -7,18 +7,18 @@
   * New completely revamped expression editor:
   * Automatic closing of parentheses and brackets (can be disabled in settings).
   * Syntax highlighting (can be disabled in the settings).
-  * Autocompletion is now available (for function names, variables and constants, object names and properties) (can be disabled in the settings).
+  * Autocompletion is now available (for functions, variables and constants, object names and properties) (can be disabled in the settings).
   * Object properties can now be used in expressions (e.g. if you have a point named A, you can use A.x to access its x value).
-  * Similarly executable objects (Functions, bode magnitudes and phases, distributions, and sequences) can be now be used in expressions (e.g. if you have a function named 'f', you can access its value using `f(<value>)`).
+  * Executable objects can be now be used in expressions (e.g. if you have a function named 'f', it's accessible using `f(<value>)`).
   * LaTeX-rendered formulas are now used in the Objects and History tabs when LaTeX rendering is enabled.
   * Errors in formulas are now reported in message boxes.
 
 **Changes**
 
   * The Object Editor dialog has been completely reworked internally, resulting in notable performance improvements.
-  * Vast improvements to the objects system: names are now consistently reported and cannot be shared amongst different objects.
+  * Vast improvements to the objects system: names can no longer be shared amongst different objects.
   * Disabled access to custom variable and function definition in expressions (can cause issues and vulnerabilities)
-  * When using the set position cursor on Points and Texts, the position change is now saved a single history action: the position setting.
+  * When using the set position cursor, the position change is now saved a single history action.
   * Distribution are now prefixed with an 'F_' to prevent confusion with X Cursors.
 
 **Added translations**
@@ -39,8 +39,8 @@
   * Attempting to insert special character no longer automatically saves the expression you're editing.
   * Proper HDPI support for icons and buttons (note: HDPI is not available for the rendered canvas yet).
   * Support for non-latin characters in variables (e.g. greek letters, subtext, suptext)
-  * Silent error when misentering variable names in the expression editor causing internal issues preventing you from changing the expression ever again and causing issues and rendering.
-  * Fixing some utils function simplifying parentheses when they shouldn't have (note: you may see more parentheses than before in expressions).
+  * Silent error when misentering variable names in the expression editor causing internal issues.
+  * Fixing some utils function simplifying parentheses when they shouldn't have.
   * (flatpak and KDE SDK) Fixing the sometimes invisible buttons on the objects tab on startup.
   * (macos) Application string version does not match LogarithmPlotter's version.
   * (debian) (Normally) Fixing deb building.
@@ -49,7 +49,7 @@
 
   * Object dependencies are now registered on both the dependant object, and the object it's depending on.
   * Objects now have a proper per-name registry.
-  * Object Editor Dialog has been reworked to use loaders instead of loading and hiding every property editor for each property.
+  * Object Editor Dialog has been reworked to use loaders insteads.
   * Reworked the file loading system to be able to load dependencies properly.
 
 
