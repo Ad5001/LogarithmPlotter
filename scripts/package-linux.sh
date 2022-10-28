@@ -16,7 +16,9 @@ FLATPAK_BUILDER=$(which flatpak-builder)
 if [ -z $FLATPAK_BUILDER ]; then
     echo "flatpak-builder not installed. Will not proceed to build flatpak."
 else
-    cd linux/flatpak
+    cd linux
+    git clone https://github.com/Ad5001/eu.ad5001.LogarithmPlotter
+    cd eu.ad5001.LogarithmPlotter
     flatpak-builder AppDir eu.ad5001.LogarithmPlotter.json --user --force-clean --install
     cd ../../
 fi
