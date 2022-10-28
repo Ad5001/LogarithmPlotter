@@ -34,7 +34,7 @@ Popup {
     x: (parent.width-width)/2
     y: Math.max(20, (parent.height-height)/2)
     width: Math.max(welcome.width+70, checkForUpdatesSetting.width, resetRedoStackSetting.width)+20
-    height: Math.min(parent.height-40, 500)
+    height: Math.min(parent.height-40, 700)
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
