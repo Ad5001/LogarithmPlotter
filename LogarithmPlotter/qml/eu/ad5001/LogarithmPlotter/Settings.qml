@@ -135,7 +135,7 @@ ScrollView {
         Popup.FileDialog {
             id: fdiag
             onAccepted: {
-                var filePath = fileUrl.toString().substr(7)
+                var filePath = fdiag.currentFile.toString().substr(7)
                 settings.saveFilename = filePath
                 if(exportMode) {
                     root.saveDiagram(filePath)

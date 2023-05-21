@@ -12,10 +12,8 @@ steps:
   - git submodule update --init --recursive
 
 - name: Linux test
-  image: ad5001/ubuntu-pyside2-xvfb:hirsute-5.15.2
+  image: ad5001/ubuntu-pyside6-xvfb:jammy-6.5.0
   commands:
-  #- apt update
-  #- apt install -y texlive-latex-base dvipng
   - xvfb-run python3 run.py --test-build --no-check-for-updates
   - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
   - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf
@@ -23,7 +21,7 @@ steps:
     event: [ push, tag ]
 
 - name: Windows test
-  image: ad5001/ubuntu-pyside2-xvfb-wine:win7-5.15.2
+  image: ad5001/ubuntu-pyside6-xvfb-wine:jammy-6.5.0
   commands:
   - # For some reason, launching GUI apps with wine, even with xvfb-run, fails.
   - xvfb-run python run.py --test-build --no-check-for-updates
@@ -33,19 +31,19 @@ steps:
     event: [ push, tag ]
 
 
-- name: Linux packaging
-  image: ad5001/accountfree-build-img:hirsute-5.15.2
-  commands:
-  - bash scripts/package-linux.sh
-  when:
-    event: [ push, tag ]
-
-
-- name: Windows building
-  image: ad5001/accountfree-build-img-wine:win7-5.15.2
-  commands:
-  - bash scripts/build-wine.sh
-  - bash scripts/package-wine.sh
-  when:
-    event: [ push, tag ]
-  
+# - name: Linux packaging
+#   image: ad5001/accountfree-build-img:hirsute-5.15.2
+#   commands:
+#   - bash scripts/package-linux.sh
+#   when:
+#     event: [ push, tag ]
+# 
+# 
+# - name: Windows building
+#   image: ad5001/accountfree-build-img-wine:win7-5.15.2
+#   commands:
+#   - bash scripts/build-wine.sh
+#   - bash scripts/package-wine.sh
+#   when:
+#     event: [ push, tag ]
+#   
