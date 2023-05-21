@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Dialogs 1.3
+import QtQuick
+import Qt.labs.platform as Native
 //import QtQuick.Controls 2.15
 import eu.ad5001.MixedMenu 1.1
 import "js/objects.js" as Objects
@@ -133,6 +133,7 @@ MenuBar {
             checked: Helper.getSettingBool("check_for_updates")
             onTriggered: Helper.setSettingBool("check_for_updates", checked)
             icon.name: 'update'
+            icon.color: sysPalette.buttonText
         }
         
         Action {
@@ -142,6 +143,7 @@ MenuBar {
             checked: Helper.getSettingBool("reset_redo_stack")
             onTriggered: Helper.setSettingBool("reset_redo_stack", checked)
             icon.name: 'timeline'
+            icon.color: sysPalette.buttonText
         }
         
         Action {
@@ -155,6 +157,7 @@ MenuBar {
                 drawCanvas.requestPaint()
             }
             icon.name: 'Expression'
+            icon.color: sysPalette.buttonText
         }
         
         Menu {
@@ -169,6 +172,7 @@ MenuBar {
                     Helper.setSettingBool("expression_editor.autoclose", checked)
                 }
                 icon.name: 'Text'
+                icon.color: sysPalette.buttonText
             }
         
             Action {
@@ -180,6 +184,7 @@ MenuBar {
                     Helper.setSettingBool("expression_editor.colorize", checked)
                 }
                 icon.name: 'appearance'
+                icon.color: sysPalette.buttonText
             }
         
             Action {
@@ -191,6 +196,7 @@ MenuBar {
                     Helper.setSettingBool("autocompletion.enabled", checked)
                 }
                 icon.name: 'label'
+                icon.color: sysPalette.buttonText
             }
         }
     }
@@ -236,16 +242,17 @@ MenuBar {
         }
     }
     
-    MessageDialog {
+    Native.MessageDialog {
         id: saveUnsavedChangesDialog
         title: qsTr("Save unsaved changes?")
-        icon: StandardIcon.Question
         text: qsTr("This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?")
-        standardButtons: StandardButton.Yes | StandardButton.No
-        onYes: Qt.quit()
+        buttons: Native.MessageDialog.Save | Native.MessageDialog.Discard | Native.MessageDialog.Cancel
+        
+        onSaveClicked: settings.save()
+        onDiscardClicked: Qt.quit()
     }
     
-    function showSaveUnsavedChangesDialog() {
-        saveUnsavedChangesDialog.visible = true
+    function openSaveUnsavedChangesDialog() {
+        saveUnsavedChangesDialog.open()
     }
 }

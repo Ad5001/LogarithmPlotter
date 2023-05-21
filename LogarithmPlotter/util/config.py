@@ -19,7 +19,7 @@
 from os import path, environ, makedirs
 from platform import system
 from json import load, dumps
-from PySide2.QtCore import QLocale, QTranslator
+from PySide6.QtCore import QLocale, QTranslator
 
 
 DEFAULT_SETTINGS = {

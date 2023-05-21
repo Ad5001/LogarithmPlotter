@@ -18,10 +18,10 @@
 
 from time import time
 
-from PySide2.QtWidgets import QApplication
-from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtCore import Qt, QTranslator, QLocale
-from PySide2.QtGui import QIcon
+from PySide6.QtWidgets import QApplication
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtCore import Qt, QTranslator, QLocale
+from PySide6.QtGui import QIcon
 
 from tempfile import TemporaryDirectory
 from os import getcwd, chdir, environ, path, remove, close
@@ -52,7 +52,7 @@ config.init()
 
 def get_linux_theme():
     des = {
-        "KDE": "org.kde.desktop",
+        "KDE": "default",
         "gnome": "default",
         "lxqt": "fusion",
         "mate": "fusion",

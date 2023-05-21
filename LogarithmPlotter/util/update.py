@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PySide2.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, QCoreApplication
+from PySide6.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, QCoreApplication
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from sys import argv

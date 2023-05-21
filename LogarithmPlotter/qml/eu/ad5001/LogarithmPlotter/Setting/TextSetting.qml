@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls 2.12
-import QtQuick 2.12 
+import QtQuick.Controls
+import QtQuick 
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
 /*!

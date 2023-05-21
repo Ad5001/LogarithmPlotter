@@ -16,10 +16,12 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Dialogs 1.3 as D
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Dialogs as D
+import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
+import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 import "../../js/objects.js" as Objects
 import "../../js/objs/common.js" as ObjectsCommons
 import "../../js/historylib.js" as HistoryLib
@@ -36,7 +38,7 @@ import "../../js/mathlib.js" as MathLib
     
     \sa Loader, ObjectLists
 */
-D.Dialog {
+Popup.BaseDialog {
     id: objEditor
     /*!
        \qmlproperty string EditorDialog::objType
@@ -56,99 +58,111 @@ D.Dialog {
     
     title: "LogarithmPlotter"
     width: 350
-    height: 400
+    minimumHeight: 400
     
     // Disable closing on return/enter, causing issues with autocomplete.
-    onActionChosen: if(action.key == Qt.Key_Enter || action.key == Qt.Key_Return) action.accepted = false
-    
-    Label {
-        id: dlgTitle
-        anchors.left: parent.left
-        anchors.top: parent.top
-        verticalAlignment: TextInput.AlignVCenter
-        text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
-        font.pixelSize: 20
-        color: sysPalette.windowText
-    }
-    
-    Column {
-        id: dlgProperties
-        anchors.top: dlgTitle.bottom
-        width: objEditor.width - 20
-        spacing: 10
-        
-        D.MessageDialog {
-            id: invalidNameDialog
-            title: qsTr("LogarithmPlotter - Invalid object name")
-            text: ""
-            function showDialog(objectName) {
-                text = qsTr("An object with the name '%1' already exists.").arg(objectName)
-                open()
-            }
+    // onActionChosen: if(action.key == Qt.Key_Enter || action.key == Qt.Key_Return) action.accepted = false
+    Item {
+        anchors {
+            top: parent.top;
+            left: parent.left;
+            bottom: parent.bottom;
+            right: parent.right;
+            topMargin: margin;
+            leftMargin: margin;
+            bottomMargin: margin;
+            rightMargin: margin;
         }
-    
-        Setting.TextSetting {
-            id: nameProperty
-            height: 30
-            label: qsTr("Name")
-            icon: "common/label.svg"
-            width: dlgProperties.width
-            value: objEditor.obj.name
-            onChanged: function(newValue) {
-                let newName = Utils.parseName(newValue)
-                if(newName != '' && objEditor.obj.name != newName) {
-                    if(newName in Objects.currentObjectsByName) {
-                        invalidNameDialog.showDialog(newName)
-                    } else {
-                        history.addToHistory(new HistoryLib.NameChanged(
-                            objEditor.obj.name, objEditor.objType, newName
-                        ))
-                        Objects.renameObject(obj.name, newName)
-                        objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+        
+        Label {
+            id: dlgTitle
+            anchors.left: parent.left
+            anchors.top: parent.top
+            verticalAlignment: TextInput.AlignVCenter
+            text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
+            font.pixelSize: 20
+            color: sysPalette.windowText
+        }
+        
+        Column {
+            id: dlgProperties
+            anchors.top: dlgTitle.bottom
+            width: objEditor.width - 20
+            spacing: 10
+            
+            Native.MessageDialog {
+                id: invalidNameDialog
+                title: qsTr("LogarithmPlotter - Invalid object name")
+                text: ""
+                function showDialog(objectName) {
+                    text = qsTr("An object with the name '%1' already exists.").arg(objectName)
+                    open()
+                }
+            }
+        
+            Setting.TextSetting {
+                id: nameProperty
+                height: 30
+                label: qsTr("Name")
+                icon: "common/label.svg"
+                width: dlgProperties.width
+                value: objEditor.obj.name
+                onChanged: function(newValue) {
+                    let newName = Utils.parseName(newValue)
+                    if(newName != '' && objEditor.obj.name != newName) {
+                        if(newName in Objects.currentObjectsByName) {
+                            invalidNameDialog.showDialog(newName)
+                        } else {
+                            history.addToHistory(new HistoryLib.NameChanged(
+                                objEditor.obj.name, objEditor.objType, newName
+                            ))
+                            Objects.renameObject(obj.name, newName)
+                            objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                            objectListList.update()
+                        }
+                    }
+                }
+            }
+        
+            Setting.ComboBoxSetting {
+                id: labelContentProperty
+                height: 30
+                width: dlgProperties.width
+                label: qsTr("Label content")
+                model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
+                property var idModel: ["null", "name", "name + value"]
+                icon: "common/label.svg"
+                currentIndex: idModel.indexOf(objEditor.obj.labelContent)
+                onActivated: function(newIndex) {
+                    if(idModel[newIndex] != objEditor.obj.labelContent) {
+                        objEditor.obj.labelContent = idModel[newIndex]
+                        objEditor.obj.update()
                         objectListList.update()
                     }
                 }
             }
-        }
-    
-        Setting.ComboBoxSetting {
-            id: labelContentProperty
-            height: 30
-            width: dlgProperties.width
-            label: qsTr("Label content")
-            model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
-            property var idModel: ["null", "name", "name + value"]
-            icon: "common/label.svg"
-            currentIndex: idModel.indexOf(objEditor.obj.labelContent)
-            onActivated: function(newIndex) {
-                if(idModel[newIndex] != objEditor.obj.labelContent) {
-                    objEditor.obj.labelContent = idModel[newIndex]
-                    objEditor.obj.update()
+            
+            // Dynamic properties
+            CustomPropertyList {
+                id: dlgCustomProperties
+                obj: objEditor.obj
+                
+                onChanged: {
+                    obj.update()
                     objectListList.update()
                 }
-            }
-        }
-        
-        // Dynamic properties
-        CustomPropertyList {
-            id: dlgCustomProperties
-            obj: objEditor.obj
-            
-            onChanged: {
-                obj.update()
-                objectListList.update()
             }
         }
     }
     
     /*!
-        \qmlmethod void EditorDialog::show()
+        \qmlmethod void EditorDialog::open()
         Shows the editor after the object to be edited is set.
     */
-    function show() {
+    function open() {
         dlgCustomProperties.model = [] // Reset
         let objProps = Objects.types[objEditor.objType].properties()
         dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
-        objEditor.open()
+        objEditor.show()
     }
 }

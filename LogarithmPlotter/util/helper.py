@@ -16,11 +16,11 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PySide2.QtWidgets import QMessageBox, QApplication
-from PySide2.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, Slot, QCoreApplication
-from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtGui import QImage
-from PySide2 import __version__ as PySide2_version
+from PySide6.QtWidgets import QMessageBox, QApplication
+from PySide6.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, Slot, QCoreApplication
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtGui import QImage
+from PySide6 import __version__ as PySide6_version
 
 from os import chdir, path
 from json import loads
@@ -142,9 +142,9 @@ class Helper(QObject):
     @Slot(result=str)
     def getDebugInfos(self):
         """
-        Returns the version info about Qt, PySide2 & Python
+        Returns the version info about Qt, PySide6 & Python
         """
-        return QCoreApplication.translate('main',"Built with PySide2 (Qt) v{} and python v{}").format(PySide2_version, sys_version.split("\n")[0])
+        return QCoreApplication.translate('main',"Built with PySide6 (Qt) v{} and python v{}").format(PySide6_version, sys_version.split("\n")[0])
     
     @Slot()
     def fetchChangelog(self):

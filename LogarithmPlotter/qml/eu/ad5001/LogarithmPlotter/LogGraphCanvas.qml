@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12 
+import QtQuick 
 import "js/objects.js" as Objects
 import "js/utils.js" as Utils
 import "js/mathlib.js" as MathLib
@@ -278,7 +278,7 @@ Canvas {
                 for(var xpow = -maxgradx; xpow <= maxgradx; xpow+=1) {
                     var textSize = ctx.measureText("10"+Utils.textsup(xpow)).width
                     if(xpow != 0)
-                        drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(y==0)))
+                        drawVisibleText(ctx, "10"+Utils.textsup(xpow), x2px(Math.pow(10,xpow))-textSize/2, axisxpx+16+(6*(xpow==1)))
                 }
             } else {
                 for(var x = 1; x < drawMaxX; x += 1) {
@@ -308,7 +308,7 @@ Canvas {
         Draws an horizontal line at \c x plot coordinate using 2D \c ctx.
     */
     function drawXLine(ctx, x) {
-        if(visible(x, ymax)) {
+        if(isVisible(x, ymax)) {
             drawLine(ctx, x2px(x), 0, x2px(x), canvasSize.height)
         }
     }
@@ -318,7 +318,7 @@ Canvas {
         Draws an vertical line at \c y plot coordinate using 2D \c ctx.
     */
     function drawYLine(ctx, y) {
-        if(visible(xmin, y)) {
+        if(isVisible(xmin, y)) {
             drawLine(ctx, 0, y2px(y), canvasSize.width, y2px(y))
         }
     }
@@ -407,10 +407,10 @@ Canvas {
     }
 
     /*!
-        \qmlmethod bool LogGraphCanvas::visible(double x, double y)
+        \qmlmethod bool LogGraphCanvas::isVisible(double x, double y)
         Checks whether a plot point (\c x, \c y) is visible or not on the canvas.
     */
-    function visible(x, y) {
+    function isVisible(x, y) {
         return (x2px(x) >= 0 && x2px(x) <= canvasSize.width) && (y2px(y) >= 0 && y2px(y) <= canvasSize.height)
     }
 

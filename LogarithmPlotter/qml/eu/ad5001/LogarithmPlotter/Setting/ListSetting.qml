@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQml.Models 2.12
+import QtQuick
+import QtQuick.Controls
+import QtQml.Models
 
 /*!
     \qmltype ListSetting

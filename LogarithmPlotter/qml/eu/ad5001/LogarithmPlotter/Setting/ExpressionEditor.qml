@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls 2.12
-import QtQuick 2.12
-import QtQuick.Dialogs 1.3 as D
+import QtQuick.Controls
+import QtQuick
+import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
 import "../js/mathlib.js" as MathLib
 import "../js/utils.js" as Utils
@@ -131,7 +131,7 @@ Item {
         visible: control.label != ""
     }
     
-    D.MessageDialog {
+    Native.MessageDialog {
         id: parsingErrorDialog
         title: qsTranslate("expression", "LogarithmPlotter - Parsing error")
         text: ""
@@ -339,7 +339,7 @@ Item {
                     property string objectName: isEnteringProperty ? 
                         (parent.currentToken.dot ? parent.previousToken.value : parent.previousToken2.value)
                     : ""
-                    property bool doesObjectExist: isEnteringProperty && objectName in Objects.currentObjectsByName
+                    property bool doesObjectExist: isEnteringProperty && (objectName in Objects.currentObjectsByName)
                     property var objectProperties: doesObjectExist ? 
                                                     Objects.currentObjectsByName[objectName].constructor.properties() : 
                                                     {}

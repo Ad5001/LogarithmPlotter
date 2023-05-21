@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
+import QtQuick
 /*!
     \qmltype Alert
     \inqmlmodule eu.ad5001.LogarithmPlotter.Popup

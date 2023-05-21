@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Dialogs 1.3 as D
-import QtQuick.Controls 2.12
+import QtQuick
+// import QtQuick.Dialogs 1.3 as D
+import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.ObjectLists.Editor 1.0 as Editor
 import "../js/objects.js" as Objects

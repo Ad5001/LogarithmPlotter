@@ -18,7 +18,7 @@
 
 # This file contains stuff for native interactions with each OS.
 
-from PySide2.QtCore import QObject, QEvent
+from PySide6.QtCore import QObject, QEvent
 
 # On macOS, opening a file through finder can only be fetched through the
 # QFileOpenEvent and NOT throught command line parameters.

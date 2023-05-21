@@ -16,23 +16,39 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Qt.labs.platform
+import QtQuick
+import QtQuick.Controls
 
 /*!
-    \qmltype FileDialog
+    \qmltype BaseDialog
     \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
-    \brief Dialog used to prompt the user to save or load Logarithm Plot Files.
-        
-    \sa LogarithmPlotter, Settings
+    \brief Base dialog window in replacement of Dialog Popup from Qt 5.
+    
+    \sa LogarithmPlotter
 */
-FileDialog {
-    id: fileDialog
-    
-    property bool exportMode: false
-    
-    title: exportMode ? qsTr("Export Logarithm Plot file") : qsTr("Import Logarithm Plot file")
-    nameFilters: ["Logarithm Plot File (*.lpf)", "All files (*)"]
 
-    defaultSuffix: 'lpf'
-    fileMode: exportMode ? FileDialog.SaveFile : FileDialog.OpenFile
+Window {
+    color: sysPalette.window
+    visible: false;
+    flags: Qt.Dialog | Qt.Popup | Qt.MSWindowsFixedSizeDialogHint
+    modality: Qt.WindowModal
+    minimumWidth: width
+    maximumWidth: width
+    height: minimumHeight
+    // maximumHeight:  contentItem.implicitHeight + 2*margin
+    property int margin: 10
+    
+    Button {
+        id: closeButton
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.bottomMargin: margin
+        anchors.rightMargin: margin
+        text: qsTr('Close')
+        onClicked: close()
+    }
+    
+    function open() {
+        show()
+    }
 }

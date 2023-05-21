@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls 2.12
-import QtQuick 2.12
-import QtGraphicalEffects 1.15
+import QtQuick.Controls
+import QtQuick
+import Qt5Compat.GraphicalEffects
 import "../js/utils.js" as Utils
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 

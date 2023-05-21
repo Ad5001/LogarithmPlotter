@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick
+import QtQuick.Controls
 import "js/objects.js" as Objects
 import "js/mathlib.js" as MathLib
 import "js/historylib.js" as HistoryLib
@@ -90,7 +90,7 @@ Item {
         hoverEnabled: parent.visible
         cursorShape: Qt.CrossCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: {
+        onClicked: function(mouse) {
             if(mouse.button == Qt.LeftButton) { // Validate
                 let newValueX = !parent.pickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
                 let newValueY = !parent.pickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)

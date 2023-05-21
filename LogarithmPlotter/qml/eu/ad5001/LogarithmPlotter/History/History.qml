@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQml 2.12
-import QtQuick.Window 2.12
+import QtQuick
+import QtQml
+import QtQuick.Window
 import "../js/objects.js" as Objects
 import "../js/historylib.js" as HistoryLib
 import "../js/history/common.js" as HistoryCommon
