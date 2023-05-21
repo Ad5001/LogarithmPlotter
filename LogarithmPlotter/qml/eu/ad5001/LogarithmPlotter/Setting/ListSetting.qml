@@ -140,8 +140,8 @@ Column {
                 visible: control.dictionaryMode
                 height: parent.height
                 width: visible ? 50 : 0
-                validator: RegExpValidator { 
-                    regExp: control.keyRegexp
+                validator: RegularExpressionValidator { 
+                    regularExpression: control.keyRegexp
                 }
                 verticalAlignment: TextInput.AlignVCenter
                 horizontalAlignment: TextInput.AlignHCenter
@@ -180,8 +180,8 @@ Column {
                 id: valueInput
                 height: parent.height
                 width: parent.width - x - deleteButton.width - 5
-                validator: RegExpValidator { 
-                    regExp: control.valueRegexp
+                validator: RegularExpressionValidator { 
+                    regularExpression: control.valueRegexp
                 }
                 verticalAlignment: TextInput.AlignVCenter
                 horizontalAlignment: TextInput.AlignHCenter

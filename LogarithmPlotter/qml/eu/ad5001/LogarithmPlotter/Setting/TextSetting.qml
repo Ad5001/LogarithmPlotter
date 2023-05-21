@@ -113,8 +113,8 @@ Item {
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
         color: sysPalette.windowText
-        validator: RegExpValidator {
-            regExp: control.isInt ? /-?[0-9]+/ : control.isDouble ? /-?[0-9]+(\.[0-9]+)?/ : /.+/
+        validator: RegularExpressionValidator {
+            regularExpression: control.isInt ? /-?[0-9]+/ : control.isDouble ? /-?[0-9]+(\.[0-9]+)?/ : /.+/
         }
         focus: true
         text: control.defValue
