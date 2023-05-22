@@ -58,7 +58,8 @@ Popup.BaseDialog {
     
     title: "LogarithmPlotter"
     width: 350
-    minimumHeight: 400
+    minimumHeight: Math.max(450,dlgProperties.height + margin*4 + 30)
+    maximumHeight: minimumHeight
     
     // Disable closing on return/enter, causing issues with autocomplete.
     // onActionChosen: if(action.key == Qt.Key_Enter || action.key == Qt.Key_Return) action.accepted = false
@@ -70,18 +71,8 @@ Popup.BaseDialog {
             right: parent.right;
             topMargin: margin;
             leftMargin: margin;
-            bottomMargin: margin;
+            bottomMargin: margin + 30;
             rightMargin: margin;
-        }
-        
-        Label {
-            id: dlgTitle
-            anchors.left: parent.left
-            anchors.top: parent.top
-            verticalAlignment: TextInput.AlignVCenter
-            text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
-            font.pixelSize: 20
-            color: sysPalette.windowText
         }
         
         Column {
@@ -89,6 +80,14 @@ Popup.BaseDialog {
             anchors.top: dlgTitle.bottom
             width: objEditor.width - 20
             spacing: 10
+        
+            Label {
+                id: dlgTitle
+                verticalAlignment: TextInput.AlignVCenter
+                text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
+                font.pixelSize: 20
+                color: sysPalette.windowText
+            }
             
             Native.MessageDialog {
                 id: invalidNameDialog
