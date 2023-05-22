@@ -194,11 +194,12 @@ MenuBar {
             }
         
             Menu {
+                id: colorSchemeSetting
                 title: qsTr("Color Scheme")
                 property var schemes: ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]
             
                 Repeater {
-                    model: ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]
+                    model: colorSchemeSetting.schemes
                     
                     MenuItem {
                         text: modelData
