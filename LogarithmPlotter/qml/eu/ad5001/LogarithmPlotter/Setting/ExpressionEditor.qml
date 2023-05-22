@@ -206,7 +206,7 @@ Item {
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
         text: control.defValue
-        color: syntaxHighlightingEnabled ? "transparent" : sysPalette.windowText
+        color: syntaxHighlightingEnabled ? sysPalette.window : sysPalette.windowText
         focus: true
         selectByMouse: true
         
@@ -229,8 +229,6 @@ Item {
             }
         }
         
-        //onTextEdited: acPopupContent.itemSelected = 0
-        
         onActiveFocusChanged: {
             if(activeFocus && autocompleteEnabled)
                 autocompletePopup.open()
@@ -238,6 +236,12 @@ Item {
                 autocompletePopup.close()
         }
         
+        cursorDelegate: Rectangle {
+            visible: editor.cursorVisible
+            color: sysPalette.windowText
+            width: editor.cursorRectangle.width
+        }
+
         Keys.onUpPressed: function(event) {
             if(autocompleteEnabled)
                 if(acPopupContent.itemSelected == 0)
