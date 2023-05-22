@@ -21,7 +21,7 @@ steps:
     event: [ push, tag ]
 
 # - name: Windows test
-#   image: ad5001/ubuntu-pyside6-xvfb-wine:win7-6.5.0
+#   image: ad5001/ubuntu-pyside6-xvfb-wine:win7-6.5.0-rev1
 #   commands:
 #   - # For some reason, launching GUI apps with wine, even with xvfb-run, fails.
 #   - xvfb-run python run.py --test-build --no-check-for-updates
@@ -39,7 +39,7 @@ steps:
 
 
 - name: Windows building
-  image: ad5001/ubuntu-pyside6-xvfb-wine:win7-6.5.0
+  image: ad5001/ubuntu-pyside6-xvfb-wine:win7-6.5.0-rev1
   commands:
   - bash scripts/build-wine.sh
   - bash scripts/package-wine.sh
