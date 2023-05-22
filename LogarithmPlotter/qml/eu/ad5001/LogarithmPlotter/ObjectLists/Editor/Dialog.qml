@@ -61,8 +61,6 @@ Popup.BaseDialog {
     minimumHeight: Math.max(450,dlgProperties.height + margin*4 + 30)
     maximumHeight: minimumHeight
     
-    // Disable closing on return/enter, causing issues with autocomplete.
-    // onActionChosen: if(action.key == Qt.Key_Enter || action.key == Qt.Key_Return) action.accepted = false
     Item {
         anchors {
             top: parent.top;
@@ -77,7 +75,7 @@ Popup.BaseDialog {
         
         Column {
             id: dlgProperties
-            anchors.top: dlgTitle.bottom
+            anchors.top: parent.top
             width: objEditor.width - 20
             spacing: 10
         
