@@ -187,11 +187,22 @@ Popup {
             }
         }
     }
-            
+    
+    Rectangle {
+        id: bottomSeparator
+        opacity: 0.3
+        color: sysPalette.windowText
+        width: parent.width * 2 / 3
+        height: 1
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: bottomButtons.top
+        anchors.bottomMargin: 9
+    }
+    
     Row {
         id: bottomButtons
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 7
         spacing: 10
         anchors.horizontalCenter: parent.horizontalCenter
         

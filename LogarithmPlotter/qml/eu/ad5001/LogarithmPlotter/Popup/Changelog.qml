@@ -74,12 +74,23 @@ Popup {
         }
     }
     
+    Rectangle {
+        id: bottomSeparator
+        opacity: 0.3
+        color: sysPalette.windowText
+        width: parent.width * 2 / 3
+        height: 1
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: doneBtn.top
+        anchors.bottomMargin: 7
+    }
+    
     Button {
         id: doneBtn
         text: qsTr("Done")
         font.pixelSize: 18
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 7
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: changelogPopup.close()
     }

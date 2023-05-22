@@ -132,8 +132,6 @@ Button {
         color: sysPalette.windowText
     }
     
-    //text: content
-    
     ToolTip.visible: hovered
     ToolTip.delay: 200
     ToolTip.text: content
