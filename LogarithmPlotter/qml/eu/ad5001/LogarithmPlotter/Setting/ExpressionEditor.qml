@@ -95,19 +95,74 @@ Item {
     }
     
     /*!
-       \qmlproperty string ExpressionEditor::colorScheme
-       Color scheme of the editor, currently based on Breeze Light.
-       TODO: Make it configurable.
+       \qmlproperty string ExpressionEditor::colorSchemes
+       Color schemes of the editor.
     */
-    readonly property var colorScheme: {
-        'NORMAL': "#1F1C1B",
-        'VARIABLE': "#0057AE",
-        'CONSTANT': "#5E2F00",
-        'FUNCTION': "#644A9B",
-        'OPERATOR': "#A44EA4",
-        'STRING': "#9C0E0E",
-        'NUMBER': "#805C00"
-    }
+    readonly property var colorSchemes: [
+        { // Breeze Light
+            'NORMAL':   "#1F1C1B",
+            'VARIABLE': "#0057AE",
+            'CONSTANT': "#006E28",
+            'FUNCTION': "#644A9B",
+            'OPERATOR': "#CA60CA",
+            'STRING':   "#BF0303",
+            'NUMBER':   "#B08000"
+        },
+        { // Breeze Dark
+            'NORMAL':   "#CFCFC2",
+            'VARIABLE': "#2980B9",
+            'CONSTANT': "#27AE60",
+            'FUNCTION': "#8E44AD",
+            'OPERATOR': "#A44EA4",
+            'STRING':   "#F44F4F",
+            'NUMBER':   "#F67400"
+        },
+        { // Solarized
+            'NORMAL':   "#839496",
+            'VARIABLE': "#B58900",
+            'CONSTANT': "#859900",
+            'FUNCTION': "#268BD2",
+            'OPERATOR': "#859900",
+            'STRING':   "#2AA198",
+            'NUMBER':   "#2AA198"
+        },
+        { // GitHub Light
+            'NORMAL':   "#24292E",
+            'VARIABLE': "#D73A49",
+            'CONSTANT': "#6F42C1",
+            'FUNCTION': "#6F42C1",
+            'OPERATOR': "#24292E",
+            'STRING':   "#032F62",
+            'NUMBER':   "#005CC5"
+        },
+        { // GitHub Dark
+            'NORMAL':   "#E1E4E8",
+            'VARIABLE': "#F97583",
+            'CONSTANT': "#B392f0",
+            'FUNCTION': "#B392f0",
+            'OPERATOR': "#E1E4E8",
+            'STRING':   "#9ECBFF",
+            'NUMBER':   "#79B8FF"
+        },
+        { // Nord
+            'NORMAL':   "#D8DEE9",
+            'VARIABLE': "#81A1C1",
+            'CONSTANT': "#8FBCBB",
+            'FUNCTION': "#88C0D0",
+            'OPERATOR': "#81A1C1",
+            'STRING':   "#A3BE8C",
+            'NUMBER':   "#B48EAD"
+        },
+        { // Monokai
+            'NORMAL':   "#F8F8F2",
+            'VARIABLE': "#66D9EF",
+            'CONSTANT': "#F92672",
+            'FUNCTION': "#A6E22E",
+            'OPERATOR': "#F8F8F2",
+            'STRING':   "#E6DB74",
+            'NUMBER':   "#AE81FF"
+        }
+    ]
     
     Icon {
         id: iconLabel
@@ -140,7 +195,6 @@ Item {
             open()
         }
     }
-    
     
     TextField {
         id: editor
@@ -204,16 +258,11 @@ Item {
         
         Keys.onPressed: function(event) {
             // Autocomplete popup events
-            //console.log(acPopupContent.currentToken.dot, acPopupContent.previousToken.dot, "@", acPopupContent.currentToken.identifier, acPopupContent.previousToken.identifier, acPopupContent.previousToken2.identifier, objectPropertiesList.objectName, JSON.stringify(objectPropertiesList.baseText), objectPropertiesList.model.length, JSON.stringify(objectPropertiesList.categoryItems))
-            //console.log("Pressed key:", event.key, Qt.Key_Return, Qt.Key_Enter, event.text, acPopupContent.itemCount)
             if(autocompleteEnabled && (event.key == Qt.Key_Enter || event.key == Qt.Key_Return) && acPopupContent.itemCount > 0) {
                 acPopupContent.autocomplete()
                 event.accepted = true
             } else 
                 acPopupContent.itemSelected = 0
-            /*if(event.key == Qt.Key_Left) { // TODO: Don't reset the position when the key moved is still on the same word
-                if(!acPopupContent.identifierTokenTypes.includes())
-            }*/
                 
                 
             if(event.text in openAndCloseMatches && autoClosing) {
@@ -534,25 +583,26 @@ Item {
     */
     function colorize(tokenList) {
         let parsedText = ""
+        let scheme = colorSchemes[Helper.getSettingInt("expression_editor.color_scheme")]
         for(let token of tokenList) {
             switch(token.type) {
                 case Parsing.TokenType.VARIABLE:
-                    parsedText += `<font color="${colorScheme.VARIABLE}">${token.value}</font>`
+                    parsedText += `<font color="${scheme.VARIABLE}">${token.value}</font>`
                     break;
                 case Parsing.TokenType.CONSTANT:
-                    parsedText += `<font color="${colorScheme.CONSTANT}">${token.value}</font>`
+                    parsedText += `<font color="${scheme.CONSTANT}">${token.value}</font>`
                     break;
                 case Parsing.TokenType.FUNCTION:
-                    parsedText += `<font color="${colorScheme.FUNCTION}">${Utils.escapeHTML(token.value)}</font>`
+                    parsedText += `<font color="${scheme.FUNCTION}">${Utils.escapeHTML(token.value)}</font>`
                     break;
                 case Parsing.TokenType.OPERATOR:
-                    parsedText += `<font color="${colorScheme.OPERATOR}">${Utils.escapeHTML(token.value)}</font>`
+                    parsedText += `<font color="${scheme.OPERATOR}">${Utils.escapeHTML(token.value)}</font>`
                     break;
                 case Parsing.TokenType.NUMBER:
-                    parsedText += `<font color="${colorScheme.NUMBER}">${Utils.escapeHTML(token.value)}</font>`
+                    parsedText += `<font color="${scheme.NUMBER}">${Utils.escapeHTML(token.value)}</font>`
                     break;
                 case Parsing.TokenType.STRING:
-                    parsedText += `<font color="${colorScheme.STRING}">${token.limitator}${Utils.escapeHTML(token.value)}${token.limitator}</font>`
+                    parsedText += `<font color="${scheme.STRING}">${token.limitator}${Utils.escapeHTML(token.value)}${token.limitator}</font>`
                     break;
                 case Parsing.TokenType.WHITESPACE:
                 case Parsing.TokenType.PUNCT:

@@ -192,6 +192,26 @@ MenuBar {
                 }
                 icon.name: 'label'
             }
+        
+            Menu {
+                title: qsTr("Color Scheme")
+                property var schemes: ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]
+            
+                Repeater {
+                    model: ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]
+                    
+                    MenuItem {
+                        text: modelData
+                        checkable: true
+                        checked: Helper.getSettingInt("expression_editor.color_scheme") == index
+                        onTriggered: {
+                            parent.children[Helper.getSettingInt("expression_editor.color_scheme")].checked = false
+                            checked = true
+                            Helper.setSettingInt("expression_editor.color_scheme", index)
+                        }
+                    }
+                }
+            }
         }
     }
     
