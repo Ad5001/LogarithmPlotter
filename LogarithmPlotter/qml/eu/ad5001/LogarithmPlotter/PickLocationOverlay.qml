@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,8 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick
+import QtQuick.Controls
+import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "js/objects.js" as Objects
 import "js/mathlib.js" as MathLib
 import "js/historylib.js" as HistoryLib
@@ -36,6 +37,7 @@ import "js/historylib.js" as HistoryLib
 Item {
     id: pickerRoot
     visible: false
+    clip: true
     
     /*!
        \qmlproperty var PickLocationOverlay::canvas
@@ -90,7 +92,7 @@ Item {
         hoverEnabled: parent.visible
         cursorShape: Qt.CrossCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: {
+        onClicked: function(mouse) {
             if(mouse.button == Qt.LeftButton) { // Validate
                 let newValueX = !parent.pickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
                 let newValueY = !parent.pickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
@@ -120,31 +122,96 @@ Item {
         }
     }
     
-    Row {
-        height: precisionSlider.height
-        Text {
-            text: "  "+ qsTr("Pointer precision:") + " "
-            color: 'black'
-            anchors.verticalCenter: parent.verticalCenter
-        }
+    
+    
+    Rectangle {
+        id: pickerSettings
+        radius: 15
+        color: sysPalette.window
+        width: pickerSettingsColumn.width + 30;
+        height: pickerSettingsColumn.height + 20
+        property bool folded: false;
+        x: -15 - ((width-55) * folded);
+        y: 10
+        z: 2
         
-        Slider {
-            id: precisionSlider
-            from: 0
-            value: 2
-            to: 10
-            stepSize: 1
-            ToolTip {
-                parent: precisionSlider.handle
-                visible: precisionSlider.pressed
-                text: precisionSlider.value.toFixed(0)
+        Row {
+            id: pickerSettingsColumn
+            anchors {
+                left: parent.left
+                top: parent.top
+                leftMargin: 20
+                topMargin: 10
             }
-        }
-        
-        CheckBox {
-            id: snapToGridCheckbox
-            text: qsTr("Snap to grid")
-            checked: false
+            spacing: 15
+            property int cellHeight: 15
+            
+            Column {
+                spacing: 5
+                width: 100
+                
+                Text {
+                    text: qsTr("Pointer precision:")
+                    color: sysPalette.windowText
+                    verticalAlignment: Text.AlignVCenter
+                    height: pickerSettingsColumn.cellHeight
+                }
+                
+                Text {
+                    text: qsTr("Snap to grid") + ":"
+                    color: sysPalette.windowText
+                    verticalAlignment: Text.AlignVCenter
+                    height: pickerSettingsColumn.cellHeight
+                }
+            }
+            
+            Column {
+                spacing: 5
+                
+                Slider {
+                    id: precisionSlider
+                    from: 0
+                    value: 2
+                    to: 10
+                    stepSize: 1
+                    height: pickerSettingsColumn.cellHeight
+                    
+                    ToolTip {
+                        parent: precisionSlider.handle
+                        visible: precisionSlider.pressed
+                        text: precisionSlider.value.toFixed(0)
+                    }
+                }
+                
+                CheckBox {
+                    id: snapToGridCheckbox
+                    height: pickerSettingsColumn.cellHeight
+                    // text: qsTr("Snap to grid")
+                    checked: false
+                }
+            }
+            
+            Button {
+                width: 24
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                flat: true
+                
+                onClicked: pickerSettings.folded = !pickerSettings.folded
+                
+                ToolTip.visible: hovered
+                ToolTip.delay: 200
+                ToolTip.text: pickerSettings.folded ? qsTr("Open picker settings") : qsTr("Hide picker settings")
+                
+                Setting.Icon {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: 18
+                    height: 18
+                    color: sysPalette.windowText
+                    source: `../icons/common/settings.svg`
+                }
+            }
         }
     }
     

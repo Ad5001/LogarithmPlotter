@@ -16,36 +16,39 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.pragma library
+import QtQuick
+import QtQuick.Controls
 
-class InputExpression {
-    constructor(expression) {
-        this.position = 0;
-        this.input = expression;
+/*!
+    \qmltype BaseDialog
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Popup
+    \brief Base dialog window in replacement of Dialog Popup from Qt 5.
+    
+    \sa LogarithmPlotter
+*/
+
+Window {
+    color: sysPalette.window
+    visible: false;
+    flags: Qt.Dialog | Qt.Popup | Qt.MSWindowsFixedSizeDialogHint
+    modality: Qt.WindowModal
+    minimumWidth: width
+    maximumWidth: width
+    height: minimumHeight
+    // maximumHeight:  contentItem.implicitHeight + 2*margin
+    property int margin: 10
+    
+    Button {
+        id: closeButton
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.bottomMargin: margin
+        anchors.rightMargin: margin
+        text: qsTr('Close')
+        onClicked: close()
     }
     
-    next() {
-        return this.input[this.position++];
-    }
-    
-    peek() {
-        return this.input[this.position];
-    }
-    
-    skip(char) {
-        if(!this.atEnd() && this.peek() == char) {
-            this.position++;
-        } else {
-            this.raise("Unexpected character " + peek() + ". Expected character " + char);
-        }
-    }
-    
-    atEnd() {
-        return this.position >= this.input.length;
-    }
-    
-    raise(message) {
-        throw new SyntaxError(message + " at " + this.position + ".")
+    function open() {
+        show()
     }
 }
-

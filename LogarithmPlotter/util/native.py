@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 # This file contains stuff for native interactions with each OS.
 
-from PySide2.QtCore import QObject, QEvent
+from PySide6.QtCore import QObject, QEvent
 
 # On macOS, opening a file through finder can only be fetched through the
 # QFileOpenEvent and NOT throught command line parameters.

@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import QtQuick.Dialogs 1.3 as D
-import QtQuick.Controls 2.12
+import QtQuick
+import QtQuick.Dialogs
+import QtQuick.Controls
 
 /*!
     \qmltype ThanksTo
@@ -27,14 +27,24 @@ import QtQuick.Controls 2.12
     
     \sa LogarithmPlotter
 */
-D.Dialog {
+BaseDialog {
     id: about
     title: qsTr("Thanks and Contributions - LogarithmPlotter")
-    width: 400
-    height: 600
+    width: 450
+    minimumHeight: 710
     
     Column {
-        anchors.fill: parent
+        anchors {
+            top: parent.top;
+            left: parent.left;
+            bottom: parent.bottom;
+            right: parent.right;
+            topMargin: margin;
+            leftMargin: margin;
+            bottomMargin: margin;
+            rightMargin: margin;
+        }
+        
         spacing: 10
         
         ListView {

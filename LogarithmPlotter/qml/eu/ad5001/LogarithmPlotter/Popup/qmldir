@@ -1,5 +1,6 @@
 module eu.ad5001.LogarithmPlotter.Popup
 
+BaseDialog 1.0 BaseDialog.qml
 About 1.0 About.qml
 Alert 1.0 Alert.qml
 FileDialog 1.0 FileDialog.qml

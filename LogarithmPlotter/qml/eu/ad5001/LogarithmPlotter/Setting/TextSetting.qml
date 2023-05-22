@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls 2.12
-import QtQuick 2.12 
+import QtQuick.Controls
+import QtQuick 
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
 /*!
@@ -113,8 +113,8 @@ Item {
         verticalAlignment: TextInput.AlignVCenter
         horizontalAlignment: control.label == "" ? TextInput.AlignLeft : TextInput.AlignHCenter
         color: sysPalette.windowText
-        validator: RegExpValidator {
-            regExp: control.isInt ? /-?[0-9]+/ : control.isDouble ? /-?[0-9]+(\.[0-9]+)?/ : /.+/
+        validator: RegularExpressionValidator {
+            regularExpression: control.isInt ? /-?[0-9]+/ : control.isDouble ? /-?[0-9]+(\.[0-9]+)?/ : /.+/
         }
         focus: true
         text: control.defValue

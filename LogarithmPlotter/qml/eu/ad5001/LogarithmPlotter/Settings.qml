@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls 2.12
-import QtQuick 2.12 
+import QtQuick.Controls
+import QtQuick 
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 import "js/utils.js" as Utils
@@ -135,7 +135,7 @@ ScrollView {
         Popup.FileDialog {
             id: fdiag
             onAccepted: {
-                var filePath = fileUrl.toString().substr(7)
+                var filePath = fdiag.currentFile.toString().substr(7)
                 settings.saveFilename = filePath
                 if(exportMode) {
                     root.saveDiagram(filePath)

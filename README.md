@@ -56,7 +56,7 @@ There are several ways to contribute to LogarithmPlotter.
 
 ## Legal notice
         LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.
-        Copyright (C) 2022  Ad5001 <mail@ad5001.eu>
+        Copyright (C) 2023  Ad5001 <mail@ad5001.eu>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by

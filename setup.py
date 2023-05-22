@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -122,7 +122,7 @@ if sys.platform == 'linux':
             os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
 
 setuptools.setup(
-    install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide2"]),
+    install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide6"]),
     python_requires='>=3.8',
 
     name='logarithmplotter',

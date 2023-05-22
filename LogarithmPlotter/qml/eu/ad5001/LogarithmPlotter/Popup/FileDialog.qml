@@ -1,6 +1,6 @@
 /**
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Dialogs 1.3 as D
+import Qt.labs.platform
 
 /*!
     \qmltype FileDialog
@@ -25,7 +25,7 @@ import QtQuick.Dialogs 1.3 as D
         
     \sa LogarithmPlotter, Settings
 */
-D.FileDialog {
+FileDialog {
     id: fileDialog
     
     property bool exportMode: false
@@ -33,6 +33,6 @@ D.FileDialog {
     title: exportMode ? qsTr("Export Logarithm Plot file") : qsTr("Import Logarithm Plot file")
     nameFilters: ["Logarithm Plot File (*.lpf)", "All files (*)"]
 
-    folder: shortcuts.documents
-    selectExisting: !exportMode
+    defaultSuffix: 'lpf'
+    fileMode: exportMode ? FileDialog.SaveFile : FileDialog.OpenFile
 }

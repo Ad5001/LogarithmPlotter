@@ -1,6 +1,6 @@
 """
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
- *  Copyright (C) 2022  Ad5001
+ *  Copyright (C) 2023  Ad5001
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 from os import path, environ, makedirs
 from platform import system
 from json import load, dumps
-from PySide2.QtCore import QLocale, QTranslator
+from PySide6.QtCore import QLocale, QTranslator
 
 
 DEFAULT_SETTINGS = {
