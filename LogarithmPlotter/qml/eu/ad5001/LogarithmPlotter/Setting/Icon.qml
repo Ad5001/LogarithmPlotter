@@ -47,11 +47,11 @@ Item {
         id: img
         height: parent.height
         width: parent.width
-        //smooth: true
         visible: false
         sourceSize.width: width*Screen.devicePixelRatio
         sourceSize.height: width*Screen.devicePixelRatio
     }
+    
     ColorOverlay {
         anchors.fill: img
         source: img
