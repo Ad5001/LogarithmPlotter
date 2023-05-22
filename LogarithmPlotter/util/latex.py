@@ -35,7 +35,6 @@ If not found, it will send an alert to the user.
 """
 LATEX_PATH = which('latex')
 DVIPNG_PATH = which('dvipng')
-#subprocess.run(["ls", "-l", "/dev/null"], capture_output=True)
 
 DEFAULT_LATEX_DOC = Template(r"""
 \documentclass[]{minimal}
@@ -85,7 +84,7 @@ class Latex(QObject):
         """
         Prepares and renders a latex string into a png file.
         """
-        markup_hash = hash(latex_markup)
+        markup_hash = "render"+str(hash(latex_markup))
         export_path = path.join(self.tempdir.name, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
@@ -119,14 +118,13 @@ class Latex(QObject):
     
     def convert_latex_to_dvi(self, export_path: str):
         """
-        Converts a DVI file to a PNG file.
+        Converts a TEX file to a DVI file.
         """
         self.run([
             LATEX_PATH,
             export_path + ".tex"
         ])
         
-    
     def convert_dvi_to_png(self, dvi_path: str, export_path: str, font_size: float, color: QColor):
         """
         Converts a DVI file to a PNG file.

@@ -100,10 +100,11 @@ function functionToLatex(f, args) {
 /**
  * Creates a latex variable from a variable.
  * 
- * @param {string} vari - variable to convert
+ * @param {string} vari - variable text to convert
+ * @param {bool} wrapIn$ - checks whether the escaped chars should be escaped
  * @returns {string}
  */
-function variable(vari) {
+function variable(vari, wrapIn$ = false) {
     let unicodechars = ["α","β","γ","δ","ε","ζ","η",
                         "π","θ","κ","λ","μ","ξ","ρ",
                         "ς","σ","τ","φ","χ","ψ","ω",
@@ -124,11 +125,16 @@ function variable(vari) {
                         "{}^{7}","{}^{8}","{}^{9}","{}^{0}","{}_{1}","{}_{2}","{}_{3}",
                         "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}",
                         "\\pi"]
-    for(let i = 0; i < unicodechars.length; i++) {
-        //console.log(vari, unicodechars[i], equivalchars[i]);
-        if(vari.includes(unicodechars[i]))
-            vari = vari.replace(new RegExp(unicodechars[i], 'g'), equivalchars[i])
-    }
+    if(wrapIn$)
+        for(let i = 0; i < unicodechars.length; i++) {
+            if(vari.includes(unicodechars[i]))
+                vari = vari.replace(new RegExp(unicodechars[i], 'g'), '$'+equivalchars[i]+'$')
+        }
+    else
+        for(let i = 0; i < unicodechars.length; i++) {
+            if(vari.includes(unicodechars[i]))
+                vari = vari.replace(new RegExp(unicodechars[i], 'g'), equivalchars[i])
+        }
     return vari;
 }
 

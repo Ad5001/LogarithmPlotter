@@ -59,16 +59,21 @@ class Text extends Common.DrawableObject  {
     }
     
     latexMarkupText() {
-        let txt = Latex.variable(this.text)
+        // Check whether the text contains latex escaped elements.
+        let txt = []
+        this.text.split('$$').forEach(function(t) { txt = txt.concat(Latex.variable(t, true).replace(/\$\$/g, '').split('$')) })
+        let newTxt = txt[0]
         let i
-        for(i = 0; txt.includes('$$'); i++)
+        // Split between normal text and latex escaped.
+        for(i = 0; i < txt.length-1; i++)
             if(i & 0x01) // Every odd number
-                txt = txt.replace('$$', '\\textsf{')
+                newTxt += '\\textsf{'+Latex.variable(txt[i+1])
             else
-                txt = txt.replace('$$', '}')
-        if(i & 0x01) // Finished by a }
-            txt += "{"
-        return txt
+                newTxt += '}'+txt[i+1]
+        // Finished by a }
+        if(i & 0x01) 
+            newTxt += "{"
+        return newTxt
     }
     
     getLatexString() {
