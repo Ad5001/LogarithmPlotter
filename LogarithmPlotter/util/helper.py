@@ -40,7 +40,7 @@ class ChangelogFetcher(QRunnable):
         msg_text = "Unknown changelog error."
         try:
             # Fetching version
-            r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/")
+            r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + __VERSION__)
             lines = r.readlines()
             r.close()
             msg_text =  "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
