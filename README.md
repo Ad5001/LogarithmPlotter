@@ -25,7 +25,7 @@ In order to test translations, you can use the `--lang=<lang code>` command line
 All scripts noted here can be found in the `scripts` directory.
 
 You can generate installers from LogarithmPlotter after installing all the dependencies:   
-For all builds, you need [Python 3](https://python.org) with [PySide2](https://pypi.org/project/PySide2/) installable with `pip install PySide2`.    
+For all builds, you need [Python 3](https://python.org) with [PySide6](https://pypi.org/project/PySide6/) installable with `pip install PySide6`.    
 - Windows installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
     - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an exe for LogarithmPlotter.

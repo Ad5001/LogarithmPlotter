@@ -11,9 +11,9 @@ Unicode True
 !define PROG_ID "LogarithmPlotter.File.1"
 !define DEV_NAME "Ad5001"
 !define WEBSITE "https://apps.ad5001.eu/logarithmplotter"
-!define VERSION_SHORT "0.3.0"
+!define VERSION_SHORT "0.4.0"
 !define APP_VERSION "${VERSION_SHORT}.0"
-!define COPYRIGHT "Ad5001 (c) 2022"
+!define COPYRIGHT "Ad5001 (c) 2023"
 !define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
@@ -163,7 +163,7 @@ Section ""
     File *.bmp
     File *.ico
     File /r qml
-    File /r PySide2
+    File /r PySide6
     File /r shiboken2
 
 
