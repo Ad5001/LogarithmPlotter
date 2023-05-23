@@ -164,7 +164,7 @@ Section ""
     File *.ico
     File /r qml
     File /r PySide6
-    File /r shiboken2
+    File /r shiboken6
 
 
     CreateShortcut "$SMPROGRAMS\LogarithmPlotter.lnk" "$INSTDIR\logarithmplotter.exe"
