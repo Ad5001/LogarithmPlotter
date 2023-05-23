@@ -125,7 +125,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="204"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaktische Färbung</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="226"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -380,7 +380,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="176"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaktische Färbung Thema:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="200"/>
@@ -576,12 +576,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="204"/>
         <source>Open picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigereinstellungen öffnen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="204"/>
         <source>Hide picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigereinstellungen ausblenden</translation>
     </message>
 </context>
 <context>
