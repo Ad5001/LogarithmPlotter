@@ -126,7 +126,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="204"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Coloration Syntaxique</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="226"/>
@@ -184,7 +184,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
@@ -372,7 +372,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="176"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Thème de coloration syntaxique :</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="200"/>
@@ -584,12 +584,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="204"/>
         <source>Open picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir les paramètres du pointeur</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="204"/>
         <source>Hide picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher les paramètres du pointeur</translation>
     </message>
 </context>
 <context>
