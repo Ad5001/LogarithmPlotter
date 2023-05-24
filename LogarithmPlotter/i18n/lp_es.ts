@@ -991,6 +991,14 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
 Evaluated expression: %3</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="179"/>
+        <source>Error while attempting to draw %1 %2:
+%3
+
+Undoing last change.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>expression</name>
@@ -1006,6 +1014,11 @@ Evaluated expression: %3</source>
 %2
 
 Evaluated expression: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="176"/>
+        <source>LogarithmPlotter - Drawing error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

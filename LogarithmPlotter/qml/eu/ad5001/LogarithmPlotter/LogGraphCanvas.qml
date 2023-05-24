@@ -16,7 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 
+import QtQuick
+import Qt.labs.platform as Native
 import "js/objects.js" as Objects
 import "js/utils.js" as Utils
 import "js/mathlib.js" as MathLib
@@ -170,6 +171,16 @@ Canvas {
     
     Component.onCompleted: imageLoaders = {}
     
+    Native.MessageDialog {
+        id: drawingErrorDialog
+        title: qsTranslate("expression", "LogarithmPlotter - Drawing error")
+        text: ""
+        function showDialog(objType, objName, error) {
+            text = qsTranslate("error", "Error while attempting to draw %1 %2:\n%3\n\nUndoing last change.").arg(objType).arg(objName).arg(error)
+            open()
+        }
+    }
+    
     onPaint: function(rect) {
         //console.log('Redrawing')
         if(rect.width == canvas.width) { // Redraw full canvas
@@ -183,7 +194,14 @@ Canvas {
                 for(var obj of Objects.currentObjects[objType]){
                     ctx.strokeStyle = obj.color
                     ctx.fillStyle = obj.color
-                    if(obj.visible) obj.draw(canvas, ctx)
+                    if(obj.visible)
+                        try {
+                            obj.draw(canvas, ctx)
+                        } catch(e) {
+                            // Drawing throws an error. Generally, it's due to a new modification (or the opening of a file)
+                            drawingErrorDialog.showDialog(objType, obj.name, e.message)
+                            history.undo()
+                        }
                 }
             }
             ctx.lineWidth = 1
