@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="304"/>
         <source>Pick on graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnehmen auf Graph</translation>
     </message>
 </context>
 <context>
@@ -580,17 +580,17 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="175"/>
         <source>Snap to grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Am Raster einrasten:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="184"/>
         <source>Pick X</source>
-        <translation type="unfinished"></translation>
+        <translation>X nehmen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="218"/>
         <source>Pick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y nehmen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="234"/>
@@ -605,7 +605,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="306"/>
         <source>(no pick selected)</source>
-        <translation type="unfinished"></translation>
+        <translation>(keine Auswahl ausgewählt)</translation>
     </message>
 </context>
 <context>
@@ -908,7 +908,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="247"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um als Funktion verwendet zu werden, benötigt das Objekt %1 mindestens ein Parameter.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="249"/>
@@ -983,7 +983,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1623"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1633"/>
         <source>Function %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Funktion %1 benötigt mindestens ein Parameter.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1639"/>
@@ -1071,7 +1071,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 %2
 
 Evaluated expression: %3</source>
-        <translation type="unfinished">Fehler beim Analysieren des Ausdrucks für die Eigenschaft %1:
+        <translation>Fehler beim Analysieren des Ausdrucks für die Eigenschaft %1:
 %2
 
 Ausdruck analysiert: %3</translation>
@@ -1082,7 +1082,10 @@ Ausdruck analysiert: %3</translation>
 %3
 
 Undoing last change.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Versuch, das %1 %2 zu zeichnen:
+%3
+
+Die letzte Änderung wurde rückgängig gemacht.</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1110,7 @@ Ausdruck analysiert: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="176"/>
         <source>LogarithmPlotter - Drawing error</source>
-        <translation type="unfinished"></translation>
+        <translation>LogarithmPlotter - Fehler</translation>
     </message>
 </context>
 <context>
