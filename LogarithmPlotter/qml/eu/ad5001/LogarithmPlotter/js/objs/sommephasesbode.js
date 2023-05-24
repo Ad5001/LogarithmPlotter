@@ -53,7 +53,7 @@ class SommePhasesBode extends Common.ExecutableObject {
     }
     
     getLatexString() {
-        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Phase Bode').map(Latex.variable).join(' + ')}`
+        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Phase Bode').map(name => Latex.variable(name)).join(' + ')}`
     }
     
     execute(x=1) {

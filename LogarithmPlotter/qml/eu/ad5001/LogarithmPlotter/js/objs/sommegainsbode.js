@@ -54,7 +54,7 @@ class SommeGainsBode extends Common.ExecutableObject {
     }
     
     getLatexString() {
-        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Gain Bode').map(Latex.variable).join(' + ')}`
+        return `${Latex.variable(this.name)} = ${Objects.getObjectsName('Gain Bode').map(name => Latex.variable(name)).join(' + ')}`
     }
     
     execute(x = 0) {
