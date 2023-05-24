@@ -241,7 +241,10 @@ function evaluate(tokens, expr, values) {
         nstack.push(f.apply(undefined, args));
       } else if(f.execute) {
         // Objects & expressions execution
-        nstack.push(f.execute.apply(f, args));
+        if(args.length >= 1)
+          nstack.push(f.execute.apply(f, args));
+        else
+          throw new Error(qsTranslate('error', 'In order to be executed, object %1 must have at least one argument.').arg(f))
       } else {
         throw new Error(qsTranslate('error', '%1 cannot be executed.').arg(f));
       }
@@ -1614,16 +1617,20 @@ function arrayIndex(array, index) {
 function max(array) {
   if (arguments.length === 1 && Array.isArray(array)) {
     return Math.max.apply(Math, array);
-  } else {
+  } else if(arguments.length >= 1) {
     return Math.max.apply(Math, arguments);
+  } else {
+    throw new EvalError(qsTranslate('error', 'Function %1 must have at least one argument.').arg('max'))
   }
 }
 
 function min(array) {
   if (arguments.length === 1 && Array.isArray(array)) {
     return Math.min.apply(Math, array);
-  } else {
+  } else if(arguments.length >= 1) {
     return Math.min.apply(Math, arguments);
+  } else {
+    throw new EvalError(qsTranslate('error', 'Function %1 must have at least one argument.').arg('min'))
   }
 }
 

@@ -36,7 +36,7 @@ class InputExpression {
         if(!this.atEnd() && this.peek() == char) {
             this.position++;
         } else {
-            this.raise("Unexpected character " + peek() + ". Expected character " + char);
+            this.raise("Unexpected character " + this.peek() + ". Expected character " + char);
         }
     }
     
