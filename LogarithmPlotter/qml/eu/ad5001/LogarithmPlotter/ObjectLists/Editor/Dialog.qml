@@ -55,6 +55,11 @@ Popup.BaseDialog {
        Instance of the object being edited.
     */
     property var obj: Objects.currentObjects[objType][objIndex]
+    /*!
+       \qmlproperty var EditorDialog::posPicker
+       Reference to the global PositionPicker QML object.
+    */
+    property var posPicker
     
     title: "LogarithmPlotter"
     width: 350
@@ -106,7 +111,6 @@ Popup.BaseDialog {
                 value: objEditor.obj.name
                 onChanged: function(newValue) {
                     let newName = Utils.parseName(newValue)
-                    console.log(newValue, newName)
                     if(newName != '' && objEditor.obj.name != newName) {
                         if(newName in Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
@@ -144,6 +148,7 @@ Popup.BaseDialog {
             CustomPropertyList {
                 id: dlgCustomProperties
                 obj: objEditor.obj
+                positionPicker: posPicker
                 
                 onChanged: {
                     obj.update()

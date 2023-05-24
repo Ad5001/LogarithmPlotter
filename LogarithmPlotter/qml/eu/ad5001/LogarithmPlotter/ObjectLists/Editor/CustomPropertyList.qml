@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import "../../js/objects.js" as Objects
 import "../../js/historylib.js" as HistoryLib
@@ -43,6 +44,11 @@ Repeater {
        Object whose properties to list and edit.
     */
     property var obj
+    /*!
+       \qmlproperty var CustomPropertyList::positionPicker
+       Reference to the global PositionPicker QML object.
+    */
+    property var positionPicker
     
     readonly property var textTypes: ['Domain', 'string', 'number']
     readonly property var comboBoxTypes: ['ObjectType', 'Enum']
@@ -94,7 +100,7 @@ Repeater {
         
         // Setting for text & number settings as well as domains
         Setting.TextSetting {
-            height: 30            
+            height: 30
             label: propertyLabel
             icon: `settings/custom/${propertyIcon}.svg`
             isDouble: propertyType == 'number'
@@ -123,15 +129,15 @@ Repeater {
             }
             
         
-            // D.MessageDialog {
-            //     id: parsingErrorDialog
-            //     title: qsTranslate("expression", "LogarithmPlotter - Parsing error")
-            //     text: ""
-            //     function showDialog(propName, propValue, error) {
-            //         text = qsTranslate("error", "Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
-            //         open()
-            //     }
-            // }
+            Native.MessageDialog {
+                id: parsingErrorDialog
+                title: qsTranslate("expression", "LogarithmPlotter - Parsing error")
+                text: ""
+                function showDialog(propName, propValue, error) {
+                    text = qsTranslate("error", "Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
+                    open()
+                }
+            }
         }
     }
     
@@ -255,29 +261,68 @@ Repeater {
     }
     
     delegate: Component {
-        Loader {
-            //height: customPropComment.height + customPropText.height + customPropCheckBox.height + customPropCombo.height + customPropListDict.height
+        Row {
             width: dlgProperties.width
-            property string propertyName: modelData[0]
-            property var propertyType: modelData[1]
-            property string propertyLabel: qsTranslate('prop',propertyName)
-            property string propertyIcon: Utils.camelCase2readable(propertyName)
+            spacing: 5
             
-            sourceComponent: {
-                if(propertyName.startsWith('comment'))
-                    return commentComponent
-                else if(propertyType == 'boolean')
-                    return checkboxComponent
-                else if(paramTypeIn(propertyType, ['Expression']))
-                    return expressionEditorComponent
-                else if(paramTypeIn(propertyType, textTypes))
-                    return textEditorComponent
-                else if(paramTypeIn(propertyType, comboBoxTypes))
-                    return comboBoxComponent
-                else if(paramTypeIn(propertyType, listTypes))
-                    return listDictEditorComponent
-                else
-                    return {}
+            Loader {
+                id: propertyEditor
+                width: dlgProperties.width - pointerButton.width
+                property string propertyName: modelData[0]
+                property var propertyType: modelData[1]
+                property string propertyLabel: qsTranslate('prop',propertyName)
+                property string propertyIcon: Utils.camelCase2readable(propertyName)
+                
+                sourceComponent: {
+                    if(propertyName.startsWith('comment'))
+                        return commentComponent
+                    else if(propertyType == 'boolean')
+                        return checkboxComponent
+                    else if(paramTypeIn(propertyType, ['Expression']))
+                        return expressionEditorComponent
+                    else if(paramTypeIn(propertyType, textTypes))
+                        return textEditorComponent
+                    else if(paramTypeIn(propertyType, comboBoxTypes))
+                        return comboBoxComponent
+                    else if(paramTypeIn(propertyType, listTypes))
+                        return listDictEditorComponent
+                    else
+                        return {}
+                }
+            }
+        
+            Button {
+                id: pointerButton
+                height: parent.height
+                width: visible ? height : 0
+                anchors.verticalCenter: parent.verticalCenter
+                
+                property bool isXProp: ['labelX', 'x'].includes(propertyEditor.propertyName)
+                property bool isYProp: ['y'].includes(propertyEditor.propertyName)
+                visible: isXProp || isYProp
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Pick on graph")
+                
+                Setting.Icon {
+                    id: icon
+                    width: 18
+                    height: 18
+                    anchors.centerIn: parent
+                    
+                    color: sysPalette.windowText
+                    source: '../icons/common/position.svg'
+                }
+                
+                onClicked: {
+                    positionPicker.objType = objType
+                    positionPicker.objName = obj.name
+                    positionPicker.pickX = isXProp
+                    positionPicker.pickY = isYProp
+                    positionPicker.propertyX = propertyEditor.propertyName
+                    positionPicker.propertyY = propertyEditor.propertyName
+                    positionPicker.visible = true
+                    objEditor.close()
+                }
             }
         }
     }

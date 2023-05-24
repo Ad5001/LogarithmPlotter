@@ -116,6 +116,8 @@ ScrollView {
     // Object editor
     Editor.Dialog {
         id: objEditor
+        
+        posPicker: positionPicker
     }
     
     /*!
