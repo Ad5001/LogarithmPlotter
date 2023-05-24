@@ -199,9 +199,9 @@ Item {
         title: qsTr("Pick new color for %1 %2").arg(obj.constructor.displayType()).arg(obj.name)
         onAccepted: {
             history.addToHistory(new HistoryLib.ColorChanged(
-                obj.name, obj.type, obj.color, color.toString()
+                obj.name, obj.type, obj.color, selectedColor.toString()
             ))
-            obj.color = color.toString()
+            obj.color = selectedColor.toString()
             changed()
         }
     }
