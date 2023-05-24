@@ -28,6 +28,7 @@ import QtQuick.Controls
 */
 
 Window {
+    id: base
     color: sysPalette.window
     visible: false;
     flags: Qt.Dialog | Qt.Popup | Qt.MSWindowsFixedSizeDialogHint
@@ -35,7 +36,6 @@ Window {
     minimumWidth: width
     maximumWidth: width
     height: minimumHeight
-    // maximumHeight:  contentItem.implicitHeight + 2*margin
     property int margin: 10
     
     Button {
@@ -46,6 +46,11 @@ Window {
         anchors.rightMargin: margin
         text: qsTr('Close')
         onClicked: close()
+    }
+    
+    Shortcut {
+        sequence: "Esc"
+        onActivated: base.close()
     }
     
     function open() {
