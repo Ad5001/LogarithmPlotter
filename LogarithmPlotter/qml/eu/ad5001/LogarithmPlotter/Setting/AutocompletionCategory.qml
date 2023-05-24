@@ -84,11 +84,12 @@ ListView {
         Text {
             leftPadding: 5
             text: listFiltered.category
+            color: sysPalette.windowText
         }
         
         Rectangle {
             height: 1
-            color: 'black'
+            color: 'gray'
             width: parent.width
         }
     }
