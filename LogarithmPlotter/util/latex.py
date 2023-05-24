@@ -98,9 +98,9 @@ class Latex(QObject):
                     self.cleanup(latex_path)
                 # Creating four pictures of different sizes to better handle dpi.
                 self.convert_dvi_to_png(latex_path, export_path, font_size, color)
-                self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
-                self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
-                self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
+                # self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
+                # self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
+                # self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
             except Exception as e: # One of the processes failed. A message will be sent every time.
                 raise e
         img = QImage(export_path);
