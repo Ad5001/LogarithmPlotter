@@ -316,8 +316,8 @@ function parseName(str, removeUnallowed = true) {
         [/([^a-z]|^)gps(i)?([^a-z]|$)/g, '$1Ψ$3'],
         [/([^a-z]|^)gom(ega)?([^a-z]|$)/g, '$1Ω$3'],
         // Underscores
-        [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
-        [/_([^" ]+)/g, function(match, p1) { return textsub(p1) }],
+        // [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
+        // [/_([^" ]+)/g, function(match, p1) { return textsub(p1) }],
         // Array elements
         [/\[([^\]\[]+)\]/g, function(match, p1) { return textsub(p1) }],
         // Removing

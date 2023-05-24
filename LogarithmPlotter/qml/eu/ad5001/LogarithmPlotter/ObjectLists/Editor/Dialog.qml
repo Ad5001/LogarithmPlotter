@@ -106,6 +106,7 @@ Popup.BaseDialog {
                 value: objEditor.obj.name
                 onChanged: function(newValue) {
                     let newName = Utils.parseName(newValue)
+                    console.log(newValue, newName)
                     if(newName != '' && objEditor.obj.name != newName) {
                         if(newName in Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
