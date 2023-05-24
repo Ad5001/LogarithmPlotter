@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="304"/>
         <source>Pick on graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Pick on graph</translation>
     </message>
 </context>
 <context>
@@ -580,17 +580,17 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="175"/>
         <source>Snap to grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Snap to grid:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="184"/>
         <source>Pick X</source>
-        <translation type="unfinished"></translation>
+        <translation>Pick X</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="218"/>
         <source>Pick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Pick Y</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="234"/>
@@ -605,7 +605,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="306"/>
         <source>(no pick selected)</source>
-        <translation type="unfinished"></translation>
+        <translation>(no pick selected)</translation>
     </message>
 </context>
 <context>
@@ -908,7 +908,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="247"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>In order to be executed, object %1 must have at least one argument.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="249"/>
@@ -983,7 +983,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1623"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1633"/>
         <source>Function %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>Function %1 must have at least one argument.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1639"/>
@@ -1071,7 +1071,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
 %2
 
 Evaluated expression: %3</source>
-        <translation type="unfinished">Error while parsing expression for property %1:
+        <translation>Error while parsing expression for property %1:
 %2
 
 Evaluated expression: %3</translation>
@@ -1082,7 +1082,10 @@ Evaluated expression: %3</translation>
 %3
 
 Undoing last change.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error while attempting to draw %1 %2:
+%3
+
+Undoing last change.</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1110,7 @@ Evaluated expression: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="176"/>
         <source>LogarithmPlotter - Drawing error</source>
-        <translation type="unfinished"></translation>
+        <translation>LogarithmPlotter - Drawing error</translation>
     </message>
 </context>
 <context>
