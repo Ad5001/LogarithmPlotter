@@ -56,12 +56,12 @@ Item {
     property string objName: 'A'
     /*!
        \qmlproperty bool PickLocationOverlay::pickX
-       true if the user should be picking a position on the x axis.
+       true if the property in propertyX is pickable.
     */
     property bool pickX: true
     /*!
        \qmlproperty bool PickLocationOverlay::pickY
-       true if the user should be picking a position on the y axis.
+       true if the property in propertyY is pickable.
     */
     property bool pickY: true
     /*!
@@ -79,6 +79,16 @@ Item {
        Precision of the picked value (post-dot precision).
     */
     property alias precision: precisionSlider.value
+    /*!
+       \qmlproperty bool PickLocationOverlay::userPickX
+       true if the user can and wants to be picking a position on the x axis.
+    */
+    readonly property bool userPickX: pickX && pickXCheckbox.checked
+    /*!
+       \qmlproperty bool PickLocationOverlay::userPickY
+       true if the user can and wants to be picking a position on the y axis.
+    */
+    readonly property bool userPickY: pickY && pickYCheckbox.checked
     
     Rectangle {
         color: sysPalette.window
@@ -94,29 +104,33 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: function(mouse) {
             if(mouse.button == Qt.LeftButton) { // Validate
-                let newValueX = !parent.pickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
-                let newValueY = !parent.pickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
+                let newValueX = !parent.userPickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
+                let newValueY = !parent.userPickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
                 let obj = Objects.currentObjectsByName[objName]
                 // Set values
-                if(parent.pickX && parent.pickY) {
+                if(parent.userPickX && parent.userPickY) {
                     history.addToHistory(new HistoryLib.EditedPosition(
                         objName, objType, obj[propertyX], newValueX, obj[propertyY], newValueY
                     ))
                     obj[propertyX] = newValueX
                     obj[propertyY] = newValueY
-                } else if(parent.pickX) {
+                    obj.update()
+                    objectLists.update()
+                } else if(parent.userPickX) {
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValueX
                     ))
                     obj[propertyX] = newValueX
-                } else if(parent.pickY) {
+                    obj.update()
+                    objectLists.update()
+                } else if(parent.userPickY) {
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValueY
                     ))
                     obj[propertyY] = newValueY
+                    obj.update()
+                    objectLists.update()
                 }
-                obj.update()
-                objectLists.update()
             }
             pickerRoot.visible = false;
         }
@@ -158,10 +172,18 @@ Item {
                 }
                 
                 Text {
-                    text: qsTr("Snap to grid") + ":"
+                    text: qsTr("Snap to grid:")
                     color: sysPalette.windowText
                     verticalAlignment: Text.AlignVCenter
                     height: pickerSettingsColumn.cellHeight
+                }
+                
+                CheckBox {
+                    id: pickXCheckbox
+                    height: pickerSettingsColumn.cellHeight
+                    text: qsTr("Pick X")
+                    checked: pickX
+                    visible: pickX
                 }
             }
             
@@ -188,6 +210,14 @@ Item {
                     height: pickerSettingsColumn.cellHeight
                     // text: qsTr("Snap to grid")
                     checked: false
+                }
+                
+                CheckBox {
+                    id: pickYCheckbox
+                    height: pickerSettingsColumn.cellHeight
+                    text: qsTr("Pick Y")
+                    checked: pickY
+                    visible: pickY
                 }
             }
             
@@ -223,7 +253,7 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: canvas.x2px(picked.mouseX)
-        visible: parent.pickX
+        visible: parent.userPickX
     }
     
     Rectangle {
@@ -234,13 +264,14 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.topMargin: canvas.y2px(picked.mouseY)
-        visible: parent.pickY
+        visible: parent.userPickY
     }
     
     Text {
         id: picked
         x: picker.mouseX - width - 5
         y: picker.mouseY - height - 5
+        color: 'black'
         property double axisX: canvas.xaxisstep1
         property double mouseX: {
             let xpos = canvas.px2x(picker.mouseX)
@@ -264,14 +295,15 @@ Item {
                 return ypos.toFixed(parent.precision)
             }
         }
-        color: 'black'
         text: {
-            if(parent.pickX && parent.pickY)
+            if(parent.userPickX && parent.userPickY)
                 return `(${mouseX}, ${mouseY})`
-            if(parent.pickX)
+            else if(parent.userPickX)
                 return `X = ${mouseX}`
-            if(parent.pickY)
+            else if(parent.userPickY)
                 return `Y = ${mouseY}`
+            else
+                return qsTr('(no pick selected)')
         }
     }
     
