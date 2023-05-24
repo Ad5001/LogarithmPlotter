@@ -194,7 +194,7 @@
         <translation>Fetching changelog…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="90"/>
         <source>Done</source>
         <translation>Done</translation>
     </message>
@@ -202,51 +202,56 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="179"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="197"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="185"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="203"/>
         <source>+ Create new %1</source>
         <translation>+ Create new %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="304"/>
+        <source>Pick on graph</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="87"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="90"/>
         <source>Edit properties of %1 %2</source>
         <translation>Edit properties of %1 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="97"/>
         <source>LogarithmPlotter - Invalid object name</source>
         <translation>LogarithmPlotter - Invalid object name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="97"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="100"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
         <translation>An object with the name &apos;%1&apos; already exists.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="108"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="133"/>
         <source>Label content</source>
         <translation>Label content</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="134"/>
         <source>null</source>
         <translation>null</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="134"/>
         <source>name</source>
         <translation>name</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="134"/>
         <source>name + value</source>
         <translation>name + value</translation>
     </message>
@@ -285,32 +290,32 @@
 <context>
     <name>ExpressionEditor</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="379"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="383"/>
         <source>Object Properties</source>
         <translation>Object Properties</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="411"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="415"/>
         <source>Variables</source>
         <translation>Variables</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="426"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="430"/>
         <source>Constants</source>
         <translation>Constants</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="441"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="445"/>
         <source>Functions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="456"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="460"/>
         <source>Executable Objects</source>
         <translation>Function Objects</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="471"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="475"/>
         <source>Objects</source>
         <translation>Objects</translation>
     </message>
@@ -383,17 +388,17 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>Color scheme:</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="200"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="211"/>
         <source>User manual</source>
         <translation>User manual</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="207"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="218"/>
         <source>Changelog</source>
         <translation>Changelog</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="214"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="225"/>
         <source>Done</source>
         <translation>Done</translation>
     </message>
@@ -1006,34 +1011,46 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>End of expression</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="527"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="531"/>
         <source>No object found with names %1.</source>
         <translation>No object found with names %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="529"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="533"/>
         <source>No object found with name %1.</source>
         <translation>No object found with name %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="532"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="536"/>
         <source>Object cannot be dependent on itself.</source>
         <translation>Object cannot be dependent on itself.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="539"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="543"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
         <translation>Circular dependency detected. Object %1 depends on %2.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="541"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="545"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
         <translation>Circular dependency detected. Objects %1 depend on %2.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="137"/>
+        <source>Error while parsing expression for property %1:
+%2
+
+Evaluated expression: %3</source>
+        <translation type="unfinished">Error while parsing expression for property %1:
+%2
+
+Evaluated expression: %3</translation>
     </message>
 </context>
 <context>
     <name>expression</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="134"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="191"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Parsing error</translation>
@@ -1118,7 +1135,7 @@ Evaluated expression: %3</translation>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="73"/>
+        <location filename="../util/latex.py" line="72"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1127,12 +1144,12 @@ If you already have a LaTeX distribution installed, make sure it&apos;s installe
 Otherwise, you can download a LaTeX distribution like TeX Live at https://tug.org/texlive/.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="77"/>
+        <location filename="../util/latex.py" line="76"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG was not found. Make sure you include it from your LaTeX distribution.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="159"/>
+        <location filename="../util/latex.py" line="157"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1145,7 +1162,7 @@ Process &apos;{}&apos; ended with a non-zero return code {}:
 Please make sure your LaTeX installation is correct and report a bug if so.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="167"/>
+        <location filename="../util/latex.py" line="165"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
