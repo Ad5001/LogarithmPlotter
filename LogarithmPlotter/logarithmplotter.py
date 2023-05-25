@@ -52,13 +52,13 @@ config.init()
 
 def get_linux_theme():
     des = {
-        "KDE": "default",
-        "gnome": "default",
-        "lxqt": "fusion",
-        "mate": "fusion",
+        "KDE": "Fusion",
+        "gnome": "Basic",
+        "lxqt": "Fusion",
+        "mate": "Fusion",
     }
     if "XDG_SESSION_DESKTOP" in environ:
-        return des[environ["XDG_SESSION_DESKTOP"]] if environ["XDG_SESSION_DESKTOP"] in des else "fusion"
+        return des[environ["XDG_SESSION_DESKTOP"]] if environ["XDG_SESSION_DESKTOP"] in des else "Fusion"
     else:
         # Android
         return "Material"
@@ -69,9 +69,9 @@ def run():
         environ["QT_QUICK_CONTROLS_STYLE"] = {
             "linux": get_linux_theme(),
             "freebsd": get_linux_theme(),
-            "win32": "universal" if os_release == "10" else "fusion",
-            "cygwin": "fusion",
-            "darwin": "default"
+            "win32": "Universal" if os_release == "10" else "Fusion",
+            "cygwin": "Fusion",
+            "darwin": "Default"
         }[platform]
     
     dep_time = time()
