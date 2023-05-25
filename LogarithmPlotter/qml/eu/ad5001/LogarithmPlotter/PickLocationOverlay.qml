@@ -162,7 +162,7 @@ Item {
             
             Column {
                 spacing: 5
-                width: 100
+                // width: 100
                 
                 Text {
                     text: qsTr("Pointer precision:")
