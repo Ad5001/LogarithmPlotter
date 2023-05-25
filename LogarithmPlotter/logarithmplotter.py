@@ -65,13 +65,14 @@ def get_linux_theme():
         
 def run():
     
-    environ["QT_QUICK_CONTROLS_STYLE"] = {
-        "linux": get_linux_theme(),
-        "freebsd": get_linux_theme(),
-        "win32": "universal" if os_release == "10" else "fusion",
-        "cygwin": "fusion",
-        "darwin": "default"
-    }[platform]
+    if not 'QT_QUICK_CONTROLS_STYLE' in environ:
+        environ["QT_QUICK_CONTROLS_STYLE"] = {
+            "linux": get_linux_theme(),
+            "freebsd": get_linux_theme(),
+            "win32": "universal" if os_release == "10" else "fusion",
+            "cygwin": "fusion",
+            "darwin": "default"
+        }[platform]
     
     dep_time = time()
     print("Loaded dependencies in " + str((dep_time - start_time)*1000) + "ms.")
