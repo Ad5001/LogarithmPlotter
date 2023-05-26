@@ -1,6 +1,6 @@
 name: logarithmplotter
 title: LogarithmPlotter
-version: '0.3.0'
+version: '0.4.0'
 summary: 2D logarithmic-scaled plotter software to create asymptotic Bode plots
 confinement: strict
 base: core20
@@ -129,6 +129,7 @@ parts:
     - libxcb-xfixes0
     - libxcb-xinerama0
     - libxcb-xkb1
+    - libxcb-cursor0
     - libxkbcommon-x11-0
     - libxkbcommon0
     - libxcb-render-util0
