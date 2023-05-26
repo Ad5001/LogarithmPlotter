@@ -228,7 +228,7 @@ Popup {
         }
     }
     
-    Component.onCompleted: if(Helper.getSetting("last_install_greet") != Helper.getVersion()) {
+    Component.onCompleted: if(Helper.getSetting("last_install_greet")+1 != Helper.getVersion()) {
         greetingPopup.open()
     }
     

@@ -71,7 +71,7 @@ def run():
             "freebsd": get_linux_theme(),
             "win32": "Universal" if os_release == "10" else "Fusion",
             "cygwin": "Fusion",
-            "darwin": "Default"
+            "darwin": "macOS"
         }[platform]
     
     dep_time = time()
