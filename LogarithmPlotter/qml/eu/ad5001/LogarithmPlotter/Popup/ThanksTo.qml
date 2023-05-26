@@ -53,6 +53,7 @@ BaseDialog {
             width: parent.width
             //height: parent.height
             implicitHeight: contentItem.childrenRect.height
+            interactive: false
             
             model: ListModel {
                 Component.onCompleted: {
@@ -135,6 +136,7 @@ BaseDialog {
                     model: authors
                     width: parent.width - 10
                     implicitHeight: contentItem.childrenRect.height
+                    interactive: false
                     
                     delegate: Item {
                         id: libAuthor
@@ -191,6 +193,7 @@ BaseDialog {
             anchors.left: parent.left
             width: parent.width
             implicitHeight: contentItem.childrenRect.height
+            interactive: false
             spacing: 3
 
             
@@ -292,6 +295,7 @@ BaseDialog {
                     model: authors
                     width: parent.width - 10
                     implicitHeight: contentItem.childrenRect.height
+                    interactive: false
                     
                     delegate: Item {
                         id: tranAuthor
