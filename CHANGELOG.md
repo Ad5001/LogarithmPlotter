@@ -1,5 +1,40 @@
 # Changelog
 
+## v0.4.0 (27 May 2023)
+
+**Changes**
+
+  * Fully ported to PySide6 (Qt6).
+  * Greet screen settings are now scrollable.
+  * Changelog is now freezed to current version.
+
+**New**
+
+  * Customizable color schemes for expressions.
+  * New, rewamped and improved picked location overlay settings:
+  * It's now possible to disable picking x or y when setting a location.
+  * Properties which are related to positioning (X, Y, Label's X position) can now be set using the picker.
+  * Visual redesign that enhances readability of settings.
+  * There is now a button to hide picker settings.
+
+**Fixed bugs**
+
+  * Cursors in expression are now easier to see.
+  * Symbols in LaTeX rendered Texts cause the LaTeX renderer to crash.
+  * Underscores in distribution names are automatically removed if the name is modified.
+  * Autocomplete categories now properly respect theme colors.
+  * Functions in expressions (like indexOf, map...) now properly send errors when the arguments are of the wrong type or count.
+  * Executable Objects called (like functions, bode magnitures, phases...) now send an error if provided with no arguments.
+  * Function calls with no argument no longer make LogarithmPlotter crash under certain circumstances.
+  * Thank you dialog's lists are no longer draggable.
+
+**Internal changes**
+
+  * A lot of inner changes led by porting to Qt6, fixing a lot of bugs at the same time.
+  * Disabled auto detect of visual theme if the `QT_QUICK_CONTROLS_STYLE` environment variable is set.
+  * (macOS, Windows, Flatpak) Drastically reducing installer sizes (more than halved).
+  * (Launchpad/Ubuntu) Using custom built packages of PySide6, meaning smaller installation and distro dependency.
+  
 ## v0.3.0 (28 Oct 2022)
 
 **New**
