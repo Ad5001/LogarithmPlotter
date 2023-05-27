@@ -33,7 +33,7 @@ pyinstaller --add-data "LogarithmPlotter/qml:qml" \
 cp mac/Info.plist dist/LogarithmPlotter.app/Contents/Info.plist
 
 # Remove QtWebEngine, 3D and all other unused libs libs
-rm -rf dist/LogarithmPlotter.app/Contents/MacOS/{QtWeb*,*3D*,QtRemote*,QtPdf,QtCharts,QtLocation,QtTest,QtNetwork,QtMultimedia,QtSpatialAudio,QtDataVisualization,QtQuickParticles,QtChartsQml,QtScxml,QtDataVisualizationQml,QtTest,QtPositioningQuick,QtQuickTest,QtSql,QtSensorsQuick}
+rm -rf dist/LogarithmPlotter.app/Contents/MacOS/{QtWeb*,*3D*,QtRemote*,QtPdf,QtCharts,QtLocation,QtTest,QtMultimedia,QtSpatialAudio,QtDataVisualization,QtQuickParticles,QtChartsQml,QtScxml,QtDataVisualizationQml,QtTest,QtPositioningQuick,QtQuickTest,QtSql,QtSensorsQuick}
 rm -rf dist/LogarithmPlotter.app/Contents/MacOS/PySide6/{QtNetwork.abi3.so}
 
 # Removing QtQuick3D
@@ -42,4 +42,4 @@ rm -rf dist/LogarithmPlotter.app/Contents/MacOS/PySide6/Qt/qml/Qt3D
 rm -rf dist/LogarithmPlotter.app/Contents/MacOS/PySide6/Qt/qml/QtWebEngine
 
 # Remove the QtQuick styles that are unused
-rm -rf dist/LogarithmPlotter.app/Contents/MacOS/PySide6/Qt/qml/QtQuick/Controls/{Imagine,Material,iOS,Universal,Fusion,designer}
+rm -rf dist/LogarithmPlotter.app/Contents/MacOS/PySide6/Qt/qml/QtQuick/Controls/{Imagine,Material,iOS,Universal,designer}
