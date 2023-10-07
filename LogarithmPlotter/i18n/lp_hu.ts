@@ -125,7 +125,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="204"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Színséma</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="226"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
 </context>
 <context>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="304"/>
         <source>Pick on graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Ábra kijelölése</translation>
     </message>
 </context>
 <context>
@@ -385,7 +385,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="176"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Színséma:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="211"/>
@@ -580,32 +580,32 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="175"/>
         <source>Snap to grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rácshoz igazítás:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="184"/>
         <source>Pick X</source>
-        <translation type="unfinished"></translation>
+        <translation>X kijelölése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="218"/>
         <source>Pick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y kijelölése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="234"/>
         <source>Open picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelölési beállítások megnyitása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="234"/>
         <source>Hide picker settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelölési beállítások elrejtése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="306"/>
         <source>(no pick selected)</source>
-        <translation type="unfinished"></translation>
+        <translation>(nincs kijelölés kiválasztva)</translation>
     </message>
 </context>
 <context>
@@ -908,7 +908,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="247"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>A végrehajtáshoz a(z) %1 objektumnak legalább egy argumentummal kell rendelkeznie.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="249"/>
@@ -983,7 +983,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1623"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1633"/>
         <source>Function %1 must have at least one argument.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 függvénynek legalább egy argumentumnak kell lennie.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js" line="1639"/>
@@ -1071,7 +1071,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 %2
 
 Evaluated expression: %3</source>
-        <translation type="unfinished">Hiba a(z) %1 tulajdonság kifejezésének elemzésekor:
+        <translation>Hiba a(z) %1 tulajdonság kifejezésének elemzésekor:
 %2
 
 Kiértékelt kifejezés: %3</translation>
@@ -1082,7 +1082,10 @@ Kiértékelt kifejezés: %3</translation>
 %3
 
 Undoing last change.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a(z) %1 %2 rajzolása közben:
+%3
+
+Az utolsó módosítás visszavonása.</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1110,7 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="176"/>
         <source>LogarithmPlotter - Drawing error</source>
-        <translation type="unfinished"></translation>
+        <translation>LogarithmPlotter - Rajzolási hiba</translation>
     </message>
 </context>
 <context>
