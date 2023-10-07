@@ -83,10 +83,10 @@ Item {
     */
     property int prevY
     /*!
-       \qmlproperty int ViewPositionChangeOverlay::precision
-       Precision of the (on canvas) position be set.
+       \qmlproperty double ViewPositionChangeOverlay::baseZoomMultiplier
+       How much should the zoom be mutliplied/scrolled by for one scroll step (120° on the mouse wheel).
     */
-    property int precision
+    property double baseZoomMultiplier: 0.1
     
     MouseArea {
         id: dragArea
@@ -99,7 +99,6 @@ Item {
             settingsInstance.ymax += deltaY/canvas.yzoom
             settingsInstance.ymax = settingsInstance.ymax.toFixed(4)
             settingsInstance.changed()
-            console.log("New pos", settingsInstance.xmin, settingsInstance.ymax)
             parent.positionChanged(deltaX, deltaY)
             
         }
@@ -125,6 +124,27 @@ Item {
             let deltaY = mouse.y - prevY
             updatePosition(deltaX, deltaY)
             parent.endPositionChange(deltaX, deltaY)
+        }
+        onWheel: function(wheel) {
+            // Scrolling
+            let scrollSteps = Math.round(wheel.angleDelta.y / 120)
+            let zoomMultiplier = Math.pow(1+baseZoomMultiplier, Math.abs(scrollSteps))
+            // Avoid floating-point rounding errors by removing the zoom *after*
+            let xZoomDelta = (settingsInstance.xzoom*zoomMultiplier - settingsInstance.xzoom)
+            let yZoomDelta = (settingsInstance.yzoom*zoomMultiplier - settingsInstance.yzoom)
+            if(scrollSteps < 0) { // Negative scroll
+                xZoomDelta *= -1
+                yZoomDelta *= -1
+            }
+            let newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(0)
+            let newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(0)
+            if(newXZoom == settingsInstance.xzoom) // No change, allow more precision.
+                newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(4)
+            if(newYZoom == settingsInstance.yzoom) // No change, allow more precision.
+                newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(4)
+            settingsInstance.xzoom = newXZoom
+            settingsInstance.yzoom = newYZoom
+            settingsInstance.changed()
         }
     }
 }
