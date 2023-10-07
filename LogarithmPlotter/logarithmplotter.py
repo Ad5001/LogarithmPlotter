@@ -144,7 +144,7 @@ def run():
     if config.getSetting("check_for_updates"):
         check_for_updates(__VERSION__, engine.rootObjects()[0])
     
-    exit_code = app.exec_()
+    exit_code = app.exec()
     
     tempdir.cleanup()
     config.save()

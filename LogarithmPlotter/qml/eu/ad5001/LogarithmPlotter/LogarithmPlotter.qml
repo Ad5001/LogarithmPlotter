@@ -178,6 +178,13 @@ ApplicationWindow {
             }
         }
         
+        ViewPositionChangeOverlay {
+            id: viewPositionChanger
+            anchors.fill: parent
+            canvas: parent
+            settingsInstance: settings
+        }
+        
         PickLocationOverlay {
             id: positionPicker
             anchors.fill: parent
