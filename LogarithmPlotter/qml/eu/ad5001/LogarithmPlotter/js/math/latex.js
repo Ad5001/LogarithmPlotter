@@ -114,7 +114,7 @@ function variable(vari, wrapIn$ = false) {
                         "ₜ","¹","²","³","⁴","⁵","⁶",
                         "⁷","⁸","⁹","⁰","₁","₂","₃",
                         "₄","₅","₆","₇","₈","₉","₀",
-                        "pi"]
+                        "pi", "∞"]
     let equivalchars = ["\\alpha","\\beta","\\gamma","\\delta","\\epsilon","\\zeta","\\eta",
                         "\\pi","\\theta","\\kappa","\\lambda","\\mu","\\xi","\\rho",
                         "\\sigma","\\sigma","\\tau","\\phi","\\chi","\\psi","\\omega",
@@ -124,7 +124,7 @@ function variable(vari, wrapIn$ = false) {
                         "{}_{t}","{}^{1}","{}^{2}","{}^{3}","{}^{4}","{}^{5}","{}^{6}",
                         "{}^{7}","{}^{8}","{}^{9}","{}^{0}","{}_{1}","{}_{2}","{}_{3}",
                         "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}",
-                        "\\pi"]
+                        "\\pi", "\\infty"]
     if(wrapIn$)
         for(let i = 0; i < unicodechars.length; i++) {
             if(vari.includes(unicodechars[i]))

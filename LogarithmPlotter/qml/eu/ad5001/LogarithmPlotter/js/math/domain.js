@@ -437,8 +437,8 @@ class UnionDomain extends Domain {
     static import(frm) {
         var domains = frm.trim().split("∪")
         if(domains.length == 1) domains = frm.trim().split("U") // Fallback
-        var dom1 = parseDomain(domains.pop())
-        var dom2 = parseDomain(domains.join('∪'))
+        var dom2 = parseDomain(domains.pop())
+        var dom1 = parseDomain(domains.join('∪'))
         return dom1.union(dom2)
     }
 }
