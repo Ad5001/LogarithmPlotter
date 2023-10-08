@@ -40,6 +40,14 @@ Item {
     clip: true
     
     /*!
+        \qmlsignal PickLocationOverlay::picked(var obj)
+        
+        Emitted when a location has been picked
+        The corresponding handler is \c onPicked.
+    */
+    signal picked(var obj)
+    
+    /*!
        \qmlproperty var PickLocationOverlay::canvas
        logGraphCanvas instance.
     */
@@ -116,6 +124,7 @@ Item {
                     obj[propertyY] = newValueY
                     obj.update()
                     objectLists.update()
+                    pickerRoot.picked(obj)
                 } else if(parent.userPickX) {
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValueX
@@ -123,6 +132,7 @@ Item {
                     obj[propertyX] = newValueX
                     obj.update()
                     objectLists.update()
+                    pickerRoot.picked(obj)
                 } else if(parent.userPickY) {
                     history.addToHistory(new HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValueY
@@ -130,6 +140,7 @@ Item {
                     obj[propertyY] = newValueY
                     obj.update()
                     objectLists.update()
+                    pickerRoot.picked(obj)
                 }
             }
             pickerRoot.visible = false;

@@ -110,6 +110,7 @@ ScrollView {
             width: objectsListView.width
             objectEditor: objEditor
             objectLists: objectListList
+            posPicker: positionPicker
         }
     }
     

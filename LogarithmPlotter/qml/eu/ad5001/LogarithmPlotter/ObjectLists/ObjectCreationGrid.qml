@@ -34,6 +34,22 @@ Column {
     id: createRow
     property var objectEditor
     property var objectLists
+    property var posPicker
+    
+    /*!
+        \qmlmethod int ObjectCreationGrid::openEditorDialog(var obj)
+        Opens the editor dialog for an object \c obj.
+    */
+    function openEditorDialog(obj) {
+        // Open editor
+        console.log(obj, obj.prototype)
+        objectEditor.obj = obj
+        objectEditor.objType = obj.type
+        objectEditor.objIndex = Objects.currentObjects[obj.type].indexOf(obj)
+        objectEditor.open()
+        // Disconnect potential link
+        posPicker.picked.disconnect(openEditorDialog)
+    }
     
     Label {
         id: createTitle
@@ -89,13 +105,26 @@ Column {
                 ToolTip.text: label.text
                 
                 onClicked: {
-                    var newObj = Objects.createNewRegisteredObject(modelData)
+                    let newObj = Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
-                    objectEditor.obj = Objects.currentObjects[modelData][Objects.currentObjects[modelData].length - 1]
-                    objectEditor.objType = modelData
-                    objectEditor.objIndex = Objects.currentObjects[modelData].length - 1
-                    objectEditor.open()
+        
+                    let hasXProp = newObj.constructor.properties().hasOwnProperty('x')
+                    let hasYProp = newObj.constructor.properties().hasOwnProperty('y')
+                    if(hasXProp || hasYProp) {
+                        // Open picker
+                        posPicker.objType = newObj.type
+                        posPicker.objName = newObj.name
+                        posPicker.pickX = hasXProp
+                        posPicker.pickY = hasYProp
+                        posPicker.propertyX = 'x'
+                        posPicker.propertyY = 'y'
+                        posPicker.visible = true
+                        posPicker.picked.connect(openEditorDialog)
+                    } else {
+                        // Open editor
+                        openEditorDialog(newObj)
+                    }
                 }
             }
         }
