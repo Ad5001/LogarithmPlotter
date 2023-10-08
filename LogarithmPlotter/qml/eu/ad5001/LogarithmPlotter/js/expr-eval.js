@@ -692,7 +692,7 @@ TokenStream.prototype.isConst = function () {
   var i = startPos;
   for (; i < this.expression.length; i++) {
     var c = this.expression.charAt(i);
-    if (c.toUpperCase() === c.toLowerCase()) {
+    if (c.toUpperCase() === c.toLowerCase() && !ADDITIONAL_VARCHARS.includes(c)) {
       if (i === this.pos || (c !== '_' && c !== '.' && (c < '0' || c > '9'))) {
         break;
       }
