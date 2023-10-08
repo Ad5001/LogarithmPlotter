@@ -147,8 +147,12 @@ class Function extends Common.ExecutableObject {
                 ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
             }
         } else {
+            // Use max precision if function is trigonometrical on log scale.
+            let exprString = expr.expr
+            if(exprString.includes("sin") || exprString.includes("cos") || exprString.includes("tan"))
+                pxprecision = (canvas.logscalex || exprString.includes("tan")) ? 1 : 3
+            // Calculate the previousY at the start of the canvas
             if(definitionDomain.includes(previousX))
-                // PreviousY at the start of the canvas
                 previousY = expr.execute(previousX)
             for(let px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
                 let currentX = canvas.px2x(px)
@@ -171,10 +175,12 @@ class Function extends Common.ExecutableObject {
                         currentX = canvas.px2x(tmpPx)
                     } while(!definitionDomain.includes(currentX) && currentX != previousX)
                 }
+                // This max variation is needed for functions with asymptotical vertical lines (e.g. 1/x, tan x...)
+                let maxvariation = (canvas.px2y(0)-canvas.px2y(canvas.canvasSize.height))
                 if(definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
                     let currentY = expr.execute(currentX)
                     if(destinationDomain.includes(currentY)) {
-                        if(previousY != null && destinationDomain.includes(previousY)) {
+                        if(previousY != null && destinationDomain.includes(previousY) && Math.abs(previousY-currentY) < maxvariation) {
                             canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                         }
                     }
