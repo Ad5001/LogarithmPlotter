@@ -32,7 +32,7 @@ Popup {
     id: changelogPopup
     x: (parent.width-width)/2
     y: Math.max(20, (parent.height-height)/2)
-    width: changelog.width+40
+    width: 800
     height: Math.min(parent.height-40, 500)
     modal: true
     focus: true
@@ -44,33 +44,42 @@ Popup {
     */
     property bool changelogNeedsFetching: true
     
-    onAboutToShow: if(changelogNeedsFetching) Helper.fetchChangelog()
+    onAboutToShow: if(changelogNeedsFetching) {
+        Helper.fetchChangelog()
+    }
     
     Connections {
         target: Helper
         function onChangelogFetched(chl) {
             changelogNeedsFetching = false;
             changelog.text = chl
+            changelogView.contentItem.implicitHeight = changelog.height
+            // console.log(changelog.height, changelogView.contentItem.implicitHeight)
         }
     }
 
     ScrollView {
+        id: changelogView
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
+        anchors.right: parent.right
+        anchors.rightMargin: 10
         anchors.bottom: doneBtn.top
         anchors.bottomMargin: 10
         clip: true
 
+        
         Label {
             id: changelog
             color: sysPalette.windowText
+            width: 760
+            wrapMode: Text.WordWrap
             textFormat: TextEdit.MarkdownText
 
             text: qsTr("Fetching changelog...")
             onLinkActivated: Qt.openUrlExternally(link)
-
         }
     }
     
