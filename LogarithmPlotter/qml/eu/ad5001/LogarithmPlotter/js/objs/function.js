@@ -115,9 +115,9 @@ class Function extends Common.ExecutableObject {
     static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         // Reusable in other objects.
         // Drawing small traits every 0.2px
-        var pxprecision = 1
+        var pxprecision = 10
         var previousX = canvas.px2x(0)
-        var previousY;
+        var previousY = null;
         if(definitionDomain instanceof MathLib.SpecialDomain && definitionDomain.moveSupported) {
             // Point based functions.
             previousX = definitionDomain.next(previousX)
@@ -147,17 +147,42 @@ class Function extends Common.ExecutableObject {
                 ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
             }
         } else {
-            previousY = expr.execute(previousX)
-            for(var px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
-                var currentX = canvas.px2x(px)
-                var currentY = expr.execute(currentX)
-                if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
-                    (destinationDomain.includes(currentY) || destinationDomain.includes(previousY)) &&
-                    Math.abs(previousY-currentY)<100) {
-                        canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+            if(definitionDomain.includes(previousX))
+                // PreviousY at the start of the canvas
+                previousY = expr.execute(previousX)
+            for(let px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
+                let currentX = canvas.px2x(px)
+                if(!definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
+                    // Should draw up to currentX, but NOT at previousX.
+                    // Need to find the starting point.
+                    let tmpPx = px-pxprecision
+                    do {
+                        tmpPx++;
+                        previousX = canvas.px2x(tmpPx)
+                    } while(!definitionDomain.includes(previousX))
+                    // Recaclulate previousY
+                    previousY = expr.execute(previousX)
+                } else if(!definitionDomain.includes(currentX)) {
+                    // Next x is NOT in the definition domain.
+                    // Augmenting the pixel precision until this condition is fulfilled.
+                    let tmpPx = px
+                    do {
+                        tmpPx--;
+                        currentX = canvas.px2x(tmpPx)
+                    } while(!definitionDomain.includes(currentX) && currentX != previousX)
+                }
+                if(definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
+                    let currentY = expr.execute(currentX)
+                    if(destinationDomain.includes(currentY)) {
+                        if(previousY != null && destinationDomain.includes(previousY)) {
+                            canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                        }
                     }
-                previousX = currentX
-                previousY = currentY
+                    previousY = currentY
+                } else {
+                    previousY = null // Last y was invalid, so let's not draw anything from it.
+                }
+                previousX = canvas.px2x(px)
             }
         }
     }
