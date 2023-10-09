@@ -21,10 +21,10 @@ DRIVEC="${WINEPREFIX:-$HOME/.wine}/drive_c"
 PYSIDE6PATH="${PYSIDE6PATH%$'\r'}"
 PYSIDE6PATH="${PYSIDE6PATH//\\/\/}"
 PYSIDE6PATH="${PYSIDE6PATH//C:/$DRIVEC}"
-cp "$PYSIDE6PATH/Qt6ShaderTools.dll" dist/logarithmplotter/PySide6/
+cp "$PYSIDE6PATH/Qt6ShaderTools.dll" dist/logarithmplotter/_internal/PySide6/
 
 # Remove QtWebEngine
-rm dist/logarithmplotter/PySide6/Qt6WebEngineCore.dll
+rm dist/logarithmplotter/_internal/PySide6/Qt6WebEngineCore.dll
 
 # Remove the QtQuick styles that are unused
-rm -rf dist/logarithmplotter/PySide6/qml/QtQuick/Controls/{Imagine,Material,designer}
+rm -rf dist/logarithmplotter/_internal/PySide6/qml/QtQuick/Controls/{Imagine,Material,designer}
