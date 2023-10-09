@@ -72,11 +72,13 @@ class Domain {
             case "RP":
             case "R+":
             case "ℝ⁺":
+            case "ℝ+":
                 return Domain.RP
                 break;
             case "RM":
             case "R-":
             case "ℝ⁻":
+            case "ℝ-":
                 return Domain.RM
                 break;
             case "RPE":
@@ -85,6 +87,8 @@ class Domain {
             case "R*+":
             case "ℝ*⁺":
             case "ℝ⁺*":
+            case "ℝ*+":
+            case "ℝ+*":
                 return Domain.RPE
                 break;
             case "RME":
@@ -93,16 +97,21 @@ class Domain {
             case "R*-":
             case "ℝ⁻*":
             case "ℝ*⁻":
+            case "ℝ-*":
+            case "ℝ*-":
                 return Domain.RME
                 break;
             case "ℕ":
             case "N":
             case "ZP":
+            case "Z+":
             case "ℤ⁺":
+            case "ℤ+":
                 return Domain.N
                 break;
             case "NLOG":
             case "ℕˡᵒᵍ":
+            case "ℕLOG":
                 return Domain.NLog
                 break;
             case "NE":
@@ -111,12 +120,15 @@ class Domain {
             case "N+":
             case "ℕ*":
             case "ℕ⁺":
+            case "ℕ+":
             case "ZPE":
             case "ZEP":
             case "Z+*":
             case "Z*+":
             case "ℤ⁺*":
             case "ℤ*⁺":
+            case "ℤ+*":
+            case "ℤ*+":
                 return Domain.NE
                 break;
             case "Z":
@@ -126,6 +138,7 @@ class Domain {
             case "ZM":
             case "Z-":
             case "ℤ⁻":
+            case "ℤ-":
                 return Domain.ZM
                 break;
             case "ZME":
@@ -134,6 +147,8 @@ class Domain {
             case "Z*-":
             case "ℤ⁻*":
             case "ℤ*⁻":
+            case "ℤ-*":
+            case "ℤ*-":
                 return Domain.ZME
                 break;
             case "ZE":
