@@ -44,34 +44,55 @@ const parser = new ExprEval.Parser()
 
 parser.consts = Object.assign({}, parser.consts, evalVariables)
 
+/**
+ * Parses arguments for a function, returns the corresponding JS function if it exists.
+ * Throws either usage error otherwise.
+ * @param {array} args - Arguments of the function, either [ ExecutableObject ] or [ string, variable ].
+ * @param {string} usage1 - Usage for executable object.
+ * @param {string} usage2 - Usage for string function.
+ * @return {callable} JS function to call..
+ */
+function parseArgumentsForFunction(args, usage1, usage2) {
+    let f, target, variable
+    if(args.length == 1) {
+        // Parse object
+        f = args[0]
+        if(typeof f != 'object' || !f.execute)
+            throw EvalError(qsTranslate('usage', 'Usage: %1').arg(usage1))
+        let target = f
+        f = (x) => target.execute(x)
+    } else if(args.length == 2) {
+        // Parse variable
+        [f,variable] = args
+        if(typeof f != 'string' || typeof variable != 'number')
+            throw EvalError(qsTranslate('usage', 'Usage: %1').arg(usage2))
+        f = parser.parse(f).toJSFunction(variable, currentVars)
+    } else
+        throw EvalError(qsTranslate('usage', 'Usage: %1 or\n%2').arg(usage1).arg(usage2)))
+    return f
+}
+
 // Function definition
-parser.functions.integral = function(a, b, f, variable) {
+parser.functions.integral = function(a, b, ...args) {
+    let usage1 = qsTranslate('usage', 'integral(<from: number>, <to: number>, <f: ExecutableObject>)')
+    let usage2 = qsTranslate('usage', 'integral(<from: number>, <to: number>, <f: string>, <variable: string>)')
+    let f = parseArgumentsForFunction(args, usage1, usage2)
+    if(a == null || b == null)
+        throw EvalError(qsTranslate('usage', 'Usage: %1 or\n%2').arg(usage1).arg(usage2)))
+
     // https://en.wikipedia.org/wiki/Simpson%27s_rule
     // Simpler, faster than tokenizing the expression
-    f = parser.parse(f).toJSFunction(variable, currentVars)
     return (b-a)/6*(f(a)+4*f((a+b)/2)+f(b))
 }
 
 parser.functions.derivative = function(...args) {
-    let f, target, variable, x
-    if(args.length == 2) {
-        [f, x] = args
-        if(typeof f != 'object' || !f.execute)
-            throw EvalError(qsTranslate('usage', 'Usage: %1')
-                                .arg(qsTranslate('usage', 'derivative(<function: ExecutableObject>, <x: variable>)')))
-        target = f
-        f = (x) => target.execute(x)
-    } else if(args.length == 3) {
-        [f, variable, x] = args
-        if(typeof f != 'string')
-            throw EvalError(qsTranslate('usage', 'Usage: %1')
-                                .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)')))
-        f = parser.parse(f).toJSFunction(variable, currentVars)
-    } else
-        throw EvalError(qsTranslate('usage', 'Usage: %1 or\n%2')
-                            .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)')
-                            .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)'))))
-
+    let usage1 = qsTranslate('usage', 'derivative(<f: ExecutableObject>, <x: variable>)')
+    let usage2 = qsTranslate('usage', 'derivative(<f: string>, <variable: string>, <x: variable>)')
+    let x = args.pop()
+    let f = parseArgumentsForFunction(args, usage1, usage2)
+    if(x == null)
+        throw EvalError(qsTranslate('usage', 'Usage: %1 or\n%2').arg(usage1).arg(usage2)))
+        
     let derivative_precision = x/10
     return (f(x+derivative_precision/2)-f(x-derivative_precision/2))/derivative_precision
 }

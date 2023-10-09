@@ -71,16 +71,18 @@ function parif(elem, contents) {
  * @returns {string}
  */
 function functionToLatex(f, args) {
-    console.log("Generating latex", f, args)
     switch(f) {
         case "derivative":
             if(args.length == 3)
                 return '\\frac{d' + args[0].substr(1, args[0].length-2).replace(new RegExp(args[1].substr(1, args[1].length-2), 'g'), 'x') + '}{dx}';
             else
-                return '\\frac{d' + args[0] + '}{dx}';
+                return '\\frac{d' + args[0] + '}{dx}(x)';
             break;
         case "integral":
-            return '\\int\\limits_{' + args[0] + '}^{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3].substr(1, args[3].length-2);
+            if(args.length == 4)
+                return '\\int\\limits_{' + args[0] + '}^{' + args[1] + '}' + args[2].substr(1, args[2].length-2) + ' d' + args[3].substr(1, args[3].length-2);
+            else
+                return '\\int\\limits_{' + args[0] + '}^{' + args[1] + '}' + args[2] + '(t) dt';
             break;
         case "sqrt":
             return '\\sqrt\\left(' + args.join(', ') + '\\right)';
