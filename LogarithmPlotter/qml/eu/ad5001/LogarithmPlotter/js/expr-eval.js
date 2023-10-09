@@ -1117,7 +1117,7 @@ ParserState.prototype.parseExpression = function (instr) {
   if (this.parseUntilEndStatement(instr, exprInstr)) {
     return;
   }
-  this.parseVariableAssignmentExpression(exprInstr);
+  this.parseConditionalExpression(exprInstr);
   if (this.parseUntilEndStatement(instr, exprInstr)) {
     return;
   }
@@ -1155,37 +1155,6 @@ ParserState.prototype.parseArrayList = function (instr) {
   }
 
   return argCount;
-};
-
-ParserState.prototype.parseVariableAssignmentExpression = function (instr) {
-  this.parseConditionalExpression(instr);
-  while (this.accept(TOP, '=')) {
-    var varName = instr.pop();
-    var varValue = [];
-    var lastInstrIndex = instr.length - 1;
-    if (varName.type === IFUNCALL) {
-      if (!this.tokens.isOperatorEnabled('()=')) {
-        throw new Error(qsTranslate('error', 'Function definition is not permitted.'));
-      }
-      for (var i = 0, len = varName.value + 1; i < len; i++) {
-        var index = lastInstrIndex - i;
-        if (instr[index].type === IVAR) {
-          instr[index] = new Instruction(IVARNAME, instr[index].value);
-        }
-      }
-      this.parseVariableAssignmentExpression(varValue);
-      instr.push(new Instruction(IEXPR, varValue));
-      instr.push(new Instruction(IFUNDEF, varName.value));
-      continue;
-    }
-    if (varName.type !== IVAR && varName.type !== IMEMBER) {
-      throw new Error(qsTranslate('error', 'Expected variable for assignment.'));
-    }
-    this.parseVariableAssignmentExpression(varValue);
-    instr.push(new Instruction(IVARNAME, varName.value));
-    instr.push(new Instruction(IEXPR, varValue));
-    instr.push(binaryInstruction('='));
-  }
 };
 
 ParserState.prototype.parseConditionalExpression = function (instr) {

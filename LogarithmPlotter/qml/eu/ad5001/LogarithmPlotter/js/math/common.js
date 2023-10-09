@@ -22,8 +22,6 @@
 .import "../utils.js" as Utils
 .import "latex.js" as Latex
 
-const DERIVATION_PRECISION = 0.1
-
 var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manually
     "pi": Math.PI,
     "PI": Math.PI,
@@ -54,10 +52,27 @@ parser.functions.integral = function(a, b, f, variable) {
     return (b-a)/6*(f(a)+4*f((a+b)/2)+f(b))
 }
 
-parser.functions.derivative = function(f, variable, x) {
-    if(f == null || variable == null || x == null)
-        throw EvalError("Usage: derivative(<function: string>, <variable: string>, <x: number>)")
-    f = parser.parse(f).toJSFunction(variable, currentVars)
-    return (f(x+DERIVATION_PRECISION/2)-f(x-DERIVATION_PRECISION/2))/DERIVATION_PRECISION
+parser.functions.derivative = function(...args) {
+    let f, target, variable, x
+    if(args.length == 2) {
+        [f, x] = args
+        if(typeof f != 'object' || !f.execute)
+            throw EvalError(qsTranslate('usage', 'Usage: %1')
+                                .arg(qsTranslate('usage', 'derivative(<function: ExecutableObject>, <x: variable>)')))
+        target = f
+        f = (x) => target.execute(x)
+    } else if(args.length == 3) {
+        [f, variable, x] = args
+        if(typeof f != 'string')
+            throw EvalError(qsTranslate('usage', 'Usage: %1')
+                                .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)')))
+        f = parser.parse(f).toJSFunction(variable, currentVars)
+    } else
+        throw EvalError(qsTranslate('usage', 'Usage: %1 or\n%2')
+                            .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)')
+                            .arg(qsTranslate('usage', 'derivative(<function: string>, <variable: string>, <x: variable>)'))))
+
+    let derivative_precision = x/10
+    return (f(x+derivative_precision/2)-f(x-derivative_precision/2))/derivative_precision
 }
 

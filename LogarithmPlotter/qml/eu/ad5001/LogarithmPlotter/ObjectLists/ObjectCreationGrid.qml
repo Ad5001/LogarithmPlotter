@@ -42,7 +42,6 @@ Column {
     */
     function openEditorDialog(obj) {
         // Open editor
-        console.log(obj, obj.prototype)
         objectEditor.obj = obj
         objectEditor.objType = obj.type
         objectEditor.objIndex = Objects.currentObjects[obj.type].indexOf(obj)
