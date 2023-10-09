@@ -68,6 +68,7 @@ class Expression {
     
     simplify(x) {
         var expr = this.calc.substitute('x', x).simplify()
+        print(this.expr, this.calc.substitute('x', x), expr)
         if(expr.evaluate() == 0) return '0'
         var str = Utils.makeExpressionReadable(expr.toString());
         if(str != undefined && str.match(/^\d*\.\d+$/)) {

@@ -301,7 +301,7 @@ Canvas {
             } else {
                 for(var x = 1; x < drawMaxX; x += 1) {
                     var drawX = x*xaxisstep1
-                    var txtX = xaxisstepExpr.simplify(x)
+                    var txtX = xaxisstepExpr.simplify(x).replace(/^\((.+)\)$/, '$1')
                     var textSize = measureText(ctx, txtX, 6).height
                     drawVisibleText(ctx, txtX, x2px(drawX)-4, axisxpx+textsize/2+textSize)
                     drawVisibleText(ctx, '-'+txtX, x2px(-drawX)-4, axisxpx+textsize/2+textSize)
@@ -311,7 +311,7 @@ Canvas {
         if(showygrad) {
             for(var y = 0; y < drawMaxY; y += 1) {
                 var drawY = y*yaxisstep1
-                var txtY = yaxisstepExpr.simplify(y)
+                var txtY = yaxisstepExpr.simplify(y).replace(/^\((.+)\)$/, '$1')
                 var textSize = ctx.measureText(txtY).width
                 drawVisibleText(ctx, txtY, axisypx-6-textSize, y2px(drawY)+4+(10*(y==0)))
                 if(y != 0)

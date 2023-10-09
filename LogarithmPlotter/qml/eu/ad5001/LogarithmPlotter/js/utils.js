@@ -256,14 +256,14 @@ function makeExpressionReadable(str) {
         // Other
         [/ \* /g, '×'],
         [/ \^ /g, '^'],
-        [/\^\(([^\^]+)\)/g, function(match, p1) { return textsup(p1) }],
-        [/\^([^ "]+)/g, function(match, p1) { return textsup(p1) }],
-        [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
-        [/_([^ "]+)/g, function(match, p1) { return textsub(p1) }],
+        [/\^\(([\d\w+-]+)\)/g, function(match, p1) { return textsup(p1) }],
+        [/\^([\d\w+-]+)/g, function(match, p1) { return textsup(p1) }],
+        [/_\(([\d\w+-]+)\)/g, function(match, p1) { return textsub(p1) }],
+        [/_([\d\w+-]+)/g, function(match, p1) { return textsub(p1) }],
         [/\[([^\[\]]+)\]/g, function(match, p1) { return textsub(p1) }],
         [/(\d|\))×/g, '$1'],
         //[/×(\d|\()/g, '$1'],
-        [/[^a-z]\(([^)(+.\/-]+)\)/g, "$1"],
+        [/([^a-z])\(([^)(+.\/-]+)\)/g, "$1×$2"],
         [/integral\((.+),\s?(.+),\s?("|')(.+)("|'),\s?("|')(.+)("|')\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
             if(a.length < b.length) {
                 return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
