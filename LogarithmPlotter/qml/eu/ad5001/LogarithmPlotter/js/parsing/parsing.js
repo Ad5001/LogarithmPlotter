@@ -28,4 +28,6 @@ var Token = TK.Token
 var Tokenizer = TK.ExpressionTokenizer
 
 var FUNCTIONS_LIST = Reference.FUNCTIONS_LIST
+var FUNCTIONS = Reference.FUNCTIONS
 var CONSTANTS_LIST = Reference.CONSTANTS_LIST
+var CONSTANTS = Reference.CONSTANTS
