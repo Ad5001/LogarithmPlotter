@@ -433,7 +433,7 @@ Item {
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.CONSTANTS_LIST
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': '',
+                        'text': item, 'annotation': Parsing.CONSTANTS[item],
                         'autocomplete': item + " ", 'cursorFinalOffset': 0
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""

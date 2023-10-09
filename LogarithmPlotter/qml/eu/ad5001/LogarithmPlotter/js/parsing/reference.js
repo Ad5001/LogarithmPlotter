@@ -95,23 +95,5 @@ const FUNCTIONS = {
     'derivative': () => 0,
 }
 const FUNCTIONS_LIST = Object.keys(FUNCTIONS);
-// TODO: Complete
-const DERIVATIVES = {
-    "abs": "abs(<1>)/<1>",
-    "acos": "-derivate(<1>)/sqrt(1-(<1>)^2)",
-    "acosh": "derivate(<1>)/sqrt((<1>)^2-1)",
-    "asin": "derivate(<1>)/sqrt(1-(<1>)^2)",
-    "asinh": "derivate(<1>)/sqrt((<1>)^2+1)",
-    "atan": "derivate(<1>)/(1+(<1>)^2)",
-    "atan2": "",
-}
-const INTEGRALS = {
-    "abs": "integrate(<1>)*sign(<1>)",
-    "acos": "",
-    "acosh": "",
-    "asin": "",
-    "asinh": "",
-    "atan": "",
-    "atan2": "",
-}
+
 

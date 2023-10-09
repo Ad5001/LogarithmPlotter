@@ -55,6 +55,8 @@ parser.functions.integral = function(a, b, f, variable) {
 }
 
 parser.functions.derivative = function(f, variable, x) {
+    if(f == null || variable == null || x == null)
+        throw EvalError("Usage: derivative(<function: string>, <variable: string>, <x: number>)")
     f = parser.parse(f).toJSFunction(variable, currentVars)
     return (f(x+DERIVATION_PRECISION/2)-f(x-DERIVATION_PRECISION/2))/DERIVATION_PRECISION
 }
