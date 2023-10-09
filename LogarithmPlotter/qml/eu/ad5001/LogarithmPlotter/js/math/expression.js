@@ -27,8 +27,8 @@
  */
 class Expression {
     constructor(expr) {
-        this.expr = expr
-        this.calc = C.parser.parse(expr).simplify()
+        this.expr = Utils.exponentsToExpression(expr)
+        this.calc = C.parser.parse(this.expr).simplify()
         this.cached = this.isConstant()
         this.cachedValue = this.cached && this.allRequirementsFullfilled() ? this.calc.evaluate(C.currentObjectsByName) : null
         this.latexMarkup = Latex.expression(this.calc.tokens)

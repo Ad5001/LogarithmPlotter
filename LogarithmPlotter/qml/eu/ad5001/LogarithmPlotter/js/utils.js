@@ -62,6 +62,11 @@ var powerpos = {
     "z": "ᶻ"
 }
 
+var exponents = [
+    "⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"
+]
+var exponentReg = new RegExp('(['+exponents.join('')+']+)', 'g')
+
 var indicepos = {
     "-": "₋",
     "+": "₊",
@@ -350,4 +355,15 @@ function getRandomColor() {
 
 function escapeHTML(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') ;
+}
+
+
+
+/**
+ * Parses exponents and replaces them with expression values
+ * @param {string} expression - The expression to replace in.
+ * @return {string} The parsed expression
+ */
+function exponentsToExpression(expression) {
+    return expression.replace(exponentReg, (m, exp) => '^' + exp.split('').map((x) => exponents.indexOf(x)).join(''))
 }

@@ -79,4 +79,4 @@ Language files translations located at LogarithmPlotter/i18n are licensed under 
 
 LogarithmPlotter includes [expr-eval](https://github.com/silentmatt/expr-eval) a port of [ndef.parser](https://web.archive.org/web/20111023001618/http://www.undefined.ch/mparser/index.html) by Raphael Graf &lt;r@undefined.ch&gt;, ported to javascript by Matthew Crumley &lt;email@matthewcrumley.com&gt; (http://silentmatt.com/), and then to QMLJS by Ad5001.
 
-The code is licensed under the [MIT License](https://raw.githubusercontent.com/silentmatt/expr-eval/master/LICENSE.txt).
+The specific file (LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/expr-eval.js) is licensed under the [MIT License](https://raw.githubusercontent.com/silentmatt/expr-eval/master/LICENSE.txt).

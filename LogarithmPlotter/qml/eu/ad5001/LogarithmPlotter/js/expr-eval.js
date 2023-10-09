@@ -521,7 +521,7 @@ Expression.prototype.substitute = function (variable, expr) {
 };
 
 Expression.prototype.evaluate = function (values) {
-  values = values || {};
+  values = Object.assign({}, values, this.parser.consts)
   return evaluate(this.tokens, this, values);
 };
 
@@ -541,8 +541,9 @@ Expression.prototype.variables = function (options) {
   var vars = [];
   getSymbols(this.tokens, vars, options);
   var functions = this.functions;
+  var consts = this.parser.consts
   return vars.filter(function (name) {
-    return !(name in functions);
+    return !(name in functions) && !(name in consts);
   });
 };
 
@@ -580,7 +581,7 @@ function TokenStream(parser, expression) {
   this.unaryOps = parser.unaryOps;
   this.binaryOps = parser.binaryOps;
   this.ternaryOps = parser.ternaryOps;
-  this.consts = parser.consts;
+  this.builtinConsts = parser.builtinConsts;
   this.expression = expression;
   this.savedPosition = 0;
   this.savedCurrent = null;
@@ -700,8 +701,8 @@ TokenStream.prototype.isConst = function () {
   }
   if (i > startPos) {
     var str = this.expression.substring(startPos, i);
-    if (str in this.consts) {
-      this.current = this.newToken(TNUMBER, this.consts[str]);
+    if (str in this.builtinConsts) {
+      this.current = this.newToken(TNUMBER, this.builtinConsts[str]);
       this.pos += str.length;
       return true;
     }
@@ -1792,12 +1793,12 @@ class Parser {
       join: arrayJoin
     };
     
-    this.consts = {
-      E: Math.E,
-      PI: Math.PI,
-      'true': true,
-      'false': false
-    };
+    // These constants will automatically be replaced the MOMENT they are parsed.
+    // (Original consts from the parser)
+    this.builtinConsts = {};
+    // These consts will only be replaced when the expression is evaluated.
+    this.consts = {}
+    
   }
   
   parse(expr) {

@@ -26,13 +26,17 @@ const DERIVATION_PRECISION = 0.1
 
 var evalVariables = { // Variables not provided by expr-eval.js, needs to be provided manually
     "pi": Math.PI,
+    "PI": Math.PI,
     "π": Math.PI,
     "inf": Infinity,
     "infinity": Infinity,
     "Infinity": Infinity,
     "∞": Infinity,
     "e": Math.E,
-    "E": Math.E
+    "E": Math.E,
+    "true": true,
+    "false": false
+    
 }
 
 var currentVars = {}
@@ -54,3 +58,4 @@ parser.functions.derivative = function(f, variable, x) {
     f = parser.parse(f).toJSFunction(variable, currentVars)
     return (f(x+DERIVATION_PRECISION/2)-f(x-DERIVATION_PRECISION/2))/DERIVATION_PRECISION
 }
+
