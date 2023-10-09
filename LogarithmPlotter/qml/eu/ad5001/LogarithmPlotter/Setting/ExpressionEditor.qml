@@ -448,7 +448,7 @@ Item {
                     itemSelected: parent.itemSelected
                     categoryItems: Parsing.FUNCTIONS_LIST
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': '',
+                        'text': item, 'annotation': Parsing.FUNCTIONS_USAGE[item].join(', '),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""

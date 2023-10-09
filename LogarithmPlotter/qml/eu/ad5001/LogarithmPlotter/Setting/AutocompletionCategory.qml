@@ -113,9 +113,11 @@ ListView {
         Text {
             id: annotationText
             anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
             topPadding: 2
             bottomPadding: 2
             rightPadding: 15
+            font.pixelSize: autocompleteText.font.pixelSize - 2
             text: listFiltered.model[index].annotation
             color: parent.selected ? sysPaletteIn.highlightedText : sysPaletteIn.windowText
         }

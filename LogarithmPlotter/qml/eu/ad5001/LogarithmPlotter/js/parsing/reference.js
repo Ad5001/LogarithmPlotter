@@ -106,7 +106,7 @@ class P {
     }
     
     toString() {
-        base_string = this.type
+        let base_string = this.type
         if(this.name != '')
             base_string = `${this.name}: ${base_string}`
         if(this.multipleAllowed)
@@ -120,7 +120,7 @@ class P {
 }
 
 let string = new P('string')
-let bool = new P('boolean')
+let bool = new P('bool')
 let number = new P('number')
 let array = new P('array')
 
@@ -153,9 +153,9 @@ const FUNCTIONS_USAGE = {
     'log10': [number],
     'log1p': [number],
     'log2': [number],
-    'max': [number, number, new P('number', '', true, null, true)],
-    'min': [number, number, new P('number', '', true, null, true)],
-    'pow': [number, new P('number', 'exponent')],
+    'max': [number, number, new P('numbers', '', true, true)],
+    'min': [number, number, new P('numbers', '', true, true)],
+    'pow': [number, new P('number', 'exp')],
     'random': [number, number],
     'round': [number],
     'sign': [number],
@@ -170,5 +170,8 @@ const FUNCTIONS_USAGE = {
     'gamma': [number],
     'Γ': [number],
     'roundTo': [number, new P('number')],
+    // Function manipulation
+    'derivative': [new P('f'), new P('string', 'var', true), number],
+    'integral': [new P('from'), new P('to'), new P('f'), new P('string', 'var', true)],
 }
 

@@ -29,5 +29,6 @@ var Tokenizer = TK.ExpressionTokenizer
 
 var FUNCTIONS_LIST = Reference.FUNCTIONS_LIST
 var FUNCTIONS = Reference.FUNCTIONS
+var FUNCTIONS_USAGE = Reference.FUNCTIONS_USAGE
 var CONSTANTS_LIST = Reference.CONSTANTS_LIST
 var CONSTANTS = Reference.CONSTANTS
