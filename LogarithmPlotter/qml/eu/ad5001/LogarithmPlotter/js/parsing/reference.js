@@ -85,15 +85,90 @@ const FUNCTIONS = {
     'gamma': Polyfill.gamma,
     'Γ': Polyfill.gamma,
     'roundTo': (x, exp) => Number(x).toFixed(exp),
-    'map': Polyfill.arrayMap,
-    'fold': Polyfill.arrayFold,
-    'filter': Polyfill.arrayFilter,
-    'indexOf': Polyfill.indexOf,
-    'join': Polyfill.arrayJoin,
+    // 'map': Polyfill.arrayMap,
+    // 'fold': Polyfill.arrayFold,
+    // 'filter': Polyfill.arrayFilter,
+    // 'indexOf': Polyfill.indexOf,
+    // 'join': Polyfill.arrayJoin,
     // Integral & derivative (only here for autocomplete).
     'integral': () => 0, // TODO: Implement
     'derivative': () => 0,
 }
 const FUNCTIONS_LIST = Object.keys(FUNCTIONS);
 
+class P {
+    // Parameter class.
+    constructor(type, name = '', optional = false, multipleAllowed = false) {
+        this.name = name
+        this.type = type
+        this.optional = optional
+        this.multipleAllowed = multipleAllowed
+    }
+    
+    toString() {
+        base_string = this.type
+        if(this.name != '')
+            base_string = `${this.name}: ${base_string}`
+        if(this.multipleAllowed)
+            base_string += '...'
+        if(!this.optional)
+            base_string = `<${base_string}>`
+        else
+            base_string = `[${base_string}]`
+        return base_string
+    }
+}
+
+let string = new P('string')
+let bool = new P('boolean')
+let number = new P('number')
+let array = new P('array')
+
+const FUNCTIONS_USAGE = {
+    'length': [string],
+    'not': [bool],
+    // Math functions
+    'abs': [number],
+    'acos': [number],
+    'acosh': [number],
+    'asin': [number],
+    'asinh': [number],
+    'atan': [number],
+    'atan2': [number],
+    'atanh': [number],
+    'cbrt': [number],
+    'ceil': [number],
+    //'clz32': [number],
+    'cos': [number],
+    'cosh': [number],
+    'exp': [number],
+    'expm1': [number],
+    'floor': [number],
+    //'fround': [number],
+    'hypot': [number],
+    //'imul': [number],
+    'lg': [number],
+    'ln': [number],
+    'log': [number],
+    'log10': [number],
+    'log1p': [number],
+    'log2': [number],
+    'max': [number, number, new P('number', '', true, null, true)],
+    'min': [number, number, new P('number', '', true, null, true)],
+    'pow': [number, new P('number', 'exponent')],
+    'random': [number, number],
+    'round': [number],
+    'sign': [number],
+    'sin': [number],
+    'sinh': [number],
+    'sqrt': [number],
+    'tan': [number],
+    'tanh': [number],
+    'trunc': [number],
+    // Functions in expr-eval, ported here.
+    'fac': [number],
+    'gamma': [number],
+    'Γ': [number],
+    'roundTo': [number, new P('number')],
+}
 
