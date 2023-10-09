@@ -507,6 +507,8 @@ Item {
         x: Math.round((parent.width - width) / 2)
         y: Math.round((parent.height - height) / 2)
         
+        category: "expression"
+        
         onSelected: function(c) {
             editor.insert(editor.cursorPosition, c)
             insertPopup.close()

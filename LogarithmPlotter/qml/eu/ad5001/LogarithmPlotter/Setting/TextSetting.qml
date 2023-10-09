@@ -50,6 +50,12 @@ Item {
     */
     property bool isDouble: false
     /*!
+       \qmlproperty bool TextSetting::category
+       Type of special character to insert from the popup.
+       \sa InsertCharacter::category
+    */
+    property alias category: insertPopup.category
+    /*!
        \qmlproperty double TextSetting::min
        Minimum value for numbers that can be entered into the input.
     */

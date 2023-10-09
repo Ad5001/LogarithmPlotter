@@ -103,14 +103,21 @@ Repeater {
             height: 30
             label: propertyLabel
             icon: `settings/custom/${propertyIcon}.svg`
-            isDouble: propertyType == 'number'
+            isDouble: propertyType == "number"
             defValue: obj[propertyName] == null ? '' : obj[propertyName].toString()
+            category: {
+                return {
+                    "Domain": "domain",
+                    "string": "all",
+                    "number": "all"
+                }[propertyType]
+            }
             onChanged: function(newValue) {
                 try {
                     var newValueParsed = {
-                        'Domain': () => MathLib.parseDomain(newValue),
-                        'string': () => newValue,
-                        'number': () => parseFloat(newValue)
+                        "Domain": () => MathLib.parseDomain(newValue),
+                        "string": () => newValue,
+                        "number": () => parseFloat(newValue)
                     }[propertyType]()
                                         
                     // Ensuring old and new values are different to prevent useless adding to history.

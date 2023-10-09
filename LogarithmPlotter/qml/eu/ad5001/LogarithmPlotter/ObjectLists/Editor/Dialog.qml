@@ -107,6 +107,7 @@ Popup.BaseDialog {
                 height: 30
                 label: qsTr("Name")
                 icon: "common/label.svg"
+                category: "name"
                 width: dlgProperties.width
                 value: objEditor.obj.name
                 onChanged: function(newValue) {

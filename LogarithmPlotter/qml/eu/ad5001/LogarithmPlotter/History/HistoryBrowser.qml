@@ -54,6 +54,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         placeholderText: qsTr("Filter...")
+        category: "all"
     }
     
     ScrollView {

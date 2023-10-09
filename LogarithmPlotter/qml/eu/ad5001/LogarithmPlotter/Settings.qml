@@ -255,6 +255,7 @@ ScrollView {
         Setting.TextSetting {
             id: xAxisStep
             height: 30
+            category: "expression"
             label: qsTr("X Axis Step")
             icon: "settings/xaxisstep.svg"
             width: settings.settingWidth
@@ -269,6 +270,7 @@ ScrollView {
         Setting.TextSetting {
             id: yAxisStep
             height: 30
+            category: "expression"
             label: qsTr("Y Axis Step")
             icon: "settings/yaxisstep.svg"
             width: settings.settingWidth

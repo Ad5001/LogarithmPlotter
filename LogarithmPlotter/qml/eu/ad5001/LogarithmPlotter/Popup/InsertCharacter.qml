@@ -31,8 +31,19 @@ Popup {
     
     signal selected(string character)
     
+    /*!
+       \qmlproperty string InsertCharacter::category
+       Type of special character to insert.
+       Possible values:
+       - expression
+       - domain
+       - name
+       - all
+    */
+    property string category: 'all'
+    
     width: 280
-    height: insertGrid.insertChars.length/insertGrid.columns*(width/insertGrid.columns)
+    height: Math.ceil(insertGrid.insertChars.length/insertGrid.columns)*(width/insertGrid.columns)+5
     modal: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
     
@@ -41,18 +52,40 @@ Popup {
         width: parent.width
         columns: 7
         
-        property var insertChars: [
-            "∞","π","ℝ","ℕ","ℤ","∪","∩",
+        property var insertCharsExpression: [
+            "∞","π","¹","²","³","⁴","⁵",
+            "⁶","⁷","⁸","⁹","⁰"
+        ]
+        
+        property var insertCharsDomain: [
+            "∅","∪","∩","∖","ℝ","ℕ","ℤ",
+            "⁺","⁻",...insertCharsExpression
+        ]
+        
+        property var insertCharsName: [
             "α","β","γ","δ","ε","ζ","η",
             "π","θ","κ","λ","μ","ξ","ρ",
             "ς","σ","τ","φ","χ","ψ","ω",
             "Γ","Δ","Θ","Λ","Ξ","Π","Σ",
             "Φ","Ψ","Ω","ₐ","ₑ","ₒ","ₓ",
             "ₕ","ₖ","ₗ","ₘ","ₙ","ₚ","ₛ",
-            "ₜ","¹","²","³","⁴","⁵","⁶",
-            "⁷","⁸","⁹","⁰","₁","₂","₃",
-            "₄","₅","₆","₇","₈","₉","₀"
+            "ₜ","₁","₂","₃","₄","₅","₆",
+            "₇","₈","₉","₀"
         ]
+        
+        property var insertCharsAll: [
+            ...insertCharsName, ...insertCharsDomain
+        ]
+        
+        property var insertChars: {
+            return {
+                "expression": insertCharsExpression,
+                "domain": insertCharsDomain,
+                "name": insertCharsName,
+                "all": insertCharsAll
+            }[insertPopup.category]
+        }
+        
         Repeater {
             model: parent.insertChars.length
             
