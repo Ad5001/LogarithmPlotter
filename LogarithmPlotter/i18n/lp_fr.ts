@@ -1638,7 +1638,7 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="61"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="68"/>
         <source>Usage: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Emploi : %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="71"/>
@@ -1646,27 +1646,28 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="94"/>
         <source>Usage: %1 or
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Emploi : %1 ou
+%2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="77"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : Objet exécutable&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="78"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : fonction chaîne&gt;, &lt;variable&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="89"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>derivative(&lt;f : Objet exécutable&gt;, &lt;x : nombre&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="90"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>derivative(&lt;f : fonction chaîne&gt;, &lt;variable&gt;, &lt;x : nombre&gt;)</translation>
     </message>
 </context>
 <context>
