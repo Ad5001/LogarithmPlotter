@@ -1,1 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path style="opacity:1;vector-effect:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0" d="M9.98 18.12a3.5 3.5 0 0 1-3.064 3.855 3.5 3.5 0 0 1-3.887-3.022 3.5 3.5 0 0 1 2.982-3.919 3.5 3.5 0 0 1 3.95 2.94"/><text xml:space="preserve" style="font-style:normal;font-weight:400;font-size:17.3373px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;fill-opacity:1;stroke:none;stroke-width:1.00023" x="12.067" y="13.923" transform="scale(.99447 1.00556)"><tspan x="12.067" y="13.923" style="font-size:17.3373px;stroke-width:1.00023">A</tspan></text></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs1" />
+  <path
+     style="opacity:1;vector-effect:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+     d="M9.98 18.12a3.5 3.5 0 0 1-3.064 3.855 3.5 3.5 0 0 1-3.887-3.022 3.5 3.5 0 0 1 2.982-3.919 3.5 3.5 0 0 1 3.95 2.94"
+     id="path1" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:400;font-size:17px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;fill-opacity:1;stroke:none;stroke-width:1.00023"
+     x="11.964725"
+     y="13.701941"
+     transform="scale(0.99447036,1.0055604)"
+     id="text1"><tspan
+       x="11.964725"
+       y="13.701941"
+       style="font-size:17px;stroke-width:1.00023"
+       id="tspan1">A</tspan></text>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:date>2021-2023</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Ad5001</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>(C) Ad5001 2021-2023 - Licensed under CC4.0-BY-NC-SA</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
