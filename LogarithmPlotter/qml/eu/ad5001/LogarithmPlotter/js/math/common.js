@@ -64,7 +64,7 @@ function parseArgumentsForFunction(args, usage1, usage2) {
     } else if(args.length == 2) {
         // Parse variable
         [f,variable] = args
-        if(typeof f != 'string' || typeof variable != 'number')
+        if(typeof f != 'string' || typeof variable != 'string')
             throw EvalError(qsTranslate('usage', 'Usage: %1').arg(usage2))
         f = parser.parse(f).toJSFunction(variable, currentVars)
     } else
