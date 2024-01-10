@@ -1,7 +1,7 @@
 name: logarithmplotter
 title: LogarithmPlotter
 version: '0.5.0'
-summary: 2D logarithmic-scaled plotter software to create asymptotic Bode plots
+summary: Create and edit Bode plots
 confinement: strict
 base: core20
 grade: stable
@@ -14,10 +14,6 @@ architectures:
     run-on: amd64
 
 plugs:
-  #gnome-3-38-2004:
-  #  interface: content
-  #  target: gnome-platform
-  #  default-provider: gnome-3-38-2004:gnome-3-38-2004
   gtk-3-themes:
     default-provider: gtk-common-themes:gtk-3-themes
     interface: content
@@ -166,7 +162,6 @@ apps:
     - desktop-legacy
     - wayland
     - x11
-    #- gnome-3-38-2004
     - gsettings # Theme access for wayland
     - home # Storing configuration.
     - opengl # Rendering

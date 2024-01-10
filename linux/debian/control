@@ -10,4 +10,4 @@ Section: science
 Priority: optional
 Homepage: https://apps.ad5001.eu/logarithmplotter/
 Installed-Size: 174
-Description: Create graphs with logarithm scales.
+Description: Create and edit Bode plots

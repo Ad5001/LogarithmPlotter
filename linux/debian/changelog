@@ -1,4 +1,4 @@
-logarithmplotter (0.3.0) stable; urgency=medium
+logarithmplotter (0.4.0) stable; urgency=medium
 
   * Fully ported to PySide6 (Qt6).
 
