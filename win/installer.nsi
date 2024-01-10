@@ -13,7 +13,7 @@ Unicode True
 !define WEBSITE "https://apps.ad5001.eu/logarithmplotter"
 !define VERSION_SHORT "0.5.0"
 !define APP_VERSION "${VERSION_SHORT}.0"
-!define COPYRIGHT "Ad5001 (c) 2023"
+!define COPYRIGHT "Ad5001 (c) 2021-2024"
 !define DESCRIPTION "Create graphs with logarithm scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
