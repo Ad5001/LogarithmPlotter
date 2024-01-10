@@ -1621,7 +1621,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="61"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="68"/>
         <source>Usage: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Használat: %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="71"/>
@@ -1629,27 +1629,28 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="94"/>
         <source>Usage: %1 or
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Használat: %1 vagy
+%2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="77"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="78"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="89"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>derivált(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/math/common.js" line="90"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>derivált(&lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;, &lt;x: szám&gt;)</translation>
     </message>
 </context>
 <context>
