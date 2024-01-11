@@ -1,5 +1,35 @@
 # Changelog
 
+## v0.5.0 (11 Jan 2023)
+
+**New**
+
+  * New, reworked application icon.
+  * Graph is now mouse interactive:
+  * You can now drag to move and scroll to zoom!
+  * Builtin functions now provide usage when used in the autocomplete of the expression editor.
+
+**Changes**
+
+  * When creating an object that can be positioned, new default behavior is to pick first instead of opening object settings.
+  * Icons with text now use the SVG's text element, allowing them to integrate better with the system's default font.
+  * Special characters popup is now context aware (e.g. no sub/supscript symbols in expressions).
+  * New symbols in special characters popup.
+  * Integrals and derivatives can now be provided with an executable object (e.g. Functions) instead of strings as function.
+  * New description on Linux.
+
+**Fixed bugs**
+
+  * Fixing ∞ 'variable' in domains and expressions.
+  * Several other bugs related to constants in expresions were fixed as well.
+  * Builtin functions now send an error message when not provided with the proper arguments.
+
+**Internal changes**
+
+  * Updated to PySide6 v6.6.1.
+  * Reworked continuous functions' rendering to make it faster.
+  * Removed old bits from an unfinished new parser that weren't used.
+  
 ## v0.4.0 (27 May 2023)
 
 **Changes**
