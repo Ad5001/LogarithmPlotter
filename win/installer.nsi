@@ -50,7 +50,7 @@ VIAddVersionKey "FileVersion"  "${APP_VERSION}"
 !define MUI_PAGE_HEADER_SUBTEXT "${COPYRIGHT}"
 
 !define MUI_WELCOMEPAGE_TITLE "Install ${APP_NAME} v${VERSION_SHORT}"
-!define MUI_WELCOMEPAGE_TEXT "Welcome to the ${APP_NAME} installer! Follow the steps provided by this installer to install ${APP_NAME}"
+!define MUI_WELCOMEPAGE_TEXT "Thank you for downloading ${APP_NAME}! Follow the steps provided by this installer to install ${APP_NAME}."
 !define MUI_HEADERIMAGE_RIGHT
 ;Extra space for the title area
 ;!insertmacro MUI_WELCOMEPAGE_TITLE_3LINES
@@ -89,7 +89,7 @@ Icon "logarithmplotter.ico"
 ;!define MUI_DIRECTORYPAGE_VARIABLE $INSTDIR
 
 !define MUI_INSTFILESPAGE_FINISHHEADER_TEXT "Success!"
-!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "${APP_NAME} v${VERSION_SHORT} was installed on your computer"
+!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "${APP_NAME} v${VERSION_SHORT} was installed on your computer."
 !define MUI_INSTFILESPAGE_ABORTHEADER_TEXT "There was an error during the installation process."
 !define MUI_INSTFILESPAGE_ABORTHEADER_SUBTEXT "${APP_NAME} v${VERSION_SHORT} was not installed on your computer."
 
@@ -155,16 +155,10 @@ Icon "logarithmplotter.ico"
 Section ""
     SetOutPath $INSTDIR
     File logarithmplotter.exe
-    File *.dll
-    File *.pyd
     File *.md
-    ;File *.manifest
-    File *.zip
     File *.bmp
     File *.ico
-    File /r qml
-    File /r PySide6
-    File /r shiboken6
+    File /r _internal
 
 
     CreateShortcut "$SMPROGRAMS\LogarithmPlotter.lnk" "$INSTDIR\logarithmplotter.exe"

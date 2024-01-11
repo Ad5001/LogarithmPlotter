@@ -28,3 +28,7 @@ rm dist/logarithmplotter/_internal/PySide6/Qt6WebEngineCore.dll
 
 # Remove the QtQuick styles that are unused
 rm -rf dist/logarithmplotter/_internal/PySide6/qml/QtQuick/Controls/{Imagine,Material,designer}
+
+# Remove unused tools
+rm dist/logarithmplotter/_internal/PySide6/qml/{Qt3D,QtQuick3D}
+rm dist/logarithmplotter/_internal/PySide6/Qt6{Pdf.dll,*3D*,Location.dll}
