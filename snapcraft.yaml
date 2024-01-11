@@ -3,15 +3,14 @@ title: LogarithmPlotter
 version: '0.5.0'
 summary: Create and edit Bode plots
 confinement: strict
-base: core20
+base: core22
 grade: stable
 icon: LogarithmPlotter/logarithmplotter.svg
 adopt-info: linuxfiles
 license: GPL-3.0+
 
 architectures:
-  - build-on: amd64
-    run-on: amd64
+  - amd64
 
 plugs:
   gtk-3-themes:
