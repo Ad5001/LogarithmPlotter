@@ -30,7 +30,7 @@ if "PREFIX" not in os.environ and sys.platform == 'linux':
     from getopt import getopt
     optlist, args = getopt(sys.argv, '', ['prefix=', 'root='])
     for arg,value in optlist:
-        if arg == "prefix":
+        if arg == "prefix" or arg == "root":
             os.environ["PREFIX"] = value
     if "PREFIX" not in os.environ and sys.platform == 'linux':
         if "XDG_DATA_HOME" in os.environ:
