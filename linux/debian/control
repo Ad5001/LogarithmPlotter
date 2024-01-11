@@ -1,6 +1,6 @@
 Package: logarithmplotter
 Source: logarithmplotter
-Version: 0.4.0
+Version: 0.5.0
 Architecture: all
 Maintainer: Ad5001 <mail@ad5001.eu>
 Depends: python3, python3-pip, python3-pyside6-essentials (>= 6.4.0), texlive-latex-base, dvipng

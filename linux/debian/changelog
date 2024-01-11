@@ -1,3 +1,27 @@
+logarithmplotter (0.5.0) stable; urgency=medium
+
+  * New, reworked application icon.
+  * Graph is now mouse interactive:
+  * You can now drag to move and scroll to zoom!
+  * Builtin functions now provide usage when used in the autocomplete of the expression editor.
+
+  * Changed: When creating an object that can be positioned, new default behavior is to pick first instead of opening object settings.
+  * Changed: Icons with text now use the SVG's text element, allowing them to integrate better with the system's default font.
+  * Changed: Special characters popup is now context aware (e.g. no sub/supscript symbols in expressions).
+  * Changed: New symbols in special characters popup.
+  * Changed: Integrals and derivatives can now be provided with an executable object (e.g. Functions) instead of strings as function.
+  * Changed: New description on Linux.
+
+  * Fixed: Fixing ∞ 'variable' in domains and expressions.
+  * Fixed: Several other bugs related to constants in expresions were fixed as well.
+  * Fixed: Builtin functions now send an error message when not provided with the proper arguments.
+
+**Internal changes**
+
+  * Updated to PySide6 v6.6.1.
+  * Reworked continuous functions' rendering to make it faster.
+  * Removed old bits from an unfinished new parser that weren't used.
+
 logarithmplotter (0.4.0) stable; urgency=medium
 
   * Fully ported to PySide6 (Qt6).
