@@ -89,6 +89,7 @@ def run():
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling) 
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
+    app.setDesktopFileName("eu.ad5001.LogarithmPlotter.desktop")
     app.setOrganizationName("Ad5001")
     app.styleHints().setShowShortcutsInContextMenus(True)
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
