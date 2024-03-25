@@ -65,11 +65,15 @@ class Sequence extends Expr.Expression {
     cache(n = 1) {
         var str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
         var expr = C.parser.parse(str).simplify()
+        // Chache values required for this one.
+        if(!this.calcValues[n-this.valuePlus] && n-this.valuePlus > 0)
+            this.cache(n-this.valuePlus)
+        // Setting current variables
         C.currentVars = Object.assign(
             {'n': n-this.valuePlus}, // Just in case, add n (for custom functions)
-            C.currentObjectsByName
+            C.currentObjectsByName,
+            {[this.name]: this.calcValues}
         )
-        C.currentVars[this.name] = this.calcValues
         this.calcValues[n] = expr.evaluate(C.currentVars)
     }
     
