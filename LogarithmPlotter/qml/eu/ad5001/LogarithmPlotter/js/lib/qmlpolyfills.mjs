@@ -28,3 +28,28 @@ qsTr = qsTr || function(string) { throw new Error('qsTr not implemented.'); }
 QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP || function(string, string) { throw new Error('QT_TRANSLATE_NOOP not implemented.'); }
 /** @type {function(string|boolean|int): string} */
 String.prototype.arg = String.prototype.arg || function(parameter) { throw new Error('arg not implemented.'); }
+
+/** Typehints for Helper. */
+const Helper = {
+    /** @type {function(string): boolean} */
+    getSettingBool: (setting) => true,
+    /** @type {function(string): int} */
+    getSettingInt: (setting) => 0,
+    /** @type {function(string): string} */
+    getSetting: (setting) => '',
+    /** @type {function(string, boolean)} */
+    setSettingBool: (setting, value) => {},
+    /** @type {function(string, int)} */
+    setSettingInt: (setting, value) => 0,
+    /** @type {function(string, string)} */
+    setSetting: (setting, value) => '',
+    /** @type {function(string, string)} */
+    write: (filename, data) => {},
+    /** @type {function(string): string} */
+    load: (filename) => '',
+}
+
+const Latex = {
+    /** @type {function(string, number, string): string} */
+    render: (latex_markup, font_size, color) => '',
+}

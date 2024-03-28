@@ -108,7 +108,7 @@ export class Action {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
         let imgDepth = Runtime.History.imageDepth
-        let [src, width, height] = Latex.Renderer.render(
+        let [src, width, height] = Latex.render(
             latexString,
             imgDepth * (Runtime.History.fontSize + 2),
             Runtime.History.themeTextColor

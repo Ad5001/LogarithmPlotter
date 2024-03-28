@@ -112,9 +112,12 @@ def run():
     global tmpfile
     helper = Helper(pwd, tmpfile)
     latex = Latex(tempdir)
-    engine.globalObject().setProperty('Runtime', engine.newObject())
-    engine.rootContext().setContextProperty("Helper", helper)
-    engine.rootContext().setContextProperty("Latex", latex)
+    modules = engine.newObject()
+    engine.globalObject().setProperty('Runtime', modules)
+    engine.globalObject().setProperty('Helper', engine.newQObject(helper))
+    engine.globalObject().setProperty("Latex", engine.newQObject(latex))
+    # engine.rootContext().setContextProperty("Helper", helper)
+    # engine.rootContext().setContextProperty("Latex", latex)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
     

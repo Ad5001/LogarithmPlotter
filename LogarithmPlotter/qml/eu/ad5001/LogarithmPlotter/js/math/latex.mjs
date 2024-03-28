@@ -50,11 +50,12 @@ class LatexAPI extends RuntimeAPI {
         /**
          * true if latex has been enabled by the user, false otherwise.
          */
-        this.enabled = false
+        this.enabled = Helper.getSettingBool("enable_latex")
         /**
-         * LaTeX python backend QObject.
+         * Mirror method for Python object.
+         * @type {function(string, number, string): string}.
          */
-        this.Renderer = null
+        this.render = Latex.render
     }
 
     /**

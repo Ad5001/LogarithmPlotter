@@ -44,16 +44,7 @@ ApplicationWindow {
     color: sysPalette.window
     title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "") + (history.saved ? "" : "*")
     
-    SystemPalette { 
-        id: sysPalette; colorGroup: SystemPalette.Active
-        
-        Component.onCompleted: {
-            // LatexJS initialization.
-            Runtime.Latex.enabled = Helper.getSettingBool("enable_latex")
-            Runtime.Latex.Renderer = Latex
-            Runtime.Latex.defaultColor = sysPalette.windowText
-        }
-    }
+    SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
     
     menuBar: appMenu.trueItem
