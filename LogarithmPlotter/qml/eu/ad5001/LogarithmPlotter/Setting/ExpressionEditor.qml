@@ -20,10 +20,9 @@ import QtQuick.Controls
 import QtQuick
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
-import "../js/mathlib.js" as MathLib
-import "../js/utils.js" as Utils
-import "../js/objects.js" as Objects
-import "../js/parsing/parsing.js" as Parsing
+import "../js/mathlib.mjs" as MathLib
+import "../js/utils.mjs" as Utils
+import "../js/parsing/parsing.mjs" as Parsing
 
 
 /*!
@@ -392,9 +391,9 @@ Item {
                     property string objectName: isEnteringProperty ? 
                         (parent.currentToken.dot ? parent.previousToken.value : parent.previousToken2.value)
                     : ""
-                    property bool doesObjectExist: isEnteringProperty && (objectName in Objects.currentObjectsByName)
+                    property bool doesObjectExist: isEnteringProperty && (objectName in Runtime.Objects.currentObjectsByName)
                     property var objectProperties: doesObjectExist ? 
-                                                    Objects.currentObjectsByName[objectName].constructor.properties() : 
+                                                    Runtime.Objects.currentObjectsByName[objectName].constructor.properties() : 
                                                     {}
                     categoryItems: Object.keys(objectProperties)
                     autocompleteGenerator: (item) => {
@@ -461,9 +460,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: functionsList.itemStartIndex + functionsList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
+                    categoryItems: Runtime.Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
+                        'text': item, 'annotation': Runtime.Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -476,9 +475,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: executableObjectsList.itemStartIndex + executableObjectsList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Object.keys(Objects.currentObjectsByName).filter(obj => obj != self)
+                    categoryItems: Object.keys(Runtime.Objects.currentObjectsByName).filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': `${Objects.currentObjectsByName[item].constructor.displayType()}`,
+                        'text': item, 'annotation': `${Runtime.Objects.currentObjectsByName[item].constructor.displayType()}`,
                         'autocomplete': item+'.', 'cursorFinalOffset': 0
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -538,8 +537,8 @@ Item {
                 throw new Error(qsTranslate('error', 'Object cannot be dependent on itself.'))
             // Recursive dependencies
             let dependentOnSelfObjects = expr.requiredObjects().filter(
-                (obj) => Objects.currentObjectsByName[obj].getDependenciesList()
-                          .includes(Objects.currentObjectsByName[control.self])
+                (obj) => Runtime.Objects.currentObjectsByName[obj].getDependenciesList()
+                          .includes(Runtime.Objects.currentObjectsByName[control.self])
             )
             if(dependentOnSelfObjects.length == 1)
                 throw new Error(qsTranslate('error', 'Circular dependency detected. Object %1 depends on %2.').arg(dependentOnSelfObjects[0].toString()).arg(control.self))

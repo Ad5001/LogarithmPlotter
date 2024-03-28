@@ -19,9 +19,8 @@
 import QtQuick
 import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "js/objects.js" as Objects
-import "js/mathlib.js" as MathLib
-import "js/historylib.js" as HistoryLib
+import "js/mathlib.mjs" as MathLib
+import "js/historylib.mjs" as HistoryLib
 
 /*!
     \qmltype PickLocationOverlay
@@ -114,7 +113,7 @@ Item {
             if(mouse.button == Qt.LeftButton) { // Validate
                 let newValueX = !parent.userPickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
                 let newValueY = !parent.userPickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
-                let obj = Objects.currentObjectsByName[objName]
+                let obj = Runtime.Objects.currentObjectsByName[objName]
                 // Set values
                 if(parent.userPickX && parent.userPickY) {
                     history.addToHistory(new HistoryLib.EditedPosition(
@@ -324,7 +323,7 @@ Item {
         Parses a given \c value as an expression or a number depending on the type of \c propertyName of all \c objType.
     */
     function parseValue(value, objType, propertyName) {
-        if(Objects.types[objType].properties()[propertyName] == 'number')
+        if(Runtime.Objects.types[objType].properties()[propertyName] == 'number')
             return parseFloat(value)
         else
             return new MathLib.Expression(value)

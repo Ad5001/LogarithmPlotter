@@ -22,11 +22,9 @@ import QtQuick.Dialogs as D
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
-import "../../js/objects.js" as Objects
-import "../../js/objs/common.js" as ObjectsCommons
-import "../../js/historylib.js" as HistoryLib
-import "../../js/utils.js" as Utils
-import "../../js/mathlib.js" as MathLib
+import "../../js/historylib.mjs" as HistoryLib
+import "../../js/utils.mjs" as Utils
+import "../../js/mathlib.mjs" as MathLib
 
 /*!
     \qmltype Dialog
@@ -54,7 +52,7 @@ Popup.BaseDialog {
        \qmlproperty var EditorDialog::obj
        Instance of the object being edited.
     */
-    property var obj: Objects.currentObjects[objType][objIndex]
+    property var obj: Runtime.Objects.currentObjects[objType][objIndex]
     /*!
        \qmlproperty var EditorDialog::posPicker
        Reference to the global PositionPicker QML object.
@@ -87,7 +85,7 @@ Popup.BaseDialog {
             Label {
                 id: dlgTitle
                 verticalAlignment: TextInput.AlignVCenter
-                text: qsTr("Edit properties of %1 %2").arg(Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
+                text: qsTr("Edit properties of %1 %2").arg(Runtime.Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
                 font.pixelSize: 20
                 color: sysPalette.windowText
             }
@@ -113,14 +111,14 @@ Popup.BaseDialog {
                 onChanged: function(newValue) {
                     let newName = Utils.parseName(newValue)
                     if(newName != '' && objEditor.obj.name != newName) {
-                        if(newName in Objects.currentObjectsByName) {
+                        if(newName in Runtime.Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
                         } else {
                             history.addToHistory(new HistoryLib.NameChanged(
                                 objEditor.obj.name, objEditor.objType, newName
                             ))
-                            Objects.renameObject(obj.name, newName)
-                            objEditor.obj = Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                            Runtime.Objects.renameObject(obj.name, newName)
+                            objEditor.obj = Runtime.Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                             objectListList.update()
                         }
                     }
@@ -165,7 +163,7 @@ Popup.BaseDialog {
     */
     function open() {
         dlgCustomProperties.model = [] // Reset
-        let objProps = Objects.types[objEditor.objType].properties()
+        let objProps = Runtime.Objects.types[objEditor.objType].properties()
         dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
         objEditor.show()
     }

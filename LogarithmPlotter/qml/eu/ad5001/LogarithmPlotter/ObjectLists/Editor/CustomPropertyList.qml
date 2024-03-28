@@ -20,10 +20,9 @@ import QtQuick
 import QtQuick.Controls
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../../js/objects.js" as Objects
-import "../../js/historylib.js" as HistoryLib
-import "../../js/utils.js" as Utils
-import "../../js/mathlib.js" as MathLib
+import "../../js/historylib.mjs" as HistoryLib
+import "../../js/utils.mjs" as Utils
+import "../../js/mathlib.mjs" as MathLib
 
 /*!
     \qmltype CustomPropertyList
@@ -188,8 +187,8 @@ Repeater {
             
             // Base, untranslated version of the model.
             property var baseModel: selectObjMode ?
-                    Objects.getObjectsName(propertyType.objType).concat(
-                        isRealObject ? [qsTr("+ Create new %1").arg(Objects.types[propertyType.objType].displayType())] : [])
+                    Runtime.Objects.getObjectsName(propertyType.objType).concat(
+                        isRealObject ? [qsTr("+ Create new %1").arg(Runtime.Objects.types[propertyType.objType].displayType())] : [])
                     : propertyType.values
             // Translated version of the model.
             model: selectObjMode ? baseModel : propertyType.translatedValues
@@ -199,20 +198,20 @@ Repeater {
                 if(selectObjMode) {
                     // This is only done when what we're selecting are Objects.
                     // Setting object property.
-                    var selectedObj = Objects.currentObjectsByName[baseModel[newIndex]]
+                    var selectedObj = Runtime.Objects.currentObjectsByName[baseModel[newIndex]]
                     if(newIndex != 0) {
                         // Make sure we don't set the object to null.
                         if(selectedObj == null) {
                             // Creating new object.
-                            selectedObj = Objects.createNewRegisteredObject(propertyType.objType)
+                            selectedObj = Runtime.Objects.createNewRegisteredObject(propertyType.objType)
                             history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, propertyType.objType, selectedObj.export()))
-                            baseModel = Objects.getObjectsName(propertyType.objType).concat(
-                                        isRealObject ? [qsTr("+ Create new %1").arg(Objects.types[propertyType.objType].displayType())] : 
+                            baseModel = Runtime.Objects.getObjectsName(propertyType.objType).concat(
+                                        isRealObject ? [qsTr("+ Create new %1").arg(Runtime.Objects.types[propertyType.objType].displayType())] : 
                                         [])
                             currentIndex = baseModel.indexOf(selectedObj.name)
                         }
-                        selectedObj.requiredBy.push(Objects.currentObjects[objType][objIndex])
-                        //Objects.currentObjects[objType][objIndex].requiredBy = obj[propertyName].filter((obj) => obj.name != obj.name)
+                        selectedObj.requiredBy.push(Runtime.Objects.currentObjects[objType][objIndex])
+                        //Runtime.Objects.currentObjects[objType][objIndex].requiredBy = obj[propertyName].filter((obj) => obj.name != obj.name)
                     }
                     obj.requiredBy = obj.requiredBy.filter((obj) => obj.name != obj.name)
                     history.addToHistory(new HistoryLib.EditedProperty(
@@ -256,7 +255,7 @@ Repeater {
                     obj.name, objType, propertyName, 
                     obj[propertyName], exported
                 ))
-                //Objects.currentObjects[objType][objIndex][propertyName] = exported
+                //Runtime.Objects.currentObjects[objType][objIndex][propertyName] = exported
                 obj[propertyName] = exported
                 root.changed()
             }

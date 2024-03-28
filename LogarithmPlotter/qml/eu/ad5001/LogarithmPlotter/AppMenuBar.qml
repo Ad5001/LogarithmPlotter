@@ -20,9 +20,7 @@ import QtQuick
 import Qt.labs.platform as Native
 //import QtQuick.Controls 2.15
 import eu.ad5001.MixedMenu 1.1
-import "js/objects.js" as Objects
-import "js/historylib.js" as HistoryLib
-import "js/math/latex.js" as LatexJS
+import "js/historylib.mjs" as HistoryLib
 
 
 /*!
@@ -105,17 +103,17 @@ MenuBar {
         title: qsTr("&Create")
         // Services repeater
         Repeater {
-            model: Object.keys(Objects.types)
+            model: Object.keys(Runtime.Objects.types)
             
             MenuItem {
-                text: Objects.types[modelData].displayType()
-                visible: Objects.types[modelData].createable()
+                text: Runtime.Objects.types[modelData].displayType()
+                visible: Runtime.Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.name: modelData
                 icon.source: './icons/objects/' + modelData + '.svg'
                 icon.color: sysPalette.buttonText
                 onTriggered: {
-                    var newObj = Objects.createNewRegisteredObject(modelData)
+                    var newObj = Runtime.Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
                 }
@@ -153,7 +151,7 @@ MenuBar {
             checked: Helper.getSettingBool("enable_latex")
             onTriggered: {
                 Helper.setSettingBool("enable_latex", checked)
-                LatexJS.enabled = checked
+                Runtime.Latex.enabled = checked
                 drawCanvas.requestPaint()
             }
             icon.name: 'Expression'

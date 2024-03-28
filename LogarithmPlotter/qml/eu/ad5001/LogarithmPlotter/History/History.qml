@@ -19,9 +19,7 @@
 import QtQuick
 import QtQml
 import QtQuick.Window
-import "../js/objects.js" as Objects
-import "../js/historylib.js" as HistoryLib
-import "../js/history/common.js" as HistoryCommon
+import "../js/historylib.mjs" as HistoryLib
 
 /*!
     \qmltype History
@@ -214,8 +212,8 @@ Item {
     }
     
     Component.onCompleted: {
-        HistoryLib.history = historyObj
-        HistoryCommon.themeTextColor = sysPalette.windowText
-        HistoryCommon.imageDepth = Screen.devicePixelRatio
+        Runtime.History.history = historyObj
+        Runtime.History.themeTextColor = sysPalette.windowText
+        Runtime.History.imageDepth = Screen.devicePixelRatio
     }
 }

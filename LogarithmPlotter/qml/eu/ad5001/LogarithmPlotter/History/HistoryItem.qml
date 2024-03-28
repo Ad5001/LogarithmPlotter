@@ -19,7 +19,7 @@
 import QtQuick.Controls
 import QtQuick
 import Qt5Compat.GraphicalEffects
-import "../js/utils.js" as Utils
+import "../js/utils.mjs" as Utils
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 

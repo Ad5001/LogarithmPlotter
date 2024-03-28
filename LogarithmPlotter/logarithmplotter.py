@@ -112,6 +112,7 @@ def run():
     global tmpfile
     helper = Helper(pwd, tmpfile)
     latex = Latex(tempdir)
+    engine.globalObject().setProperty('Runtime', engine.newObject())
     engine.rootContext().setContextProperty("Helper", helper)
     engine.rootContext().setContextProperty("Latex", latex)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)

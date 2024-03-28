@@ -18,7 +18,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import "../js/math/latex.js" as Latex
 
 /*!
     \qmltype GreetScreen

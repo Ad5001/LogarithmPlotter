@@ -19,9 +19,8 @@
 import QtQuick
 import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "js/objects.js" as Objects
-import "js/mathlib.js" as MathLib
-import "js/historylib.js" as HistoryLib
+import "js/mathlib.mjs" as MathLib
+import "js/historylib.mjs" as HistoryLib
 
 /*!
     \qmltype ViewPositionChangeOverlay

@@ -21,9 +21,7 @@ import QtQuick.Dialogs
 import QtQuick.Controls
 import QtQuick.Window
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/objects.js" as Objects
-import "../js/historylib.js" as HistoryLib
-import "../js/math/latex.js" as LatexJS
+import "../js/historylib.mjs" as HistoryLib
 
 
 /*!
@@ -91,16 +89,16 @@ Item {
         id: objDescription
         anchors.left: objVisibilityCheckBox.right
         anchors.right: deleteButton.left
-        height: LatexJS.enabled ? Math.max(parent.minHeight, latexDescription.height+4) : parent.minHeight
+        height: Runtime.Latex.enabled ? Math.max(parent.minHeight, latexDescription.height+4) : parent.minHeight
         verticalAlignment: TextInput.AlignVCenter
-        text: LatexJS.enabled ? "" : obj.getReadableString()
+        text: Runtime.Latex.enabled ? "" : obj.getReadableString()
         font.pixelSize: 14
         
         Image {
             id: latexDescription
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            visible: LatexJS.enabled
+            visible: Runtime.Latex.enabled
             property double depth: Screen.devicePixelRatio
             property var ltxInfo: visible ? Latex.render(obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color).split(",") : ["","0","0"]
             source: visible ? ltxInfo[0] : ""
@@ -111,7 +109,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                objEditor.obj = Objects.currentObjects[obj.type][index]
+                objEditor.obj = Runtime.Objects.currentObjects[obj.type][index]
                 objEditor.objType = obj.type
                 objEditor.objIndex = index
                 //objEditor.editingRow = objectRow
@@ -213,10 +211,14 @@ Item {
     function deleteRecursively(object) {
         for(let toRemove of object.requiredBy)
             deleteRecursively(toRemove)
-        object.requiredBy = []
-        history.addToHistory(new HistoryLib.DeleteObject(
-            object.name, object.type, object.export()
-        ))
-        Objects.deleteObject(object.name)
+        if(Runtime.Objects.currentObjectsByName[object.name] != undefined) {
+            // Object still exists
+            // Temporary fix for objects require not being propertly updated.
+            object.requiredBy = []
+            history.addToHistory(new HistoryLib.DeleteObject(
+                object.name, object.type, object.export()
+            ))
+            Runtime.Objects.deleteObject(object.name)
+        }
     }
 }

@@ -18,9 +18,8 @@
 
 import QtQuick
 import Qt.labs.platform as Native
-import "js/objects.js" as Objects
-import "js/utils.js" as Utils
-import "js/mathlib.js" as MathLib
+import "js/utils.mjs" as Utils
+import "js/mathlib.mjs" as MathLib
 
 /*!
     \qmltype LogGraphCanvas
@@ -190,8 +189,8 @@ Canvas {
             drawAxises(ctx)
             drawLabels(ctx)
             ctx.lineWidth = linewidth
-            for(var objType in Objects.currentObjects) {
-                for(var obj of Objects.currentObjects[objType]){
+            for(var objType in Runtime.Objects.currentObjects) {
+                for(var obj of Runtime.Objects.currentObjects[objType]){
                     ctx.strokeStyle = obj.color
                     ctx.fillStyle = obj.color
                     if(obj.visible)

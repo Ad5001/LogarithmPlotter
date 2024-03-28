@@ -21,11 +21,10 @@ import QtQuick.Controls
 import eu.ad5001.MixedMenu 1.1
 import QtQuick.Layouts 1.12
 import QtQuick
-// Auto loading all objects.
-import "js/objs/autoload.js" as ALObjects
 
-import "js/objects.js" as Objects
-import "js/math/latex.js" as LatexJS
+// Auto loading all modules.
+import "js/modules.js" as Modules
+
 import eu.ad5001.LogarithmPlotter.History 1.0
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
@@ -50,9 +49,9 @@ ApplicationWindow {
         
         Component.onCompleted: {
             // LatexJS initialization.
-            LatexJS.enabled = Helper.getSettingBool("enable_latex")
-            LatexJS.Renderer = Latex
-            LatexJS.defaultColor = sysPalette.windowText
+            Runtime.Latex.enabled = Helper.getSettingBool("enable_latex")
+            Runtime.Latex.Renderer = Latex
+            Runtime.Latex.defaultColor = sysPalette.windowText
         }
     }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -201,9 +200,9 @@ ApplicationWindow {
             filename += '.lpf'
         settings.saveFilename = filename
         var objs = {}
-        for(var objType in Objects.currentObjects){
+        for(var objType in Runtime.Objects.currentObjects){
             objs[objType] = []
-            for(var obj of Objects.currentObjects[objType]) {
+            for(var obj of Runtime.Objects.currentObjects[objType]) {
                 objs[objType].push(obj.export())
             }
         }
@@ -265,19 +264,19 @@ ApplicationWindow {
             root.width = data["width"]
             
             // Importing objects
-            Objects.currentObjects = {}
-            Object.keys(Objects.currentObjectsByName).forEach(key => {
-                delete Objects.currentObjectsByName[key];
+            Runtime.Objects.currentObjects = {}
+            Runtime.Object.keys(Objects.currentObjectsByName).forEach(key => {
+                delete Runtime.Objects.currentObjectsByName[key];
                 // Required to keep the same reference for the copy of the object used in expression variable detection.
                 // Another way would be to change the reference as well, but I feel like the code would be less clean.
             })
             for(let objType in data['objects']) {
-                if(Object.keys(Objects.types).indexOf(objType) > -1) {
-                    Objects.currentObjects[objType] = []
+                if(Object.keys(Runtime.Objects.types).indexOf(objType) > -1) {
+                    Runtime.Objects.currentObjects[objType] = []
                     for(let objData of data['objects'][objType]) {
-                        let obj = new Objects.types[objType](...objData)
-                        Objects.currentObjects[objType].push(obj)
-                        Objects.currentObjectsByName[obj.name] = obj
+                        let obj = new Runtime.Objects.types[objType](...objData)
+                        Runtime.Objects.currentObjects[objType].push(obj)
+                        Runtime.Objects.currentObjectsByName[obj.name] = obj
                     }
                 } else {
                     error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
@@ -285,8 +284,8 @@ ApplicationWindow {
             }
             
             // Updating object dependencies.
-            for(let objName in Objects.currentObjectsByName)
-                Objects.currentObjectsByName[objName].update()
+            for(let objName in Runtime.Objects.currentObjectsByName)
+                Runtime.Objects.currentObjectsByName[objName].update()
             
             // Importing history
             if("history" in data)

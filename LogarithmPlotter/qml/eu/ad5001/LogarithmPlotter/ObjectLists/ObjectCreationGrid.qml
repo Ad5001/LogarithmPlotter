@@ -18,8 +18,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import "../js/objects.js" as Objects
-import "../js/historylib.js" as HistoryLib
+import "../js/historylib.mjs" as HistoryLib
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 
@@ -44,7 +43,7 @@ Column {
         // Open editor
         objectEditor.obj = obj
         objectEditor.objType = obj.type
-        objectEditor.objIndex = Objects.currentObjects[obj.type].indexOf(obj)
+        objectEditor.objIndex = Runtime.Objects.currentObjects[obj.type].indexOf(obj)
         objectEditor.open()
         // Disconnect potential link
         posPicker.picked.disconnect(openEditorDialog)
@@ -61,12 +60,12 @@ Column {
         width: parent.width
         columns: 3
         Repeater {
-            model: Object.keys(Objects.types)
+            model: Object.keys(Runtime.Objects.types)
             
             Button {
                 id: createBtn
                 width: 96
-                visible: Objects.types[modelData].createable()
+                visible: Runtime.Objects.types[modelData].createable()
                 height: visible ? width*0.8 : 0
                 // The KDE SDK is kinda buggy, so it respects neither specified color nor display propreties.
                 //display: AbstractButton.TextUnderIcon
@@ -94,7 +93,7 @@ Column {
                     anchors.rightMargin: 4
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 14
-                    text: Objects.types[modelData].displayType()
+                    text: Runtime.Objects.types[modelData].displayType()
                     wrapMode: Text.WordWrap
                     clip: true
                 }
@@ -104,7 +103,7 @@ Column {
                 ToolTip.text: label.text
                 
                 onClicked: {
-                    let newObj = Objects.createNewRegisteredObject(modelData)
+                    let newObj = Runtime.Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
         

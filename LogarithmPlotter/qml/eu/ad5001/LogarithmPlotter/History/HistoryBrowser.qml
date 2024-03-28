@@ -19,7 +19,7 @@
 import QtQuick.Controls
 import QtQuick 
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/utils.js" as Utils
+import "../js/utils.mjs" as Utils
 
 
 /*!
