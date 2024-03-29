@@ -4,8 +4,8 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../logarithmplotter.py" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
+        <location filename="../logarithmplotter.py" line="124"/>
         <source>About LogarithmPlotter</source>
         <translation>Om</translation>
     </message>
@@ -202,13 +202,13 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="191"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="209"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="192"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="210"/>
         <source>+ Create new %1</source>
         <translation type="unfinished">+ Opprett nytt %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="310"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="311"/>
         <source>Pick on graph</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,31 +260,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation>Rediger egenskaper for %1 %2</translation>
+        <translation type="vanished">Rediger egenskaper for %1 %2</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Navn</translation>
+        <translation type="vanished">Navn</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation>Etikett-innhold</translation>
+        <translation type="vanished">Etikett-innhold</translation>
     </message>
     <message>
         <source>null</source>
-        <translation>NULL</translation>
+        <translation type="vanished">NULL</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>navn</translation>
+        <translation type="vanished">navn</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation>navn + veri</translation>
+        <translation type="vanished">navn + veri</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation>+ Opprett nytt %1</translation>
+        <translation type="vanished">+ Opprett nytt %1</translation>
     </message>
 </context>
 <context>
@@ -437,64 +437,52 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
 <context>
     <name>LogarithmPlotter</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="98"/>
         <source>Objects</source>
-        <translation>Objekter</translation>
+        <translation type="vanished">Objekter</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="104"/>
         <source>Settings</source>
-        <translation>Innstillinger</translation>
+        <translation type="vanished">Innstillinger</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="110"/>
         <source>History</source>
-        <translation>Historikk</translation>
+        <translation type="vanished">Historikk</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="229"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Lagret plott i «%1».</translation>
+        <translation type="vanished">Lagret plott i «%1».</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="239"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation>Laster inn «%1»-fil.</translation>
+        <translation type="vanished">Laster inn «%1»-fil.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="282"/>
         <source>Unknown object type: %1.</source>
-        <translation>Ukjent objekttype: %1.</translation>
+        <translation type="vanished">Ukjent objekttype: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
         <source>Invalid file provided.</source>
-        <translation>Ugyldig fil angitt.</translation>
+        <translation type="vanished">Ugyldig fil angitt.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="309"/>
         <source>Could not save file: </source>
-        <translation>Kunne ikke lagre fil: </translation>
+        <translation type="vanished">Kunne ikke lagre fil: </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="314"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation>Lastet inn filen «%1».</translation>
+        <translation type="vanished">Lastet inn filen «%1».</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="347"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation>Kopierte plott-skjermavbildning til utklippstavlen!</translation>
+        <translation type="vanished">Kopierte plott-skjermavbildning til utklippstavlen!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="362"/>
         <source>&amp;Update</source>
-        <translation>&amp;Oppdater</translation>
+        <translation type="vanished">&amp;Oppdater</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="364"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>&amp;Installer ny versjon av LogartimePlotter</translation>
+        <translation type="vanished">&amp;Installer ny versjon av LogartimePlotter</translation>
     </message>
 </context>
 <context>
@@ -519,11 +507,11 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation>Skjul %1 %2</translation>
+        <translation type="vanished">Skjul %1 %2</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation>Vis %1 %2</translation>
+        <translation type="vanished">Vis %1 %2</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
@@ -531,11 +519,11 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation>Slett %1 %2</translation>
+        <translation type="vanished">Slett %1 %2</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation>Velg ny farge for %1 %2</translation>
+        <translation type="vanished">Velg ny farge for %1 %2</translation>
     </message>
 </context>
 <context>
@@ -575,7 +563,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation>Fest til rutenett</translation>
+        <translation type="vanished">Fest til rutenett</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -603,7 +591,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="316"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="317"/>
         <source>(no pick selected)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -999,7 +987,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="144"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1007,7 +995,7 @@ Evaluated expression: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="178"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="150"/>
         <source>Error while attempting to draw %1 %2:
 %3
 
@@ -1018,7 +1006,7 @@ Undoing last change.</source>
 <context>
     <name>expression</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="140"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="141"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="190"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation type="unfinished"></translation>
@@ -1032,7 +1020,7 @@ Evaluated expression: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="175"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="147"/>
         <source>LogarithmPlotter - Drawing error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1041,71 +1029,134 @@ Evaluated expression: %3</source>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation>Funksjon</translation>
+        <translation type="vanished">Funksjon</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation>Funksjoner</translation>
+        <translation type="vanished">Funksjoner</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation>Bode-magnitude</translation>
+        <translation type="vanished">Bode-magnitude</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation>Bode-magnituder</translation>
+        <translation type="vanished">Bode-magnituder</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation>lavpass</translation>
+        <translation type="vanished">lavpass</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation>høypass</translation>
+        <translation type="vanished">høypass</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Ny %1 %2 opprettet.</translation>
+        <translation type="vanished">Ny %1 %2 opprettet.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 slettet.</translation>
+        <translation type="vanished">%1 %2 slettet.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1 av %2 %3 endret fra «%4» til «%5».</translation>
+        <translation type="vanished">%1 av %2 %3 endret fra «%4» til «%5».</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 vist.</translation>
+        <translation type="vanished">%1 %2 vist.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 skjult.</translation>
+        <translation type="vanished">%1 %2 skjult.</translation>
+    </message>
+</context>
+<context>
+    <name>io</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="89"/>
+        <source>Objects</source>
+        <translation type="unfinished">Objekter</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="95"/>
+        <source>Settings</source>
+        <translation type="unfinished">Innstillinger</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="101"/>
+        <source>History</source>
+        <translation type="unfinished">Historikk</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="220"/>
+        <source>Saved plot to &apos;%1&apos;.</source>
+        <translation type="unfinished">Lagret plott i «%1».</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="230"/>
+        <source>Loading file &apos;%1&apos;.</source>
+        <translation type="unfinished">Laster inn «%1»-fil.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="273"/>
+        <source>Unknown object type: %1.</source>
+        <translation type="unfinished">Ukjent objekttype: %1.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="296"/>
+        <source>Invalid file provided.</source>
+        <translation type="unfinished">Ugyldig fil angitt.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="300"/>
+        <source>Could not save file: </source>
+        <translation type="unfinished">Kunne ikke lagre fil: </translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
+        <source>Loaded file &apos;%1&apos;.</source>
+        <translation type="unfinished">Lastet inn filen «%1».</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="354"/>
+        <source>Copied plot screenshot to clipboard!</source>
+        <translation type="unfinished">Kopierte plott-skjermavbildning til utklippstavlen!</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="369"/>
+        <source>&amp;Update</source>
+        <translation type="unfinished">&amp;Oppdater</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="371"/>
+        <source>&amp;Update LogarithmPlotter</source>
+        <translation type="unfinished">&amp;Installer ny versjon av LogartimePlotter</translation>
     </message>
 </context>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="72"/>
+        <location filename="../util/latex.py" line="75"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="76"/>
+        <location filename="../util/latex.py" line="79"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="158"/>
+        <location filename="../util/latex.py" line="160"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1114,7 +1165,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="166"/>
+        <location filename="../util/latex.py" line="172"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1123,63 +1174,43 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     </message>
 </context>
 <context>
-    <name>main</name>
-    <message>
-        <location filename="../util/helper.py" line="98"/>
-        <source>Could not open file &quot;{}&quot;:
-{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="100"/>
-        <source>Could not open file: &quot;{}&quot;
-File does not exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="155"/>
-        <source>Built with PySide6 (Qt) v{} and python v{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation>Bode-fase</translation>
+        <translation type="vanished">Bode-fase</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation>Bode-faser</translation>
+        <translation type="vanished">Bode-faser</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation>Punkt</translation>
+        <translation type="vanished">Punkt</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation>Punkter</translation>
+        <translation type="vanished">Punkter</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation>Distribusjon</translation>
+        <translation type="vanished">Distribusjon</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation>Distribusjonsfunksjoner</translation>
+        <translation type="vanished">Distribusjonsfunksjoner</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation>Følge</translation>
+        <translation type="vanished">Følge</translation>
     </message>
     <message>
         <source>Sequences</source>
@@ -1190,25 +1221,25 @@ File does not exist.</source>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation>Bode-magnitudesum</translation>
+        <translation type="vanished">Bode-magnitudesum</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation>Bode-fasesum</translation>
+        <translation type="vanished">Bode-fasesum</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation>Tekst</translation>
+        <translation type="vanished">Tekst</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation>Tekster</translation>
+        <translation type="vanished">Tekster</translation>
     </message>
 </context>
 <context>
@@ -1219,7 +1250,7 @@ File does not exist.</source>
         <translation>En ny versjon av LogartimePlotter (v{}) er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="60"/>
+        <location filename="../util/update.py" line="58"/>
         <source>No update available.</source>
         <translation>Ingen nye versjoner.</translation>
     </message>
@@ -1237,36 +1268,36 @@ File does not exist.</source>
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="71"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
         <source>Usage: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="81"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="97"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="110"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
         <source>Usage: %1 or
 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="106"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation type="unfinished"></translation>
     </message>

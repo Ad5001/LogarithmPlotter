@@ -20,29 +20,30 @@
 
 from PySide6.QtCore import QObject, QEvent
 
+
 # On macOS, opening a file through finder can only be fetched through the
-# QFileOpenEvent and NOT throught command line parameters.
+# QFileOpenEvent and NOT through command line parameters.
 class MacOSFileOpenHandler(QObject):
     def __init__(self):
-        self.initilized = False
-        self.mainwindow = None
+        self.initialized = False
+        self.io_module = None
         self.opened_file = ""
         QObject.__init__(self)
-    
-    def init_graphics(self, mainwindow):
-        self.mainwindow = mainwindow
-        self.initilized = True
+
+    def init_io(self, io_modules):
+        self.io_module = io_modules
+        self.initialized = True
         if self.opened_file != "":
             self.open_file()
-            
+
     def open_file(self):
-        self.mainwindow.loadDiagram(self.opened_file)
-    
+        self.io_module.loadDiagram(self.opened_file)
+
     def eventFilter(self, obj, event):
         if event.type() == QEvent.FileOpen:
-            print("Got file", event.file(), self.initilized)
+            print("Got file", event.file(), self.initialized)
             self.opened_file = event.file()
-            if self.initilized:
+            if self.initialized:
                 self.open_file()
             return True
         else:

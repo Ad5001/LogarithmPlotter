@@ -21,8 +21,10 @@ from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from sys import argv
 
+
 class UpdateInformation(QObject):
     got_update_info = Signal(bool, str, bool)
+
 
 class UpdateCheckerRunnable(QRunnable):
     def __init__(self, current_version, callback):
@@ -40,44 +42,51 @@ class UpdateCheckerRunnable(QRunnable):
             lines = r.readlines()
             r.close()
             # Parsing version
-            version = "".join(map(chr, lines[0])).strip() # Converts byte to string.
+            version = "".join(map(chr, lines[0])).strip()  # Converts byte to string.
             version_tuple = version.split(".")
             is_version_newer = False
             if "dev" in self.current_version:
                 # We're on a dev version
-                current_version_tuple = self.current_version.split(".")[:-1] # Removing the dev0+git bit.
-                is_version_newer = version_tuple >= current_version_tuple # If equals, that means we got out of testing phase.
+                current_version_tuple = self.current_version.split(".")[:-1]  # Removing the dev0+git bit.
+                is_version_newer = version_tuple >= current_version_tuple  # If equals, that means we got out of testing phase.
             else:
                 current_version_tuple = self.current_version.split(".")
                 is_version_newer = version_tuple > current_version_tuple
             if is_version_newer:
-                msg_text = QCoreApplication.translate("update","An update for LogarithPlotter (v{}) is available.").format(version)
+                msg_text = QCoreApplication.translate("update",
+                                                      "An update for LogarithPlotter (v{}) is available.").format(
+                    version)
                 update_available = True
             else:
                 show_alert = False
-                msg_text = QCoreApplication.translate("update","No update available.")
-                
+                msg_text = QCoreApplication.translate("update", "No update available.")
+
         except HTTPError as e:
-            msg_text = QCoreApplication.translate("update","Could not fetch update information: Server error {}.").format(str(e.code))
+            msg_text = QCoreApplication.translate("update",
+                                                  "Could not fetch update information: Server error {}.").format(
+                str(e.code))
         except URLError as e:
-            msg_text = QCoreApplication.translate("update","Could not fetch update information: {}.").format(str(e.reason))
-        self.callback.got_update_info.emit(show_alert, msg_text,update_available)
+            msg_text = QCoreApplication.translate("update", "Could not fetch update information: {}.").format(
+                str(e.reason))
+        self.callback.got_update_info.emit(show_alert, msg_text, update_available)
+
 
 def check_for_updates(current_version, window):
     """
     Checks for updates in the background, and sends an alert with information.
     """
     if "--no-check-for-updates" in argv:
-        return # 
+        return
+
     def cb(show_alert, msg_text, update_available):
         pass
         if show_alert:
             window.showAlert(msg_text)
         if update_available:
             window.showUpdateMenu()
-            
+
     update_info = UpdateInformation()
     update_info.got_update_info.connect(cb)
-    
+
     runnable = UpdateCheckerRunnable(current_version, update_info)
     QThreadPool.globalInstance().start(runnable)

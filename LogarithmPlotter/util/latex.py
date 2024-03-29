@@ -160,10 +160,7 @@ class Latex(QObject):
                                     QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
                                     .format(" ".join(process), proc.returncode,
                                             str(out, 'utf8') + "\n" + str(err, 'utf8')))
-                raise Exception(
-                    " ".join(process) + " process exited with return code " + str(proc.returncode) + ":\n" + str(out,
-                                                                                                                 'utf8') + "\n" + str(
-                        err, 'utf8'))
+                raise Exception("{0} process exited with return code {1}:\n{2}\n{3}".format(" ".join(process), str(proc.returncode), str(out, 'utf8'), str(err, 'utf8')))
         except TimeoutExpired as e:
             # Process timed out
             proc.kill()

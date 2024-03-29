@@ -47,7 +47,7 @@ CONFIG_PATH = {
 CONFIG_FILE = path.join(CONFIG_PATH, "config.json")
 
 initialized = False
-current_config= DEFAULT_SETTINGS
+current_config = DEFAULT_SETTINGS
 
 
 def init():

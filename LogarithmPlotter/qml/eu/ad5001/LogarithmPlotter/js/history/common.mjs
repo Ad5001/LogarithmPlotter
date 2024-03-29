@@ -34,7 +34,10 @@ class HistoryCommonAPI extends Module {
 
     undo() { this.history.undo() }
     redo() { this.history.redo() }
+    clear() { this.history.clear() }
     addToHistory(action) { this.history.addToHistory(action) }
+    unserialize(data) { this.history.unserialize(data) }
+    serialize() { return this.history.serialize() }
 }
 
 /** @type {HistoryCommonAPI} */

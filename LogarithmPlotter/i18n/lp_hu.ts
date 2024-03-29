@@ -4,8 +4,8 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../logarithmplotter.py" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
+        <location filename="../logarithmplotter.py" line="124"/>
         <source>About LogarithmPlotter</source>
         <translation>LogarithmPlotter névjegye</translation>
     </message>
@@ -202,13 +202,13 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="191"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="209"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="192"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="210"/>
         <source>+ Create new %1</source>
         <translation>+ Új %1 létrehozása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="310"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="311"/>
         <source>Pick on graph</source>
         <translation>Ábra kijelölése</translation>
     </message>
@@ -260,31 +260,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation>%1 %2 tulajdonságainak szerkesztése</translation>
+        <translation type="vanished">%1 %2 tulajdonságainak szerkesztése</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Név</translation>
+        <translation type="vanished">Név</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation>Címke tartalom</translation>
+        <translation type="vanished">Címke tartalom</translation>
     </message>
     <message>
         <source>null</source>
-        <translation>üres</translation>
+        <translation type="vanished">üres</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>név</translation>
+        <translation type="vanished">név</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation>név + érték</translation>
+        <translation type="vanished">név + érték</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation>+ Új %1 létrehozása</translation>
+        <translation type="vanished">+ Új %1 létrehozása</translation>
     </message>
 </context>
 <context>
@@ -437,64 +437,52 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>LogarithmPlotter</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="98"/>
         <source>Objects</source>
-        <translation>Tárgyak</translation>
+        <translation type="vanished">Tárgyak</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="104"/>
         <source>Settings</source>
-        <translation>Beállítások</translation>
+        <translation type="vanished">Beállítások</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="110"/>
         <source>History</source>
-        <translation>Előzmények</translation>
+        <translation type="vanished">Előzmények</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="229"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Ábra mentve ide: „%1”.</translation>
+        <translation type="vanished">Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="239"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
+        <translation type="vanished">A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="282"/>
         <source>Unknown object type: %1.</source>
-        <translation>Ismeretlen objektumtípus: %1.</translation>
+        <translation type="vanished">Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
         <source>Invalid file provided.</source>
-        <translation>A megadott fájl érvénytelen.</translation>
+        <translation type="vanished">A megadott fájl érvénytelen.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="309"/>
         <source>Could not save file: </source>
-        <translation>A fájl mentése nem sikerült: </translation>
+        <translation type="vanished">A fájl mentése nem sikerült: </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="314"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation>A(z) „%1” fájl betöltve.</translation>
+        <translation type="vanished">A(z) „%1” fájl betöltve.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="347"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation>Ábra képernyőkép vágólapra másolva!</translation>
+        <translation type="vanished">Ábra képernyőkép vágólapra másolva!</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="362"/>
         <source>&amp;Update</source>
-        <translation>&amp;Frissítés</translation>
+        <translation type="vanished">&amp;Frissítés</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="364"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>A LogarithmPlotter &amp;frissítése</translation>
+        <translation type="vanished">A LogarithmPlotter &amp;frissítése</translation>
     </message>
 </context>
 <context>
@@ -519,23 +507,23 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation>%1 %2 elrejtése</translation>
+        <translation type="vanished">%1 %2 elrejtése</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation>%1 %2 megjelenítése</translation>
+        <translation type="vanished">%1 %2 megjelenítése</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
-        <translation>%1 %2 helye beállítása</translation>
+        <translation type="vanished">%1 %2 helye beállítása</translation>
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation>%1 %2 törlése</translation>
+        <translation type="vanished">%1 %2 törlése</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation>Válasszon új színt a következőhöz: %1 %2</translation>
+        <translation type="vanished">Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -575,7 +563,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation>Rácshoz illesztés</translation>
+        <translation type="vanished">Rácshoz illesztés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -603,7 +591,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>Kijelölési beállítások elrejtése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="316"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="317"/>
         <source>(no pick selected)</source>
         <translation>(nincs kijelölés kiválasztva)</translation>
     </message>
@@ -816,30 +804,30 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>color</name>
     <message>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation>%1 %2 színe %3-ról %4-re változott.</translation>
+        <translation type="vanished">%1 %2 színe %3-ról %4-re változott.</translation>
     </message>
 </context>
 <context>
     <name>comment</name>
     <message>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation>Példák: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
+        <translation type="vanished">Példák: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation>A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
+        <translation type="vanished">A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
     </message>
     <message>
         <source>Note: Specify the probability for each value.</source>
-        <translation>Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
+        <translation type="vanished">Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
     </message>
     <message>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
-        <translation>Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
+        <translation type="vanished">Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
     </message>
     <message>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation>Ha a LaTeX engedélyezve van, a LaTeX-jelölés használható egyenletek létrehozására $$ között.</translation>
+        <translation type="vanished">Ha a LaTeX engedélyezve van, a LaTeX-jelölés használható egyenletek létrehozására $$ között.</translation>
     </message>
 </context>
 <context>
@@ -858,25 +846,25 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>create</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Új %1 %2 létrehozva.</translation>
+        <translation type="vanished">Új %1 %2 létrehozva.</translation>
     </message>
 </context>
 <context>
     <name>delete</name>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 törölve.</translation>
+        <translation type="vanished">%1 %2 törölve.</translation>
     </message>
 </context>
 <context>
     <name>editproperty</name>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation type="vanished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation>%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
+        <translation type="vanished">%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
     </message>
 </context>
 <context>
@@ -943,11 +931,11 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Function definition is not permitted.</source>
-        <translation>A függvény meghatározása nem engedélyezett.</translation>
+        <translation type="vanished">A függvény meghatározása nem engedélyezett.</translation>
     </message>
     <message>
         <source>Expected variable for assignment.</source>
-        <translation>A hozzárendeléshez várt változó.</translation>
+        <translation type="vanished">A hozzárendeléshez várt változó.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
@@ -1041,7 +1029,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>Körkörös függőség észlelve. A(z) %1-objektumok a(z) %2-objektumtól függenek.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="144"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1052,7 +1040,7 @@ Evaluated expression: %3</source>
 Kiértékelt kifejezés: %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="178"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="150"/>
         <source>Error while attempting to draw %1 %2:
 %3
 
@@ -1066,7 +1054,7 @@ Az utolsó módosítás visszavonása.</translation>
 <context>
     <name>expression</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="140"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="141"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="190"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Elemzési hiba</translation>
@@ -1083,7 +1071,7 @@ Evaluated expression: %3</source>
 Kiértékelt kifejezés: %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="175"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="147"/>
         <source>LogarithmPlotter - Drawing error</source>
         <translation>LogarithmPlotter - Rajzolási hiba</translation>
     </message>
@@ -1092,59 +1080,122 @@ Kiértékelt kifejezés: %3</translation>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation>Függvény</translation>
+        <translation type="vanished">Függvény</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation>Függvények</translation>
+        <translation type="vanished">Függvények</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation>Bode-nagyságrend</translation>
+        <translation type="vanished">Bode-nagyságrend</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation>Bode-nagyságrendek</translation>
+        <translation type="vanished">Bode-nagyságrendek</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation>aluláteresztő</translation>
+        <translation type="vanished">aluláteresztő</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation>felüláteresztő</translation>
+        <translation type="vanished">felüláteresztő</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Új %1 %2 létrehozva.</translation>
+        <translation type="vanished">Új %1 %2 létrehozva.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 törölve.</translation>
+        <translation type="vanished">%1 %2 törölve.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation type="vanished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 megjelenítve.</translation>
+        <translation type="vanished">%1 %2 megjelenítve.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 rejtve.</translation>
+        <translation type="vanished">%1 %2 rejtve.</translation>
+    </message>
+</context>
+<context>
+    <name>io</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="89"/>
+        <source>Objects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="95"/>
+        <source>Settings</source>
+        <translation type="unfinished">Beállítások</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="101"/>
+        <source>History</source>
+        <translation type="unfinished">Előzmények</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="220"/>
+        <source>Saved plot to &apos;%1&apos;.</source>
+        <translation type="unfinished">Ábra mentve ide: „%1”.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="230"/>
+        <source>Loading file &apos;%1&apos;.</source>
+        <translation type="unfinished">A(z) „%1” fájl betöltése folyamatban van.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="273"/>
+        <source>Unknown object type: %1.</source>
+        <translation type="unfinished">Ismeretlen objektumtípus: %1.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="296"/>
+        <source>Invalid file provided.</source>
+        <translation type="unfinished">A megadott fájl érvénytelen.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="300"/>
+        <source>Could not save file: </source>
+        <translation type="unfinished">A fájl mentése nem sikerült: </translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
+        <source>Loaded file &apos;%1&apos;.</source>
+        <translation type="unfinished">A(z) „%1” fájl betöltve.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="354"/>
+        <source>Copied plot screenshot to clipboard!</source>
+        <translation type="unfinished">Ábra képernyőkép vágólapra másolva!</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="369"/>
+        <source>&amp;Update</source>
+        <translation type="unfinished">&amp;Frissítés</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="371"/>
+        <source>&amp;Update LogarithmPlotter</source>
+        <translation type="unfinished">A LogarithmPlotter &amp;frissítése</translation>
     </message>
 </context>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="72"/>
+        <location filename="../util/latex.py" line="75"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1153,12 +1204,12 @@ Ha már telepítve van egy LaTeX disztribúció, győződjön meg arról, hogy a
 Egyébként letölthet egy LaTeX disztribúciót, például a TeX Live-t a https://tug.org/texlive/ címről.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="76"/>
+        <location filename="../util/latex.py" line="79"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG nem található. Ügyeljen arra, hogy a LaTeX disztribúciójából tartalmazza.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="158"/>
+        <location filename="../util/latex.py" line="160"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1171,7 +1222,7 @@ A(z) „{}” folyamat nullától eltérő visszatérési kóddal ({}) végződ�
 Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelentse a hibát.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="166"/>
+        <location filename="../util/latex.py" line="172"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1183,312 +1234,292 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     </message>
 </context>
 <context>
-    <name>main</name>
-    <message>
-        <location filename="../util/helper.py" line="98"/>
-        <source>Could not open file &quot;{}&quot;:
-{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="100"/>
-        <source>Could not open file: &quot;{}&quot;
-File does not exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="155"/>
-        <source>Built with PySide6 (Qt) v{} and python v{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>name</name>
     <message>
         <source>%1 %2 renamed to %3.</source>
-        <translation>%1 %2 átnevezve erre: %3.</translation>
+        <translation type="vanished">%1 %2 átnevezve erre: %3.</translation>
     </message>
 </context>
 <context>
     <name>parameters</name>
     <message>
         <source>above</source>
-        <translation>↑ Felett</translation>
+        <translation type="vanished">↑ Felett</translation>
     </message>
     <message>
         <source>below</source>
-        <translation>↓ Alatt</translation>
+        <translation type="vanished">↓ Alatt</translation>
     </message>
     <message>
         <source>left</source>
-        <translation>← Balra</translation>
+        <translation type="vanished">← Balra</translation>
     </message>
     <message>
         <source>right</source>
-        <translation>→ Jobbra</translation>
+        <translation type="vanished">→ Jobbra</translation>
     </message>
     <message>
         <source>above-left</source>
-        <translation>↖ Felett, balra</translation>
+        <translation type="vanished">↖ Felett, balra</translation>
     </message>
     <message>
         <source>above-right</source>
-        <translation>↗ Felett, jobbra</translation>
+        <translation type="vanished">↗ Felett, jobbra</translation>
     </message>
     <message>
         <source>below-left</source>
-        <translation>↙ Alatt, balra</translation>
+        <translation type="vanished">↙ Alatt, balra</translation>
     </message>
     <message>
         <source>below-right</source>
-        <translation>↘ Alatt, jobbra</translation>
+        <translation type="vanished">↘ Alatt, jobbra</translation>
     </message>
     <message>
         <source>center</source>
-        <translation>&gt;|&lt; Középre</translation>
+        <translation type="vanished">&gt;|&lt; Középre</translation>
     </message>
     <message>
         <source>top</source>
-        <translation>↑ Felső</translation>
+        <translation type="vanished">↑ Felső</translation>
     </message>
     <message>
         <source>bottom</source>
-        <translation>↓ Alsó</translation>
+        <translation type="vanished">↓ Alsó</translation>
     </message>
     <message>
         <source>top-left</source>
-        <translation>↖ Bal felső</translation>
+        <translation type="vanished">↖ Bal felső</translation>
     </message>
     <message>
         <source>top-right</source>
-        <translation>↗ Jobb felső</translation>
+        <translation type="vanished">↗ Jobb felső</translation>
     </message>
     <message>
         <source>bottom-left</source>
-        <translation>↙ Bal alsó</translation>
+        <translation type="vanished">↙ Bal alsó</translation>
     </message>
     <message>
         <source>bottom-right</source>
-        <translation>↘ Jobb alsó</translation>
+        <translation type="vanished">↘ Jobb alsó</translation>
     </message>
     <message>
         <source>application</source>
-        <translation>Alkalmazás</translation>
+        <translation type="vanished">Alkalmazás</translation>
     </message>
     <message>
         <source>function</source>
-        <translation>Függvény</translation>
+        <translation type="vanished">Függvény</translation>
     </message>
     <message>
         <source>high</source>
-        <translation>Magas</translation>
+        <translation type="vanished">Magas</translation>
     </message>
     <message>
         <source>low</source>
-        <translation>Alul</translation>
+        <translation type="vanished">Alul</translation>
     </message>
     <message>
         <source>Next to target</source>
-        <translation>Cél mellé</translation>
+        <translation type="vanished">Cél mellé</translation>
     </message>
     <message>
         <source>With label</source>
-        <translation>Címkével</translation>
+        <translation type="vanished">Címkével</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation>Rejtett</translation>
+        <translation type="vanished">Rejtett</translation>
     </message>
 </context>
 <context>
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation>Bode-fázis</translation>
+        <translation type="vanished">Bode-fázis</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation>Bode-fázisok</translation>
+        <translation type="vanished">Bode-fázisok</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation>Pont</translation>
+        <translation type="vanished">Pont</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation>Pontok</translation>
+        <translation type="vanished">Pontok</translation>
     </message>
 </context>
 <context>
     <name>position</name>
     <message>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation>%1 %2 áthelyezve innen: „%3” ide: „%4”.</translation>
+        <translation type="vanished">%1 %2 áthelyezve innen: „%3” ide: „%4”.</translation>
     </message>
     <message>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation>%1 áthelyezve innen: %2 ide: %3.</translation>
+        <translation type="vanished">%1 áthelyezve innen: %2 ide: %3.</translation>
     </message>
 </context>
 <context>
     <name>prop</name>
     <message>
         <source>expression</source>
-        <translation>Kifejezés</translation>
+        <translation type="vanished">Kifejezés</translation>
     </message>
     <message>
         <source>definitionDomain</source>
-        <translation>Abszcissza tartomány</translation>
+        <translation type="vanished">Abszcissza tartomány</translation>
     </message>
     <message>
         <source>destinationDomain</source>
-        <translation>Ordináta tartomány</translation>
+        <translation type="vanished">Ordináta tartomány</translation>
     </message>
     <message>
         <source>labelPosition</source>
-        <translation>Címke helyzete</translation>
+        <translation type="vanished">Címke helyzete</translation>
     </message>
     <message>
         <source>displayMode</source>
-        <translation>Megjelenítési mód</translation>
+        <translation type="vanished">Megjelenítési mód</translation>
     </message>
     <message>
         <source>labelX</source>
-        <translation>Címke X helyzete</translation>
+        <translation type="vanished">Címke X helyzete</translation>
     </message>
     <message>
         <source>drawPoints</source>
-        <translation>Pontok megjelenítése</translation>
+        <translation type="vanished">Pontok megjelenítése</translation>
     </message>
     <message>
         <source>drawDashedLines</source>
-        <translation>Szaggatott vonalak megjelenítése</translation>
+        <translation type="vanished">Szaggatott vonalak megjelenítése</translation>
     </message>
     <message>
         <source>om_0</source>
-        <translation>ω₀</translation>
+        <translation type="vanished">ω₀</translation>
     </message>
     <message>
         <source>pass</source>
-        <translation>Áteresztő</translation>
+        <translation type="vanished">Áteresztő</translation>
     </message>
     <message>
         <source>gain</source>
-        <translation>Nagyságrend nyeresége</translation>
+        <translation type="vanished">Nagyságrend nyeresége</translation>
     </message>
     <message>
         <source>omGraduation</source>
-        <translation>ω₀ érettségi megjelenítése</translation>
+        <translation type="vanished">ω₀ érettségi megjelenítése</translation>
     </message>
     <message>
         <source>phase</source>
-        <translation>Fázis</translation>
+        <translation type="vanished">Fázis</translation>
     </message>
     <message>
         <source>unit</source>
-        <translation>Egység használata</translation>
+        <translation type="vanished">Egység használata</translation>
     </message>
     <message>
         <source>x</source>
-        <translation>X</translation>
+        <translation type="vanished">X</translation>
     </message>
     <message>
         <source>y</source>
-        <translation>Y</translation>
+        <translation type="vanished">Y</translation>
     </message>
     <message>
         <source>pointStyle</source>
-        <translation>Pontstílus</translation>
+        <translation type="vanished">Pontstílus</translation>
     </message>
     <message>
         <source>probabilities</source>
-        <translation>Valószínűségek listája</translation>
+        <translation type="vanished">Valószínűségek listája</translation>
     </message>
     <message>
         <source>text</source>
-        <translation>Tartalom</translation>
+        <translation type="vanished">Tartalom</translation>
     </message>
     <message>
         <source>disableLatex</source>
-        <translation>LaTeX-megjelenítés letiltása ennél a szövegnél</translation>
+        <translation type="vanished">LaTeX-megjelenítés letiltása ennél a szövegnél</translation>
     </message>
     <message>
         <source>targetElement</source>
-        <translation>Tárgycél</translation>
+        <translation type="vanished">Tárgycél</translation>
     </message>
     <message>
         <source>approximate</source>
-        <translation>Hozzávetőleges érték megjelenítése</translation>
+        <translation type="vanished">Hozzávetőleges érték megjelenítése</translation>
     </message>
     <message>
         <source>rounding</source>
-        <translation>Kerekítés</translation>
+        <translation type="vanished">Kerekítés</translation>
     </message>
     <message>
         <source>displayStyle</source>
-        <translation>Megjelenítési stílus</translation>
+        <translation type="vanished">Megjelenítési stílus</translation>
     </message>
     <message>
         <source>targetValuePosition</source>
-        <translation>Cél értékpozíciója</translation>
+        <translation type="vanished">Cél értékpozíciója</translation>
     </message>
     <message>
         <source>defaultExpression</source>
-        <translation>Alapértelmezett kifejezés</translation>
+        <translation type="vanished">Alapértelmezett kifejezés</translation>
     </message>
     <message>
         <source>baseValues</source>
-        <translation>Kezdeményezési értékek</translation>
+        <translation type="vanished">Kezdeményezési értékek</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation>Elosztás</translation>
+        <translation type="vanished">Elosztás</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation>Elosztási függvények</translation>
+        <translation type="vanished">Elosztási függvények</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation>Sorozat</translation>
+        <translation type="vanished">Sorozat</translation>
     </message>
     <message>
         <source>Sequences</source>
-        <translation>Sorozatok</translation>
+        <translation type="vanished">Sorozatok</translation>
     </message>
 </context>
 <context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation>Bode-nagyságrendek összege</translation>
+        <translation type="vanished">Bode-nagyságrendek összege</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation>Bode-fázisok összege</translation>
+        <translation type="vanished">Bode-fázisok összege</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation>Szöveg</translation>
+        <translation type="vanished">Szöveg</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation>Szövegek</translation>
+        <translation type="vanished">Szövegek</translation>
     </message>
 </context>
 <context>
@@ -1499,7 +1530,7 @@ File does not exist.</source>
         <translation>Elérhető a Logaritmus-ábrázoló ({} verzió) frissítése.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="60"/>
+        <location filename="../util/update.py" line="58"/>
         <source>No update available.</source>
         <translation>Nincs telepíthető frissítés.</translation>
     </message>
@@ -1517,37 +1548,37 @@ File does not exist.</source>
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="71"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
         <source>Usage: %1</source>
         <translation>Használat: %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="81"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="97"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="110"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
         <source>Usage: %1 or
 %2</source>
         <translation>Használat: %1 vagy
 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="106"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;, &lt;x: szám&gt;)</translation>
     </message>
@@ -1556,22 +1587,22 @@ File does not exist.</source>
     <name>visibility</name>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 megjelenítve.</translation>
+        <translation type="vanished">%1 %2 megjelenítve.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 rejtve.</translation>
+        <translation type="vanished">%1 %2 rejtve.</translation>
     </message>
 </context>
 <context>
     <name>xcursor</name>
     <message>
         <source>X Cursor</source>
-        <translation>X kurzor</translation>
+        <translation type="vanished">X kurzor</translation>
     </message>
     <message>
         <source>X Cursors</source>
-        <translation>X kurzorok</translation>
+        <translation type="vanished">X kurzorok</translation>
     </message>
 </context>
 </TS>

@@ -127,6 +127,10 @@ ScrollView {
     */
     property string saveFilename: ""
     
+    Component.onCompleted: {
+        Modules.IO.initialize(root, settings, alert)
+    }
+    
     Column {
         spacing: 10
         width: parent.width
@@ -138,9 +142,9 @@ ScrollView {
                 var filePath = fdiag.currentFile.toString().substr(7)
                 settings.saveFilename = filePath
                 if(exportMode) {
-                    root.saveDiagram(filePath)
+                    Modules.IO.saveDiagram(filePath)
                 } else {
-                    root.loadDiagram(filePath)
+                    Modules.IO.loadDiagram(filePath)
                     if(xAxisLabel.find(settings.xlabel) == -1) xAxisLabel.model.append({text: settings.xlabel})
                     xAxisLabel.editText = settings.xlabel
                     if(yAxisLabel.find(settings.ylabel) == -1) yAxisLabel.model.append({text: settings.ylabel})
@@ -442,7 +446,7 @@ ScrollView {
         if(settings.saveFilename == "") {
             saveAs()
         } else {
-            root.saveDiagram(settings.saveFilename)
+            Modules.IO.saveDiagram(settings.saveFilename)
         }
     }
     

@@ -86,19 +86,19 @@ ApplicationWindow {
             width: parent.width
             anchors.top: parent.top
             TabButton {
-                text: qsTr("Objects")
+                text: qsTranslate('io', "Objects")
                 icon.name: 'polygon-add-nodes'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
             TabButton {
-                text: qsTr("Settings")
+                text: qsTranslate('io', "Settings")
                 icon.name: 'preferences-system-symbolic'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
             TabButton {
-                text: qsTr("History")
+                text: qsTranslate('io', "History")
                 icon.name: 'view-history'
                 icon.color: sysPalette.windowText
                 //height: 24
@@ -159,7 +159,7 @@ ApplicationWindow {
         
         property bool firstDrawDone: false
         
-        onPainted: if(!firstDrawDone) {
+        onPainted: if(!firstDrawDone) {
             firstDrawDone = true;
             console.info("First paint done in " + (new Date().getTime()-(StartTime*1000)) + "ms")
             if(TestBuild == true) {
@@ -180,130 +180,6 @@ ApplicationWindow {
             anchors.fill: parent
             canvas: parent
         }
-    }
-    
-    /*!
-        \qmlmethod void LogarithmPlotter::saveDiagram(string filename)
-        Saves the diagram to a certain \c filename.
-    */
-    function saveDiagram(filename) {
-        if(['lpf'].indexOf(filename.split('.')[filename.split('.').length-1]) == -1)
-            filename += '.lpf'
-        settings.saveFilename = filename
-        var objs = {}
-        for(var objType in Modules.Objects.currentObjects){
-            objs[objType] = []
-            for(var obj of Modules.Objects.currentObjects[objType]) {
-                objs[objType].push(obj.export())
-            }
-        }
-        Helper.write(filename, JSON.stringify({
-            "xzoom":        settings.xzoom,
-            "yzoom":        settings.yzoom,
-            "xmin":         settings.xmin,
-            "ymax":         settings.ymax,
-            "xaxisstep":    settings.xaxisstep,
-            "yaxisstep":    settings.yaxisstep,
-            "xaxislabel":   settings.xlabel,
-            "yaxislabel":   settings.ylabel,
-            "logscalex":    settings.logscalex,
-            "linewidth":    settings.linewidth,
-            "showxgrad":    settings.showxgrad,
-            "showygrad":    settings.showygrad,
-            "textsize":     settings.textsize,
-            "history":      history.serialize(),
-            "width":        root.width,
-            "height":       root.height,
-            "objects":      objs,
-            "type":         "logplotv1"
-        }))
-        alert.show(qsTr("Saved plot to '%1'.").arg(filename.split("/").pop()))
-        history.saved = true
-    }
-    
-    /*!
-        \qmlmethod void LogarithmPlotter::saveDiagram(string filename)
-        Loads the diagram from a certain \c filename.
-    */
-    function loadDiagram(filename) {
-        let basename = filename.split("/").pop()
-        alert.show(qsTr("Loading file '%1'.").arg(basename))
-        let data = JSON.parse(Helper.load(filename))
-        let error = "";
-        if(Object.keys(data).includes("type") && data["type"] == "logplotv1") {
-            history.clear()
-            // Importing settings
-            settings.saveFilename = filename
-            settings.xzoom = data["xzoom"]
-            settings.yzoom = data["yzoom"]
-            settings.xmin = data["xmin"]
-            settings.ymax = data["ymax"]
-            settings.xaxisstep = data["xaxisstep"]
-            settings.yaxisstep = data["yaxisstep"]
-            settings.xlabel = data["xaxislabel"]
-            settings.ylabel = data["yaxislabel"]
-            settings.logscalex = data["logscalex"]
-            if("showxgrad" in data)
-                settings.showxgrad = data["showxgrad"]
-            if("showygrad" in data)
-                settings.textsize = data["showygrad"]
-            if("linewidth" in data)
-                settings.linewidth = data["linewidth"]
-            if("textsize" in data)
-                settings.textsize = data["textsize"]
-            root.height = data["height"]
-            root.width = data["width"]
-            
-            // Importing objects
-            Modules.Objects.currentObjects = {}
-            Modules.Object.keys(Objects.currentObjectsByName).forEach(key => {
-                delete Modules.Objects.currentObjectsByName[key];
-                // Required to keep the same reference for the copy of the object used in expression variable detection.
-                // Another way would be to change the reference as well, but I feel like the code would be less clean.
-            })
-            for(let objType in data['objects']) {
-                if(Object.keys(Modules.Objects.types).indexOf(objType) > -1) {
-                    Modules.Objects.currentObjects[objType] = []
-                    for(let objData of data['objects'][objType]) {
-                        let obj = new Modules.Objects.types[objType](...objData)
-                        Modules.Objects.currentObjects[objType].push(obj)
-                        Modules.Objects.currentObjectsByName[obj.name] = obj
-                    }
-                } else {
-                    error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
-                }
-            }
-            
-            // Updating object dependencies.
-            for(let objName in Modules.Objects.currentObjectsByName)
-                Modules.Objects.currentObjectsByName[objName].update()
-            
-            // Importing history
-            if("history" in data)
-                history.unserialize(...data["history"])
-            
-            // Refreshing sidebar
-            if(sidebarSelector.currentIndex == 0) {
-               // For some reason, if we load a file while the tab is on object,
-               // we get stuck in a Qt-side loop? Qt bug or side-effect here, I don't know.
-               sidebarSelector.currentIndex = 1
-               objectLists.update()
-               delayRefreshTimer.start()
-            } else {
-                objectLists.update()
-            }
-        } else {
-            error = qsTr("Invalid file provided.")
-        }
-        if(error != "") {
-            console.log(error)
-            alert.show(qsTr("Could not save file: ") + error)
-            // TODO: Error handling
-            return
-        }
-        drawCanvas.requestPaint()
-        alert.show(qsTr("Loaded file '%1'.").arg(basename))
-        history.saved = true
     }
     
     Timer {
@@ -328,6 +204,22 @@ ApplicationWindow {
     }
     
     /*!
+        \qmlmethod void LogarithmPlotter::updateObjectsLists()
+        Updates the objects lists when loading a file.
+    */
+    function updateObjectsLists() {
+        if(sidebarSelector.currentIndex === 0) {
+            // For some reason, if we load a file while the tab is on object,
+            // we get stuck in a Qt-side loop? Qt bug or side-effect here, I don't know.
+            sidebarSelector.currentIndex = 1
+            objectLists.update()
+            delayRefreshTimer.start()
+        } else {
+            objectLists.update()
+        }
+    }
+    
+    /*!
         \qmlmethod void LogarithmPlotter::copyDiagramToClipboard()
         Copies the current diagram image to the clipboard.
     */
@@ -335,7 +227,7 @@ ApplicationWindow {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
-        alert.show(qsTr("Copied plot screenshot to clipboard!"))
+        alert.show(qsTranslate('io', "Copied plot screenshot to clipboard!"))
     }
     
     /*!
@@ -350,11 +242,11 @@ ApplicationWindow {
     
     Menu {
         id: updateMenu
-        title: qsTr("&Update")
+        title: qsTranslate('io', "&Update")
         Action {
-            text: qsTr("&Update LogarithmPlotter")
+            text: qsTranslate('io', "&Update LogarithmPlotter")
             icon.name: 'update'
-            onTriggered: Qt.openUrlExternally("https://dev.apps.ad5001.eu/logarithmplotter")
+            onTriggered: Qt.openUrlExternally("https://apps.ad5001.eu/logarithmplotter/")
         }
     }
     

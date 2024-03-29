@@ -4,8 +4,8 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../logarithmplotter.py" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
+        <location filename="../logarithmplotter.py" line="124"/>
         <source>About LogarithmPlotter</source>
         <translation>À propos de LogarithmPlotter</translation>
     </message>
@@ -203,13 +203,13 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="191"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="209"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="192"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="210"/>
         <source>+ Create new %1</source>
         <translation>+ Créer un nouvel objet %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="310"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="311"/>
         <source>Pick on graph</source>
         <translation>Prendre la position sur le graphe</translation>
     </message>
@@ -261,32 +261,32 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation>Changer les propriétés de %1 %2</translation>
+        <translation type="vanished">Changer les propriétés de %1 %2</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="vanished">Nom</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation>Étiquette</translation>
+        <translation type="vanished">Étiquette</translation>
     </message>
     <message>
         <source>null</source>
-        <translation>vide</translation>
+        <translation type="vanished">vide</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>nom</translation>
+        <translation type="vanished">nom</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation>nom + valeur</translation>
+        <translation type="vanished">nom + valeur</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
         <translatorcomment>Traduction non litéralle pour éviter les problèmes de genre.</translatorcomment>
-        <translation>+ Créer un nouvel objet %1</translation>
+        <translation type="vanished">+ Créer un nouvel objet %1</translation>
     </message>
 </context>
 <context>
@@ -445,64 +445,52 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 <context>
     <name>LogarithmPlotter</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="98"/>
         <source>Objects</source>
-        <translation>Objets</translation>
+        <translation type="vanished">Objets</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="104"/>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation type="vanished">Paramètres</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="110"/>
         <source>History</source>
-        <translation>Historique</translation>
+        <translation type="vanished">Historique</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="229"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Graphe sauvegardé dans &apos;%1&apos;.</translation>
+        <translation type="vanished">Graphe sauvegardé dans &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="239"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation>Chargement du fichier &apos;%1&apos;.</translation>
+        <translation type="vanished">Chargement du fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="282"/>
         <source>Unknown object type: %1.</source>
-        <translation>Type d&apos;objet inconnu : %1.</translation>
+        <translation type="vanished">Type d&apos;objet inconnu : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
         <source>Invalid file provided.</source>
-        <translation>Fichier fourni invalide.</translation>
+        <translation type="vanished">Fichier fourni invalide.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="309"/>
         <source>Could not save file: </source>
-        <translation>Impossible de sauvegarder le fichier : </translation>
+        <translation type="vanished">Impossible de sauvegarder le fichier : </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="314"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation>Fichier &apos;%1&apos; chargé.</translation>
+        <translation type="vanished">Fichier &apos;%1&apos; chargé.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="347"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation>Image du graphe copiée dans le presse-papiers !</translation>
+        <translation type="vanished">Image du graphe copiée dans le presse-papiers !</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="362"/>
         <source>&amp;Update</source>
-        <translation>&amp;Mise à jour</translation>
+        <translation type="vanished">&amp;Mise à jour</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="364"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>&amp;Mettre à jour LogarithmPlotter</translation>
+        <translation type="vanished">&amp;Mettre à jour LogarithmPlotter</translation>
     </message>
 </context>
 <context>
@@ -527,23 +515,23 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation>Cacher l&apos;objet %1 %2</translation>
+        <translation type="vanished">Cacher l&apos;objet %1 %2</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation>Montrer l&apos;objet %1 %2</translation>
+        <translation type="vanished">Montrer l&apos;objet %1 %2</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
-        <translation>Définir la position de l&apos;objet %1 %2</translation>
+        <translation type="vanished">Définir la position de l&apos;objet %1 %2</translation>
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation>Supprimer l&apos;objet %1 %2</translation>
+        <translation type="vanished">Supprimer l&apos;objet %1 %2</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation>Choisissez une nouvelle couleur pour %1 %2</translation>
+        <translation type="vanished">Choisissez une nouvelle couleur pour %1 %2</translation>
     </message>
 </context>
 <context>
@@ -583,7 +571,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation>Placement sur la grille</translation>
+        <translation type="vanished">Placement sur la grille</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -611,7 +599,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Cacher les paramètres du pointeur</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="316"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="317"/>
         <source>(no pick selected)</source>
         <translation>(aucun axe sélectionné)</translation>
     </message>
@@ -824,31 +812,31 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <name>color</name>
     <message>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation>%1 %2 a été re colorisé du %3 au %4.</translation>
+        <translation type="vanished">%1 %2 a été re colorisé du %3 au %4.</translation>
     </message>
 </context>
 <context>
     <name>comment</name>
     <message>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation>Par exemple : R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
+        <translation type="vanished">Par exemple : R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation>Les paramètres suivants sont utilisés lorsque le domaine de définition est un ensemble non-continu. (Ex : ℕ, ℤ, des ensembles comme {0;3}…)</translation>
+        <translation type="vanished">Les paramètres suivants sont utilisés lorsque le domaine de définition est un ensemble non-continu. (Ex : ℕ, ℤ, des ensembles comme {0;3}…)</translation>
     </message>
     <message>
         <source>Note: Specify the probability for each value.</source>
-        <translation>Note : Spécifiez la probabilité pour chaque valeur.</translation>
+        <translation type="vanished">Note : Spécifiez la probabilité pour chaque valeur.</translation>
     </message>
     <message>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
         <translatorcomment>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁...</translatorcomment>
-        <translation>Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁…</translation>
+        <translation type="vanished">Note : Utilisez %1[n] pour faire référence à %1ₙ, %1[n+1] pour %1ₙ₊₁…</translation>
     </message>
     <message>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation>Si vous avez activé le rendu latex, vous pouvez utiliser les balises latex entre $$ pour créer des équations.</translation>
+        <translation type="vanished">Si vous avez activé le rendu latex, vous pouvez utiliser les balises latex entre $$ pour créer des équations.</translation>
     </message>
 </context>
 <context>
@@ -867,25 +855,25 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <name>create</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Nouvel objet %1 %2 créé.</translation>
+        <translation type="vanished">Nouvel objet %1 %2 créé.</translation>
     </message>
 </context>
 <context>
     <name>delete</name>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 supprimé(e).</translation>
+        <translation type="vanished">%1 %2 supprimé(e).</translation>
     </message>
 </context>
 <context>
     <name>editproperty</name>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
+        <translation type="vanished">%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
     </message>
     <message>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation>%1 de %2 modifiée de %3 à %4.</translation>
+        <translation type="vanished">%1 de %2 modifiée de %3 à %4.</translation>
     </message>
 </context>
 <context>
@@ -952,11 +940,11 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
     <message>
         <source>Function definition is not permitted.</source>
-        <translation>La définition de fonctions n&apos;est pas autorisée.</translation>
+        <translation type="vanished">La définition de fonctions n&apos;est pas autorisée.</translation>
     </message>
     <message>
         <source>Expected variable for assignment.</source>
-        <translation>Une variable est attendue pour l&apos;affectation.</translation>
+        <translation type="vanished">Une variable est attendue pour l&apos;affectation.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
@@ -1050,7 +1038,7 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Dépendance circulaire détectée. Les objets %1 dépendent de %2.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="144"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1061,7 +1049,7 @@ Evaluated expression: %3</source>
 Formule analysée : %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="178"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="150"/>
         <source>Error while attempting to draw %1 %2:
 %3
 
@@ -1075,7 +1063,7 @@ La dernière modification a été annulée.</translation>
 <context>
     <name>expression</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="140"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="141"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="190"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Erreur de syntaxe</translation>
@@ -1092,7 +1080,7 @@ Evaluated expression: %3</source>
 Formule analysée : %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="175"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="147"/>
         <source>LogarithmPlotter - Drawing error</source>
         <translation>LogarithmPlotter - Erreur</translation>
     </message>
@@ -1101,63 +1089,126 @@ Formule analysée : %3</translation>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation>Fonction</translation>
+        <translation type="vanished">Fonction</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation>Fonctions</translation>
+        <translation type="vanished">Fonctions</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation>Gain de Bode</translation>
+        <translation type="vanished">Gain de Bode</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation>Gains de Bode</translation>
+        <translation type="vanished">Gains de Bode</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation>passe-bas</translation>
+        <translation type="vanished">passe-bas</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation>passe-haut</translation>
+        <translation type="vanished">passe-haut</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Nouvel objet %1 %2 créé.</translation>
+        <translation type="vanished">Nouvel objet %1 %2 créé.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 supprimé(e).</translation>
+        <translation type="vanished">%1 %2 supprimé(e).</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
+        <translation type="vanished">%1 de %2 %3 modifiée de &quot;%4&quot; à &quot;%5&quot;.</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 affiché(e).</translation>
+        <translation type="vanished">%1 %2 affiché(e).</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 cachée(e).</translation>
+        <translation type="vanished">%1 %2 cachée(e).</translation>
     </message>
     <message>
         <source>Name of %1 %2 changed to %3.</source>
-        <translation>Le nom de %1 %2 a été changé en %3.</translation>
+        <translation type="vanished">Le nom de %1 %2 a été changé en %3.</translation>
+    </message>
+</context>
+<context>
+    <name>io</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="89"/>
+        <source>Objects</source>
+        <translation type="unfinished">Objets</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="95"/>
+        <source>Settings</source>
+        <translation type="unfinished">Paramètres</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="101"/>
+        <source>History</source>
+        <translation type="unfinished">Historique</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="220"/>
+        <source>Saved plot to &apos;%1&apos;.</source>
+        <translation type="unfinished">Graphe sauvegardé dans &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="230"/>
+        <source>Loading file &apos;%1&apos;.</source>
+        <translation type="unfinished">Chargement du fichier &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="273"/>
+        <source>Unknown object type: %1.</source>
+        <translation type="unfinished">Type d&apos;objet inconnu : %1.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="296"/>
+        <source>Invalid file provided.</source>
+        <translation type="unfinished">Fichier fourni invalide.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="300"/>
+        <source>Could not save file: </source>
+        <translation type="unfinished">Impossible de sauvegarder le fichier : </translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
+        <source>Loaded file &apos;%1&apos;.</source>
+        <translation type="unfinished">Fichier &apos;%1&apos; chargé.</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="354"/>
+        <source>Copied plot screenshot to clipboard!</source>
+        <translation type="unfinished">Image du graphe copiée dans le presse-papiers !</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="369"/>
+        <source>&amp;Update</source>
+        <translation type="unfinished">&amp;Mise à jour</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="371"/>
+        <source>&amp;Update LogarithmPlotter</source>
+        <translation type="unfinished">&amp;Mettre à jour LogarithmPlotter</translation>
     </message>
 </context>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="72"/>
+        <location filename="../util/latex.py" line="75"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1166,12 +1217,12 @@ Si vous avez déjà installé une distribution LaTeX, assurez-vous qu&apos;elle 
 Sinon, vous pouvez télécharger une distribution LaTeX comme TeX Live à l&apos;adresse https://tug.org/texlive/.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="76"/>
+        <location filename="../util/latex.py" line="79"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG n&apos;a pas été trouvé. Assurez-vous de l&apos;inclure dans votre distribution LaTeX.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="158"/>
+        <location filename="../util/latex.py" line="160"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1184,7 +1235,7 @@ Le processus &apos;{}&apos; s&apos;est terminé par un code de retour non nul {}
 Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c&apos;est le cas.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="166"/>
+        <location filename="../util/latex.py" line="172"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1196,316 +1247,296 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     </message>
 </context>
 <context>
-    <name>main</name>
-    <message>
-        <location filename="../util/helper.py" line="98"/>
-        <source>Could not open file &quot;{}&quot;:
-{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="100"/>
-        <source>Could not open file: &quot;{}&quot;
-File does not exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../util/helper.py" line="155"/>
-        <source>Built with PySide6 (Qt) v{} and python v{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>name</name>
     <message>
         <source>%1 %2 renamed to %3.</source>
-        <translation>%1 %2 renommé(e) en %3.</translation>
+        <translation type="vanished">%1 %2 renommé(e) en %3.</translation>
     </message>
 </context>
 <context>
     <name>parameters</name>
     <message>
         <source>above</source>
-        <translation>↑ Au dessus</translation>
+        <translation type="vanished">↑ Au dessus</translation>
     </message>
     <message>
         <source>below</source>
-        <translation>↓ En dessous</translation>
+        <translation type="vanished">↓ En dessous</translation>
     </message>
     <message>
         <source>left</source>
-        <translation>← À gauche</translation>
+        <translation type="vanished">← À gauche</translation>
     </message>
     <message>
         <source>right</source>
-        <translation>→ À droite</translation>
+        <translation type="vanished">→ À droite</translation>
     </message>
     <message>
         <source>above-left</source>
-        <translation>↖ Au dessus à gauche</translation>
+        <translation type="vanished">↖ Au dessus à gauche</translation>
     </message>
     <message>
         <source>above-right</source>
-        <translation>↗ Au dessus à droite</translation>
+        <translation type="vanished">↗ Au dessus à droite</translation>
     </message>
     <message>
         <source>below-left</source>
-        <translation>↙ En dessous à gauche</translation>
+        <translation type="vanished">↙ En dessous à gauche</translation>
     </message>
     <message>
         <source>below-right</source>
-        <translation>↘ En dessous à droite</translation>
+        <translation type="vanished">↘ En dessous à droite</translation>
     </message>
     <message>
         <source>center</source>
-        <translation>&gt;|&lt; Centré</translation>
+        <translation type="vanished">&gt;|&lt; Centré</translation>
     </message>
     <message>
         <source>top</source>
-        <translation>↑ Au dessus</translation>
+        <translation type="vanished">↑ Au dessus</translation>
     </message>
     <message>
         <source>bottom</source>
-        <translation>↓ En dessous</translation>
+        <translation type="vanished">↓ En dessous</translation>
     </message>
     <message>
         <source>top-left</source>
-        <translation>↖ Au dessus à gauche</translation>
+        <translation type="vanished">↖ Au dessus à gauche</translation>
     </message>
     <message>
         <source>top-right</source>
-        <translation>↗ Au dessus à droite</translation>
+        <translation type="vanished">↗ Au dessus à droite</translation>
     </message>
     <message>
         <source>bottom-left</source>
-        <translation>↙ En dessous à gauche</translation>
+        <translation type="vanished">↙ En dessous à gauche</translation>
     </message>
     <message>
         <source>bottom-right</source>
-        <translation>↘ En dessous à droite</translation>
+        <translation type="vanished">↘ En dessous à droite</translation>
     </message>
     <message>
         <source>application</source>
-        <translation>Application</translation>
+        <translation type="vanished">Application</translation>
     </message>
     <message>
         <source>function</source>
-        <translation>Fonction</translation>
+        <translation type="vanished">Fonction</translation>
     </message>
     <message>
         <source>high</source>
-        <translation>Haut</translation>
+        <translation type="vanished">Haut</translation>
     </message>
     <message>
         <source>low</source>
-        <translation>Bas</translation>
+        <translation type="vanished">Bas</translation>
     </message>
     <message>
         <source>Next to target</source>
-        <translation>A côté de la cible</translation>
+        <translation type="vanished">A côté de la cible</translation>
     </message>
     <message>
         <source>With label</source>
-        <translation>Avec l&apos;étiquette</translation>
+        <translation type="vanished">Avec l&apos;étiquette</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation>Caché</translation>
+        <translation type="vanished">Caché</translation>
     </message>
 </context>
 <context>
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation>Phase de Bode</translation>
+        <translation type="vanished">Phase de Bode</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation>Phases de Bode</translation>
+        <translation type="vanished">Phases de Bode</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation>Point</translation>
+        <translation type="vanished">Point</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation>Points</translation>
+        <translation type="vanished">Points</translation>
     </message>
 </context>
 <context>
     <name>position</name>
     <message>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation>%1 %2 a été déplacé depuis &quot;%3&quot; vers &quot;%4&quot;.</translation>
+        <translation type="vanished">%1 %2 a été déplacé depuis &quot;%3&quot; vers &quot;%4&quot;.</translation>
     </message>
     <message>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation>%1 a été déplacé depuis %2 vers %3.</translation>
+        <translation type="vanished">%1 a été déplacé depuis %2 vers %3.</translation>
     </message>
 </context>
 <context>
     <name>prop</name>
     <message>
         <source>expression</source>
-        <translation>Expression</translation>
+        <translation type="vanished">Expression</translation>
     </message>
     <message>
         <source>definitionDomain</source>
-        <translation>Domaine de définition</translation>
+        <translation type="vanished">Domaine de définition</translation>
     </message>
     <message>
         <source>destinationDomain</source>
-        <translation>Portée</translation>
+        <translation type="vanished">Portée</translation>
     </message>
     <message>
         <source>labelPosition</source>
-        <translation>Position de l&apos;étiquette</translation>
+        <translation type="vanished">Position de l&apos;étiquette</translation>
     </message>
     <message>
         <source>displayMode</source>
-        <translation>Mode d&apos;affichage</translation>
+        <translation type="vanished">Mode d&apos;affichage</translation>
     </message>
     <message>
         <source>labelX</source>
-        <translation>Position en X de l&apos;étiquette</translation>
+        <translation type="vanished">Position en X de l&apos;étiquette</translation>
     </message>
     <message>
         <source>drawPoints</source>
-        <translation>Afficher les points</translation>
+        <translation type="vanished">Afficher les points</translation>
     </message>
     <message>
         <source>drawDashedLines</source>
-        <translation>Afficher les pointillés</translation>
+        <translation type="vanished">Afficher les pointillés</translation>
     </message>
     <message>
         <source>om_0</source>
-        <translation>ω₀</translation>
+        <translation type="vanished">ω₀</translation>
     </message>
     <message>
         <source>pass</source>
-        <translation>Passe</translation>
+        <translation type="vanished">Passe</translation>
     </message>
     <message>
         <source>gain</source>
-        <translation>Gain</translation>
+        <translation type="vanished">Gain</translation>
     </message>
     <message>
         <source>omGraduation</source>
-        <translation>Afficher la graduation sur ω₀</translation>
+        <translation type="vanished">Afficher la graduation sur ω₀</translation>
     </message>
     <message>
         <source>phase</source>
-        <translation>Phase</translation>
+        <translation type="vanished">Phase</translation>
     </message>
     <message>
         <source>unit</source>
-        <translation>Unité de la phase</translation>
+        <translation type="vanished">Unité de la phase</translation>
     </message>
     <message>
         <source>x</source>
-        <translation>X</translation>
+        <translation type="vanished">X</translation>
     </message>
     <message>
         <source>y</source>
-        <translation>Y</translation>
+        <translation type="vanished">Y</translation>
     </message>
     <message>
         <source>pointStyle</source>
-        <translation>Style du point</translation>
+        <translation type="vanished">Style du point</translation>
     </message>
     <message>
         <source>probabilities</source>
-        <translation>Liste de probabilités</translation>
+        <translation type="vanished">Liste de probabilités</translation>
     </message>
     <message>
         <source>text</source>
-        <translation>Contenu</translation>
+        <translation type="vanished">Contenu</translation>
     </message>
     <message>
         <source>disableLatex</source>
-        <translation>Désactiver le rendu LaTeX pour ce texte</translation>
+        <translation type="vanished">Désactiver le rendu LaTeX pour ce texte</translation>
     </message>
     <message>
         <source>targetElement</source>
-        <translation>Objet à cibler</translation>
+        <translation type="vanished">Objet à cibler</translation>
     </message>
     <message>
         <source>approximate</source>
-        <translation>Afficher la valeur approximative</translation>
+        <translation type="vanished">Afficher la valeur approximative</translation>
     </message>
     <message>
         <source>rounding</source>
-        <translation>Arrondi</translation>
+        <translation type="vanished">Arrondi</translation>
     </message>
     <message>
         <source>displayStyle</source>
-        <translation>Style d&apos;affichage</translation>
+        <translation type="vanished">Style d&apos;affichage</translation>
     </message>
     <message>
         <source>targetValuePosition</source>
-        <translation>Position de la valeur de la cible</translation>
+        <translation type="vanished">Position de la valeur de la cible</translation>
     </message>
     <message>
         <source>defaultExpression</source>
-        <translation>Expression</translation>
+        <translation type="vanished">Expression</translation>
     </message>
     <message>
         <source>baseValues</source>
-        <translation>Valeurs d&apos;initialisation</translation>
+        <translation type="vanished">Valeurs d&apos;initialisation</translation>
     </message>
     <message>
         <source>color</source>
-        <translation>Couleur</translation>
+        <translation type="vanished">Couleur</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation>Répartition</translation>
+        <translation type="vanished">Répartition</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation>Fonctions de répartition</translation>
+        <translation type="vanished">Fonctions de répartition</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation>Suite</translation>
+        <translation type="vanished">Suite</translation>
     </message>
     <message>
         <source>Sequences</source>
-        <translation>Suites</translation>
+        <translation type="vanished">Suites</translation>
     </message>
 </context>
 <context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation>Sommes des gains de Bode</translation>
+        <translation type="vanished">Sommes des gains de Bode</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation>Somme des phases de Bode</translation>
+        <translation type="vanished">Somme des phases de Bode</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation>Texte</translation>
+        <translation type="vanished">Texte</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation>Textes</translation>
+        <translation type="vanished">Textes</translation>
     </message>
 </context>
 <context>
@@ -1516,7 +1547,7 @@ File does not exist.</source>
         <translation>Une mise à jour de LogarithmPlotter (v{}) est disponible.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="60"/>
+        <location filename="../util/update.py" line="58"/>
         <source>No update available.</source>
         <translation>À jour.</translation>
     </message>
@@ -1534,37 +1565,37 @@ File does not exist.</source>
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="71"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
         <source>Usage: %1</source>
         <translation>Emploi : %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="81"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="97"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="110"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
         <source>Usage: %1 or
 %2</source>
         <translation>Emploi : %1 ou
 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="93"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : Objet exécutable&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : fonction chaîne&gt;, &lt;variable&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="105"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f : Objet exécutable&gt;, &lt;x : nombre&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="106"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f : fonction chaîne&gt;, &lt;variable&gt;, &lt;x : nombre&gt;)</translation>
     </message>
@@ -1573,22 +1604,22 @@ File does not exist.</source>
     <name>visibility</name>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 affiché(e).</translation>
+        <translation type="vanished">%1 %2 affiché(e).</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 cachée(e).</translation>
+        <translation type="vanished">%1 %2 cachée(e).</translation>
     </message>
 </context>
 <context>
     <name>xcursor</name>
     <message>
         <source>X Cursor</source>
-        <translation>Curseur X</translation>
+        <translation type="vanished">Curseur X</translation>
     </message>
     <message>
         <source>X Cursors</source>
-        <translation>Curseurs X</translation>
+        <translation type="vanished">Curseurs X</translation>
     </message>
 </context>
 </TS>

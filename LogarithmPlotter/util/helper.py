@@ -31,11 +31,12 @@ from urllib.error import HTTPError, URLError
 from LogarithmPlotter import __VERSION__
 from LogarithmPlotter.util import config
 
+
 class ChangelogFetcher(QRunnable):
     def __init__(self, helper):
         QRunnable.__init__(self)
         self.helper = helper
-        
+
     def run(self):
         msg_text = "Unknown changelog error."
         try:
@@ -43,17 +44,19 @@ class ChangelogFetcher(QRunnable):
             r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + __VERSION__)
             lines = r.readlines()
             r.close()
-            msg_text =  "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
+            msg_text = "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
         except HTTPError as e:
-            msg_text = QCoreApplication.translate("changelog","Could not fetch changelog: Server error {}.").format(str(e.code))
+            msg_text = QCoreApplication.translate("changelog", "Could not fetch changelog: Server error {}.").format(
+                str(e.code))
         except URLError as e:
-            msg_text = QCoreApplication.translate("changelog","Could not fetch update: {}.").format(str(e.reason))
+            msg_text = QCoreApplication.translate("changelog", "Could not fetch update: {}.").format(str(e.reason))
         self.helper.gotChangelog.emit(msg_text)
+
 
 class Helper(QObject):
     changelogFetched = Signal(str)
     gotChangelog = Signal(str)
-    
+
     def __init__(self, cwd: str, tmpfile: str):
         QObject.__init__(self)
         self.cwd = cwd
@@ -62,7 +65,7 @@ class Helper(QObject):
 
     def fetched(self, changelog: str):
         self.changelogFetched.emit(changelog)
-        
+
     @Slot(str, str)
     def write(self, filename, filedata):
         chdir(self.cwd)
@@ -70,17 +73,17 @@ class Helper(QObject):
             if filename.split(".")[-1] == "lpf":
                 # Add header to file
                 filedata = "LPFv1" + filedata
-            f = open(path.realpath(filename), 'w',  -1, 'utf8')
+            f = open(path.realpath(filename), 'w', -1, 'utf8')
             f.write(filedata)
             f.close()
         chdir(path.dirname(path.realpath(__file__)))
-        
+
     @Slot(str, result=str)
     def load(self, filename):
         chdir(self.cwd)
         data = '{}'
         if path.exists(path.realpath(filename)):
-            f = open(path.realpath(filename), 'r',  -1, 'utf8')
+            f = open(path.realpath(filename), 'r', -1, 'utf8')
             data = f.read()
             f.close()
             try:
@@ -94,10 +97,13 @@ class Helper(QObject):
                     raise Exception(QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.".format(__VERSION__)))
                 else:
                     raise Exception("Invalid LogarithmPlotter file.")
-            except Exception as e: # If file can't be loaded
-                QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file "{}":\n{}').format(filename, e), QMessageBox.Ok) # Cannot parse file
+            except Exception as e:  # If file can't be loaded
+                QMessageBox.warning(None, 'LogarithmPlotter',
+                                    QCoreApplication.translate('main', 'Could not open file "{}":\n{}').format(filename,
+                                                                                                               e),
+                                    QMessageBox.Ok)  # Cannot parse file
         else:
-            QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main','Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok) # Cannot parse file
+            QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main', 'Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok)  # Cannot parse file
         try:
             chdir(path.dirname(path.realpath(__file__)))
         except NotADirectoryError as e:
@@ -105,60 +111,62 @@ class Helper(QObject):
             # See more at https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/1
             pass
         return data
-    
+
     @Slot(result=str)
     def gettmpfile(self):
         return self.tmpfile
-    
+
     @Slot()
     def copyImageToClipboard(self):
         clipboard = QApplication.clipboard()
         clipboard.setImage(QImage(self.tmpfile))
-    
+
     @Slot(result=str)
     def getVersion(self):
         return __VERSION__
-    
+
     @Slot(str, result=str)
     def getSetting(self, namespace):
         return config.getSetting(namespace)
-    
+
     @Slot(str, result=int)
     def getSettingInt(self, namespace):
         return config.getSetting(namespace)
-    
+
     @Slot(str, result=bool)
     def getSettingBool(self, namespace):
         return config.getSetting(namespace)
-    
+
     @Slot(str, str)
     def setSetting(self, namespace, value):
         return config.setSetting(namespace, value)
-    
+
     @Slot(str, bool)
     def setSettingBool(self, namespace, value):
         return config.setSetting(namespace, value)
-    
+
     @Slot(str, int)
     def setSettingInt(self, namespace, value):
         return config.setSetting(namespace, value)
-    
+
     @Slot(str)
     def setLanguage(self, new_lang):
         config.setSetting("language", new_lang)
-    
+
     @Slot(result=str)
     def getDebugInfos(self):
         """
         Returns the version info about Qt, PySide6 & Python
         """
-        return QCoreApplication.translate('main',"Built with PySide6 (Qt) v{} and python v{}").format(PySide6_version, sys_version.split("\n")[0])
-    
+        return QCoreApplication.translate('main', "Built with PySide6 (Qt) v{} and python v{}").format(PySide6_version,
+                                                                                                       sys_version.split(
+                                                                                                           "\n")[0])
+
     @Slot()
     def fetchChangelog(self):
         changelog_cache_path = path.join(path.dirname(path.realpath(__file__)), "CHANGELOG.md")
         print(changelog_cache_path)
-        if path.exists(changelog_cache_path): 
+        if path.exists(changelog_cache_path):
             # We have a cached version of the changelog, for env that don't have access to the internet.
             f = open(changelog_cache_path);
             self.changelogFetched.emit("".join(f.readlines()).strip())
@@ -167,4 +175,3 @@ class Helper(QObject):
             # Fetch it from the internet.
             runnable = ChangelogFetcher(self)
             QThreadPool.globalInstance().start(runnable)
-
