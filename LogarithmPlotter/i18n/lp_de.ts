@@ -260,31 +260,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation type="vanished">Eigenschaften von %1 %2 bearbeiten</translation>
+        <translation>Eigenschaften von %1 %2 bearbeiten</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation type="vanished">Etikett</translation>
+        <translation>Etikett</translation>
     </message>
     <message>
         <source>null</source>
-        <translation type="vanished">leer</translation>
+        <translation>leer</translation>
     </message>
     <message>
         <source>name</source>
-        <translation type="vanished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation type="vanished">Name + Wert</translation>
+        <translation>Name + Wert</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation type="vanished">+ Neues %1objekt erstellen</translation>
+        <translation>+ Neues %1objekt erstellen</translation>
     </message>
 </context>
 <context>
@@ -438,51 +438,51 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <name>LogarithmPlotter</name>
     <message>
         <source>Objects</source>
-        <translation type="vanished">Objekte</translation>
+        <translation>Objekte</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="vanished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="vanished">Verlauf</translation>
+        <translation>Verlauf</translation>
     </message>
     <message>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="vanished">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
+        <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="vanished">Laden der Datei &apos;%1&apos;.</translation>
+        <translation>Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Unknown object type: %1.</source>
-        <translation type="vanished">Unbekannter Objekttyp: %1.</translation>
+        <translation>Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
         <source>Invalid file provided.</source>
-        <translation type="vanished">Ungültige Datei angegeben.</translation>
+        <translation>Ungültige Datei angegeben.</translation>
     </message>
     <message>
         <source>Could not save file: </source>
-        <translation type="vanished">Die Datei konnte nicht gespeichert werden: </translation>
+        <translation>Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="vanished">Geladene Datei &apos;%1&apos;.</translation>
+        <translation>Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation type="vanished">Grafik in die Zwischenablage kopiert!</translation>
+        <translation>Grafik in die Zwischenablage kopiert!</translation>
     </message>
     <message>
         <source>&amp;Update</source>
-        <translation type="vanished">&amp;Aktualisieren</translation>
+        <translation>&amp;Aktualisieren</translation>
     </message>
     <message>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation type="vanished">LogarithmPlotter &amp;aktualisieren</translation>
+        <translation>LogarithmPlotter &amp;aktualisieren</translation>
     </message>
 </context>
 <context>
@@ -507,23 +507,23 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation type="vanished">Ausblenden %1 %2</translation>
+        <translation>Ausblenden %1 %2</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation type="vanished">Anzeigen %1 %2</translation>
+        <translation>Anzeigen %1 %2</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
-        <translation type="vanished">Position von %1 %2 einstellen</translation>
+        <translation>Position von %1 %2 einstellen</translation>
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation type="vanished">%1 %2 löschen</translation>
+        <translation>%1 %2 löschen</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation type="vanished">Neue Farbe für %1 %2 auswählen</translation>
+        <translation>Neue Farbe für %1 %2 auswählen</translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation type="vanished">Am Gitter einrasten</translation>
+        <translation>Am Gitter einrasten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -804,30 +804,30 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <name>color</name>
     <message>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation type="vanished">%1 %2 wurde von %3 bis %4 umgefärbt.</translation>
+        <translation>%1 %2 wurde von %3 bis %4 umgefärbt.</translation>
     </message>
 </context>
 <context>
     <name>comment</name>
     <message>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation type="vanished">Beispiel: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ-*), ]0;1[, {3;4;5}</translation>
+        <translation>Beispiel: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ-*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation type="vanished">Die folgenden Parameter werden verwendet, wenn der Definitionsbereich eine nicht kontinuierliche Menge ist. (Beispiel: ℕ, ℤ, Mengen wie {0;3}...)</translation>
+        <translation>Die folgenden Parameter werden verwendet, wenn der Definitionsbereich eine nicht kontinuierliche Menge ist. (Beispiel: ℕ, ℤ, Mengen wie {0;3}...)</translation>
     </message>
     <message>
         <source>Note: Specify the probability for each value.</source>
-        <translation type="vanished">Hinweis: Geben Sie die Wahrscheinlichkeit für jeden Wert an.</translation>
+        <translation>Hinweis: Geben Sie die Wahrscheinlichkeit für jeden Wert an.</translation>
     </message>
     <message>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
-        <translation type="vanished">Hinweis: Verwenden Sie %1[n], um sich auf %1ₙ zu beziehen, %1[n+1] für %1ₙ₊₁…</translation>
+        <translation>Hinweis: Verwenden Sie %1[n], um sich auf %1ₙ zu beziehen, %1[n+1] für %1ₙ₊₁…</translation>
     </message>
     <message>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation type="vanished">Wenn Sie Latex aktiviert haben, können Sie Latex-Auszeichnungen zwischen $$ verwenden, um Gleichungen zu erstellen.</translation>
+        <translation>Wenn Sie Latex aktiviert haben, können Sie Latex-Auszeichnungen zwischen $$ verwenden, um Gleichungen zu erstellen.</translation>
     </message>
 </context>
 <context>
@@ -846,25 +846,25 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <name>create</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation type="vanished">Neu %1 %2 erstellt.</translation>
+        <translation>Neu %1 %2 erstellt.</translation>
     </message>
 </context>
 <context>
     <name>delete</name>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation type="vanished">%1 %2 gelöscht.</translation>
+        <translation>%1 %2 gelöscht.</translation>
     </message>
 </context>
 <context>
     <name>editproperty</name>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="vanished">%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
+        <translation>%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
     </message>
     <message>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation type="vanished">%1 von %2 wurde von %3 auf %4 geändert.</translation>
+        <translation>%1 von %2 wurde von %3 auf %4 geändert.</translation>
     </message>
 </context>
 <context>
@@ -931,11 +931,11 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Function definition is not permitted.</source>
-        <translation type="vanished">Funktionsdefinition ist nicht erlaubt.</translation>
+        <translation>Funktionsdefinition ist nicht erlaubt.</translation>
     </message>
     <message>
         <source>Expected variable for assignment.</source>
-        <translation type="vanished">Erwartete Variable für Zuweisung.</translation>
+        <translation>Erwartete Variable für Zuweisung.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
@@ -1080,57 +1080,57 @@ Ausdruck analysiert: %3</translation>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation type="vanished">Funktion</translation>
+        <translation>Funktion</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation type="vanished">Funktionen</translation>
+        <translation>Funktionen</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation type="vanished">Bode-Magnitude</translation>
+        <translation>Bode-Magnitude</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation type="vanished">Bode-Magnituden</translation>
+        <translation>Bode-Magnituden</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation type="vanished">Tiefpass</translation>
+        <translation>Tiefpass</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation type="vanished">Hochpass</translation>
+        <translation>Hochpass</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation type="vanished">Neu %1 %2 erstellt.</translation>
+        <translation>Neu %1 %2 erstellt.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation type="vanished">%1 %2 gelöscht.</translation>
+        <translation>%1 %2 gelöscht.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="vanished">%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
+        <translation>%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation type="vanished">%1 %2 angezeigt.</translation>
+        <translation>%1 %2 angezeigt.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation type="vanished">%1 %2 ausgeblendet.</translation>
+        <translation>%1 %2 ausgeblendet.</translation>
     </message>
     <message>
         <source>Name of %1 %2 changed to %3.</source>
-        <translation type="vanished">Der Name von %1 %2 wurde in %3 geändert.</translation>
+        <translation>Der Name von %1 %2 wurde in %3 geändert.</translation>
     </message>
 </context>
 <context>
@@ -1241,293 +1241,293 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <name>name</name>
     <message>
         <source>%1 %2 renamed to %3.</source>
-        <translation type="vanished">%1 %2 umbenannt in %3.</translation>
+        <translation>%1 %2 umbenannt in %3.</translation>
     </message>
 </context>
 <context>
     <name>parameters</name>
     <message>
         <source>above</source>
-        <translation type="vanished">↑ Über</translation>
+        <translation>↑ Über</translation>
     </message>
     <message>
         <source>below</source>
-        <translation type="vanished">↓ Unter</translation>
+        <translation>↓ Unter</translation>
     </message>
     <message>
         <source>left</source>
-        <translation type="vanished">← Links</translation>
+        <translation>← Links</translation>
     </message>
     <message>
         <source>right</source>
-        <translation type="vanished">→ Rechts</translation>
+        <translation>→ Rechts</translation>
     </message>
     <message>
         <source>above-left</source>
-        <translation type="vanished">↖ Oben links</translation>
+        <translation>↖ Oben links</translation>
     </message>
     <message>
         <source>above-right</source>
-        <translation type="vanished">↗ Oben rechts</translation>
+        <translation>↗ Oben rechts</translation>
     </message>
     <message>
         <source>below-left</source>
-        <translation type="vanished">↙ Unten links</translation>
+        <translation>↙ Unten links</translation>
     </message>
     <message>
         <source>below-right</source>
-        <translation type="vanished">↘ Unten rechts</translation>
+        <translation>↘ Unten rechts</translation>
     </message>
     <message>
         <source>center</source>
-        <translation type="vanished">&gt;|&lt; Zentrum</translation>
+        <translation>&gt;|&lt; Zentrum</translation>
     </message>
     <message>
         <source>top</source>
-        <translation type="vanished">↑ Über</translation>
+        <translation>↑ Über</translation>
     </message>
     <message>
         <source>bottom</source>
-        <translation type="vanished">↓ Unter</translation>
+        <translation>↓ Unter</translation>
     </message>
     <message>
         <source>top-left</source>
-        <translation type="vanished">↖ Oben links</translation>
+        <translation>↖ Oben links</translation>
     </message>
     <message>
         <source>top-right</source>
-        <translation type="vanished">↗ Oben rechts</translation>
+        <translation>↗ Oben rechts</translation>
     </message>
     <message>
         <source>bottom-left</source>
-        <translation type="vanished">↙ Unten links</translation>
+        <translation>↙ Unten links</translation>
     </message>
     <message>
         <source>bottom-right</source>
-        <translation type="vanished">↘ Unten rechts</translation>
+        <translation>↘ Unten rechts</translation>
     </message>
     <message>
         <source>application</source>
-        <translation type="vanished">Anwendung</translation>
+        <translation>Anwendung</translation>
     </message>
     <message>
         <source>function</source>
-        <translation type="vanished">Funktion</translation>
+        <translation>Funktion</translation>
     </message>
     <message>
         <source>high</source>
-        <translation type="vanished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <source>low</source>
-        <translation type="vanished">Tief</translation>
+        <translation>Tief</translation>
     </message>
     <message>
         <source>Next to target</source>
-        <translation type="vanished">Neben dem Ziel</translation>
+        <translation>Neben dem Ziel</translation>
     </message>
     <message>
         <source>With label</source>
-        <translation type="vanished">Mit Etikett</translation>
+        <translation>Mit Etikett</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="vanished">Versteckt</translation>
+        <translation>Versteckt</translation>
     </message>
 </context>
 <context>
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation type="vanished">Bode-Phase</translation>
+        <translation>Bode-Phase</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation type="vanished">Bode-Phasen</translation>
+        <translation>Bode-Phasen</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation type="vanished">Punkt</translation>
+        <translation>Punkt</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation type="vanished">Punkte</translation>
+        <translation>Punkte</translation>
     </message>
 </context>
 <context>
     <name>position</name>
     <message>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation type="vanished">%1 %2 wurde von &quot;%3&quot; nach &quot;%4&quot; verschoben.</translation>
+        <translation>%1 %2 wurde von &quot;%3&quot; nach &quot;%4&quot; verschoben.</translation>
     </message>
     <message>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation type="vanished">%1 wurde von %2 nach %3 verschoben.</translation>
+        <translation>%1 wurde von %2 nach %3 verschoben.</translation>
     </message>
 </context>
 <context>
     <name>prop</name>
     <message>
         <source>expression</source>
-        <translation type="vanished">Ausdruck</translation>
+        <translation>Ausdruck</translation>
     </message>
     <message>
         <source>definitionDomain</source>
-        <translation type="vanished">Definitionsbereich</translation>
+        <translation>Definitionsbereich</translation>
     </message>
     <message>
         <source>destinationDomain</source>
-        <translation type="vanished">Reichweite</translation>
+        <translation>Reichweite</translation>
     </message>
     <message>
         <source>labelPosition</source>
-        <translation type="vanished">Position des Etiketts</translation>
+        <translation>Position des Etiketts</translation>
     </message>
     <message>
         <source>displayMode</source>
-        <translation type="vanished">Anzeigemodus</translation>
+        <translation>Anzeigemodus</translation>
     </message>
     <message>
         <source>labelX</source>
-        <translation type="vanished">X-Position des Etiketts</translation>
+        <translation>X-Position des Etiketts</translation>
     </message>
     <message>
         <source>drawPoints</source>
-        <translation type="vanished">Unentschiedene Punkte</translation>
+        <translation>Unentschiedene Punkte</translation>
     </message>
     <message>
         <source>drawDashedLines</source>
-        <translation type="vanished">Gestrichelte Linien anzeigen</translation>
+        <translation>Gestrichelte Linien anzeigen</translation>
     </message>
     <message>
         <source>om_0</source>
-        <translation type="vanished">ω₀</translation>
+        <translation>ω₀</translation>
     </message>
     <message>
         <source>pass</source>
-        <translation type="vanished">Pass</translation>
+        <translation>Pass</translation>
     </message>
     <message>
         <source>gain</source>
-        <translation type="vanished">Größenordnung</translation>
+        <translation>Größenordnung</translation>
     </message>
     <message>
         <source>omGraduation</source>
-        <translation type="vanished">Teilung auf ω zeigen</translation>
+        <translation>Teilung auf ω zeigen</translation>
     </message>
     <message>
         <source>phase</source>
-        <translation type="vanished">Phase</translation>
+        <translation>Phase</translation>
     </message>
     <message>
         <source>unit</source>
-        <translation type="vanished">Einheit</translation>
+        <translation>Einheit</translation>
     </message>
     <message>
         <source>x</source>
-        <translation type="vanished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <source>y</source>
-        <translation type="vanished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <source>pointStyle</source>
-        <translation type="vanished">Punkt-Stil</translation>
+        <translation>Punkt-Stil</translation>
     </message>
     <message>
         <source>probabilities</source>
-        <translation type="vanished">Wahrscheinlichkeiten</translation>
+        <translation>Wahrscheinlichkeiten</translation>
     </message>
     <message>
         <source>text</source>
-        <translation type="vanished">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>disableLatex</source>
-        <translation type="vanished">LaTeX-Rendering für diesen Text deaktivieren</translation>
+        <translation>LaTeX-Rendering für diesen Text deaktivieren</translation>
     </message>
     <message>
         <source>targetElement</source>
-        <translation type="vanished">Zielobjekt</translation>
+        <translation>Zielobjekt</translation>
     </message>
     <message>
         <source>approximate</source>
-        <translation type="vanished">Ungefähren Wert anzeigen</translation>
+        <translation>Ungefähren Wert anzeigen</translation>
     </message>
     <message>
         <source>rounding</source>
-        <translation type="vanished">Rundung</translation>
+        <translation>Rundung</translation>
     </message>
     <message>
         <source>displayStyle</source>
-        <translation type="vanished">Stil</translation>
+        <translation>Stil</translation>
     </message>
     <message>
         <source>targetValuePosition</source>
-        <translation type="vanished">Wertposition des Ziels</translation>
+        <translation>Wertposition des Ziels</translation>
     </message>
     <message>
         <source>defaultExpression</source>
-        <translation type="vanished">Standardausdruck</translation>
+        <translation>Standardausdruck</translation>
     </message>
     <message>
         <source>baseValues</source>
-        <translation type="vanished">Initialisierungswerte</translation>
+        <translation>Initialisierungswerte</translation>
     </message>
     <message>
         <source>color</source>
-        <translation type="vanished">Farbe</translation>
+        <translation>Farbe</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation type="vanished">Verteilungsfunktion</translation>
+        <translation>Verteilungsfunktion</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation type="vanished">Verteilungsfunktionen</translation>
+        <translation>Verteilungsfunktionen</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation type="vanished">Folge</translation>
+        <translation>Folge</translation>
     </message>
     <message>
         <source>Sequences</source>
-        <translation type="vanished">Folgen</translation>
+        <translation>Folgen</translation>
     </message>
 </context>
 <context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation type="vanished">Bode-Magnituden Summe</translation>
+        <translation>Bode-Magnituden Summe</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation type="vanished">Bode-Phasen Summe</translation>
+        <translation>Bode-Phasen Summe</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation type="vanished">Text</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation type="vanished">Texte</translation>
+        <translation>Texte</translation>
     </message>
 </context>
 <context>
@@ -1595,22 +1595,22 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <name>visibility</name>
     <message>
         <source>%1 %2 shown.</source>
-        <translation type="vanished">%1 %2 angezeigt.</translation>
+        <translation>%1 %2 angezeigt.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation type="vanished">%1 %2 ausgeblendet.</translation>
+        <translation>%1 %2 ausgeblendet.</translation>
     </message>
 </context>
 <context>
     <name>xcursor</name>
     <message>
         <source>X Cursor</source>
-        <translation type="vanished">X Zeiger</translation>
+        <translation>X Zeiger</translation>
     </message>
     <message>
         <source>X Cursors</source>
-        <translation type="vanished">X Zeiger</translation>
+        <translation>X Zeiger</translation>
     </message>
 </context>
 </TS>

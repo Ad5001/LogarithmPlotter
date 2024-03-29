@@ -260,31 +260,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation type="vanished">%1 %2 tulajdonságainak szerkesztése</translation>
+        <translation>%1 %2 tulajdonságainak szerkesztése</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation type="vanished">Címke tartalom</translation>
+        <translation>Címke tartalom</translation>
     </message>
     <message>
         <source>null</source>
-        <translation type="vanished">üres</translation>
+        <translation>üres</translation>
     </message>
     <message>
         <source>name</source>
-        <translation type="vanished">név</translation>
+        <translation>név</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation type="vanished">név + érték</translation>
+        <translation>név + érték</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation type="vanished">+ Új %1 létrehozása</translation>
+        <translation>+ Új %1 létrehozása</translation>
     </message>
 </context>
 <context>
@@ -438,51 +438,51 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>LogarithmPlotter</name>
     <message>
         <source>Objects</source>
-        <translation type="vanished">Tárgyak</translation>
+        <translation>Tárgyak</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="vanished">Beállítások</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="vanished">Előzmények</translation>
+        <translation>Előzmények</translation>
     </message>
     <message>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="vanished">Ábra mentve ide: „%1”.</translation>
+        <translation>Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="vanished">A(z) „%1” fájl betöltése folyamatban van.</translation>
+        <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
         <source>Unknown object type: %1.</source>
-        <translation type="vanished">Ismeretlen objektumtípus: %1.</translation>
+        <translation>Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
         <source>Invalid file provided.</source>
-        <translation type="vanished">A megadott fájl érvénytelen.</translation>
+        <translation>A megadott fájl érvénytelen.</translation>
     </message>
     <message>
         <source>Could not save file: </source>
-        <translation type="vanished">A fájl mentése nem sikerült: </translation>
+        <translation>A fájl mentése nem sikerült: </translation>
     </message>
     <message>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="vanished">A(z) „%1” fájl betöltve.</translation>
+        <translation>A(z) „%1” fájl betöltve.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation type="vanished">Ábra képernyőkép vágólapra másolva!</translation>
+        <translation>Ábra képernyőkép vágólapra másolva!</translation>
     </message>
     <message>
         <source>&amp;Update</source>
-        <translation type="vanished">&amp;Frissítés</translation>
+        <translation>&amp;Frissítés</translation>
     </message>
     <message>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation type="vanished">A LogarithmPlotter &amp;frissítése</translation>
+        <translation>A LogarithmPlotter &amp;frissítése</translation>
     </message>
 </context>
 <context>
@@ -507,23 +507,23 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation type="vanished">%1 %2 elrejtése</translation>
+        <translation>%1 %2 elrejtése</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation type="vanished">%1 %2 megjelenítése</translation>
+        <translation>%1 %2 megjelenítése</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
-        <translation type="vanished">%1 %2 helye beállítása</translation>
+        <translation>%1 %2 helye beállítása</translation>
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation type="vanished">%1 %2 törlése</translation>
+        <translation>%1 %2 törlése</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation type="vanished">Válasszon új színt a következőhöz: %1 %2</translation>
+        <translation>Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation type="vanished">Rácshoz illesztés</translation>
+        <translation>Rácshoz illesztés</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -804,30 +804,30 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>color</name>
     <message>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation type="vanished">%1 %2 színe %3-ról %4-re változott.</translation>
+        <translation>%1 %2 színe %3-ról %4-re változott.</translation>
     </message>
 </context>
 <context>
     <name>comment</name>
     <message>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
-        <translation type="vanished">Példák: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
+        <translation>Példák: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
-        <translation type="vanished">A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
+        <translation>A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
     </message>
     <message>
         <source>Note: Specify the probability for each value.</source>
-        <translation type="vanished">Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
+        <translation>Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
     </message>
     <message>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
-        <translation type="vanished">Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
+        <translation>Megjegyzés: A(z) %1[n] használatával hivatkozhat erre: %1ₙ, a(z) %1[n+1] használatával hivatkozhat erre: %1ₙ₊₁, …</translation>
     </message>
     <message>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
-        <translation type="vanished">Ha a LaTeX engedélyezve van, a LaTeX-jelölés használható egyenletek létrehozására $$ között.</translation>
+        <translation>Ha a LaTeX engedélyezve van, a LaTeX-jelölés használható egyenletek létrehozására $$ között.</translation>
     </message>
 </context>
 <context>
@@ -846,25 +846,25 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>create</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation type="vanished">Új %1 %2 létrehozva.</translation>
+        <translation>Új %1 %2 létrehozva.</translation>
     </message>
 </context>
 <context>
     <name>delete</name>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation type="vanished">%1 %2 törölve.</translation>
+        <translation>%1 %2 törölve.</translation>
     </message>
 </context>
 <context>
     <name>editproperty</name>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="vanished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
         <source>%1 of %2 changed from %3 to %4.</source>
-        <translation type="vanished">%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
+        <translation>%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
     </message>
 </context>
 <context>
@@ -931,11 +931,11 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <source>Function definition is not permitted.</source>
-        <translation type="vanished">A függvény meghatározása nem engedélyezett.</translation>
+        <translation>A függvény meghatározása nem engedélyezett.</translation>
     </message>
     <message>
         <source>Expected variable for assignment.</source>
-        <translation type="vanished">A hozzárendeléshez várt változó.</translation>
+        <translation>A hozzárendeléshez várt változó.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
@@ -1080,53 +1080,53 @@ Kiértékelt kifejezés: %3</translation>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation type="vanished">Függvény</translation>
+        <translation>Függvény</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation type="vanished">Függvények</translation>
+        <translation>Függvények</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation type="vanished">Bode-nagyságrend</translation>
+        <translation>Bode-nagyságrend</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation type="vanished">Bode-nagyságrendek</translation>
+        <translation>Bode-nagyságrendek</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation type="vanished">aluláteresztő</translation>
+        <translation>aluláteresztő</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation type="vanished">felüláteresztő</translation>
+        <translation>felüláteresztő</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation type="vanished">Új %1 %2 létrehozva.</translation>
+        <translation>Új %1 %2 létrehozva.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation type="vanished">%1 %2 törölve.</translation>
+        <translation>%1 %2 törölve.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="vanished">%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
+        <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation type="vanished">%1 %2 megjelenítve.</translation>
+        <translation>%1 %2 megjelenítve.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation type="vanished">%1 %2 rejtve.</translation>
+        <translation>%1 %2 rejtve.</translation>
     </message>
 </context>
 <context>
@@ -1237,289 +1237,289 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <name>name</name>
     <message>
         <source>%1 %2 renamed to %3.</source>
-        <translation type="vanished">%1 %2 átnevezve erre: %3.</translation>
+        <translation>%1 %2 átnevezve erre: %3.</translation>
     </message>
 </context>
 <context>
     <name>parameters</name>
     <message>
         <source>above</source>
-        <translation type="vanished">↑ Felett</translation>
+        <translation>↑ Felett</translation>
     </message>
     <message>
         <source>below</source>
-        <translation type="vanished">↓ Alatt</translation>
+        <translation>↓ Alatt</translation>
     </message>
     <message>
         <source>left</source>
-        <translation type="vanished">← Balra</translation>
+        <translation>← Balra</translation>
     </message>
     <message>
         <source>right</source>
-        <translation type="vanished">→ Jobbra</translation>
+        <translation>→ Jobbra</translation>
     </message>
     <message>
         <source>above-left</source>
-        <translation type="vanished">↖ Felett, balra</translation>
+        <translation>↖ Felett, balra</translation>
     </message>
     <message>
         <source>above-right</source>
-        <translation type="vanished">↗ Felett, jobbra</translation>
+        <translation>↗ Felett, jobbra</translation>
     </message>
     <message>
         <source>below-left</source>
-        <translation type="vanished">↙ Alatt, balra</translation>
+        <translation>↙ Alatt, balra</translation>
     </message>
     <message>
         <source>below-right</source>
-        <translation type="vanished">↘ Alatt, jobbra</translation>
+        <translation>↘ Alatt, jobbra</translation>
     </message>
     <message>
         <source>center</source>
-        <translation type="vanished">&gt;|&lt; Középre</translation>
+        <translation>&gt;|&lt; Középre</translation>
     </message>
     <message>
         <source>top</source>
-        <translation type="vanished">↑ Felső</translation>
+        <translation>↑ Felső</translation>
     </message>
     <message>
         <source>bottom</source>
-        <translation type="vanished">↓ Alsó</translation>
+        <translation>↓ Alsó</translation>
     </message>
     <message>
         <source>top-left</source>
-        <translation type="vanished">↖ Bal felső</translation>
+        <translation>↖ Bal felső</translation>
     </message>
     <message>
         <source>top-right</source>
-        <translation type="vanished">↗ Jobb felső</translation>
+        <translation>↗ Jobb felső</translation>
     </message>
     <message>
         <source>bottom-left</source>
-        <translation type="vanished">↙ Bal alsó</translation>
+        <translation>↙ Bal alsó</translation>
     </message>
     <message>
         <source>bottom-right</source>
-        <translation type="vanished">↘ Jobb alsó</translation>
+        <translation>↘ Jobb alsó</translation>
     </message>
     <message>
         <source>application</source>
-        <translation type="vanished">Alkalmazás</translation>
+        <translation>Alkalmazás</translation>
     </message>
     <message>
         <source>function</source>
-        <translation type="vanished">Függvény</translation>
+        <translation>Függvény</translation>
     </message>
     <message>
         <source>high</source>
-        <translation type="vanished">Magas</translation>
+        <translation>Magas</translation>
     </message>
     <message>
         <source>low</source>
-        <translation type="vanished">Alul</translation>
+        <translation>Alul</translation>
     </message>
     <message>
         <source>Next to target</source>
-        <translation type="vanished">Cél mellé</translation>
+        <translation>Cél mellé</translation>
     </message>
     <message>
         <source>With label</source>
-        <translation type="vanished">Címkével</translation>
+        <translation>Címkével</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="vanished">Rejtett</translation>
+        <translation>Rejtett</translation>
     </message>
 </context>
 <context>
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation type="vanished">Bode-fázis</translation>
+        <translation>Bode-fázis</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation type="vanished">Bode-fázisok</translation>
+        <translation>Bode-fázisok</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation type="vanished">Pont</translation>
+        <translation>Pont</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation type="vanished">Pontok</translation>
+        <translation>Pontok</translation>
     </message>
 </context>
 <context>
     <name>position</name>
     <message>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
-        <translation type="vanished">%1 %2 áthelyezve innen: „%3” ide: „%4”.</translation>
+        <translation>%1 %2 áthelyezve innen: „%3” ide: „%4”.</translation>
     </message>
     <message>
         <source>Position of %1 set from %2 to %3.</source>
-        <translation type="vanished">%1 áthelyezve innen: %2 ide: %3.</translation>
+        <translation>%1 áthelyezve innen: %2 ide: %3.</translation>
     </message>
 </context>
 <context>
     <name>prop</name>
     <message>
         <source>expression</source>
-        <translation type="vanished">Kifejezés</translation>
+        <translation>Kifejezés</translation>
     </message>
     <message>
         <source>definitionDomain</source>
-        <translation type="vanished">Abszcissza tartomány</translation>
+        <translation>Abszcissza tartomány</translation>
     </message>
     <message>
         <source>destinationDomain</source>
-        <translation type="vanished">Ordináta tartomány</translation>
+        <translation>Ordináta tartomány</translation>
     </message>
     <message>
         <source>labelPosition</source>
-        <translation type="vanished">Címke helyzete</translation>
+        <translation>Címke helyzete</translation>
     </message>
     <message>
         <source>displayMode</source>
-        <translation type="vanished">Megjelenítési mód</translation>
+        <translation>Megjelenítési mód</translation>
     </message>
     <message>
         <source>labelX</source>
-        <translation type="vanished">Címke X helyzete</translation>
+        <translation>Címke X helyzete</translation>
     </message>
     <message>
         <source>drawPoints</source>
-        <translation type="vanished">Pontok megjelenítése</translation>
+        <translation>Pontok megjelenítése</translation>
     </message>
     <message>
         <source>drawDashedLines</source>
-        <translation type="vanished">Szaggatott vonalak megjelenítése</translation>
+        <translation>Szaggatott vonalak megjelenítése</translation>
     </message>
     <message>
         <source>om_0</source>
-        <translation type="vanished">ω₀</translation>
+        <translation>ω₀</translation>
     </message>
     <message>
         <source>pass</source>
-        <translation type="vanished">Áteresztő</translation>
+        <translation>Áteresztő</translation>
     </message>
     <message>
         <source>gain</source>
-        <translation type="vanished">Nagyságrend nyeresége</translation>
+        <translation>Nagyságrend nyeresége</translation>
     </message>
     <message>
         <source>omGraduation</source>
-        <translation type="vanished">ω₀ érettségi megjelenítése</translation>
+        <translation>ω₀ érettségi megjelenítése</translation>
     </message>
     <message>
         <source>phase</source>
-        <translation type="vanished">Fázis</translation>
+        <translation>Fázis</translation>
     </message>
     <message>
         <source>unit</source>
-        <translation type="vanished">Egység használata</translation>
+        <translation>Egység használata</translation>
     </message>
     <message>
         <source>x</source>
-        <translation type="vanished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <source>y</source>
-        <translation type="vanished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <source>pointStyle</source>
-        <translation type="vanished">Pontstílus</translation>
+        <translation>Pontstílus</translation>
     </message>
     <message>
         <source>probabilities</source>
-        <translation type="vanished">Valószínűségek listája</translation>
+        <translation>Valószínűségek listája</translation>
     </message>
     <message>
         <source>text</source>
-        <translation type="vanished">Tartalom</translation>
+        <translation>Tartalom</translation>
     </message>
     <message>
         <source>disableLatex</source>
-        <translation type="vanished">LaTeX-megjelenítés letiltása ennél a szövegnél</translation>
+        <translation>LaTeX-megjelenítés letiltása ennél a szövegnél</translation>
     </message>
     <message>
         <source>targetElement</source>
-        <translation type="vanished">Tárgycél</translation>
+        <translation>Tárgycél</translation>
     </message>
     <message>
         <source>approximate</source>
-        <translation type="vanished">Hozzávetőleges érték megjelenítése</translation>
+        <translation>Hozzávetőleges érték megjelenítése</translation>
     </message>
     <message>
         <source>rounding</source>
-        <translation type="vanished">Kerekítés</translation>
+        <translation>Kerekítés</translation>
     </message>
     <message>
         <source>displayStyle</source>
-        <translation type="vanished">Megjelenítési stílus</translation>
+        <translation>Megjelenítési stílus</translation>
     </message>
     <message>
         <source>targetValuePosition</source>
-        <translation type="vanished">Cél értékpozíciója</translation>
+        <translation>Cél értékpozíciója</translation>
     </message>
     <message>
         <source>defaultExpression</source>
-        <translation type="vanished">Alapértelmezett kifejezés</translation>
+        <translation>Alapértelmezett kifejezés</translation>
     </message>
     <message>
         <source>baseValues</source>
-        <translation type="vanished">Kezdeményezési értékek</translation>
+        <translation>Kezdeményezési értékek</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation type="vanished">Elosztás</translation>
+        <translation>Elosztás</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation type="vanished">Elosztási függvények</translation>
+        <translation>Elosztási függvények</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation type="vanished">Sorozat</translation>
+        <translation>Sorozat</translation>
     </message>
     <message>
         <source>Sequences</source>
-        <translation type="vanished">Sorozatok</translation>
+        <translation>Sorozatok</translation>
     </message>
 </context>
 <context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation type="vanished">Bode-nagyságrendek összege</translation>
+        <translation>Bode-nagyságrendek összege</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation type="vanished">Bode-fázisok összege</translation>
+        <translation>Bode-fázisok összege</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation type="vanished">Szöveg</translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation type="vanished">Szövegek</translation>
+        <translation>Szövegek</translation>
     </message>
 </context>
 <context>
@@ -1587,22 +1587,22 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <name>visibility</name>
     <message>
         <source>%1 %2 shown.</source>
-        <translation type="vanished">%1 %2 megjelenítve.</translation>
+        <translation>%1 %2 megjelenítve.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation type="vanished">%1 %2 rejtve.</translation>
+        <translation>%1 %2 rejtve.</translation>
     </message>
 </context>
 <context>
     <name>xcursor</name>
     <message>
         <source>X Cursor</source>
-        <translation type="vanished">X kurzor</translation>
+        <translation>X kurzor</translation>
     </message>
     <message>
         <source>X Cursors</source>
-        <translation type="vanished">X kurzorok</translation>
+        <translation>X kurzorok</translation>
     </message>
 </context>
 </TS>

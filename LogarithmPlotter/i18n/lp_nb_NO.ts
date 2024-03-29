@@ -260,31 +260,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation type="vanished">Rediger egenskaper for %1 %2</translation>
+        <translation>Rediger egenskaper for %1 %2</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Navn</translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation type="vanished">Etikett-innhold</translation>
+        <translation>Etikett-innhold</translation>
     </message>
     <message>
         <source>null</source>
-        <translation type="vanished">NULL</translation>
+        <translation>NULL</translation>
     </message>
     <message>
         <source>name</source>
-        <translation type="vanished">navn</translation>
+        <translation>navn</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation type="vanished">navn + veri</translation>
+        <translation>navn + veri</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation type="vanished">+ Opprett nytt %1</translation>
+        <translation>+ Opprett nytt %1</translation>
     </message>
 </context>
 <context>
@@ -438,51 +438,51 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <name>LogarithmPlotter</name>
     <message>
         <source>Objects</source>
-        <translation type="vanished">Objekter</translation>
+        <translation>Objekter</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="vanished">Innstillinger</translation>
+        <translation>Innstillinger</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="vanished">Historikk</translation>
+        <translation>Historikk</translation>
     </message>
     <message>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="vanished">Lagret plott i «%1».</translation>
+        <translation>Lagret plott i «%1».</translation>
     </message>
     <message>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="vanished">Laster inn «%1»-fil.</translation>
+        <translation>Laster inn «%1»-fil.</translation>
     </message>
     <message>
         <source>Unknown object type: %1.</source>
-        <translation type="vanished">Ukjent objekttype: %1.</translation>
+        <translation>Ukjent objekttype: %1.</translation>
     </message>
     <message>
         <source>Invalid file provided.</source>
-        <translation type="vanished">Ugyldig fil angitt.</translation>
+        <translation>Ugyldig fil angitt.</translation>
     </message>
     <message>
         <source>Could not save file: </source>
-        <translation type="vanished">Kunne ikke lagre fil: </translation>
+        <translation>Kunne ikke lagre fil: </translation>
     </message>
     <message>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="vanished">Lastet inn filen «%1».</translation>
+        <translation>Lastet inn filen «%1».</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation type="vanished">Kopierte plott-skjermavbildning til utklippstavlen!</translation>
+        <translation>Kopierte plott-skjermavbildning til utklippstavlen!</translation>
     </message>
     <message>
         <source>&amp;Update</source>
-        <translation type="vanished">&amp;Oppdater</translation>
+        <translation>&amp;Oppdater</translation>
     </message>
     <message>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation type="vanished">&amp;Installer ny versjon av LogartimePlotter</translation>
+        <translation>&amp;Installer ny versjon av LogartimePlotter</translation>
     </message>
 </context>
 <context>
@@ -507,11 +507,11 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation type="vanished">Skjul %1 %2</translation>
+        <translation>Skjul %1 %2</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation type="vanished">Vis %1 %2</translation>
+        <translation>Vis %1 %2</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
@@ -519,11 +519,11 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation type="vanished">Slett %1 %2</translation>
+        <translation>Slett %1 %2</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation type="vanished">Velg ny farge for %1 %2</translation>
+        <translation>Velg ny farge for %1 %2</translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation type="vanished">Fest til rutenett</translation>
+        <translation>Fest til rutenett</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -1029,53 +1029,53 @@ Evaluated expression: %3</source>
     <name>function</name>
     <message>
         <source>Function</source>
-        <translation type="vanished">Funksjon</translation>
+        <translation>Funksjon</translation>
     </message>
     <message>
         <source>Functions</source>
-        <translation type="vanished">Funksjoner</translation>
+        <translation>Funksjoner</translation>
     </message>
 </context>
 <context>
     <name>gainbode</name>
     <message>
         <source>Bode Magnitude</source>
-        <translation type="vanished">Bode-magnitude</translation>
+        <translation>Bode-magnitude</translation>
     </message>
     <message>
         <source>Bode Magnitudes</source>
-        <translation type="vanished">Bode-magnituder</translation>
+        <translation>Bode-magnituder</translation>
     </message>
     <message>
         <source>low-pass</source>
-        <translation type="vanished">lavpass</translation>
+        <translation>lavpass</translation>
     </message>
     <message>
         <source>high-pass</source>
-        <translation type="vanished">høypass</translation>
+        <translation>høypass</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation type="vanished">Ny %1 %2 opprettet.</translation>
+        <translation>Ny %1 %2 opprettet.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation type="vanished">%1 %2 slettet.</translation>
+        <translation>%1 %2 slettet.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="vanished">%1 av %2 %3 endret fra «%4» til «%5».</translation>
+        <translation>%1 av %2 %3 endret fra «%4» til «%5».</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation type="vanished">%1 %2 vist.</translation>
+        <translation>%1 %2 vist.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation type="vanished">%1 %2 skjult.</translation>
+        <translation>%1 %2 skjult.</translation>
     </message>
 </context>
 <context>
@@ -1177,40 +1177,40 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <name>phasebode</name>
     <message>
         <source>Bode Phase</source>
-        <translation type="vanished">Bode-fase</translation>
+        <translation>Bode-fase</translation>
     </message>
     <message>
         <source>Bode Phases</source>
-        <translation type="vanished">Bode-faser</translation>
+        <translation>Bode-faser</translation>
     </message>
 </context>
 <context>
     <name>point</name>
     <message>
         <source>Point</source>
-        <translation type="vanished">Punkt</translation>
+        <translation>Punkt</translation>
     </message>
     <message>
         <source>Points</source>
-        <translation type="vanished">Punkter</translation>
+        <translation>Punkter</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
-        <translation type="vanished">Distribusjon</translation>
+        <translation>Distribusjon</translation>
     </message>
     <message>
         <source>Repartition functions</source>
-        <translation type="vanished">Distribusjonsfunksjoner</translation>
+        <translation>Distribusjonsfunksjoner</translation>
     </message>
 </context>
 <context>
     <name>sequence</name>
     <message>
         <source>Sequence</source>
-        <translation type="vanished">Følge</translation>
+        <translation>Følge</translation>
     </message>
     <message>
         <source>Sequences</source>
@@ -1221,25 +1221,25 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
-        <translation type="vanished">Bode-magnitudesum</translation>
+        <translation>Bode-magnitudesum</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
         <source>Bode Phases Sum</source>
-        <translation type="vanished">Bode-fasesum</translation>
+        <translation>Bode-fasesum</translation>
     </message>
 </context>
 <context>
     <name>text</name>
     <message>
         <source>Text</source>
-        <translation type="vanished">Tekst</translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <source>Texts</source>
-        <translation type="vanished">Tekster</translation>
+        <translation>Tekster</translation>
     </message>
 </context>
 <context>
