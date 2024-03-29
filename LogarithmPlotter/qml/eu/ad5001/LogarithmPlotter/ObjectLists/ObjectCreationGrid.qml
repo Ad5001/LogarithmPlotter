@@ -43,7 +43,7 @@ Column {
         // Open editor
         objectEditor.obj = obj
         objectEditor.objType = obj.type
-        objectEditor.objIndex = Runtime.Objects.currentObjects[obj.type].indexOf(obj)
+        objectEditor.objIndex = Modules.Objects.currentObjects[obj.type].indexOf(obj)
         objectEditor.open()
         // Disconnect potential link
         posPicker.picked.disconnect(openEditorDialog)
@@ -60,12 +60,12 @@ Column {
         width: parent.width
         columns: 3
         Repeater {
-            model: Object.keys(Runtime.Objects.types)
+            model: Object.keys(Modules.Objects.types)
             
             Button {
                 id: createBtn
                 width: 96
-                visible: Runtime.Objects.types[modelData].createable()
+                visible: Modules.Objects.types[modelData].createable()
                 height: visible ? width*0.8 : 0
                 // The KDE SDK is kinda buggy, so it respects neither specified color nor display propreties.
                 //display: AbstractButton.TextUnderIcon
@@ -93,7 +93,7 @@ Column {
                     anchors.rightMargin: 4
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 14
-                    text: Runtime.Objects.types[modelData].displayType()
+                    text: Modules.Objects.types[modelData].displayType()
                     wrapMode: Text.WordWrap
                     clip: true
                 }
@@ -103,7 +103,7 @@ Column {
                 ToolTip.text: label.text
                 
                 onClicked: {
-                    let newObj = Runtime.Objects.createNewRegisteredObject(modelData)
+                    let newObj = Modules.Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
         

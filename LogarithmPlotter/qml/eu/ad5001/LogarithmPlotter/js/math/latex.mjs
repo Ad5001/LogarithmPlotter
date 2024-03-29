@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { RuntimeAPI } from '../runtime.mjs'
+import { Module } from '../modules.mjs'
 
 const unicodechars = ["α","β","γ","δ","ε","ζ","η",
     "π","θ","κ","λ","μ","ξ","ρ",
@@ -39,13 +39,12 @@ const equivalchars = ["\\alpha","\\beta","\\gamma","\\delta","\\epsilon","\\zeta
     "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}",
     "\\pi", "\\infty"]
 
-console.log(Runtime.ExprParser)
-    
-class LatexAPI extends RuntimeAPI {
+
+class LatexAPI extends Module {
     constructor() {
         super('Latex', [
             /** @type {ExprParserAPI} */
-            Runtime.ExprParser
+            Modules.ExprParser
         ])
         /**
          * true if latex has been enabled by the user, false otherwise.
@@ -161,18 +160,18 @@ class LatexAPI extends RuntimeAPI {
             let type = item.type
 
             switch(type) {
-                case Runtime.ExprParser.Internals.INUMBER:
+                case Modules.ExprParser.Internals.INUMBER:
                     if(item.value === Infinity) {
                         nstack.push("\\infty")
                     } else if(typeof item.value === 'number' && item.value < 0) {
                         nstack.push(this.par(item.value));
                     } else if(Array.isArray(item.value)) {
-                        nstack.push('[' + item.value.map(Runtime.ExprParser.Internals.escapeValue).join(', ') + ']');
+                        nstack.push('[' + item.value.map(Modules.ExprParser.Internals.escapeValue).join(', ') + ']');
                     } else {
-                        nstack.push(Runtime.ExprParser.Internals.escapeValue(item.value));
+                        nstack.push(Modules.ExprParser.Internals.escapeValue(item.value));
                     }
                     break;
-                case Runtime.ExprParser.Internals.IOP2:
+                case Modules.ExprParser.Internals.IOP2:
                     n2 = nstack.pop();
                     n1 = nstack.pop();
                     f = item.value;
@@ -211,7 +210,7 @@ class LatexAPI extends RuntimeAPI {
                             throw new EvalError("Unknown operator " + ope + ".");
                     }
                     break;
-                case Runtime.ExprParser.Internals.IOP3: // Thirdiary operator
+                case Modules.ExprParser.Internals.IOP3: // Thirdiary operator
                     n3 = nstack.pop();
                     n2 = nstack.pop();
                     n1 = nstack.pop();
@@ -222,11 +221,11 @@ class LatexAPI extends RuntimeAPI {
                         throw new EvalError('Unknown operator ' + ope + '.');
                     }
                     break;
-                case Runtime.ExprParser.Internals.IVAR:
-                case Runtime.ExprParser.Internals.IVARNAME:
+                case Modules.ExprParser.Internals.IVAR:
+                case Modules.ExprParser.Internals.IVARNAME:
                     nstack.push(this.variable(item.value.toString()));
                     break;
-                case Runtime.ExprParser.Internals.IOP1: // Unary operator
+                case Modules.ExprParser.Internals.IOP1: // Unary operator
                     n1 = nstack.pop();
                     f = item.value;
                     switch(f) {
@@ -242,7 +241,7 @@ class LatexAPI extends RuntimeAPI {
                             break;
                     }
                     break;
-                case Runtime.ExprParser.Internals.IFUNCALL:
+                case Modules.ExprParser.Internals.IFUNCALL:
                     argCount = item.value;
                     args = [];
                     while (argCount-- > 0) {
@@ -252,14 +251,14 @@ class LatexAPI extends RuntimeAPI {
                     // Handling various functions
                     nstack.push(this.functionToLatex(f, args))
                     break;
-                case Runtime.ExprParser.Internals.IFUNDEF:
+                case Modules.ExprParser.Internals.IFUNDEF:
                     nstack.push(this.par(n1 + '(' + args.join(', ') + ') = ' + n2));
                     break;
-                case Runtime.ExprParser.Internals.IMEMBER:
+                case Modules.ExprParser.Internals.IMEMBER:
                     n1 = nstack.pop();
                     nstack.push(n1 + '.' + item.value);
                     break;
-                case Runtime.ExprParser.Internals.IARRAY:
+                case Modules.ExprParser.Internals.IARRAY:
                     argCount = item.value;
                     args = [];
                     while (argCount-- > 0) {
@@ -267,10 +266,10 @@ class LatexAPI extends RuntimeAPI {
                     }
                     nstack.push('[' + args.join(', ') + ']');
                     break;
-                case Runtime.ExprParser.Internals.IEXPR:
+                case Modules.ExprParser.Internals.IEXPR:
                     nstack.push('(' + this.expression(item.value) + ')');
                     break;
-                case Runtime.ExprParser.Internals.IENDSTATEMENT:
+                case Modules.ExprParser.Internals.IENDSTATEMENT:
                     break;
                 default:
                     throw new EvalError('invalid Expression');
@@ -284,6 +283,6 @@ class LatexAPI extends RuntimeAPI {
 }
 
 /** @type {LatexAPI} */
-Runtime.Latex = Runtime.Latex || new LatexAPI()
+Modules.Latex = Modules.Latex || new LatexAPI()
 
-export default Runtime.Latex
+export default Modules.Latex

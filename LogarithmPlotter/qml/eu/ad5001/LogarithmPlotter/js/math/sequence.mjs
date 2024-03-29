@@ -33,7 +33,7 @@ export class Sequence extends Expr.Expression {
         this.latexValues = Object.assign({}, baseValues)
         for(let n in this.calcValues)
             if(['string', 'number'].includes(typeof this.calcValues[n])) {
-                let parsed = Runtime.ExprParser.parse(this.calcValues[n].toString()).simplify()
+                let parsed = Modules.ExprParser.parse(this.calcValues[n].toString()).simplify()
                 this.latexValues[n] = Latex.expression(parsed.tokens)
                 this.calcValues[n] = parsed.evaluate()
             }
@@ -60,17 +60,17 @@ export class Sequence extends Expr.Expression {
     
     cache(n = 1) {
         let str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
-        let expr = Runtime.ExprParser.parse(str).simplify()
+        let expr = Modules.ExprParser.parse(str).simplify()
         // Cache values required for this one.
         if(!this.calcValues[n-this.valuePlus] && n-this.valuePlus > 0)
             this.cache(n-this.valuePlus)
         // Setting current variables
-        Runtime.ExprParser.currentVars = Object.assign(
+        Modules.ExprParser.currentVars = Object.assign(
             {'n': n-this.valuePlus}, // Just in case, add n (for custom functions)
-            Runtime.Objects.currentObjectsByName,
+            Modules.Objects.currentObjectsByName,
             {[this.name]: this.calcValues}
         )
-        this.calcValues[n] = expr.evaluate(Runtime.ExprParser.currentVars)
+        this.calcValues[n] = expr.evaluate(Modules.ExprParser.currentVars)
     }
     
     toString(forceSign=false) {

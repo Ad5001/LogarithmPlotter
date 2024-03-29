@@ -130,6 +130,7 @@ Repeater {
                     }
                 } catch(e) {
                     // Error in expression or domain
+                    console.trace()
                     parsingErrorDialog.showDialog(propertyName, newValue, e.message)
                 }
             }
@@ -187,8 +188,8 @@ Repeater {
             
             // Base, untranslated version of the model.
             property var baseModel: selectObjMode ?
-                    Runtime.Objects.getObjectsName(propertyType.objType).concat(
-                        isRealObject ? [qsTr("+ Create new %1").arg(Runtime.Objects.types[propertyType.objType].displayType())] : [])
+                    Modules.Objects.getObjectsName(propertyType.objType).concat(
+                        isRealObject ? [qsTr("+ Create new %1").arg(Modules.Objects.types[propertyType.objType].displayType())] : [])
                     : propertyType.values
             // Translated version of the model.
             model: selectObjMode ? baseModel : propertyType.translatedValues
@@ -198,20 +199,20 @@ Repeater {
                 if(selectObjMode) {
                     // This is only done when what we're selecting are Objects.
                     // Setting object property.
-                    var selectedObj = Runtime.Objects.currentObjectsByName[baseModel[newIndex]]
+                    var selectedObj = Modules.Objects.currentObjectsByName[baseModel[newIndex]]
                     if(newIndex != 0) {
                         // Make sure we don't set the object to null.
                         if(selectedObj == null) {
                             // Creating new object.
-                            selectedObj = Runtime.Objects.createNewRegisteredObject(propertyType.objType)
+                            selectedObj = Modules.Objects.createNewRegisteredObject(propertyType.objType)
                             history.addToHistory(new HistoryLib.CreateNewObject(selectedObj.name, propertyType.objType, selectedObj.export()))
-                            baseModel = Runtime.Objects.getObjectsName(propertyType.objType).concat(
-                                        isRealObject ? [qsTr("+ Create new %1").arg(Runtime.Objects.types[propertyType.objType].displayType())] : 
+                            baseModel = Modules.Objects.getObjectsName(propertyType.objType).concat(
+                                        isRealObject ? [qsTr("+ Create new %1").arg(Modules.Objects.types[propertyType.objType].displayType())] :
                                         [])
                             currentIndex = baseModel.indexOf(selectedObj.name)
                         }
-                        selectedObj.requiredBy.push(Runtime.Objects.currentObjects[objType][objIndex])
-                        //Runtime.Objects.currentObjects[objType][objIndex].requiredBy = obj[propertyName].filter((obj) => obj.name != obj.name)
+                        selectedObj.requiredBy.push(Modules.Objects.currentObjects[objType][objIndex])
+                        //Modules.Objects.currentObjects[objType][objIndex].requiredBy = obj[propertyName].filter((obj) => obj.name != obj.name)
                     }
                     obj.requiredBy = obj.requiredBy.filter((obj) => obj.name != obj.name)
                     history.addToHistory(new HistoryLib.EditedProperty(
@@ -255,7 +256,7 @@ Repeater {
                     obj.name, objType, propertyName, 
                     obj[propertyName], exported
                 ))
-                //Runtime.Objects.currentObjects[objType][objIndex][propertyName] = exported
+                //Modules.Objects.currentObjects[objType][objIndex][propertyName] = exported
                 obj[propertyName] = exported
                 root.changed()
             }

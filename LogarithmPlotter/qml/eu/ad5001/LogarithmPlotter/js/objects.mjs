@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { RuntimeAPI } from './runtime.mjs'
+import { Module } from './modules.mjs'
 
-class ObjectsAPI extends RuntimeAPI {
+class ObjectsAPI extends Module {
 
     constructor() {
         super('Objects')
@@ -107,6 +107,6 @@ class ObjectsAPI extends RuntimeAPI {
 }
 
 /** @type {ObjectsAPI} */
-Runtime.Objects = Runtime.Objects || new ObjectsAPI()
+Modules.Objects = Modules.Objects || new ObjectsAPI()
 
-export default Runtime.Objects
+export default Modules.Objects

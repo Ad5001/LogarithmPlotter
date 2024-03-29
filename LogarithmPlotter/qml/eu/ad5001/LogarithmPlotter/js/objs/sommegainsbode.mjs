@@ -89,7 +89,7 @@ export default class SommeGainsBode extends ExecutableObject {
             let baseY = 0
             let om0xGains = {1000000000: 0} // To draw the last part
             let om0xPass = {1000000000: 'high'} // To draw the last part
-            Objects.currentObjects['Gain Bode'].forEach(function(gainObj) { // Sorting by their om_0 position.
+            for(/** @type {GainBode} */ let gainObj of Objects.currentObjects['Gain Bode']) { // Sorting by their om_0 position.
                 let om0x = gainObj.om_0.x.execute()
                 if(om0xGains[om0x] === undefined) {
                     om0xGains[om0x] = gainObj.gain.execute()
@@ -99,7 +99,7 @@ export default class SommeGainsBode extends ExecutableObject {
                     om0xPass[om0x+0.001] = gainObj.pass === 'high'
                 }
                 baseY += gainObj.execute(drawMin)
-            })
+            }
             // Sorting the om_0x
             let om0xList = Object.keys(om0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
             om0xList.sort((a,b) => a - b)
@@ -130,13 +130,13 @@ export default class SommeGainsBode extends ExecutableObject {
         }
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         if(this.cachedParts.length > 0) {
             for(let [dbfn, inDrawDom] of this.cachedParts) {
-                Function.drawFunction(canvas, ctx, dbfn, inDrawDom, Domain.R)
+                Function.drawFunction(canvas, dbfn, inDrawDom, Domain.R)
                 if(inDrawDom.includes(this.labelX)) {
                     // Label
-                    this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+                    this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
                 }
             }
         }

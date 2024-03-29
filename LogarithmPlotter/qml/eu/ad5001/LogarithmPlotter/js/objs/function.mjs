@@ -104,17 +104,17 @@ export default class Function extends ExecutableObject {
         return ''
     }
     
-    draw(canvas, ctx) {
-        Function.drawFunction(canvas, ctx, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
+    draw(canvas) {
+        Function.drawFunction(canvas, this.expression, this.definitionDomain, this.destinationDomain, this.drawPoints, this.drawDashedLines)
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 
     /**
      * Reusable in other objects.
      * Drawing small traits every few pixels
      */
-    static drawFunction(canvas, ctx, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
+    static drawFunction(canvas, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         let pxprecision = 10
         let previousX = canvas.px2x(0)
         let previousY = null;
@@ -124,7 +124,7 @@ export default class Function extends ExecutableObject {
             if(previousX === null) previousX = definitionDomain.next(canvas.px2x(0))
             previousY = expr.execute(previousX)
             if(!drawPoints && !drawDash) return
-            while(previousX !== null && canvas.x2px(previousX) < canvas.canvasSize.width) {
+            while(previousX !== null && canvas.x2px(previousX) < canvas.width) {
                 // Reconverted for canvas to fix for logarithmic scales.
                 let currentX = definitionDomain.next(canvas.px2x(canvas.x2px(previousX)+pxprecision));
                 let currentY = expr.execute(currentX)
@@ -132,10 +132,10 @@ export default class Function extends ExecutableObject {
                 if((definitionDomain.includes(currentX) || definitionDomain.includes(previousX)) &&
                     (destinationDomain.includes(currentY) || destinationDomain.includes(previousY))) {
                     if(drawDash)
-                        canvas.drawDashedLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                        canvas.drawDashedLine(canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                     if(drawPoints) {
-                        ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
-                        ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+                        canvas.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+                        canvas.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
                     }
                 }
                 previousX = currentX
@@ -143,8 +143,8 @@ export default class Function extends ExecutableObject {
             }
             if(drawPoints) {
                 // Drawing the last cross
-                ctx.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
-                ctx.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
+                canvas.fillRect(canvas.x2px(previousX)-5, canvas.y2px(previousY)-1, 10, 2)
+                canvas.fillRect(canvas.x2px(previousX)-1, canvas.y2px(previousY)-5, 2, 10)
             }
         } else {
             // Use max precision if function is trigonometrical on log scale.
@@ -154,7 +154,7 @@ export default class Function extends ExecutableObject {
             // Calculate the previousY at the start of the canvas
             if(definitionDomain.includes(previousX))
                 previousY = expr.execute(previousX)
-            for(let px = pxprecision; px < canvas.canvasSize.width; px += pxprecision) {
+            for(let px = pxprecision; px < canvas.width; px += pxprecision) {
                 let currentX = canvas.px2x(px)
                 if(!definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
                     // Should draw up to currentX, but NOT at previousX.
@@ -176,12 +176,12 @@ export default class Function extends ExecutableObject {
                     } while(!definitionDomain.includes(currentX) && currentX !== previousX)
                 }
                 // This max variation is needed for functions with asymptotical vertical lines (e.g. 1/x, tan x...)
-                let maxvariation = (canvas.px2y(0)-canvas.px2y(canvas.canvasSize.height))
+                let maxvariation = (canvas.px2y(0)-canvas.px2y(canvas.height))
                 if(definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
                     let currentY = expr.execute(currentX)
                     if(destinationDomain.includes(currentY)) {
                         if(previousY != null && destinationDomain.includes(previousY) && Math.abs(previousY-currentY) < maxvariation) {
-                            canvas.drawLine(ctx, canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
+                            canvas.drawLine(canvas.x2px(previousX), canvas.y2px(previousY), canvas.x2px(currentX), canvas.y2px(currentY))
                         }
                     }
                     previousY = currentY

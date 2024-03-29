@@ -113,7 +113,7 @@ def run():
     helper = Helper(pwd, tmpfile)
     latex = Latex(tempdir)
     modules = engine.newObject()
-    engine.globalObject().setProperty('Runtime', modules)
+    engine.globalObject().setProperty('Modules', modules)
     engine.globalObject().setProperty('Helper', engine.newQObject(helper))
     engine.globalObject().setProperty("Latex", engine.newQObject(latex))
     # engine.rootContext().setContextProperty("Helper", helper)

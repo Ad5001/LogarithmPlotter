@@ -94,7 +94,7 @@ Item {
         property int positionChangeTimer: 0
         
         function updatePosition(deltaX, deltaY) {
-            settingsInstance.xmin = (canvas.px2x(canvas.x2px(settingsInstance.xmin)-deltaX))
+            settingsInstance.xmin = (Modules.Canvas.px2x(Modules.Canvas.x2px(settingsInstance.xmin)-deltaX))
             settingsInstance.ymax += deltaY/canvas.yzoom
             settingsInstance.ymax = settingsInstance.ymax.toFixed(4)
             settingsInstance.changed()
@@ -107,6 +107,7 @@ Item {
             prevY = mouse.y
             parent.beginPositionChange()
         }
+        
         onPositionChanged: function(mouse) {
             positionChangeTimer++
             if(positionChangeTimer == 3) {
@@ -118,12 +119,14 @@ Item {
                 positionChangeTimer = 0
             }
         }
+        
         onReleased: function(mouse) {
             let deltaX = mouse.x - prevX
             let deltaY = mouse.y - prevY
             updatePosition(deltaX, deltaY)
             parent.endPositionChange(deltaX, deltaY)
         }
+        
         onWheel: function(wheel) {
             // Scrolling
             let scrollSteps = Math.round(wheel.angleDelta.y / 120)

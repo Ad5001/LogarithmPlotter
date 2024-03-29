@@ -57,6 +57,7 @@ export default class PhaseBode extends ExecutableObject {
             }
             om_0.requiredBy.push(this)
         }
+        /** @type {Point} */
         this.om_0 = om_0
         this.unit = unit
         this.labelPosition = labelPosition
@@ -100,21 +101,21 @@ export default class PhaseBode extends ExecutableObject {
         return true
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         let baseX = canvas.x2px(this.om_0.x.execute())
         let omy = this.om_0.y.execute()
         let augmt = this.phase.execute()
         let baseY = canvas.y2px(omy)
         let augmtY = canvas.y2px(omy+augmt)
         // Before change line.
-        canvas.drawLine(ctx, 0, baseY, Math.min(baseX, canvas.canvasSize.height), baseY)
+        canvas.drawLine(0, baseY, Math.min(baseX, canvas.height), baseY)
         // Transition line.
-        canvas.drawLine(ctx, baseX, baseY, baseX, augmtY)
+        canvas.drawLine(baseX, baseY, baseX, augmtY)
         // After change line
-        canvas.drawLine(ctx, Math.max(0, baseX), augmtY, canvas.canvasSize.width, augmtY)
+        canvas.drawLine(Math.max(0, baseX), augmtY, canvas.width, augmtY)
         
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     update() {

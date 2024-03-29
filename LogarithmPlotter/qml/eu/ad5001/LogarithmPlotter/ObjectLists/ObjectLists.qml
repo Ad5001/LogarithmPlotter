@@ -46,7 +46,7 @@ ScrollView {
     
     ListView {
         id: objectsListView
-        model: Object.keys(Runtime.Objects.types)
+        model: Object.keys(Modules.Objects.types)
         //width: implicitWidth //objectListList.width - (implicitHeight > objectListList.parent.height ? 20 : 0)
         implicitHeight: contentItem.childrenRect.height + footerItem.height + 10
         
@@ -54,7 +54,7 @@ ScrollView {
             id: objTypeList
             property string objType: objectsListView.model[index]
             property var editingRows: []
-            model: Runtime.Objects.currentObjects[objType]
+            model: Modules.Objects.currentObjects[objType]
             width: objectsListView.width
             implicitHeight: contentItem.childrenRect.height
             visible: model != undefined && model.length > 0
@@ -69,23 +69,23 @@ ScrollView {
                 
                 CheckBox {
                     id: typeVisibilityCheckBox
-                    checked: Runtime.Objects.currentObjects[objType] != undefined ? Runtime.Objects.currentObjects[objType].every(obj => obj.visible) : true
+                    checked: Modules.Objects.currentObjects[objType] != undefined ? Modules.Objects.currentObjects[objType].every(obj => obj.visible) : true
                     onClicked: {
-                        for(var obj of Runtime.Objects.currentObjects[objType]) obj.visible = this.checked
+                        for(var obj of Modules.Objects.currentObjects[objType]) obj.visible = this.checked
                         for(var obj of objTypeList.editingRows) obj.objVisible = this.checked
                         objectListList.changed()
                     }
                     
                     ToolTip.visible: hovered
                     ToolTip.text: checked ? 
-                                    qsTr("Hide all %1").arg(Runtime.Objects.types[objType].displayTypeMultiple()) :
-                                    qsTr("Show all %1").arg(Runtime.Objects.types[objType].displayTypeMultiple())
+                                    qsTr("Hide all %1").arg(Modules.Objects.types[objType].displayTypeMultiple()) :
+                                    qsTr("Show all %1").arg(Modules.Objects.types[objType].displayTypeMultiple())
                 }
                 
                 Label {
                     id: typeHeaderText
                     verticalAlignment: TextInput.AlignVCenter
-                    text: qsTranslate("control", "%1: ").arg(Runtime.Objects.types[objType].displayTypeMultiple())
+                    text: qsTranslate("control", "%1: ").arg(Modules.Objects.types[objType].displayTypeMultiple())
                     font.pixelSize: 20
                 }
             }
@@ -93,11 +93,11 @@ ScrollView {
             delegate: ObjectRow {
                 id: controlRow
                 width: objTypeList.width
-                obj: Runtime.Objects.currentObjects[objType][index]
+                obj: Modules.Objects.currentObjects[objType][index]
                 posPicker: positionPicker
                 
                 onChanged: {
-                    obj = Runtime.Objects.currentObjects[objType][index]
+                    obj = Modules.Objects.currentObjects[objType][index]
                     objectListList.update()
                 }
                 
@@ -129,7 +129,7 @@ ScrollView {
     function update() {
         objectListList.changed()
         for(var objType in objectListList.listViews) {
-            objectListList.listViews[objType].model = Runtime.Objects.currentObjects[objType]
+            objectListList.listViews[objType].model = Modules.Objects.currentObjects[objType]
         }
     }
     

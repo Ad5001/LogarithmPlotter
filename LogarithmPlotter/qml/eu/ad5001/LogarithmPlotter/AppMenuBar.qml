@@ -103,17 +103,17 @@ MenuBar {
         title: qsTr("&Create")
         // Services repeater
         Repeater {
-            model: Object.keys(Runtime.Objects.types)
+            model: Object.keys(Modules.Objects.types)
             
             MenuItem {
-                text: Runtime.Objects.types[modelData].displayType()
-                visible: Runtime.Objects.types[modelData].createable()
+                text: Modules.Objects.types[modelData].displayType()
+                visible: Modules.Objects.types[modelData].createable()
                 height: visible ? implicitHeight : 0
                 icon.name: modelData
                 icon.source: './icons/objects/' + modelData + '.svg'
                 icon.color: sysPalette.buttonText
                 onTriggered: {
-                    var newObj = Runtime.Objects.createNewRegisteredObject(modelData)
+                    var newObj = Modules.Objects.createNewRegisteredObject(modelData)
                     history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
                 }
@@ -151,7 +151,7 @@ MenuBar {
             checked: Helper.getSettingBool("enable_latex")
             onTriggered: {
                 Helper.setSettingBool("enable_latex", checked)
-                Runtime.Latex.enabled = checked
+                Modules.Latex.enabled = checked
                 drawCanvas.requestPaint()
             }
             icon.name: 'Expression'

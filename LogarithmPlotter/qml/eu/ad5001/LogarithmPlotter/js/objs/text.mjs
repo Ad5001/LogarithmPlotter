@@ -90,9 +90,9 @@ export default class Text extends DrawableObject  {
         return `\\textsf{${this.latexMarkupText()}}`
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         let yOffset = this.disableLatex ? canvas.textsize-4 : 0
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())+yOffset, this.disableLatex)
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())+yOffset, this.disableLatex)
     }
 }
 

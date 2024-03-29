@@ -89,7 +89,7 @@ export default class SommePhasesBode extends ExecutableObject {
         
         if(Objects.currentObjects['Phase Bode'] !== undefined) {
             console.log('Recalculating cache phase')
-            for(let obj of Objects.currentObjects['Phase Bode']) {
+            for(/** @type {PhaseBode} */ let obj of Objects.currentObjects['Phase Bode']) {
                 this.om0xList.push(obj.om_0.x.execute())
                 if(phasesDict[obj.om_0.x.execute()] === undefined) {
                     phasesDict[obj.om_0.x.execute()] = obj.phase.execute()
@@ -110,18 +110,18 @@ export default class SommePhasesBode extends ExecutableObject {
         }
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         for(let i = 0; i < this.om0xList.length-1; i++) {
             let om0xBegin = canvas.x2px(this.om0xList[i])
             let om0xEnd = canvas.x2px(this.om0xList[i+1])
             let baseY = canvas.y2px(this.phasesList[i])
             let nextY = canvas.y2px(this.phasesList[i+1])
-            canvas.drawLine(ctx, om0xBegin, baseY, om0xEnd, baseY)
-            canvas.drawLine(ctx, om0xEnd, baseY, om0xEnd, nextY)
+            canvas.drawLine(om0xBegin, baseY, om0xEnd, baseY)
+            canvas.drawLine(om0xEnd, baseY, om0xEnd, nextY)
         }
         
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 

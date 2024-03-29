@@ -52,7 +52,7 @@ Popup.BaseDialog {
        \qmlproperty var EditorDialog::obj
        Instance of the object being edited.
     */
-    property var obj: Runtime.Objects.currentObjects[objType][objIndex]
+    property var obj: Modules.Objects.currentObjects[objType][objIndex]
     /*!
        \qmlproperty var EditorDialog::posPicker
        Reference to the global PositionPicker QML object.
@@ -85,7 +85,7 @@ Popup.BaseDialog {
             Label {
                 id: dlgTitle
                 verticalAlignment: TextInput.AlignVCenter
-                text: qsTr("Edit properties of %1 %2").arg(Runtime.Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
+                text: qsTr("Edit properties of %1 %2").arg(Modules.Objects.types[objEditor.objType].displayType()).arg(objEditor.obj.name)
                 font.pixelSize: 20
                 color: sysPalette.windowText
             }
@@ -111,14 +111,14 @@ Popup.BaseDialog {
                 onChanged: function(newValue) {
                     let newName = Utils.parseName(newValue)
                     if(newName != '' && objEditor.obj.name != newName) {
-                        if(newName in Runtime.Objects.currentObjectsByName) {
+                        if(newName in Modules.Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
                         } else {
                             history.addToHistory(new HistoryLib.NameChanged(
                                 objEditor.obj.name, objEditor.objType, newName
                             ))
-                            Runtime.Objects.renameObject(obj.name, newName)
-                            objEditor.obj = Runtime.Objects.currentObjects[objEditor.objType][objEditor.objIndex]
+                            Modules.Objects.renameObject(obj.name, newName)
+                            objEditor.obj = Modules.Objects.currentObjects[objEditor.objType][objEditor.objIndex]
                             objectListList.update()
                         }
                     }
@@ -163,7 +163,7 @@ Popup.BaseDialog {
     */
     function open() {
         dlgCustomProperties.model = [] // Reset
-        let objProps = Runtime.Objects.types[objEditor.objType].properties()
+        let objProps = Modules.Objects.types[objEditor.objType].properties()
         dlgCustomProperties.model = Object.keys(objProps).map(prop => [prop, objProps[prop]]) // Converted to 2-dimentional array.
         objEditor.show()
     }

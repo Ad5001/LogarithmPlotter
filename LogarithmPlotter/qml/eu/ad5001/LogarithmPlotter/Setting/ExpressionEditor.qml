@@ -391,9 +391,9 @@ Item {
                     property string objectName: isEnteringProperty ? 
                         (parent.currentToken.dot ? parent.previousToken.value : parent.previousToken2.value)
                     : ""
-                    property bool doesObjectExist: isEnteringProperty && (objectName in Runtime.Objects.currentObjectsByName)
+                    property bool doesObjectExist: isEnteringProperty && (objectName in Modules.Objects.currentObjectsByName)
                     property var objectProperties: doesObjectExist ? 
-                                                    Runtime.Objects.currentObjectsByName[objectName].constructor.properties() : 
+                                                    Modules.Objects.currentObjectsByName[objectName].constructor.properties() :
                                                     {}
                     categoryItems: Object.keys(objectProperties)
                     autocompleteGenerator: (item) => {
@@ -460,9 +460,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: functionsList.itemStartIndex + functionsList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Runtime.Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
+                    categoryItems: Modules.Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Runtime.Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
+                        'text': item, 'annotation': Modules.Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -475,9 +475,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: executableObjectsList.itemStartIndex + executableObjectsList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Object.keys(Runtime.Objects.currentObjectsByName).filter(obj => obj != self)
+                    categoryItems: Object.keys(Modules.Objects.currentObjectsByName).filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': `${Runtime.Objects.currentObjectsByName[item].constructor.displayType()}`,
+                        'text': item, 'annotation': `${Modules.Objects.currentObjectsByName[item].constructor.displayType()}`,
                         'autocomplete': item+'.', 'cursorFinalOffset': 0
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -537,8 +537,8 @@ Item {
                 throw new Error(qsTranslate('error', 'Object cannot be dependent on itself.'))
             // Recursive dependencies
             let dependentOnSelfObjects = expr.requiredObjects().filter(
-                (obj) => Runtime.Objects.currentObjectsByName[obj].getDependenciesList()
-                          .includes(Runtime.Objects.currentObjectsByName[control.self])
+                (obj) => Modules.Objects.currentObjectsByName[obj].getDependenciesList()
+                          .includes(Modules.Objects.currentObjectsByName[control.self])
             )
             if(dependentOnSelfObjects.length == 1)
                 throw new Error(qsTranslate('error', 'Circular dependency detected. Object %1 depends on %2.').arg(dependentOnSelfObjects[0].toString()).arg(control.self))

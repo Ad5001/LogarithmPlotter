@@ -19,9 +19,7 @@
 .pragma library
 
 .import "expr-eval.js" as ExprEval
-.import "../../runtime.mjs" as R
-
-let RuntimeAPI = R.RuntimeAPI
+.import "../../modules.mjs" as M
 
 const evalVariables = {
     // Variables not provided by expr-eval.js, needs to be provided manually
@@ -38,11 +36,11 @@ const evalVariables = {
     "false": false
 }
 
-class ExprParserAPI extends RuntimeAPI {
+class ExprParserAPI extends M.Module {
     constructor() {
         super('ExprParser', [
             /** @type {ObjectsAPI} */
-            Runtime.Objects
+            Modules.Objects
         ])
         this.currentVars = {}
         this.Internals = ExprEval
@@ -115,7 +113,7 @@ class ExprParserAPI extends RuntimeAPI {
 }
 
 /** @type {ExprParserAPI} */
-Runtime.ExprParser = Runtime.ExprParser || new ExprParserAPI()
+Modules.ExprParser = Modules.ExprParser || new ExprParserAPI()
 
 
 

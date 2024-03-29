@@ -28,7 +28,7 @@ import XCursor from "xcursor.mjs"
 import Sequence from "sequence.mjs"
 import RepartitionFunction from "repartition.mjs"
 
-if(Object.keys(Runtime.Objects.types).length === 0) {
+if(Object.keys(Modules.Objects.types).length === 0) {
     ObjectsCommonAPI.registerObject(Point)
     ObjectsCommonAPI.registerObject(Text)
     ObjectsCommonAPI.registerObject(Function)

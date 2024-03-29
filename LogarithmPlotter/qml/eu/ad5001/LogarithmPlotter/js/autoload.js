@@ -5,3 +5,4 @@
 .import "objs/autoload.mjs" as Autoload
 .import "math/latex.mjs" as Latex
 .import "history/common.mjs" as HistoryCommon
+.import "canvas.mjs" as CanvasAPI

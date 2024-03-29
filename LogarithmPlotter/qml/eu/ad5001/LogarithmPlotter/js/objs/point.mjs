@@ -58,24 +58,22 @@ export default class Point extends DrawableObject  {
         return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.pointStyle]
     }
     
-    draw(canvas, ctx) {
-        var [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
-        var pointSize = 8+(ctx.lineWidth*2)
+    draw(canvas) {
+        let [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
+        let pointSize = 8+(canvas.linewidth*2)
         switch(this.pointStyle) {
             case '●':
-                ctx.beginPath();
-                ctx.ellipse(canvasX-pointSize/2, canvasY-pointSize/2, pointSize, pointSize)
-                ctx.fill();
+                canvas.disc(canvasX, canvasY, pointSize/2)
                 break;
             case '✕':
-                canvas.drawLine(ctx, canvasX-pointSize/2, canvasY-pointSize/2, canvasX+pointSize/2, canvasY+pointSize/2)
-                canvas.drawLine(ctx, canvasX-pointSize/2, canvasY+pointSize/2, canvasX+pointSize/2, canvasY-pointSize/2)
+                canvas.drawLine(canvasX-pointSize/2, canvasY-pointSize/2, canvasX+pointSize/2, canvasY+pointSize/2)
+                canvas.drawLine(canvasX-pointSize/2, canvasY+pointSize/2, canvasX+pointSize/2, canvasY-pointSize/2)
                 break;
             case '＋':
-                ctx.fillRect(canvasX-pointSize/2, canvasY-1, pointSize, 2)
-                ctx.fillRect(canvasX-1, canvasY-pointSize/2, 2, pointSize)
+                canvas.fillRect(canvasX-pointSize/2, canvasY-1, pointSize, 2)
+                canvas.fillRect(canvasX-1, canvasY-pointSize/2, 2, pointSize)
                 break;
         }
-        this.drawLabel(canvas, ctx, this.labelPosition, canvasX, canvasY)
+        this.drawLabel(canvas, this.labelPosition, canvasX, canvasY)
     }
 }

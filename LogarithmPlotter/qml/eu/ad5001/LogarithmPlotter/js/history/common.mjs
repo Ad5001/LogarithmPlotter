@@ -16,14 +16,14 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { RuntimeAPI } from "../runtime.mjs"
+import { Module } from "../modules.mjs"
 import Latex from "../math/latex.mjs"
 
 
-class HistoryCommonAPI extends RuntimeAPI {
+class HistoryCommonAPI extends Module {
     constructor() {
         super('History', [
-            Runtime.Latex
+            Modules.Latex
         ])
         // History QML object
         this.history = null;
@@ -31,12 +31,16 @@ class HistoryCommonAPI extends RuntimeAPI {
         this.imageDepth = 2;
         this.fontSize = 14;
     }
+
+    undo() { this.history.undo() }
+    redo() { this.history.redo() }
+    addToHistory(action) { this.history.addToHistory(action) }
 }
 
 /** @type {HistoryCommonAPI} */
-Runtime.History = Runtime.History || new HistoryCommonAPI()
+Modules.History = Modules.History || new HistoryCommonAPI()
 
-export const API = Runtime.History
+export const API = Modules.History
 
 export class Action {
     /**
@@ -95,7 +99,7 @@ export class Action {
      * @returns {string}
      */
     getIconRichText(type) {
-        return `<img source="../icons/objects/${type}.svg" style="color: ${Runtime.History.themeTextColor};" width=18 height=18></img>`
+        return `<img source="../icons/objects/${type}.svg" style="color: ${Modules.History.themeTextColor};" width=18 height=18></img>`
     }
     
     /**
@@ -107,11 +111,11 @@ export class Action {
     renderLatexAsHtml(latexString) {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
-        let imgDepth = Runtime.History.imageDepth
+        let imgDepth = Modules.History.imageDepth
         let [src, width, height] = Latex.render(
             latexString,
-            imgDepth * (Runtime.History.fontSize + 2),
-            Runtime.History.themeTextColor
+            imgDepth * (Modules.History.fontSize + 2),
+            Modules.History.themeTextColor
         ).split(",")
         return `<img src="${src}" width="${parseInt(width)/imgDepth}" height="${parseInt(height)/imgDepth}" style="vertical-align: middle"/>`
     }

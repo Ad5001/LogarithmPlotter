@@ -19,17 +19,17 @@
 import { getRandomColor, textsub } from "../utils.mjs"
 import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
-import {RuntimeAPI} from "../runtime.mjs"
+import {Module} from "../modules.mjs"
 
 // This file contains the default data to be imported from all other objects
 
-class ObjectsCommonAPI extends RuntimeAPI {
+class ObjectsCommonAPI extends Module {
 
     constructor() {
         super('ObjectsCommon', [
-            Runtime.Objects,
-            Runtime.ExprParser,
-            Runtime.Latex
+            Modules.Objects,
+            Modules.ExprParser,
+            Modules.Latex
         ])
     }
 
@@ -72,9 +72,9 @@ class ObjectsCommonAPI extends RuntimeAPI {
 }
 
 /** @type {ObjectsCommonAPI} */
-Runtime.ObjectsCommon = Runtime.ObjectsCommon || new ObjectsCommonAPI()
+Modules.ObjectsCommon = Modules.ObjectsCommon || new ObjectsCommonAPI()
 
-export const API = Runtime.ObjectsCommon
+export const API = Modules.ObjectsCommon
 
 /**
  * Class to extend for every type of object that
@@ -269,18 +269,17 @@ export class DrawableObject {
         for(let toRemove of this.requiredBy) { // Normally, there should be none here, but better leave nothing just in case.
             Objects.deleteObject(toRemove.name)
         }
-        console.log(this.requires)
         for(let toRemoveFrom of this.requires) {
             toRemoveFrom.requiredBy = toRemoveFrom.requiredBy.filter(o => o !== this)
         }
     }
     
     /**
-     * Abstract method. Draw the object onto the \c canvas with the 2D context \c ctx.
-     * @param {Canvas} canvas
+     * Abstract method. Draw the object onto the \c canvas with the.
+     * @param {CanvasAPI} canvas
      * @param {CanvasRenderingContext2D} ctx
      */
-    draw(canvas, ctx) {}
+    draw(canvas) {}
     
     /**
      * Applicates a \c drawFunction with two position arguments depending on 
@@ -343,7 +342,7 @@ export class DrawableObject {
      * Then, it's displayed using the \c drawFunctionLatex (x,y,imageData) and
      * \c drawFunctionText (x,y,text) depending on whether to use latex.
      * 
-     * @param {Canvas} canvas
+     * @param {CanvasAPI} canvas
      * @param {CanvasRenderingContext2D} ctx
      * @param {string|Enum} labelPosition - Position of the label relative to the marked position
      * @param {number} posX - Component of the marked position on the x-axis 
@@ -354,7 +353,7 @@ export class DrawableObject {
      * @param {function|null} drawFunctionLatex - Function (x,y,imageData) to display the latex image
      * @param {function|null} drawFunctionText - Function (x,y,text,textSize) to display the text
      */
-    drawLabel(canvas, ctx, labelPosition, posX, posY,forceText = false,
+    drawLabel(canvas, labelPosition, posX, posY,forceText = false,
               getLatexFunction = null, getTextFunction = null, drawFunctionLatex = null, drawFunctionText = null) {
         // Default functions
         if(getLatexFunction == null)
@@ -362,25 +361,25 @@ export class DrawableObject {
         if(getTextFunction == null)
             getTextFunction = this.getLabel.bind(this)
         if(drawFunctionLatex == null)
-            drawFunctionLatex = (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height)
+            drawFunctionLatex = (x,y,ltxImg) => canvas.drawVisibleImage(ltxImg.source, x, y, ltxImg.width, ltxImg.height)
         if(drawFunctionText == null)
-            drawFunctionText = (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, y+textSize.height) // Positioned from left bottom
+            drawFunctionText = (x,y,text,textSize) => canvas.drawVisibleText(text, x, y+textSize.height) // Positioned from left bottom
         // Drawing the label
         let offset
         if(!forceText && Latex.enabled) {
             // With latex
-            let drawLblCb = function(canvas, ctx, ltxImg) {
-                this.drawPositionDivergence(labelPosition, 8+ctx.lineWidth/2, ltxImg, posX, posY, (x,y) => drawFunctionLatex(x,y,ltxImg))
-            }
+            let drawLblCb = ((ltxImg) => {
+                this.drawPositionDivergence(labelPosition, 8+canvas.linewidth/2, ltxImg, posX, posY, (x,y) => drawFunctionLatex(x,y,ltxImg))
+            }).bind(this)
             let ltxLabel = getLatexFunction();
-            if(ltxLabel != "")
+            if(ltxLabel !== "")
                 canvas.renderLatexImage(ltxLabel, this.color, drawLblCb.bind(this))
         } else {
             // Without latex
             let text = getTextFunction()
-            ctx.font = `${canvas.textsize}px sans-serif`
-            let textSize = canvas.measureText(ctx, text)
-            this.drawPositionDivergence(labelPosition, 8+ctx.lineWidth/2, textSize, posX, posY, (x,y) => drawFunctionText(x,y,text,textSize))
+            canvas.font = `${canvas.textsize}px sans-serif`
+            let textSize = canvas.measureText(text)
+            this.drawPositionDivergence(labelPosition, 8+canvas.linewidth/2, textSize, posX, posY, (x,y) => drawFunctionText(x,y,text,textSize))
         }
     }
     

@@ -19,7 +19,7 @@
 // Type polyfills for IDEs.
 // Never directly imported.
 
-Runtime = Runtime || {}
+Modules = Modules || {}
 /** @type {function(string, string): string} */
 qsTranslate = qsTranslate || function(category, string) { throw new Error('qsTranslate not implemented.'); }
 /** @type {function(string): string} */
@@ -28,6 +28,19 @@ qsTr = qsTr || function(string) { throw new Error('qsTr not implemented.'); }
 QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP || function(string, string) { throw new Error('QT_TRANSLATE_NOOP not implemented.'); }
 /** @type {function(string|boolean|int): string} */
 String.prototype.arg = String.prototype.arg || function(parameter) { throw new Error('arg not implemented.'); }
+
+const Qt = {
+    /**
+     * @param {number} x
+     * @param {number} y
+     * @param {number} width
+     * @param {number} height
+     * @returns {{x, width, y, height}}
+     */
+    rect: function(x, y, width, height) {
+        return {x: x, y: y, width: width, height: height};
+    }
+}
 
 /** Typehints for Helper. */
 const Helper = {

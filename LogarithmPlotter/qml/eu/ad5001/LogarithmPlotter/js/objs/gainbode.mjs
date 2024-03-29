@@ -40,7 +40,7 @@ export default class GainBode extends ExecutableObject {
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
         [QT_TRANSLATE_NOOP('prop','omGraduation')]:  'boolean'
     }}
-    
+
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 om_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1, omGraduation = false) {
         if(name == null) name = Common.getNewName('G')
@@ -52,12 +52,13 @@ export default class GainBode extends ExecutableObject {
             if(om_0 == null) {
                 // Create new point
                 om_0 = Objects.createNewRegisteredObject('Point', [Common.getNewName('ω'), true, this.color, 'name'])
-                HistoryAPI.history.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
+                HistoryAPI.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
                 om_0.update()
                 labelPosition = 'below'
             }
             om_0.requiredBy.push(this)
         }
+        /** @type {Point} */
         this.om_0 = om_0
         this.pass = pass
         if(typeof gain == 'number' || typeof gain == 'string') gain = new Expression(gain.toString())
@@ -98,7 +99,7 @@ export default class GainBode extends ExecutableObject {
     simplify(x = 1) {
         let xval = x
         if(typeof x == 'string') xval = executeExpression(x)
-        if((this.pass === 'high' && xval < this.om_0.x) || (this.pass === 'low' && xval > this.om_0.x)) {
+        if((this.pass === 'high' && xval < this.om_0.x.execute()) || (this.pass === 'low' && xval > this.om_0.x.execute())) {
             let dbfn = new Expression(`${this.gain.execute()}*(ln(x)-ln(${this.om_0.x}))/ln(10)+${this.om_0.y}`)
             return dbfn.simplify(x)
         } else {
@@ -110,29 +111,29 @@ export default class GainBode extends ExecutableObject {
         return true
     }
     
-    draw(canvas, ctx) {
-        let base = [canvas.x2px(this.om_0.x), canvas.y2px(this.om_0.y)]
+    draw(canvas) {
+        let base = [canvas.x2px(this.om_0.x.execute()), canvas.y2px(this.om_0.y.execute())]
         let dbfn = new Expression(`${this.gain.execute()}*(log10(x)-log10(${this.om_0.x}))+${this.om_0.y}`)
         let inDrawDom = new EmptySet()
 
         if(this.pass === 'high') {
             // High pass, linear line from beginning, then constant to the end.
-            canvas.drawLine(ctx, base[0], base[1], canvas.canvasSize.width, base[1])
+            canvas.drawLine(base[0], base[1], canvas.width, base[1])
             inDrawDom = parseDomain(`]-inf;${this.om_0.x}[`)
         } else {
             // Low pass, constant from the beginning, linear line to the end.
-            canvas.drawLine(ctx, base[0], base[1], 0, base[1])
+            canvas.drawLine(base[0], base[1], 0, base[1])
             inDrawDom = parseDomain(`]${this.om_0.x};+inf[`)
         }
-        Function.drawFunction(canvas, ctx, dbfn, inDrawDom, Domain.R)
+        Function.drawFunction(canvas, dbfn, inDrawDom, Domain.R)
         // Dashed line representing break in function
-        var xpos = canvas.x2px(this.om_0.x.execute())
-        var dashPxSize = 10
-        for(var i = 0; i < canvas.canvasSize.height && this.omGraduation; i += dashPxSize*2)
-            canvas.drawLine(ctx, xpos, i, xpos, i+dashPxSize)
+        let xpos = canvas.x2px(this.om_0.x.execute())
+        let dashPxSize = 10
+        for(let i = 0; i < canvas.height && this.omGraduation; i += dashPxSize*2)
+            canvas.drawLine(xpos, i, xpos, i+dashPxSize)
             
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
     
     update() {

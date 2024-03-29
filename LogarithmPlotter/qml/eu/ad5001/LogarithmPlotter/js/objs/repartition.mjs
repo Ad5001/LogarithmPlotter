@@ -92,61 +92,51 @@ export default class RepartitionFunction extends ExecutableObject {
         }
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         let currentY = 0;
         let keys = Object.keys(this.probabilities).map(idx => parseInt(idx)).sort((a,b) => a-b)
         if(canvas.isVisible(keys[0],this.probabilities[keys[0]].replace(/,/g, '.'))) {
-            canvas.drawLine(ctx, 
-                0,
-                canvas.y2px(0),
-                canvas.x2px(keys[0]),
-                canvas.y2px(0)
-            )
+            canvas.drawLine(0, canvas.y2px(0), canvas.x2px(keys[0]), canvas.y2px(0))
             if(canvas.isVisible(keys[0],0)) {
-                ctx.beginPath();
-                ctx.arc(canvas.x2px(keys[0])+4,canvas.y2px(0), 4, Math.PI / 2, 3 * Math.PI / 2);
-                ctx.stroke();
+                canvas.arc(canvas.x2px(keys[0])+4,canvas.y2px(0), 4, Math.PI / 2, 3 * Math.PI / 2);
             }
         }
         for(let i = 0; i < keys.length-1; i++) {
             let idx = keys[i];
             currentY += parseFloat(this.probabilities[idx].replace(/,/g, '.'));
             if(canvas.isVisible(idx,currentY) || canvas.isVisible(keys[i+1],currentY)) {
-                canvas.drawLine(ctx,
+                canvas.drawLine(
                     Math.max(0,canvas.x2px(idx)),
                     canvas.y2px(currentY),
-                    Math.min(canvas.canvasSize.width,canvas.x2px(keys[i+1])),
+                    Math.min(canvas.width,canvas.x2px(keys[i+1])),
                     canvas.y2px(currentY)
                 )
                 if(canvas.isVisible(idx,currentY)) {
-                    ctx.beginPath();
-                    ctx.arc(canvas.x2px(idx),canvas.y2px(currentY), 4, 0, 2 * Math.PI);
-                    ctx.fill();
+                    canvas.disc(canvas.x2px(idx), canvas.y2px(currentY), 4)
                 }
                 if(canvas.isVisible(keys[i+1],currentY)) {
-                    ctx.beginPath();
-                    ctx.arc(canvas.x2px(keys[i+1])+4,canvas.y2px(currentY), 4, Math.PI / 2, 3 * Math.PI / 2);
-                    ctx.stroke();
+                    canvas.arc(canvas.x2px(keys[i+1])+4,canvas.y2px(currentY), 4, Math.PI / 2, 3 * Math.PI / 2);
                 }
             }
         }
         if(canvas.isVisible(keys[keys.length-1],currentY+parseFloat(this.probabilities[keys[keys.length-1]]))) {
-            canvas.drawLine(ctx, 
+            canvas.drawLine(
                 Math.max(0,canvas.x2px(keys[keys.length-1])),
                 canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.'))),
-                canvas.canvasSize.width,
+                canvas.width,
                 canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.')))
             )
-            ctx.beginPath();
-            ctx.arc(
+            canvas.disc(
                 canvas.x2px(keys[keys.length-1]),
-                    canvas.y2px(currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.'))), 
-                    4, 0, 2 * Math.PI);
-            ctx.fill();
+                canvas.y2px(
+                    currentY+parseFloat(this.probabilities[keys[keys.length-1]].replace(/,/g, '.'))
+                ),
+                4
+            )
         }
         
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 

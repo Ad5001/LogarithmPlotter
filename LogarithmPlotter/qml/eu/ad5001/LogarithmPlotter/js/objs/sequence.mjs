@@ -123,11 +123,11 @@ export default class Sequence extends ExecutableObject {
         }
     }
     
-    draw(canvas, ctx) {
-        Function.drawFunction(canvas, ctx, this.sequence, canvas.logscalex ? Domain.NE : Domain.N, Domain.R, this.drawPoints, this.drawDashedLines)
+    draw(canvas) {
+        Function.drawFunction(canvas, this.sequence, canvas.logscalex ? Domain.NE : Domain.N, Domain.R, this.drawPoints, this.drawDashedLines)
         
         // Label
-        this.drawLabel(canvas, ctx, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
+        this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
     }
 }
 

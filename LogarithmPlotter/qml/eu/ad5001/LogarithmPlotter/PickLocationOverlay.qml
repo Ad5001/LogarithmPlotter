@@ -113,7 +113,7 @@ Item {
             if(mouse.button == Qt.LeftButton) { // Validate
                 let newValueX = !parent.userPickX ? null : parseValue(picked.mouseX.toString(), objType, propertyX)
                 let newValueY = !parent.userPickY ? null : parseValue(picked.mouseY.toString(), objType, propertyY)
-                let obj = Runtime.Objects.currentObjectsByName[objName]
+                let obj = Modules.Objects.currentObjectsByName[objName]
                 // Set values
                 if(parent.userPickX && parent.userPickY) {
                     history.addToHistory(new HistoryLib.EditedPosition(
@@ -262,7 +262,7 @@ Item {
         color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: canvas.x2px(picked.mouseX)
+        anchors.leftMargin: Modules.Canvas.x2px(picked.mouseX)
         visible: parent.userPickX
     }
     
@@ -273,7 +273,7 @@ Item {
         color: 'black'
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.topMargin: canvas.y2px(picked.mouseY)
+        anchors.topMargin: Modules.Canvas.y2px(picked.mouseY)
         visible: parent.userPickY
     }
     
@@ -282,25 +282,26 @@ Item {
         x: picker.mouseX - width - 5
         y: picker.mouseY - height - 5
         color: 'black'
-        property double axisX: canvas.xaxisstep1
+        property double axisX: Modules.Canvas.axesStep.x.value
+        property double axisY: Modules.Canvas.axesStep.y.value
         property double mouseX: {
-            let xpos = canvas.px2x(picker.mouseX)
+            let xpos = Modules.Canvas.px2x(picker.mouseX)
             if(snapToGridCheckbox.checked) {
                 if(canvas.logscalex) {
                     // Calculate the logged power
                     let pow = Math.pow(10, Math.floor(Math.log10(xpos)))
                     return pow*Math.round(xpos/pow)
                 } else {
-                    return canvas.xaxisstep1*Math.round(xpos/canvas.xaxisstep1)
+                    return axisX*Math.round(xpos/axisX)
                 }
             } else {
                 return xpos.toFixed(parent.precision)
             }
         }
         property double mouseY: {
-            let ypos = canvas.px2y(picker.mouseY)
+            let ypos = Modules.Canvas.px2y(picker.mouseY)
             if(snapToGridCheckbox.checked) {
-                return canvas.yaxisstep1*Math.round(ypos/canvas.yaxisstep1)
+                return axisY*Math.round(ypos/axisY)
             } else {
                 return ypos.toFixed(parent.precision)
             }
@@ -323,7 +324,7 @@ Item {
         Parses a given \c value as an expression or a number depending on the type of \c propertyName of all \c objType.
     */
     function parseValue(value, objType, propertyName) {
-        if(Runtime.Objects.types[objType].properties()[propertyName] == 'number')
+        if(Modules.Objects.types[objType].properties()[propertyName] == 'number')
             return parseFloat(value)
         else
             return new MathLib.Expression(value)

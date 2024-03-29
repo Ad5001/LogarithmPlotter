@@ -19,12 +19,12 @@
 /**
  * Base class for global APIs in runtime.
  */
-export class RuntimeAPI {
+export class Module {
 
     /**
      *
      * @param {string} name - Name of the API
-     * @param {(RuntimeAPI|undefined)[]} requires - List of APIs required to initialize this one.
+     * @param {(Module|undefined)[]} requires - List of APIs required to initialize this one.
      */
     constructor(name, requires = []) {
         console.log(`Loading module ${name}...`)
@@ -33,7 +33,7 @@ export class RuntimeAPI {
 
     /**
      * Checks if all requirements are defined.
-     * @param {(RuntimeAPI|undefined)[]} requires
+     * @param {(Module|undefined)[]} requires
      * @param {string} name
      */
     __check_requirements(requires, name) {

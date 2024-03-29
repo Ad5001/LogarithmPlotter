@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.12
 import QtQuick
 
 // Auto loading all modules.
-import "js/modules.js" as Modules
+import "js/autoload.js" as ModulesAutoload
 
 import eu.ad5001.LogarithmPlotter.History 1.0
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
@@ -191,9 +191,9 @@ ApplicationWindow {
             filename += '.lpf'
         settings.saveFilename = filename
         var objs = {}
-        for(var objType in Runtime.Objects.currentObjects){
+        for(var objType in Modules.Objects.currentObjects){
             objs[objType] = []
-            for(var obj of Runtime.Objects.currentObjects[objType]) {
+            for(var obj of Modules.Objects.currentObjects[objType]) {
                 objs[objType].push(obj.export())
             }
         }
@@ -255,19 +255,19 @@ ApplicationWindow {
             root.width = data["width"]
             
             // Importing objects
-            Runtime.Objects.currentObjects = {}
-            Runtime.Object.keys(Objects.currentObjectsByName).forEach(key => {
-                delete Runtime.Objects.currentObjectsByName[key];
+            Modules.Objects.currentObjects = {}
+            Modules.Object.keys(Objects.currentObjectsByName).forEach(key => {
+                delete Modules.Objects.currentObjectsByName[key];
                 // Required to keep the same reference for the copy of the object used in expression variable detection.
                 // Another way would be to change the reference as well, but I feel like the code would be less clean.
             })
             for(let objType in data['objects']) {
-                if(Object.keys(Runtime.Objects.types).indexOf(objType) > -1) {
-                    Runtime.Objects.currentObjects[objType] = []
+                if(Object.keys(Modules.Objects.types).indexOf(objType) > -1) {
+                    Modules.Objects.currentObjects[objType] = []
                     for(let objData of data['objects'][objType]) {
-                        let obj = new Runtime.Objects.types[objType](...objData)
-                        Runtime.Objects.currentObjects[objType].push(obj)
-                        Runtime.Objects.currentObjectsByName[obj.name] = obj
+                        let obj = new Modules.Objects.types[objType](...objData)
+                        Modules.Objects.currentObjects[objType].push(obj)
+                        Modules.Objects.currentObjectsByName[obj.name] = obj
                     }
                 } else {
                     error += qsTr("Unknown object type: %1.").arg(objType) + "\n";
@@ -275,8 +275,8 @@ ApplicationWindow {
             }
             
             // Updating object dependencies.
-            for(let objName in Runtime.Objects.currentObjectsByName)
-                Runtime.Objects.currentObjectsByName[objName].update()
+            for(let objName in Modules.Objects.currentObjectsByName)
+                Modules.Objects.currentObjectsByName[objName].update()
             
             // Importing history
             if("history" in data)

@@ -91,8 +91,8 @@ export default class XCursor extends DrawableObject {
     }
     
     getTargetValueLatexLabel() {
-        var t = this.targetElement
-        var approx = ''
+        let t = this.targetElement
+        let approx = ''
         if(this.approximate) {
             approx = t.execute(this.x.execute())
             approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
@@ -142,39 +142,35 @@ export default class XCursor extends DrawableObject {
         }
     }
     
-    draw(canvas, ctx) {
+    draw(canvas) {
         let xpos = canvas.x2px(this.x.execute())
         switch(this.displayStyle) {
             case '— — — — — — —':
-                var dashPxSize = 10
-                for(var i = 0; i < canvas.canvasSize.height; i += dashPxSize*2)
-                    canvas.drawLine(ctx, xpos, i, xpos, i+dashPxSize)
+                canvas.drawDashedLine(xpos, 0, xpos, canvas.height, 20)
                 break;
             case '⸺⸺⸺⸺⸺⸺':
-                canvas.drawXLine(ctx, this.x.execute())
+                canvas.drawXLine(this.x.execute())
                 break;
             case '• • • • • • • • • •':
-                var pointDistancePx = 10
-                var pointSize = 2
-                ctx.beginPath();
-                for(var i = 0; i < canvas.canvasSize.height; i += pointDistancePx)
-                    ctx.ellipse(xpos-pointSize/2, i-pointSize/2, pointSize, pointSize)
-                ctx.fill();
+                let pointDistancePx = 10
+                let pointSize = 2
+                for(let i = 0; i < canvas.height; i += pointDistancePx)
+                    canvas.disc(xpos, i, pointSize)
                 break;
         }
         
         // Drawing label at the top of the canvas.
-        this.drawLabel(canvas, ctx, this.labelPosition, xpos, 0, false, null, null,
-                       (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, 5, ltxImg.width, ltxImg.height),
-                       (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, textSize.height+5))
+        this.drawLabel(canvas, this.labelPosition, xpos, 0, false, null, null,
+                       (x,y,ltxImg) => canvas.drawVisibleImage(ltxImg.source, x, 5, ltxImg.width, ltxImg.height),
+                       (x,y,text,textSize) => canvas.drawVisibleText(text, x, textSize.height+5))
         
         // Drawing label at the position of the target element.
         if(this.targetValuePosition === 'Next to target' && this.targetElement != null) {
             let ypos = canvas.y2px(this.targetElement.execute(this.x.execute()))
-            this.drawLabel(canvas, ctx, this.labelPosition, xpos, ypos, false,
+            this.drawLabel(canvas, this.labelPosition, xpos, ypos, false,
                            this.getTargetValueLatexLabel.bind(this), this.getTargetValueLabel.bind(this),
-                           (x,y,ltxImg) => canvas.drawVisibleImage(ctx, ltxImg.source, x, y, ltxImg.width, ltxImg.height),
-                           (x,y,text,textSize) => canvas.drawVisibleText(ctx, text, x, y+textSize.height))
+                           (x,y,ltxImg) => canvas.drawVisibleImage(ltxImg.source, x, y, ltxImg.width, ltxImg.height),
+                           (x,y,text,textSize) => canvas.drawVisibleText(text, x, y+textSize.height))
         }
     }
 }
