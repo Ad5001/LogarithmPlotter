@@ -32,7 +32,7 @@ export default class Text extends DrawableObject  {
         [QT_TRANSLATE_NOOP('prop','y')]:             new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Positioning,
         [QT_TRANSLATE_NOOP('prop','text')]:          'string',
-                            'comment1':              QT_TRANSLATE_NOOP(
+                           'comment1':               QT_TRANSLATE_NOOP(
                                                          'comment',
                                                          'If you have latex enabled, you can use use latex markup in between $$ to create equations.'
                                                      ),

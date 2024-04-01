@@ -129,7 +129,8 @@ class IOAPI extends Module {
                 if(Object.keys(Modules.Objects.types).indexOf(objType) > -1) {
                     Modules.Objects.currentObjects[objType] = []
                     for(let objData of data['objects'][objType]) {
-                        let obj = new Modules.Objects.types[objType](...objData)
+                        /** @type {DrawableObject} */
+                        let obj = Modules.Objects.types[objType].import(...objData)
                         Modules.Objects.currentObjects[objType].push(obj)
                         Modules.Objects.currentObjectsByName[obj.name] = obj
                     }

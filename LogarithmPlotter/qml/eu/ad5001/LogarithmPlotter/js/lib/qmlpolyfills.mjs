@@ -26,6 +26,8 @@ qsTranslate = qsTranslate || function(category, string) { throw new Error('qsTra
 qsTr = qsTr || function(string) { throw new Error('qsTr not implemented.'); }
 /** @type {function(string, string): string} */
 QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP || function(string, string) { throw new Error('QT_TRANSLATE_NOOP not implemented.'); }
+/** @type {function(string): string} */
+QT_TR_NOOP = QT_TR_NOOP || function(string) { throw new Error('QT_TR_NOOP not implemented.'); }
 /** @type {function(string|boolean|int): string} */
 String.prototype.arg = String.prototype.arg || function(parameter) { throw new Error('arg not implemented.'); }
 

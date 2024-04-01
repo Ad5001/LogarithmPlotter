@@ -29,8 +29,8 @@ export default class XCursor extends DrawableObject {
     static displayType(){return qsTr('X Cursor')}
     static displayTypeMultiple(){return qsTr('X Cursors')}
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','x')]:                   'Expression',
-        [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject'),
+        [QT_TRANSLATE_NOOP('prop','x')]:                   new P.Expression(),
+        [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject', true),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]:       P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','approximate')]:         'boolean',
         [QT_TRANSLATE_NOOP('prop','rounding')]:            'number',

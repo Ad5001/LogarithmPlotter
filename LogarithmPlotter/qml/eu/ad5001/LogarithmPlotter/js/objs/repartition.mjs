@@ -26,21 +26,25 @@ export default class RepartitionFunction extends ExecutableObject {
     static displayType(){return qsTr('Repartition')}
     static displayTypeMultiple(){return qsTr('Repartition functions')}
     static properties() {return {
-        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
-        [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
                                   'comment1':        QT_TRANSLATE_NOOP(
                                                          'comment',
                                                          'Note: Specify the probability for each value.'
                                                      ),
-        [QT_TRANSLATE_NOOP('prop','probabilities')]: new P.Dictionary('string', 'float', /^-?[\d.,]+$/, /^-?[\d.,]+$/, 'P({name_} = ', ') = '),
+        [QT_TRANSLATE_NOOP('prop','probabilities')]: new P.Dictionary('string', 'double', /^-?[\d.,]+$/, /^-?[\d.,]+$/, 'P({name_} = ', ') = '),
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,
+        [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
     }}
+    static import(name, visible, color, labelContent, ...args) {
+        if(args.length === 5)
+            // Two legacy values no longer included.
+            args.shift(); args.shift()
+        return super.import(name, visible, color, labelContent, ...args)
+    }
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
-                beginIncluded = true, drawLineEnds = true, probabilities = {'0': '0'}, labelPosition = 'above', labelX = 1) {
+                probabilities = {'0': '0'}, labelPosition = 'above', labelX = 1) {
         if(name == null) name = Common.getNewName('XYZUVW', "F_")
         super(name, visible, color, labelContent)
-        this.beginIncluded = beginIncluded
-        this.drawLineEnds = drawLineEnds
         this.probabilities = probabilities
         this.labelPosition = labelPosition
         this.labelX = labelX
@@ -49,7 +53,7 @@ export default class RepartitionFunction extends ExecutableObject {
     
     export() {
         return [this.name, this.visible, this.color.toString(), this.labelContent,
-        this.beginIncluded, this.drawLineEnds, this.probabilities, this.labelPosition, this.labelX]
+                this.probabilities, this.labelPosition, this.labelX]
     }
     
     

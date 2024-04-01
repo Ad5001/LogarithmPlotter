@@ -64,7 +64,6 @@ export default class Sequence extends ExecutableObject {
 
     update() {
         console.log('Updating sequence', this.sequence)
-        console.trace()
         super.update()
         if(
             this.sequence == null || this.baseValues !== this.sequence.baseValues ||

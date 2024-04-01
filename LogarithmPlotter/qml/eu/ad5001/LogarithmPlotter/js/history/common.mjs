@@ -36,7 +36,7 @@ class HistoryCommonAPI extends Module {
     redo() { this.history.redo() }
     clear() { this.history.clear() }
     addToHistory(action) { this.history.addToHistory(action) }
-    unserialize(data) { this.history.unserialize(data) }
+    unserialize(...data) { this.history.unserialize(...data) }
     serialize() { return this.history.serialize() }
 }
 
@@ -124,7 +124,7 @@ export class Action {
     }
     
     /**
-     * Returns a string with the HTML-formated description of the action.
+     * Returns a string with the HTML-formatted description of the action.
      * 
      * @returns {string}
      */

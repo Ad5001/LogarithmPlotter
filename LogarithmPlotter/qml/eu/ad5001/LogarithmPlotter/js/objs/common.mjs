@@ -20,6 +20,7 @@ import { getRandomColor, textsub } from "../utils.mjs"
 import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
 import {Module} from "../modules.mjs"
+import {ensureTypeSafety, serializesByPropertyType} from "../parameters.mjs"
 
 // This file contains the default data to be imported from all other objects
 
@@ -34,7 +35,7 @@ class ObjectsCommonAPI extends Module {
     }
 
     /**
-     * Creates a new name for an object, based on the \c allowedLetters.
+     * Creates a new name for an object, based on the  allowedLetters.
      * If variables with each of the allowedLetters is created, a subscript
      * number is added to the name.
      * @param {string} allowedLetters
@@ -56,7 +57,7 @@ class ObjectsCommonAPI extends Module {
     }
 
     /**
-     * Registers the object \c obj in the object list.
+     * Registers the object  obj in the object list.
      * @param {DrawableObject} obj - Object to be registered.
      */
     registerObject(obj) {
@@ -131,6 +132,22 @@ export class DrawableObject {
      * @return {boolean}
      */
     static executable() {return false}
+
+    /**
+     * Imports the object from its serialized form.
+     * @return {DrawableObject}
+     */
+    static import(name, visible, color, labelContent, ...args) {
+        let importedArgs = [name.toString(), visible === true, color.toString(), labelContent]
+        console.log('---')
+        console.log(this, name, args)
+        for(let [name, propType] of Object.entries(this.properties()))
+            if(!name.startsWith('comment')) {
+                console.log(name, propType, importedArgs.length-4, args[importedArgs.length-4])
+                importedArgs.push(ensureTypeSafety(propType, args[importedArgs.length-4]))
+            }
+        return new this(...importedArgs)
+    }
     
     /**
      * Base constructor for the object.
@@ -138,7 +155,7 @@ export class DrawableObject {
      * @param {boolean} visible - true if the object is visible, false otherwise.
      * @param {color|string} color - Color of the object (can be string or QColor)
      * @param {Enum} labelContent - One of 'null', 'name' or 'name + value' describing the content of the label.
-     * @constructor()
+     * @constructor
      */
     constructor(name, visible = true, color = null, labelContent = 'name + value') {
         if(color == null) color = getRandomColor()
@@ -150,15 +167,18 @@ export class DrawableObject {
         this.requiredBy = []
         this.requires = []
     }
-    
+
     /**
-     * Serilizes the object in an array that can be JSON serialized.
+     * Serializes the object in an array that can be JSON serialized.
      * These parameters will be re-entered in the constructor when restored.
      * @return {array}
      */
     export() {
-        // Should return what will be inputed as arguments when a file is loaded (serializable form)
-        return [this.name, this.visible, this.color.toString(), this.labelContent]
+        let exportList = [this.name, this.visible, this.color.toString(), this.labelContent]
+        for(let [name, propType] of Object.entries(this.constructor.properties()))
+            if(!name.startsWith('comment'))
+                exportList.push(serializesByPropertyType(propType, this[name]))
+        return exportList
     }
     
     /**
@@ -182,7 +202,7 @@ export class DrawableObject {
     }
     
     /**
-     * Readable string content of the label depending on the value of the \c latexContent.
+     * Readable string content of the label depending on the value of the  latexContent.
      * @return {string}
      */
     getLabel() {
@@ -198,7 +218,7 @@ export class DrawableObject {
     }
     
     /**
-     * Latex markup string content of the label depending on the value of the \c latexContent.
+     * Latex markup string content of the label depending on the value of the  latexContent.
      * Every non latin character should be passed as latex symbols and formulas 
      * should be in latex form.
      * See ../latex.mjs for helper methods.
@@ -275,16 +295,15 @@ export class DrawableObject {
     }
     
     /**
-     * Abstract method. Draw the object onto the \c canvas with the.
+     * Abstract method. Draw the object onto the  canvas with the.
      * @param {CanvasAPI} canvas
-     * @param {CanvasRenderingContext2D} ctx
      */
     draw(canvas) {}
     
     /**
-     * Applicates a \c drawFunction with two position arguments depending on 
-     * both the \c posX and \c posY of where the label should be displayed, 
-     * and the \c labelPosition which declares the label should be displayed
+     * Applicates a  drawFunction with two position arguments depending on 
+     * both the  posX and  posY of where the label should be displayed, 
+     * and the  labelPosition which declares the label should be displayed
      * relatively to that position.
      * 
      * @param {string|Enum} labelPosition - Position of the label relative to the marked position
@@ -333,17 +352,16 @@ export class DrawableObject {
     }
     
     /**
-     * Automatically draw text (by default the label of the object on the \c canvas with
-     * the 2D context \c ctx depending on user settings.
-     * This method takes into account both the \c posX and \c posY of where the label
-     * should be displayed, including the \c labelPosition relative to it.
-     * The text is get both through the \c getLatexFunction and \c getTextFunction
+     * Automatically draw text (by default the label of the object on the  canvas
+     * depending on user settings.
+     * This method takes into account both the  posX and  posY of where the label
+     * should be displayed, including the  labelPosition relative to it.
+     * The text is get both through the  getLatexFunction and  getTextFunction
      * depending on whether to use latex.
-     * Then, it's displayed using the \c drawFunctionLatex (x,y,imageData) and
-     * \c drawFunctionText (x,y,text) depending on whether to use latex.
+     * Then, it's displayed using the  drawFunctionLatex (x,y,imageData) and
+     *  drawFunctionText (x,y,text) depending on whether to use latex.
      * 
      * @param {CanvasAPI} canvas
-     * @param {CanvasRenderingContext2D} ctx
      * @param {string|Enum} labelPosition - Position of the label relative to the marked position
      * @param {number} posX - Component of the marked position on the x-axis 
      * @param {number} posY - Component of the marked position on the y-axis 

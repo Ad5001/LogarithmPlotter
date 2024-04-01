@@ -35,8 +35,8 @@ export default class Function extends ExecutableObject {
                                                               'comment',
                                                               'Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}'
                                                           ),
-        [QT_TRANSLATE_NOOP('prop','labelPosition')]:      P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','displayMode')]:        P.Enum.FunctionDisplayType,
+        [QT_TRANSLATE_NOOP('prop','labelPosition')]:      P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','labelX')]:             'number',
                                   'comment2':             QT_TRANSLATE_NOOP(
                                                               'comment',
@@ -81,13 +81,13 @@ export default class Function extends ExecutableObject {
             return `\\begin{array}{l}${Latex.variable(this.name)}(x) = ${this.expression.latexMarkup}\\\\ D_{${this.name}} = ${this.definitionDomain.latexMarkup}\\end{array}`
         }
     }
-    
+
     export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(), 
+        return [this.name, this.visible, this.color.toString(), this.labelContent,
+        this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(),
         this.displayMode, this.labelPosition, this.labelX, this.drawPoints, this.drawDashedLines]
     }
-    
+
     execute(x = 1) {
         if(this.definitionDomain.includes(x))
             return this.expression.execute(x)
