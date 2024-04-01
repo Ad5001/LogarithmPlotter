@@ -64,11 +64,6 @@ export default class PhaseBode extends ExecutableObject {
         this.labelX = labelX
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.om_0.name, this.phase.toEditableString(), this.unit, this.labelPosition, this.labelX]
-    }
-    
     getReadableString() {
         return `${this.name}: ${this.phase.toString(true)}${this.unit} at ${this.om_0.name} = ${this.om_0.x}`
     }

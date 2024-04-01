@@ -60,12 +60,6 @@ export default class XCursor extends DrawableObject {
         this.targetValuePosition = targetValuePosition
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.x.toEditableString(), this.targetElement == null ? null : this.targetElement.name, this.labelPosition, 
-        this.approximate, this.rounding, this.displayStyle, this.targetValuePosition]
-    }
-    
     getReadableString() {
         if(this.targetElement == null) return `${this.name} = ${this.x.toString()}`
         return `${this.name} = ${this.x.toString()}\n${this.getTargetValueLabel()}`

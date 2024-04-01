@@ -54,10 +54,6 @@ export default class Point extends DrawableObject  {
         return `${Latex.variable(this.name)} = \\left(${this.x.latexMarkup}, ${this.y.latexMarkup}\\right)`
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.pointStyle]
-    }
-    
     draw(canvas) {
         let [canvasX, canvasY] = [canvas.x2px(this.x.execute()), canvas.y2px(this.y.execute())]
         let pointSize = 8+(canvas.linewidth*2)

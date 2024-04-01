@@ -44,10 +44,6 @@ export default class SommeGainsBode extends ExecutableObject {
         this.recalculateCache()
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.labelPosition, this.labelX]
-    }
-    
     getReadableString() {
         return `${this.name} = ${Objects.getObjectsName('Gain Bode').join(' + ')}`
     }

@@ -35,9 +35,12 @@ export default class RepartitionFunction extends ExecutableObject {
         [QT_TRANSLATE_NOOP('prop','labelX')]:        'number',
     }}
     static import(name, visible, color, labelContent, ...args) {
-        if(args.length === 5)
+        console.log(args, args.length)
+        if(args.length === 5) {
             // Two legacy values no longer included.
-            args.shift(); args.shift()
+            args.shift()
+            args.shift()
+        }
         return super.import(name, visible, color, labelContent, ...args)
     }
     
@@ -50,12 +53,6 @@ export default class RepartitionFunction extends ExecutableObject {
         this.labelX = labelX
         this.update()
     }
-    
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent,
-                this.probabilities, this.labelPosition, this.labelX]
-    }
-    
     
     getReadableString() {
         let keys = Object.keys(this.probabilities).sort((a,b) => a-b);

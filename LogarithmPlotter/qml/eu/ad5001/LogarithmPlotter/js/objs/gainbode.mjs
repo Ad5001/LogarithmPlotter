@@ -81,11 +81,6 @@ export default class GainBode extends ExecutableObject {
         \\end{array}`
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, 
-        this.om_0.name, this.pass.toString(), this.gain.toEditableString(), this.labelPosition, this.labelX, this.omGraduation]
-    }
-    
     execute(x=1) {
         if(typeof x == 'string') x = executeExpression(x)
         if((this.pass === 'high' && x < this.om_0.x) || (this.pass === 'low' && x > this.om_0.x)) {

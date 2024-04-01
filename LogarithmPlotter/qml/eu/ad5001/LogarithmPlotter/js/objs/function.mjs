@@ -82,12 +82,6 @@ export default class Function extends ExecutableObject {
         }
     }
 
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent,
-        this.expression.toEditableString(), this.definitionDomain.toString(), this.destinationDomain.toString(),
-        this.displayMode, this.labelPosition, this.labelX, this.drawPoints, this.drawDashedLines]
-    }
-
     execute(x = 1) {
         if(this.definitionDomain.includes(x))
             return this.expression.execute(x)

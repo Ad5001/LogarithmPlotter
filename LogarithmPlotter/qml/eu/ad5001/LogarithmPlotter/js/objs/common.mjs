@@ -139,11 +139,9 @@ export class DrawableObject {
      */
     static import(name, visible, color, labelContent, ...args) {
         let importedArgs = [name.toString(), visible === true, color.toString(), labelContent]
-        console.log('---')
-        console.log(this, name, args)
+        console.log('Importing', this.type(), name, args)
         for(let [name, propType] of Object.entries(this.properties()))
             if(!name.startsWith('comment')) {
-                console.log(name, propType, importedArgs.length-4, args[importedArgs.length-4])
                 importedArgs.push(ensureTypeSafety(propType, args[importedArgs.length-4]))
             }
         return new this(...importedArgs)

@@ -144,8 +144,10 @@ export class ObjectType extends PropertyType {
     }
 
     export(value) {
-        if(value.type === this.objType || (this.objType === 'ExecutableObject' && value.execute))
-            return value
+        if(value == null && this.allowNull)
+            return null
+        else if(value.type === this.objType || (this.objType === 'ExecutableObject' && value.execute))
+            return value.name
         else
             throw new TypeError(`Exportation error: ${value} not a ${this.objType}.`)
     }

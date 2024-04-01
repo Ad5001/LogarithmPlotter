@@ -55,12 +55,6 @@ export default class Sequence extends ExecutableObject {
         this.labelX = labelX
         this.update()
     }
-    
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent,
-            this.drawPoints, this.drawDashedLines, this.defaultExpression, this.baseValues,
-            this.labelPosition, this.labelX]
-    }
 
     update() {
         console.log('Updating sequence', this.sequence)

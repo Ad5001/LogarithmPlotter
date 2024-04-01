@@ -98,15 +98,15 @@ class IOAPI extends Module {
             Modules.History.clear()
             // Importing settings
             this.settings.saveFilename = filename
-            this.settings.xzoom = data["xzoom"]
-            this.settings.yzoom = data["yzoom"]
-            this.settings.xmin = data["xmin"]
-            this.settings.ymax = data["ymax"]
-            this.settings.xaxisstep = data["xaxisstep"]
-            this.settings.yaxisstep = data["yaxisstep"]
-            this.settings.xlabel = data["xaxislabel"]
-            this.settings.ylabel = data["yaxislabel"]
-            this.settings.logscalex = data["logscalex"]
+            this.settings.xzoom = parseFloat(data["xzoom"]) || 100
+            this.settings.yzoom = parseFloat(data["yzoom"]) || 10
+            this.settings.xmin = parseFloat(data["xmin"]) || 5/10
+            this.settings.ymax = parseFloat(data["ymax"]) || 24
+            this.settings.xaxisstep = data["xaxisstep"] || "4"
+            this.settings.yaxisstep = data["yaxisstep"] || "4"
+            this.settings.xlabel = data["xaxislabel"] || ""
+            this.settings.ylabel = data["yaxislabel"] || ""
+            this.settings.logscalex = data["logscalex"] === true
             if("showxgrad" in data)
                 this.settings.showxgrad = data["showxgrad"]
             if("showygrad" in data)
@@ -115,8 +115,8 @@ class IOAPI extends Module {
                 this.settings.linewidth = data["linewidth"]
             if("textsize" in data)
                 this.settings.textsize = data["textsize"]
-            this.rootElement.height = data["height"]
-            this.rootElement.width = data["width"]
+            this.rootElement.height = parseFloat(data["height"]) || 500
+            this.rootElement.width = parseFloat(data["width"]) || 1000
 
             // Importing objects
             Modules.Objects.currentObjects = {}

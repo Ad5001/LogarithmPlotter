@@ -78,10 +78,6 @@ export default class Text extends DrawableObject  {
         return `${Latex.variable(this.name)} = "\\textsf{${this.latexMarkupText()}}"`
     }
     
-    export() {
-        return [this.name, this.visible, this.color.toString(), this.labelContent, this.x.toEditableString(), this.y.toEditableString(), this.labelPosition, this.text, this.disableLatex]
-    }
-    
     getLabel() {
         return this.text
     }
