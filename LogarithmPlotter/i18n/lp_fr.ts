@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="124"/>
+        <location filename="../logarithmplotter.py" line="123"/>
         <source>About LogarithmPlotter</source>
         <translation>À propos de LogarithmPlotter</translation>
     </message>
@@ -185,6 +185,14 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
         <translation>Fermer</translation>
+    </message>
+</context>
+<context>
+    <name>BoolSetting</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/setting/general.mjs" line="23"/>
+        <source>Check for updates on startup</source>
+        <translation>Vérifier la présence de mise à jour au démarrage</translation>
     </message>
 </context>
 <context>
@@ -445,14 +453,17 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 <context>
     <name>LogarithmPlotter</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="91"/>
         <source>Objects</source>
         <translation>Objets</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="97"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="103"/>
         <source>History</source>
         <translation>Historique</translation>
     </message>
@@ -481,14 +492,17 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Fichier &apos;%1&apos; chargé.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="232"/>
         <source>Copied plot screenshot to clipboard!</source>
         <translation>Image du graphe copiée dans le presse-papiers !</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="247"/>
         <source>&amp;Update</source>
         <translation>&amp;Mise à jour</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="249"/>
         <source>&amp;Update LogarithmPlotter</source>
         <translation>&amp;Mettre à jour LogarithmPlotter</translation>
     </message>
@@ -607,99 +621,104 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="157"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="161"/>
         <source>X Zoom</source>
         <translation>Zoom en X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="172"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="176"/>
         <source>Y Zoom</source>
         <translation>Zoom en Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="188"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="192"/>
         <source>Min X</source>
         <translation>Min X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="207"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="211"/>
         <source>Max Y</source>
         <translation>Max Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="222"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="226"/>
         <source>Max X</source>
         <translation>Max X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="241"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="245"/>
         <source>Min Y</source>
         <translation>Min Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="259"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="263"/>
         <source>X Axis Step</source>
         <translation>Pas de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="274"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="278"/>
         <source>Y Axis Step</source>
         <translation>Pas de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="288"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="292"/>
         <source>Line width</source>
         <translation>Taille des lignes</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="303"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="307"/>
         <source>Text size (px)</source>
         <translation>Taille du texte (px)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="318"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="322"/>
         <source>X Label</source>
         <translation>Label de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="344"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="348"/>
         <source>Y Label</source>
         <translation>Label de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="372"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="376"/>
         <source>X Log scale</source>
         <translation>Échelle logarithmique en X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="382"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="386"/>
         <source>Show X graduation</source>
         <translation>Montrer la graduation de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="392"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="396"/>
         <source>Show Y graduation</source>
         <translation>Montrer la graduation de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="403"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="407"/>
         <source>Copy to clipboard</source>
         <translation>Copier vers le presse-papiers</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="412"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="416"/>
         <source>Save plot</source>
         <translation>Sauvegarder le graphe</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="421"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="425"/>
         <source>Save plot as</source>
         <translation>Sauvegarder le graphe sous</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="430"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="434"/>
         <source>Load plot</source>
         <translation>Ouvrir un graphe</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="119"/>
+        <source>Done</source>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
@@ -798,12 +817,12 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="48"/>
+        <location filename="../util/helper.py" line="49"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Impossible de récupérer l&apos;historique des modifications : Erreur de serveur {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="50"/>
+        <location filename="../util/helper.py" line="52"/>
         <source>Could not fetch update: {}.</source>
         <translation>Impossible de récupérer l&apos;historique des modifications : {}.</translation>
     </message>
@@ -1084,6 +1103,22 @@ Formule analysée : %3</translation>
         <source>LogarithmPlotter - Drawing error</source>
         <translation>LogarithmPlotter - Erreur</translation>
     </message>
+    <message>
+        <source>Automatically close parenthesises and brackets</source>
+        <translation type="obsolete">Fermer automatiquement les parenthèses et les crochets</translation>
+    </message>
+    <message>
+        <source>Enable syntax highlighting</source>
+        <translation type="obsolete">Activer la coloration syntaxique</translation>
+    </message>
+    <message>
+        <source>Enable autocompletion</source>
+        <translation type="obsolete">Activer l&apos;autocomplétion</translation>
+    </message>
+    <message>
+        <source>Color Scheme</source>
+        <translation type="obsolete">Coloration Syntaxique</translation>
+    </message>
 </context>
 <context>
     <name>function</name>
@@ -1116,6 +1151,21 @@ Formule analysée : %3</translation>
     </message>
 </context>
 <context>
+    <name>general</name>
+    <message>
+        <source>Check for updates on startup</source>
+        <translation type="obsolete">Vérifier la présence de mise à jour au démarrage</translation>
+    </message>
+    <message>
+        <source>Reset redo stack automaticly</source>
+        <translation type="obsolete">Réinitialiser la pile d&apos;action &quot;Rétablir&quot; automatiquement</translation>
+    </message>
+    <message>
+        <source>Enable LaTeX rendering</source>
+        <translation type="obsolete">Activer le rendu LaTeX</translation>
+    </message>
+</context>
+<context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
@@ -1145,64 +1195,52 @@ Formule analysée : %3</translation>
 <context>
     <name>io</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="89"/>
         <source>Objects</source>
-        <translation type="unfinished">Objets</translation>
+        <translation>Objets</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="95"/>
         <source>Settings</source>
-        <translation type="unfinished">Paramètres</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="101"/>
         <source>History</source>
-        <translation type="unfinished">Historique</translation>
+        <translation>Historique</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="220"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="unfinished">Graphe sauvegardé dans &apos;%1&apos;.</translation>
+        <translation type="obsolete">Graphe sauvegardé dans &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="230"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="unfinished">Chargement du fichier &apos;%1&apos;.</translation>
+        <translation type="obsolete">Chargement du fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="273"/>
         <source>Unknown object type: %1.</source>
-        <translation type="unfinished">Type d&apos;objet inconnu : %1.</translation>
+        <translation type="obsolete">Type d&apos;objet inconnu : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="296"/>
         <source>Invalid file provided.</source>
-        <translation type="unfinished">Fichier fourni invalide.</translation>
+        <translation type="obsolete">Fichier fourni invalide.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="300"/>
         <source>Could not save file: </source>
-        <translation type="unfinished">Impossible de sauvegarder le fichier : </translation>
+        <translation type="obsolete">Impossible de sauvegarder le fichier : </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="305"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="unfinished">Fichier &apos;%1&apos; chargé.</translation>
+        <translation type="obsolete">Fichier &apos;%1&apos; chargé.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="354"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation type="unfinished">Image du graphe copiée dans le presse-papiers !</translation>
+        <translation>Image du graphe copiée dans le presse-papiers !</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="369"/>
         <source>&amp;Update</source>
-        <translation type="unfinished">&amp;Mise à jour</translation>
+        <translation>&amp;Mise à jour</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="371"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation type="unfinished">&amp;Mettre à jour LogarithmPlotter</translation>
+        <translation>&amp;Mettre à jour LogarithmPlotter</translation>
     </message>
 </context>
 <context>
@@ -1235,7 +1273,7 @@ Le processus &apos;{}&apos; s&apos;est terminé par un code de retour non nul {}
 Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c&apos;est le cas.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="172"/>
+        <location filename="../util/latex.py" line="169"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1515,6 +1553,14 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     </message>
 </context>
 <context>
+    <name>settingCategory</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="152"/>
+        <source>general</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
@@ -1542,22 +1588,22 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
 <context>
     <name>update</name>
     <message>
-        <location filename="../util/update.py" line="54"/>
+        <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
         <translation>Une mise à jour de LogarithmPlotter (v{}) est disponible.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="58"/>
+        <location filename="../util/update.py" line="62"/>
         <source>No update available.</source>
         <translation>À jour.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="61"/>
+        <location filename="../util/update.py" line="65"/>
         <source>Could not fetch update information: Server error {}.</source>
         <translation>Impossible de récupérer les informations de mise à jour. Erreur du serveur {}.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="63"/>
+        <location filename="../util/update.py" line="69"/>
         <source>Could not fetch update information: {}.</source>
         <translation>Impossible de récupérer les informations de mise à jour. {}.</translation>
     </message>

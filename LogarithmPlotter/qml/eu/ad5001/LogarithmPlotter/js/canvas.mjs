@@ -144,6 +144,10 @@ class CanvasAPI extends Module {
     // Methods to draw the canvas
     //
 
+    requestPaint() {
+        this._canvas.requestPaint()
+    }
+
     /**
      * Redraws the entire canvas
      */

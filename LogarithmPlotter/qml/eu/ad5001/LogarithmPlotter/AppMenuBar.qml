@@ -90,12 +90,18 @@ MenuBar {
             icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
             enabled: history.redoCount > 0
         }
-        MenuSeparator { }
         Action { 
             text: qsTr("&Copy plot")
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
             icon.name: 'edit-copy'
+        }
+        MenuSeparator { }
+        Action { 
+            text: qsTr("&Preferences")
+            shortcut: StandardKey.Copy
+            onTriggered: preferences.open()
+            icon.name: 'settings'
         }
     }
     

@@ -55,6 +55,8 @@ ApplicationWindow {
     
     Popup.GreetScreen {}
     
+    Popup.Preferences {id: preferences}
+    
     Popup.Changelog {id: changelog}
     
     Popup.About {id: about}
@@ -86,19 +88,19 @@ ApplicationWindow {
             width: parent.width
             anchors.top: parent.top
             TabButton {
-                text: qsTranslate('io', "Objects")
+                text: qsTr("Objects")
                 icon.name: 'polygon-add-nodes'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
             TabButton {
-                text: qsTranslate('io', "Settings")
+                text: qsTr("Settings")
                 icon.name: 'preferences-system-symbolic'
                 icon.color: sysPalette.windowText
                 //height: 24
             }
             TabButton {
-                text: qsTranslate('io', "History")
+                text: qsTr("History")
                 icon.name: 'view-history'
                 icon.color: sysPalette.windowText
                 //height: 24
@@ -227,7 +229,7 @@ ApplicationWindow {
         var file = Helper.gettmpfile()
         drawCanvas.save(file)
         Helper.copyImageToClipboard()
-        alert.show(qsTranslate('io', "Copied plot screenshot to clipboard!"))
+        alert.show(qsTr("Copied plot screenshot to clipboard!"))
     }
     
     /*!
@@ -242,9 +244,9 @@ ApplicationWindow {
     
     Menu {
         id: updateMenu
-        title: qsTranslate('io', "&Update")
+        title: qsTr("&Update")
         Action {
-            text: qsTranslate('io', "&Update LogarithmPlotter")
+            text: qsTr("&Update LogarithmPlotter")
             icon.name: 'update'
             onTriggered: Qt.openUrlExternally("https://apps.ad5001.eu/logarithmplotter/")
         }
