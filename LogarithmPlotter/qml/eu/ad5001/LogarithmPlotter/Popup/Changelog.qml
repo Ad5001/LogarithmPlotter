@@ -96,7 +96,7 @@ Popup {
     
     Button {
         id: doneBtn
-        text: qsTr("Done")
+        text: qsTr("Close")
         font.pixelSize: 18
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 7

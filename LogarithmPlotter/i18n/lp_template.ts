@@ -203,7 +203,7 @@
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="99"/>
-        <source>Done</source>
+        <source>Close</source>
         <translation></translation>
     </message>
 </context>
@@ -375,7 +375,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="224"/>
-        <source>Done</source>
+        <source>Close</source>
         <translation></translation>
     </message>
 </context>
@@ -629,7 +629,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="119"/>
-        <source>Done</source>
+        <source>Close</source>
         <translation></translation>
     </message>
 </context>

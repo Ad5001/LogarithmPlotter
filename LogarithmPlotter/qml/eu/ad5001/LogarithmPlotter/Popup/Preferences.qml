@@ -115,7 +115,7 @@ Popup {
                         right: parent.right
                         bottom: parent.bottom
                     }
-                    text: qsTr('Done')
+                    text: qsTr('Close')
                     onClicked: preferencesPopup.close()
                 }
             }
@@ -183,5 +183,5 @@ Popup {
         }
     }
     
-    Component.onCompleted: open()
+    // Component.onCompleted: open()
 }
