@@ -100,14 +100,14 @@ Item {
         id: labelItem
         anchors.left: iconLabel.right
         anchors.leftMargin: icon == "" ? 0 : 5
-        height: parent.height
         anchors.top: parent.top
+        height: parent.height
+        width: Math.max(85, implicitWidth)
         verticalAlignment: TextInput.AlignVCenter
         //color: sysPalette.windowText
         text: visible ? qsTranslate("control", "%1: ").arg(control.label) : ""
         visible: control.label != ""
     }
-    
         
     TextField {
         id: input
@@ -128,8 +128,10 @@ Item {
         onEditingFinished: function() {
             if(insertButton.focus || insertPopup.focus) return
             var value = text
-            if(control.isInt) value = Math.max(control.min,parseInt(value).toString()=="NaN"?control.min:parseInt(value))
-            if(control.isDouble) value = Math.max(control.min,parseFloat(value).toString()=="NaN"?control.min:parseFloat(value))
+            if(control.isInt)
+                value = isNaN(parseInt(value)) ? control.min : Math.max(control.min,parseInt(value))
+            if(control.isDouble)
+                value = isNaN(parseFloat(value)) ? control.min : Math.max(control.min,parseFloat(value))
             if(value != "" && value.toString() != defValue) {
                 control.changed(value)
                 defValue = value.toString()

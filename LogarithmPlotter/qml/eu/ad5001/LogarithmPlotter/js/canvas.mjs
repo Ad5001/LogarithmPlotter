@@ -377,10 +377,7 @@ class CanvasAPI extends Module {
      * @returns {number}
      */
     x2px(x) {
-        if(this.logscalex) {
-            let logxmin = Math.log(this.xmin)
-            return (Math.log(x)-logxmin)*this.xzoom
-        } else return (x - this.xmin)*this.xzoom
+        return this._canvas.x2px(x)
     }
 
     /**
@@ -390,7 +387,7 @@ class CanvasAPI extends Module {
      * @returns {number}
      */
     y2px(y) {
-        return (this.ymax-y)*this.yzoom
+        return this._canvas.y2px(y)
     }
 
     /**
@@ -400,9 +397,7 @@ class CanvasAPI extends Module {
      * @returns {number}
      */
     px2x(px) {
-        if(this.logscalex) {
-            return Math.exp(px/this.xzoom+Math.log(this.xmin))
-        } else return (px/this.xzoom+this.xmin)
+        return this._canvas.px2x(px)
     }
 
     /**
@@ -412,7 +407,7 @@ class CanvasAPI extends Module {
      * @returns {number}
      */
     px2y(px) {
-        return -(px/this.yzoom-this.ymax)
+        return this._canvas.px2y(px)
     }
 
     /**

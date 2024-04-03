@@ -34,6 +34,21 @@ DEFAULT_SETTINGS = {
     },
     "autocompletion": {
         "enabled": True
+    },
+    "default_graph": {
+        "xzoom": 100,
+        "yzoom": 10,
+        "xmin": 5/10,
+        "ymax": 25,
+        "xaxisstep": "4",
+        "yaxisstep": "4",
+        "xlabel": "",
+        "ylabel": "",
+        "linewidth": 1,
+        "textsize": 18,
+        "logscalex": True,
+        "showxgrad": True,
+        "showygrad": True
     }
 }
 

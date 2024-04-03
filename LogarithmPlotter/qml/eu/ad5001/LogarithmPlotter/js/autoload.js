@@ -7,4 +7,4 @@
 .import "history/common.mjs" as HistoryCommon
 .import "canvas.mjs" as CanvasAPI
 .import "io.mjs" as IOAPI
-.import "settings.mjs" as SettingsAPI
+.import "preferences.mjs" as PreferencesAPI

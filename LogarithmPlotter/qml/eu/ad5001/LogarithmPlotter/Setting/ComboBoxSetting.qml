@@ -114,6 +114,7 @@ Item {
         anchors.left: iconLabel.right
         anchors.leftMargin: icon == "" ? 0 : 5
         height: 30
+        width: Math.max(85, implicitWidth)
         anchors.top: parent.top
         verticalAlignment: TextInput.AlignVCenter
         text: qsTranslate("control", "%1: ").arg(control.label)

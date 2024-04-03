@@ -44,83 +44,83 @@ ScrollView {
        Zoom on the x axis of the diagram, provided from settings.
        \sa Settings
     */
-    property double xzoom: 100
+    property double xzoom: Helper.getSettingInt('default_graph.xzoom')
     /*!
        \qmlproperty double Settings::yzoom
        Zoom on the y axis of the diagram, provided from settings.
        \sa Settings
     */
-    property double yzoom: 10
+    property double yzoom: Helper.getSettingInt('default_graph.yzoom')
     /*!
        \qmlproperty double Settings::xmin
        Minimum x of the diagram, provided from settings.
        \sa Settings
     */
-    property double xmin: 5/10
+    property double xmin: Helper.getSettingInt('default_graph.xmin')
     /*!
        \qmlproperty double Settings::ymax
        Maximum y of the diagram, provided from settings.
        \sa Settings
     */
-    property double ymax: 25
+    property double ymax: Helper.getSettingInt('default_graph.ymax')
     /*!
        \qmlproperty string Settings::xaxisstep
        Step of the x axis graduation, provided from settings.
        \note: Only available in non-logarithmic mode.
        \sa Settings
     */
-    property string xaxisstep: "4"
+    property string xaxisstep: Helper.getSetting('default_graph.xaxisstep')
     /*!
        \qmlproperty string Settings::yaxisstep
        Step of the y axis graduation, provided from settings.
        \sa Settings
     */
-    property string yaxisstep: "4"
+    property string yaxisstep: Helper.getSetting('default_graph.yaxisstep')
     /*!
        \qmlproperty string Settings::xlabel
        Label used on the x axis, provided from settings.
        \sa Settings
     */
-    property string xlabel: ""
+    property string xlabel: Helper.getSetting('default_graph.xlabel')
     /*!
        \qmlproperty string Settings::ylabel
        Label used on the y axis, provided from settings.
        \sa Settings
     */
-    property string ylabel: ""
+    property string ylabel: Helper.getSetting('default_graph.ylabel')
     /*!
        \qmlproperty double Settings::linewidth
        Width of lines that will be drawn into the canvas, provided from settings.
        \sa Settings
     */
-    property double linewidth: 1
+    property double linewidth: Helper.getSettingInt('default_graph.linewidth')
     /*!
        \qmlproperty double Settings::textsize
        Font size of the text that will be drawn into the canvas, provided from settings.
        \sa Settings
     */
-    property double textsize: 18
+    property double textsize: Helper.getSettingInt('default_graph.textsize')
     /*!
        \qmlproperty bool Settings::logscalex
        true if the canvas should be in logarithmic mode, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool logscalex: true
+    property bool logscalex: Helper.getSettingBool('default_graph.logscalex')
     /*!
        \qmlproperty bool Settings::showxgrad
        true if the x graduation should be shown, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool showxgrad: true
+    property bool showxgrad: Helper.getSettingBool('default_graph.showxgrad')
     /*!
        \qmlproperty bool Settings::showygrad
        true if the y graduation should be shown, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool showygrad: true
+    property bool showygrad: Helper.getSettingBool('default_graph.showygrad')
     /*!
        \qmlproperty bool Settings::saveFilename
        Path of the currently opened file. Empty if no file is opened.
@@ -159,7 +159,7 @@ ScrollView {
             height: 30
             isDouble: true
             label: qsTr("X Zoom")
-            min: 1
+            min: 0.1
             icon: "settings/xzoom.svg"
             width: settings.settingWidth
             value: settings.xzoom.toFixed(2)
@@ -173,6 +173,7 @@ ScrollView {
             id: zoomY
             height: 30
             isDouble: true
+            min: 0.1
             label: qsTr("Y Zoom")
             icon: "settings/yzoom.svg"
             width: settings.settingWidth
@@ -226,10 +227,10 @@ ScrollView {
             label: qsTr("Max X")
             icon: "settings/xmax.svg"
             width: settings.settingWidth
-            value: Modules.Canvas.px2x(canvas.width).toFixed(2)
+            defValue: canvas.px2x(canvas.width).toFixed(2)
             onChanged: function(xvaluemax) {
                 if(xvaluemax > settings.xmin) {
-                    settings.xzoom = settings.xzoom * canvas.width/(Modules.Canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.xzoom = settings.xzoom * canvas.width/(canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
                     settings.changed()
                 } else {
                     alert.show("Maximum x value must be superior to minimum.")
@@ -245,10 +246,10 @@ ScrollView {
             label: qsTr("Min Y")
             icon: "settings/ymin.svg"
             width: settings.settingWidth
-            defValue: Modules.Canvas.px2y(canvas.height).toFixed(2)
+            defValue: canvas.px2y(canvas.height).toFixed(2)
             onChanged: function(yvaluemin) {
                 if(yvaluemin < settings.ymax) {
-                    settings.yzoom = settings.yzoom * canvas.height/(Modules.Canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.yzoom = settings.yzoom * canvas.height/(canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
                     settings.changed()
                 } else {
                     alert.show("Minimum y value must be inferior to maximum.")

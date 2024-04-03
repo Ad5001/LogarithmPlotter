@@ -80,6 +80,17 @@ Item {
        Icon path of the editor.
     */
     property string icon: ""
+    /*!
+       \qmlproperty bool ExpressionEditor::allowGraphObjects
+       If true, allows graph objects to be used as part of the expression.
+    */
+    property bool allowGraphObjects: true
+    
+    /*!
+       \qmlproperty var ExpressionEditor::errorDialog
+       Allows to summon the error dialog when using additional external parsing.
+    */
+    readonly property alias errorDialog: parsingErrorDialog
     
     /*!
        \qmlproperty string ExpressionEditor::openAndCloseMatches
@@ -177,8 +188,9 @@ Item {
         id: labelItem
         anchors.left: iconLabel.right
         anchors.leftMargin: icon == "" ? 0 : 5
-        height: parent.height
         anchors.top: parent.top
+        height: parent.height
+        width: Math.max(85, implicitWidth)
         verticalAlignment: TextInput.AlignVCenter
         //color: sysPalette.windowText
         text: visible ? qsTranslate("control", "%1: ").arg(control.label) : ""
@@ -380,7 +392,7 @@ Item {
                     id: objectPropertiesList
                     
                     category: qsTr("Object Properties")
-                    visbilityCondition: doesObjectExist
+                    visbilityCondition: control.allowGraphObjects && doesObjectExist
                     itemStartIndex: 0
                     itemSelected: parent.itemSelected
                     property bool isEnteringProperty: (
@@ -457,7 +469,7 @@ Item {
                     id: executableObjectsList
                     
                     category: qsTr("Executable Objects")
-                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
+                    visbilityCondition: control.allowGraphObjects && parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: functionsList.itemStartIndex + functionsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Modules.Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
@@ -472,7 +484,7 @@ Item {
                     id: objectsList
                     
                     category: qsTr("Objects")
-                    visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
+                    visbilityCondition: control.allowGraphObjects && parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: executableObjectsList.itemStartIndex + executableObjectsList.model.length
                     itemSelected: parent.itemSelected
                     categoryItems: Object.keys(Modules.Objects.currentObjectsByName).filter(obj => obj != self)

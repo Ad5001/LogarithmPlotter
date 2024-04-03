@@ -33,7 +33,6 @@ import "js/historylib.mjs" as HistoryLib
     \sa LogarithmPlotter
 */
 MenuBar {
-    property var settingsMenu: settingsSubMenu
     
     Menu {
         title: qsTr("&File")

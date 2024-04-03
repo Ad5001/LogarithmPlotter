@@ -15,25 +15,35 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {Module} from "modules.mjs"
-import General from "setting/general.mjs"
-import Editor from "setting/expression.mjs"
 
-class SettingsAPI extends Module {
+import {BoolSetting} from "common.mjs"
+
+const CHECK_FOR_UPDATES = new BoolSetting(
+    QT_TR_NOOP("Check for updates on startup"),
+    'check_for_updates',
+    'update'
+)
+
+const RESET_REDO_STACK = new BoolSetting(
+    QT_TR_NOOP("Reset redo stack automaticly"),
+    'reset_redo_stack',
+    'timeline'
+)
+
+class EnableLatex extends BoolSetting {
     constructor() {
-        super('Settings', [
-            Modules.Canvas,
-            Modules.Latex
-        ])
+        super(qsTr("Enable LaTeX rendering"), 'enable_latex', 'Expression')
+    }
 
-        this.categories = {
-            [QT_TRANSLATE_NOOP('settingCategory', 'general')]: General,
-            [QT_TRANSLATE_NOOP('settingCategory', 'editor')]: Editor,
-            [QT_TRANSLATE_NOOP('settingCategory', 'default')]: [],
-        }
+    set(value) {
+        super.set(value)
+        Modules.Latex.enabled = value
+        Modules.Canvas.requestPaint()
     }
 }
 
-/** @type {CanvasAPI} */
-Modules.Settings = Modules.Settings || new SettingsAPI()
-export const API = Modules.Settings
+export default [
+    CHECK_FOR_UPDATES,
+    RESET_REDO_STACK,
+    new EnableLatex()
+]

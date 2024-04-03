@@ -129,8 +129,9 @@ class Helper(QObject):
     def getSetting(self, namespace):
         return config.getSetting(namespace)
 
-    @Slot(str, result=int)
+    @Slot(str, result=float)
     def getSettingInt(self, namespace):
+        print('Getting', namespace, config.getSetting(namespace))
         return config.getSetting(namespace)
 
     @Slot(str, result=bool)
@@ -145,7 +146,7 @@ class Helper(QObject):
     def setSettingBool(self, namespace, value):
         return config.setSetting(namespace, value)
 
-    @Slot(str, int)
+    @Slot(str, float)
     def setSettingInt(self, namespace, value):
         return config.setSetting(namespace, value)
 

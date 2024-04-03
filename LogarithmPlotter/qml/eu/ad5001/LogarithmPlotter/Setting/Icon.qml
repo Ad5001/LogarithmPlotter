@@ -17,7 +17,7 @@
  */
 import QtQuick
 import QtQuick.Window
-import Qt5Compat.GraphicalEffects
+import QtQuick.Controls.impl
 
 /*!
     \qmltype Icon
@@ -41,20 +41,16 @@ Item {
        \qmlproperty string Icon::source
        Path of the icon image source.
     */
-    property alias sourceSize: img.sourceSize.width
+    property alias sourceSize: img.sourceS
     
-    Image {
+    ColorImage {
         id: img
         height: parent.height
         width: parent.width
-        visible: false
-        sourceSize.width: width*Screen.devicePixelRatio
-        sourceSize.height: width*Screen.devicePixelRatio
-    }
-    
-    ColorOverlay {
-        anchors.fill: img
-        source: img
+        // visible: false
+        property int sourceS: width*Screen.devicePixelRatio
+        sourceSize.width: sourceS
+        sourceSize.height: sourceS
         color: parent.color
     }
 }

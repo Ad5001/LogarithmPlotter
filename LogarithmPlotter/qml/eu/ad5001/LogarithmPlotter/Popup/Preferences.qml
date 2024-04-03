@@ -20,7 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/setting/common.mjs" as S
+import "../js/preferences/common.mjs" as S
+import "../js/utils.mjs" as Utils
 
 /*!
     \qmltype Preferences
@@ -60,8 +61,72 @@ Popup {
             label: setting.displayName
             icon: `settings/${setting.icon}.svg`
             currentIndex: setting.value()
-            model: setting.values()
+            model: setting.values
             onActivated: function(newIndex) { setting.set(newIndex) }
+        }
+    }
+    
+    Component {
+        id: stringSettingComponent
+        
+        Setting.ComboBoxSetting {
+            height: 30
+            label: setting.displayName
+            icon: `settings/${setting.icon}.svg`
+            editable: true
+            currentIndex: find(setting.value())
+            model: setting.defaultValues
+            onAccepted: function() {
+                editText = Utils.parseName(editText, false)
+                if(find(editText) === -1) model.append(editText)
+                setting.set(editText)
+            }
+            onActivated: function(selectedId) {
+                setting.set(model[selectedId])
+            }
+            Component.onCompleted: editText = setting.value()
+        }
+    }
+    
+    Component {
+        id: numberSettingComponent
+        
+        Setting.TextSetting {
+            height: 30
+            isDouble: true
+            label: setting.displayName
+            min: setting.min()
+            icon: `settings/${setting.icon}.svg`
+            value: setting.value()
+            onChanged: function(newValue) {
+                if(newValue < setting.max())
+                    setting.set(newValue)
+                else {
+                    value = setting.max()
+                    setting.set(setting.max())
+                }
+            }
+        }
+    }
+    
+    Component {
+        id: expressionSettingComponent
+        
+        Setting.ExpressionEditor {
+            height: 30
+            label: setting.displayName
+            icon: `settings/${setting.icon}.svg`
+            defValue: Utils.simplifyExpression(setting.value())
+            variables: setting.variables
+            allowGraphObjects: false
+            property string propertyName: setting.displayName
+            onChanged: function(newExpr) {
+                try {
+                    setting.set(newExpr)
+                } catch(e) {
+                    errorDialog.showDialog(propertyName, newExpr, e.message)
+                }
+            }
         }
     }
     
@@ -90,7 +155,7 @@ Popup {
             clip: true
             
             Repeater {
-                model: Object.keys(Modules.Settings.categories)
+                model: Object.keys(Modules.Preferences.categories)
                 
                 Button {
                     // width: 150
@@ -98,8 +163,8 @@ Popup {
                     text: qsTranslate('settingCategory', modelData)
                     
                     onClicked: {
-                        settingList.model = Modules.Settings.categories[modelData]
-                        settingCategoryName.text = text
+                        settingView.model = Modules.Preferences.categories[modelData]
+                        settingView.name = text
                     }
                 }
             }
@@ -133,50 +198,55 @@ Popup {
             width: 1
         }
         
-        ScrollView {
+        ListView {
             id: settingView
             clip: true
             width: 500
-            height: parent.height
+            spacing: 10
+            model: Modules.Preferences.categories.general
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+            }
+            ScrollBar.vertical: ScrollBar { }
+            property string name: qsTranslate('settingCategory', 'general')
+
             
-            Column {
-                spacing: 10
-                clip: true
-                width: settingView.width
-            
-                Text {
-                    id: settingCategoryName
-                    font.pixelSize: 32
-                    color: sysPalette.windowText
-                    text: qsTranslate('settingCategory', 'general')
-                    
-                    Rectangle {
-                        id: bottomSeparator
-                        anchors.top: parent.bottom
-                        opacity: 0.3
-                        color: sysPalette.windowText
-                        width: settingView.width
-                        height: 1
-                    }
-                }
+            header: Text {
+                id: settingCategoryName
+                font.pixelSize: 32
+                height: 48
+                color: sysPalette.windowText
+                text: settingView.name
                 
-                Repeater {
-                    id: settingList
-                    model: Modules.Settings.categories.general
-                    
-                    delegate: Component {
-                        Loader {
-                            width: settingView.width
-                            property var setting: modelData
-                            sourceComponent: {
-                                if(setting instanceof S.BoolSetting)
-                                    return boolSettingComponent
-                                else if(setting instanceof S.EnumIntSetting)
-                                    return enumIntSettingComponent
-                                else
-                                    console.log('Unknown setting type!', modelData.constructor)
-                            }
-                        }
+                Rectangle {
+                    id: bottomSeparator
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 8
+                    opacity: 0.3
+                    color: sysPalette.windowText
+                    width: settingView.width
+                    height: 1
+                }
+            }
+            
+            delegate: Component {
+                Loader {
+                    width: settingView.width * 2 / 3
+                    property var setting: modelData
+                    sourceComponent: {
+                        if(setting instanceof S.BoolSetting)
+                            return boolSettingComponent
+                        else if(setting instanceof S.EnumIntSetting)
+                            return enumIntSettingComponent
+                        else if(setting instanceof S.NumberSetting)
+                            return numberSettingComponent
+                        else if(setting instanceof S.ExpressionSetting)
+                            return expressionSettingComponent
+                        else if(setting instanceof S.StringSetting)
+                            return stringSettingComponent
+                        else
+                            console.log('Unknown setting type!', modelData.constructor)
                     }
                 }
             }

@@ -15,35 +15,26 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import {Module} from "modules.mjs"
+import General from "preferences/general.mjs"
+import Editor from "preferences/expression.mjs"
+import DefaultGraph from "preferences/default.mjs"
 
-import {BoolSetting} from "common.mjs"
-
-class CheckForUpdates extends BoolSetting {
+class PreferencesAPI extends Module {
     constructor() {
-        super(QT_TR_NOOP("Check for updates on startup"), 'check_for_updates', 'update')
+        super('Preferences', [
+            Modules.Canvas,
+            Modules.Latex
+        ])
+
+        this.categories = {
+            [QT_TRANSLATE_NOOP('settingCategory', 'general')]: General,
+            [QT_TRANSLATE_NOOP('settingCategory', 'editor')]: Editor,
+            [QT_TRANSLATE_NOOP('settingCategory', 'default')]: DefaultGraph,
+        }
     }
 }
 
-class ResetRedoStack extends BoolSetting {
-    constructor() {
-        super(qsTr("Reset redo stack automaticly"), 'reset_redo_stack', 'timeline')
-    }
-}
-
-class EnableLatex extends BoolSetting {
-    constructor() {
-        super(qsTr("Enable LaTeX rendering"), 'enable_latex', 'Expression')
-    }
-
-    set(value) {
-        super.set(value)
-        Modules.Latex.enabled = value
-        Modules.Canvas.requestPaint()
-    }
-}
-
-export default [
-    new CheckForUpdates(),
-    new ResetRedoStack(),
-    new EnableLatex()
-]
+/** @type {CanvasAPI} */
+Modules.Preferences = Modules.Preferences || new PreferencesAPI()
+export const API = Modules.Preferences
