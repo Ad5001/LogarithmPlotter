@@ -1,6 +1,6 @@
 name: logarithmplotter
 title: LogarithmPlotter
-version: '0.5.0'
+version: '0.6.0'
 summary: Create and edit Bode plots
 confinement: strict
 base: core22
