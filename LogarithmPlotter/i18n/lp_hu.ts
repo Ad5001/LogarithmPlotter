@@ -1178,6 +1178,10 @@ Kiértékelt kifejezés: %3</translation>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 rejtve.</translation>
     </message>
+    <message>
+        <source>Name of %1 %2 changed to %3.</source>
+        <translation>%1 %2 neve a következőre módosult: %3.</translation>
+    </message>
 </context>
 <context>
     <name>io</name>
@@ -1224,6 +1228,10 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <source>&amp;Update LogarithmPlotter</source>
         <translation>A LogarithmPlotter &amp;frissítése</translation>
+    </message>
+    <message>
+        <source>Objects</source>
+        <translation>Objektumok</translation>
     </message>
 </context>
 <context>
@@ -1508,6 +1516,10 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <source>baseValues</source>
         <translation>Kezdeményezési értékek</translation>
     </message>
+    <message>
+        <source>color</source>
+        <translation>Szín</translation>
+    </message>
 </context>
 <context>
     <name>repartition</name>
@@ -1537,6 +1549,14 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="152"/>
         <source>general</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>editor</source>
+        <translation>Kifejezésszerkesztő</translation>
+    </message>
+    <message>
+        <source>default</source>
+        <translation>Alapértelmezett ábra</translation>
     </message>
 </context>
 <context>
