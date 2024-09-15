@@ -163,8 +163,7 @@ Popup {
                     text: qsTranslate('settingCategory', modelData)
                     
                     onClicked: {
-                        settingView.model = Modules.Preferences.categories[modelData]
-                        settingView.name = text
+                        settingView.modelName = modelData
                     }
                 }
             }
@@ -203,13 +202,13 @@ Popup {
             clip: true
             width: 500
             spacing: 10
-            model: Modules.Preferences.categories.general
+            model: Modules.Preferences.categories[modelName]
             anchors {
                 top: parent.top
                 bottom: parent.bottom
             }
             ScrollBar.vertical: ScrollBar { }
-            property string name: qsTranslate('settingCategory', 'general')
+            property string modelName: 'general'
 
             
             header: Text {
@@ -217,7 +216,7 @@ Popup {
                 font.pixelSize: 32
                 height: 48
                 color: sysPalette.windowText
-                text: settingView.name
+                text: qsTranslate('settingCategory', settingView.modelName)
                 
                 Rectangle {
                     id: bottomSeparator
@@ -233,20 +232,20 @@ Popup {
             delegate: Component {
                 Loader {
                     width: settingView.width * 2 / 3
-                    property var setting: modelData
+                    property var setting: Modules.Preferences.categories[settingView.modelName][index]
                     sourceComponent: {
-                        if(setting instanceof S.BoolSetting)
+                        if(setting.type === "bool")
                             return boolSettingComponent
-                        else if(setting instanceof S.EnumIntSetting)
+                        else if(setting.type === "enum")
                             return enumIntSettingComponent
-                        else if(setting instanceof S.NumberSetting)
+                        else if(setting.type === "number")
                             return numberSettingComponent
-                        else if(setting instanceof S.ExpressionSetting)
+                        else if(setting.type === "expression")
                             return expressionSettingComponent
-                        else if(setting instanceof S.StringSetting)
+                        else if(setting.type === "string")
                             return stringSettingComponent
                         else
-                            console.log('Unknown setting type!', modelData.constructor)
+                            console.log('Unknown setting type!', setting.constructor.name, setting.constructor)
                     }
                 }
             }
