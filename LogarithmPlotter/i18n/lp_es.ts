@@ -110,22 +110,22 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="166"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation></translation>
+        <translation>Cerrar automáticamente paréntesis y corchetes</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="178"/>
         <source>Enable syntax highlighting</source>
-        <translation></translation>
+        <translation>Activar el resaltado sintáctico</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="190"/>
         <source>Enable autocompletion</source>
-        <translation></translation>
+        <translation>Activar autocompletar</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="202"/>
         <source>Color Scheme</source>
-        <translation></translation>
+        <translation>Esquema de colores</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="224"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="267"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
-        <translation></translation>
+        <translation>Este gráfico contiene cambios sin guardar. Al hacer esto, se perderán todos los datos no guardados. ¿Continuar?</translation>
     </message>
 </context>
 <context>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
-        <translation></translation>
+        <translation>Cerrar</translation>
     </message>
 </context>
 <context>
@@ -199,12 +199,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="81"/>
         <source>Fetching changelog...</source>
-        <translation></translation>
+        <translation>Obteniendo el registro de cambios…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="99"/>
         <source>Close</source>
-        <translation></translation>
+        <translation>Cerrar</translation>
     </message>
 </context>
 <context>
@@ -213,12 +213,12 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="192"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="210"/>
         <source>+ Create new %1</source>
-        <translation></translation>
+        <translation>+ Crear nuevo %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="311"/>
         <source>Pick on graph</source>
-        <translation></translation>
+        <translation>Elegir en el gráfico</translation>
     </message>
 </context>
 <context>
@@ -226,17 +226,17 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="88"/>
         <source>Edit properties of %1 %2</source>
-        <translation></translation>
+        <translation>Editar las propiedades de %1 %2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="95"/>
         <source>LogarithmPlotter - Invalid object name</source>
-        <translation></translation>
+        <translation>LogarithmPlotter - Nombre de objeto no válido</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="98"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
-        <translation></translation>
+        <translation>Ya existe un objeto con el nombre &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="106"/>
@@ -261,7 +261,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="133"/>
         <source>name + value</source>
-        <translation></translation>
+        <translation>nombre + valor</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="382"/>
         <source>Object Properties</source>
-        <translation></translation>
+        <translation>Propiedades de los objetos</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="414"/>
@@ -279,12 +279,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="429"/>
         <source>Constants</source>
-        <translation></translation>
+        <translation>Constantes</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="444"/>
         <source>Functions</source>
-        <translation></translation>
+        <translation>Funciones</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="459"/>
@@ -389,17 +389,17 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
         <source>Redo &gt;</source>
-        <translation></translation>
+        <translation>Rehacer &gt;</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
         <source>&gt; Now</source>
-        <translation></translation>
+        <translation>&gt; Ahora</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
         <source>&lt; Undo</source>
-        <translation></translation>
+        <translation>&lt; Deshacer</translation>
     </message>
 </context>
 <context>
@@ -415,32 +415,56 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="91"/>
         <source>Objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Objetos</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="97"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="103"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historial</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="232"/>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Captura de pantalla del gráfico copiada al portapapeles!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="247"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Actualizar</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="249"/>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Actualizar LogarithmPlotter</translation>
+    </message>
+    <message>
+        <source>Unknown object type: %1.</source>
+        <translation>Tipo de objeto desconocido: %1 .</translation>
+    </message>
+    <message>
+        <source>Saved plot to &apos;%1&apos;.</source>
+        <translation>Gráfico guardado en &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>Loading file &apos;%1&apos;.</source>
+        <translation>Cargando el archivo &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>Invalid file provided.</source>
+        <translation>Se ha proporcionado un archivo no válido.</translation>
+    </message>
+    <message>
+        <source>Could not save file: </source>
+        <translation>No se ha podido guardar el archivo: </translation>
+    </message>
+    <message>
+        <source>Loaded file &apos;%1&apos;.</source>
+        <translation>Archivo cargado &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -462,6 +486,26 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="82"/>
         <source>Show all %1</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Delete %1 %2</source>
+        <translation>Borrar %1 %2</translation>
+    </message>
+    <message>
+        <source>Hide %1 %2</source>
+        <translation>Ocultar %1 %2</translation>
+    </message>
+    <message>
+        <source>Show %1 %2</source>
+        <translation>Mostrar %1 %2</translation>
+    </message>
+    <message>
+        <source>Set %1 %2 position</source>
+        <translation>Fijar la posición %1 %2</translation>
+    </message>
+    <message>
+        <source>Pick new color for %1 %2</source>
+        <translation>Elegir nuevo color para %1 %2</translation>
     </message>
 </context>
 <context>
@@ -528,6 +572,10 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</s
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="317"/>
         <source>(no pick selected)</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Snap to grid</source>
+        <translation>Ajustar a la cuadrícula</translation>
     </message>
 </context>
 <context>
@@ -920,6 +968,14 @@ Evaluated expression: %3</source>
 Undoing last change.</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Function definition is not permitted.</source>
+        <translation>No se permite la definición de las funciones.</translation>
+    </message>
+    <message>
+        <source>Expected variable for assignment.</source>
+        <translation>Variable de asignación esperada.</translation>
+    </message>
 </context>
 <context>
     <name>expression</name>
@@ -1003,22 +1059,22 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation></translation>
+        <translation>Una actualización para LogarithmPlotter (v{}) está disponible.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="62"/>
         <source>No update available.</source>
-        <translation></translation>
+        <translation>No hay ninguna actualización disponible.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="65"/>
         <source>Could not fetch update information: Server error {}.</source>
-        <translation></translation>
+        <translation>No se ha podido obtener la información de la actualización: Error del servidor {}.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="69"/>
         <source>Could not fetch update information: {}.</source>
-        <translation></translation>
+        <translation>No se pudo obtener información de la actualización: {}.</translation>
     </message>
 </context>
 <context>
@@ -1027,7 +1083,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
         <source>Usage: %1</source>
-        <translation></translation>
+        <translation>Uso: %1</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
@@ -1035,12 +1091,13 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
         <source>Usage: %1 or
 %2</source>
-        <translation></translation>
+        <translation>Uso: %1 o
+%2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation></translation>
+        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
@@ -1056,6 +1113,226 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>io</name>
+    <message>
+        <source>History</source>
+        <translation>Historial</translation>
+    </message>
+    <message>
+        <source>Copied plot screenshot to clipboard!</source>
+        <translation>¡Captura de pantalla del gráfico copiada al portapapeles!</translation>
+    </message>
+    <message>
+        <source>&amp;Update</source>
+        <translation>&amp;Actualizar</translation>
+    </message>
+    <message>
+        <source>&amp;Update LogarithmPlotter</source>
+        <translation>&amp;Actualizar LogarithmPlotter</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Ajustes</translation>
+    </message>
+    <message>
+        <source>Objects</source>
+        <translation>Objetos</translation>
+    </message>
+</context>
+<context>
+    <name>color</name>
+    <message>
+        <source>%1 %2&apos;s color changed from %3 to %4.</source>
+        <translation>El color de %1 %2 cambió de %3 a %4.</translation>
+    </message>
+</context>
+<context>
+    <name>create</name>
+    <message>
+        <source>New %1 %2 created.</source>
+        <translation>Se ha creado un nuevo %1 %2.</translation>
+    </message>
+</context>
+<context>
+    <name>editproperty</name>
+    <message>
+        <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
+        <translation>%1 de %2 %3 cambió de &quot;%4&quot; a &quot;%5&quot;.</translation>
+    </message>
+    <message>
+        <source>%1 of %2 changed from %3 to %4.</source>
+        <translation>%1 de %2 ha cambiado de %3 a %4.</translation>
+    </message>
+</context>
+<context>
+    <name>function</name>
+    <message>
+        <source>Function</source>
+        <translation>Función</translation>
+    </message>
+    <message>
+        <source>Functions</source>
+        <translation>Funciones</translation>
+    </message>
+</context>
+<context>
+    <name>gainbode</name>
+    <message>
+        <source>high-pass</source>
+        <translation>Filtro paso alto</translation>
+    </message>
+    <message>
+        <source>low-pass</source>
+        <translation>Filtro paso bajo</translation>
+    </message>
+    <message>
+        <source>Bode Magnitude</source>
+        <translation>Magnitud de Bode</translation>
+    </message>
+    <message>
+        <source>Bode Magnitudes</source>
+        <translation>Magnitudes de Bode</translation>
+    </message>
+</context>
+<context>
+    <name>historylib</name>
+    <message>
+        <source>%1 %2 deleted.</source>
+        <translation>%1 %2 borrados.</translation>
+    </message>
+    <message>
+        <source>%1 %2 shown.</source>
+        <translation>Se muestra %1 %2.</translation>
+    </message>
+    <message>
+        <source>%1 %2 hidden.</source>
+        <translation>Se oculta %1 %2.</translation>
+    </message>
+    <message>
+        <source>New %1 %2 created.</source>
+        <translation>Se ha creado un nuevo %1 %2.</translation>
+    </message>
+    <message>
+        <source>Name of %1 %2 changed to %3.</source>
+        <translation>El nombre de %1 %2 se ha cambiado por %3.</translation>
+    </message>
+    <message>
+        <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
+        <translation>%1 de %2 %3 cambió de &quot;%4&quot; a &quot;%5&quot;.</translation>
+    </message>
+</context>
+<context>
+    <name>parameters</name>
+    <message>
+        <source>below</source>
+        <translation>↓ Abajo</translation>
+    </message>
+    <message>
+        <source>left</source>
+        <translation>← Izquierda</translation>
+    </message>
+    <message>
+        <source>above-left</source>
+        <translation>↖ Arriba a la izquierda</translation>
+    </message>
+    <message>
+        <source>below-left</source>
+        <translation>↙ Abajo a la izquierda</translation>
+    </message>
+    <message>
+        <source>below-right</source>
+        <translation>↘ Arriba a la derecha</translation>
+    </message>
+    <message>
+        <source>center</source>
+        <translation>&gt;|&lt; Centro</translation>
+    </message>
+    <message>
+        <source>top</source>
+        <translation>↑ Arriba</translation>
+    </message>
+    <message>
+        <source>above</source>
+        <translation>↑ Arriba</translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation>→ Derecha</translation>
+    </message>
+    <message>
+        <source>above-right</source>
+        <translation>↗ Arriba a la derecha</translation>
+    </message>
+</context>
+<context>
+    <name>EditorDialog</name>
+    <message>
+        <source>Label content</source>
+        <translation>Contenido de la etiqueta</translation>
+    </message>
+    <message>
+        <source>null</source>
+        <translation>nulo</translation>
+    </message>
+    <message>
+        <source>name</source>
+        <translation>nombre</translation>
+    </message>
+    <message>
+        <source>name + value</source>
+        <translation>nombre + valor</translation>
+    </message>
+    <message>
+        <source>+ Create new %1</source>
+        <translation>+ Crear nuevo %1</translation>
+    </message>
+    <message>
+        <source>Edit properties of %1 %2</source>
+        <translation>Editar propiedades de %1 %2</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nombre</translation>
+    </message>
+</context>
+<context>
+    <name>comment</name>
+    <message>
+        <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
+        <translation>Ej: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ-*), ]0;1[, {3;4;5}</translation>
+    </message>
+    <message>
+        <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
+        <translation>Los siguientes parámetros se utilizan cuando el dominio es un conjunto no continuo. (Ej: ℕ, ℤ, conjuntos como {0;3}...)</translation>
+    </message>
+    <message>
+        <source>Note: Specify the probability for each value.</source>
+        <translation>Nota: Especifique la probabilidad para cada valor.</translation>
+    </message>
+    <message>
+        <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
+        <translation>Nota: Utilice %1[n] para referirse a %1ₙ, %1[n+1] para %1ₙ₊₁…</translation>
+    </message>
+    <message>
+        <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
+        <translation>Si tiene habilitado el latex, puede utilizar el marcado de latex entre $$ para crear ecuaciones.</translation>
+    </message>
+</context>
+<context>
+    <name>delete</name>
+    <message>
+        <source>%1 %2 deleted.</source>
+        <translation>%1 %2 borrados.</translation>
+    </message>
+</context>
+<context>
+    <name>name</name>
+    <message>
+        <source>%1 %2 renamed to %3.</source>
+        <translation>%1 %2 ha sido renombrado a %3.</translation>
     </message>
 </context>
 </TS>
