@@ -28,7 +28,7 @@ BEGIN {
     version = substr($2,2,5)
     print "        <release version=\""version"\" date=\""date"\">"
     print "            <description>"
-    print "                <p><b>Changes for "$2":</b></p>"
+    print "                <p><em>Changes for "$2":</em></p>"
 }
 /^\s*\*\*/ {
     if(listBegan) {
