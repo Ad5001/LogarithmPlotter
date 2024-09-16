@@ -17,7 +17,7 @@
  */
 
 import { Module } from "./modules.mjs"
-import { textsup } from "./utils.mjs"
+import { textsup, roundAwayFromZero } from "./utils.mjs"
 import { Expression } from "./mathlib.mjs"
 import Latex from "./math/latex.mjs"
 
@@ -139,7 +139,15 @@ class CanvasAPI extends Module {
      * Max power of the logarithmic scaled on the x axis in logarithmic mode.
      * @returns {number}
      */
-    get maxgradx() { return this._canvas.maxgradx }
+    get maxgradx() {
+        return Math.min(
+            309, // 10e309 = Infinity (beyond this land be dragons)
+            Math.max(
+                Math.ceil(Math.abs(Math.log10(this.xmin))),
+                Math.ceil(Math.abs(Math.log10(this.px2x(this.width))))
+            )
+        )
+    }
 
     //
     // Methods to draw the canvas
