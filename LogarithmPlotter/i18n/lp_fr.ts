@@ -33,148 +33,144 @@
 <context>
     <name>AppMenuBar</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="38"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="40"/>
         <source>&amp;Load...</source>
         <translation>&amp;Ouvrir…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="48"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="47"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="54"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="53"/>
         <source>Save &amp;As...</source>
         <translation>Sauvegarde &amp;Sous…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="62"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="61"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="75"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="78"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="77"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="86"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="85"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rétablir</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="93"/>
         <source>&amp;Copy plot</source>
         <translation>&amp;Copier le graphe</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
         <source>&amp;Create</source>
         <translation>&amp;Créer</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="126"/>
         <source>&amp;Settings</source>
         <translation>&amp;Paramètres</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="129"/>
         <source>Check for updates on startup</source>
         <translation>Vérifier la présence de mise à jour au démarrage</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="139"/>
         <source>Reset redo stack automaticly</source>
         <translatorcomment>Légèrement long, et pas forcément très compréhensible.</translatorcomment>
         <translation>Réinitialiser la pile d&apos;action &quot;Rétablir&quot; automatiquement</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="149"/>
         <source>Enable LaTeX rendering</source>
         <translation>Activer le rendu LaTeX</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="162"/>
         <source>Expression editor</source>
         <translation>Éditeur de formule</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="166"/>
         <source>Automatically close parenthesises and brackets</source>
         <translation>Fermer automatiquement les parenthèses et les crochets</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="178"/>
         <source>Enable syntax highlighting</source>
         <translation>Activer la coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="190"/>
         <source>Enable autocompletion</source>
         <translation>Activer l&apos;autocomplétion</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="202"/>
         <source>Color Scheme</source>
         <translation>Coloration Syntaxique</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="224"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="226"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="132"/>
         <source>&amp;Source code</source>
         <translation>&amp;Code source</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="231"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="137"/>
         <source>&amp;Report a bug</source>
         <translation>&amp;Rapport de bug</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="236"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="142"/>
         <source>&amp;User manual</source>
         <translation>Manuel d&apos;&amp;utilisation</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="241"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;Changelog</source>
         <translation>&amp;Historique des modifications</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="246"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Aider à la traduction !</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="158"/>
         <source>&amp;Thanks</source>
         <translation>&amp;Remerciements</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="257"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="266"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="172"/>
         <source>Save unsaved changes?</source>
         <translation>Sauvegarder les modifications ?</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="267"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="173"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Ce graphe contient des modifications non sauvegardées. En faisant cela, toutes les données non sauvegardées seront perdues. Continuer ?</translation>
     </message>
@@ -190,7 +186,6 @@
 <context>
     <name>BoolSetting</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/setting/general.mjs" line="23"/>
         <source>Check for updates on startup</source>
         <translation>Vérifier la présence de mise à jour au démarrage</translation>
     </message>
@@ -300,32 +295,32 @@
 <context>
     <name>ExpressionEditor</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="382"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="394"/>
         <source>Object Properties</source>
         <translation>Propriétés de l&apos;objet</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="414"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="426"/>
         <source>Variables</source>
         <translation>Variables</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="429"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="441"/>
         <source>Constants</source>
         <translation>Constantes</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="444"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="456"/>
         <source>Functions</source>
         <translation>Fonctions</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="459"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="471"/>
         <source>Executable Objects</source>
         <translation>Objets fonction</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="474"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
         <source>Objects</source>
         <translation>Objets</translation>
     </message>
@@ -346,59 +341,58 @@
 <context>
     <name>GreetScreen</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="70"/>
         <source>Welcome to LogarithmPlotter</source>
         <translation>Bienvenue sur LogarithmPlotter</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="87"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="81"/>
         <source>Version %1</source>
         <translation>Version %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="96"/>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
         <translation>Prenez quelques secondes pour configurer LogarithmPlotter.
 Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;Paramètres&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="126"/>
         <source>Enable LaTeX rendering</source>
         <translation>Activer le rendu LaTeX</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="137"/>
         <source>Automatically close parenthesises and brackets in expressions</source>
         <translation>Fermer automatiquement les parenthèses et les crochets dans les formules</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="148"/>
         <source>Enable syntax highlighting for expressions</source>
         <translation>Activer la coloration syntaxique des formules</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="159"/>
         <source>Enable autocompletion interface in expression editor</source>
         <translation>Activer l&apos;interface d&apos;autocomplétion dans l&apos;éditeur de formules</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="175"/>
         <source>Color scheme:</source>
         <translation>Thème de coloration syntaxique :</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="210"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="102"/>
         <source>User manual</source>
         <translation>Manuel d&apos;utilisation</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="217"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="94"/>
         <source>Changelog</source>
         <translation>Historique des modifications</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="224"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="106"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
@@ -409,12 +403,10 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
 These settings can always be changed at any time from the &quot;Settings&quot; menu.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="103"/>
         <source>Check for updates on startup (requires online connectivity)</source>
         <translation>Vérifier les mises à jour au démarrage (nécessite d&apos;être connecté à internet)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="115"/>
         <source>Reset redo stack when a new action is added to history</source>
         <translation>Réinitialiser la pile d&apos;action &quot;Rétablir&quot; lorsqu&apos;une nouvelle action est ajoutée à l&apos;historique</translation>
     </message>
@@ -619,6 +611,14 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     </message>
 </context>
 <context>
+    <name>Preferences</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Preferences.qml" line="182"/>
+        <source>Close</source>
+        <translation type="unfinished">Fermer</translation>
+    </message>
+</context>
+<context>
     <name>Settings</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="161"/>
@@ -626,97 +626,96 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Zoom en X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="176"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="177"/>
         <source>Y Zoom</source>
         <translation>Zoom en Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="192"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="193"/>
         <source>Min X</source>
         <translation>Min X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="211"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="212"/>
         <source>Max Y</source>
         <translation>Max Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="226"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="227"/>
         <source>Max X</source>
         <translation>Max X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="245"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="246"/>
         <source>Min Y</source>
         <translation>Min Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="263"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="264"/>
         <source>X Axis Step</source>
         <translation>Pas de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="278"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="279"/>
         <source>Y Axis Step</source>
         <translation>Pas de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="292"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="293"/>
         <source>Line width</source>
         <translation>Taille des lignes</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="307"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="308"/>
         <source>Text size (px)</source>
         <translation>Taille du texte (px)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="322"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="323"/>
         <source>X Label</source>
         <translation>Label de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="348"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="349"/>
         <source>Y Label</source>
         <translation>Label de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="376"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="377"/>
         <source>X Log scale</source>
         <translation>Échelle logarithmique en X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="386"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="387"/>
         <source>Show X graduation</source>
         <translation>Montrer la graduation de l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="396"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="397"/>
         <source>Show Y graduation</source>
         <translation>Montrer la graduation de l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="407"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="408"/>
         <source>Copy to clipboard</source>
         <translation>Copier vers le presse-papiers</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="416"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
         <translation>Sauvegarder le graphe</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="425"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
         <translation>Sauvegarder le graphe sous</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="434"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
         <translation>Ouvrir un graphe</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="119"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
@@ -862,10 +861,10 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
     <name>control</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectLists.qml" line="88"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ComboBoxSetting.qml" line="119"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="184"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ComboBoxSetting.qml" line="120"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="196"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="116"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="107"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/TextSetting.qml" line="108"/>
         <source>%1: </source>
         <translation>%1 : </translation>
     </message>
@@ -1032,27 +1031,27 @@ These settings can always be changed at any time from the &quot;Settings&quot; m
         <translation>Fin de la formule</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="532"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="544"/>
         <source>No object found with names %1.</source>
         <translation>Aucun objet trouvé ayant pour noms %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="534"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="546"/>
         <source>No object found with name %1.</source>
         <translation>Aucun objet avec le nom %1 n&apos;a été trouvé.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="537"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="549"/>
         <source>Object cannot be dependent on itself.</source>
         <translation>Un objet ne peut pas dépendre de lui-même.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="544"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="556"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
         <translation>Dépendance circulaire détectée. L&apos;objet %1 dépend de %2.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="546"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="558"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
         <translation>Dépendance circulaire détectée. Les objets %1 dépendent de %2.</translation>
     </message>
@@ -1083,12 +1082,12 @@ La dernière modification a été annulée.</translation>
     <name>expression</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="141"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="190"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="202"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Erreur de syntaxe</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="193"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="205"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1260,7 +1259,7 @@ Sinon, vous pouvez télécharger une distribution LaTeX comme TeX Live à l&apos
         <translation>DVIPNG n&apos;a pas été trouvé. Assurez-vous de l&apos;inclure dans votre distribution LaTeX.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="160"/>
+        <location filename="../util/latex.py" line="164"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1273,7 +1272,12 @@ Le processus &apos;{}&apos; s&apos;est terminé par un code de retour non nul {}
 Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c&apos;est le cas.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="169"/>
+        <location filename="../util/latex.py" line="175"/>
+        <source>Your LaTeX installation does not include the &apos;{}&apos; package. Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../util/latex.py" line="179"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1550,14 +1554,6 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     <message>
         <source>Sequences</source>
         <translation>Suites</translation>
-    </message>
-</context>
-<context>
-    <name>settingCategory</name>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Settings.qml" line="152"/>
-        <source>general</source>
-        <translation></translation>
     </message>
 </context>
 <context>

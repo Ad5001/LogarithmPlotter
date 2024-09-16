@@ -72,8 +72,9 @@ There are several ways to contribute to LogarithmPlotter.
         along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Language files translations located at LogarithmPlotter/i18n are licensed under GNU GPL3.0+ and are copyrighted by their original authors. See LICENSE.md for more details:
-- 🇳🇴 Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
 - 🇭🇺 Hungarian translation by [Óvári](https://github.com/ovari)
+- 🇳🇴 Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
+- 🇪🇸 Spanish translation by gallegonovato and [IngrownMink4](https://github.com/IngrownMink4)
 
 ### Libraries used
 
