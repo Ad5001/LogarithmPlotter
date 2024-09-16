@@ -53,6 +53,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
+        anchors.rightMargin: 5
         placeholderText: qsTr("Filter...")
         category: "all"
     }

@@ -102,7 +102,7 @@ Item {
         anchors.leftMargin: icon == "" ? 0 : 5
         anchors.top: parent.top
         height: parent.height
-        width: Math.max(85, implicitWidth)
+        width: visible ? Math.max(85, implicitWidth) : 0
         verticalAlignment: TextInput.AlignVCenter
         //color: sysPalette.windowText
         text: visible ? qsTranslate("control", "%1: ").arg(control.label) : ""
