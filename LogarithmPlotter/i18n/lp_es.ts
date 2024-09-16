@@ -431,7 +431,7 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="233"/>
         <source>+ Add Entry</source>
-        <translation></translation>
+        <translation>+ Añadir entrada</translation>
     </message>
 </context>
 <context>
