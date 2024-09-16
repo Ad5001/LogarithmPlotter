@@ -74,25 +74,28 @@ export default class SommePhasesBode extends ExecutableObject {
     
     recalculateCache() {
         // Minimum to draw (can be expended if needed, just not infinite or it'll cause issues.
-        let drawMin = 0.001
-        let drawMax = 100000
+        let drawMin = 1e-20
+        let drawMax = 1e20
         this.om0xList = [drawMin, drawMax]
         this.phasesList = [0]
         this.phasesExprList = ['0']
-        let phasesDict = {}
-        let phasesExprDict = {}
-        phasesDict[drawMax] = 0
+        let phasesDict = new Map()
+        let phasesExprDict = new Map()
+        phasesDict.set(drawMax, 0)
         
-        if(Objects.currentObjects['Phase Bode'] !== undefined) {
+        let phaseObjects = Objects.currentObjects['Phase Bode']
+        if(phaseObjects === undefined || phaseObjects.length < 1) {
+            Objects.deleteObject(this.name)
+        } else {
             console.log('Recalculating cache phase')
-            for(/** @type {PhaseBode} */ let obj of Objects.currentObjects['Phase Bode']) {
+            for(/** @type {PhaseBode} */ let obj of phaseObjects) {
                 this.om0xList.push(obj.om_0.x.execute())
-                if(phasesDict[obj.om_0.x.execute()] === undefined) {
-                    phasesDict[obj.om_0.x.execute()] = obj.phase.execute()
-                    phasesExprDict[obj.om_0.x.execute()] = obj.phase.toEditableString()
+                if(!phasesDict.has(obj.om_0.x.execute())) {
+                    phasesDict.set(obj.om_0.x.execute(), obj.phase.execute())
+                    phasesExprDict.set(obj.om_0.x.execute(), obj.phase.toEditableString())
                 } else {
-                    phasesDict[obj.om_0.x.execute()] += obj.phase.execute()
-                    phasesExprDict[obj.om_0.x.execute()] += '+' + obj.phase.toEditableString()
+                    phasesDict.set(obj.om_0.x.execute(), obj.phase.execute() + phasesDict.get(obj.om_0.x.execute()))
+                    phasesExprDict.set(obj.om_0.x.execute(), obj.phase.toEditableString() + '+' + phasesExprDict.get(obj.om_0.x.execute()))
                 }
                 this.phasesList[0] += obj.om_0.y.execute()
                 this.phasesExprList[0] += '+' + obj.om_0.y.toEditableString()
@@ -100,8 +103,8 @@ export default class SommePhasesBode extends ExecutableObject {
             this.om0xList.sort((a,b) => a - b)
             let totalAdded = this.phasesList[0]
             for(let i = 1; i < this.om0xList.length; i++) {
-                this.phasesList[i] = this.phasesList[i-1] + phasesDict[this.om0xList[i]]
-                this.phasesExprList[i] = this.phasesExprList[i-1] + '+' + phasesDict[this.om0xList[i]]
+                this.phasesList[i] = this.phasesList[i-1] + phasesDict.get(this.om0xList[i])
+                this.phasesExprList[i] = this.phasesExprList[i-1] + '+' + phasesDict.get(this.om0xList[i])
             }
         }
     }

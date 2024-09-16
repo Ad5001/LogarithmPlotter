@@ -114,10 +114,20 @@ export default class PhaseBode extends ExecutableObject {
     }
     
     update() {
-        if(Objects.currentObjects['Somme phases Bode'] !== undefined && Objects.currentObjects['Somme phases Bode'].length > 0) {
-            Objects.currentObjects['Somme phases Bode'][0].recalculateCache()
+        super.update()
+        let sumObjs = Objects.currentObjects['Somme phases Bode']
+        if(sumObjs !== undefined && sumObjs.length > 0) {
+            sumObjs[0].recalculateCache()
         } else {
             Objects.createNewRegisteredObject('Somme phases Bode')
+        }
+    }
+    
+    delete() {
+        super.update()
+        let sumObjs = Objects.currentObjects['Somme phases Bode']
+        if(sumObjs !== undefined && sumObjs.length > 0) {
+            sumObjs[0].recalculateCache()
         }
     }
 }
