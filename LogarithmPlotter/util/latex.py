@@ -35,6 +35,7 @@ If not found, it will send an alert to the user.
 """
 LATEX_PATH = which('latex')
 DVIPNG_PATH = which('dvipng')
+PACKAGES = ["calligra", "amsfonts", "inputenc"]
 
 DEFAULT_LATEX_DOC = Template(r"""
 \documentclass[]{minimal}
@@ -177,16 +178,18 @@ class Latex(QObject):
             proc.kill()
             out, err = proc.communicate()
             output = str(out, 'utf8') + "\n" + str(err, 'utf8')
-            if 'calligra.sty' in output and 'not found' in output:
-                # Calligra package not installed.
-                QMessageBox.warning(None, "LogarithmPlotter - Latex",
-                                    QCoreApplication.translate("latex", "Your LaTeX installation does not include the '{}' package. Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.")
-                                    .format('calligra'))
-            else:
-                QMessageBox.warning(None, "LogarithmPlotter - Latex",
-                                    QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' took too long to finish:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
-                                    .format(" ".join(process), output))
-                raise Exception(" ".join(process) + " process timed out:\n" + output)
+            if 'not found' in output:
+                for pkg in PACKAGES:
+                    if f'{pkg}.sty' in output:
+                        # Package missing.
+                        QMessageBox.warning(None, "LogarithmPlotter - Latex",
+                                        QCoreApplication.translate("latex", "Your LaTeX installation does not include some required packages:\n\n- {} (https://ctan.org/pkg/{})\n\nMake sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.")
+                                        .format(pkg, pkg))
+                        raise Exception("Latex: Missing package " + pkg)
+            QMessageBox.warning(None, "LogarithmPlotter - Latex",
+                                QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' took too long to finish:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
+                                .format(" ".join(process), output))
+            raise Exception(" ".join(process) + " process timed out:\n" + output)
 
     def cleanup(self, export_path):
         """

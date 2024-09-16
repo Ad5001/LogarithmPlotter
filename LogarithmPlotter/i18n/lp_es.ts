@@ -682,87 +682,91 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="64"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="71"/>
         <source>Source code</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="67"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="74"/>
         <source>Original library by Raphael Graf</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="77"/>
         <source>Source</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Ported to Javascript by Matthew Crumley</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="75"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="80"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="209"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="218"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="227"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="82"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="87"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="214"/>
         <source>Website</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="84"/>
         <source>Ported to QMLJS by Ad5001</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="90"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="97"/>
         <source>Libraries included</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="172"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="179"/>
         <source>Email</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="203"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="239"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="213"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="244"/>
         <source>French</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="222"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="249"/>
         <source>German</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="231"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="254"/>
         <source>Hungarian</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="236"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="245"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="219"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
         <source>Github</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="240"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
         <source>Norwegian</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="255"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
+        <source>Spanish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
         <source>Translations included</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="284"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="304"/>
         <source>Improve</source>
         <translation></translation>
     </message>
@@ -1149,19 +1153,19 @@ Evaluated expression: %3</source>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="75"/>
+        <location filename="../util/latex.py" line="82"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="79"/>
+        <location filename="../util/latex.py" line="87"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="164"/>
+        <location filename="../util/latex.py" line="173"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1170,12 +1174,16 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="175"/>
-        <source>Your LaTeX installation does not include the &apos;{}&apos; package. Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
+        <location filename="../util/latex.py" line="186"/>
+        <source>Your LaTeX installation does not include some required packages:
+
+- {} (https://ctan.org/pkg/{})
+
+Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="179"/>
+        <location filename="../util/latex.py" line="190"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
