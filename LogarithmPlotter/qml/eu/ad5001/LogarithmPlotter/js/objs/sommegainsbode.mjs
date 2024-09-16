@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { parseDomain, Expression, Domain } from "../mathlib.mjs"
+import { Range, Expression, Domain } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
 import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
@@ -53,9 +53,9 @@ export default class SommeGainsBode extends ExecutableObject {
     }
     
     execute(x = 0) {
-        for(let [dbfn, inDrawDom] of this.cachedParts) {
+        for(let [limitedDrawFunction, inDrawDom] of this.cachedParts) {
             if(inDrawDom.includes(x)) {
-                return dbfn.execute(x)
+                return limitedDrawFunction.execute(x)
             }
         }
         return null
@@ -66,9 +66,9 @@ export default class SommeGainsBode extends ExecutableObject {
     }
     
     simplify(x = 1) {
-        for(let [dbfn, inDrawDom] of this.cachedParts) {
+        for(let [limitedDrawFunction, inDrawDom] of this.cachedParts) {
             if(inDrawDom.includes(x)) {
-                return dbfn.simplify(x)
+                return limitedDrawFunction.simplify(x)
             }
         }
         return ''
@@ -77,61 +77,65 @@ export default class SommeGainsBode extends ExecutableObject {
     recalculateCache() {
         this.cachedParts = []
         // Calculating this is fairly resource expansive so it's cached.
-        if(Objects.currentObjects['Gain Bode'] !== undefined) {
+        let magnitudeObjects = Objects.currentObjects['Gain Bode']
+        if(magnitudeObjects === undefined || magnitudeObjects.length < 1) {
+            Objects.deleteObject(this.name)
+        } else {
             console.log('Recalculating cache gain')
             // Minimum to draw (can be expended if needed, just not infinite or it'll cause issues.
-            let drawMin = 0.001
-            
+            const MIN_DRAW = 1e-20
+            // Format: [[x value of where the filter transitions, magnitude, high-pass (bool)]]
+            const magnitudes = [] 
+            const XVALUE = 0
+            const MAGNITUDE = 1
+            const PASS = 2
+            magnitudes.push([Number.MAX_VALUE, 0, true]) // Draw the ending section
+            // Collect data from current magnitude (or gain in French) objects.
             let baseY = 0
-            let om0xGains = {1000000000: 0} // To draw the last part
-            let om0xPass = {1000000000: 'high'} // To draw the last part
-            for(/** @type {GainBode} */ let gainObj of Objects.currentObjects['Gain Bode']) { // Sorting by their om_0 position.
-                let om0x = gainObj.om_0.x.execute()
-                if(om0xGains[om0x] === undefined) {
-                    om0xGains[om0x] = gainObj.gain.execute()
-                    om0xPass[om0x] = gainObj.pass === 'high'
-                } else {
-                    om0xGains[om0x+0.001] = gainObj.gain.execute()
-                    om0xPass[om0x+0.001] = gainObj.pass === 'high'
-                }
-                baseY += gainObj.execute(drawMin)
+            for(/** @type {GainBode} */ let magnitudeObj of magnitudeObjects) { // Sorting by their om_0 position.
+                const om0x = magnitudeObj.om_0.x.execute()
+                magnitudes.push([om0x, magnitudeObj.gain.execute(), magnitudeObj.pass === 'high'])
+                baseY += magnitudeObj.execute(MIN_DRAW)
             }
-            // Sorting the om_0x
-            let om0xList = Object.keys(om0xGains).map(x => parseFloat(x)) // THEY WERE CONVERTED TO STRINGS...
-            om0xList.sort((a,b) => a - b)
+            // Sorting the data by their x transitions value
+            magnitudes.sort((a,b) => a[XVALUE] - b[XVALUE])
             // Adding the total gains.
-            let gainsBeforeP = []
-            let gainsAfterP = []
-            let gainTotal = 0
-            for(let om0x of om0xList){
-                if(om0xPass[om0x]) { // High-pass
-                    gainsBeforeP.push(om0xGains[om0x])
-                    gainsAfterP.push(0)
-                    gainTotal += om0xGains[om0x] // Gain at first
+            let magnitudesBeforeTransition = []
+            let magnitudesAfterTransition = []
+            let totalMagnitudeAtStart = 0 // Magnitude at the lowest x value (sum of all high-pass magnitudes)
+            for(let [om0x, magnitude, highpass] of magnitudes){
+                if(highpass) {
+                    magnitudesBeforeTransition.push(magnitude)
+                    magnitudesAfterTransition.push(0)
+                    totalMagnitudeAtStart += magnitude
                 } else {
-                    gainsBeforeP.push(0)
-                    gainsAfterP.push(om0xGains[om0x])
+                    magnitudesBeforeTransition.push(0)
+                    magnitudesAfterTransition.push(magnitude)
                 }
             }
             // Calculating parts
-            let previousPallier = drawMin
-            for(let pallier = 0; pallier < om0xList.length; pallier++) {
-                let dbfn = new Expression(`${gainTotal}*(ln(x)-ln(${previousPallier}))/ln(10)+${baseY}`)
-                let inDrawDom = parseDomain(`]${previousPallier};${om0xList[pallier]}]`)
-                this.cachedParts.push([dbfn, inDrawDom])
-                previousPallier = om0xList[pallier]
-                baseY = dbfn.execute(om0xList[pallier])
-                gainTotal += gainsAfterP[pallier] - gainsBeforeP[pallier]
+            let previousTransitionX = MIN_DRAW
+            let currentMagnitude = totalMagnitudeAtStart
+            for(let transitionID = 0; transitionID < magnitudes.length; transitionID++) {
+                const transitionX = magnitudes[transitionID][XVALUE]
+                // Create draw function that will be used during drawing.
+                const limitedDrawFunction = new Expression(`${currentMagnitude}*(ln(x)-ln(${previousTransitionX}))/ln(10)+${baseY}`)
+                const drawDomain = new Range(previousTransitionX, transitionX, true, false)
+                this.cachedParts.push([limitedDrawFunction, drawDomain])
+                // Prepare default values for next function.
+                previousTransitionX = transitionX
+                baseY = limitedDrawFunction.execute(transitionX)
+                currentMagnitude += magnitudesAfterTransition[transitionID] - magnitudesBeforeTransition[transitionID]
             }
         }
     }
     
     draw(canvas) {
         if(this.cachedParts.length > 0) {
-            for(let [dbfn, inDrawDom] of this.cachedParts) {
-                Function.drawFunction(canvas, dbfn, inDrawDom, Domain.R)
-                if(inDrawDom.includes(this.labelX)) {
-                    // Label
+            for(let [limitedDrawFunction, drawDomain] of this.cachedParts) {
+                Function.drawFunction(canvas, limitedDrawFunction, drawDomain, Domain.R)
+                // Check if necessary to draw label
+                if(drawDomain.includes(this.labelX)) {
                     this.drawLabel(canvas, this.labelPosition, canvas.x2px(this.labelX), canvas.y2px(this.execute(this.labelX)))
                 }
             }

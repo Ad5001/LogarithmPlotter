@@ -133,10 +133,19 @@ export default class GainBode extends ExecutableObject {
     
     update() {
         super.update()
-        if(Objects.currentObjects['Somme gains Bode'] !== undefined && Objects.currentObjects['Somme gains Bode'].length > 0) {
-            Objects.currentObjects['Somme gains Bode'][0].recalculateCache()
+        let sumObjs = Objects.currentObjects['Somme gains Bode']
+        if(sumObjs !== undefined && sumObjs.length > 0) {
+            sumObjs[0].recalculateCache()
         } else {
             Objects.createNewRegisteredObject('Somme gains Bode')
+        }
+    }
+    
+    delete() {
+        super.delete()
+        let sumObjs = Objects.currentObjects['Somme gains Bode']
+        if(sumObjs !== undefined && sumObjs.length > 0) {
+            sumObjs[0].recalculateCache()
         }
     }
 }
