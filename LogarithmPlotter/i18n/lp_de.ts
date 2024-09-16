@@ -80,7 +80,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Einstellung</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
@@ -395,7 +395,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellung</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="106"/>
@@ -796,7 +796,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
@@ -1273,7 +1273,11 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 - {} (https://ctan.org/pkg/{})
 
 Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre LaTeX-Installation enthält einige erforderliche Pakete nicht:
+
+- {} (https://ctan.org/pkg/{})
+
+Stellen Sie sicher, dass diese Pakete installiert sind, oder deaktivieren Sie das LaTeX-Rendering in LogarithmPlotter.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="190"/>
@@ -1661,6 +1665,21 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <source>X Cursors</source>
         <translation>X Zeiger</translation>
+    </message>
+</context>
+<context>
+    <name>settingCategory</name>
+    <message>
+        <source>default</source>
+        <translation>Standardeinstellungen</translation>
+    </message>
+    <message>
+        <source>general</source>
+        <translation>Allgemeine</translation>
+    </message>
+    <message>
+        <source>editor</source>
+        <translation>Ausdruckseditor</translation>
     </message>
 </context>
 </TS>
