@@ -474,7 +474,7 @@ Item {
                     itemSelected: parent.itemSelected
                     categoryItems: Modules.Objects.getObjectsName("ExecutableObject").filter(obj => obj != self)
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Modules.Objects.currentObjectsByName[item] == null ? '' : Objects.currentObjectsByName[item].constructor.displayType(),
+                        'text': item, 'annotation': Modules.Objects.currentObjectsByName[item] == null ? '' : Modules.Objects.currentObjectsByName[item].constructor.displayType(),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
