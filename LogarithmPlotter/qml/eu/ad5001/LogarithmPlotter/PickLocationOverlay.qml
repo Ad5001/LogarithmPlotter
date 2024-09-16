@@ -282,10 +282,9 @@ Item {
         x: picker.mouseX - width - 5
         y: picker.mouseY - height - 5
         color: 'black'
-        property double axisX: Modules.Canvas.axesStep.x.value
-        property double axisY: Modules.Canvas.axesStep.y.value
         property double mouseX: {
-            let xpos = Modules.Canvas.px2x(picker.mouseX)
+            const axisX = Modules.Canvas.axesSteps.x.value
+            const xpos = Modules.Canvas.px2x(picker.mouseX)
             if(snapToGridCheckbox.checked) {
                 if(canvas.logscalex) {
                     // Calculate the logged power
@@ -299,7 +298,8 @@ Item {
             }
         }
         property double mouseY: {
-            let ypos = Modules.Canvas.px2y(picker.mouseY)
+            const axisY = Modules.Canvas.axesSteps.y.value
+            const ypos = Modules.Canvas.px2y(picker.mouseY)
             if(snapToGridCheckbox.checked) {
                 return axisY*Math.round(ypos/axisY)
             } else {
