@@ -100,10 +100,26 @@ Item {
             anchors.left: parent.left
             visible: Modules.Latex.enabled
             property double depth: Screen.devicePixelRatio
-            property var ltxInfo: visible ? Modules.Latex.renderSync(obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color) : { source: "", width: 0, height: 0 }
-            source: visible ? ltxInfo.source : ""
-            width: ltxInfo.width/depth
-            height: ltxInfo.height/depth
+            source: ""
+            width: 0/depth
+            height: 0/depth
+            
+            Component.onCompleted: function() {
+                if(Modules.Latex.enabled) {
+                    const args = [obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color]
+                    const prerendered = Modules.Latex.findPrerendered(...args)
+                    if(prerendered !== null) {
+                        source = prerendered.source
+                        width = prerendered.width/depth
+                        height = prerendered.height/depth
+                    } else
+                        Modules.Latex.requestAsyncRender(...args).then(info => {
+                            source = info.source
+                            width = info.width/depth
+                            height = info.height/depth
+                        })
+                }
+            }
         }
         
         MouseArea {
