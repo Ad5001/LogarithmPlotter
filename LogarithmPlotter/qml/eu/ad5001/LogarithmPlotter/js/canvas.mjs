@@ -17,7 +17,7 @@
  */
 
 import { Module } from "./modules.mjs"
-import { textsup, roundAwayFromZero } from "./utils.mjs"
+import { textsup } from "./utils.mjs"
 import { Expression } from "./mathlib.mjs"
 import Latex from "./math/latex.mjs"
 

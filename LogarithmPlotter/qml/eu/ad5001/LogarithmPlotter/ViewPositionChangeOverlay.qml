@@ -94,9 +94,13 @@ Item {
         property int positionChangeTimer: 0
         
         function updatePosition(deltaX, deltaY) {
-            settingsInstance.xmin = (Modules.Canvas.px2x(Modules.Canvas.x2px(settingsInstance.xmin)-deltaX))
-            settingsInstance.ymax += deltaY/canvas.yzoom
-            settingsInstance.ymax = settingsInstance.ymax.toFixed(4)
+            const unauthorized = [NaN, Infinity, -Infinity]
+            const xmin = (Modules.Canvas.px2x(Modules.Canvas.x2px(settingsInstance.xmin)-deltaX))
+            const ymax = settingsInstance.ymax + deltaY/canvas.yzoom
+            if(!unauthorized.includes(xmin))
+                settingsInstance.xmin = xmin
+            if(!unauthorized.includes(ymax))
+                settingsInstance.ymax = ymax.toFixed(4)
             settingsInstance.changed()
             parent.positionChanged(deltaX, deltaY)
             
@@ -140,12 +144,15 @@ Item {
             }
             let newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(0)
             let newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(0)
-            if(newXZoom == settingsInstance.xzoom) // No change, allow more precision.
+            // Check if we need to have more precision
+            if(newXZoom < 10) 
                 newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(4)
-            if(newYZoom == settingsInstance.yzoom) // No change, allow more precision.
+            if(newYZoom < 10)
                 newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(4)
-            settingsInstance.xzoom = newXZoom
-            settingsInstance.yzoom = newYZoom
+            if(newXZoom > 0.5)
+                settingsInstance.xzoom = newXZoom
+            if(newYZoom > 0.5)
+                settingsInstance.yzoom = newYZoom
             settingsInstance.changed()
         }
     }
