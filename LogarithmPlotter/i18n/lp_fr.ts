@@ -1435,7 +1435,7 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     <name>prop</name>
     <message>
         <source>expression</source>
-        <translation>Expression</translation>
+        <translation>Formule</translation>
     </message>
     <message>
         <source>definitionDomain</source>
@@ -1535,7 +1535,7 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     </message>
     <message>
         <source>defaultExpression</source>
-        <translation>Expression</translation>
+        <translation>Formule par défaut</translation>
     </message>
     <message>
         <source>baseValues</source>
