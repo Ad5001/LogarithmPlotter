@@ -80,7 +80,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Preferencias</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
@@ -168,6 +168,10 @@
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="173"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Este gráfico contiene cambios sin guardar. Al hacer esto, se perderán todos los datos no guardados. ¿Continuar?</translation>
+    </message>
+    <message>
+        <source>Expression editor</source>
+        <translation>Editor de expresiones</translation>
     </message>
 </context>
 <context>
