@@ -112,7 +112,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="137"/>
         <source>&amp;Report a bug</source>
-        <translation></translation>
+        <translation>&amp;Rapporter en feil</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="142"/>
@@ -122,17 +122,17 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;Changelog</source>
-        <translation></translation>
+        <translation>&amp;Endringslogg</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
         <source>&amp;Help translating!</source>
-        <translation></translation>
+        <translation>&amp;Hjelp til å oversette!</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="158"/>
         <source>&amp;Thanks</source>
-        <translation></translation>
+        <translation>&amp;Erkjennelser</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
@@ -142,12 +142,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="172"/>
         <source>Save unsaved changes?</source>
-        <translation></translation>
+        <translation>Lagre ikke-lagrede endringer?</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="173"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
-        <translation></translation>
+        <translation type="unfinished">Dette plottet inneholder ikke-lagrede endringer. Hvis du gjør dette, vil alle ikke-lagrede data gå tapt. Fortsette?</translation>
     </message>
 </context>
 <context>
@@ -155,7 +155,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/BaseDialog.qml" line="47"/>
         <source>Close</source>
-        <translation></translation>
+        <translation>Lukk</translation>
     </message>
 </context>
 <context>
@@ -170,12 +170,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="81"/>
         <source>Fetching changelog...</source>
-        <translation></translation>
+        <translation>Henter endringslogg…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="99"/>
         <source>Close</source>
-        <translation></translation>
+        <translation>Lukk</translation>
     </message>
 </context>
 <context>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="95"/>
         <source>LogarithmPlotter - Invalid object name</source>
-        <translation></translation>
+        <translation>LogarithmPlotter - Ugyldig objektnavn</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="98"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
-        <translation></translation>
+        <translation>Et objekt med navnet &apos;%1&apos; finnes allerede.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="106"/>
@@ -387,7 +387,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ListSetting.qml" line="233"/>
         <source>+ Add Entry</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
