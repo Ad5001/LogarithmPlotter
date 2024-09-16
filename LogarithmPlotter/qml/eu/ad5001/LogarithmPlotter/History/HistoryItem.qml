@@ -116,10 +116,23 @@ Button {
         anchors.verticalCenter: parent.verticalCenter
         visible: !hidden
         font.pixelSize: 14
-        text: historyAction.getHTMLString().replace(/\$\{tag_color\}/g, clr)
+        text: ""
         textFormat: Text.RichText
         clip: true
         wrapMode: Text.WordWrap
+        
+        Component.onCompleted: function() {
+            // Render HTML, might be string, but could also be a promise
+            const html = historyAction.getHTMLString()
+            if(typeof html === "string") {
+                label.text = html.replace(/\$\{tag_color\}/g, clr)
+            } else {
+                // Promise! We need to way to wait for it to be completed.
+                html.then(rendered => {
+                    label.text = rendered.replace(/\$\{tag_color\}/g, clr)
+                })
+            }
+        }
     }
     
     Rectangle {

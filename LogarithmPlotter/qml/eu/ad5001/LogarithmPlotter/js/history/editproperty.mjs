@@ -85,8 +85,9 @@ export default class EditedProperty extends Action {
     }
     
     setReadableValues() {
-        this.prevString = "";
-        this.nextString = "";
+        this.prevString = ""
+        this.nextString = ""
+        this._renderPromises = []
         if(this.propertyType instanceof Object) {
             switch(this.propertyType.type) {
                 case "Enum":
@@ -118,8 +119,11 @@ export default class EditedProperty extends Action {
         this.prevHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.prevString+'&nbsp;</tt>'
         this.nextHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+this.nextString+'&nbsp;</tt>'
         if(Latex.enabled && typeof this.propertyType == 'object' && this.propertyType.type === "Expression") {
-            this.prevHTML= this.renderLatexAsHtml(this.previousValue.latexMarkup)
-            this.nextHTML= this.renderLatexAsHtml(this.newValue.latexMarkup)
+            // Store promises so that querying can wait for them to finish.
+            this._renderPromises = [
+                this.renderLatexAsHtml(this.previousValue.latexMarkup).then(prev => this.prevHTML = prev),
+                this.renderLatexAsHtml(this.newValue.latexMarkup).then(next => this.nextHTML = prev)
+            ]
         }
     }
     
@@ -131,10 +135,21 @@ export default class EditedProperty extends Action {
     }
     
     getHTMLString() {
-        return qsTr('%1 of %2 changed from %3 to %4.')
-                .arg(this.targetPropertyReadable)
-                .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
-                .arg(this.prevHTML)
-                .arg(this.nextHTML)                
+        return new Promise(resolve => {
+            const translation = qsTr('%1 of %2 changed from %3 to %4.')
+                                    .arg(this.targetPropertyReadable)
+                                    .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
+            // Check if we need to wait for LaTeX HTML to be rendered.
+            if(this.prevHTML !== undefined && this.nextHTML !== undefined)
+                resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
+            else
+                Promise.all(this._renderPromises).then((rendered) => {
+                    // Rendered are (potentially) two HTML strings which are defined during rendering
+                    this.prevHTML = this.prevHTML ?? rendered[0]
+                    this.nextHTML = this.prevHTML ?? rendered[1]
+                    resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
+                })
+        })
+        
     }
 }

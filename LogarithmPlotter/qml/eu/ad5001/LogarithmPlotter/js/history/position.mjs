@@ -61,10 +61,15 @@ export default class EditedPosition extends Action {
     setReadableValues() {
         this.prevString = `(${this.previousXValue.toString()},${this.previousYValue.toString()})`
         this.nextString = `(${this.newXValue.toString()},${this.newYValue.toString()})`
+        this._renderPromises = []
         // Render as LaTeX
         if(Latex.enabled) {
-            this.prevHTML = this.renderLatexAsHtml(`\\left(${this.previousXValue.latexMarkup},${this.previousYValue.latexMarkup}\\right)`)
-            this.nextHTML = this.renderLatexAsHtml(`\\left(${this.newXValue.latexMarkup},${this.newYValue.latexMarkup}\\right)`)
+            const prevMarkup = `\\left(${this.previousXValue.latexMarkup},${this.previousYValue.latexMarkup}\\right)`
+            const nextMarkup = `\\left(${this.newXValue.latexMarkup},${this.newYValue.latexMarkup}\\right)`
+            this._renderPromises = [ // Will be taken in promise.all
+                this.renderLatexAsHtml(prevMarkup),
+                this.renderLatexAsHtml(nextMarkup)
+            ]
         } else {
             this.prevHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+escapeHTML(this.prevString)+'&nbsp;</tt>'
             this.nextHTML = '<tt style="background: rgba(128,128,128,0.1);">&nbsp;'+escapeHTML(this.nextString)+'&nbsp;</tt>'
@@ -85,9 +90,20 @@ export default class EditedPosition extends Action {
     }
     
     getHTMLString() {
-        return qsTr('Position of %1 set from %2 to %3.')
-                .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
-                .arg(this.prevHTML)
-                .arg(this.nextHTML)                
+        return new Promise(resolve => {
+            const translation = qsTr('Position of %1 set from %2 to %3.')
+                                    .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
+            // Check if we need to wait for LaTeX HTML to be rendered.
+            if(this.prevHTML !== undefined && this.nextHTML !== undefined)
+                resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
+            else
+                Promise.all(this._renderPromises).then((rendered) => {
+                    // Rendered are (potentially) two HTML strings which are defined during rendering
+                    this.prevHTML = this.prevHTML ?? rendered[0]
+                    this.nextHTML = this.prevHTML ?? rendered[1]
+                    resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
+                })
+        })
+                
     }
 }

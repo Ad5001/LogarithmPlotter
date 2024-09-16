@@ -109,24 +109,28 @@ export class Action {
      * Renders a LaTeX-formatted string to an image and wraps it in an HTML tag in a string.
      * 
      * @param {string} latexString - Source string of the latex.
-     * @returns {string}
+     * @returns {Promise<string>}
      */
     renderLatexAsHtml(latexString) {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
-        let imgDepth = Modules.History.imageDepth
-        let { source, width, height } = Latex.renderSync(
-            latexString,
-            imgDepth * (Modules.History.fontSize + 2),
-            Modules.History.themeTextColor
-        )
-        return `<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`
+        return new Promise(resolve => {
+            let imgDepth = Modules.History.imageDepth
+            Latex.requestAsyncRender(
+                latexString,
+                imgDepth * (Modules.History.fontSize + 2),
+                Modules.History.themeTextColor
+            ).then((imgData) => {
+                const { source, width, height } = imgData
+                resolve(`<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`)
+            })
+        })
     }
     
     /**
      * Returns a string with the HTML-formatted description of the action.
      * 
-     * @returns {string}
+     * @returns {string|Promise<string>}
      */
     getHTMLString() {
         return this.getReadableString()
