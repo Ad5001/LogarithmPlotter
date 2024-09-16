@@ -315,7 +315,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="471"/>
         <source>Executable Objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Objetos de función</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="486"/>
@@ -341,7 +341,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="70"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation type="unfinished"></translation>
+        <translation>Bienvenid@ a LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="81"/>
@@ -365,12 +365,42 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="106"/>
         <source>Close</source>
         <translation>Cerrar</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Esquema de colores:</translation>
+    </message>
+    <message>
+        <source>Take a few seconds to configure LogarithmPlotter.
+These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
+        <translation>Tómate unos segundos para configurar LogarithmPlotter.
+Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes”.</translation>
+    </message>
+    <message>
+        <source>Check for updates on startup (requires online connectivity)</source>
+        <translation>Buscar actualizaciones al iniciar (requiere conexión a Internet)</translation>
+    </message>
+    <message>
+        <source>Reset redo stack when a new action is added to history</source>
+        <translation>Restablecer el historial de deshacer cuando se agrega una nueva acción</translation>
+    </message>
+    <message>
+        <source>Automatically close parenthesises and brackets in expressions</source>
+        <translation>Cerrar automáticamente paréntesis y corchetes en expresiones</translation>
+    </message>
+    <message>
+        <source>Enable autocompletion interface in expression editor</source>
+        <translation>Habilitar el autocompletado en el editor de expresiones</translation>
+    </message>
+    <message>
+        <source>Enable syntax highlighting for expressions</source>
+        <translation>Habilitar el resaltado de sintaxis para expresiones</translation>
     </message>
 </context>
 <context>
@@ -577,7 +607,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Preferences.qml" line="182"/>
         <source>Close</source>
-        <translation type="unfinished">Cerrar</translation>
+        <translation>Cerrar</translation>
     </message>
 </context>
 <context>
@@ -677,6 +707,10 @@
         <source>Load plot</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Close</source>
+        <translation>Cerrar</translation>
+    </message>
 </context>
 <context>
     <name>ThanksTo</name>
@@ -762,7 +796,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Español</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
@@ -1184,7 +1218,11 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 - {} (https://ctan.org/pkg/{})
 
 Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tu instalación de LaTeX no incluye algunos paquetes necesarios:
+
+- {} (https://ctan.org/pkg/{})
+
+Asegúrate de que dicho paquete está instalado, o desactive el renderizado LaTeX en LogarithmPlotter.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="190"/>
@@ -1243,6 +1281,10 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <source>above-right</source>
         <translation>↗ Arriba a la derecha</translation>
+    </message>
+    <message>
+        <source>bottom</source>
+        <translation>↓ Abajo</translation>
     </message>
 </context>
 <context>
