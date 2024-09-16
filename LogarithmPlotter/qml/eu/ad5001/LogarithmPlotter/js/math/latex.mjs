@@ -39,6 +39,20 @@ const equivalchars = ["\\alpha","\\beta","\\gamma","\\delta","\\epsilon","\\zeta
     "{}_{4}","{}_{5}","{}_{6}","{}_{7}","{}_{8}","{}_{9}","{}_{0}",
     "\\pi", "\\infty"]
 
+/**
+ * Class containing the result of a LaTeX render.
+ * 
+ * @property {string} source - Exported PNG file
+ * @property {number} width 
+ * @property {number} height 
+ */
+class LatexRenderResult {
+    constructor(source, width, height) {
+        this.source = source
+        this.width = parseFloat(width)
+        this.height = parseFloat(height)
+    }
+}
 
 class LatexAPI extends Module {
     constructor() {
@@ -50,11 +64,50 @@ class LatexAPI extends Module {
          * true if latex has been enabled by the user, false otherwise.
          */
         this.enabled = Helper.getSettingBool("enable_latex")
-        /**
-         * Mirror method for Python object.
-         * @type {function(string, number, string): string}.
-         */
-        this.render = Latex.render
+    }
+    
+    /**
+     * Prepares and renders a latex string into a png file.
+     * 
+     * @param {string} markup - LaTeX markup to render.
+     * @param {number} fontSize - Font size (in pt) to render.
+     * @param {color} color - Color of the text to render.
+     * @returns {LatexRenderResult}
+     */
+    renderSync(markup, fontSize, color) {
+        let args = Latex.render(markup, fontSize, color).split(",")
+        return new LatexRenderResult(...args)
+    }
+    
+    /**
+     * Checks if the given markup (with given font size and color) has already been
+     * rendered, and if so, returns its data. Otherwise, returns null.
+     * 
+     * @param {string} markup - LaTeX markup to render.
+     * @param {number} fontSize - Font size (in pt) to render.
+     * @param {color} color - Color of the text to render.
+     * @returns {LatexRenderResult|null}
+     */
+    findPrerendered(markup, fontSize, color) {
+        const data = Latex.findPrerendered(markup, fontSize, color)
+        let ret = null
+        if(data !== "")
+            ret = new LatexRenderResult(...data.split(","))
+        return ret
+    }
+    
+    /**
+     * Prepares and renders a latex string into a png file asynchronously.
+     * 
+     * @param {string} markup - LaTeX markup to render.
+     * @param {number} fontSize - Font size (in pt) to render.
+     * @param {color} color - Color of the text to render.
+     * @returns {Promize<LatexRenderResult>}
+     */
+    requestAsyncRender(markup, fontSize, color) {
+        return new Promise(resolve => {
+            resolve(this.renderSync(markup, fontSize, color))
+        })
     }
 
     /**

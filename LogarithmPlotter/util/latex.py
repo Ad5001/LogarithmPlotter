@@ -92,15 +92,13 @@ class Latex(QObject):
             except Exception as e:
                 valid_install = False # Should have sent an error message if failed to render
         return valid_install
-                
 
     @Slot(str, float, QColor, result=str)
     def render(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
         Prepares and renders a latex string into a png file.
         """
-        markup_hash = "render" + str(hash(latex_markup))
-        export_path = path.join(self.tempdir.name, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
+        markup_hash, export_path = self.create_export_path(latex_markup, font_size, color)
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
             # Generating file
@@ -121,6 +119,28 @@ class Latex(QObject):
         img = QImage(export_path)
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
+    
+    @Slot(str, float, QColor, result=str)
+    def findPrerendered(self, latex_markup: str, font_size: float, color: QColor):
+        """
+        Finds a prerendered image and returns its data if possible, and an empty string if not.
+        """
+        markup_hash, export_path = self.create_export_path(latex_markup, font_size, color)
+        data = ""
+        if path.exists(export_path + ".png"):
+            img = QImage(export_path)
+            data = f'{export_path}.png,{img.width()},{img.height()}'
+        return data
+        
+        
+    def create_export_path(self, latex_markup: str, font_size: float, color: QColor):
+        """
+        Standardizes export path for renders.
+        """
+        markup_hash = "render" + str(hash(latex_markup))
+        export_path = path.join(self.tempdir.name, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
+        return markup_hash, export_path
+    
 
     def create_latex_doc(self, export_path: str, latex_markup: str):
         """

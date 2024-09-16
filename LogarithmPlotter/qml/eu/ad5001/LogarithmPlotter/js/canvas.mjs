@@ -16,9 +16,10 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Module} from "./modules.mjs"
-import {textsup} from "./utils.mjs"
-import {Expression} from "./mathlib.mjs"
+import { Module } from "./modules.mjs"
+import { textsup } from "./utils.mjs"
+import { Expression } from "./mathlib.mjs"
+import Latex from "./math/latex.mjs"
 
 
 class CanvasAPI extends Module {
@@ -168,6 +169,8 @@ class CanvasAPI extends Module {
                         obj.draw(this)
                     } catch(e) {
                         // Drawing throws an error. Generally, it's due to a new modification (or the opening of a file)
+                        console.error(e)
+                        console.log(e.stack)
                         this._drawingErrorDialog.showDialog(objType, obj.name, e.message)
                         Modules.History.undo()
                     }
@@ -452,23 +455,24 @@ class CanvasAPI extends Module {
      * Renders latex markup ltxText to an image and loads it. Returns a dictionary with three values: source, width and height.
      * @param {string} ltxText
      * @param {string} color
-     * @param {function({width: number, height: number, source: string})} callback
+     * @param {function(LatexRenderResult|{width: number, height: number, source: string})} callback
      */
     renderLatexImage(ltxText, color, callback) {
-        let [ltxSrc, ltxWidth, ltxHeight] = Latex.render(ltxText, this.textsize, color).split(",")
-        let imgData = {
-            "source": ltxSrc,
-            "width": parseFloat(ltxWidth),
-            "height": parseFloat(ltxHeight)
-        };
-        if(!this._canvas.isImageLoaded(ltxSrc) && !this._canvas.isImageLoading(ltxSrc)){
-            // Wait until the image is loaded to callback.
-            this._canvas.loadImage(ltxSrc)
-            this._canvas.imageLoaders[ltxSrc] = [callback, imgData]
-        } else {
-            // Callback directly
-            callback(imgData)
+        const onRendered = (imgData) => {
+            if(!this._canvas.isImageLoaded(imgData.source) && !this._canvas.isImageLoading(imgData.source)){
+                // Wait until the image is loaded to callback.
+                this._canvas.loadImage(imgData.source)
+                this._canvas.imageLoaders[imgData.source] = [callback, imgData]
+            } else {
+                // Callback directly
+                callback(imgData)
+            }
         }
+        const prerendered = Latex.findPrerendered(ltxText, this.textsize, color)
+        if(prerendered !== null)
+            onRendered(prerendered)
+        else
+            Latex.requestAsyncRender(ltxText, this.textsize, color).then(onRendered)
     }
 
     //

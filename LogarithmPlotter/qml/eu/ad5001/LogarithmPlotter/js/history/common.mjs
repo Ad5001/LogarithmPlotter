@@ -115,12 +115,12 @@ export class Action {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
         let imgDepth = Modules.History.imageDepth
-        let [src, width, height] = Latex.render(
+        let { source, width, height } = Latex.renderSync(
             latexString,
             imgDepth * (Modules.History.fontSize + 2),
             Modules.History.themeTextColor
-        ).split(",")
-        return `<img src="${src}" width="${parseInt(width)/imgDepth}" height="${parseInt(height)/imgDepth}" style="vertical-align: middle"/>`
+        )
+        return `<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`
     }
     
     /**

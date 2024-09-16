@@ -100,10 +100,10 @@ Item {
             anchors.left: parent.left
             visible: Modules.Latex.enabled
             property double depth: Screen.devicePixelRatio
-            property var ltxInfo: visible ? Latex.render(obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color).split(",") : ["","0","0"]
-            source: visible ? ltxInfo[0] : ""
-            width: parseInt(ltxInfo[1])/depth
-            height: parseInt(ltxInfo[2])/depth
+            property var ltxInfo: visible ? Modules.Latex.renderSync(obj.getLatexString(), depth*(parent.font.pixelSize+2), parent.color) : { source: "", width: 0, height: 0 }
+            source: visible ? ltxInfo.source : ""
+            width: ltxInfo.width/depth
+            height: ltxInfo.height/depth
         }
         
         MouseArea {
