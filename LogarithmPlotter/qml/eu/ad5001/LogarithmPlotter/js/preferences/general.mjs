@@ -36,9 +36,11 @@ class EnableLatex extends BoolSetting {
     }
 
     set(value) {
-        super.set(value)
-        Modules.Latex.enabled = value
-        Modules.Canvas.requestPaint()
+        if(!value || Latex.checkLatexInstallation()) {
+            super.set(value)
+            Modules.Latex.enabled = value
+            Modules.Canvas.requestPaint()
+        }
     }
 }
 
