@@ -80,7 +80,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Preferences</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
@@ -395,7 +395,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferences</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="106"/>
@@ -607,7 +607,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Preferences.qml" line="182"/>
         <source>Close</source>
-        <translation type="unfinished">Close</translation>
+        <translation>Close</translation>
     </message>
 </context>
 <context>
@@ -796,7 +796,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanish</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
@@ -1273,7 +1273,11 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
 - {} (https://ctan.org/pkg/{})
 
 Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Your LaTeX installation does not include some required packages:
+
+- {} (https://ctan.org/pkg/{})
+
+Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="190"/>
