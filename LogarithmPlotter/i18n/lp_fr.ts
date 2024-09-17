@@ -1688,7 +1688,7 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished">Paramètres par défaut</translation>
+        <translation>Paramètres par défaut</translation>
     </message>
 </context>
 </TS>
