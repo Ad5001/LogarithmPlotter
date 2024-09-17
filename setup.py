@@ -123,7 +123,7 @@ if sys.platform == 'linux':
 
 setuptools.setup(
     install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide6-Essentials"]),
-    python_requires='>=3.8',
+    python_requires='>=3.9',
 
     name='logarithmplotter',
     version=pkg_version,

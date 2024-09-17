@@ -67,4 +67,8 @@ const Helper = {
 const Latex = {
     /** @type {function(string, number, string): string} */
     render: (latex_markup, font_size, color) => '',
+    /** @type {function(string, number, string): string} */
+    findPrerendered: (latex_markup, font_size, color) => '',
+    /** @type {function(): boolean} */
+    checkLatexInstallation: () => true,
 }
