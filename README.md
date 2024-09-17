@@ -41,11 +41,6 @@ For all builds, you need [Python 3](https://python.org) with [PySide6](https://p
     - To build the snap, you need [snapcraft](https://snapcraft.io) installed.
     - Run `package-linux.sh`.
 
-    
-### Linux
-
-Run `bash linux/install_local.sh`
-
 ## Contribute
 
 There are several ways to contribute to LogarithmPlotter. 
@@ -53,6 +48,14 @@ There are several ways to contribute to LogarithmPlotter.
 [![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/multi-auto.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
 
 - You can help the development of LogarithmPlotter. In order to get started, take a look at the [wiki](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_pages).
+
+## Tests
+
+To run LogarithmPlotter's test, use the following:
+
+- Python
+  - Install `pytest` and `pytest-cov`
+  - Run `pytest --cov`
 
 ## Legal notice
         LogarithmPlotter - 2D plotter software to make BODE plots, sequences and repartition functions.

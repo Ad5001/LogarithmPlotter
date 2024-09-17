@@ -18,6 +18,7 @@
 
 from PySide6.QtQml import QJSValue
 
+class InvalidAttributeValueException(Exception): pass
 
 class PyJSValue:
     """
@@ -38,15 +39,32 @@ class PyJSValue:
         elif isinstance(value, PyJSValue):
             # Set property
             self.qjs_value.setProperty(key, value.qjs_value)
-        else:
-            print('Setting', key, value)
+        elif isinstance(value, QJSValue):
             self.qjs_value.setProperty(key, value)
+        elif type(value) in (int, float, str, bool):
+            self.qjs_value.setProperty(key, QJSValue(value))
+        else:
+            raise InvalidAttributeValueException(f"Invalid value {value} of type {type(value)} being set to {key}.")
+
+    def __eq__(self, other):
+        if isinstance(other, PyJSValue):
+            return self.qjs_value.equals(other.qjs_value)
+        elif isinstance(other, QJSValue):
+            return self.qjs_value.equals(other)
+        elif type(other) in (int, float, str, bool):
+            return self.qjs_value.equals(QJSValue(other))
+        else:
+            return False
 
     def __call__(self, *args, **kwargs):
+        value = None
         if self.qjs_value.isCallable():
             if self._parent is None:
-                return self.qjs_value.call(args)
+                value = self.qjs_value.call(args)
             else:
-                return self.qjs_value.callWithInstance(self._parent, args)
+                value = self.qjs_value.callWithInstance(self._parent, args)
         else:
-            raise ValueError('Cannot call non-function JS value.')
+            raise InvalidAttributeValueException('Cannot call non-function JS value.')
+        if isinstance(value, QJSValue):
+            value = PyJSValue(value)
+        return value

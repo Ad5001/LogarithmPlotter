@@ -32,6 +32,9 @@ from LogarithmPlotter import __VERSION__
 from LogarithmPlotter.util import config
 
 
+class InvalidFileException(Exception): pass
+
+
 class ChangelogFetcher(QRunnable):
     def __init__(self, helper):
         QRunnable.__init__(self)
@@ -94,8 +97,8 @@ class Helper(QObject):
                     pass
                 elif data[:3] == "LPF":
                     # More recent version of LogarithmPlotter file, but incompatible with the current format
-                    msg = QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.".format(__VERSION__))
-                    raise Exception(msg)
+                    msg = QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.")
+                    raise InvalidFileException(msg.format(__VERSION__))
                 else:
                     raise Exception("Invalid LogarithmPlotter file.")
             except Exception as e:  # If file can't be loaded
@@ -131,7 +134,6 @@ class Helper(QObject):
 
     @Slot(str, result=float)
     def getSettingInt(self, namespace):
-        print('Getting', namespace, config.getSetting(namespace))
         return config.getSetting(namespace)
 
     @Slot(str, result=bool)
