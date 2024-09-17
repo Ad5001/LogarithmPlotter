@@ -1563,7 +1563,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     </message>
     <message>
         <source>default</source>
-        <translation>Alapértelmezett ábra</translation>
+        <translation type="unfinished">Alapértelmezett ábra</translation>
     </message>
 </context>
 <context>
