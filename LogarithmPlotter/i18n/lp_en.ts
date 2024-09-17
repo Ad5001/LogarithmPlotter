@@ -1571,7 +1571,7 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
     </message>
     <message>
         <source>default</source>
-        <translation>Default Graph</translation>
+        <translation>Default settings</translation>
     </message>
 </context>
 <context>
