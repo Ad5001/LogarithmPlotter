@@ -54,7 +54,7 @@ class UpdateCheckerRunnable(QRunnable):
                 is_version_newer = version_tuple > current_version_tuple
             if is_version_newer:
                 msg_text = QCoreApplication.translate("update",
-                                                      "An update for LogarithPlotter (v{}) is available.").format(
+                                                      "An update for LogarithmPlotter (v{}) is available.").format(
                     version)
                 update_available = True
             else:

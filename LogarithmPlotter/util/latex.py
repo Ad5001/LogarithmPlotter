@@ -66,11 +66,11 @@ class Latex(QObject):
         self.tempdir = tempdir
 
     @Property(bool)
-    def latexSupported(self):
+    def latexSupported(self) -> bool:
         return LATEX_PATH is not None and DVIPNG_PATH is not None
 
     @Slot(result=bool)
-    def checkLatexInstallation(self):
+    def checkLatexInstallation(self) -> bool:
         """
         Checks if the current latex installation is valid.
         """
@@ -121,7 +121,7 @@ class Latex(QObject):
         return f'{export_path}.png,{img.width()},{img.height()}'
     
     @Slot(str, float, QColor, result=str)
-    def findPrerendered(self, latex_markup: str, font_size: float, color: QColor):
+    def findPrerendered(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
         Finds a prerendered image and returns its data if possible, and an empty string if not.
         """
