@@ -1671,7 +1671,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <name>settingCategory</name>
     <message>
         <source>default</source>
-        <translation>Standardeinstellungen</translation>
+        <translation type="unfinished">Standardeinstellungen</translation>
     </message>
     <message>
         <source>general</source>
