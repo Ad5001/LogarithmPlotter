@@ -1570,7 +1570,7 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     </message>
     <message>
         <source>default</source>
-        <translation>Gráfico por defecto</translation>
+        <translation type="unfinished">Gráfico por defecto</translation>
     </message>
 </context>
 <context>
