@@ -16,7 +16,7 @@
     
     <description>
         <p>
-            LogarithmPlotter is, as it's name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of both logarithmic-scaled and non logarithmic-scaled plots with very few limitations.
+            LogarithmPlotter is, as its name suggests, a plotter made with logarithm scales in mind. With an object system similar to Geogebra's, it allows dynamic creation of both logarithmic-scaled and non logarithmic-scaled plots with very few limitations.
         </p>
         <p xml:lang="fr">
             LogarithmPlotter est, comme son nom l'indique, un créateur de graphes et diagrammes 2D réalisé avec l'échelle logarithmique en tête. Avec un système d'objets similaire à Geogebra, ce qui lui permet de créer des graphes à échelle logarithmique et non logarithmique avec peu de limitations.    
@@ -25,7 +25,7 @@
             A LogarithmPlotter egy logaritmus-ábrázoló, amely logaritmikus léptékek figyelembevételével készült. A Geogebrához hasonló objektumrendszerrel dinamikus parcellák létrehozását teszi lehetővé, nagyon kevés korlátozással.
         </p>
         <p>
-            It's primary use is to quickly create asymptotic Bode plots, but it's extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
+            Its primary use is to quickly create asymptotic Bode plots, but its extensible nature and ability to switch to non-logarithmic scales allow it to create other things with it, like sequences or statistical repartition functions.
         </p>
         <p xml:lang="fr">
             Son intérêt principal est de permettre de créer des diagrammes asymptotiques de Bode, mais sa nature extensible et sa capacité à passer à une échelle non-logarithmique lui permet de créer d'autres choses.

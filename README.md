@@ -17,14 +17,14 @@ You can find more screenshots on the [app website](https://apps.ad5001.eu/logari
 
 You can simply run LogarithmPlotter using `python3 run.py`.
 
-In order to test translations, you can use the `--lang=<lang code>` command line option to force the detected locale of LogarithmPlotter.
+In order to test translations, you can use the `--lang=<lang code>` commandline option to force the locale of LogarithmPlotter.
 
 ## Install
 
 ### Generate installers:
 All scripts noted here can be found in the `scripts` directory.
 
-You can generate installers from LogarithmPlotter after installing all the dependencies:   
+You can generate installers for LogarithmPlotter after installing all the dependencies:   
 For all builds, you need [Python 3](https://python.org) with [PySide6](https://pypi.org/project/PySide6/) installable with `pip install PySide6`.    
 - Windows installer: 
     - You need `pyinstaller`. You can install it using `pip install pyinstaller`.    
