@@ -227,10 +227,10 @@ ScrollView {
             label: qsTr("Max X")
             icon: "settings/xmax.svg"
             width: settings.settingWidth
-            defValue: canvas.px2x(canvas.width).toFixed(2)
+            defValue: Modules.Canvas.px2x(canvas.width).toFixed(2)
             onChanged: function(xvaluemax) {
                 if(xvaluemax > settings.xmin) {
-                    settings.xzoom = settings.xzoom * canvas.width/(canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.xzoom = settings.xzoom * canvas.width/(Modules.Canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
                     settings.changed()
                 } else {
                     alert.show("Maximum x value must be superior to minimum.")
@@ -246,10 +246,10 @@ ScrollView {
             label: qsTr("Min Y")
             icon: "settings/ymin.svg"
             width: settings.settingWidth
-            defValue: canvas.px2y(canvas.height).toFixed(2)
+            defValue: Modules.Canvas.px2y(canvas.height).toFixed(2)
             onChanged: function(yvaluemin) {
                 if(yvaluemin < settings.ymax) {
-                    settings.yzoom = settings.yzoom * canvas.height/(canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    settings.yzoom = settings.yzoom * canvas.height/(Modules.Canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
                     settings.changed()
                 } else {
                     alert.show("Minimum y value must be inferior to maximum.")

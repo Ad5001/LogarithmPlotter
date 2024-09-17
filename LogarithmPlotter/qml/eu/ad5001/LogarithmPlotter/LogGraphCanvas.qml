@@ -168,45 +168,4 @@ Canvas {
             }
         })
     }
-    
-        /*!
-        \qmlmethod double LogGraphCanvas::x2px(double x)
-        Converts an \c x coordinate to it's relative position on the canvas.
-        It supports both logarithmic and non logarithmic scale depending on the currently selected mode.
-    */
-    function x2px(x) {
-        if(logscalex) {
-            var logxmin = Math.log(xmin)
-            return (Math.log(x)-logxmin)*xzoom
-        } else return (x - xmin)*xzoom
-    }
-    
-    /*!
-        \qmlmethod double LogGraphCanvas::y2px(double y)
-        Converts an \c y coordinate to it's relative position on the canvas.
-        The y axis not supporting logarithmic scale, it only support linear convertion.
-    */
-    function y2px(y) {
-        return (ymax-y)*yzoom
-    }
-
-    /*!
-        \qmlmethod double LogGraphCanvas::px2x(double px)
-        Converts an x \c px position on the canvas to it's corresponding coordinate on the plot.
-        It supports both logarithmic and non logarithmic scale depending on the currently selected mode.
-    */
-    function px2x(px) {
-        if(logscalex) {
-            return Math.exp(px/xzoom+Math.log(xmin))
-        } else return (px/xzoom+xmin)
-    }
-
-    /*!
-        \qmlmethod double LogGraphCanvas::px2x(double px)
-        Converts an x \c px position on the canvas to it's corresponding coordinate on the plot.
-        It supports both logarithmic and non logarithmic scale depending on the currently selected mode.
-    */
-    function px2y(px) {
-        return -(px/yzoom-ymax)
-    }
 }
