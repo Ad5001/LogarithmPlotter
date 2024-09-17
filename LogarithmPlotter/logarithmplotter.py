@@ -87,7 +87,6 @@ def run():
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings", "custom")))
     QIcon.setFallbackSearchPaths(icon_fallbacks);
 
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setDesktopFileName("eu.ad5001.LogarithmPlotter.desktop")
@@ -104,10 +103,10 @@ def run():
         app.installTranslator(translator);
 
     # Installing macOS file handler.
-    macOSFileOpenHandler = None
+    macos_file_open_handler = None
     if platform == "darwin":
-        macOSFileOpenHandler = native.MacOSFileOpenHandler()
-        app.installEventFilter(macOSFileOpenHandler)
+        macos_file_open_handler = native.MacOSFileOpenHandler()
+        app.installEventFilter(macos_file_open_handler)
 
     engine = QQmlApplicationEngine()
     global tmpfile
@@ -138,7 +137,7 @@ def run():
     chdir(path.dirname(path.realpath(__file__)))
 
     if platform == "darwin":
-        macOSFileOpenHandler.init_io(js_globals.Modules.IO)
+        macos_file_open_handler.init_io(js_globals.Modules.IO)
 
     # Check for LaTeX installation if LaTeX support is enabled
     if config.getSetting("enable_latex"):

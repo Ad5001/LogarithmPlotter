@@ -54,7 +54,9 @@ DEFAULT_SETTINGS = {
 
 # Create config directory
 CONFIG_PATH = {
-    "Linux": path.join(environ["XDG_CONFIG_HOME"], "LogarithmPlotter") if "XDG_CONFIG_HOME" in environ else path.join(path.expanduser("~"), ".config", "LogarithmPlotter"),
+    "Linux": path.join(environ["XDG_CONFIG_HOME"], "LogarithmPlotter")
+                if "XDG_CONFIG_HOME" in environ else
+                path.join(path.expanduser("~"), ".config", "LogarithmPlotter"),
     "Windows": path.join(path.expandvars('%APPDATA%'), "LogarithmPlotter", "config"),
     "Darwin": path.join(path.expanduser("~"), "Library", "Application Support", "LogarithmPlotter"),
 }[system()]
@@ -79,7 +81,7 @@ def init():
                     setSetting(setting_name+"."+setting_name2, cfg_data[setting_name][setting_name2])
             else:
                 setSetting(setting_name, cfg_data[setting_name])
-    
+
 def save():
     """
     Saves the config to the path.

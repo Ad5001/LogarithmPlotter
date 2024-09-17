@@ -53,9 +53,8 @@ class UpdateCheckerRunnable(QRunnable):
                 current_version_tuple = self.current_version.split(".")
                 is_version_newer = version_tuple > current_version_tuple
             if is_version_newer:
-                msg_text = QCoreApplication.translate("update",
-                                                      "An update for LogarithmPlotter (v{}) is available.").format(
-                    version)
+                msg_text = QCoreApplication.translate("update", "An update for LogarithmPlotter (v{}) is available.")
+                msg_text = msg_text.format(version)
                 update_available = True
             else:
                 show_alert = False
@@ -63,11 +62,11 @@ class UpdateCheckerRunnable(QRunnable):
 
         except HTTPError as e:
             msg_text = QCoreApplication.translate("update",
-                                                  "Could not fetch update information: Server error {}.").format(
-                str(e.code))
+                                                  "Could not fetch update information: Server error {}.")
+            msg_text = msg_text.format(str(e.code))
         except URLError as e:
-            msg_text = QCoreApplication.translate("update", "Could not fetch update information: {}.").format(
-                str(e.reason))
+            msg_text = QCoreApplication.translate("update", "Could not fetch update information: {}.")
+            msg_text = msg_text.format(str(e.reason))
         self.callback.got_update_info.emit(show_alert, msg_text, update_available)
 
 

@@ -78,19 +78,22 @@ class Latex(QObject):
         if LATEX_PATH is None:
             print("No Latex installation found.")
             if "--test-build" not in argv:
-                QMessageBox.warning(None, "LogarithmPlotter - Latex setup",
-                                    QCoreApplication.translate("latex", "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/."))
+                msg = QCoreApplication.translate("latex",
+                                                 "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.")
+                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", msg)
             valid_install = False
         elif DVIPNG_PATH is None:
             print("DVIPNG not found.")
             if "--test-build" not in argv:
-                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", QCoreApplication.translate("latex", "DVIPNG was not found. Make sure you include it from your Latex distribution."))
+                msg = QCoreApplication.translate("latex",
+                                                 "DVIPNG was not found. Make sure you include it from your Latex distribution.")
+                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", msg)
             valid_install = False
         else:
             try:
                 self.render("", 14, QColor(0, 0, 0, 255))
             except Exception as e:
-                valid_install = False # Should have sent an error message if failed to render
+                valid_install = False  # Should have sent an error message if failed to render
         return valid_install
 
     @Slot(str, float, QColor, result=str)
@@ -119,7 +122,7 @@ class Latex(QObject):
         img = QImage(export_path)
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
-    
+
     @Slot(str, float, QColor, result=str)
     def findPrerendered(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
@@ -131,8 +134,7 @@ class Latex(QObject):
             img = QImage(export_path)
             data = f'{export_path}.png,{img.width()},{img.height()}'
         return data
-        
-        
+
     def create_export_path(self, latex_markup: str, font_size: float, color: QColor):
         """
         Standardizes export path for renders.
@@ -140,7 +142,6 @@ class Latex(QObject):
         markup_hash = "render" + str(hash(latex_markup))
         export_path = path.join(self.tempdir.name, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
         return markup_hash, export_path
-    
 
     def create_latex_doc(self, export_path: str, latex_markup: str):
         """
@@ -183,16 +184,18 @@ class Latex(QObject):
         """
         Runs a subprocess and handles exceptions and messages them to the user.
         """
+        cmd = " ".join(process)
         proc = Popen(process, stdout=PIPE, stderr=PIPE, cwd=self.tempdir.name)
         try:
             out, err = proc.communicate(timeout=2)  # 2 seconds is already FAR too long.
             if proc.returncode != 0:
                 # Process errored
                 output = str(out, 'utf8') + "\n" + str(err, 'utf8')
-                QMessageBox.warning(None, "LogarithmPlotter - Latex",
-                                    QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
-                                    .format(" ".join(process), proc.returncode, output))
-                raise Exception("{0} process exited with return code {1}:\n{2}\n{3}".format(" ".join(process), str(proc.returncode), str(out, 'utf8'), str(err, 'utf8')))
+                msg = QCoreApplication.translate("latex",
+                                                 "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
+                msg = msg.format(cmd, proc.returncode, output)
+                QMessageBox.warning(None, "LogarithmPlotter - Latex", msg)
+                raise Exception(f"{cmd} process exited with return code {str(proc.returncode)}:\n{str(out, 'utf8')}\n{str(err, 'utf8')}")
         except TimeoutExpired as e:
             # Process timed out
             proc.kill()
@@ -202,14 +205,14 @@ class Latex(QObject):
                 for pkg in PACKAGES:
                     if f'{pkg}.sty' in output:
                         # Package missing.
-                        QMessageBox.warning(None, "LogarithmPlotter - Latex",
-                                        QCoreApplication.translate("latex", "Your LaTeX installation does not include some required packages:\n\n- {} (https://ctan.org/pkg/{})\n\nMake sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.")
-                                        .format(pkg, pkg))
+                        msg = QCoreApplication.translate("latex",
+                                                         "Your LaTeX installation does not include some required packages:\n\n- {} (https://ctan.org/pkg/{})\n\nMake sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.")
+                        QMessageBox.warning(None, "LogarithmPlotter - Latex", msg.format(pkg, pkg))
                         raise Exception("Latex: Missing package " + pkg)
-            QMessageBox.warning(None, "LogarithmPlotter - Latex",
-                                QCoreApplication.translate("latex", "An exception occured within the creation of the latex formula.\nProcess '{}' took too long to finish:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
-                                .format(" ".join(process), output))
-            raise Exception(" ".join(process) + " process timed out:\n" + output)
+            msg = QCoreApplication.translate("latex",
+                                             "An exception occured within the creation of the latex formula.\nProcess '{}' took too long to finish:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
+            QMessageBox.warning(None, "LogarithmPlotter - Latex", msg.format(cmd, output))
+            raise Exception(f"{cmd} process timed out:\n{output}")
 
     def cleanup(self, export_path):
         """

@@ -94,16 +94,16 @@ class Helper(QObject):
                     pass
                 elif data[:3] == "LPF":
                     # More recent version of LogarithmPlotter file, but incompatible with the current format
-                    raise Exception(QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.".format(__VERSION__)))
+                    msg = QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.".format(__VERSION__))
+                    raise Exception(msg)
                 else:
                     raise Exception("Invalid LogarithmPlotter file.")
             except Exception as e:  # If file can't be loaded
-                QMessageBox.warning(None, 'LogarithmPlotter',
-                                    QCoreApplication.translate('main', 'Could not open file "{}":\n{}').format(filename,
-                                                                                                               e),
-                                    QMessageBox.Ok)  # Cannot parse file
+                msg = QCoreApplication.translate('main', 'Could not open file "{}":\n{}')
+                QMessageBox.warning(None, 'LogarithmPlotter', msg.format(filename, e), QMessageBox.Ok)  # Cannot parse file
         else:
-            QMessageBox.warning(None, 'LogarithmPlotter', QCoreApplication.translate('main', 'Could not open file: "{}"\nFile does not exist.').format(filename), QMessageBox.Ok)  # Cannot parse file
+            msg = QCoreApplication.translate('main', 'Could not open file: "{}"\nFile does not exist.')
+            QMessageBox.warning(None, 'LogarithmPlotter', msg.format(filename), QMessageBox.Ok)  # Cannot parse file
         try:
             chdir(path.dirname(path.realpath(__file__)))
         except NotADirectoryError as e:
@@ -159,9 +159,8 @@ class Helper(QObject):
         """
         Returns the version info about Qt, PySide6 & Python
         """
-        return QCoreApplication.translate('main', "Built with PySide6 (Qt) v{} and python v{}").format(PySide6_version,
-                                                                                                       sys_version.split(
-                                                                                                           "\n")[0])
+        msg = QCoreApplication.translate('main', "Built with PySide6 (Qt) v{} and python v{}")
+        return msg.format(PySide6_version, sys_version.split("\n")[0])
 
     @Slot()
     def fetchChangelog(self):

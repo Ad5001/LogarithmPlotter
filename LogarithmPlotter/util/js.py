@@ -23,6 +23,7 @@ class PyJSValue:
     """
     Wrapper to provide easy way to interact with JavaScript values in Python directly.
     """
+
     def __init__(self, js_value: QJSValue, parent: QJSValue = None):
         self.qjs_value = js_value
         self._parent = parent
@@ -49,4 +50,3 @@ class PyJSValue:
                 return self.qjs_value.callWithInstance(self._parent, args)
         else:
             raise ValueError('Cannot call non-function JS value.')
-

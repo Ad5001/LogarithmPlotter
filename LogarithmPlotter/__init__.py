@@ -20,13 +20,13 @@ from shutil import which
 __VERSION__ = "0.6.0"
 is_release = False
 
-
 # Check if development version, if so get the date of the latest git patch
 # and append it to the version string.
 if not is_release and which('git') is not None:
     from os.path import realpath, join, dirname, exists
     from subprocess import check_output
     from datetime import datetime
+
     # Command to check date of latest git commit
     cmd = ['git', 'log', '--format=%ci', '-n 1']
     cwd = realpath(join(dirname(__file__), '..'))  # Root AccountFree directory.
@@ -41,4 +41,5 @@ if not is_release and which('git') is not None:
 
 if __name__ == "__main__":
     from .logarithmplotter import run
+
     run()
