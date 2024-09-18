@@ -260,6 +260,23 @@ packaging = ">=22.0"
 setuptools = ">=42.0.0"
 
 [[package]]
+name = "pyside6-addons"
+version = "6.7.2"
+description = "Python bindings for the Qt cross-platform application and UI framework (Addons)"
+optional = false
+python-versions = "<3.13,>=3.9"
+files = [
+    {file = "PySide6_Addons-6.7.2-cp39-abi3-macosx_11_0_universal2.whl", hash = "sha256:90b995efce61058d995c603ea480a9a3054fe8206739dcbc273fc3b53d40650f"},
+    {file = "PySide6_Addons-6.7.2-cp39-abi3-manylinux_2_28_x86_64.whl", hash = "sha256:94b9bf6a2a4a7ac671e1776633e50d51326c86f4184f1c6e556f4dd5498fd52a"},
+    {file = "PySide6_Addons-6.7.2-cp39-abi3-manylinux_2_31_aarch64.whl", hash = "sha256:22979b1aa09d9cf1d7a86c8a9aa0cb4791d6bd1cc94f96c5b6780c5ef8a9e34e"},
+    {file = "PySide6_Addons-6.7.2-cp39-abi3-win_amd64.whl", hash = "sha256:ebf549eb25998665d8e4ec24014fbbd37bebc5ecdcb050b34db1e1c03e1bf81d"},
+]
+
+[package.dependencies]
+PySide6-Essentials = "6.7.2"
+shiboken6 = "6.7.2"
+
+[[package]]
 name = "pyside6-essentials"
 version = "6.7.2"
 description = "Python bindings for the Qt cross-platform application and UI framework (Essentials)"
@@ -421,4 +438,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "4693a671e927103ceeb946f688b84fdc56b8b39b2cd772d8d32475e1236d8a07"
+content-hash = "083111ed37f3ef23de75a56eaf4c6fdda954b6005c5ee0922aad4470e2a36738"
