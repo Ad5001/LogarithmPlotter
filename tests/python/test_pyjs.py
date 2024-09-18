@@ -13,6 +13,7 @@ class TestPyJS:
     def test_set(self):
         obj.num1 = 2
         obj.num2 = QJSValue(2)
+        obj.num3 = PyJSValue(QJSValue(2))
         with pytest.raises(InvalidAttributeValueException):
             obj.num3 = object()
 
@@ -20,6 +21,7 @@ class TestPyJS:
         obj.num = QJSValue(2)
         assert obj.num == 2
         assert obj.num == QJSValue(2)
+        assert obj.num == PyJSValue(QJSValue(2))
         assert obj.num != object()
 
     def test_function(self):
