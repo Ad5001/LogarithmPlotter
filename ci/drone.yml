@@ -11,17 +11,21 @@ steps:
     commands:
       - git submodule update --init --recursive
 
-  - name: Tests
+  - name: Unit Tests
     image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
     commands:
-      - ls -la
       - bash scripts/run-tests.sh
+    when:
+      event: [ push, tag ]
+
+  - name: File Tests
+    image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
+    commands:
       - xvfb-run python3 run.py --test-build --no-check-for-updates
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf
     when:
       event: [ push, tag ]
-
 
   - name: Windows build
     image: ad5001/ubuntu-pyside6-xvfb-wine:win10-6.7.2
