@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="123"/>
+        <location filename="../logarithmplotter.py" line="137"/>
         <source>About LogarithmPlotter</source>
         <translation>LogarithmPlotter névjegye</translation>
     </message>
@@ -406,22 +406,22 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="57"/>
         <source>Filter...</source>
         <translation>Szűrő…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="100"/>
         <source>Redo &gt;</source>
         <translation>Ismétlés &gt;</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="119"/>
         <source>&gt; Now</source>
         <translation>&gt; Most</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="149"/>
         <source>&lt; Undo</source>
         <translation>&lt; Visszavonás</translation>
     </message>
@@ -545,17 +545,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>%1 %2 megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="159"/>
         <source>Set %1 %2 position</source>
         <translation>%1 %2 helye beállítása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="168"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="184"/>
         <source>Delete %1 %2</source>
         <translation>%1 %2 törlése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="197"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="213"/>
         <source>Pick new color for %1 %2</source>
         <translation>Válasszon új színt a következőhöz: %1 %2</translation>
     </message>
@@ -812,12 +812,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="49"/>
+        <location filename="../util/helper.py" line="52"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: Kiszolgálóhiba: {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="55"/>
         <source>Could not fetch update: {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: {}.</translation>
     </message>
@@ -1240,7 +1240,7 @@ Kiértékelt kifejezés: %3</translation>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="82"/>
+        <location filename="../util/latex.py" line="94"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1249,12 +1249,12 @@ Ha már telepítve van egy LaTeX disztribúció, győződjön meg arról, hogy a
 Egyébként letölthet egy LaTeX disztribúciót, például a TeX Live-t a https://tug.org/texlive/ címről.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="87"/>
+        <location filename="../util/latex.py" line="100"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG nem található. Ügyeljen arra, hogy a LaTeX disztribúciójából tartalmazza.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="173"/>
+        <location filename="../util/latex.py" line="202"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1267,7 +1267,7 @@ A(z) „{}” folyamat nullától eltérő visszatérési kóddal ({}) végződ�
 Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelentse a hibát.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="186"/>
+        <location filename="../util/latex.py" line="216"/>
         <source>Your LaTeX installation does not include some required packages:
 
 - {} (https://ctan.org/pkg/{})
@@ -1276,7 +1276,7 @@ Make sure said package is installed, or disable the LaTeX rendering in Logarithm
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="190"/>
+        <location filename="../util/latex.py" line="220"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1563,7 +1563,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished">Alapértelmezett ábra</translation>
+        <translation type="obsolete">Alapértelmezett ábra</translation>
     </message>
 </context>
 <context>
@@ -1594,22 +1594,26 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>update</name>
     <message>
-        <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
         <translation>Elérhető a Logaritmus-ábrázoló ({} verzió) frissítése.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="62"/>
+        <location filename="../util/update.py" line="56"/>
+        <source>An update for LogarithmPlotter (v{}) is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../util/update.py" line="61"/>
         <source>No update available.</source>
         <translation>Nincs telepíthető frissítés.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="65"/>
+        <location filename="../util/update.py" line="64"/>
         <source>Could not fetch update information: Server error {}.</source>
         <translation>Nem sikerült lekérni a frissítési adatokat: Kiszolgálóhiba: {}.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="69"/>
+        <location filename="../util/update.py" line="68"/>
         <source>Could not fetch update information: {}.</source>
         <translation>Nem sikerült lekérni a frissítési adatokat: {}.</translation>
     </message>

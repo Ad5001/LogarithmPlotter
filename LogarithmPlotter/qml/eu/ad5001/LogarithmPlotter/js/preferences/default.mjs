@@ -20,85 +20,85 @@ import {BoolSetting, ExpressionSetting, NumberSetting, StringSetting} from "comm
 
 
 const XZOOM = new NumberSetting(
-    QT_TR_NOOP("X Zoom"),
+    qsTranslate("Settings", "X Zoom"),
     "default_graph.xzoom",
     "xzoom",
     0.1
 )
 
 const YZOOM = new NumberSetting(
-    QT_TR_NOOP("Y Zoom"),
+    qsTranslate("Settings", "Y Zoom"),
     "default_graph.xzoom",
     "yzoom",
     0.1
 )
 
 const XMIN = new NumberSetting(
-    QT_TR_NOOP("Min X"),
+    qsTranslate("Settings", "Min X"),
     "default_graph.xmin",
     "xmin",
     () => Helper.getSettingBool("default_graph.logscalex") ? 1e-100 : -Infinity
 )
 
 const YMAX = new NumberSetting(
-    QT_TR_NOOP("Max Y"),
+    qsTranslate("Settings", "Max Y"),
     "default_graph.ymax",
     "ymax"
 )
 
 const XAXISSTEP = new ExpressionSetting(
-    QT_TR_NOOP("X Axis Step"),
+    qsTranslate("Settings", "X Axis Step"),
     "default_graph.xaxisstep",
     "xaxisstep",
 )
 
 const YAXISSTEP = new ExpressionSetting(
-    QT_TR_NOOP("Y Axis Step"),
+    qsTranslate("Settings", "Y Axis Step"),
     "default_graph.yaxisstep",
     "yaxisstep",
 )
 
 const LINE_WIDTH = new NumberSetting(
-    QT_TR_NOOP("Line width"),
+    qsTranslate("Settings", "Line width"),
     "default_graph.linewidth",
     "linewidth",
     1
 )
 
 const TEXT_SIZE = new NumberSetting(
-    QT_TR_NOOP("Text size (px)"),
+    qsTranslate("Settings", "Text size (px)"),
     "default_graph.textsize",
     "textsize"
 )
 
 const X_LABEL = new StringSetting(
-    QT_TR_NOOP('X Label'),
+    qsTranslate("Settings", 'X Label'),
     "default_graph.xlabel",
     "xlabel",
     ["", "x", "ω (rad/s)"]
 )
 
 const Y_LABEL = new StringSetting(
-    QT_TR_NOOP('Y Label'),
+    qsTranslate("Settings", 'Y Label'),
     "default_graph.ylabel",
     "xlabel",
     ["", "y", "G (dB)", "φ (°)", "φ (deg)", "φ (rad)"]
 )
 
 const LOG_SCALE_X = new BoolSetting(
-    QT_TR_NOOP('X Log scale'),
+    qsTranslate("Settings", 'X Log scale'),
     "default_graph.logscalex",
     "logscalex"
 )
 
 const SHOW_X_GRAD = new BoolSetting(
-    QT_TR_NOOP('Show X graduation'),
+    qsTranslate("Settings", 'Show X graduation'),
     "default_graph.showxgrad",
     "showxgrad"
 )
 
 const SHOW_Y_GRAD = new BoolSetting(
-    QT_TR_NOOP('Show Y graduation'),
+    qsTranslate("Settings", 'Show Y graduation'),
     "default_graph.showygrad",
     "showygrad"
 )

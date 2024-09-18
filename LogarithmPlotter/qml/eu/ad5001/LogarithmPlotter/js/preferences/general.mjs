@@ -19,20 +19,20 @@
 import {BoolSetting} from "common.mjs"
 
 const CHECK_FOR_UPDATES = new BoolSetting(
-    QT_TR_NOOP("Check for updates on startup"),
+    qsTranslate("general", "Check for updates on startup"),
     'check_for_updates',
     'update'
 )
 
 const RESET_REDO_STACK = new BoolSetting(
-    QT_TR_NOOP("Reset redo stack automaticly"),
+    qsTranslate("general", "Reset redo stack automaticly"),
     'reset_redo_stack',
     'timeline'
 )
 
 class EnableLatex extends BoolSetting {
     constructor() {
-        super(qsTr("Enable LaTeX rendering"), 'enable_latex', 'Expression')
+        super(qsTranslate("general","Enable LaTeX rendering"), 'enable_latex', 'Expression')
     }
 
     set(value) {

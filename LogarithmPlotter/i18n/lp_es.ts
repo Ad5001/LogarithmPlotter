@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="123"/>
+        <location filename="../logarithmplotter.py" line="137"/>
         <source>About LogarithmPlotter</source>
         <translation>Sobre LogarithmPlotter</translation>
     </message>
@@ -406,22 +406,22 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="57"/>
         <source>Filter...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="100"/>
         <source>Redo &gt;</source>
         <translation>Rehacer &gt;</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="119"/>
         <source>&gt; Now</source>
         <translation>&gt; Ahora</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="149"/>
         <source>&lt; Undo</source>
         <translation>&lt; Deshacer</translation>
     </message>
@@ -545,17 +545,17 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
         <translation>Mostrar %1 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="159"/>
         <source>Set %1 %2 position</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="168"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="184"/>
         <source>Delete %1 %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="197"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="213"/>
         <source>Pick new color for %1 %2</source>
         <translation>Elegir nuevo color para %1 %2</translation>
     </message>
@@ -812,12 +812,12 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="49"/>
+        <location filename="../util/helper.py" line="52"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>No se ha podido recuperar el registro de cambios: Error del servidor {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="55"/>
         <source>Could not fetch update: {}.</source>
         <translation>No se pudo obtener el registro de cambios: {}.</translation>
     </message>
@@ -1200,7 +1200,7 @@ Expresión evaluada: %3</translation>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="82"/>
+        <location filename="../util/latex.py" line="94"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1209,12 +1209,12 @@ Si ya tiene instalada una distribución de LaTeX, asegúrese de que está instal
 De lo contrario, puede descargar una distribución de LaTeX como TeX Live en https://tug.org/texlive/.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="87"/>
+        <location filename="../util/latex.py" line="100"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>No se ha encontrado DVIPNG. Asegúrese de incluirlo en tu distribución LaTeX.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="173"/>
+        <location filename="../util/latex.py" line="202"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1227,7 +1227,7 @@ El proceso &apos;{}&apos; terminó con un código de retorno distinto de cero {}
 Por favor, asegúrate de que tu instalación de LaTeX es correcta e informe de un error si es así.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="186"/>
+        <location filename="../util/latex.py" line="216"/>
         <source>Your LaTeX installation does not include some required packages:
 
 - {} (https://ctan.org/pkg/{})
@@ -1240,7 +1240,7 @@ Make sure said package is installed, or disable the LaTeX rendering in Logarithm
 Asegúrate de que dicho paquete está instalado, o desactive el renderizado LaTeX en LogarithmPlotter.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="190"/>
+        <location filename="../util/latex.py" line="220"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1350,64 +1350,25 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     </message>
 </context>
 <context>
-    <name>update</name>
+    <name>phasebode</name>
     <message>
-        <location filename="../util/update.py" line="56"/>
-        <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation>Una actualización para LogarithmPlotter (v{}) está disponible.</translation>
+        <source>Bode Phase</source>
+        <translation>Fase de Bode</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="62"/>
-        <source>No update available.</source>
-        <translation>No hay ninguna actualización disponible.</translation>
-    </message>
-    <message>
-        <location filename="../util/update.py" line="65"/>
-        <source>Could not fetch update information: Server error {}.</source>
-        <translation>No se ha podido obtener la información de la actualización: Error del servidor {}.</translation>
-    </message>
-    <message>
-        <location filename="../util/update.py" line="69"/>
-        <source>Could not fetch update information: {}.</source>
-        <translation>No se pudo obtener información de la actualización: {}.</translation>
+        <source>Bode Phases</source>
+        <translation>Fases de Bode</translation>
     </message>
 </context>
 <context>
-    <name>usage</name>
+    <name>point</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
-        <source>Usage: %1</source>
-        <translation>Uso: %1</translation>
+        <source>Point</source>
+        <translation>Punto</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
-        <source>Usage: %1 or
-%2</source>
-        <translation>Uso: %1 o
-%2</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
-        <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
-        <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
-        <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation>derivada(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
-        <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
-        <translation>derivada(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</translation>
+        <source>Points</source>
+        <translation>Puntos</translation>
     </message>
 </context>
 <context>
@@ -1537,43 +1498,6 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     </message>
 </context>
 <context>
-    <name>phasebode</name>
-    <message>
-        <source>Bode Phase</source>
-        <translation>Fase de Bode</translation>
-    </message>
-    <message>
-        <source>Bode Phases</source>
-        <translation>Fases de Bode</translation>
-    </message>
-</context>
-<context>
-    <name>point</name>
-    <message>
-        <source>Point</source>
-        <translation>Punto</translation>
-    </message>
-    <message>
-        <source>Points</source>
-        <translation>Puntos</translation>
-    </message>
-</context>
-<context>
-    <name>settingCategory</name>
-    <message>
-        <source>general</source>
-        <translation>General</translation>
-    </message>
-    <message>
-        <source>editor</source>
-        <translation>Editor de expresiones</translation>
-    </message>
-    <message>
-        <source>default</source>
-        <translation>Ajustes por defecto</translation>
-    </message>
-</context>
-<context>
     <name>repartition</name>
     <message>
         <source>Repartition</source>
@@ -1593,6 +1517,21 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <source>Sequence</source>
         <translation>Secuencia</translation>
+    </message>
+</context>
+<context>
+    <name>settingCategory</name>
+    <message>
+        <source>general</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>editor</source>
+        <translation>Editor de expresiones</translation>
+    </message>
+    <message>
+        <source>default</source>
+        <translation>Ajustes por defecto</translation>
     </message>
 </context>
 <context>
@@ -1621,14 +1560,68 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     </message>
 </context>
 <context>
-    <name>xcursor</name>
+    <name>update</name>
     <message>
-        <source>X Cursor</source>
-        <translation>Cursor X</translation>
+        <source>An update for LogarithPlotter (v{}) is available.</source>
+        <translation>Una actualización para LogarithmPlotter (v{}) está disponible.</translation>
     </message>
     <message>
-        <source>X Cursors</source>
-        <translation>Cursores X</translation>
+        <location filename="../util/update.py" line="56"/>
+        <source>An update for LogarithmPlotter (v{}) is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../util/update.py" line="61"/>
+        <source>No update available.</source>
+        <translation>No hay ninguna actualización disponible.</translation>
+    </message>
+    <message>
+        <location filename="../util/update.py" line="64"/>
+        <source>Could not fetch update information: Server error {}.</source>
+        <translation>No se ha podido obtener la información de la actualización: Error del servidor {}.</translation>
+    </message>
+    <message>
+        <location filename="../util/update.py" line="68"/>
+        <source>Could not fetch update information: {}.</source>
+        <translation>No se pudo obtener información de la actualización: {}.</translation>
+    </message>
+</context>
+<context>
+    <name>usage</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
+        <source>Usage: %1</source>
+        <translation>Uso: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
+        <source>Usage: %1 or
+%2</source>
+        <translation>Uso: %1 o
+%2</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
+        <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
+        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
+        <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
+        <translation>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
+        <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
+        <translation>derivada(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
+        <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
+        <translation>derivada(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</translation>
     </message>
 </context>
 <context>
@@ -1640,6 +1633,17 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <source>%1 %2 hidden.</source>
         <translation>Se oculta %1 %2.</translation>
+    </message>
+</context>
+<context>
+    <name>xcursor</name>
+    <message>
+        <source>X Cursor</source>
+        <translation>Cursor X</translation>
+    </message>
+    <message>
+        <source>X Cursors</source>
+        <translation>Cursores X</translation>
     </message>
 </context>
 </TS>

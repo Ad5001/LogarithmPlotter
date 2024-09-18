@@ -19,25 +19,25 @@
 import {BoolSetting, EnumIntSetting} from "common.mjs"
 
 const AUTOCLOSE_FORMULA = new BoolSetting(
-    QT_TR_NOOP("Automatically close parenthesises and brackets"),
+    qsTranslate("expression", "Automatically close parenthesises and brackets"),
     'expression_editor.autoclose',
     'text'
 )
 
 const ENABLE_SYNTAX_HIGHLIGHTING = new BoolSetting(
-    QT_TR_NOOP("Enable syntax highlighting"),
+    qsTranslate("expression", "Enable syntax highlighting"),
     'expression_editor.colorize',
     'appearance'
 )
 
 const ENABLE_AUTOCOMPLETE = new BoolSetting(
-    QT_TR_NOOP("Enable autocompletion"),
+    qsTranslate("expression", "Enable autocompletion"),
     'autocompletion.enabled',
     'label'
 )
 
 const PICK_COLOR_SCHEME = new EnumIntSetting(
-    QT_TR_NOOP("Color Scheme"),
+    qsTranslate("expression", "Color Scheme"),
     'expression_editor.color_scheme',
     'color',
     ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]

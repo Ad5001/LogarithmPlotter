@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="123"/>
+        <location filename="../logarithmplotter.py" line="137"/>
         <source>About LogarithmPlotter</source>
         <translation>Über LogarithmPlotter</translation>
     </message>
@@ -406,22 +406,22 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="57"/>
         <source>Filter...</source>
         <translation>Filtern…</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="100"/>
         <source>Redo &gt;</source>
         <translation>Wiederherstellen &gt;</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="119"/>
         <source>&gt; Now</source>
         <translation>&gt; Aktueller Stand</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="149"/>
         <source>&lt; Undo</source>
         <translation>&lt; Rückgängig</translation>
     </message>
@@ -545,17 +545,17 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation>Anzeigen %1 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="159"/>
         <source>Set %1 %2 position</source>
         <translation>Position von %1 %2 einstellen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="168"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="184"/>
         <source>Delete %1 %2</source>
         <translation>%1 %2 löschen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="197"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="213"/>
         <source>Pick new color for %1 %2</source>
         <translation>Neue Farbe für %1 %2 auswählen</translation>
     </message>
@@ -812,12 +812,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="49"/>
+        <location filename="../util/helper.py" line="52"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Changelog konnte nicht geholt werden: Server-Fehler {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="55"/>
         <source>Could not fetch update: {}.</source>
         <translation>Changelog konnte nicht geholt werden: {}.</translation>
     </message>
@@ -1240,7 +1240,7 @@ Ausdruck analysiert: %3</translation>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="82"/>
+        <location filename="../util/latex.py" line="94"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1249,12 +1249,12 @@ Wenn Sie bereits eine LaTeX-Distribution installiert haben, vergewissern Sie sic
 Andernfalls können Sie eine LaTeX-Distribution wie TeX Live unter https://tug.org/texlive/ herunterladen.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="87"/>
+        <location filename="../util/latex.py" line="100"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG wurde nicht gefunden. Stellen Sie sicher, dass Sie es aus Ihrer LaTeX-Distribution einbinden.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="173"/>
+        <location filename="../util/latex.py" line="202"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1267,7 +1267,7 @@ Der Prozess &apos;{}&apos; wurde mit einem Rückgabecode ungleich Null beendet {
 Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melden Sie einen Fehler, falls dies der Fall ist.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="186"/>
+        <location filename="../util/latex.py" line="216"/>
         <source>Your LaTeX installation does not include some required packages:
 
 - {} (https://ctan.org/pkg/{})
@@ -1280,7 +1280,7 @@ Make sure said package is installed, or disable the LaTeX rendering in Logarithm
 Stellen Sie sicher, dass diese Pakete installiert sind, oder deaktivieren Sie das LaTeX-Rendering in LogarithmPlotter.</translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="190"/>
+        <location filename="../util/latex.py" line="220"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1560,6 +1560,21 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     </message>
 </context>
 <context>
+    <name>settingCategory</name>
+    <message>
+        <source>default</source>
+        <translation>Standardeinstellungen</translation>
+    </message>
+    <message>
+        <source>general</source>
+        <translation>Allgemeine</translation>
+    </message>
+    <message>
+        <source>editor</source>
+        <translation>Ausdruckseditor</translation>
+    </message>
+</context>
+<context>
     <name>sommegainsbode</name>
     <message>
         <source>Bode Magnitudes Sum</source>
@@ -1587,22 +1602,26 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>update</name>
     <message>
-        <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithPlotter (v{}) is available.</source>
         <translation>Ein Aktualisierung für LogarithmPlotter (v{}) ist verfügbar.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="62"/>
+        <location filename="../util/update.py" line="56"/>
+        <source>An update for LogarithmPlotter (v{}) is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../util/update.py" line="61"/>
         <source>No update available.</source>
         <translation>Keine Aktualisierung verfügbar.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="65"/>
+        <location filename="../util/update.py" line="64"/>
         <source>Could not fetch update information: Server error {}.</source>
         <translation>Es konnten keine Aktualisierungsinformationen abgerufen werden: Server-Fehler {}.</translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="69"/>
+        <location filename="../util/update.py" line="68"/>
         <source>Could not fetch update information: {}.</source>
         <translation>Es konnten keine Aktualisierungsinformationen abgerufen werden:{}.</translation>
     </message>
@@ -1665,21 +1684,6 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <source>X Cursors</source>
         <translation>X Zeiger</translation>
-    </message>
-</context>
-<context>
-    <name>settingCategory</name>
-    <message>
-        <source>default</source>
-        <translation>Standardeinstellungen</translation>
-    </message>
-    <message>
-        <source>general</source>
-        <translation>Allgemeine</translation>
-    </message>
-    <message>
-        <source>editor</source>
-        <translation>Ausdruckseditor</translation>
     </message>
 </context>
 </TS>

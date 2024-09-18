@@ -231,7 +231,7 @@ Popup {
             
             delegate: Component {
                 Loader {
-                    width: settingView.width * 2 / 3
+                    width: settingView.width - 20
                     property var setting: Modules.Preferences.categories[settingView.modelName][index]
                     sourceComponent: {
                         if(setting.type === "bool")
@@ -245,7 +245,7 @@ Popup {
                         else if(setting.type === "string")
                             return stringSettingComponent
                         else
-                            console.log('Unknown setting type!', setting.constructor.name, setting.constructor)
+                            console.log('Unknown setting type!', setting.constructor.nameInConfig, setting.constructor)
                     }
                 }
             }

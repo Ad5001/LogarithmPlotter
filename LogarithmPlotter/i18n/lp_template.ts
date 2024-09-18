@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="123"/>
+        <location filename="../logarithmplotter.py" line="137"/>
         <source>About LogarithmPlotter</source>
         <translation></translation>
     </message>
@@ -298,22 +298,22 @@
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="57"/>
         <source>Filter...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="100"/>
         <source>Redo &gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="119"/>
         <source>&gt; Now</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="149"/>
         <source>&lt; Undo</source>
         <translation></translation>
     </message>
@@ -393,17 +393,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="143"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="159"/>
         <source>Set %1 %2 position</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="168"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="184"/>
         <source>Delete %1 %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="197"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/ObjectRow.qml" line="213"/>
         <source>Pick new color for %1 %2</source>
         <translation></translation>
     </message>
@@ -652,12 +652,12 @@
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="49"/>
+        <location filename="../util/helper.py" line="52"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="55"/>
         <source>Could not fetch update: {}.</source>
         <translation></translation>
     </message>
@@ -869,19 +869,19 @@ Evaluated expression: %3</source>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../util/latex.py" line="82"/>
+        <location filename="../util/latex.py" line="94"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="87"/>
+        <location filename="../util/latex.py" line="100"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="173"/>
+        <location filename="../util/latex.py" line="202"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -890,7 +890,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="186"/>
+        <location filename="../util/latex.py" line="216"/>
         <source>Your LaTeX installation does not include some required packages:
 
 - {} (https://ctan.org/pkg/{})
@@ -899,7 +899,7 @@ Make sure said package is installed, or disable the LaTeX rendering in Logarithm
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/latex.py" line="190"/>
+        <location filename="../util/latex.py" line="220"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -911,21 +911,21 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <name>update</name>
     <message>
         <location filename="../util/update.py" line="56"/>
-        <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation></translation>
+        <source>An update for LogarithmPlotter (v{}) is available.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="62"/>
+        <location filename="../util/update.py" line="61"/>
         <source>No update available.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="65"/>
+        <location filename="../util/update.py" line="64"/>
         <source>Could not fetch update information: Server error {}.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../util/update.py" line="69"/>
+        <location filename="../util/update.py" line="68"/>
         <source>Could not fetch update information: {}.</source>
         <translation></translation>
     </message>
