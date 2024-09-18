@@ -34,7 +34,7 @@ class IOAPI extends Module {
 
     /**
      * Initializes module with QML elements.
-     * @param {LogarithmPlotter} rootElement
+     * @param {{width: number, height: number, updateObjectsLists: function()}} rootElement
      * @param {Settings} settings
      * @param {{show: function(string)}} alert
      */

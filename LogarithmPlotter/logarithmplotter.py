@@ -16,18 +16,18 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+from os import getcwd, chdir, environ, path
+from platform import release as os_release
+from sys import path as sys_path
+from sys import platform, argv, exit
+from tempfile import TemporaryDirectory
 from time import time
 
-from PySide6.QtWidgets import QApplication
-from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtCore import Qt, QTranslator, QLocale
+from PySide6.QtCore import QTranslator, QLocale
 from PySide6.QtGui import QIcon
-
-from tempfile import TemporaryDirectory
-from os import getcwd, chdir, environ, path, remove, close
-from platform import release as os_release
-from sys import platform, argv, version as sys_version, exit
-from sys import path as sys_path
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQuickControls2 import QQuickStyle
+from PySide6.QtWidgets import QApplication
 
 start_time = time()
 
@@ -48,10 +48,7 @@ from LogarithmPlotter.util.helper import Helper
 from LogarithmPlotter.util.latex import Latex
 from LogarithmPlotter.util.js import PyJSValue
 
-config.init()
-
-
-def get_linux_theme():
+def get_linux_theme() -> str:
     des = {
         "KDE": "Fusion",
         "gnome": "Basic",
@@ -59,59 +56,59 @@ def get_linux_theme():
         "mate": "Fusion",
     }
     if "XDG_SESSION_DESKTOP" in environ:
-        return des[environ["XDG_SESSION_DESKTOP"]] if environ["XDG_SESSION_DESKTOP"] in des else "Fusion"
+        if environ["XDG_SESSION_DESKTOP"] in des:
+            return des[environ["XDG_SESSION_DESKTOP"]]
+        return "Fusion"
     else:
         # Android
         return "Material"
 
 
-def run():
-    if not 'QT_QUICK_CONTROLS_STYLE' in environ:
-        environ["QT_QUICK_CONTROLS_STYLE"] = {
-            "linux": get_linux_theme(),
-            "freebsd": get_linux_theme(),
-            "win32": "Universal" if os_release == "10" else "Fusion",
-            "cygwin": "Fusion",
-            "darwin": "macOS"
-        }[platform]
+def get_platform_qt_style(os) -> str:
+    return {
+        "linux": get_linux_theme(),
+        "freebsd": get_linux_theme(),
+        "win32": "Universal" if os_release() in ["10", "11", "12", "13", "14"] else "Windows",
+        "cygwin": "Fusion",
+        "darwin": "macOS"
+    }[os]
 
-    dep_time = time()
-    print("Loaded dependencies in " + str((dep_time - start_time) * 1000) + "ms.")
 
-    icon_fallbacks = QIcon.fallbackSearchPaths();
+def register_icon_directories() -> None:
+    icon_fallbacks = QIcon.fallbackSearchPaths()
     base_icon_path = path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "common")))
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "objects")))
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "history")))
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings")))
     icon_fallbacks.append(path.realpath(path.join(base_icon_path, "settings", "custom")))
-    QIcon.setFallbackSearchPaths(icon_fallbacks);
+    QIcon.setFallbackSearchPaths(icon_fallbacks)
 
+
+def create_qapp() -> QApplication:
     app = QApplication(argv)
     app.setApplicationName("LogarithmPlotter")
     app.setDesktopFileName("eu.ad5001.LogarithmPlotter.desktop")
     app.setOrganizationName("Ad5001")
     app.styleHints().setShowShortcutsInContextMenus(True)
     app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
+    return app
 
+
+def install_translation(app: QApplication) -> QTranslator:
     # Installing translators
     translator = QTranslator()
     # Check if lang is forced.
     forcedlang = [p for p in argv if p[:7] == "--lang="]
     locale = QLocale(forcedlang[0][7:]) if len(forcedlang) > 0 else QLocale()
     if translator.load(locale, "lp", "_", path.realpath(path.join(getcwd(), "i18n"))):
-        app.installTranslator(translator);
+        app.installTranslator(translator)
+    return translator
 
-    # Installing macOS file handler.
-    macos_file_open_handler = None
-    if platform == "darwin":
-        macos_file_open_handler = native.MacOSFileOpenHandler()
-        app.installEventFilter(macos_file_open_handler)
 
-    engine = QQmlApplicationEngine()
+def create_engine(helper: Helper, latex: Latex, dep_time: float) -> tuple[QQmlApplicationEngine, PyJSValue]:
     global tmpfile
-    helper = Helper(pwd, tmpfile)
-    latex = Latex(tempdir)
+    engine = QQmlApplicationEngine()
     js_globals = PyJSValue(engine.globalObject())
     js_globals.Modules = engine.newObject()
     js_globals.Helper = engine.newQObject(helper)
@@ -119,15 +116,37 @@ def run():
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
 
-    app.translate("About", "About LogarithmPlotter")
-    # FOR SOME REASON, if this isn't included, Qt refuses to load the QML file.
-
     engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
     engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
 
-    if not engine.rootObjects():
+    return engine, js_globals
+
+
+def run():
+    config.init()
+
+    if not 'QT_QUICK_CONTROLS_STYLE' in environ:
+        QQuickStyle.setStyle(get_platform_qt_style(platform))
+
+    dep_time = time()
+    print("Loaded dependencies in " + str((dep_time - start_time) * 1000) + "ms.")
+
+    register_icon_directories()
+    app = create_qapp()
+    translator = install_translation(app)
+
+    # Installing macOS file handler.
+    macos_file_open_handler = None
+    if platform == "darwin":
+        macos_file_open_handler = native.MacOSFileOpenHandler()
+        app.installEventFilter(macos_file_open_handler)
+
+    helper = Helper(pwd, tmpfile)
+    latex = Latex(tempdir)
+    engine, js_globals = create_engine(helper, latex, dep_time)
+
+    if len(engine.rootObjects()) == 0: # No root objects loaded
         print("No root object", path.realpath(path.join(getcwd(), "qml")))
-        print(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
         exit(-1)
 
     # Open the current diagram
