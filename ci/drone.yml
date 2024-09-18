@@ -6,28 +6,28 @@ platform:
   arch: amd64
 
 steps:
-- name: submodules
-  image: alpine/git
-  commands:
-  - git submodule update --init --recursive
+  - name: submodules
+    image: alpine/git
+    commands:
+      - git submodule update --init --recursive
 
-- name: Tests
-  image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2
-  commands:
-  - apt install -y texlive-base dvipng texlive-latex-extra # Install latex dependencies.
-  - bash scripts/run-tests.sh
-  - xvfb-run python3 run.py --test-build --no-check-for-updates
-  - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
-  - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf
-  when:
-    event: [ push, tag ]
+  - name: Tests
+    image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
+    commands:
+      - ls -la
+      - bash scripts/run-tests.sh
+      - xvfb-run python3 run.py --test-build --no-check-for-updates
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf
+    when:
+      event: [ push, tag ]
 
 
-- name: Windows build
-  image: ad5001/ubuntu-pyside6-xvfb-wine:win10-6.7.2
-  commands:
-  - bash scripts/build-wine.sh
-  - bash scripts/package-wine.sh
-  when:
-    event: [ push, tag ]
+  - name: Windows build
+    image: ad5001/ubuntu-pyside6-xvfb-wine:win10-6.7.2
+    commands:
+      - bash scripts/build-wine.sh
+      - bash scripts/package-wine.sh
+    when:
+      event: [ push, tag ]
   
