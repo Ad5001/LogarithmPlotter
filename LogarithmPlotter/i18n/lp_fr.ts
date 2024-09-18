@@ -397,12 +397,6 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
         <translation>Fermer</translation>
     </message>
     <message>
-        <source>Take a few seconds to configure LogarithmPlotter.
-These settings can always be changed at any time from the &quot;Settings&quot; menu.</source>
-        <translation>Take a few seconds to configure LogarithmPlotter.
-These settings can always be changed at any time from the &quot;Settings&quot; menu.</translation>
-    </message>
-    <message>
         <source>Check for updates on startup (requires online connectivity)</source>
         <translation>Vérifier les mises à jour au démarrage (nécessite d&apos;être connecté à internet)</translation>
     </message>
@@ -1106,22 +1100,6 @@ Formule analysée : %3</translation>
         <source>LogarithmPlotter - Drawing error</source>
         <translation>LogarithmPlotter - Erreur</translation>
     </message>
-    <message>
-        <source>Automatically close parenthesises and brackets</source>
-        <translation>Fermer automatiquement les parenthèses et les crochets</translation>
-    </message>
-    <message>
-        <source>Enable syntax highlighting</source>
-        <translation>Activer la coloration syntaxique</translation>
-    </message>
-    <message>
-        <source>Enable autocompletion</source>
-        <translation>Activer l&apos;autocomplétion</translation>
-    </message>
-    <message>
-        <source>Color Scheme</source>
-        <translation>Coloration Syntaxique</translation>
-    </message>
 </context>
 <context>
     <name>function</name>
@@ -1155,18 +1133,6 @@ Formule analysée : %3</translation>
 </context>
 <context>
     <name>general</name>
-    <message>
-        <source>Check for updates on startup</source>
-        <translation>Vérifier la présence de mise à jour au démarrage</translation>
-    </message>
-    <message>
-        <source>Reset redo stack automaticly</source>
-        <translation>Réinitialiser la pile d&apos;action &quot;Rétablir&quot; automatiquement</translation>
-    </message>
-    <message>
-        <source>Enable LaTeX rendering</source>
-        <translation>Activer le rendu LaTeX</translation>
-    </message>
 </context>
 <context>
     <name>historylib</name>
@@ -1208,30 +1174,6 @@ Formule analysée : %3</translation>
     <message>
         <source>History</source>
         <translation>Historique</translation>
-    </message>
-    <message>
-        <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Graphe sauvegardé dans &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Loading file &apos;%1&apos;.</source>
-        <translation>Chargement du fichier &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Unknown object type: %1.</source>
-        <translation>Type d&apos;objet inconnu : %1.</translation>
-    </message>
-    <message>
-        <source>Invalid file provided.</source>
-        <translation>Fichier fourni invalide.</translation>
-    </message>
-    <message>
-        <source>Could not save file: </source>
-        <translation>Impossible de sauvegarder le fichier : </translation>
-    </message>
-    <message>
-        <source>Loaded file &apos;%1&apos;.</source>
-        <translation>Fichier &apos;%1&apos; chargé.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
