@@ -18,13 +18,12 @@
 
 from PySide6.QtCore import QObject, Slot, Property, QCoreApplication
 from PySide6.QtGui import QImage, QColor
-from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtWidgets import QMessageBox
 
 from os import path, remove
 from string import Template
 from tempfile import TemporaryDirectory
 from subprocess import Popen, TimeoutExpired, PIPE
-from platform import system
 from shutil import which
 from sys import argv
 
@@ -36,6 +35,7 @@ If not found, it will send an alert to the user.
 LATEX_PATH = which('latex')
 DVIPNG_PATH = which('dvipng')
 PACKAGES = ["calligra", "amsfonts", "inputenc"]
+SHOW_GUI_MESSAGES = "--test-build" not in argv
 
 DEFAULT_LATEX_DOC = Template(r"""
 \documentclass[]{minimal}
@@ -52,6 +52,20 @@ $$$$ $markup $$$$
 
 \end{document}
 """)
+
+
+def show_message(msg: str) -> None:
+    """
+    Shows a GUI message if GUI messages are enabled
+    """
+    if SHOW_GUI_MESSAGES:
+        QMessageBox.warning(None, "LogarithmPlotter - Latex", msg)
+
+
+class MissingPackageException(Exception): pass
+
+
+class RenderError(Exception): pass
 
 
 class Latex(QObject):
@@ -77,22 +91,20 @@ class Latex(QObject):
         valid_install = True
         if LATEX_PATH is None:
             print("No Latex installation found.")
-            if "--test-build" not in argv:
-                msg = QCoreApplication.translate("latex",
-                                                 "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.")
-                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", msg)
+            msg = QCoreApplication.translate("latex",
+                                             "No Latex installation found.\nIf you already have a latex distribution installed, make sure it's installed on your path.\nOtherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.")
+            show_message(msg)
             valid_install = False
         elif DVIPNG_PATH is None:
             print("DVIPNG not found.")
-            if "--test-build" not in argv:
-                msg = QCoreApplication.translate("latex",
-                                                 "DVIPNG was not found. Make sure you include it from your Latex distribution.")
-                QMessageBox.warning(None, "LogarithmPlotter - Latex setup", msg)
+            msg = QCoreApplication.translate("latex",
+                                             "DVIPNG was not found. Make sure you include it from your Latex distribution.")
+            show_message(msg)
             valid_install = False
         else:
             try:
                 self.render("", 14, QColor(0, 0, 0, 255))
-            except Exception as e:
+            except MissingPackageException:
                 valid_install = False  # Should have sent an error message if failed to render
         return valid_install
 
@@ -105,20 +117,17 @@ class Latex(QObject):
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
             # Generating file
-            try:
-                latex_path = path.join(self.tempdir.name, str(markup_hash))
-                # If the formula is just recolored or the font is just changed, no need to recreate the DVI.
-                if not path.exists(latex_path + ".dvi"):
-                    self.create_latex_doc(latex_path, latex_markup)
-                    self.convert_latex_to_dvi(latex_path)
-                    self.cleanup(latex_path)
-                # Creating four pictures of different sizes to better handle dpi.
-                self.convert_dvi_to_png(latex_path, export_path, font_size, color)
-                # self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
-                # self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
-                # self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
-            except Exception as e:  # One of the processes failed. A message will be sent every time.
-                raise e
+            latex_path = path.join(self.tempdir.name, str(markup_hash))
+            # If the formula is just recolored or the font is just changed, no need to recreate the DVI.
+            if not path.exists(latex_path + ".dvi"):
+                self.create_latex_doc(latex_path, latex_markup)
+                self.convert_latex_to_dvi(latex_path)
+                self.cleanup(latex_path)
+            # Creating four pictures of different sizes to better handle dpi.
+            self.convert_dvi_to_png(latex_path, export_path, font_size, color)
+            # self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
+            # self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
+            # self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
         img = QImage(export_path)
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
@@ -147,7 +156,6 @@ class Latex(QObject):
         """
         Creates a temporary latex document with base file_hash as file name and a given expression markup latex_markup.
         """
-        ltx_path = export_path + ".tex"
         f = open(export_path + ".tex", 'w')
         f.write(DEFAULT_LATEX_DOC.substitute(markup=latex_markup))
         f.close()
@@ -193,10 +201,10 @@ class Latex(QObject):
                 output = str(out, 'utf8') + "\n" + str(err, 'utf8')
                 msg = QCoreApplication.translate("latex",
                                                  "An exception occured within the creation of the latex formula.\nProcess '{}' ended with a non-zero return code {}:\n\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
-                msg = msg.format(cmd, proc.returncode, output)
-                QMessageBox.warning(None, "LogarithmPlotter - Latex", msg)
-                raise Exception(f"{cmd} process exited with return code {str(proc.returncode)}:\n{str(out, 'utf8')}\n{str(err, 'utf8')}")
-        except TimeoutExpired as e:
+                show_message(msg.format(cmd, proc.returncode, output))
+                raise RenderError(
+                    f"{cmd} process exited with return code {str(proc.returncode)}:\n{str(out, 'utf8')}\n{str(err, 'utf8')}")
+        except TimeoutExpired:
             # Process timed out
             proc.kill()
             out, err = proc.communicate()
@@ -207,12 +215,12 @@ class Latex(QObject):
                         # Package missing.
                         msg = QCoreApplication.translate("latex",
                                                          "Your LaTeX installation does not include some required packages:\n\n- {} (https://ctan.org/pkg/{})\n\nMake sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.")
-                        QMessageBox.warning(None, "LogarithmPlotter - Latex", msg.format(pkg, pkg))
-                        raise Exception("Latex: Missing package " + pkg)
+                        show_message(msg.format(pkg, pkg))
+                        raise MissingPackageException("Latex: Missing package " + pkg)
             msg = QCoreApplication.translate("latex",
                                              "An exception occured within the creation of the latex formula.\nProcess '{}' took too long to finish:\n{}\nPlease make sure your latex installation is correct and report a bug if so.")
-            QMessageBox.warning(None, "LogarithmPlotter - Latex", msg.format(cmd, output))
-            raise Exception(f"{cmd} process timed out:\n{output}")
+            show_message(msg.format(cmd, output))
+            raise RenderError(f"{cmd} process timed out:\n{output}")
 
     def cleanup(self, export_path):
         """
