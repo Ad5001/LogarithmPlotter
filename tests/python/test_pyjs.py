@@ -1,30 +1,52 @@
+"""
+ *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
+ *  Copyright (C) 2021-2024  Ad5001
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 
 import pytest
 from PySide6.QtQml import QJSEngine, QJSValue
-from PySide6.QtWidgets import QApplication
 
 from LogarithmPlotter.util.js import PyJSValue, InvalidAttributeValueException
+from globals import app
 
-app = QApplication()
-engine = QJSEngine()
-obj = PyJSValue(engine.globalObject())
+@pytest.fixture()
+def data():
+    engine = QJSEngine()
+    obj = PyJSValue(engine.globalObject())
+    yield engine, obj
 
 class TestPyJS:
-    def test_set(self):
+    def test_set(self, data):
+        engine, obj = data
         obj.num1 = 2
         obj.num2 = QJSValue(2)
         obj.num3 = PyJSValue(QJSValue(2))
         with pytest.raises(InvalidAttributeValueException):
             obj.num3 = object()
 
-    def test_eq(self):
+    def test_eq(self, data):
+        engine, obj = data
         obj.num = QJSValue(2)
         assert obj.num == 2
         assert obj.num == QJSValue(2)
         assert obj.num == PyJSValue(QJSValue(2))
         assert obj.num != object()
 
-    def test_function(self):
+    def test_function(self, data):
+        engine, obj = data
         function = PyJSValue(engine.evaluate("(function(argument) {return argument*2})"))
         assert function(3) == 6
         assert function(10) == 20

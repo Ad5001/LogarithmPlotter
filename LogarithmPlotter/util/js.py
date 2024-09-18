@@ -48,11 +48,11 @@ class PyJSValue:
 
     def __eq__(self, other):
         if isinstance(other, PyJSValue):
-            return self.qjs_value.equals(other.qjs_value)
+            return self.qjs_value.strictlyEquals(other.qjs_value)
         elif isinstance(other, QJSValue):
-            return self.qjs_value.equals(other)
+            return self.qjs_value.strictlyEquals(other)
         elif type(other) in (int, float, str, bool):
-            return self.qjs_value.equals(QJSValue(other))
+            return self.qjs_value.strictlyEquals(QJSValue(other))
         else:
             return False
 
