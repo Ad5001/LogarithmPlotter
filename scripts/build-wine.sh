@@ -5,7 +5,6 @@ rm -rf dist
 
 rm $(find . -name "*.qmlc")
 rm -rf $(find . -name "*.pyc")
-wine python -m pip install -U pyinstaller
 
 # Building translations
 cd "LogarithmPlotter/i18n/"

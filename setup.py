@@ -128,7 +128,7 @@ setuptools.setup(
     name='logarithmplotter',
     version=pkg_version,
 
-    description='2D plotter software to make BODE plots, sequences and repartition functions.',
+    description='Create and edit Bode plots.',
     long_description=read_file("README.md"),
     keywords='logarithm plotter graph creator bode diagram',
 

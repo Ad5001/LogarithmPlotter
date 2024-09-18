@@ -5,7 +5,6 @@ cd "$DIR/.."
 
 rm $(find . -name "*.qmlc")
 rm $(find . -name "*.pyc")
-python3 -m pip install -U "pyinstaller<6.0"
 
 # Building translations
 cd "LogarithmPlotter/i18n/"
