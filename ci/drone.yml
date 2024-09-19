@@ -12,7 +12,7 @@ steps:
       - git submodule update --init --recursive
 
   - name: Unit Tests
-    image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
+    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
       - apt install -y qt6-l10n-tools
       - cd LogarithmPlotter/i18n && bash release.sh
@@ -21,7 +21,7 @@ steps:
       event: [ push, tag ]
 
   - name: File Tests
-    image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
+    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
       - xvfb-run python3 run.py --test-build --no-check-for-updates
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
@@ -30,7 +30,7 @@ steps:
       event: [ push, tag ]
 
   - name: Windows build
-    image: ad5001/ubuntu-pyside6-xvfb-wine:win10-6.7.2
+    image: ad5001/ubuntu-pyside-xvfb:wine-6-latest
     commands:
       - bash scripts/build-wine.sh
       - bash scripts/package-wine.sh
