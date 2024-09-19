@@ -14,7 +14,7 @@ steps:
   - name: Unit Tests
     image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
-      - apt install -y qt6-l10n-tools
+      - apt install -y qtchooser qttools5-dev-tools
       - cd LogarithmPlotter/i18n && bash release.sh
       - xvfb-run bash scripts/run-tests.sh
     when:
