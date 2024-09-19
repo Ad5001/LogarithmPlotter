@@ -96,3 +96,14 @@ class TestMain:
         assert len(engine.rootObjects()) > 0 # QML File loaded.
         assert type(engine.rootContext().contextProperty("TestBuild")) is bool
         assert engine.rootContext().contextProperty("StartTime") == 0
+        assert js_globals.Latex.type() is not None
+        assert js_globals.Helper.type() is not None
+        assert js_globals.Modules.type() is not None
+        # Check if modules have loaded
+        assert js_globals.Modules.History.type() is not None
+        assert js_globals.Modules.Latex.type() is not None
+        assert js_globals.Modules.ObjectsCommon.type() is not None
+        assert js_globals.Modules.Canvas.type() is not None
+        assert js_globals.Modules.IO.type() is not None
+        assert js_globals.Modules.Objects.type() is not None
+        assert js_globals.Modules.Preferences.type() is not None
