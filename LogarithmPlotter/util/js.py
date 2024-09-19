@@ -15,10 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
+from re import Pattern
+from PySide6.QtCore import QMetaObject, QObject
 from PySide6.QtQml import QJSValue
 
 class InvalidAttributeValueException(Exception): pass
+class NotAPrimitiveException(Exception): pass
+
+class Function: pass
+class Date: pass
+class URL: pass
 
 class PyJSValue:
     """
@@ -68,3 +74,34 @@ class PyJSValue:
         if isinstance(value, QJSValue):
             value = PyJSValue(value)
         return value
+
+    def type(self) -> any:
+        matcher = [
+            (lambda: self.qjs_value.isArray(), list),
+            (lambda: self.qjs_value.isBool(), bool),
+            (lambda: self.qjs_value.isCallable(), Function),
+            (lambda: self.qjs_value.isDate(), Date),
+            (lambda: self.qjs_value.isError(), Exception),
+            (lambda: self.qjs_value.isNull(), None),
+            (lambda: self.qjs_value.isNumber(), float),
+            (lambda: self.qjs_value.isQMetaObject(), QMetaObject),
+            (lambda: self.qjs_value.isQObject(), QObject),
+            (lambda: self.qjs_value.isRegExp(), Pattern),
+            (lambda: self.qjs_value.isUndefined(), None),
+            (lambda: self.qjs_value.isUrl(), URL),
+            (lambda: self.qjs_value.isString(), str),
+            (lambda: self.qjs_value.isObject(), object),
+        ]
+        for (test, value) in matcher:
+            if test():
+                return value
+        return None
+
+    def primitive(self):
+        """
+        Returns the pythonic value of the given primitive data.
+        Raises a NotAPrimitiveException() if this JS value is not a primitive.
+        """
+        if self.type() not in [bool, float, str, None]:
+            raise NotAPrimitiveException()
+        return self.qjs_value.toPrimitive().toVariant()

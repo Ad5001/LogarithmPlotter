@@ -17,9 +17,10 @@
 """
 
 import pytest
+from re import Pattern
 from PySide6.QtQml import QJSEngine, QJSValue
 
-from LogarithmPlotter.util.js import PyJSValue, InvalidAttributeValueException
+from LogarithmPlotter.util.js import PyJSValue, InvalidAttributeValueException, NotAPrimitiveException
 from globals import app
 
 @pytest.fixture()
@@ -56,3 +57,21 @@ class TestPyJS:
         function3 = PyJSValue(engine.evaluate("2+2"))
         with pytest.raises(InvalidAttributeValueException):
             function3()
+
+    def test_type(self, data):
+        engine, obj = data
+        assert PyJSValue(engine.evaluate("[]")).type() == list
+        assert PyJSValue(engine.evaluate("undefined")).type() is None
+        assert PyJSValue(engine.evaluate("/[a-z]/g")).type() == Pattern
+        assert PyJSValue(QJSValue(2)).type() == float
+        assert PyJSValue(QJSValue("3")).type() == str
+        assert PyJSValue(QJSValue(True)).type() == bool
+
+    def test_primitive(self, data):
+        engine, obj = data
+        assert PyJSValue(QJSValue(2)).primitive() == 2
+        assert PyJSValue(QJSValue("string")).primitive() == "string"
+        assert PyJSValue(QJSValue(True)).primitive() == True
+        assert PyJSValue(engine.evaluate("undefined")).primitive() is None
+        with pytest.raises(NotAPrimitiveException):
+            assert PyJSValue(engine.evaluate("[]")).primitive() == []
