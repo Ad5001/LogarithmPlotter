@@ -14,6 +14,8 @@ steps:
   - name: Unit Tests
     image: ad5001/ubuntu-pyside6-xvfb:noble-6.7.2-latex
     commands:
+      - apt install -y qt6-l10n-tools
+      - cd LogarithmPlotter/i18n && bash release.sh
       - xvfb-run bash scripts/run-tests.sh
     when:
       event: [ push, tag ]
