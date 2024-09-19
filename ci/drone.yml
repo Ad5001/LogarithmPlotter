@@ -15,7 +15,7 @@ steps:
     image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
       - apt install -y qtchooser qttools5-dev-tools
-      - cd LogarithmPlotter/i18n && bash release.sh
+      - cd LogarithmPlotter/i18n && bash release.sh && cd ../..
       - xvfb-run bash scripts/run-tests.sh
     when:
       event: [ push, tag ]
