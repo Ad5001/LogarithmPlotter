@@ -16,7 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { API as ObjectsCommonAPI } from "common.mjs"
+import Objects from "../objects.mjs"              
+import { DrawableObject } from "common.mjs"
 import Point from "point.mjs"
 import Text from "text.mjs"
 import Function from "function.mjs"
@@ -28,15 +29,29 @@ import XCursor from "xcursor.mjs"
 import Sequence from "sequence.mjs"
 import RepartitionFunction from "repartition.mjs"
 
+/**
+ * Registers the object  obj in the object list.
+ * @param {DrawableObject} obj - Object to be registered.
+ */
+function registerObject(obj) {
+    // Registers an object to be used in LogarithmPlotter.
+    if(obj.prototype instanceof DrawableObject) {
+        if(!Objects.types[obj.type()])
+            Objects.types[obj.type()] = obj
+    } else {
+        console.error("Could not register object " + (obj?.type() ?? obj.constructor.name) + ", as it isn't a DrawableObject.")
+    }
+}
+
 if(Object.keys(Modules.Objects.types).length === 0) {
-    ObjectsCommonAPI.registerObject(Point)
-    ObjectsCommonAPI.registerObject(Text)
-    ObjectsCommonAPI.registerObject(Function)
-    ObjectsCommonAPI.registerObject(GainBode)
-    ObjectsCommonAPI.registerObject(PhaseBode)
-    ObjectsCommonAPI.registerObject(SommeGainsBode)
-    ObjectsCommonAPI.registerObject(SommePhasesBode)
-    ObjectsCommonAPI.registerObject(XCursor)
-    ObjectsCommonAPI.registerObject(Sequence)
-    ObjectsCommonAPI.registerObject(RepartitionFunction)
+    registerObject(Point)
+    registerObject(Text)
+    registerObject(Function)
+    registerObject(GainBode)
+    registerObject(PhaseBode)
+    registerObject(SommeGainsBode)
+    registerObject(SommePhasesBode)
+    registerObject(XCursor)
+    registerObject(Sequence)
+    registerObject(RepartitionFunction)
 }

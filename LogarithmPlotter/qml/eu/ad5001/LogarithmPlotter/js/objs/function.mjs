@@ -17,7 +17,8 @@
  */
 
 import { textsub } from "../utils.mjs"
-import { API as Common, ExecutableObject } from "common.mjs"
+import Objects from "../objects.mjs"
+import { ExecutableObject } from "common.mjs"
 import { parseDomain, Expression, SpecialDomain } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
 import Latex from "../math/latex.mjs"
@@ -50,7 +51,7 @@ export default class Function extends ExecutableObject {
                 expression = 'x', definitionDomain = 'RPE', destinationDomain = 'R', 
                 displayMode = 'application', labelPosition = 'above', labelX = 1,
                 drawPoints = true, drawDashedLines = true) {
-        if(name == null) name = Common.getNewName('fghjqlmnopqrstuvwabcde')
+        if(name == null) name = Objects.getNewName('fghjqlmnopqrstuvwabcde')
         super(name, visible, color, labelContent)
         if(typeof expression == 'number' || typeof expression == 'string') expression = new Expression(expression.toString())
         this.expression = expression

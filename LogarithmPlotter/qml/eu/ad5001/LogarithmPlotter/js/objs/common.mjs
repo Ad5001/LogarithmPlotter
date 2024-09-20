@@ -24,59 +24,6 @@ import {ensureTypeSafety, serializesByPropertyType} from "../parameters.mjs"
 
 // This file contains the default data to be imported from all other objects
 
-class ObjectsCommonAPI extends Module {
-
-    constructor() {
-        super('ObjectsCommon', [
-            Modules.Objects,
-            Modules.ExprParser,
-            Modules.Latex
-        ])
-    }
-
-    /**
-     * Creates a new name for an object, based on the  allowedLetters.
-     * If variables with each of the allowedLetters is created, a subscript
-     * number is added to the name.
-     * @param {string} allowedLetters
-     * @param {string} prefix - Prefix to the name.
-     * @return {string} New unused name for a new object.
-     */
-    getNewName(allowedLetters, prefix='') {
-        // Allows to get a new name, based on the allowed letters,
-        // as well as adding a sub number when needs be.
-        let newid = 0
-        let ret
-        do {
-            let letter = allowedLetters[newid % allowedLetters.length]
-            let num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
-            ret = prefix + letter + (num > 0 ? textsub(num-1) : '')
-            newid += 1
-        } while(ret in Objects.currentObjectsByName)
-        return ret
-    }
-
-    /**
-     * Registers the object  obj in the object list.
-     * @param {DrawableObject} obj - Object to be registered.
-     */
-    registerObject(obj) {
-        // Registers an object to be used in LogarithmPlotter.
-        // This function is called from autoload.mjs
-        if(obj.prototype instanceof DrawableObject) {
-            if(!Objects.types[obj.type()])
-                Objects.types[obj.type()] = obj
-        } else {
-            console.error("Could not register object " + (obj.type()) + ", as it isn't a DrawableObject.")
-        }
-    }
-}
-
-/** @type {ObjectsCommonAPI} */
-Modules.ObjectsCommon = Modules.ObjectsCommon || new ObjectsCommonAPI()
-
-export const API = Modules.ObjectsCommon
-
 /**
  * Class to extend for every type of object that
  * can be drawn on the canvas.

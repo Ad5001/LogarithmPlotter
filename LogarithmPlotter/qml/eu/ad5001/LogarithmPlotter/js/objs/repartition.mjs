@@ -16,9 +16,11 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { API as Common, ExecutableObject } from "common.mjs"
 import * as P from "../parameters.mjs"
+import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
+
+import { ExecutableObject } from "common.mjs"
 
 
 export default class RepartitionFunction extends ExecutableObject {
@@ -46,7 +48,7 @@ export default class RepartitionFunction extends ExecutableObject {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 probabilities = {'0': '0'}, labelPosition = 'above', labelX = 1) {
-        if(name == null) name = Common.getNewName('XYZUVW', "F_")
+        if(name == null) name = Objects.getNewName('XYZUVW', "F_")
         super(name, visible, color, labelContent)
         this.probabilities = probabilities
         this.labelPosition = labelPosition

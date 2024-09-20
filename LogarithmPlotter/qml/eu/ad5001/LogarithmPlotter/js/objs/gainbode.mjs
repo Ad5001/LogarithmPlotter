@@ -21,7 +21,7 @@ import * as P from "../parameters.mjs"
 import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
 
-import { API as Common, ExecutableObject } from "common.mjs"
+import { ExecutableObject } from "common.mjs"
 import Function from "function.mjs"
 
 import { API as HistoryAPI } from "../history/common.mjs"
@@ -43,7 +43,7 @@ export default class GainBode extends ExecutableObject {
 
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 om_0 = '', pass = 'high', gain = '20', labelPosition = 'above', labelX = 1, omGraduation = false) {
-        if(name == null) name = Common.getNewName('G')
+        if(name == null) name = Objects.getNewName('G')
         if(name === 'G') name = 'G₀' // G is reserved for sum of BODE magnitudes (Somme gains Bode).
         super(name, visible, color, labelContent)
         if(typeof om_0 == "string") {
@@ -51,7 +51,7 @@ export default class GainBode extends ExecutableObject {
             om_0 = Objects.currentObjectsByName[om_0]
             if(om_0 == null) {
                 // Create new point
-                om_0 = Objects.createNewRegisteredObject('Point', [Common.getNewName('ω'), true, this.color, 'name'])
+                om_0 = Objects.createNewRegisteredObject('Point', [Objects.getNewName('ω'), true, this.color, 'name'])
                 HistoryAPI.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
                 om_0.update()
                 labelPosition = 'below'

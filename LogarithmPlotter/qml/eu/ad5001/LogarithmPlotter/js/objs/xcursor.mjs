@@ -21,7 +21,7 @@ import * as P from "../parameters.mjs"
 import Latex from "../math/latex.mjs"
 import Objects from "../objects.mjs"
 
-import { API as Common, DrawableObject } from "common.mjs"
+import { DrawableObject } from "common.mjs"
 
 
 export default class XCursor extends DrawableObject {
@@ -45,7 +45,7 @@ export default class XCursor extends DrawableObject {
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 x = 1, targetElement = null, labelPosition = 'left', approximate = true,
                 rounding = 3, displayStyle = '— — — — — — —', targetValuePosition = 'Next to target') {
-        if(name == null) name = Common.getNewName('X')
+        if(name == null) name = Objects.getNewName('X')
         super(name, visible, color, labelContent)
         this.approximate = approximate
         this.rounding = rounding

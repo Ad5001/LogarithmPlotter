@@ -18,9 +18,10 @@
 
 import { Expression } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
+import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
 
-import { API as Common, DrawableObject } from "common.mjs"
+import { DrawableObject } from "common.mjs"
 
 
 export default class Text extends DrawableObject  {
@@ -41,7 +42,7 @@ export default class Text extends DrawableObject  {
     
     constructor(name = null, visible = true, color = null, labelContent = 'null', 
                 x = 1, y = 0, labelPosition = 'center', text = 'New text', disableLatex = false) {
-        if(name == null) name = Common.getNewName('t')
+        if(name == null) name = Objects.getNewName('t')
         super(name, visible, color, labelContent)
         if(typeof x == 'number' || typeof x == 'string') x = new Expression(x.toString())
         this.x = x

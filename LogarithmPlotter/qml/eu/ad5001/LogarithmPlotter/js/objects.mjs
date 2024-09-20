@@ -37,6 +37,28 @@ class ObjectsAPI extends Module {
     }
 
     /**
+     * Creates a new name for an object, based on the allowedLetters.
+     * If variables with each of the allowedLetters is created, a subscript
+     * number is added to the name.
+     * @param {string} allowedLetters
+     * @param {string} prefix - Prefix to the name.
+     * @return {string} New unused name for a new object.
+     */
+    getNewName(allowedLetters, prefix='') {
+        // Allows to get a new name, based on the allowed letters,
+        // as well as adding a sub number when needs be.
+        let newid = 0
+        let ret
+        do {
+            let letter = allowedLetters[newid % allowedLetters.length]
+            let num = Math.floor((newid - (newid % allowedLetters.length)) / allowedLetters.length)
+            ret = prefix + letter + (num > 0 ? textsub(num-1) : '')
+            newid += 1
+        } while(ret in this.currentObjectsByName)
+        return ret
+    }
+
+    /**
      * Renames an object from its old name to the new one.
      * @param {string} oldName - Current name of the object.
      * @param {string} newName - Name to rename the object to.

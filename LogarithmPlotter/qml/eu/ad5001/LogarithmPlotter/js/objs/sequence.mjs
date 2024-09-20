@@ -19,8 +19,9 @@
 import { Sequence as MathSequence, Domain } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
 import Latex from "../math/latex.mjs"
+import Objects from "../objects.mjs"
 
-import { API as Common, ExecutableObject } from "common.mjs"
+import { ExecutableObject } from "common.mjs"
 import Function from "function.mjs"
 
 
@@ -45,7 +46,7 @@ export default class Sequence extends ExecutableObject {
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 drawPoints = true, drawDashedLines = true, defaultExp = {1: "n"}, 
                 baseValues = {0: 0}, labelPosition = 'above', labelX = 1) {
-        if(name == null) name = Common.getNewName('uvwPSUVWabcde')
+        if(name == null) name = Objects.getNewName('uvwPSUVWabcde')
         super(name, visible, color, labelContent)
         this.drawPoints = drawPoints
         this.drawDashedLines = drawDashedLines

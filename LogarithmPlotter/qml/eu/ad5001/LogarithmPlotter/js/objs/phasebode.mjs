@@ -19,11 +19,11 @@
 import { executeExpression, Expression } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
 import Objects from "../objects.mjs"
-import Latex from "../math/latex.mjs"
-
-import { API as Common, ExecutableObject } from "common.mjs"
 import { API as HistoryAPI } from "../history/common.mjs"
 import { CreateNewObject } from "../historylib.mjs"
+import Latex from "../math/latex.mjs"
+
+import { ExecutableObject } from "common.mjs"
 
 
 export default class PhaseBode extends ExecutableObject {
@@ -40,7 +40,7 @@ export default class PhaseBode extends ExecutableObject {
     
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 om_0 = '', phase = 90, unit = '°', labelPosition = 'above', labelX = 1) {
-        if(name == null) name = Common.getNewName('φ')
+        if(name == null) name = Objects.getNewName('φ')
         if(name === 'φ') name = 'φ₀' // φ is reserved for sum of BODE phases (Somme phases Bode).
         super(name, visible, color, labelContent)
         if(typeof phase == 'number' || typeof phase == 'string') phase = new Expression(phase.toString())
@@ -50,7 +50,7 @@ export default class PhaseBode extends ExecutableObject {
             om_0 = Objects.currentObjectsByName[om_0]
             if(om_0 == null) {
                 // Create new point
-                om_0 = Objects.createNewRegisteredObject('Point', [Common.getNewName('ω'), this.color, 'name'])
+                om_0 = Objects.createNewRegisteredObject('Point', [Objects.getNewName('ω'), this.color, 'name'])
                 om_0.labelPosition = this.phase.execute() >= 0 ? 'above' : 'below'
                 HistoryAPI.history.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'
