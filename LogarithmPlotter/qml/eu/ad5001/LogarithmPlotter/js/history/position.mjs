@@ -100,7 +100,7 @@ export default class EditedPosition extends Action {
                 Promise.all(this._renderPromises).then((rendered) => {
                     // Rendered are (potentially) two HTML strings which are defined during rendering
                     this.prevHTML = this.prevHTML ?? rendered[0]
-                    this.nextHTML = this.prevHTML ?? rendered[1]
+                    this.nextHTML = this.nextHTML ?? rendered[1]
                     resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
                 })
         })
