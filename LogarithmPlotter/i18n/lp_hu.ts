@@ -1133,22 +1133,22 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="22"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="unfinished">Zárójelek automatikus bezárása</translation>
+        <translation>Zárójelek automatikus bezárása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="28"/>
         <source>Enable syntax highlighting</source>
-        <translation type="unfinished">Mondattani kiemelés engedélyezése</translation>
+        <translation>Mondattani kiemelés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="34"/>
         <source>Enable autocompletion</source>
-        <translation type="unfinished">Automatikus befejezés engedélyezése</translation>
+        <translation>Automatikus befejezés engedélyezése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="40"/>
         <source>Color Scheme</source>
-        <translation type="unfinished">Színséma</translation>
+        <translation>Színséma</translation>
     </message>
 </context>
 <context>
@@ -1194,17 +1194,17 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished">Frissítések keresése indításkor</translation>
+        <translation>Frissítések keresése indításkor</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="unfinished">Ismétlési verem önműködő visszaállítása</translation>
+        <translation>Ismétlési verem önműködő visszaállítása</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished">LaTeX-megjelenítés engedélyezése</translation>
+        <translation>LaTeX-megjelenítés engedélyezése</translation>
     </message>
 </context>
 <context>
@@ -1247,32 +1247,32 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="unfinished">Ábra mentve ide: „%1”.</translation>
+        <translation>Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="unfinished">A(z) „%1” fájl betöltése folyamatban van.</translation>
+        <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
         <source>Unknown object type: %1.</source>
-        <translation type="unfinished">Ismeretlen objektumtípus: %1.</translation>
+        <translation>Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
         <source>Invalid file provided.</source>
-        <translation type="unfinished">A megadott fájl érvénytelen.</translation>
+        <translation>A megadott fájl érvénytelen.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
         <source>Could not save file: </source>
-        <translation type="unfinished">A fájl mentése nem sikerült: </translation>
+        <translation>A fájl mentése nem sikerült: </translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="unfinished">A(z) „%1” fájl betöltve.</translation>
+        <translation>A(z) „%1” fájl betöltve.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
@@ -1708,7 +1708,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="33"/>
         <source>default</source>
-        <translation type="unfinished">Alapértelmezett ábra</translation>
+        <translation>Alapértelmezett ábra</translation>
     </message>
 </context>
 <context>
