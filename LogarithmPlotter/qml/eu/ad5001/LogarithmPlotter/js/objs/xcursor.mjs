@@ -33,7 +33,7 @@ export default class XCursor extends DrawableObject {
         [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject', true),
         [QT_TRANSLATE_NOOP('prop','labelPosition')]:       P.Enum.Position,
         [QT_TRANSLATE_NOOP('prop','approximate')]:         'boolean',
-        [QT_TRANSLATE_NOOP('prop','rounding')]:            'number',
+        [QT_TRANSLATE_NOOP('prop','rounding')]:            'int',
         [QT_TRANSLATE_NOOP('prop','displayStyle')]:        new P.Enum(
                                                                '— — — — — — —',
                                                                '⸺⸺⸺⸺⸺⸺',
@@ -77,8 +77,10 @@ export default class XCursor extends DrawableObject {
         var t = this.targetElement
         var approx = ''
         if(this.approximate) {
-            approx = t.execute(this.x.execute())
-            approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
+            approx = (t.execute(this.x.execute()))
+            let intLength = Math.round(approx).toString().length
+            let rounding = Math.min(this.rounding, approx.toString().length - intLength - 1)
+            approx = approx.toPrecision(rounding + intLength)
         }
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
             (this.approximate ? ' ≈ ' + approx : '')
@@ -88,8 +90,10 @@ export default class XCursor extends DrawableObject {
         let t = this.targetElement
         let approx = ''
         if(this.approximate) {
-            approx = t.execute(this.x.execute())
-            approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
+            approx = (t.execute(this.x.execute()))
+            let intLength = Math.round(approx).toString().length
+            let rounding = Math.min(this.rounding, approx.toString().length - intLength - 1)
+            approx = approx.toPrecision(rounding + intLength)
         }
         let simpl = t.simplify(this.x.toEditableString())
         return `${Latex.variable(t.name)}(${Latex.variable(this.name)}) = ${simpl.latexMarkup ? simpl.latexMarkup : Latex.variable(simpl)}` +

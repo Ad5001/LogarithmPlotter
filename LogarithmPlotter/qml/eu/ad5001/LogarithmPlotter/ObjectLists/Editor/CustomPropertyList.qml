@@ -49,7 +49,7 @@ Repeater {
     */
     property var positionPicker
     
-    readonly property var textTypes: ['Domain', 'string', 'number']
+    readonly property var textTypes: ['Domain', 'string', 'number', 'int']
     readonly property var comboBoxTypes: ['ObjectType', 'Enum']
     readonly property var listTypes: ['List', 'Dict']
     
@@ -102,13 +102,16 @@ Repeater {
             height: 30
             label: propertyLabel
             icon: `settings/custom/${propertyIcon}.svg`
+            min: propertyType == "int" ? 0 : -Infinity
+            isInt: propertyType == "int"
             isDouble: propertyType == "number"
             defValue: obj[propertyName] == null ? '' : obj[propertyName].toString()
             category: {
                 return {
                     "Domain": "domain",
                     "string": "all",
-                    "number": "all"
+                    "number": "all",
+                    "int": "all",
                 }[propertyType]
             }
             onChanged: function(newValue) {
@@ -116,7 +119,8 @@ Repeater {
                     var newValueParsed = {
                         "Domain": () => MathLib.parseDomain(newValue),
                         "string": () => newValue,
-                        "number": () => parseFloat(newValue)
+                        "number": () => newValue,
+                        "int": () => newValue
                     }[propertyType]()
                                         
                     // Ensuring old and new values are different to prevent useless adding to history.

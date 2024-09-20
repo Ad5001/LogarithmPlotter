@@ -127,12 +127,15 @@ Item {
         selectByMouse: true
         onEditingFinished: function() {
             if(insertButton.focus || insertPopup.focus) return
-            var value = text
-            if(control.isInt)
-                value = isNaN(parseInt(value)) ? control.min : Math.max(control.min,parseInt(value))
-            if(control.isDouble)
-                value = isNaN(parseFloat(value)) ? control.min : Math.max(control.min,parseFloat(value))
-            if(value != "" && value.toString() != defValue) {
+            let value = text
+            if(control.isInt) {
+                let parsed = parseInt(value)
+                value = isNaN(parsed) ? control.min : Math.max(control.min,parsed)
+            } else if(control.isDouble) {
+                let parsed = parseFloat(value)
+                value = isNaN(parsed) ? control.min : Math.max(control.min,parsed)
+            }
+            if(value !== "" && value.toString() != defValue) {
                 control.changed(value)
                 defValue = value.toString()
             }
