@@ -19,7 +19,6 @@
 import { getRandomColor, textsub } from "../utils.mjs"
 import Objects from "../objects.mjs"
 import Latex from "../math/latex.mjs"
-import {Module} from "../modules.mjs"
 import {ensureTypeSafety, serializesByPropertyType} from "../parameters.mjs"
 
 // This file contains the default data to be imported from all other objects
