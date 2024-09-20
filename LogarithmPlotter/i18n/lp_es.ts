@@ -707,17 +707,17 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation type="unfinished">Guardar gráfico</translation>
+        <translation>Guardar gráfico…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation type="unfinished">Guardar gráfico como</translation>
+        <translation>Guardar gráfico como…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation type="unfinished">Abrir gráfico</translation>
+        <translation>Abrir gráfico…</translation>
     </message>
     <message>
         <source>Close</source>
@@ -1644,7 +1644,7 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation type="unfinished">Mostrar valor aproximado</translation>
+        <translation>Mostrar el resultado redondeado</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="37"/>
