@@ -146,7 +146,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="173"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
-        <translation type="unfinished">Dette plottet inneholder ikke-lagrede endringer. Hvis du gjør dette, vil alle ikke-lagrede data gå tapt. Fortsette?</translation>
+        <translation>Dette plottet inneholder ikke-lagrede endringer. Hvis du gjør dette, vil alle ikke-lagrede data gå tapt. Fortsette?</translation>
     </message>
 </context>
 <context>
@@ -562,7 +562,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Preferences.qml" line="182"/>
         <source>Close</source>
-        <translation type="unfinished">Lukk</translation>
+        <translation>Lukk</translation>
     </message>
 </context>
 <context>
@@ -841,7 +841,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="50"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="54"/>
         <source>New %1 %2 created.</source>
-        <translation type="unfinished">Ny %1 %2 opprettet.</translation>
+        <translation>Ny %1 %2 opprettet.</translation>
     </message>
 </context>
 <context>
@@ -850,7 +850,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="42"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="46"/>
         <source>%1 %2 deleted.</source>
-        <translation type="unfinished">%1 %2 slettet.</translation>
+        <translation>%1 %2 slettet.</translation>
     </message>
 </context>
 <context>
@@ -858,7 +858,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="131"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation type="unfinished">%1 av %2 %3 endret fra «%4» til «%5».</translation>
+        <translation>%1 av %2 %3 endret fra «%4» til «%5».</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="139"/>
@@ -1129,12 +1129,12 @@ Evaluated expression: %3</source>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished">Se etter nye versjoner ved programstart</translation>
+        <translation>Se etter nye versjoner ved programstart</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="unfinished">Tilbakestill angrehistorikk automatisk</translation>
+        <translation>Tilbakestill angrehistorikk automatisk</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
@@ -1182,32 +1182,32 @@ Evaluated expression: %3</source>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="unfinished">Lagret plott i «%1».</translation>
+        <translation>Lagret plott i «%1».</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="unfinished">Laster inn «%1»-fil.</translation>
+        <translation>Laster inn «%1»-fil.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
         <source>Unknown object type: %1.</source>
-        <translation type="unfinished">Ukjent objekttype: %1.</translation>
+        <translation>Ukjent objekttype: %1.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
         <source>Invalid file provided.</source>
-        <translation type="unfinished">Ugyldig fil angitt.</translation>
+        <translation>Ugyldig fil angitt.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
         <source>Could not save file: </source>
-        <translation type="unfinished">Kunne ikke lagre fil: </translation>
+        <translation>Kunne ikke lagre fil: </translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="unfinished">Lastet inn filen «%1».</translation>
+        <translation>Lastet inn filen «%1».</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
@@ -1608,7 +1608,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="31"/>
         <source>Sequences</source>
-        <translation type="unfinished">Følger</translation>
+        <translation>Følger</translation>
     </message>
 </context>
 <context>
@@ -1665,7 +1665,7 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithmPlotter (v{}) is available.</source>
-        <translation>En ny versjon av LogartimePlotter (v{}) er tilgjengelig</translation>
+        <translation>En ny versjon av LogartimePlotter (v{}) er tilgjengelig.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="61"/>
@@ -1726,13 +1726,13 @@ Please make sure your latex installation is correct and report a bug if so.</sou
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="44"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="50"/>
         <source>%1 %2 shown.</source>
-        <translation type="unfinished">%1 %2 vist.</translation>
+        <translation>%1 %2 vist.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="44"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="50"/>
         <source>%1 %2 hidden.</source>
-        <translation type="unfinished">%1 %2 skjult.</translation>
+        <translation>%1 %2 skjult.</translation>
     </message>
 </context>
 <context>
@@ -1740,12 +1740,12 @@ Please make sure your latex installation is correct and report a bug if so.</sou
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="29"/>
         <source>X Cursor</source>
-        <translation type="unfinished">X-peker</translation>
+        <translation>X-peker</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="30"/>
         <source>X Cursors</source>
-        <translation type="unfinished">X-pekere</translation>
+        <translation>X-pekere</translation>
     </message>
 </context>
 </TS>
