@@ -709,17 +709,17 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation>Sauvegarder le graphe</translation>
+        <translation>Sauvegarder le graphe…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation>Sauvegarder le graphe sous</translation>
+        <translation>Sauvegarder le graphe sous…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation>Ouvrir un graphe</translation>
+        <translation>Ouvrir un graphe…</translation>
     </message>
     <message>
         <source>Close</source>
@@ -751,7 +751,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation>Porté en Javascript par Matthew Crumley</translation>
+        <translation>Porté en JavaScript par Matthew Crumley</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="82"/>
@@ -800,7 +800,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
         <source>Github</source>
-        <translation>Github</translation>
+        <translation>GitHub</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
@@ -1642,7 +1642,7 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation>Afficher la valeur approximative</translation>
+        <translation>Afficher la valeur arrondie calculée</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="36"/>
