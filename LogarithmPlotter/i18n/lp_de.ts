@@ -707,17 +707,17 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation>Grafik speichern</translation>
+        <translation>Grafik speichern…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation>Grafik speichern unter</translation>
+        <translation>Grafik speichern unter…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation>Grafik laden</translation>
+        <translation>Grafik laden…</translation>
     </message>
     <message>
         <source>Close</source>
@@ -749,7 +749,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation>Portiert auf Javascript von Matthew Crumley</translation>
+        <translation>Portiert auf JavaScript von Matthew Crumley</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="82"/>
@@ -798,7 +798,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
         <source>Github</source>
-        <translation>Github</translation>
+        <translation>GitHub</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
@@ -1639,7 +1639,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation>Ungefähren Wert anzeigen</translation>
+        <translation>Berechneten Wert gerundet anzeigen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="36"/>
@@ -1751,7 +1751,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithmPlotter (v{}) is available.</source>
-        <translation>Ein Aktualisierung für LogarithmPlotter (v{}) ist verfügbar.</translation>
+        <translation>Ein Update für LogarithmPlotter (v{}) ist verfügbar.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="61"/>
