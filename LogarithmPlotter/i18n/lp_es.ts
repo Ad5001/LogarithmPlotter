@@ -707,17 +707,17 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation>Guardar gráfico</translation>
+        <translation type="unfinished">Guardar gráfico</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation>Guardar gráfico como</translation>
+        <translation type="unfinished">Guardar gráfico como</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation>Abrir gráfico</translation>
+        <translation type="unfinished">Abrir gráfico</translation>
     </message>
     <message>
         <source>Close</source>
@@ -749,7 +749,7 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation>Portado a Javascript por Matthew Crumley</translation>
+        <translation>Portado a JavaScript por Matthew Crumley</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="82"/>
@@ -798,7 +798,7 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
         <source>Github</source>
-        <translation></translation>
+        <translation>GitHub</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
@@ -1644,7 +1644,7 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation>Mostrar valor aproximado</translation>
+        <translation type="unfinished">Mostrar valor aproximado</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="37"/>
