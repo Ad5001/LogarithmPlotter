@@ -5,7 +5,6 @@
     <name>About</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/About.qml" line="31"/>
-        <location filename="../logarithmplotter.py" line="137"/>
         <source>About LogarithmPlotter</source>
         <translation>Über LogarithmPlotter</translation>
     </message>
@@ -89,39 +88,39 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Einstellungen</translation>
+        <translation type="vanished">&amp;Einstellungen</translation>
     </message>
     <message>
         <source>Check for updates on startup</source>
-        <translation>Beim Starten auf Updates prüfen</translation>
+        <translation type="vanished">Beim Starten auf Updates prüfen</translation>
     </message>
     <message>
         <source>Reset redo stack automaticly</source>
-        <translation>Wiederherstellen-Stapel automatisch zurücksetzen</translation>
+        <translation type="vanished">Wiederherstellen-Stapel automatisch zurücksetzen</translation>
     </message>
     <message>
         <source>Enable LaTeX rendering</source>
-        <translation>LaTeX-Rendering aktivieren</translation>
+        <translation type="vanished">LaTeX-Rendering aktivieren</translation>
     </message>
     <message>
         <source>Expression editor</source>
-        <translation>Ausdruckseditor</translation>
+        <translation type="vanished">Ausdruckseditor</translation>
     </message>
     <message>
         <source>Automatically close parenthesises and brackets</source>
-        <translation>Klammern automatisch schließen</translation>
+        <translation type="vanished">Klammern automatisch schließen</translation>
     </message>
     <message>
         <source>Enable syntax highlighting</source>
-        <translation>Syntaxhervorhebung einschalten</translation>
+        <translation type="vanished">Syntaxhervorhebung einschalten</translation>
     </message>
     <message>
         <source>Enable autocompletion</source>
-        <translation>Automatische Vervollständigung einschalten</translation>
+        <translation type="vanished">Automatische Vervollständigung einschalten</translation>
     </message>
     <message>
         <source>Color Scheme</source>
-        <translation>Syntaktische Färbung</translation>
+        <translation type="vanished">Syntaktische Färbung</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
@@ -186,7 +185,7 @@
     <name>BoolSetting</name>
     <message>
         <source>Check for updates on startup</source>
-        <translation>Beim Starten auf Updates prüfen</translation>
+        <translation type="vanished">Beim Starten auf Updates prüfen</translation>
     </message>
 </context>
 <context>
@@ -205,13 +204,13 @@
 <context>
     <name>CustomPropertyList</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="192"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="210"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="196"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="214"/>
         <source>+ Create new %1</source>
         <translation>+ Neues %1objekt erstellen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="311"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="315"/>
         <source>Pick on graph</source>
         <translation>Aufnehmen auf Graph</translation>
     </message>
@@ -263,31 +262,31 @@
     <name>EditorDialog</name>
     <message>
         <source>Edit properties of %1 %2</source>
-        <translation>Eigenschaften von %1 %2 bearbeiten</translation>
+        <translation type="vanished">Eigenschaften von %1 %2 bearbeiten</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation type="vanished">Name</translation>
     </message>
     <message>
         <source>Label content</source>
-        <translation>Etikett</translation>
+        <translation type="vanished">Etikett</translation>
     </message>
     <message>
         <source>null</source>
-        <translation>leer</translation>
+        <translation type="vanished">leer</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>Name</translation>
+        <translation type="vanished">Name</translation>
     </message>
     <message>
         <source>name + value</source>
-        <translation>Name + Wert</translation>
+        <translation type="vanished">Name + Wert</translation>
     </message>
     <message>
         <source>+ Create new %1</source>
-        <translation>+ Neues %1objekt erstellen</translation>
+        <translation type="vanished">+ Neues %1objekt erstellen</translation>
     </message>
 </context>
 <context>
@@ -351,36 +350,36 @@
     <message>
         <source>Take a few seconds to configure LogarithmPlotter.
 These settings can be changed at any time from the &quot;Settings&quot; menu.</source>
-        <translation>Nehmen Sie sich ein paar Sekunden Zeit, um LogarithmPlotter zu konfigurieren.
+        <translation type="vanished">Nehmen Sie sich ein paar Sekunden Zeit, um LogarithmPlotter zu konfigurieren.
 Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; geändert werden.</translation>
     </message>
     <message>
         <source>Check for updates on startup (requires online connectivity)</source>
-        <translation>Beim Start nach Updates suchen (Online-Verbindung erforderlich)</translation>
+        <translation type="vanished">Beim Start nach Updates suchen (Online-Verbindung erforderlich)</translation>
     </message>
     <message>
         <source>Reset redo stack when a new action is added to history</source>
-        <translation>Redo-Stapel zurücksetzen, wenn eine neue Aktion zur Historie hinzugefügt wird</translation>
+        <translation type="vanished">Redo-Stapel zurücksetzen, wenn eine neue Aktion zur Historie hinzugefügt wird</translation>
     </message>
     <message>
         <source>Enable LaTeX rendering</source>
-        <translation>LaTeX-Rendering aktivieren</translation>
+        <translation type="vanished">LaTeX-Rendering aktivieren</translation>
     </message>
     <message>
         <source>Automatically close parenthesises and brackets in expressions</source>
-        <translation>Automatisches Schließen von Klammern in Ausdrücken</translation>
+        <translation type="vanished">Automatisches Schließen von Klammern in Ausdrücken</translation>
     </message>
     <message>
         <source>Enable syntax highlighting for expressions</source>
-        <translation>Syntaxhervorhebung für Ausdrücke einschalten</translation>
+        <translation type="vanished">Syntaxhervorhebung für Ausdrücke einschalten</translation>
     </message>
     <message>
         <source>Enable autocompletion interface in expression editor</source>
-        <translation>Schnittstelle zur automatischen Vervollständigung im Ausdruckseditor aktivieren</translation>
+        <translation type="vanished">Schnittstelle zur automatischen Vervollständigung im Ausdruckseditor aktivieren</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation>Syntaktische Färbung Thema:</translation>
+        <translation type="vanished">Syntaktische Färbung Thema:</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="102"/>
@@ -453,27 +452,27 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
+        <translation type="vanished">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation>Laden der Datei &apos;%1&apos;.</translation>
+        <translation type="vanished">Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Unknown object type: %1.</source>
-        <translation>Unbekannter Objekttyp: %1.</translation>
+        <translation type="vanished">Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
         <source>Invalid file provided.</source>
-        <translation>Ungültige Datei angegeben.</translation>
+        <translation type="vanished">Ungültige Datei angegeben.</translation>
     </message>
     <message>
         <source>Could not save file: </source>
-        <translation>Die Datei konnte nicht gespeichert werden: </translation>
+        <translation type="vanished">Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation>Geladene Datei &apos;%1&apos;.</translation>
+        <translation type="vanished">Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="232"/>
@@ -513,23 +512,23 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Hide %1 %2</source>
-        <translation>Ausblenden %1 %2</translation>
+        <translation type="vanished">Ausblenden %1 %2</translation>
     </message>
     <message>
         <source>Show %1 %2</source>
-        <translation>Anzeigen %1 %2</translation>
+        <translation type="vanished">Anzeigen %1 %2</translation>
     </message>
     <message>
         <source>Set %1 %2 position</source>
-        <translation>Position von %1 %2 einstellen</translation>
+        <translation type="vanished">Position von %1 %2 einstellen</translation>
     </message>
     <message>
         <source>Delete %1 %2</source>
-        <translation>%1 %2 löschen</translation>
+        <translation type="vanished">%1 %2 löschen</translation>
     </message>
     <message>
         <source>Pick new color for %1 %2</source>
-        <translation>Neue Farbe für %1 %2 auswählen</translation>
+        <translation type="vanished">Neue Farbe für %1 %2 auswählen</translation>
     </message>
 </context>
 <context>
@@ -569,7 +568,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Snap to grid</source>
-        <translation>Am Gitter einrasten</translation>
+        <translation type="vanished">Am Gitter einrasten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="185"/>
@@ -613,21 +612,25 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>Settings</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="23"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="161"/>
         <source>X Zoom</source>
         <translation>Zoom auf X</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="30"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="177"/>
         <source>Y Zoom</source>
         <translation>Zoom auf Y</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="193"/>
         <source>Min X</source>
         <translation>Minimum X</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="44"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="212"/>
         <source>Max Y</source>
         <translation>Maximum Y</translation>
@@ -643,46 +646,55 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation>Minimum Y</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="50"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="264"/>
         <source>X Axis Step</source>
         <translation>X-Achsen-Schritt</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="56"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="279"/>
         <source>Y Axis Step</source>
         <translation>Y-Achsen-Schritt</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="62"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="293"/>
         <source>Line width</source>
         <translation>Linienbreite</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="69"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="308"/>
         <source>Text size (px)</source>
         <translation>Textgröße (px)</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="75"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="323"/>
         <source>X Label</source>
         <translation>Etikett der X-Achse</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="82"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="349"/>
         <source>Y Label</source>
         <translation>Etikett der Y-Achse</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="89"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="377"/>
         <source>X Log scale</source>
         <translation>Logarithmische Skala in X</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="95"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="387"/>
         <source>Show X graduation</source>
         <translation>X-Teilung anzeigen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/default.mjs" line="101"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="397"/>
         <source>Show Y graduation</source>
         <translation>Y-Teilung anzeigen</translation>
@@ -709,7 +721,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Close</source>
-        <translation>Schließen</translation>
+        <translation type="vanished">Schließen</translation>
     </message>
 </context>
 <context>
@@ -825,6 +837,8 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>color</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.mjs" line="50"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
         <translation>%1 %2 wurde von %3 bis %4 umgefärbt.</translation>
     </message>
@@ -832,22 +846,27 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>comment</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="35"/>
         <source>Ex: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ⁻*), ]0;1[, {3;4;5}</source>
         <translation>Beispiel: R+* (ℝ⁺*), N (ℕ), Z-* (ℤ-*), ]0;1[, {3;4;5}</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="42"/>
         <source>The following parameters are used when the definition domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}...)</source>
         <translation>Die folgenden Parameter werden verwendet, wenn der Definitionsbereich eine nicht kontinuierliche Menge ist. (Beispiel: ℕ, ℤ, Mengen wie {0;3}...)</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="31"/>
         <source>Note: Specify the probability for each value.</source>
         <translation>Hinweis: Geben Sie die Wahrscheinlichkeit für jeden Wert an.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="37"/>
         <source>Note: Use %1[n] to refer to %1ₙ, %1[n+1] for %1ₙ₊₁...</source>
         <translation>Hinweis: Verwenden Sie %1[n], um sich auf %1ₙ zu beziehen, %1[n+1] für %1ₙ₊₁…</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="36"/>
         <source>If you have latex enabled, you can use use latex markup in between $$ to create equations.</source>
         <translation>Wenn Sie Latex aktiviert haben, können Sie Latex-Auszeichnungen zwischen $$ verwenden, um Gleichungen zu erstellen.</translation>
     </message>
@@ -867,6 +886,8 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>create</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="50"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="54"/>
         <source>New %1 %2 created.</source>
         <translation>Neu %1 %2 erstellt.</translation>
     </message>
@@ -874,6 +895,8 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>delete</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="42"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="46"/>
         <source>%1 %2 deleted.</source>
         <translation>%1 %2 gelöscht.</translation>
     </message>
@@ -881,10 +904,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>editproperty</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="131"/>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
         <translation>%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="139"/>
         <source>%1 of %2 changed from %3 to %4.</source>
         <translation>%1 von %2 wurde von %3 auf %4 geändert.</translation>
     </message>
@@ -953,11 +978,11 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <source>Function definition is not permitted.</source>
-        <translation>Funktionsdefinition ist nicht erlaubt.</translation>
+        <translation type="vanished">Funktionsdefinition ist nicht erlaubt.</translation>
     </message>
     <message>
         <source>Expected variable for assignment.</source>
-        <translation>Erwartete Variable für Zuweisung.</translation>
+        <translation type="vanished">Erwartete Variable für Zuweisung.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
@@ -982,41 +1007,49 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1610"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="93"/>
         <source>First argument to map is not a function.</source>
         <translation>Der erste Parameter von map ist keine Formel.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1613"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="95"/>
         <source>Second argument to map is not an array.</source>
         <translation>Der zweite Parameter von map ist kein Array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1622"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="101"/>
         <source>First argument to fold is not a function.</source>
         <translation>Der erste Parameter für fold ist keine Formel.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1625"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="103"/>
         <source>Second argument to fold is not an array.</source>
         <translation>Der zweite Parameter für fold ist kein Array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1634"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="109"/>
         <source>First argument to filter is not a function.</source>
         <translation>Der erste Parameter für filter ist keine Formel.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1637"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="111"/>
         <source>Second argument to filter is not an array.</source>
         <translation>Der zweite Parameter von filter ist kein Array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1646"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="123"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Der zweite Parameter von indexOf ist kein String oder Array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1654"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="117"/>
         <source>Second argument to join is not an array.</source>
         <translation>Der zweite Parameter von join ist kein Array.</translation>
     </message>
@@ -1051,7 +1084,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation>Zirkuläre Abhängigkeit entdeckt. Objekte %1 hängen von %2 ab.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="144"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="148"/>
         <source>Error while parsing expression for property %1:
 %2
 
@@ -1076,7 +1109,7 @@ Die letzte Änderung wurde rückgängig gemacht.</translation>
 <context>
     <name>expression</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="141"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="145"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="202"/>
         <source>LogarithmPlotter - Parsing error</source>
         <translation>LogarithmPlotter - Analysefehler</translation>
@@ -1098,29 +1131,35 @@ Ausdruck analysiert: %3</translation>
         <translation>LogarithmPlotter - Fehler</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="22"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="obsolete">Klammern automatisch schließen</translation>
+        <translation type="unfinished">Klammern automatisch schließen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="28"/>
         <source>Enable syntax highlighting</source>
-        <translation type="obsolete">Syntaxhervorhebung einschalten</translation>
+        <translation type="unfinished">Syntaxhervorhebung einschalten</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="34"/>
         <source>Enable autocompletion</source>
-        <translation type="obsolete">Automatische Vervollständigung einschalten</translation>
+        <translation type="unfinished">Automatische Vervollständigung einschalten</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="40"/>
         <source>Color Scheme</source>
-        <translation type="obsolete">Syntaktische Färbung</translation>
+        <translation type="unfinished">Syntaktische Färbung</translation>
     </message>
 </context>
 <context>
     <name>function</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="29"/>
         <source>Function</source>
         <translation>Funktion</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="30"/>
         <source>Functions</source>
         <translation>Funktionen</translation>
     </message>
@@ -1128,18 +1167,24 @@ Ausdruck analysiert: %3</translation>
 <context>
     <name>gainbode</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="33"/>
         <source>Bode Magnitude</source>
         <translation>Bode-Magnitude</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="34"/>
         <source>Bode Magnitudes</source>
         <translation>Bode-Magnituden</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>low-pass</source>
         <translation>Tiefpass</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>high-pass</source>
         <translation>Hochpass</translation>
     </message>
@@ -1147,94 +1192,103 @@ Ausdruck analysiert: %3</translation>
 <context>
     <name>general</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
         <source>Check for updates on startup</source>
-        <translation type="obsolete">Beim Starten auf Updates prüfen</translation>
+        <translation type="unfinished">Beim Starten auf Updates prüfen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="obsolete">Wiederherstellen-Stapel automatisch zurücksetzen</translation>
+        <translation type="unfinished">Wiederherstellen-Stapel automatisch zurücksetzen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="obsolete">LaTeX-Rendering aktivieren</translation>
+        <translation type="unfinished">LaTeX-Rendering aktivieren</translation>
     </message>
 </context>
 <context>
     <name>historylib</name>
     <message>
         <source>New %1 %2 created.</source>
-        <translation>Neu %1 %2 erstellt.</translation>
+        <translation type="vanished">Neu %1 %2 erstellt.</translation>
     </message>
     <message>
         <source>%1 %2 deleted.</source>
-        <translation>%1 %2 gelöscht.</translation>
+        <translation type="vanished">%1 %2 gelöscht.</translation>
     </message>
     <message>
         <source>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</source>
-        <translation>%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
+        <translation type="vanished">%1 von %2 %3 wurde von &quot;%4&quot; auf &quot;%5&quot; geändert.</translation>
     </message>
     <message>
         <source>%1 %2 shown.</source>
-        <translation>%1 %2 angezeigt.</translation>
+        <translation type="vanished">%1 %2 angezeigt.</translation>
     </message>
     <message>
         <source>%1 %2 hidden.</source>
-        <translation>%1 %2 ausgeblendet.</translation>
+        <translation type="vanished">%1 %2 ausgeblendet.</translation>
     </message>
     <message>
         <source>Name of %1 %2 changed to %3.</source>
-        <translation>Der Name von %1 %2 wurde in %3 geändert.</translation>
+        <translation type="vanished">Der Name von %1 %2 wurde in %3 geändert.</translation>
     </message>
 </context>
 <context>
     <name>io</name>
     <message>
         <source>Objects</source>
-        <translation>Objekte</translation>
+        <translation type="vanished">Objekte</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation type="vanished">Einstellungen</translation>
     </message>
     <message>
         <source>History</source>
-        <translation>Verlauf</translation>
+        <translation type="vanished">Verlauf</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="obsolete">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
+        <translation type="unfinished">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="obsolete">Laden der Datei &apos;%1&apos;.</translation>
+        <translation type="unfinished">Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
         <source>Unknown object type: %1.</source>
-        <translation type="obsolete">Unbekannter Objekttyp: %1.</translation>
+        <translation type="unfinished">Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
         <source>Invalid file provided.</source>
-        <translation type="obsolete">Ungültige Datei angegeben.</translation>
+        <translation type="unfinished">Ungültige Datei angegeben.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
         <source>Could not save file: </source>
-        <translation type="obsolete">Die Datei konnte nicht gespeichert werden: </translation>
+        <translation type="unfinished">Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="obsolete">Geladene Datei &apos;%1&apos;.</translation>
+        <translation type="unfinished">Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
-        <translation>Grafik in die Zwischenablage kopiert!</translation>
+        <translation type="vanished">Grafik in die Zwischenablage kopiert!</translation>
     </message>
     <message>
         <source>&amp;Update</source>
-        <translation>&amp;Aktualisieren</translation>
+        <translation type="vanished">&amp;Aktualisieren</translation>
     </message>
     <message>
         <source>&amp;Update LogarithmPlotter</source>
-        <translation>LogarithmPlotter &amp;aktualisieren</translation>
+        <translation type="vanished">LogarithmPlotter &amp;aktualisieren</translation>
     </message>
 </context>
 <context>
@@ -1294,6 +1348,8 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>name</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.mjs" line="48"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/name.mjs" line="54"/>
         <source>%1 %2 renamed to %3.</source>
         <translation>%1 %2 umbenannt in %3.</translation>
     </message>
@@ -1301,90 +1357,114 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>parameters</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="249"/>
         <source>above</source>
         <translation>↑ Über</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="250"/>
         <source>below</source>
         <translation>↓ Unter</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="251"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="271"/>
         <source>left</source>
         <translation>← Links</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="272"/>
         <source>right</source>
         <translation>→ Rechts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="253"/>
         <source>above-left</source>
         <translation>↖ Oben links</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="254"/>
         <source>above-right</source>
         <translation>↗ Oben rechts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="255"/>
         <source>below-left</source>
         <translation>↙ Unten links</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="256"/>
         <source>below-right</source>
         <translation>↘ Unten rechts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="268"/>
         <source>center</source>
         <translation>&gt;|&lt; Zentrum</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="269"/>
         <source>top</source>
         <translation>↑ Über</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="270"/>
         <source>bottom</source>
         <translation>↓ Unter</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="273"/>
         <source>top-left</source>
         <translation>↖ Oben links</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="274"/>
         <source>top-right</source>
         <translation>↗ Oben rechts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="275"/>
         <source>bottom-left</source>
         <translation>↙ Unten links</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="276"/>
         <source>bottom-right</source>
         <translation>↘ Unten rechts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="280"/>
         <source>application</source>
         <translation>Anwendung</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="281"/>
         <source>function</source>
         <translation>Funktion</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="285"/>
         <source>high</source>
         <translation>Hoch</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="286"/>
         <source>low</source>
         <translation>Tief</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="291"/>
         <source>Next to target</source>
         <translation>Neben dem Ziel</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="292"/>
         <source>With label</source>
         <translation>Mit Etikett</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="293"/>
         <source>Hidden</source>
         <translation>Versteckt</translation>
     </message>
@@ -1392,10 +1472,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>phasebode</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="31"/>
         <source>Bode Phase</source>
         <translation>Bode-Phase</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="32"/>
         <source>Bode Phases</source>
         <translation>Bode-Phasen</translation>
     </message>
@@ -1403,10 +1485,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>point</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="29"/>
         <source>Point</source>
         <translation>Punkt</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="30"/>
         <source>Points</source>
         <translation>Punkte</translation>
     </message>
@@ -1414,10 +1498,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>position</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.mjs" line="87"/>
         <source>Position of %1 %2 set from &quot;%3&quot; to &quot;%4&quot;.</source>
         <translation>%1 %2 wurde von &quot;%3&quot; nach &quot;%4&quot; verschoben.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/position.mjs" line="94"/>
         <source>Position of %1 set from %2 to %3.</source>
         <translation>%1 wurde von %2 nach %3 verschoben.</translation>
     </message>
@@ -1425,125 +1511,175 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>prop</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="32"/>
         <source>expression</source>
         <translation>Ausdruck</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="33"/>
         <source>definitionDomain</source>
         <translation>Definitionsbereich</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="34"/>
         <source>destinationDomain</source>
         <translation>Reichweite</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="42"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="34"/>
         <source>labelPosition</source>
         <translation>Position des Etiketts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="39"/>
         <source>displayMode</source>
         <translation>Anzeigemodus</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="43"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="33"/>
         <source>labelX</source>
         <translation>X-Position des Etiketts</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="34"/>
         <source>drawPoints</source>
         <translation>Unentschiedene Punkte</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="47"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="35"/>
         <source>drawDashedLines</source>
         <translation>Gestrichelte Linien anzeigen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="34"/>
         <source>om_0</source>
         <translation>ω₀</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="37"/>
         <source>pass</source>
         <translation>Pass</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="38"/>
         <source>gain</source>
         <translation>Größenordnung</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="41"/>
         <source>omGraduation</source>
         <translation>Teilung auf ω zeigen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="35"/>
         <source>phase</source>
         <translation>Phase</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="36"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="32"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="33"/>
         <source>y</source>
         <translation>Y</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="36"/>
         <source>pointStyle</source>
         <translation>Punkt-Stil</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="35"/>
         <source>probabilities</source>
         <translation>Wahrscheinlichkeiten</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="35"/>
         <source>text</source>
         <translation>Inhalt</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="40"/>
         <source>disableLatex</source>
         <translation>LaTeX-Rendering für diesen Text deaktivieren</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="33"/>
         <source>targetElement</source>
         <translation>Zielobjekt</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
         <translation>Ungefähren Wert anzeigen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="36"/>
         <source>rounding</source>
         <translation>Rundung</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="37"/>
         <source>displayStyle</source>
         <translation>Stil</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="42"/>
         <source>targetValuePosition</source>
         <translation>Wertposition des Ziels</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="36"/>
         <source>defaultExpression</source>
         <translation>Standardausdruck</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="41"/>
         <source>baseValues</source>
         <translation>Initialisierungswerte</translation>
     </message>
     <message>
         <source>color</source>
-        <translation>Farbe</translation>
+        <translation type="vanished">Farbe</translation>
     </message>
 </context>
 <context>
     <name>repartition</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="28"/>
         <source>Repartition</source>
         <translation>Verteilungsfunktion</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="29"/>
         <source>Repartition functions</source>
         <translation>Verteilungsfunktionen</translation>
     </message>
@@ -1551,10 +1687,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>sequence</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="30"/>
         <source>Sequence</source>
         <translation>Folge</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="31"/>
         <source>Sequences</source>
         <translation>Folgen</translation>
     </message>
@@ -1562,14 +1700,17 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>settingCategory</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="33"/>
         <source>default</source>
         <translation>Standardeinstellungen</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="31"/>
         <source>general</source>
         <translation>Allgemeine</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="32"/>
         <source>editor</source>
         <translation>Ausdruckseditor</translation>
     </message>
@@ -1577,6 +1718,8 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>sommegainsbode</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="30"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="31"/>
         <source>Bode Magnitudes Sum</source>
         <translation>Bode-Magnituden Summe</translation>
     </message>
@@ -1584,6 +1727,8 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>sommephasesbode</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="28"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="29"/>
         <source>Bode Phases Sum</source>
         <translation>Bode-Phasen Summe</translation>
     </message>
@@ -1591,10 +1736,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>text</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="29"/>
         <source>Text</source>
         <translation>Text</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="30"/>
         <source>Texts</source>
         <translation>Texte</translation>
     </message>
@@ -1602,13 +1749,9 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>update</name>
     <message>
-        <source>An update for LogarithPlotter (v{}) is available.</source>
-        <translation>Ein Aktualisierung für LogarithmPlotter (v{}) ist verfügbar.</translation>
-    </message>
-    <message>
         <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithmPlotter (v{}) is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Aktualisierung für LogarithmPlotter (v{}) ist verfügbar.</translation>
     </message>
     <message>
         <location filename="../util/update.py" line="61"/>
@@ -1667,10 +1810,14 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>visibility</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="44"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="50"/>
         <source>%1 %2 shown.</source>
         <translation>%1 %2 angezeigt.</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="44"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/visibility.mjs" line="50"/>
         <source>%1 %2 hidden.</source>
         <translation>%1 %2 ausgeblendet.</translation>
     </message>
@@ -1678,10 +1825,12 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>xcursor</name>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="29"/>
         <source>X Cursor</source>
         <translation>X Zeiger</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="30"/>
         <source>X Cursors</source>
         <translation>X Zeiger</translation>
     </message>
