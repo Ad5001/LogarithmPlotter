@@ -707,17 +707,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation>Ábra mentése</translation>
+        <translation type="unfinished">Ábra mentése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation>Ábra mentése másként</translation>
+        <translation type="unfinished">Ábra mentése másként</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation>Ábra betöltése</translation>
+        <translation type="unfinished">Ábra betöltése</translation>
     </message>
     <message>
         <source>Close</source>
@@ -1635,7 +1635,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation>Hozzávetőleges érték megjelenítése</translation>
+        <translation type="unfinished">Hozzávetőleges érték megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="36"/>
