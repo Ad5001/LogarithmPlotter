@@ -261,7 +261,7 @@ BaseDialog {
                             authors: [authors.comradekingu, authors.Ad5001]
                         })
                         append({
-                            tranName: '🇳🇴 ' + qsTr('Spanish'),
+                            tranName: '🇪🇸 ' + qsTr('Spanish'),
                             link: 'https://hosted.weblate.org/projects/logarithmplotter/logarithmplotter/es/',
                             authors: [authors.IngrownMink4, authors.gallegonovato]
                         })
