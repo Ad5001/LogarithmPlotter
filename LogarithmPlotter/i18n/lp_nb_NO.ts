@@ -663,17 +663,17 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation>Lagre plott</translation>
+        <translation type="unfinished">Lagre plott</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation>Lagre plott som</translation>
+        <translation type="unfinished">Lagre plott som</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation>Last inn plott</translation>
+        <translation type="unfinished">Last inn plott</translation>
     </message>
 </context>
 <context>
@@ -701,7 +701,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="79"/>
         <source>Ported to Javascript by Matthew Crumley</source>
-        <translation></translation>
+        <translation>Overført til JavaScript av Matthew Crumley</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="82"/>
@@ -750,7 +750,7 @@ Disse innstillingene kan endres når som helst fra «Innstillinger»-menyen.</tr
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
         <source>Github</source>
-        <translation></translation>
+        <translation>GitHub</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
