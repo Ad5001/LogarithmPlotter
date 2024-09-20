@@ -380,7 +380,7 @@ export class ExecutableObject extends DrawableObject {
      * Returns the simplified expression string for a given x.
      * 
      * @param {number} x
-     * @returns {string}
+     * @returns {string|Expression}
      */
     simplify(x = 1) {return '0'}
     

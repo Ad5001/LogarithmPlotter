@@ -199,6 +199,7 @@ export class Range extends Domain {
     }
     
     includes(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
             ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
@@ -257,16 +258,19 @@ export class SpecialDomain extends Domain {
     }
     
     includes(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         return this.isValid(x)
     }
     
     next(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         return this.nextValue(x)
     }
     
     previous(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         return this.prevValue(x)
     }
@@ -315,6 +319,7 @@ export class DomainSet extends SpecialDomain {
     }
     
     includes(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         for(let value of this.values)
             if(x === value.execute()) return true
@@ -322,6 +327,7 @@ export class DomainSet extends SpecialDomain {
     }
     
     next(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         if(x < this.executedValues[0]) return this.executedValues[0]
         for(let i = 1; i < this.values.length; i++) {
@@ -333,6 +339,7 @@ export class DomainSet extends SpecialDomain {
     }
     
     previous(x) {
+        if(x instanceof Expression) x = x.execute()
         if(typeof x == 'string') x = executeExpression(x)
         if(x > this.executedValues[this.executedValues.length-1]) 
             return this.executedValues[this.executedValues.length-1]

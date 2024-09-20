@@ -291,7 +291,7 @@ class CanvasAPI extends Module {
             } else {
                 for(let x = 1; x < this.axesSteps.x.maxDraw; x += 1) {
                     let drawX = x*this.axesSteps.x.value
-                    let txtX = this.axesSteps.x.expression.simplify(x).replace(/^\((.+)\)$/, '$1')
+                    let txtX = this.axesSteps.x.expression.simplify(x).toString().replace(/^\((.+)\)$/, '$1')
                     let textHeight = this.measureText(txtX).height
                     this.drawVisibleText(txtX, this.x2px(drawX)-4, axisxpx+this.textsize/2+textHeight)
                     this.drawVisibleText('-'+txtX, this.x2px(-drawX)-4, axisxpx+this.textsize/2+textHeight)
@@ -301,7 +301,7 @@ class CanvasAPI extends Module {
         if(this.showygrad) {
             for(let y = 0; y < this.axesSteps.y.maxDraw; y += 1) {
                 let drawY = y*this.axesSteps.y.value
-                let txtY = this.axesSteps.y.expression.simplify(y).replace(/^\((.+)\)$/, '$1')
+                let txtY = this.axesSteps.y.expression.simplify(y).toString().replace(/^\((.+)\)$/, '$1')
                 textWidth = this._ctx.measureText(txtY).width
                 this.drawVisibleText(txtY, axisypx-6-textWidth, this.y2px(drawY)+4+(10*(y===0)))
                 if(y !== 0)

@@ -92,7 +92,7 @@ export default class XCursor extends DrawableObject {
             approx = approx.toPrecision(this.rounding + Math.round(approx).toString().length)
         }
         let simpl = t.simplify(this.x.toEditableString())
-        return `${Latex.variable(t.name)}(${Latex.variable(this.name)}) = ${simpl.tokens ? Latex.expression(simpl.tokens) : simpl}` +
+        return `${Latex.variable(t.name)}(${Latex.variable(this.name)}) = ${simpl.latexMarkup ? simpl.latexMarkup : Latex.variable(simpl)}` +
             (this.approximate ? ' \\simeq ' + approx : '')
     }
     

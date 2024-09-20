@@ -81,7 +81,7 @@ export default class RepartitionFunction extends ExecutableObject {
 
     // Simplify returns the simplified string of the expression.
     simplify(x = 1) {
-        return this.execute(x)
+        return this.execute(x).toString()
     }
     
     getLabel() {

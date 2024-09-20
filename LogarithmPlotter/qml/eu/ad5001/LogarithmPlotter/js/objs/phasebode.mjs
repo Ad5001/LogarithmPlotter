@@ -88,7 +88,7 @@ export default class PhaseBode extends ExecutableObject {
             return this.om_0.y.toString()
         } else {
             let newExp = this.om_0.y.toEditableString() + ' + ' + this.phase.toEditableString()
-            return (new Expression(newExp)).toString()
+            return new Expression(newExp)
         }
     }
     

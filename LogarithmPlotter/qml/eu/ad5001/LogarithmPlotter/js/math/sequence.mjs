@@ -52,10 +52,9 @@ export class Sequence extends Expr.Expression {
     }
     
     simplify(n = 1) {
-        if(n in this.calcValues) 
-            return Utils.makeExpressionReadable(this.calcValues[n].toString())
-        this.cache(n)
-        return Utils.makeExpressionReadable(this.calcValues[n].toString())
+        if(!(n in this.calcValues))
+            this.cache(n)
+        return this.calcValues[n].toString()
     }
     
     cache(n = 1) {

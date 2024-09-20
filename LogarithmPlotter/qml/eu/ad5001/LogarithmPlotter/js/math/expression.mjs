@@ -29,8 +29,14 @@ export class Expression {
             throw new Error('Expression parser not initialized.')
         if(!Modules.Objects)
             throw new Error('Objects API not initialized.')
-        this.expr = Utils.exponentsToExpression(expr)
-        this.calc = Modules.ExprParser.parse(this.expr).simplify()
+        if(typeof expr === "string") {
+            this.expr = Utils.exponentsToExpression(expr)
+            this.calc = Modules.ExprParser.parse(this.expr).simplify()
+        } else {
+            // Passed an expression here directly.
+            this.calc = expr.simplify()
+            this.expr = expr.toString()
+        }
         this.cached = this.isConstant()
         this.cachedValue = null
         if(this.cached && this.allRequirementsFullfilled())
@@ -72,19 +78,8 @@ export class Expression {
     
     simplify(x) {
         let expr = this.calc.substitute('x', x).simplify()
-        if(expr.evaluate() === 0) return '0'
-        let str = Utils.makeExpressionReadable(expr.toString());
-        if(str !== undefined && str.match(/^\d*\.\d+$/)) {
-            if(str.split('.')[1].split('0').length > 7) {
-                // Likely rounding error
-                str = parseFloat(str.substring(0, str.length-1)).toString();
-            }
-        }
-        return str
-    }
-    
-    duplicate() {
-        return new Expression(this.toEditableString())
+        if(expr.evaluate() === 0) expr = '0'
+        return new Expression(expr)
     }
     
     toEditableString() {
@@ -93,6 +88,12 @@ export class Expression {
     
     toString(forceSign=false) {
         let str = Utils.makeExpressionReadable(this.calc.toString())
+        if(str !== undefined && str.match(/^\d*\.\d+$/)) {
+            if(str.split('.')[1].split('0').length > 7) {
+                // Likely rounding error
+                str = parseFloat(str.substring(0, str.length-1)).toString();
+            }
+        }
         if(str[0] !== '-' && forceSign) str = '+' + str
         return str
     }
