@@ -1749,9 +1749,6 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
 <context>
     <name>update</name>
     <message>
-        <source>An update for LogarithPlotter (v{}) is available.</source>
-    </message>
-    <message>
         <location filename="../util/update.py" line="56"/>
         <source>An update for LogarithmPlotter (v{}) is available.</source>
         <translation>Una actualización para LogarithmPlotter (v{}) está disponible.</translation>
