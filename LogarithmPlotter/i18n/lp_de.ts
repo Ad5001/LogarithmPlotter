@@ -1133,22 +1133,22 @@ Ausdruck analysiert: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="22"/>
         <source>Automatically close parenthesises and brackets</source>
-        <translation type="unfinished">Klammern automatisch schließen</translation>
+        <translation>Klammern automatisch schließen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="28"/>
         <source>Enable syntax highlighting</source>
-        <translation type="unfinished">Syntaxhervorhebung einschalten</translation>
+        <translation>Syntaxhervorhebung einschalten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="34"/>
         <source>Enable autocompletion</source>
-        <translation type="unfinished">Automatische Vervollständigung einschalten</translation>
+        <translation>Automatische Vervollständigung einschalten</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/expression.mjs" line="40"/>
         <source>Color Scheme</source>
-        <translation type="unfinished">Syntaktische Färbung</translation>
+        <translation>Syntaktische Färbung</translation>
     </message>
 </context>
 <context>
@@ -1194,17 +1194,17 @@ Ausdruck analysiert: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished">Beim Starten auf Updates prüfen</translation>
+        <translation>Beim Starten auf Updates prüfen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
         <source>Reset redo stack automaticly</source>
-        <translation type="unfinished">Wiederherstellen-Stapel automatisch zurücksetzen</translation>
+        <translation>Wiederherstellen-Stapel automatisch zurücksetzen</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
         <source>Enable LaTeX rendering</source>
-        <translation type="unfinished">LaTeX-Rendering aktivieren</translation>
+        <translation>LaTeX-Rendering aktivieren</translation>
     </message>
 </context>
 <context>
@@ -1251,32 +1251,32 @@ Ausdruck analysiert: %3</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation type="unfinished">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
+        <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation type="unfinished">Laden der Datei &apos;%1&apos;.</translation>
+        <translation>Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
         <source>Unknown object type: %1.</source>
-        <translation type="unfinished">Unbekannter Objekttyp: %1.</translation>
+        <translation>Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
         <source>Invalid file provided.</source>
-        <translation type="unfinished">Ungültige Datei angegeben.</translation>
+        <translation>Ungültige Datei angegeben.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
         <source>Could not save file: </source>
-        <translation type="unfinished">Die Datei konnte nicht gespeichert werden: </translation>
+        <translation>Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation type="unfinished">Geladene Datei &apos;%1&apos;.</translation>
+        <translation>Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
