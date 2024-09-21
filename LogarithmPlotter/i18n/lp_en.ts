@@ -1664,7 +1664,7 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="41"/>
         <source>baseValues</source>
-        <translation>Initialisation values</translation>
+        <translation>Initialization values</translation>
     </message>
     <message>
         <source>color</source>
