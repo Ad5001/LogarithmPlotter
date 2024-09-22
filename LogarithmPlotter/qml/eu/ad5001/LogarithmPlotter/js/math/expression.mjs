@@ -19,19 +19,17 @@
 
 import Latex from "latex.mjs"
 import * as Utils from "../utils.mjs"
+import ExprParser from "../lib/expr-eval/integration.mjs"
+import Objects from "../objects.mjs"
 
 /**
  * Represents any kind of x-based or non variable based expression.
  */
 export class Expression {
     constructor(expr) {
-        if(!Modules.ExprParser)
-            throw new Error('Expression parser not initialized.')
-        if(!Modules.Objects)
-            throw new Error('Objects API not initialized.')
         if(typeof expr === "string") {
             this.expr = Utils.exponentsToExpression(expr)
-            this.calc = Modules.ExprParser.parse(this.expr).simplify()
+            this.calc = ExprParser.parse(this.expr).simplify()
         } else {
             // Passed an expression here directly.
             this.calc = expr.simplify()
@@ -40,7 +38,7 @@ export class Expression {
         this.cached = this.isConstant()
         this.cachedValue = null
         if(this.cached && this.allRequirementsFullfilled())
-            this.cachedValue = this.calc.evaluate(Modules.Objects.currentObjectsByName)
+            this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
         this.latexMarkup = Latex.expression(this.calc.tokens)
     }
     
@@ -54,26 +52,26 @@ export class Expression {
     }
     
     allRequirementsFullfilled() {
-        return this.requiredObjects().every(objName => objName in Modules.Objects.currentObjectsByName)
+        return this.requiredObjects().every(objName => objName in Objects.currentObjectsByName)
     }
     
     undefinedVariables() {
-        return this.requiredObjects().filter(objName => !(objName in Modules.Objects.currentObjectsByName))
+        return this.requiredObjects().filter(objName => !(objName in Objects.currentObjectsByName))
     }
     
     recache() {
         if(this.cached)
-            this.cachedValue = this.calc.evaluate(Modules.Objects.currentObjectsByName)
+            this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
     }
     
     execute(x = 1) {
         if(this.cached) {
             if(this.cachedValue == null)
-                this.cachedValue = this.calc.evaluate(Modules.Objects.currentObjectsByName)
+                this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
             return this.cachedValue
         }
-        Modules.ExprParser.currentVars = Object.assign({'x': x}, Modules.Objects.currentObjectsByName)
-        return this.calc.evaluate(Modules.ExprParser.currentVars)
+        ExprParser.currentVars = Object.assign({'x': x}, Objects.currentObjectsByName)
+        return this.calc.evaluate(ExprParser.currentVars)
     }
     
     simplify(x) {

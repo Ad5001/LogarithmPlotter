@@ -20,6 +20,8 @@ import { Module } from "./modules.mjs"
 import { textsup } from "./utils.mjs"
 import { Expression } from "./mathlib.mjs"
 import Latex from "./math/latex.mjs"
+import Objects from "./objects.mjs"
+import History from "./history/module.mjs"
 
 
 class CanvasAPI extends Module {
@@ -168,8 +170,8 @@ class CanvasAPI extends Module {
         this._drawAxes()
         this._drawLabels()
         this._ctx.lineWidth = this.linewidth
-        for(let objType in Modules.Objects.currentObjects) {
-            for(let obj of Modules.Objects.currentObjects[objType]){
+        for(let objType in Objects.currentObjects) {
+            for(let obj of Objects.currentObjects[objType]){
                 this._ctx.strokeStyle = obj.color
                 this._ctx.fillStyle = obj.color
                 if(obj.visible)
@@ -180,7 +182,7 @@ class CanvasAPI extends Module {
                         console.error(e)
                         console.log(e.stack)
                         this._drawingErrorDialog.showDialog(objType, obj.name, e.message)
-                        Modules.History.undo()
+                        History.undo()
                     }
             }
         }
@@ -188,7 +190,7 @@ class CanvasAPI extends Module {
     }
 
     /**
-     * Calculates informations for drawing gradations for axes.
+     * Calculates information for drawing gradations for axes.
      * @private
      */
     _computeAxes() {
@@ -538,4 +540,4 @@ class CanvasAPI extends Module {
 
 /** @type {CanvasAPI} */
 Modules.Canvas = Modules.Canvas || new CanvasAPI()
-export const API = Modules.Canvas
+export default Modules.Canvas

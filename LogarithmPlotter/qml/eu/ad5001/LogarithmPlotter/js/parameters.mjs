@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {parseDomain, Expression as Expr, Domain} from "./mathlib.mjs"
+import { Objects } from "./objects.mjs"
 
 const NONE = class Empty {}
 
@@ -129,8 +130,8 @@ export class ObjectType extends PropertyType {
 
     parse(name) {
         let result = NONE
-        if(typeof name == 'string' && name in Modules.Objects.currentObjectsByName) {
-            let obj = Modules.Objects.currentObjectsByName[name]
+        if(typeof name == 'string' && name in Objects.currentObjectsByName) {
+            let obj = Objects.currentObjectsByName[name]
             if (obj.type === this.objType || (this.objType === 'ExecutableObject' && obj.execute)) {
                 result = obj
             } else {

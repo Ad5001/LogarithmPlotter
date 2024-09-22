@@ -18,7 +18,9 @@
 
 import * as Expr from "expression.mjs"
 import * as Utils from "../utils.mjs"
-import Latex from "../math/latex.mjs"
+import Latex from "./latex.mjs"
+import Objects from "../objects.mjs"
+import ExprParser from "../lib/expr-eval/integration.mjs"
 
 /**
  * Represents mathematical object for sequences.
@@ -33,7 +35,7 @@ export class Sequence extends Expr.Expression {
         this.latexValues = Object.assign({}, baseValues)
         for(let n in this.calcValues)
             if(['string', 'number'].includes(typeof this.calcValues[n])) {
-                let parsed = Modules.ExprParser.parse(this.calcValues[n].toString()).simplify()
+                let parsed = ExprParser.parse(this.calcValues[n].toString()).simplify()
                 this.latexValues[n] = Latex.expression(parsed.tokens)
                 this.calcValues[n] = parsed.evaluate()
             }
@@ -59,17 +61,17 @@ export class Sequence extends Expr.Expression {
     
     cache(n = 1) {
         let str = Utils.simplifyExpression(this.calc.substitute('n', n-this.valuePlus).toString())
-        let expr = Modules.ExprParser.parse(str).simplify()
+        let expr = ExprParser.parse(str).simplify()
         // Cache values required for this one.
         if(!this.calcValues[n-this.valuePlus] && n-this.valuePlus > 0)
             this.cache(n-this.valuePlus)
         // Setting current variables
-        Modules.ExprParser.currentVars = Object.assign(
+        ExprParser.currentVars = Object.assign(
             {'n': n-this.valuePlus}, // Just in case, add n (for custom functions)
-            Modules.Objects.currentObjectsByName,
+            Objects.currentObjectsByName,
             {[this.name]: this.calcValues}
         )
-        this.calcValues[n] = expr.evaluate(Modules.ExprParser.currentVars)
+        this.calcValues[n] = expr.evaluate(ExprParser.currentVars)
     }
     
     toString(forceSign=false) {

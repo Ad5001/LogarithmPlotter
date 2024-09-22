@@ -112,5 +112,5 @@ export class ExprParserAPI extends Module {
 /** @type {ExprParserAPI} */
 Modules.ExprParser = Modules.ExprParser || new ExprParserAPI()
 
-
+export default Modules.ExprParser
 

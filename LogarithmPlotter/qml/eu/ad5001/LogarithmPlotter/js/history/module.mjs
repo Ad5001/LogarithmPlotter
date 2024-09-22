@@ -16,38 +16,31 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting} from "common.mjs"
-import Canvas from "../canvas.mjs"
-import LatexAPI from "../math/latex.mjs"
+import { Module } from "../modules.mjs"
+import Latex from "../math/latex.mjs"
 
-const CHECK_FOR_UPDATES = new BoolSetting(
-    qsTranslate("general", "Check for updates on startup"),
-    'check_for_updates',
-    'update'
-)
 
-const RESET_REDO_STACK = new BoolSetting(
-    qsTranslate("general", "Reset redo stack automaticly"),
-    'reset_redo_stack',
-    'timeline'
-)
-
-class EnableLatex extends BoolSetting {
+class HistoryAPI extends Module {
     constructor() {
-        super(qsTranslate("general","Enable LaTeX rendering"), 'enable_latex', 'Expression')
+        super('History', [
+            Modules.Latex
+        ])
+        // History QML object
+        this.history = null;
+        this.themeTextColor = "#ff0000";
+        this.imageDepth = 2;
+        this.fontSize = 14;
     }
 
-    set(value) {
-        if(!value || Latex.checkLatexInstallation()) {
-            super.set(value)
-            LatexAPI.enabled = value
-            Canvas.requestPaint()
-        }
-    }
+    undo() { this.history.undo() }
+    redo() { this.history.redo() }
+    clear() { this.history.clear() }
+    addToHistory(action) { this.history.addToHistory(action) }
+    unserialize(...data) { this.history.unserialize(...data) }
+    serialize() { return this.history.serialize() }
 }
 
-export default [
-    CHECK_FOR_UPDATES,
-    RESET_REDO_STACK,
-    new EnableLatex()
-]
+/** @type {HistoryAPI} */
+Modules.History = Modules.History || new HistoryAPI()
+
+export default Modules.History

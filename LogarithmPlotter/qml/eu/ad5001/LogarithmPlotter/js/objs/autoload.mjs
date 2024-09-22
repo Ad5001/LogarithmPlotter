@@ -43,7 +43,7 @@ function registerObject(obj) {
     }
 }
 
-if(Object.keys(Modules.Objects.types).length === 0) {
+if(Object.keys(Objects.types).length === 0) {
     registerObject(Point)
     registerObject(Text)
     registerObject(Function)

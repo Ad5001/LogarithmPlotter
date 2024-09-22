@@ -16,12 +16,15 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Module} from "./modules.mjs"
+import { Module } from "./modules.mjs"
+import Objects from "./objects.mjs"
+import History from "./history/module.mjs"
+import Canvas from "./canvas.mjs"
 
 class IOAPI extends Module {
 
     constructor() {
-        super('IO', [
+        super("IO", [
             Modules.Objects,
             Modules.History
         ])
@@ -50,39 +53,39 @@ class IOAPI extends Module {
      */
     saveDiagram(filename) {
         // Add extension if necessary
-        if(['lpf'].indexOf(filename.split('.')[filename.split('.').length-1]) === -1)
-            filename += '.lpf'
+        if(["lpf"].indexOf(filename.split(".")[filename.split(".").length - 1]) === -1)
+            filename += ".lpf"
         this.saveFilename = filename
         let objs = {}
-        for(let objType in Modules.Objects.currentObjects){
+        for(let objType in Objects.currentObjects) {
             objs[objType] = []
-            for(let obj of Modules.Objects.currentObjects[objType]) {
+            for(let obj of Objects.currentObjects[objType]) {
                 objs[objType].push(obj.export())
             }
         }
         let settings = {
-            "xzoom":        this.settings.xzoom,
-            "yzoom":        this.settings.yzoom,
-            "xmin":         this.settings.xmin,
-            "ymax":         this.settings.ymax,
-            "xaxisstep":    this.settings.xaxisstep,
-            "yaxisstep":    this.settings.yaxisstep,
-            "xaxislabel":   this.settings.xlabel,
-            "yaxislabel":   this.settings.ylabel,
-            "logscalex":    this.settings.logscalex,
-            "linewidth":    this.settings.linewidth,
-            "showxgrad":    this.settings.showxgrad,
-            "showygrad":    this.settings.showygrad,
-            "textsize":     this.settings.textsize,
-            "history":      Modules.History.serialize(),
-            "width":        this.rootElement.width,
-            "height":       this.rootElement.height,
-            "objects":      objs,
-            "type":         "logplotv1"
+            "xzoom": this.settings.xzoom,
+            "yzoom": this.settings.yzoom,
+            "xmin": this.settings.xmin,
+            "ymax": this.settings.ymax,
+            "xaxisstep": this.settings.xaxisstep,
+            "yaxisstep": this.settings.yaxisstep,
+            "xaxislabel": this.settings.xlabel,
+            "yaxislabel": this.settings.ylabel,
+            "logscalex": this.settings.logscalex,
+            "linewidth": this.settings.linewidth,
+            "showxgrad": this.settings.showxgrad,
+            "showygrad": this.settings.showygrad,
+            "textsize": this.settings.textsize,
+            "history": History.serialize(),
+            "width": this.rootElement.width,
+            "height": this.rootElement.height,
+            "objects": objs,
+            "type": "logplotv1"
         }
         Helper.write(filename, JSON.stringify(settings))
-        this.alert.show(qsTranslate('io', "Saved plot to '%1'.").arg(filename.split("/").pop()))
-        Modules.History.history.saved = true
+        this.alert.show(qsTranslate("io", "Saved plot to '%1'.").arg(filename.split("/").pop()))
+        History.history.saved = true
     }
 
     /**
@@ -91,16 +94,16 @@ class IOAPI extends Module {
      */
     loadDiagram(filename) {
         let basename = filename.split("/").pop()
-        this.alert.show(qsTranslate('io', "Loading file '%1'.").arg(basename))
+        this.alert.show(qsTranslate("io", "Loading file '%1'.").arg(basename))
         let data = JSON.parse(Helper.load(filename))
-        let error = "";
+        let error = ""
         if(Object.keys(data).includes("type") && data["type"] === "logplotv1") {
-            Modules.History.clear()
+            History.clear()
             // Importing settings
             this.settings.saveFilename = filename
             this.settings.xzoom = parseFloat(data["xzoom"]) || 100
             this.settings.yzoom = parseFloat(data["yzoom"]) || 10
-            this.settings.xmin = parseFloat(data["xmin"]) || 5/10
+            this.settings.xmin = parseFloat(data["xmin"]) || 5 / 10
             this.settings.ymax = parseFloat(data["ymax"]) || 24
             this.settings.xaxisstep = data["xaxisstep"] || "4"
             this.settings.yaxisstep = data["yaxisstep"] || "4"
@@ -119,51 +122,53 @@ class IOAPI extends Module {
             this.rootElement.width = parseFloat(data["width"]) || 1000
 
             // Importing objects
-            Modules.Objects.currentObjects = {}
-            for(let key of Object.keys(Modules.Objects.currentObjectsByName)) {
-                delete Modules.Objects.currentObjectsByName[key];
+            Objects.currentObjects = {}
+            for(let key of Object.keys(Objects.currentObjectsByName)) {
+                delete Objects.currentObjectsByName[key]
                 // Required to keep the same reference for the copy of the object used in expression variable detection.
                 // Another way would be to change the reference as well, but I feel like the code would be less clean.
             }
-            for(let objType in data['objects']) {
-                if(Object.keys(Modules.Objects.types).indexOf(objType) > -1) {
-                    Modules.Objects.currentObjects[objType] = []
-                    for(let objData of data['objects'][objType]) {
+            for(let objType in data["objects"]) {
+                if(Object.keys(Objects.types).indexOf(objType) > -1) {
+                    Objects.currentObjects[objType] = []
+                    for(let objData of data["objects"][objType]) {
                         /** @type {DrawableObject} */
-                        let obj = Modules.Objects.types[objType].import(...objData)
-                        Modules.Objects.currentObjects[objType].push(obj)
-                        Modules.Objects.currentObjectsByName[obj.name] = obj
+                        let obj = Objects.types[objType].import(...objData)
+                        Objects.currentObjects[objType].push(obj)
+                        Objects.currentObjectsByName[obj.name] = obj
                     }
                 } else {
-                    error += qsTranslate('io', "Unknown object type: %1.").arg(objType) + "\n";
+                    error += qsTranslate("io", "Unknown object type: %1.").arg(objType) + "\n"
                 }
             }
 
             // Updating object dependencies.
-            for(let objName in Modules.Objects.currentObjectsByName)
-                Modules.Objects.currentObjectsByName[objName].update()
+            for(let objName in Objects.currentObjectsByName)
+                Objects.currentObjectsByName[objName].update()
 
             // Importing history
             if("history" in data)
-                Modules.History.unserialize(...data["history"])
+                History.unserialize(...data["history"])
 
             // Refreshing sidebar
             this.rootElement.updateObjectsLists()
         } else {
-            error = qsTranslate('io', "Invalid file provided.")
+            error = qsTranslate("io", "Invalid file provided.")
         }
         if(error !== "") {
             console.log(error)
-            this.alert.show(qsTranslate('io', "Could not save file: ") + error)
+            this.alert.show(qsTranslate("io", "Could not save file: ") + error)
             // TODO: Error handling
             return
         }
-        Modules.Canvas.redraw()
-        this.alert.show(qsTranslate('io', "Loaded file '%1'.").arg(basename))
-        Modules.History.history.saved = true
+        Canvas.redraw()
+        this.alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
+        History.history.saved = true
     }
 
 }
 
 /** @type {IOAPI} */
 Modules.IO = Modules.IO || new IOAPI()
+
+export default Modules.IO

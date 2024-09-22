@@ -16,34 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from "../modules.mjs"
+import History from "./module.mjs"
 import Latex from "../math/latex.mjs"
-
-
-class HistoryCommonAPI extends Module {
-    constructor() {
-        super('History', [
-            Modules.Latex
-        ])
-        // History QML object
-        this.history = null;
-        this.themeTextColor = "#ff0000";
-        this.imageDepth = 2;
-        this.fontSize = 14;
-    }
-
-    undo() { this.history.undo() }
-    redo() { this.history.redo() }
-    clear() { this.history.clear() }
-    addToHistory(action) { this.history.addToHistory(action) }
-    unserialize(...data) { this.history.unserialize(...data) }
-    serialize() { return this.history.serialize() }
-}
-
-/** @type {HistoryCommonAPI} */
-Modules.History = Modules.History || new HistoryCommonAPI()
-
-export const API = Modules.History
 
 export class Action {
     /**
@@ -102,7 +76,7 @@ export class Action {
      * @returns {string}
      */
     getIconRichText(type) {
-        return `<img source="../icons/objects/${type}.svg" style="color: ${Modules.History.themeTextColor};" width=18 height=18></img>`
+        return `<img source="../icons/objects/${type}.svg" style="color: ${History.themeTextColor};" width=18 height=18></img>`
     }
     
     /**
@@ -115,11 +89,11 @@ export class Action {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
         return new Promise(resolve => {
-            let imgDepth = Modules.History.imageDepth
+            let imgDepth = History.imageDepth
             Latex.requestAsyncRender(
                 latexString,
-                imgDepth * (Modules.History.fontSize + 2),
-                Modules.History.themeTextColor
+                imgDepth * (History.fontSize + 2),
+                History.themeTextColor
             ).then((imgData) => {
                 const { source, width, height } = imgData
                 resolve(`<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`)
