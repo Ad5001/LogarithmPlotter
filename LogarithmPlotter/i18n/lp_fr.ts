@@ -898,7 +898,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.mjs" line="40"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/color.mjs" line="50"/>
         <source>%1 %2&apos;s color changed from %3 to %4.</source>
-        <translation>%1 %2 a été re colorisé du %3 au %4.</translation>
+        <translation>La couleur du %1 %2 a été changée du %3 au %4.</translation>
     </message>
 </context>
 <context>
@@ -1058,7 +1058,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
         <source>Parse error [position %1]: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de syntaxe [position %1]&#x202f;: %2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="380"/>
