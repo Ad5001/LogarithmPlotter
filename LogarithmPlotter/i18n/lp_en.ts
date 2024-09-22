@@ -986,7 +986,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
         <source>Parse error [position %1]: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Parse error [position %1]: %2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="380"/>
