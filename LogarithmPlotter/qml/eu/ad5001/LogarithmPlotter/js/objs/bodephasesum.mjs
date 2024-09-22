@@ -23,7 +23,7 @@ import Latex from "../math/latex.mjs"
 
 import { ExecutableObject } from "common.mjs"
 
-export default class SommePhasesBode extends ExecutableObject {
+export default class BodePhaseSum extends ExecutableObject {
     static type(){return 'Somme phases Bode'}
     static displayType(){return qsTr('Bode Phases Sum')}
     static displayTypeMultiple(){return qsTr('Bode Phases Sum')}
@@ -88,7 +88,7 @@ export default class SommePhasesBode extends ExecutableObject {
             Objects.deleteObject(this.name)
         } else {
             console.log('Recalculating cache phase')
-            for(/** @type {PhaseBode} */ let obj of phaseObjects) {
+            for(/** @type {Bodephase} */ let obj of phaseObjects) {
                 this.om0xList.push(obj.om_0.x.execute())
                 if(!phasesDict.has(obj.om_0.x.execute())) {
                     phasesDict.set(obj.om_0.x.execute(), obj.phase.execute())

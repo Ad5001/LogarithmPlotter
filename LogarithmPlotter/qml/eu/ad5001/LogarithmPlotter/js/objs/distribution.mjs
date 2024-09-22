@@ -23,7 +23,7 @@ import Latex from "../math/latex.mjs"
 import { ExecutableObject } from "common.mjs"
 
 
-export default class RepartitionFunction extends ExecutableObject {
+export default class DistributionFunction extends ExecutableObject {
     static type(){return 'Repartition'}
     static displayType(){return qsTr('Repartition')}
     static displayTypeMultiple(){return qsTr('Repartition functions')}

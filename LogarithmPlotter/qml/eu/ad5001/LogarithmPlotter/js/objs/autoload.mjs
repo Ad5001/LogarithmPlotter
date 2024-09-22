@@ -21,13 +21,13 @@ import { DrawableObject } from "common.mjs"
 import Point from "point.mjs"
 import Text from "text.mjs"
 import Function from "function.mjs"
-import GainBode from "gainbode.mjs"
-import PhaseBode from "phasebode.mjs"
-import SommeGainsBode from "sommegainsbode.mjs"
-import SommePhasesBode from "sommephasesbode.mjs"
+import BodeMagnitude from "bodemagnitude.mjs"
+import BodePhase from "bodephase.mjs"
+import BodeMagnitudeSum from "bodemagnitudesum.mjs"
+import BodePhaseSum from "bodephasesum.mjs"
 import XCursor from "xcursor.mjs"
 import Sequence from "sequence.mjs"
-import RepartitionFunction from "repartition.mjs"
+import DistributionFunction from "distribution.mjs"
 
 /**
  * Registers the object  obj in the object list.
@@ -47,11 +47,11 @@ if(Object.keys(Modules.Objects.types).length === 0) {
     registerObject(Point)
     registerObject(Text)
     registerObject(Function)
-    registerObject(GainBode)
-    registerObject(PhaseBode)
-    registerObject(SommeGainsBode)
-    registerObject(SommePhasesBode)
+    registerObject(BodeMagnitude)
+    registerObject(BodePhase)
+    registerObject(BodeMagnitudeSum)
+    registerObject(BodePhaseSum)
     registerObject(XCursor)
     registerObject(Sequence)
-    registerObject(RepartitionFunction)
+    registerObject(DistributionFunction)
 }

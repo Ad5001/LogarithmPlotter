@@ -98,7 +98,7 @@ export class DrawableObject {
      * @param {string} name - Name of the object
      * @param {boolean} visible - true if the object is visible, false otherwise.
      * @param {color|string} color - Color of the object (can be string or QColor)
-     * @param {Enum} labelContent - One of 'null', 'name' or 'name + value' describing the content of the label.
+     * @param {'null'|'name'|'name + value'} labelContent - One of 'null', 'name' or 'name + value' describing the content of the label.
      * @constructor
      */
     constructor(name, visible = true, color = null, labelContent = 'name + value') {

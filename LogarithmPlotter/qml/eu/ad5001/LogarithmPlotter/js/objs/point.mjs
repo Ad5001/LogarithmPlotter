@@ -26,8 +26,8 @@ import { DrawableObject } from "common.mjs"
 
 export default class Point extends DrawableObject  {
     static type(){return 'Point'}
-    static displayType(){return qsTr('Point')}
-    static displayTypeMultiple(){return qsTr('Points')}
+    static displayType(){return qsTranslate("point", 'Point')}
+    static displayTypeMultiple(){return qsTranslate("point", 'Points')}
     
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:             new P.Expression(),

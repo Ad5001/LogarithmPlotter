@@ -28,7 +28,7 @@ import { API as HistoryAPI } from "../history/common.mjs"
 import { CreateNewObject } from "../historylib.mjs"
 
 
-export default class GainBode extends ExecutableObject {
+export default class BodeMagnitude extends ExecutableObject {
     static type(){return 'Gain Bode'}
     static displayType(){return qsTr('Bode Magnitude')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes')}

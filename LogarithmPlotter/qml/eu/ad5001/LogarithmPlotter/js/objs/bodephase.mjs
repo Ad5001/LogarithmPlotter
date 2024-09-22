@@ -26,7 +26,7 @@ import Latex from "../math/latex.mjs"
 import { ExecutableObject } from "common.mjs"
 
 
-export default class PhaseBode extends ExecutableObject {
+export default class BodePhase extends ExecutableObject {
     static type(){return 'Phase Bode'}
     static displayType(){return qsTr('Bode Phase')}
     static displayTypeMultiple(){return qsTr('Bode Phases')}

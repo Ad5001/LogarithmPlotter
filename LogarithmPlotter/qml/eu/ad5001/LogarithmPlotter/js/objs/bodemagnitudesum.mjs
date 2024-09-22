@@ -25,7 +25,7 @@ import { ExecutableObject } from "common.mjs"
 import Function from "function.mjs"
 
 
-export default class SommeGainsBode extends ExecutableObject {
+export default class BodeMagnitudeSum extends ExecutableObject {
     static type(){return 'Somme gains Bode'}
     static displayType(){return qsTr('Bode Magnitudes Sum')}
     static displayTypeMultiple(){return qsTr('Bode Magnitudes Sum')}
@@ -92,7 +92,7 @@ export default class SommeGainsBode extends ExecutableObject {
             magnitudes.push([Number.MAX_VALUE, 0, true]) // Draw the ending section
             // Collect data from current magnitude (or gain in French) objects.
             let baseY = 0
-            for(/** @type {GainBode} */ let magnitudeObj of magnitudeObjects) { // Sorting by their om_0 position.
+            for(/** @type {Bodemagnitude} */ let magnitudeObj of magnitudeObjects) { // Sorting by their om_0 position.
                 const om0x = magnitudeObj.om_0.x.execute()
                 magnitudes.push([om0x, magnitudeObj.gain.execute(), magnitudeObj.pass === 'high'])
                 baseY += magnitudeObj.execute(MIN_DRAW)
