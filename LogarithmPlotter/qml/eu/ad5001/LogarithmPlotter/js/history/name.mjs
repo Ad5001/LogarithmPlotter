@@ -17,7 +17,7 @@
  */
 
 import EditedProperty from "editproperty.mjs"
-import Objects from "../objects.mjs"
+import Objects from "../module/objects.mjs"
 
 
 export default class NameChanged extends EditedProperty {

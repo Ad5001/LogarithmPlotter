@@ -17,10 +17,10 @@
  */
 
 
-import Latex from "latex.mjs"
 import * as Utils from "../utils.mjs"
-import ExprParser from "../lib/expr-eval/integration.mjs"
-import Objects from "../objects.mjs"
+import Latex from "../module/latex.mjs"
+import ExprParser from "../module/expreval.mjs"
+import Objects from "../module/objects.mjs"
 
 /**
  * Represents any kind of x-based or non variable based expression.

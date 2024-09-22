@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from "../modules.mjs"
+import { Module } from "./common.mjs"
 import * as Instruction from "../lib/expr-eval/instruction.mjs"
 import { escapeValue } from "../lib/expr-eval/expression.mjs"
 

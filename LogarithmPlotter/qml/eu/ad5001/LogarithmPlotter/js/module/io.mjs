@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from "./modules.mjs"
+import { Module } from "./common.mjs"
 import Objects from "./objects.mjs"
-import History from "./history/module.mjs"
+import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
 
 class IOAPI extends Module {

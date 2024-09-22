@@ -18,8 +18,8 @@
 
 import { executeExpression, Expression } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
-import Objects from "../objects.mjs"
-import Latex from "../math/latex.mjs"
+import Objects from "../module/objects.mjs"
+import Latex from "../module/latex.mjs"
 
 import { ExecutableObject } from "common.mjs"
 

@@ -18,9 +18,9 @@
 
 import * as Expr from "expression.mjs"
 import * as Utils from "../utils.mjs"
-import Latex from "./latex.mjs"
-import Objects from "../objects.mjs"
-import ExprParser from "../lib/expr-eval/integration.mjs"
+import Latex from "../module/latex.mjs"
+import Objects from "../module/objects.mjs"
+import ExprParser from "../module/expreval.mjs"
 
 /**
  * Represents mathematical object for sequences.

@@ -17,8 +17,8 @@
  */
 
 import {BoolSetting} from "common.mjs"
-import Canvas from "../canvas.mjs"
-import LatexAPI from "../math/latex.mjs"
+import Canvas from "../module/canvas.mjs"
+import LatexAPI from "../module/latex.mjs"
 
 const CHECK_FOR_UPDATES = new BoolSetting(
     qsTranslate("general", "Check for updates on startup"),

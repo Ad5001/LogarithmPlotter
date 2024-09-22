@@ -17,11 +17,11 @@
  */
 
 // Loading modules in order
-import * as Objects from "./objects.mjs"
-import * as ExprParser from "./lib/expr-eval/integration.mjs"
+import * as Objects from "./module/objects.mjs"
+import * as ExprParser from "./module/expreval.mjs"
 import * as ObjsAutoload from "./objs/autoload.mjs"
-import * as Latex from "./math/latex.mjs"
-import * as HistoryCommon from "./history/common.mjs"
-import * as CanvasAPI from "./canvas.mjs"
-import * as IOAPI from "./io.mjs"
-import * as PreferencesAPI from "./preferences.mjs"
+import * as Latex from "./module/latex.mjs"
+import * as History from "./module/history.mjs"
+import * as CanvasAPI from "./module/canvas.mjs"
+import * as IOAPI from "./module/io.mjs"
+import * as PreferencesAPI from "./module/preferences.mjs"

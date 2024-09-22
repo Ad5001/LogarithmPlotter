@@ -17,7 +17,7 @@
  */
 
 import EditedProperty from "editproperty.mjs"
-import Objects from "../objects.mjs"
+import Objects from "../module/objects.mjs"
 
 export default class ColorChanged extends EditedProperty {
     // Action used everytime when an object's color is changed

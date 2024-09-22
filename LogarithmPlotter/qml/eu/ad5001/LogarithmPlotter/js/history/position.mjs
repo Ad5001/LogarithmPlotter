@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Objects from "../objects.mjs"
-import Latex from "../math/latex.mjs"
+import Objects from "../module/objects.mjs"
+import Latex from "../module/latex.mjs"
 import * as MathLib from "../mathlib.mjs"
 import { escapeHTML } from "../utils.mjs"
 import { Action } from "common.mjs"

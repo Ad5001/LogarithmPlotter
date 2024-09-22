@@ -17,16 +17,14 @@
  */
 
 import { parseDomain, executeExpression, Expression, EmptySet, Domain } from "../mathlib.mjs"
+import { CreateNewObject } from "../historylib.mjs"
 import * as P from "../parameters.mjs"
-import Objects from "../objects.mjs"
-import Latex from "../math/latex.mjs"
+import Objects from "../module/objects.mjs"
+import Latex from "../module/latex.mjs"
+import History from "../module/history.mjs"
 
 import { ExecutableObject } from "common.mjs"
 import Function from "function.mjs"
-
-import { API as HistoryAPI } from "../history/common.mjs"
-import { CreateNewObject } from "../historylib.mjs"
-
 
 export default class BodeMagnitude extends ExecutableObject {
     static type(){return 'Gain Bode'}
@@ -52,7 +50,7 @@ export default class BodeMagnitude extends ExecutableObject {
             if(om_0 == null) {
                 // Create new point
                 om_0 = Objects.createNewRegisteredObject('Point', [Objects.getNewName('ω'), true, this.color, 'name'])
-                HistoryAPI.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
+                History.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
                 om_0.update()
                 labelPosition = 'below'
             }

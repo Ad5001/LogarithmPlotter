@@ -17,11 +17,11 @@
  */
 
 import { executeExpression, Expression } from "../mathlib.mjs"
-import * as P from "../parameters.mjs"
-import Objects from "../objects.mjs"
-import { API as HistoryAPI } from "../history/common.mjs"
 import { CreateNewObject } from "../historylib.mjs"
-import Latex from "../math/latex.mjs"
+import * as P from "../parameters.mjs"
+import Objects from "../module/objects.mjs"
+import History from "../module/history.mjs"
+import Latex from "../module/latex.mjs"
 
 import { ExecutableObject } from "common.mjs"
 
@@ -52,7 +52,7 @@ export default class BodePhase extends ExecutableObject {
                 // Create new point
                 om_0 = Objects.createNewRegisteredObject('Point', [Objects.getNewName('ω'), this.color, 'name'])
                 om_0.labelPosition = this.phase.execute() >= 0 ? 'above' : 'below'
-                HistoryAPI.history.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
+                History.history.addToHistory(new CreateNewObject(om_0.name, 'Point', om_0.export()))
                 labelPosition = 'below'
             }
             om_0.requiredBy.push(this)

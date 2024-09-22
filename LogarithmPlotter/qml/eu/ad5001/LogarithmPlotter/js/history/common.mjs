@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import History from "./module.mjs"
-import Latex from "../math/latex.mjs"
+import History from "../module/history.mjs"
+import Latex from "../module/latex.mjs"
 
 export class Action {
     /**

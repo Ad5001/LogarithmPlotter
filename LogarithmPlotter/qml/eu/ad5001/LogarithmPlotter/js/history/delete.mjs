@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Objects from "../objects.mjs"
+import Objects from "../module/objects.mjs"
 import CreateNewObject from "create.mjs"
 
 

@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from "../../modules.mjs"
-import { Parser } from "./parser.mjs"
+import { Module } from "./common.mjs"
+import { Parser } from "../lib/expr-eval/parser.mjs"
 
 const evalVariables = {
     // Variables not provided by expr-eval.js, needs to be provided manually

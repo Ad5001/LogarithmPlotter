@@ -16,12 +16,12 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from "./modules.mjs"
-import { textsup } from "./utils.mjs"
-import { Expression } from "./mathlib.mjs"
-import Latex from "./math/latex.mjs"
+import { Module } from "./common.mjs"
+import { textsup } from "../utils.mjs"
+import { Expression } from "../mathlib.mjs"
+import Latex from "./latex.mjs"
 import Objects from "./objects.mjs"
-import History from "./history/module.mjs"
+import History from "./history.mjs"
 
 
 class CanvasAPI extends Module {

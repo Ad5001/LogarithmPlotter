@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Module } from './modules.mjs'
-import { textsub } from './utils.mjs'
+import { Module } from './common.mjs'
+import { textsub } from '../utils.mjs'
 
 class ObjectsAPI extends Module {
 

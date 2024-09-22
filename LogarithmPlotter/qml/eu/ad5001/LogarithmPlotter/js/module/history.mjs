@@ -15,26 +15,32 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {Module} from "modules.mjs"
-import General from "preferences/general.mjs"
-import Editor from "preferences/expression.mjs"
-import DefaultGraph from "preferences/default.mjs"
 
-class PreferencesAPI extends Module {
+import { Module } from "./common.mjs"
+import Latex from "./latex.mjs"
+
+
+class HistoryAPI extends Module {
     constructor() {
-        super('Preferences', [
-            Modules.Canvas,
+        super('History', [
             Modules.Latex
         ])
-
-        this.categories = {
-            [QT_TRANSLATE_NOOP('settingCategory', 'general')]: General,
-            [QT_TRANSLATE_NOOP('settingCategory', 'editor')]: Editor,
-            [QT_TRANSLATE_NOOP('settingCategory', 'default')]: DefaultGraph,
-        }
+        // History QML object
+        this.history = null;
+        this.themeTextColor = "#ff0000";
+        this.imageDepth = 2;
+        this.fontSize = 14;
     }
+
+    undo() { this.history.undo() }
+    redo() { this.history.redo() }
+    clear() { this.history.clear() }
+    addToHistory(action) { this.history.addToHistory(action) }
+    unserialize(...data) { this.history.unserialize(...data) }
+    serialize() { return this.history.serialize() }
 }
 
-/** @type {CanvasAPI} */
-Modules.Preferences = Modules.Preferences || new PreferencesAPI()
-export const API = Modules.Preferences
+/** @type {HistoryAPI} */
+Modules.History = Modules.History || new HistoryAPI()
+
+export default Modules.History

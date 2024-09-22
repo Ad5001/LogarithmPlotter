@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {parseDomain, Expression as Expr, Domain} from "./mathlib.mjs"
-import { Objects } from "./objects.mjs"
+import Objects from "./module/objects.mjs"
 
 const NONE = class Empty {}
 
@@ -175,15 +175,15 @@ export class List extends PropertyType {
     parse(value) {
         let result = NONE
         if(typeof value == 'object' && value.__proto__ === Array) {
-            let list = []
+            let valid = 0
             for(let v of value) {
                 if (this.format.test(v)) {
                     v = stringValuesValidators[this.valueType][0](v)
                     if(stringValuesValidators[this.valueType][1](v))
-                        list.append(v)
+                        valid++
                 }
             }
-            if(list.length === value.length)
+            if(valid === value.length) // Ensure every value is valid.
                 result = value
         }
         return result

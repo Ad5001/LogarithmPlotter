@@ -17,11 +17,11 @@
  */
 
 import { textsub } from "../utils.mjs"
-import Objects from "../objects.mjs"
+import Objects from "../module/objects.mjs"
 import { ExecutableObject } from "common.mjs"
 import { parseDomain, Expression, SpecialDomain } from "../mathlib.mjs"
 import * as P from "../parameters.mjs"
-import Latex from "../math/latex.mjs"
+import Latex from "../module/latex.mjs"
 
 
 export default class Function extends ExecutableObject {
