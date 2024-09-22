@@ -822,6 +822,62 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     </message>
 </context>
 <context>
+    <name>bodemagnitude</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="33"/>
+        <source>Bode Magnitude</source>
+        <translation>Bode Magnitude</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
+        <source>Bode Magnitudes</source>
+        <translation>Bode Magnitudes</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <source>low-pass</source>
+        <translation>low-pass</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <source>high-pass</source>
+        <translation>high-pass</translation>
+    </message>
+</context>
+<context>
+    <name>bodemagnitudesum</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="30"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="31"/>
+        <source>Bode Magnitudes Sum</source>
+        <translation>Bode Magnitudes Sum</translation>
+    </message>
+</context>
+<context>
+    <name>bodephase</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="31"/>
+        <source>Bode Phase</source>
+        <translation>Bode Phase</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="32"/>
+        <source>Bode Phases</source>
+        <translation>Bode Phases</translation>
+    </message>
+</context>
+<context>
+    <name>bodephasesum</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="28"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="29"/>
+        <source>Bode Phases Sum</source>
+        <translation>Bode Phases Sum</translation>
+    </message>
+</context>
+<context>
     <name>changelog</name>
     <message>
         <location filename="../util/helper.py" line="52"/>
@@ -856,7 +912,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>The following parameters are used when the domain is a non-continuous set. (Ex: ℕ, ℤ, sets like {0;3}…)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="31"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="31"/>
         <source>Note: Specify the probability for each value.</source>
         <translation>Note: Specify the probability for each value.</translation>
     </message>
@@ -887,7 +943,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <name>create</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="50"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="54"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="56"/>
         <source>New %1 %2 created.</source>
         <translation>New %1 %2 created.</translation>
     </message>
@@ -896,9 +952,22 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     <name>delete</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="42"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="48"/>
         <source>%1 %2 deleted.</source>
         <translation>%1 %2 deleted.</translation>
+    </message>
+</context>
+<context>
+    <name>distribution</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="28"/>
+        <source>Repartition</source>
+        <translation>Distribution</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="29"/>
+        <source>Repartition functions</source>
+        <translation>Distribution functions</translation>
     </message>
 </context>
 <context>
@@ -909,7 +978,7 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
         <translation>%1 of %2 %3 changed from &quot;%4&quot; to &quot;%5&quot;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="139"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="143"/>
         <source>%1 of %2 changed from %3 to %4.</source>
         <translation>%1 of %2 changed from %3 to %4.</translation>
     </message>
@@ -1011,49 +1080,41 @@ These settings can be changed at any time from the &quot;Settings&quot; menu.</t
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="301"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="93"/>
         <source>First argument to map is not a function.</source>
         <translation>First argument to map is not a function.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="304"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="95"/>
         <source>Second argument to map is not an array.</source>
         <translation>Second argument to map is not an array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="313"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="101"/>
         <source>First argument to fold is not a function.</source>
         <translation>First argument to fold is not a function.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="316"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="103"/>
         <source>Second argument to fold is not an array.</source>
         <translation>Second argument to fold is not an array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="325"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="109"/>
         <source>First argument to filter is not a function.</source>
         <translation>First argument to filter is not a function.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="328"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="111"/>
         <source>Second argument to filter is not an array.</source>
         <translation>Second argument to filter is not an array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="337"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="123"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Second argument to indexOf is not a string or array.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="345"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="117"/>
         <source>Second argument to join is not an array.</source>
         <translation>Second argument to join is not an array.</translation>
     </message>
@@ -1171,26 +1232,20 @@ Evaluated expression: %3</translation>
 <context>
     <name>gainbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="33"/>
         <source>Bode Magnitude</source>
-        <translation>Bode Magnitude</translation>
+        <translation type="vanished">Bode Magnitude</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="34"/>
         <source>Bode Magnitudes</source>
-        <translation>Bode Magnitudes</translation>
+        <translation type="vanished">Bode Magnitudes</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>low-pass</source>
-        <translation>low-pass</translation>
+        <translation type="vanished">low-pass</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>high-pass</source>
-        <translation>high-pass</translation>
+        <translation type="vanished">high-pass</translation>
     </message>
 </context>
 <context>
@@ -1476,14 +1531,12 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
 <context>
     <name>phasebode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="31"/>
         <source>Bode Phase</source>
-        <translation>Bode Phase</translation>
+        <translation type="vanished">Bode Phase</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="32"/>
         <source>Bode Phases</source>
-        <translation>Bode Phases</translation>
+        <translation type="vanished">Bode Phases</translation>
     </message>
 </context>
 <context>
@@ -1530,14 +1583,14 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
         <translation>Range</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="36"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="40"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="39"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="35"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="36"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="42"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="34"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="32"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="34"/>
         <source>labelPosition</source>
@@ -1549,13 +1602,13 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
         <translation>Display mode</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="41"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="40"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="38"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="43"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="35"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="33"/>
         <source>labelX</source>
         <translation>Label&apos;s X position</translation>
     </message>
@@ -1572,33 +1625,33 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
         <translation>Show dashed lines</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="36"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="34"/>
         <source>om_0</source>
         <translation>ω₀</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
         <source>pass</source>
         <translation>Pass</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
         <source>gain</source>
         <translation>Magnitude gain</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="41"/>
         <source>omGraduation</source>
         <translation>Show graduation on ω₀</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="35"/>
         <source>phase</source>
         <translation>Phase</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="36"/>
         <source>unit</source>
         <translation>Unit to use</translation>
     </message>
@@ -1621,7 +1674,7 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
         <translation>Point style</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="35"/>
         <source>probabilities</source>
         <translation>Probabilities list</translation>
     </message>
@@ -1678,14 +1731,12 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
 <context>
     <name>repartition</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="28"/>
         <source>Repartition</source>
-        <translation>Distribution</translation>
+        <translation type="vanished">Distribution</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="29"/>
         <source>Repartition functions</source>
-        <translation>Distribution functions</translation>
+        <translation type="vanished">Distribution functions</translation>
     </message>
 </context>
 <context>
@@ -1722,19 +1773,15 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
 <context>
     <name>sommegainsbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="30"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="31"/>
         <source>Bode Magnitudes Sum</source>
-        <translation>Bode Magnitudes Sum</translation>
+        <translation type="vanished">Bode Magnitudes Sum</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="28"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="29"/>
         <source>Bode Phases Sum</source>
-        <translation>Bode Phases Sum</translation>
+        <translation type="vanished">Bode Phases Sum</translation>
     </message>
 </context>
 <context>

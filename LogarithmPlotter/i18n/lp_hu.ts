@@ -822,6 +822,62 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
 </context>
 <context>
+    <name>bodemagnitude</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="33"/>
+        <source>Bode Magnitude</source>
+        <translation>Bode-nagyságrend</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
+        <source>Bode Magnitudes</source>
+        <translation>Bode-nagyságrendek</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <source>low-pass</source>
+        <translation>aluláteresztő</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <source>high-pass</source>
+        <translation>felüláteresztő</translation>
+    </message>
+</context>
+<context>
+    <name>bodemagnitudesum</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="30"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="31"/>
+        <source>Bode Magnitudes Sum</source>
+        <translation>Bode-nagyságrendek összege</translation>
+    </message>
+</context>
+<context>
+    <name>bodephase</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="31"/>
+        <source>Bode Phase</source>
+        <translation>Bode-fázis</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="32"/>
+        <source>Bode Phases</source>
+        <translation>Bode-fázisok</translation>
+    </message>
+</context>
+<context>
+    <name>bodephasesum</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="28"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="29"/>
+        <source>Bode Phases Sum</source>
+        <translation>Bode-fázisok összege</translation>
+    </message>
+</context>
+<context>
     <name>changelog</name>
     <message>
         <location filename="../util/helper.py" line="52"/>
@@ -856,7 +912,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>A következő paraméterek használatosak, ha a tartomány nem folytonos halmaz. (Példák: ℕ, ℤ, olyan halmazok, mint a {0;3}…)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="31"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="31"/>
         <source>Note: Specify the probability for each value.</source>
         <translation>Megjegyzés: Adja meg az egyes értékek valószínűségét.</translation>
     </message>
@@ -887,7 +943,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>create</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="50"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="54"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/create.mjs" line="56"/>
         <source>New %1 %2 created.</source>
         <translation>Új %1 %2 létrehozva.</translation>
     </message>
@@ -896,9 +952,22 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>delete</name>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="42"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="46"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/delete.mjs" line="48"/>
         <source>%1 %2 deleted.</source>
         <translation>%1 %2 törölve.</translation>
+    </message>
+</context>
+<context>
+    <name>distribution</name>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="28"/>
+        <source>Repartition</source>
+        <translation>Elosztás</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="29"/>
+        <source>Repartition functions</source>
+        <translation>Elosztási függvények</translation>
     </message>
 </context>
 <context>
@@ -909,7 +978,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation>%1/%2 %3 megváltozott. Régi érték: %4, új érték: %5.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="139"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/history/editproperty.mjs" line="143"/>
         <source>%1 of %2 changed from %3 to %4.</source>
         <translation>%1/%2 megváltozott. Régi érték: %3, új érték: %4.</translation>
     </message>
@@ -1011,49 +1080,41 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="301"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="93"/>
         <source>First argument to map is not a function.</source>
         <translation>Az első leképezési argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="304"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="95"/>
         <source>Second argument to map is not an array.</source>
         <translation>A második leképezési argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="313"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="101"/>
         <source>First argument to fold is not a function.</source>
         <translation>Az első behajtási argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="316"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="103"/>
         <source>Second argument to fold is not an array.</source>
         <translation>A második behajtási argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="325"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="109"/>
         <source>First argument to filter is not a function.</source>
         <translation>Az első szűrési argumentum nem függvény.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="328"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="111"/>
         <source>Second argument to filter is not an array.</source>
         <translation>A második szűrési argumentum nem tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="337"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="123"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Az indexOf második argumentuma nem karakterlánc vagy tömb.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="345"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="117"/>
         <source>Second argument to join is not an array.</source>
         <translation>A második csatlakozási argumentum nem tömb.</translation>
     </message>
@@ -1171,26 +1232,20 @@ Kiértékelt kifejezés: %3</translation>
 <context>
     <name>gainbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="33"/>
         <source>Bode Magnitude</source>
-        <translation>Bode-nagyságrend</translation>
+        <translation type="vanished">Bode-nagyságrend</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="34"/>
         <source>Bode Magnitudes</source>
-        <translation>Bode-nagyságrendek</translation>
+        <translation type="vanished">Bode-nagyságrendek</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>low-pass</source>
-        <translation>aluláteresztő</translation>
+        <translation type="vanished">aluláteresztő</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="77"/>
         <source>high-pass</source>
-        <translation>felüláteresztő</translation>
+        <translation type="vanished">felüláteresztő</translation>
     </message>
 </context>
 <context>
@@ -1472,14 +1527,12 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>phasebode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="31"/>
         <source>Bode Phase</source>
-        <translation>Bode-fázis</translation>
+        <translation type="vanished">Bode-fázis</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="32"/>
         <source>Bode Phases</source>
-        <translation>Bode-fázisok</translation>
+        <translation type="vanished">Bode-fázisok</translation>
     </message>
 </context>
 <context>
@@ -1526,14 +1579,14 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Ordináta tartomány</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="36"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="40"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="39"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/point.mjs" line="35"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="36"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="42"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="34"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="32"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/text.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="34"/>
         <source>labelPosition</source>
@@ -1545,13 +1598,13 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Megjelenítési mód</translation>
     </message>
     <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/function.mjs" line="41"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="40"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="38"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="43"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="35"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="33"/>
         <source>labelX</source>
         <translation>Címke X helyzete</translation>
     </message>
@@ -1568,33 +1621,33 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Szaggatott vonalak megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="36"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="34"/>
         <source>om_0</source>
         <translation>ω₀</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
         <source>pass</source>
         <translation>Áteresztő</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
         <source>gain</source>
         <translation>Nagyságrend nyeresége</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/gainbode.mjs" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="41"/>
         <source>omGraduation</source>
         <translation>ω₀ érettségi megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="35"/>
         <source>phase</source>
         <translation>Fázis</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/phasebode.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="36"/>
         <source>unit</source>
         <translation>Egység használata</translation>
     </message>
@@ -1617,7 +1670,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Pontstílus</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/distribution.mjs" line="35"/>
         <source>probabilities</source>
         <translation>Valószínűségek listája</translation>
     </message>
@@ -1674,14 +1727,12 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>repartition</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="28"/>
         <source>Repartition</source>
-        <translation>Elosztás</translation>
+        <translation type="vanished">Elosztás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/repartition.mjs" line="29"/>
         <source>Repartition functions</source>
-        <translation>Elosztási függvények</translation>
+        <translation type="vanished">Elosztási függvények</translation>
     </message>
 </context>
 <context>
@@ -1718,19 +1769,15 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>sommegainsbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="30"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommegainsbode.mjs" line="31"/>
         <source>Bode Magnitudes Sum</source>
-        <translation>Bode-nagyságrendek összege</translation>
+        <translation type="vanished">Bode-nagyságrendek összege</translation>
     </message>
 </context>
 <context>
     <name>sommephasesbode</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="28"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sommephasesbode.mjs" line="29"/>
         <source>Bode Phases Sum</source>
-        <translation>Bode-fázisok összege</translation>
+        <translation type="vanished">Bode-fázisok összege</translation>
     </message>
 </context>
 <context>
