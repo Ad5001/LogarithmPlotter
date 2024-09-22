@@ -935,7 +935,7 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="227"/>
         <source>%1 cannot be executed.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 no es una función.</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="252"/>
@@ -968,7 +968,7 @@ Estos ajustes se pueden cambiar en cualquier momento desde el menú “Ajustes�
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
         <source>Parse error [position %1]: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en el análisis [posición%1 ]:%2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="125"/>
@@ -1107,7 +1107,7 @@ Deshaciendo el último cambio.</translation>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parser.mjs" line="157"/>
         <source>EOF</source>
-        <translation type="unfinished"></translation>
+        <translation>Fin de la expresión</translation>
     </message>
 </context>
 <context>
