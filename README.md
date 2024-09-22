@@ -1,4 +1,5 @@
 # ![icon](https://git.ad5001.eu/Ad5001/LogarithmPlotter/raw/branch/master/logplotter.svg) LogarithmPlotter
+
 [![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmPlotter)
 [![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/svg-badge.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
 [![On flathub](https://img.shields.io/flathub/v/eu.ad5001.LogarithmPlotter?label=on%20flathub&logo=Flathub&logoColor=white&color=4A86CF)](https://flathub.org/apps/details/eu.ad5001.LogarithmPlotter)
@@ -7,6 +8,7 @@
 2D plotter software to make Bode plots, sequences and distribution functions.
 
 ## Screenshots
+
 ![Magnitude example](https://apps.ad5001.eu/img/full/logarithmplotter.png)
 ![Phase example](https://apps.ad5001.eu/img/en/logarithmplotter/phase.png)
 ![Object settings](https://apps.ad5001.eu/img/en/logarithmplotter/object-settings.webp)
@@ -22,40 +24,51 @@ In order to test translations, you can use the `--lang=<lang code>` commandline 
 ## Install
 
 ### Generate installers:
+
 All scripts noted here can be found in the `scripts` directory.
 
 You can generate installers for LogarithmPlotter after installing all the dependencies:   
-For all builds, you will need [Python 3](https://python.org) with [poetry](https://python-poetry.org/), and `poetry install --with packaging`.    
-- Windows installer: 
-    - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an exe for LogarithmPlotter.
-    - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install the [nsis](https://pkgs.org/download/nsis) package).    
-    - Run the `package-windows.bat` script (or `package-wine.sh`if you're cross-compiling on Linux). You will find a logarithmplotter-setup.exe installer in the dist/logarithmplotter/ folder.
-- MacOS Archive creator installer: 
+For all builds, you will need [Python 3](https://python.org) with [poetry](https://python-poetry.org/), and
+`poetry install --with packaging`.
+
+- Windows installer:
+    - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an
+      exe for LogarithmPlotter.
+    - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install
+      the [nsis](https://pkgs.org/download/nsis) package).
+    - Run the `package-windows.bat` script (or `package-wine.sh`if you're cross-compiling on Linux). You will find a
+      logarithmplotter-setup.exe installer in the dist/logarithmplotter/ folder.
+- MacOS Archive creator installer:
     - Run the `build-macosx.sh` script to build an .app for LogarithmPlotter which can be found in the dist directory.
-    - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v&lt;version&gt;-setup.dmg installer in the dist/ folder.
+    - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v&lt;version&gt;-setup.dmg installer in the
+      dist/ folder.
 - Linux packages:
-    - To build and install the flatpak, you need [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) installed.
+    - To build and install the flatpak, you
+      need [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) installed.
     - To build the snap, you need [snapcraft](https://snapcraft.io) installed.
     - Run `package-linux.sh`.
 
 ## Contribute
 
-There are several ways to contribute to LogarithmPlotter. 
-- You can help to translate [the project on Hosted Weblate](https://hosted.weblate.org/engage/logarithmplotter/):
-[![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/multi-auto.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
+There are several ways you can contribute to LogarithmPlotter.
 
-- You can help the development of LogarithmPlotter. In order to get started, take a look at the [wiki](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_pages).
+- You can help to translate [the project on Hosted Weblate](https://hosted.weblate.org/engage/logarithmplotter/):
+  [![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/multi-auto.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
+
+- You can help the development of LogarithmPlotter. In order to get started, take a look at
+  the [wiki](https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_pages).
 
 ## Tests
 
 To run LogarithmPlotter's tests, follow these steps:
 
 - Python
-  - Install python3 and [poetry](https://python-poetry.org/)
-  - Run `poetry install --with test`
-  - Run `scripts/run-tests.sh`
+    - Install python3 and [poetry](https://python-poetry.org/)
+    - Run `poetry install --with test`
+    - Run `scripts/run-tests.sh`
 
 ## Legal notice
+
         LogarithmPlotter - 2D plotter software to make Bode plots, sequences and repartition functions.
         Copyright (C) 2021-2024  Ad5001 <mail@ad5001.eu>
 
@@ -72,13 +85,19 @@ To run LogarithmPlotter's tests, follow these steps:
         You should have received a copy of the GNU General Public License
         along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-Language files translations located at LogarithmPlotter/i18n are licensed under GNU GPL3.0+ and are copyrighted by their original authors. See LICENSE.md for more details:
+Language files translations located at LogarithmPlotter/i18n are licensed under GNU GPL3.0+ and are copyrighted by their
+original authors. See LICENSE.md for more details:
+
 - 🇭🇺 Hungarian translation by [Óvári](https://github.com/ovari)
 - 🇳🇴 Norwegian translation by [Allan Nordhøy](https://github.com/comradekingu)
 - 🇪🇸 Spanish translation by gallegonovato and [IngrownMink4](https://github.com/IngrownMink4)
 
 ### Libraries used
 
-LogarithmPlotter includes [expr-eval](https://github.com/silentmatt/expr-eval) a port of [ndef.parser](https://web.archive.org/web/20111023001618/http://www.undefined.ch/mparser/index.html) by Raphael Graf &lt;r@undefined.ch&gt;, ported to javascript by Matthew Crumley &lt;email@matthewcrumley.com&gt; (http://silentmatt.com/), and then to QMLJS by Ad5001.
+LogarithmPlotter includes [expr-eval](https://github.com/silentmatt/expr-eval) a port
+of [ndef.parser](https://web.archive.org/web/20111023001618/http://www.undefined.ch/mparser/index.html) by Raphael Graf
+&lt;r@undefined.ch&gt;, ported to javascript by Matthew Crumley
+&lt;email@matthewcrumley.com&gt; (http://silentmatt.com/), and then to QMLJS by Ad5001.
 
-The specific file (LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js) is licensed under the [MIT License](https://raw.githubusercontent.com/silentmatt/expr-eval/master/LICENSE.txt).
+All files in (LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/) except integration.mjs are licensed
+under the [MIT License](https://raw.githubusercontent.com/silentmatt/expr-eval/master/LICENSE.txt).
