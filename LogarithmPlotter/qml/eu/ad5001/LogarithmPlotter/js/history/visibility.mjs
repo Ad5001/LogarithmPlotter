@@ -41,13 +41,13 @@ export default class EditedVisibility extends EditedProperty {
     }
     
     getReadableString() {
-        return (this.newValue ? qsTr('%1 %2 shown.') : qsTr('%1 %2 hidden.'))
+        return (this.newValue ? qsTranslate('visibility', '%1 %2 shown.') : qsTranslate('visibility', '%1 %2 hidden.'))
             .arg(Objects.types[this.targetType].displayType())
             .arg(this.targetName)
     }
     
     getHTMLString() {
-        return (this.newValue ? qsTr('%1 %2 shown.') : qsTr('%1 %2 hidden.'))
+        return (this.newValue ? qsTranslate('visibility', '%1 %2 shown.') : qsTranslate('visibility', '%1 %2 hidden.'))
             .arg(Objects.types[this.targetType].displayType())
             .arg('<b style="font-size: 15px;">' + this.targetName + "</b>")
     }

@@ -25,8 +25,8 @@ import { ExecutableObject } from "common.mjs"
 
 export default class DistributionFunction extends ExecutableObject {
     static type(){return 'Repartition'}
-    static displayType(){return qsTr('Repartition')}
-    static displayTypeMultiple(){return qsTr('Repartition functions')}
+    static displayType(){return qsTranslate("distribution", 'Repartition')}
+    static displayTypeMultiple(){return qsTranslate("distribution", 'Repartition functions')}
     static properties() {return {
                                   'comment1':        QT_TRANSLATE_NOOP(
                                                          'comment',

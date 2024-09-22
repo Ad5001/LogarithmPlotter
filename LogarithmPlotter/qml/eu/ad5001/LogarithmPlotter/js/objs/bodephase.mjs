@@ -28,8 +28,8 @@ import { ExecutableObject } from "common.mjs"
 
 export default class BodePhase extends ExecutableObject {
     static type(){return 'Phase Bode'}
-    static displayType(){return qsTr('Bode Phase')}
-    static displayTypeMultiple(){return qsTr('Bode Phases')}
+    static displayType(){return qsTranslate("bodephase", 'Bode Phase')}
+    static displayTypeMultiple(){return qsTranslate("bodephase", 'Bode Phases')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
         [QT_TRANSLATE_NOOP('prop','phase')]:         new P.Expression(),
@@ -41,7 +41,7 @@ export default class BodePhase extends ExecutableObject {
     constructor(name = null, visible = true, color = null, labelContent = 'name + value', 
                 om_0 = '', phase = 90, unit = '°', labelPosition = 'above', labelX = 1) {
         if(name == null) name = Objects.getNewName('φ')
-        if(name === 'φ') name = 'φ₀' // φ is reserved for sum of BODE phases (Somme phases Bode).
+        if(name === 'φ') name = 'φ₀' // φ is reserved for sum of Bode phases.
         super(name, visible, color, labelContent)
         if(typeof phase == 'number' || typeof phase == 'string') phase = new Expression(phase.toString())
         this.phase = phase

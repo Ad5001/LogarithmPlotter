@@ -88,7 +88,7 @@ export class Enum extends PropertyType {
         this.type = 'Enum'
         this.values = values
         this.legacyValues = {}
-        this.translatedValues = values.map(x => qsTr(x))
+        this.translatedValues = values.map(x => qsTranslate('parameters', x))
     }
     
     toString() {
@@ -246,14 +246,14 @@ export class Dictionary extends PropertyType {
 // Common parameters for Enums
 
 Enum.Position = new Enum(
-    QT_TR_NOOP('above'),
-    QT_TR_NOOP('below'),
-    QT_TR_NOOP('left'),
-    QT_TR_NOOP('right'),
-    QT_TR_NOOP('above-left'),
-    QT_TR_NOOP('above-right'),
-    QT_TR_NOOP('below-left'),  
-    QT_TR_NOOP('below-right')
+    QT_TRANSLATE_NOOP('parameters', 'above'),
+    QT_TRANSLATE_NOOP('parameters', 'below'),
+    QT_TRANSLATE_NOOP('parameters', 'left'),
+    QT_TRANSLATE_NOOP('parameters', 'right'),
+    QT_TRANSLATE_NOOP('parameters', 'above-left'),
+    QT_TRANSLATE_NOOP('parameters', 'above-right'),
+    QT_TRANSLATE_NOOP('parameters', 'below-left'),  
+    QT_TRANSLATE_NOOP('parameters', 'below-right')
 )
 Enum.Position.legacyValues = {
     'top': 'above',
@@ -265,32 +265,32 @@ Enum.Position.legacyValues = {
 }
 
 Enum.Positioning = new Enum(
-    QT_TR_NOOP('center'),
-    QT_TR_NOOP('top'),
-    QT_TR_NOOP('bottom'),
-    QT_TR_NOOP('left'),
-    QT_TR_NOOP('right'),
-    QT_TR_NOOP('top-left'),
-    QT_TR_NOOP('top-right'),
-    QT_TR_NOOP('bottom-left'),  
-    QT_TR_NOOP('bottom-right')
+    QT_TRANSLATE_NOOP('parameters', 'center'),
+    QT_TRANSLATE_NOOP('parameters', 'top'),
+    QT_TRANSLATE_NOOP('parameters', 'bottom'),
+    QT_TRANSLATE_NOOP('parameters', 'left'),
+    QT_TRANSLATE_NOOP('parameters', 'right'),
+    QT_TRANSLATE_NOOP('parameters', 'top-left'),
+    QT_TRANSLATE_NOOP('parameters', 'top-right'),
+    QT_TRANSLATE_NOOP('parameters', 'bottom-left'),  
+    QT_TRANSLATE_NOOP('parameters', 'bottom-right')
 )
 
 Enum.FunctionDisplayType = new Enum(
-    QT_TR_NOOP('application'), 
-    QT_TR_NOOP('function')
+    QT_TRANSLATE_NOOP('parameters', 'application'), 
+    QT_TRANSLATE_NOOP('parameters', 'function')
 )
 
 Enum.BodePass = new Enum(
-    QT_TR_NOOP('high'),
-    QT_TR_NOOP('low')
+    QT_TRANSLATE_NOOP('parameters', 'high'),
+    QT_TRANSLATE_NOOP('parameters', 'low')
 )
 
 
 Enum.XCursorValuePosition = new Enum(
-    QT_TR_NOOP('Next to target'),
-    QT_TR_NOOP('With label'),
-    QT_TR_NOOP('Hidden')
+    QT_TRANSLATE_NOOP('parameters', 'Next to target'),
+    QT_TRANSLATE_NOOP('parameters', 'With label'),
+    QT_TRANSLATE_NOOP('parameters', 'Hidden')
 )
 
 /**

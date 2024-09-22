@@ -27,8 +27,8 @@ import Function from "function.mjs"
 
 export default class BodeMagnitudeSum extends ExecutableObject {
     static type(){return 'Somme gains Bode'}
-    static displayType(){return qsTr('Bode Magnitudes Sum')}
-    static displayTypeMultiple(){return qsTr('Bode Magnitudes Sum')}
+    static displayType(){return qsTranslate("bodemagnitudesum", 'Bode Magnitudes Sum')}
+    static displayTypeMultiple(){return qsTranslate("bodemagnitudesum", 'Bode Magnitudes Sum')}
     static createable() {return false}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,

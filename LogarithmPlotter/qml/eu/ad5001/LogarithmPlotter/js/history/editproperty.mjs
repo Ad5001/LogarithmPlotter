@@ -128,15 +128,19 @@ export default class EditedProperty extends Action {
     }
     
     getReadableString() {
-        return qsTr('%1 of %2 %3 changed from "%4" to "%5".')
+        return qsTranslate("editproperty", '%1 of %2 %3 changed from "%4" to "%5".')
                 .arg(this.targetPropertyReadable)
                 .arg(Objects.types[this.targetType].displayType())
                 .arg(this.targetName).arg(this.prevString).arg(this.nextString)
     }
-    
+
+    /**
+     *
+     * @return {Promise<string>|string}
+     */
     getHTMLString() {
         return new Promise(resolve => {
-            const translation = qsTr('%1 of %2 changed from %3 to %4.')
+            const translation = qsTranslate("editproperty", '%1 of %2 changed from %3 to %4.')
                                     .arg(this.targetPropertyReadable)
                                     .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
             // Check if we need to wait for LaTeX HTML to be rendered.

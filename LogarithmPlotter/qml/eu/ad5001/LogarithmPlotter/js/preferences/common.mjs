@@ -22,7 +22,6 @@ class Setting {
     constructor(type, name, nameInConfig, icon) {
         this.type = type
         this.name = name
-        this.displayName = qsTr(name)
         this.nameInConfig = nameInConfig
         this.icon = icon
     }

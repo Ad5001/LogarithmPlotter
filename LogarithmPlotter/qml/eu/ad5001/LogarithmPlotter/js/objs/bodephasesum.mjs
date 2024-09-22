@@ -25,8 +25,8 @@ import { ExecutableObject } from "common.mjs"
 
 export default class BodePhaseSum extends ExecutableObject {
     static type(){return 'Somme phases Bode'}
-    static displayType(){return qsTr('Bode Phases Sum')}
-    static displayTypeMultiple(){return qsTr('Bode Phases Sum')}
+    static displayType(){return qsTranslate("bodephasesum", 'Bode Phases Sum')}
+    static displayTypeMultiple(){return qsTranslate("bodephasesum", 'Bode Phases Sum')}
     static createable() {return false}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','labelPosition')]: P.Enum.Position,

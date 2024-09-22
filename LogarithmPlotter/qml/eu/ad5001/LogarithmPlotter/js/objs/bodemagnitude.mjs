@@ -30,8 +30,8 @@ import { CreateNewObject } from "../historylib.mjs"
 
 export default class BodeMagnitude extends ExecutableObject {
     static type(){return 'Gain Bode'}
-    static displayType(){return qsTr('Bode Magnitude')}
-    static displayTypeMultiple(){return qsTr('Bode Magnitudes')}
+    static displayType(){return qsTranslate("bodemagnitude", 'Bode Magnitude')}
+    static displayTypeMultiple(){return qsTranslate("bodemagnitude", 'Bode Magnitudes')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','om_0')]:          new P.ObjectType('Point'),
         [QT_TRANSLATE_NOOP('prop','pass')]:          P.Enum.BodePass,
@@ -69,12 +69,12 @@ export default class BodeMagnitude extends ExecutableObject {
     }
     
     getReadableString() {
-        let pass = this.pass === "low" ? qsTr("low-pass") : qsTr("high-pass");
+        let pass = this.pass === "low" ? qsTranslate("bodemagnitude", "low-pass") : qsTranslate("bodemagnitude", "high-pass");
         return `${this.name}: ${pass}; ${this.om_0.name} = ${this.om_0.x}\n   ${' '.repeat(this.name.length)}${this.gain.toString(true)} dB/dec`
     }
     
     getLatexString() {
-        let pass = this.pass === "low" ? qsTr("low-pass") : qsTr("high-pass");
+        let pass = this.pass === "low" ? qsTranslate("bodemagnitude", "low-pass") : qsTranslate("bodemagnitude", "high-pass");
         return `\\mathrm{${Latex.variable(this.name)}:}\\begin{array}{l}
         \\textsf{${pass}};${Latex.variable(this.om_0.name)} = ${this.om_0.x.latexMarkup} \\\\
         ${this.gain.latexMarkup}\\textsf{ dB/dec}

@@ -37,7 +37,7 @@ export default class ColorChanged extends EditedProperty {
     color(darkVer=false){return darkVer ? 'purple' : 'plum'}
     
     getReadableString() {
-        return qsTr("%1 %2's color changed from %3 to %4.")
+        return qsTranslate("color", "%1 %2's color changed from %3 to %4.")
                 .arg(Objects.types[this.targetType].displayType()).arg(this.targetName)
                 .arg(this.previousValue).arg(this.newValue)
     }
@@ -47,7 +47,7 @@ export default class ColorChanged extends EditedProperty {
     }
     
     getHTMLString() {
-        return qsTr("%1 %2's color changed from %3 to %4.")
+        return qsTranslate("color", "%1 %2's color changed from %3 to %4.")
                 .arg(Objects.types[this.targetType].displayType())
                 .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + "&nbsp;</b>")
                 .arg(this.formatColor(this.previousValue)).arg(this.formatColor(this.newValue))

@@ -26,8 +26,8 @@ import Latex from "../math/latex.mjs"
 
 export default class Function extends ExecutableObject {
     static type(){return 'Function'}
-    static displayType(){return qsTr('Function')}
-    static displayTypeMultiple(){return qsTr('Functions')}
+    static displayType(){return qsTranslate("function", 'Function')}
+    static displayTypeMultiple(){return qsTranslate("function", 'Functions')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','expression')]:         new P.Expression('x'),
         [QT_TRANSLATE_NOOP('prop','definitionDomain')]:   'Domain',

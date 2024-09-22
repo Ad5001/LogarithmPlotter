@@ -26,8 +26,8 @@ import { DrawableObject } from "common.mjs"
 
 export default class Text extends DrawableObject  {
     static type(){return 'Text'}
-    static displayType(){return qsTr('Text')}
-    static displayTypeMultiple(){return qsTr('Texts')}
+    static displayType(){return qsTranslate("text", 'Text')}
+    static displayTypeMultiple(){return qsTranslate("text", 'Texts')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:             new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','y')]:             new P.Expression(),

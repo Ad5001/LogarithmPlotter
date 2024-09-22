@@ -84,14 +84,14 @@ export default class EditedPosition extends Action {
     }
     
     getReadableString() {
-        return qsTr('Position of %1 %2 set from "%3" to "%4".')
+        return qsTranslate("position", 'Position of %1 %2 set from "%3" to "%4".')
                 .arg(Objects.types[this.targetType].displayType())
                 .arg(this.targetName).arg(this.prevString).arg(this.nextString)
     }
     
     getHTMLString() {
         return new Promise(resolve => {
-            const translation = qsTr('Position of %1 set from %2 to %3.')
+            const translation = qsTranslate("position", 'Position of %1 set from %2 to %3.')
                                     .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
             // Check if we need to wait for LaTeX HTML to be rendered.
             if(this.prevHTML !== undefined && this.nextHTML !== undefined)

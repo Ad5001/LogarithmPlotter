@@ -26,8 +26,8 @@ import { DrawableObject } from "common.mjs"
 
 export default class XCursor extends DrawableObject {
     static type(){return 'X Cursor'}
-    static displayType(){return qsTr('X Cursor')}
-    static displayTypeMultiple(){return qsTr('X Cursors')}
+    static displayType(){return qsTranslate("xcursor", 'X Cursor')}
+    static displayTypeMultiple(){return qsTranslate("xcursor", 'X Cursors')}
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','x')]:                   new P.Expression(),
         [QT_TRANSLATE_NOOP('prop','targetElement')]:       new P.ObjectType('ExecutableObject', true),

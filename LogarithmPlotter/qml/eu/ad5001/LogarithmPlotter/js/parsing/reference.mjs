@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import * as Polyfill from "polyfill.mjs"
+import * as Polyfill from "../lib/expr-eval/polyfill.mjs"
 
 export const CONSTANTS = {
     "π": Math.PI,

@@ -46,7 +46,7 @@ Popup {
         
         CheckBox {
             height: 20
-            text: setting.displayName
+            text: setting.name
             checked: setting.value()
             onClicked: setting.set(this.checked)
         }
@@ -58,7 +58,7 @@ Popup {
         // Setting when selecting data from an enum, or an object of a certain type.
         Setting.ComboBoxSetting {
             height: 30
-            label: setting.displayName
+            label: setting.name
             icon: `settings/${setting.icon}.svg`
             currentIndex: setting.value()
             model: setting.values
@@ -71,7 +71,7 @@ Popup {
         
         Setting.ComboBoxSetting {
             height: 30
-            label: setting.displayName
+            label: setting.name
             icon: `settings/${setting.icon}.svg`
             editable: true
             currentIndex: find(setting.value())
@@ -94,7 +94,7 @@ Popup {
         Setting.TextSetting {
             height: 30
             isDouble: true
-            label: setting.displayName
+            label: setting.name
             min: setting.min()
             icon: `settings/${setting.icon}.svg`
             value: setting.value()
@@ -114,12 +114,12 @@ Popup {
         
         Setting.ExpressionEditor {
             height: 30
-            label: setting.displayName
+            label: setting.name
             icon: `settings/${setting.icon}.svg`
             defValue: Utils.simplifyExpression(setting.value())
             variables: setting.variables
             allowGraphObjects: false
-            property string propertyName: setting.displayName
+            property string propertyName: setting.name
             onChanged: function(newExpr) {
                 try {
                     setting.set(newExpr)

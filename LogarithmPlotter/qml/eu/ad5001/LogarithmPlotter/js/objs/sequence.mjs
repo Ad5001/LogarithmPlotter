@@ -27,8 +27,8 @@ import Function from "function.mjs"
 
 export default class Sequence extends ExecutableObject {
     static type(){return 'Sequence'}
-    static displayType(){return qsTr('Sequence')}
-    static displayTypeMultiple(){return qsTr('Sequences')}
+    static displayType(){return qsTranslate("sequence", 'Sequence')}
+    static displayTypeMultiple(){return qsTranslate("sequence", 'Sequences')}
     
     static properties() {return {
         [QT_TRANSLATE_NOOP('prop','drawPoints')]:        'boolean',
