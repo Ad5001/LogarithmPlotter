@@ -920,62 +920,60 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
 <context>
     <name>error</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="125"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="290"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="96"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="241"/>
         <source>Cannot find property %1 of object %2.</source>
         <translation>Impossible de trouver la propriété %1 de l&apos;objet %2.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="227"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="204"/>
         <source>Undefined variable %1.</source>
         <translation>La variable %1 n&apos;est pas définie.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="248"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="225"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
         <translation>Pour être utilisé comme fonction, l&apos;objet %1 nécessite au moins un argument.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="250"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="227"/>
         <source>%1 cannot be executed.</source>
         <translation>%1 n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="301"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="381"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="437"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="339"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="384"/>
         <source>Invalid expression.</source>
         <translation>Formule invalide.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="305"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="256"/>
         <source>Invalid expression (parity).</source>
         <translation>Formule invalide (parité).</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="626"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="141"/>
         <source>Unknown character &quot;%1&quot;.</source>
         <translation>Le caractère &quot;%1&quot; est inconnu.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="820"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="826"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="542"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="548"/>
         <source>Illegal escape sequence: %1.</source>
         <translation>Séquence d&apos;échappement illégale : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1028"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1082"/>
         <source>Parse error [%1:%2]: %3</source>
-        <translation>Erreur de syntaxe [%1:%2] : %3</translation>
+        <translation type="vanished">Erreur de syntaxe [%1:%2] : %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1084"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="125"/>
         <source>Expected %1</source>
         <translation>%1 attendu</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1111"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="155"/>
         <source>Unexpected %1</source>
         <translation>%1 inattendu</translation>
     </message>
@@ -988,76 +986,82 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
         <translation type="vanished">Une variable est attendue pour l&apos;affectation.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
+        <source>Parse error [position %1]: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="380"/>
         <source>Unexpected &quot;.&quot;: member access is not permitted</source>
         <translation>&quot;.&quot; inattendu : l&apos;accès aux propriétés n&apos;est pas autorisé</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1322"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="387"/>
         <source>Unexpected &quot;[]&quot;: arrays are disabled.</source>
         <translation>&quot;[]&quot; inattendu : les tableaux sont désactivés.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1329"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="394"/>
         <source>Unexpected symbol: %1.</source>
         <translation>Symbole inconnu : %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1594"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1604"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="285"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="295"/>
         <source>Function %1 must have at least one argument.</source>
         <translation>La fonction %1 nécessite au moins un argument.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1610"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="301"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="93"/>
         <source>First argument to map is not a function.</source>
         <translation>Le premier argument de map n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1613"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="304"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="95"/>
         <source>Second argument to map is not an array.</source>
         <translation>Le deuxième argument de map n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1622"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="313"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="101"/>
         <source>First argument to fold is not a function.</source>
         <translation>Le premier argument de fold n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1625"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="316"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="103"/>
         <source>Second argument to fold is not an array.</source>
         <translation>Le deuxième argument de fold n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1634"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="325"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="109"/>
         <source>First argument to filter is not a function.</source>
         <translation>Le premier argument de filter n&apos;est pas une fonction.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1637"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="328"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="111"/>
         <source>Second argument to filter is not an array.</source>
         <translation>Le deuxième argument de filter n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1646"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="337"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="123"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Le deuxième argument de indexOf n&apos;est ni chaîne de caractères ni un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1654"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="345"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="117"/>
         <source>Second argument to join is not an array.</source>
         <translation>Le deuxième argument de join n&apos;est pas un tableau.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1782"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parser.mjs" line="157"/>
         <source>EOF</source>
         <translation>Fin de la formule</translation>
     </message>
@@ -1775,37 +1779,37 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="73"/>
         <source>Usage: %1</source>
         <translation>Emploi : %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="105"/>
         <source>Usage: %1 or
 %2</source>
         <translation>Emploi : %1 ou
 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : Objet exécutable&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integral(&lt;de : nombre&gt;, &lt;à : nombre&gt;, &lt;f : fonction chaîne&gt;, &lt;variable&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f : Objet exécutable&gt;, &lt;x : nombre&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f : fonction chaîne&gt;, &lt;variable&gt;, &lt;x : nombre&gt;)</translation>
     </message>

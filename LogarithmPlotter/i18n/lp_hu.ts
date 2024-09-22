@@ -917,62 +917,60 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>error</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="125"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="290"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="96"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="241"/>
         <source>Cannot find property %1 of object %2.</source>
         <translation>A(z) %2 objektum %1 tulajdonsága nem található.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="227"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="204"/>
         <source>Undefined variable %1.</source>
         <translation>A(z) %1 változó nincs meghatározva.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="248"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="225"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
         <translation>A végrehajtáshoz a(z) %1 objektumnak legalább egy argumentummal kell rendelkeznie.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="250"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="227"/>
         <source>%1 cannot be executed.</source>
         <translation>A(z) %1 nem függvény.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="301"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="381"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="437"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="339"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="384"/>
         <source>Invalid expression.</source>
         <translation>Érvénytelen kifejezés.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="305"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expression.mjs" line="256"/>
         <source>Invalid expression (parity).</source>
         <translation>Érvénytelen kifejezés (paritás).</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="626"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="141"/>
         <source>Unknown character &quot;%1&quot;.</source>
         <translation>Ismeretlen karakter „%1”.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="820"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="826"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="542"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="548"/>
         <source>Illegal escape sequence: %1.</source>
         <translation>Érvénytelen kilépési sorozat: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1028"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1082"/>
         <source>Parse error [%1:%2]: %3</source>
-        <translation>Elemzési hiba [%1:%2]: %3</translation>
+        <translation type="vanished">Elemzési hiba [%1:%2]: %3</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1084"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="125"/>
         <source>Expected %1</source>
         <translation>Várható %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1111"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="155"/>
         <source>Unexpected %1</source>
         <translation>Váratlan %1</translation>
     </message>
@@ -985,76 +983,82 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation type="vanished">A hozzárendeléshez várt változó.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1315"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
+        <source>Parse error [position %1]: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="380"/>
         <source>Unexpected &quot;.&quot;: member access is not permitted</source>
         <translation>Váratlan „.”: a tagok hozzáférése nem engedélyezett</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1322"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="387"/>
         <source>Unexpected &quot;[]&quot;: arrays are disabled.</source>
         <translation>Váratlan „[]”: a tömbök le vannak tiltva.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1329"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="394"/>
         <source>Unexpected symbol: %1.</source>
         <translation>Váratlan szimbólum: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1594"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1604"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="285"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="295"/>
         <source>Function %1 must have at least one argument.</source>
         <translation>A(z) %1 függvénynek legalább egy argumentumnak kell lennie.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1610"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="301"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="93"/>
         <source>First argument to map is not a function.</source>
         <translation>Az első leképezési argumentum nem függvény.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1613"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="304"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="95"/>
         <source>Second argument to map is not an array.</source>
         <translation>A második leképezési argumentum nem tömb.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1622"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="313"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="101"/>
         <source>First argument to fold is not a function.</source>
         <translation>Az első behajtási argumentum nem függvény.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1625"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="316"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="103"/>
         <source>Second argument to fold is not an array.</source>
         <translation>A második behajtási argumentum nem tömb.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1634"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="325"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="109"/>
         <source>First argument to filter is not a function.</source>
         <translation>Az első szűrési argumentum nem függvény.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1637"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="328"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="111"/>
         <source>Second argument to filter is not an array.</source>
         <translation>A második szűrési argumentum nem tömb.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1646"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="337"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="123"/>
         <source>Second argument to indexOf is not a string or array.</source>
         <translation>Az indexOf második argumentuma nem karakterlánc vagy tömb.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1654"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/polyfill.mjs" line="345"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parsing/polyfill.mjs" line="117"/>
         <source>Second argument to join is not an array.</source>
         <translation>A második csatlakozási argumentum nem tömb.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/expr-eval.js" line="1782"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parser.mjs" line="157"/>
         <source>EOF</source>
         <translation>Kifejezés vége</translation>
     </message>
@@ -1768,37 +1772,37 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="69"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="73"/>
         <source>Usage: %1</source>
         <translation>Használat: %1</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="79"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="95"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="108"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="105"/>
         <source>Usage: %1 or
 %2</source>
         <translation>Használat: %1 vagy
 %2</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="91"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="103"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.js" line="104"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;, &lt;x: szám&gt;)</translation>
     </message>
