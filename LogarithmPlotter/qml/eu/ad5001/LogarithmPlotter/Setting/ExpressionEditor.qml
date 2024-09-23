@@ -202,7 +202,9 @@ Item {
         title: qsTranslate("expression", "LogarithmPlotter - Parsing error")
         text: ""
         function showDialog(propName, propValue, error) {
-            text = qsTranslate("expression", "Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3").arg(propName).arg(error).arg(propValue)
+            text = qsTranslate("expression", "Error while parsing expression for property %1:\n%2\n\nEvaluated expression: %3")
+                    .arg(qsTranslate('prop', propName))
+                    .arg(error).arg(propValue)
             open()
         }
     }
