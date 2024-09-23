@@ -19,14 +19,14 @@
 import QtQuick
 import QtQml
 import QtQuick.Window
-import "../js/historylib.mjs" as HistoryLib
+import "../js/history/index.mjs" as HistoryLib
 
 /*!
     \qmltype History
     \inqmlmodule eu.ad5001.LogarithmPlotter.History
     \brief QObject holding persistantly for undo & redo stacks.
         
-    \sa HistoryBrowser, historylib
+    \sa HistoryBrowser, HistoryLib
 */
 Item {
     // Using a QtObject is necessary in order to have proper property propagation in QML
@@ -107,7 +107,7 @@ Item {
     
     /*!
         \qmlmethod void History::addToHistory(var action)
-        Adds an instance of historylib.Action to history.
+        Adds an instance of HistoryLib.Action to history.
     */
     function addToHistory(action) {
         if(action instanceof HistoryLib.Action) {
@@ -124,7 +124,7 @@ Item {
     
     /*!
         \qmlmethod void History::undo(bool updateObjectList = true)
-        Undoes the historylib.Action at the top of the undo stack and pushes it to the top of the redo stack.
+        Undoes the HistoryLib.Action at the top of the undo stack and pushes it to the top of the redo stack.
         By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
     function undo(updateObjectList = true) {
@@ -142,7 +142,7 @@ Item {
     
     /*!
         \qmlmethod void History::redo(bool updateObjectList = true)
-        Redoes the historylib.Action at the top of the redo stack and pushes it to the top of the undo stack.
+        Redoes the HistoryLib.Action at the top of the redo stack and pushes it to the top of the undo stack.
         By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
     function redo(updateObjectList = true) {
@@ -160,7 +160,7 @@ Item {
     
     /*!
         \qmlmethod void History::undoMultipleDefered(int toUndoCount)
-        Undoes several historylib.Action at the top of the undo stack and pushes them to the top of the redo stack.
+        Undoes several HistoryLib.Action at the top of the undo stack and pushes them to the top of the redo stack.
         It undoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
     */
     function undoMultipleDefered(toUndoCount) {
@@ -173,7 +173,7 @@ Item {
     
     /*!
         \qmlmethod void History::redoMultipleDefered(int toRedoCount)
-        Redoes several historylib.Action at the top of the redo stack and pushes them to the top of the undo stack.
+        Redoes several HistoryLib.Action at the top of the redo stack and pushes them to the top of the undo stack.
         It redoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
     */
     function redoMultipleDefered(toRedoCount) {

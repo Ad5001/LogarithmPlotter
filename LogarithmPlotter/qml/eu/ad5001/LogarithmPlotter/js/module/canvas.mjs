@@ -18,7 +18,7 @@
 
 import { Module } from "./common.mjs"
 import { textsup } from "../utils.mjs"
-import { Expression } from "../mathlib.mjs"
+import { Expression } from "../math/index.mjs"
 import Latex from "./latex.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"

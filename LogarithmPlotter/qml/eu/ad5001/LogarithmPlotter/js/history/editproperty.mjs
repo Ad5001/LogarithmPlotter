@@ -18,7 +18,7 @@
 
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
-import * as MathLib from "../mathlib.mjs"
+import * as MathLib from "../math/index.mjs"
 import { Action } from "common.mjs"
 import { DrawableObject } from "../objs/common.mjs"
 

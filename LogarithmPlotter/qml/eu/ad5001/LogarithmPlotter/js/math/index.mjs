@@ -17,9 +17,9 @@
  */
 
 
-import * as Expr from "math/expression.mjs"
-import * as Seq from "math/sequence.mjs"
-import * as Dom from "math/domain.mjs"
+import * as Expr from "./expression.mjs"
+import * as Seq from "./sequence.mjs"
+import * as Dom from "./domain.mjs"
 
 
 export const Expression = Expr.Expression

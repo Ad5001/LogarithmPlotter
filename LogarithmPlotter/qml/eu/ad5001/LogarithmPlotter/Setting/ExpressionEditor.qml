@@ -20,7 +20,7 @@ import QtQuick.Controls
 import QtQuick
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
-import "../js/mathlib.mjs" as MathLib
+import "../js/math/index.mjs" as MathLib
 import "../js/utils.mjs" as Utils
 import "../js/parsing/parsing.mjs" as Parsing
 

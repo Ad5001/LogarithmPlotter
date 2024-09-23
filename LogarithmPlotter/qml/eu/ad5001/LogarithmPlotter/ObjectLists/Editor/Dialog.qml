@@ -22,9 +22,9 @@ import QtQuick.Dialogs as D
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
-import "../../js/historylib.mjs" as HistoryLib
+import "../../js/history/index.mjs" as HistoryLib
 import "../../js/utils.mjs" as Utils
-import "../../js/mathlib.mjs" as MathLib
+import "../../js/math/index.mjs" as MathLib
 
 /*!
     \qmltype Dialog

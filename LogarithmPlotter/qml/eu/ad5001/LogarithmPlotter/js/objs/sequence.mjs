@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Sequence as MathSequence, Domain } from "../mathlib.mjs"
+import { Sequence as MathSequence, Domain } from "../math/index.mjs"
 import * as P from "../parameters.mjs"
 import Latex from "../module/latex.mjs"
 import Objects from "../module/objects.mjs"

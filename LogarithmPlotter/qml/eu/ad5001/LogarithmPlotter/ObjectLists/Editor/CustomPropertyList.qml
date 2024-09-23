@@ -20,9 +20,9 @@ import QtQuick
 import QtQuick.Controls
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../../js/historylib.mjs" as HistoryLib
+import "../../js/history/index.mjs" as HistoryLib
 import "../../js/utils.mjs" as Utils
-import "../../js/mathlib.mjs" as MathLib
+import "../../js/math/index.mjs" as MathLib
 
 /*!
     \qmltype CustomPropertyList

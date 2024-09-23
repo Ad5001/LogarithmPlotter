@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {parseDomain, Expression as Expr, Domain} from "./mathlib.mjs"
+import {parseDomain, Expression as Expr, Domain} from "./math/index.mjs"
 import Objects from "./module/objects.mjs"
 
 const NONE = class Empty {}

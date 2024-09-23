@@ -18,7 +18,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import "../js/historylib.mjs" as HistoryLib
+import "../js/history/index.mjs" as HistoryLib
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 

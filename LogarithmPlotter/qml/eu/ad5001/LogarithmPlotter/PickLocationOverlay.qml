@@ -19,8 +19,8 @@
 import QtQuick
 import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "js/mathlib.mjs" as MathLib
-import "js/historylib.mjs" as HistoryLib
+import "js/math/index.mjs" as MathLib
+import "js/history/index.mjs" as HistoryLib
 
 /*!
     \qmltype PickLocationOverlay

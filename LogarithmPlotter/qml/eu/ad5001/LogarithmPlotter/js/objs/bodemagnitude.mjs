@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { parseDomain, executeExpression, Expression, EmptySet, Domain } from "../mathlib.mjs"
-import { CreateNewObject } from "../historylib.mjs"
+import { parseDomain, executeExpression, Expression, EmptySet, Domain } from "../math/index.mjs"
+import { CreateNewObject } from "../history/index.mjs"
 import * as P from "../parameters.mjs"
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"

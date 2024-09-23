@@ -16,8 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { executeExpression, Expression } from "../mathlib.mjs"
-import { CreateNewObject } from "../historylib.mjs"
+import { executeExpression, Expression } from "../math/index.mjs"
+import { CreateNewObject } from "../history/index.mjs"
 import * as P from "../parameters.mjs"
 import Objects from "../module/objects.mjs"
 import History from "../module/history.mjs"

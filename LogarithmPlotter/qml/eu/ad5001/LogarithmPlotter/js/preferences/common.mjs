@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Expression} from "../mathlib.mjs"
+import {Expression} from "../math/index.mjs"
 
 class Setting {
     constructor(type, name, nameInConfig, icon) {

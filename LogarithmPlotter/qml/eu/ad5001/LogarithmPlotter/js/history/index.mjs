@@ -19,14 +19,14 @@
 // This library helps containing actions to be undone or redone (in other words, editing history)
 // Each type of event is repertoried as an action that can be listed for everything that's undoable.
 
-import { Action as A } from "history/common.mjs"
-import Create from "history/create.mjs"
-import Delete from "history/delete.mjs"
-import EP from "history/editproperty.mjs"
-import Pos from "history/position.mjs"
-import V from "history/visibility.mjs"
-import Name from "history/name.mjs"
-import Color from "history/color.mjs"
+import { Action as A } from "./common.mjs"
+import Create from "./create.mjs"
+import Delete from "./delete.mjs"
+import EP from "./editproperty.mjs"
+import Pos from "./position.mjs"
+import V from "./visibility.mjs"
+import Name from "./name.mjs"
+import Color from "./color.mjs"
 
 
 export const Action = A
