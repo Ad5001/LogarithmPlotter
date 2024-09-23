@@ -1840,17 +1840,17 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
+        <translation type="unfinished">integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation>derivada(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
+        <translation type="unfinished">derivada(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
