@@ -39,7 +39,3 @@ if not is_release and which('git') is not None:
             # Date cannot be parsed, not git root?
             pass
 
-if __name__ == "__main__":
-    from .logarithmplotter import run
-
-    run()
