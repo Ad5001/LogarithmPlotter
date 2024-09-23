@@ -1836,17 +1836,17 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
+        <translation type="unfinished">integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
+        <translation>integral(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation>derivált(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
+        <translation type="unfinished">derivative(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
