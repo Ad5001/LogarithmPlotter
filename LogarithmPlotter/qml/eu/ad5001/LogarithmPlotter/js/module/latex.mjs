@@ -58,10 +58,7 @@ class LatexRenderResult {
 
 class LatexAPI extends Module {
     constructor() {
-        super("Latex", [
-            /** @type {ExprParserAPI} */
-            Modules.ExprParser
-        ])
+        super("Latex")
         /**
          * true if latex has been enabled by the user, false otherwise.
          */

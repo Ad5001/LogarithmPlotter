@@ -36,10 +36,7 @@ const evalVariables = {
 
 export class ExprParserAPI extends Module {
     constructor() {
-        super("ExprParser", [
-            /** @type {ObjectsAPI} */
-            Modules.Objects
-        ])
+        super("ExprParser")
         this.currentVars = {}
         this._parser = new Parser()
 

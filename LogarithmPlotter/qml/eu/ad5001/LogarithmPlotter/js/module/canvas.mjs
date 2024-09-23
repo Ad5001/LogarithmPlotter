@@ -24,23 +24,53 @@ import Objects from "./objects.mjs"
 import History from "./history.mjs"
 
 
+/**
+ * @typedef {Settings} Canvas
+ * @property {object} imageLoaders
+ * @property {function()} requestPaint
+ * @property {function(string)} getContext
+ * @property {function(rect)} markDirty
+ * @property {function(string)} loadImage
+ */
+
 class CanvasAPI extends Module {
-
     constructor() {
-        super('Canvas', [
-            Modules.Objects,
-            Modules.History
-        ])
+        super("Canvas", {
+            canvas: {
+                width: "number",
+                height: "number",
+                xmin: "number",
+                ymax: "number",
+                xzoom: "number",
+                yzoom: "number",
+                xaxisstep: "number",
+                yaxisstep: "number",
+                xlabel: "string",
+                ylabel: "string",
+                linewidth: "number",
+                textsize: "number",
+                logscalex: "boolean",
+                showxgrad: "boolean",
+                showygrad: "boolean",
+                imageLoaders: "object",
+                getContext: Function,
+                markDirty: Function,
+                loadImage: Function,
+                requestPaint: Function,
+            },
+            drawingErrorDialog: {
+                showDialog: Function,
+            }
+        })
 
-        /** @type {HTMLCanvasElement} */
+        /** @type {Canvas} */
         this._canvas = null
 
         /** @type {CanvasRenderingContext2D} */
         this._ctx = null
 
         /**
-         * @type {Object}
-         * @property {function(string, string, string)} showDialog
+         * @type {{showDialog(string, string, string)}}
          * @private
          */
         this._drawingErrorDialog = null
@@ -62,86 +92,132 @@ class CanvasAPI extends Module {
         }
     }
 
-    initialize(canvasObject, drawingErrorDialog) {
-        this._canvas = canvasObject
+    /**
+     * Initialize the module.
+     * @param {Canvas} canvas
+     * @param {{showDialog(string, string, string)}} drawingErrorDialog
+     */
+    initialize({ canvas, drawingErrorDialog }) {
+        super.initialize({ canvas, drawingErrorDialog })
+        this._canvas = canvas
         this._drawingErrorDialog = drawingErrorDialog
     }
 
-    get width() { return this._canvas.width }
+    get width() {
+        if(!this.initialized) throw new Error("Attempting width before initialize!")
+        return this._canvas.width
+    }
 
-    get height() { return this._canvas.height }
+    get height() {
+        if(!this.initialized) throw new Error("Attempting height before initialize!")
+        return this._canvas.height
+    }
 
     /**
      * Minimum x of the diagram, provided from settings.
      * @returns {number}
      */
-    get xmin() { return this._canvas.xmin }
+    get xmin() {
+        if(!this.initialized) throw new Error("Attempting xmin before initialize!")
+        return this._canvas.xmin
+    }
 
     /**
      * Zoom on the x-axis of the diagram, provided from settings.
      * @returns {number}
      */
-    get xzoom() { return this._canvas.xzoom }
+    get xzoom() {
+        if(!this.initialized) throw new Error("Attempting xzoom before initialize!")
+        return this._canvas.xzoom
+    }
 
     /**
      * Maximum y of the diagram, provided from settings.
      * @returns {number}
      */
-    get ymax() { return this._canvas.ymax }
+    get ymax() {
+        if(!this.initialized) throw new Error("Attempting ymax before initialize!")
+        return this._canvas.ymax
+    }
 
     /**
      * Zoom on the y-axis of the diagram, provided from settings.
      * @returns {number}
      */
-    get yzoom() { return this._canvas.yzoom }
+    get yzoom() {
+        if(!this.initialized) throw new Error("Attempting yzoom before initialize!")
+        return this._canvas.yzoom
+    }
 
     /**
      * Label used on the x-axis, provided from settings.
      * @returns {string}
      */
-    get xlabel() { return this._canvas.xlabel }
+    get xlabel() {
+        if(!this.initialized) throw new Error("Attempting xlabel before initialize!")
+        return this._canvas.xlabel
+    }
 
     /**
      * Label used on the y-axis, provided from settings.
      * @returns {string}
      */
-    get ylabel() { return this._canvas.ylabel }
+    get ylabel() {
+        if(!this.initialized) throw new Error("Attempting ylabel before initialize!")
+        return this._canvas.ylabel
+    }
 
     /**
      * Width of lines that will be drawn into the canvas, provided from settings.
      * @returns {number}
      */
-    get linewidth() { return this._canvas.linewidth }
+    get linewidth() {
+        if(!this.initialized) throw new Error("Attempting linewidth before initialize!")
+        return this._canvas.linewidth
+    }
 
     /**
      * Font size of the text that will be drawn into the canvas, provided from settings.
      * @returns {number}
      */
-    get textsize() { return this._canvas.textsize }
+    get textsize() {
+        if(!this.initialized) throw new Error("Attempting textsize before initialize!")
+        return this._canvas.textsize
+    }
 
     /**
      * True if the canvas should be in logarithmic mode, false otherwise.
      * @returns {boolean}
      */
-    get logscalex() { return this._canvas.logscalex }
+    get logscalex() {
+        if(!this.initialized) throw new Error("Attempting logscalex before initialize!")
+        return this._canvas.logscalex
+    }
 
     /**
      * True if the x graduation should be shown, false otherwise.
      *  @returns {boolean}
      */
-    get showxgrad() { return this._canvas.showxgrad }
+    get showxgrad() {
+        if(!this.initialized) throw new Error("Attempting showxgrad before initialize!")
+        return this._canvas.showxgrad
+    }
 
     /**
      * True if the y graduation should be shown, false otherwise.
      * @returns {boolean}
      */
-    get showygrad() { return this._canvas.showygrad }
+    get showygrad() {
+        if(!this.initialized) throw new Error("Attempting showygrad before initialize!")
+        return this._canvas.showygrad
+    }
 
     /**
      * Max power of the logarithmic scaled on the x axis in logarithmic mode.
      * @returns {number}
      */
     get maxgradx() {
+        if(!this.initialized) throw new Error("Attempting maxgradx before initialize!")
         return Math.min(
             309, // 10e309 = Infinity (beyond this land be dragons)
             Math.max(
@@ -156,6 +232,7 @@ class CanvasAPI extends Module {
     //
 
     requestPaint() {
+        if(!this.initialized) throw new Error("Attempting requestPaint before initialize!")
         this._canvas.requestPaint()
     }
 
@@ -163,6 +240,7 @@ class CanvasAPI extends Module {
      * Redraws the entire canvas
      */
     redraw() {
+        if(!this.initialized) throw new Error("Attempting redraw before initialize!")
         this._ctx = this._canvas.getContext("2d")
         this._computeAxes()
         this._reset()
@@ -171,7 +249,7 @@ class CanvasAPI extends Module {
         this._drawLabels()
         this._ctx.lineWidth = this.linewidth
         for(let objType in Objects.currentObjects) {
-            for(let obj of Objects.currentObjects[objType]){
+            for(let obj of Objects.currentObjects[objType]) {
                 this._ctx.strokeStyle = obj.color
                 this._ctx.fillStyle = obj.color
                 if(obj.visible)
@@ -202,12 +280,12 @@ class CanvasAPI extends Module {
             x: {
                 expression: exprX,
                 value: x1,
-                maxDraw: Math.ceil(Math.max(Math.abs(this.xmin), Math.abs(this.px2x(this.width)))/x1)
+                maxDraw: Math.ceil(Math.max(Math.abs(this.xmin), Math.abs(this.px2x(this.width))) / x1)
             },
             y: {
                 expression: exprY,
                 value: y1,
-                maxDraw: Math.ceil(Math.max(Math.abs(this.ymax), Math.abs(this.px2y(this.height)))/y1)
+                maxDraw: Math.ceil(Math.max(Math.abs(this.ymax), Math.abs(this.px2y(this.height))) / y1)
             }
         }
     }
@@ -216,14 +294,14 @@ class CanvasAPI extends Module {
      * Resets the canvas to a blank one with default setting.
      * @private
      */
-    _reset(){
+    _reset() {
         // Reset
         this._ctx.fillStyle = "#FFFFFF"
         this._ctx.strokeStyle = "#000000"
         this._ctx.font = `${this.textsize}px sans-serif`
-        this._ctx.fillRect(0,0,this.width,this.height)
+        this._ctx.fillRect(0, 0, this.width, this.height)
     }
-    
+
     /**
      * Draws the grid.
      * @private
@@ -233,18 +311,18 @@ class CanvasAPI extends Module {
         if(this.logscalex) {
             for(let xpow = -this.maxgradx; xpow <= this.maxgradx; xpow++) {
                 for(let xmulti = 1; xmulti < 10; xmulti++) {
-                    this.drawXLine(Math.pow(10, xpow)*xmulti)
+                    this.drawXLine(Math.pow(10, xpow) * xmulti)
                 }
             }
         } else {
-            for(let x = 0; x < this.axesSteps.x.maxDraw; x+=1) {
-                this.drawXLine(x*this.axesSteps.x.value)
-                this.drawXLine(-x*this.axesSteps.x.value)
+            for(let x = 0; x < this.axesSteps.x.maxDraw; x += 1) {
+                this.drawXLine(x * this.axesSteps.x.value)
+                this.drawXLine(-x * this.axesSteps.x.value)
             }
         }
-        for(let y = 0; y < this.axesSteps.y.maxDraw; y+=1) {
-            this.drawYLine(y*this.axesSteps.y.value)
-            this.drawYLine(-y*this.axesSteps.y.value)
+        for(let y = 0; y < this.axesSteps.y.maxDraw; y += 1) {
+            this.drawYLine(y * this.axesSteps.y.value)
+            this.drawYLine(-y * this.axesSteps.y.value)
         }
     }
 
@@ -260,10 +338,10 @@ class CanvasAPI extends Module {
         let axisypx = this.x2px(axisypos) // X coordinate of Y axis
         let axisxpx = this.y2px(0) // Y coordinate of X axis
         // Drawing arrows
-        this.drawLine(axisypx, 0, axisypx-10, 10)
-        this.drawLine(axisypx, 0, axisypx+10, 10)
-        this.drawLine(this.width, axisxpx, this.width-10, axisxpx-10)
-        this.drawLine(this.width, axisxpx, this.width-10, axisxpx+10)
+        this.drawLine(axisypx, 0, axisypx - 10, 10)
+        this.drawLine(axisypx, 0, axisypx + 10, 10)
+        this.drawLine(this.width, axisxpx, this.width - 10, axisxpx - 10)
+        this.drawLine(this.width, axisxpx, this.width - 10, axisxpx + 10)
     }
 
     /**
@@ -276,38 +354,38 @@ class CanvasAPI extends Module {
         // Labels
         this._ctx.fillStyle = "#000000"
         this._ctx.font = `${this.textsize}px sans-serif`
-        this._ctx.fillText(this.ylabel, axisypx+10, 24)
+        this._ctx.fillText(this.ylabel, axisypx + 10, 24)
         let textWidth = this._ctx.measureText(this.xlabel).width
-        this._ctx.fillText(this.xlabel, this.width-14-textWidth, axisxpx-5)
+        this._ctx.fillText(this.xlabel, this.width - 14 - textWidth, axisxpx - 5)
         // Axis graduation labels
-        this._ctx.font = `${this.textsize-4}px sans-serif`
+        this._ctx.font = `${this.textsize - 4}px sans-serif`
 
-        let txtMinus = this._ctx.measureText('-').width
+        let txtMinus = this._ctx.measureText("-").width
         if(this.showxgrad) {
             if(this.logscalex) {
-                for(let xpow = -this.maxgradx; xpow <= this.maxgradx; xpow+=1) {
-                    textWidth = this._ctx.measureText("10"+textsup(xpow)).width
+                for(let xpow = -this.maxgradx; xpow <= this.maxgradx; xpow += 1) {
+                    textWidth = this._ctx.measureText("10" + textsup(xpow)).width
                     if(xpow !== 0)
-                        this.drawVisibleText("10"+textsup(xpow), this.x2px(Math.pow(10,xpow))-textWidth/2, axisxpx+16+(6*(xpow===1)))
+                        this.drawVisibleText("10" + textsup(xpow), this.x2px(Math.pow(10, xpow)) - textWidth / 2, axisxpx + 16 + (6 * (xpow === 1)))
                 }
             } else {
                 for(let x = 1; x < this.axesSteps.x.maxDraw; x += 1) {
-                    let drawX = x*this.axesSteps.x.value
-                    let txtX = this.axesSteps.x.expression.simplify(x).toString().replace(/^\((.+)\)$/, '$1')
+                    let drawX = x * this.axesSteps.x.value
+                    let txtX = this.axesSteps.x.expression.simplify(x).toString().replace(/^\((.+)\)$/, "$1")
                     let textHeight = this.measureText(txtX).height
-                    this.drawVisibleText(txtX, this.x2px(drawX)-4, axisxpx+this.textsize/2+textHeight)
-                    this.drawVisibleText('-'+txtX, this.x2px(-drawX)-4, axisxpx+this.textsize/2+textHeight)
+                    this.drawVisibleText(txtX, this.x2px(drawX) - 4, axisxpx + this.textsize / 2 + textHeight)
+                    this.drawVisibleText("-" + txtX, this.x2px(-drawX) - 4, axisxpx + this.textsize / 2 + textHeight)
                 }
             }
         }
         if(this.showygrad) {
             for(let y = 0; y < this.axesSteps.y.maxDraw; y += 1) {
-                let drawY = y*this.axesSteps.y.value
-                let txtY = this.axesSteps.y.expression.simplify(y).toString().replace(/^\((.+)\)$/, '$1')
+                let drawY = y * this.axesSteps.y.value
+                let txtY = this.axesSteps.y.expression.simplify(y).toString().replace(/^\((.+)\)$/, "$1")
                 textWidth = this._ctx.measureText(txtY).width
-                this.drawVisibleText(txtY, axisypx-6-textWidth, this.y2px(drawY)+4+(10*(y===0)))
+                this.drawVisibleText(txtY, axisypx - 6 - textWidth, this.y2px(drawY) + 4 + (10 * (y === 0)))
                 if(y !== 0)
-                    this.drawVisibleText('-'+txtY, axisypx-6-textWidth-txtMinus, this.y2px(-drawY)+4)
+                    this.drawVisibleText("-" + txtY, axisypx - 6 - textWidth - txtMinus, this.y2px(-drawY) + 4)
             }
         }
         this._ctx.fillStyle = "#FFFFFF"
@@ -348,7 +426,7 @@ class CanvasAPI extends Module {
     drawVisibleText(text, x, y) {
         if(x > 0 && x < this.width && y > 0 && y < this.height) {
             text.toString().split("\n").forEach((txt, i) => {
-                this._ctx.fillText(txt, x, y+(this.textsize*i))
+                this._ctx.fillText(txt, x, y + (this.textsize * i))
             })
         }
     }
@@ -363,7 +441,7 @@ class CanvasAPI extends Module {
      * @param {number} height
      */
     drawVisibleImage(image, x, y, width, height) {
-        this._canvas.markDirty(Qt.rect(x, y, width, height));
+        this._canvas.markDirty(Qt.rect(x, y, width, height))
         this._ctx.drawImage(image, x, y, width, height)
     }
 
@@ -380,7 +458,7 @@ class CanvasAPI extends Module {
             theight += defaultHeight
             if(this._ctx.measureText(txt).width > twidth) twidth = this._ctx.measureText(txt).width
         }
-        return {'width': twidth, 'height': theight}
+        return { "width": twidth, "height": theight }
     }
 
     /**
@@ -392,9 +470,9 @@ class CanvasAPI extends Module {
     x2px(x) {
         if(this.logscalex) {
             const logxmin = Math.log(this.xmin)
-            return (Math.log(x)-logxmin)*this.xzoom
+            return (Math.log(x) - logxmin) * this.xzoom
         } else
-            return (x - this.xmin)*this.xzoom
+            return (x - this.xmin) * this.xzoom
     }
 
     /**
@@ -415,9 +493,9 @@ class CanvasAPI extends Module {
      */
     px2x(px) {
         if(this.logscalex) {
-            return Math.exp(px/this.xzoom+Math.log(this.xmin))
+            return Math.exp(px / this.xzoom + Math.log(this.xmin))
         } else
-            return (px/this.xzoom+this.xmin)
+            return (px / this.xzoom + this.xmin)
     }
 
     /**
@@ -427,7 +505,7 @@ class CanvasAPI extends Module {
      * @returns {number}
      */
     px2y(px) {
-        return -(px/this.yzoom-this.ymax)
+        return -(px / this.yzoom - this.ymax)
     }
 
     /**
@@ -448,10 +526,10 @@ class CanvasAPI extends Module {
      * @param {number} y2
      */
     drawLine(x1, y1, x2, y2) {
-        this._ctx.beginPath();
-        this._ctx.moveTo(x1, y1);
-        this._ctx.lineTo(x2, y2);
-        this._ctx.stroke();
+        this._ctx.beginPath()
+        this._ctx.moveTo(x1, y1)
+        this._ctx.lineTo(x2, y2)
+        this._ctx.stroke()
     }
 
     /**
@@ -463,9 +541,9 @@ class CanvasAPI extends Module {
      * @param {number} dashPxSize
      */
     drawDashedLine(x1, y1, x2, y2, dashPxSize = 6) {
-        this._ctx.setLineDash([dashPxSize/2, dashPxSize]);
+        this._ctx.setLineDash([dashPxSize / 2, dashPxSize])
         this.drawLine(x1, y1, x2, y2)
-        this._ctx.setLineDash([]);
+        this._ctx.setLineDash([])
     }
 
     /**
@@ -476,7 +554,7 @@ class CanvasAPI extends Module {
      */
     renderLatexImage(ltxText, color, callback) {
         const onRendered = (imgData) => {
-            if(!this._canvas.isImageLoaded(imgData.source) && !this._canvas.isImageLoading(imgData.source)){
+            if(!this._canvas.isImageLoaded(imgData.source) && !this._canvas.isImageLoading(imgData.source)) {
                 // Wait until the image is loaded to callback.
                 this._canvas.loadImage(imgData.source)
                 this._canvas.imageLoaders[imgData.source] = [callback, imgData]
@@ -496,8 +574,13 @@ class CanvasAPI extends Module {
     // Context methods
     //
 
-    get font() { return this._ctx.font }
-    set font(value) { return this._ctx.font = value }
+    get font() {
+        return this._ctx.font
+    }
+
+    set font(value) {
+        return this._ctx.font = value
+    }
 
     /**
      * Draws an act on the canvas centered on a point.
@@ -508,7 +591,7 @@ class CanvasAPI extends Module {
      * @param {number} endAngle
      * @param {boolean} counterclockwise
      */
-    arc(x, y, radius, startAngle, endAngle, counterclockwise=false) {
+    arc(x, y, radius, startAngle, endAngle, counterclockwise = false) {
         this._ctx.beginPath()
         this._ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise)
         this._ctx.stroke()
@@ -521,9 +604,9 @@ class CanvasAPI extends Module {
      * @param {number} radius
      */
     disc(x, y, radius) {
-        this._ctx.beginPath();
+        this._ctx.beginPath()
         this._ctx.arc(x, y, radius, 0, 2 * Math.PI)
-        this._ctx.fill();
+        this._ctx.fill()
     }
 
     /**

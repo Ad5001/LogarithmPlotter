@@ -21,13 +21,55 @@ import Objects from "./objects.mjs"
 import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
 
+/**
+ * @typedef Settings
+ * @property {number} width
+ * @property {number} height
+ * @property {number} xmin
+ * @property {number} ymax
+ * @property {number} xzoom
+ * @property {number} yzoom
+ * @property {number} xaxisstep
+ * @property {number} yaxisstep
+ * @property {string} xlabel
+ * @property {string} ylabel
+ * @property {number} linewidth
+ * @property {number} textsize
+ * @property {boolean} logscalex
+ * @property {boolean} showxgrad
+ * @property {boolean} showygrad
+ */
+
 class IOAPI extends Module {
 
     constructor() {
-        super("IO", [
-            Modules.Objects,
-            Modules.History
-        ])
+        super("IO", {
+            root: {
+                width: "number",
+                height: "number",
+                updateObjectsLists: Function,
+            },
+            alert: {
+                show: Function
+            },
+            settings: {
+                width: "number",
+                height: "number",
+                xmin: "number",
+                ymax: "number",
+                xzoom: "number",
+                yzoom: "number",
+                xaxisstep: "number",
+                yaxisstep: "number",
+                xlabel: "string",
+                ylabel: "string",
+                linewidth: "number",
+                textsize: "number",
+                logscalex: "boolean",
+                showxgrad: "boolean",
+                showygrad: "boolean"
+            }
+        })
         /**
          * Path of the currently opened file. Empty if no file is opened.
          * @type {string}
@@ -37,12 +79,13 @@ class IOAPI extends Module {
 
     /**
      * Initializes module with QML elements.
-     * @param {{width: number, height: number, updateObjectsLists: function()}} rootElement
+     * @param {{width: number, height: number, updateObjectsLists: function()}} root
      * @param {Settings} settings
      * @param {{show: function(string)}} alert
      */
-    initialize(rootElement, settings, alert) {
-        this.rootElement = rootElement
+    initialize({ root, settings, alert }) {
+        super.initialize({ root, settings, alert })
+        this.rootElement = root
         this.settings = settings
         this.alert = alert
     }
@@ -52,6 +95,7 @@ class IOAPI extends Module {
      * @param {string} filename
      */
     saveDiagram(filename) {
+        if(!this.initialized) throw new Error("Attempting saveDiagram before initialize!")
         // Add extension if necessary
         if(["lpf"].indexOf(filename.split(".")[filename.split(".").length - 1]) === -1)
             filename += ".lpf"
@@ -93,11 +137,13 @@ class IOAPI extends Module {
      * @param {string} filename
      */
     loadDiagram(filename) {
+        if(!this.initialized) throw new Error("Attempting loadDiagram before initialize!")
+        if(!History.initialized) throw new Error("Attempting loadDiagram before history is initialized!")
         let basename = filename.split("/").pop()
         this.alert.show(qsTranslate("io", "Loading file '%1'.").arg(basename))
         let data = JSON.parse(Helper.load(filename))
         let error = ""
-        if(Object.keys(data).includes("type") && data["type"] === "logplotv1") {
+        if(data.hasOwnProperty("type") && data["type"] === "logplotv1") {
             History.clear()
             // Importing settings
             this.settings.saveFilename = filename
@@ -129,7 +175,7 @@ class IOAPI extends Module {
                 // Another way would be to change the reference as well, but I feel like the code would be less clean.
             }
             for(let objType in data["objects"]) {
-                if(Object.keys(Objects.types).indexOf(objType) > -1) {
+                if(Object.keys(Objects.types).includes(objType)) {
                     Objects.currentObjects[objType] = []
                     for(let objData of data["objects"][objType]) {
                         /** @type {DrawableObject} */
@@ -157,7 +203,7 @@ class IOAPI extends Module {
         }
         if(error !== "") {
             console.log(error)
-            this.alert.show(qsTranslate("io", "Could not save file: ") + error)
+            this.alert.show(qsTranslate("io", "Could not load file: ") + error)
             // TODO: Error handling
             return
         }

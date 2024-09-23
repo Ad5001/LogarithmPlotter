@@ -128,7 +128,7 @@ ScrollView {
     property string saveFilename: ""
     
     Component.onCompleted: {
-        Modules.IO.initialize(root, settings, alert)
+        Modules.IO.initialize({ root, settings, alert })
     }
     
     Column {

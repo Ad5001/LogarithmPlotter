@@ -22,22 +22,64 @@ import Latex from "./latex.mjs"
 
 class HistoryAPI extends Module {
     constructor() {
-        super('History', [
-            Modules.Latex
-        ])
+        super("History", {
+            historyObj: {
+                undo: Function,
+                redo: Function,
+                clear: Function,
+                addToHistory: Function,
+                unserialize: Function,
+                serialize: Function
+            },
+            themeTextColor: "string",
+            imageDepth: "number",
+            fontSize: "number"
+        })
         // History QML object
-        this.history = null;
-        this.themeTextColor = "#ff0000";
-        this.imageDepth = 2;
-        this.fontSize = 14;
+        this.history = null
+        this.themeTextColor = "#FF0000"
+        this.imageDepth = 2
+        this.fontSize = 28
     }
 
-    undo() { this.history.undo() }
-    redo() { this.history.redo() }
-    clear() { this.history.clear() }
-    addToHistory(action) { this.history.addToHistory(action) }
-    unserialize(...data) { this.history.unserialize(...data) }
-    serialize() { return this.history.serialize() }
+    initialize({ historyObj, themeTextColor, imageDepth, fontSize }) {
+        super.initialize({ historyObj, themeTextColor, imageDepth, fontSize })
+        console.log("Initializing history...")
+        this.history = historyObj
+        this.themeTextColor = themeTextColor
+        this.imageDepth = imageDepth
+        this.fontSize = fontSize
+    }
+
+    undo() {
+        if(!this.initialized) throw new Error("Attempting undo before initialize!")
+        this.history.undo()
+    }
+
+    redo() {
+        if(!this.initialized) throw new Error("Attempting redo before initialize!")
+        this.history.redo()
+    }
+
+    clear() {
+        if(!this.initialized) throw new Error("Attempting clear before initialize!")
+        this.history.clear()
+    }
+
+    addToHistory(action) {
+        if(!this.initialized) throw new Error("Attempting addToHistory before initialize!")
+        this.history.addToHistory(action)
+    }
+
+    unserialize(...data) {
+        if(!this.initialized) throw new Error("Attempting unserialize before initialize!")
+        this.history.unserialize(...data)
+    }
+
+    serialize() {
+        if(!this.initialized) throw new Error("Attempting serialize before initialize!")
+        return this.history.serialize()
+    }
 }
 
 /** @type {HistoryAPI} */

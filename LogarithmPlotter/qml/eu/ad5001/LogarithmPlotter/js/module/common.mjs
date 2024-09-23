@@ -24,22 +24,44 @@ export class Module {
     /**
      *
      * @param {string} name - Name of the API
-     * @param {(Module|undefined)[]} requires - List of APIs required to initialize this one.
+     * @param {Object.<string, (Object.<string, string|object>|string[]|string|object)>} initializationParameters - List of parameters for the initialize function.
      */
-    constructor(name, requires = []) {
+    constructor(name, initializationParameters = {}) {
         console.log(`Loading module ${name}...`)
-        this.__check_requirements(requires, name)
+        this.__name = name
+        this.__initializationParameters = initializationParameters
+        this.initialized = false
     }
 
     /**
      * Checks if all requirements are defined.
-     * @param {(Module|undefined)[]} requires
-     * @param {string} name
+     * @param {Object.<string, any>} options
      */
-    __check_requirements(requires, name) {
-        for(let requirement of requires) {
-            if(requirement === undefined)
-                throw new Error(`Requirement ${requires.indexOf(requirement)} of ${name} has not been initialized.`)
+    initialize(options) {
+        if(this.initialized)
+            throw new Error(`Cannot reinitialize module ${this.__name}.`)
+        for(const [name, value] of Object.entries(this.__initializationParameters)) {
+            if(!options.hasOwnProperty(name))
+                throw new Error(`Option '${name}' of initialize of module ${this.__name} does not exist.`)
+            if(typeof value === "object") {
+                if(value instanceof Array)
+                    for(const k in value)
+                        if(!options[name].hasOwnProperty(k))
+                            throw new Error(`Option '${name}' of initialize of module ${this.__name} does not have the property '${k}'.`)
+                        else
+                            for(const [k, v] in Object.entries(value)) {
+                                if(!options[name].hasOwnProperty(k))
+                                    throw new Error(`Option '${name} of initialize of module ${this.__name} does not have the property '${k}'.`)
+                                else if(typeof (v) === "string" && typeof (options[name][k]) !== v)
+                                    throw new Error(`Property '${k}' of initialize option ${name} of module ${this.__name}'s type is not '${v}'.`)
+                                else if(typeof (v) === "object" && !(options[name][k] instanceof v))
+                                    throw new Error(`Property '${k}' of initialize option ${name} of module ${this.__name} is not a '${v}'.`)
+                            }
+
+
+            } else if(typeof value === "string" && typeof options[name] !== value)
+                throw new Error(`Option '${name}' of initialize of module ${this.__name} is not a '${value}' (${typeof options[name]}).`)
         }
+        this.initialized = true
     }
 }

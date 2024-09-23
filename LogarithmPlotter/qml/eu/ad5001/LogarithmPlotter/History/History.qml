@@ -212,8 +212,11 @@ Item {
     }
     
     Component.onCompleted: {
-        Modules.History.history = historyObj
-        Modules.History.themeTextColor = sysPalette.windowText
-        Modules.History.imageDepth = Screen.devicePixelRatio
+        Modules.History.initialize({
+            historyObj,
+            themeTextColor: sysPalette.windowText.toString(),
+            imageDepth: Screen.devicePixelRatio,
+            fontSize: 14
+        })
     }
 }

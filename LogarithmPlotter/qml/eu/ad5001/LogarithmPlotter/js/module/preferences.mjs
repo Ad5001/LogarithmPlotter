@@ -22,10 +22,7 @@ import DefaultGraph from "../preferences/default.mjs"
 
 class PreferencesAPI extends Module {
     constructor() {
-        super('Preferences', [
-            Modules.Canvas,
-            Modules.Latex
-        ])
+        super('Preferences')
 
         this.categories = {
             [QT_TRANSLATE_NOOP('settingCategory', 'general')]: General,

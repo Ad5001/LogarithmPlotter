@@ -121,12 +121,6 @@ Canvas {
     property bool showygrad: false
     
     /*!
-       \qmlproperty int LogGraphCanvas::maxgradx
-       Max power of the logarithmic scaled on the x axis in logarithmic mode.
-    */
-    property int maxgradx: 90
-    
-    /*!
        \qmlproperty var LogGraphCanvas::imageLoaders
        Dictionary of format {image: [callback.image data]} containing data for defered image loading.
     */
@@ -139,7 +133,7 @@ Canvas {
     
     Component.onCompleted: {
         imageLoaders = {}
-        Modules.Canvas.initialize(canvas, drawingErrorDialog)
+        Modules.Canvas.initialize({ canvas, drawingErrorDialog })
     }
     
     Native.MessageDialog {
