@@ -79,6 +79,7 @@ export class ExprParserAPI extends Module {
 
     /**
      * @param {string} expression - Expression to parse
+     * @returns {ExprEvalExpression}
      */
     parse(expression) {
         return this._parser.parse(expression)

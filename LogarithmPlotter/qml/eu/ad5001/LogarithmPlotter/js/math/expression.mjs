@@ -41,7 +41,11 @@ export class Expression {
             this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
         this.latexMarkup = Latex.expression(this.calc.tokens)
     }
-    
+
+    variables() {
+        return this.calc.variables()
+    }
+
     isConstant() {
         let vars = this.calc.variables()
         return !vars.includes("x") && !vars.includes("n")

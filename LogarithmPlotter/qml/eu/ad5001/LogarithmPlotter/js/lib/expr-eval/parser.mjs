@@ -25,7 +25,7 @@
 import * as Polyfill from "./polyfill.mjs"
 import { ParserState } from "./parserstate.mjs"
 import { TEOF, TokenStream } from "./tokens.mjs"
-import { Expression } from "./expression.mjs"
+import { ExprEvalExpression } from "./expression.mjs"
 
 const optionNameMap = {
     "+": "add",
@@ -156,7 +156,7 @@ export class Parser {
         parserState.parseExpression(instr)
         parserState.expect(TEOF, QT_TRANSLATE_NOOP("error", "EOF"))
 
-        return new Expression(instr, this)
+        return new ExprEvalExpression(instr, this)
     }
 
     evaluate(expr, variables) {

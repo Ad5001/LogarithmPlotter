@@ -107,7 +107,7 @@ export class ExpressionSetting extends Setting {
      * @param {Expression} value
      */
     set(value) {
-        let vars = value.calc.variables()
+        let vars = value.variables()
         if(vars.length === this.variables.length && vars.every(x => this.variables.includes(x)))
             Helper.setSetting(this.nameInConfig, value)
         else {

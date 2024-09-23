@@ -146,7 +146,7 @@ function substitute(tokens, variable, expr) {
 /**
  * Evaluates the given instructions for a given Expression with given values.
  * @param {Instruction[]} tokens
- * @param {Expression} expr
+ * @param {ExprEvalExpression} expr
  * @param {Record.<string, number>} values
  * @return {number}
  */
@@ -442,7 +442,7 @@ function getSymbols(tokens, symbols, options) {
     }
 }
 
-export class Expression {
+export class ExprEvalExpression {
     /**
      * @param {Instruction[]} tokens
      * @param {Parser} parser
@@ -458,26 +458,26 @@ export class Expression {
 
     /**
      * Simplifies the expression.
-     * @param {Object<string, number|Expression>|undefined} values
-     * @returns {Expression}
+     * @param {Object<string, number|ExprEvalExpression>|undefined} values
+     * @returns {ExprEvalExpression}
      */
     simplify(values) {
         values = values || {}
-        return new Expression(simplify(this.tokens, this.unaryOps, this.binaryOps, this.ternaryOps, values), this.parser)
+        return new ExprEvalExpression(simplify(this.tokens, this.unaryOps, this.binaryOps, this.ternaryOps, values), this.parser)
     }
 
     /**
      * Creates a new expression where the variable is substituted by the given expression.
      * @param {string} variable
-     * @param {string|Expression} expr
-     * @returns {Expression}
+     * @param {string|ExprEvalExpression} expr
+     * @returns {ExprEvalExpression}
      */
     substitute(variable, expr) {
-        if(!(expr instanceof Expression)) {
+        if(!(expr instanceof ExprEvalExpression)) {
             expr = this.parser.parse(String(expr))
         }
 
-        return new Expression(substitute(this.tokens, variable, expr), this.parser)
+        return new ExprEvalExpression(substitute(this.tokens, variable, expr), this.parser)
     }
 
     /**
@@ -527,7 +527,7 @@ export class Expression {
     /**
      * Converts the expression to a JS function.
      * @param {string} param - Parsed variables for the function.
-     * @param {Object.<string, (Expression|string)>} variables - Default variables to provide.
+     * @param {Object.<string, (ExprEvalExpression|string)>} variables - Default variables to provide.
      * @returns {function(...any)}
      */
     toJSFunction(param, variables) {
