@@ -824,24 +824,24 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>bodemagnitude</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="31"/>
         <source>Bode Magnitude</source>
         <translation>Bode-Magnitude</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="32"/>
         <source>Bode Magnitudes</source>
         <translation>Bode-Magnituden</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="75"/>
         <source>low-pass</source>
         <translation>Tiefpass</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="75"/>
         <source>high-pass</source>
         <translation>Hochpass</translation>
     </message>
@@ -880,12 +880,12 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="65"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Changelog konnte nicht geholt werden: Server-Fehler {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="55"/>
+        <location filename="../util/helper.py" line="68"/>
         <source>Could not fetch update: {}.</source>
         <translation>Changelog konnte nicht geholt werden: {}.</translation>
     </message>
@@ -1251,17 +1251,17 @@ Ausdruck analysiert: %3</translation>
 <context>
     <name>general</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="24"/>
         <source>Check for updates on startup</source>
         <translation>Beim Starten auf Updates prüfen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="30"/>
         <source>Reset redo stack automaticly</source>
         <translation>Wiederherstellen-Stapel automatisch zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="37"/>
         <source>Enable LaTeX rendering</source>
         <translation>LaTeX-Rendering aktivieren</translation>
     </message>
@@ -1308,32 +1308,32 @@ Ausdruck analysiert: %3</translation>
         <translation type="vanished">Verlauf</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="87"/>
         <source>Saved plot to &apos;%1&apos;.</source>
         <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="97"/>
         <source>Loading file &apos;%1&apos;.</source>
         <translation>Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="141"/>
         <source>Unknown object type: %1.</source>
         <translation>Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="156"/>
         <source>Invalid file provided.</source>
         <translation>Ungültige Datei angegeben.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="160"/>
         <source>Could not save file: </source>
         <translation>Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="165"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>Geladene Datei &apos;%1&apos;.</translation>
     </message>
@@ -1416,114 +1416,114 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>parameters</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="249"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="250"/>
         <source>above</source>
         <translation>↑ Über</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="250"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="251"/>
         <source>below</source>
         <translation>↓ Unter</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="251"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="271"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="272"/>
         <source>left</source>
         <translation>← Links</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="252"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="272"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="253"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="273"/>
         <source>right</source>
         <translation>→ Rechts</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="253"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="254"/>
         <source>above-left</source>
         <translation>↖ Oben links</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="254"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="255"/>
         <source>above-right</source>
         <translation>↗ Oben rechts</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="255"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="256"/>
         <source>below-left</source>
         <translation>↙ Unten links</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="256"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="257"/>
         <source>below-right</source>
         <translation>↘ Unten rechts</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="268"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="269"/>
         <source>center</source>
         <translation>&gt;|&lt; Zentrum</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="269"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="270"/>
         <source>top</source>
         <translation>↑ Über</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="270"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="271"/>
         <source>bottom</source>
         <translation>↓ Unter</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="273"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="274"/>
         <source>top-left</source>
         <translation>↖ Oben links</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="274"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="275"/>
         <source>top-right</source>
         <translation>↗ Oben rechts</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="275"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="276"/>
         <source>bottom-left</source>
         <translation>↙ Unten links</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="276"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="277"/>
         <source>bottom-right</source>
         <translation>↘ Unten rechts</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="280"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="281"/>
         <source>application</source>
         <translation>Anwendung</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="281"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="282"/>
         <source>function</source>
         <translation>Funktion</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="285"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="286"/>
         <source>high</source>
         <translation>Hoch</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="286"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="287"/>
         <source>low</source>
         <translation>Tief</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="291"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="292"/>
         <source>Next to target</source>
         <translation>Neben dem Ziel</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="292"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="293"/>
         <source>With label</source>
         <translation>Mit Etikett</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="293"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="294"/>
         <source>Hidden</source>
         <translation>Versteckt</translation>
     </message>
@@ -1583,7 +1583,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
         <translation>Reichweite</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="32"/>
@@ -1602,7 +1602,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
         <translation>Anzeigemodus</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="35"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="33"/>
@@ -1625,23 +1625,23 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
         <translation>Gestrichelte Linien anzeigen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="34"/>
         <source>om_0</source>
         <translation>ω₀</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="35"/>
         <source>pass</source>
         <translation>Pass</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
         <source>gain</source>
         <translation>Größenordnung</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
         <source>omGraduation</source>
         <translation>Teilung auf ω zeigen</translation>
     </message>
@@ -1755,17 +1755,17 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>settingCategory</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="33"/>
         <source>default</source>
         <translation>Standardeinstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="31"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="31"/>
         <source>general</source>
         <translation>Allgemeine</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="32"/>
         <source>editor</source>
         <translation>Ausdruckseditor</translation>
     </message>
@@ -1823,37 +1823,41 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="66"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="73"/>
-        <source>Usage: %1</source>
-        <translation>Verwendung: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="76"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="92"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="105"/>
-        <source>Usage: %1 or
-%2</source>
-        <translation>Verwendung: %1 oder
-%2</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: ExecutableObject&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="73"/>
+        <source>Usage:
+%1</source>
+        <translation>Verwendung:
+%1</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="105"/>
+        <source>Usage:
+%1
+%2</source>
+        <translation>Verwendung:
+%1
+%2</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: String&gt;, &lt;Variablen: String&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f: ExecutableObject&gt;, &lt;x: Zahl&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f: String&gt;, &lt;Variablen: String&gt;, &lt;x: Zahl&gt;)</translation>
     </message>

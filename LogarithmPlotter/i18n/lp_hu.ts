@@ -824,24 +824,24 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>bodemagnitude</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="31"/>
         <source>Bode Magnitude</source>
         <translation>Bode-nagyságrend</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="32"/>
         <source>Bode Magnitudes</source>
         <translation>Bode-nagyságrendek</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="75"/>
         <source>low-pass</source>
         <translation>aluláteresztő</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="72"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="77"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="70"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="75"/>
         <source>high-pass</source>
         <translation>felüláteresztő</translation>
     </message>
@@ -880,12 +880,12 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../util/helper.py" line="52"/>
+        <location filename="../util/helper.py" line="65"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: Kiszolgálóhiba: {}.</translation>
     </message>
     <message>
-        <location filename="../util/helper.py" line="55"/>
+        <location filename="../util/helper.py" line="68"/>
         <source>Could not fetch update: {}.</source>
         <translation>Nem sikerült lekérni a változásnaplót: {}.</translation>
     </message>
@@ -1251,17 +1251,17 @@ Kiértékelt kifejezés: %3</translation>
 <context>
     <name>general</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="22"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="24"/>
         <source>Check for updates on startup</source>
         <translation>Frissítések keresése indításkor</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="28"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="30"/>
         <source>Reset redo stack automaticly</source>
         <translation>Ismétlési verem önműködő visszaállítása</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="35"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences/general.mjs" line="37"/>
         <source>Enable LaTeX rendering</source>
         <translation>LaTeX-megjelenítés engedélyezése</translation>
     </message>
@@ -1304,32 +1304,32 @@ Kiértékelt kifejezés: %3</translation>
         <translation type="vanished">Előzmények</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="84"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="87"/>
         <source>Saved plot to &apos;%1&apos;.</source>
         <translation>Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="94"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="97"/>
         <source>Loading file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="138"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="141"/>
         <source>Unknown object type: %1.</source>
         <translation>Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="153"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="156"/>
         <source>Invalid file provided.</source>
         <translation>A megadott fájl érvénytelen.</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="157"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="160"/>
         <source>Could not save file: </source>
         <translation>A fájl mentése nem sikerült: </translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/io.mjs" line="162"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/io.mjs" line="165"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltve.</translation>
     </message>
@@ -1412,114 +1412,114 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>parameters</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="249"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="250"/>
         <source>above</source>
         <translation>↑ Felett</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="250"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="251"/>
         <source>below</source>
         <translation>↓ Alatt</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="251"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="271"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="252"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="272"/>
         <source>left</source>
         <translation>← Balra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="252"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="272"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="253"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="273"/>
         <source>right</source>
         <translation>→ Jobbra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="253"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="254"/>
         <source>above-left</source>
         <translation>↖ Felett, balra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="254"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="255"/>
         <source>above-right</source>
         <translation>↗ Felett, jobbra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="255"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="256"/>
         <source>below-left</source>
         <translation>↙ Alatt, balra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="256"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="257"/>
         <source>below-right</source>
         <translation>↘ Alatt, jobbra</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="268"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="269"/>
         <source>center</source>
         <translation>&gt;|&lt; Középre</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="269"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="270"/>
         <source>top</source>
         <translation>↑ Felső</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="270"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="271"/>
         <source>bottom</source>
         <translation>↓ Alsó</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="273"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="274"/>
         <source>top-left</source>
         <translation>↖ Bal felső</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="274"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="275"/>
         <source>top-right</source>
         <translation>↗ Jobb felső</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="275"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="276"/>
         <source>bottom-left</source>
         <translation>↙ Bal alsó</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="276"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="277"/>
         <source>bottom-right</source>
         <translation>↘ Jobb alsó</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="280"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="281"/>
         <source>application</source>
         <translation>Alkalmazás</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="281"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="282"/>
         <source>function</source>
         <translation>Függvény</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="285"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="286"/>
         <source>high</source>
         <translation>Magas</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="286"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="287"/>
         <source>low</source>
         <translation>Alul</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="291"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="292"/>
         <source>Next to target</source>
         <translation>Cél mellé</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="292"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="293"/>
         <source>With label</source>
         <translation>Címkével</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="293"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/parameters.mjs" line="294"/>
         <source>Hidden</source>
         <translation>Rejtett</translation>
     </message>
@@ -1579,7 +1579,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Ordináta tartomány</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="37"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="32"/>
@@ -1598,7 +1598,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Megjelenítési mód</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="40"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitudesum.mjs" line="35"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="38"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephasesum.mjs" line="33"/>
@@ -1621,23 +1621,23 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
         <translation>Szaggatott vonalak megjelenítése</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="34"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodephase.mjs" line="34"/>
         <source>om_0</source>
         <translation>ω₀</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="37"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="35"/>
         <source>pass</source>
         <translation>Áteresztő</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="38"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="36"/>
         <source>gain</source>
         <translation>Nagyságrend nyeresége</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="41"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/bodemagnitude.mjs" line="39"/>
         <source>omGraduation</source>
         <translation>ω₀ érettségi megjelenítése</translation>
     </message>
@@ -1751,17 +1751,17 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>settingCategory</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="31"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="31"/>
         <source>general</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="32"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="32"/>
         <source>editor</source>
         <translation>Kifejezésszerkesztő</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/preferences.mjs" line="33"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="33"/>
         <source>default</source>
         <translation>Alapértelmezett ábra</translation>
     </message>
@@ -1819,37 +1819,41 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>usage</name>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="66"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="73"/>
-        <source>Usage: %1</source>
-        <translation>Használat: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="76"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="92"/>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="105"/>
-        <source>Usage: %1 or
-%2</source>
-        <translation>Használat: %1 vagy
-%2</translation>
-    </message>
-    <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="66"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="73"/>
+        <source>Usage:
+%1</source>
+        <translation>Használat:
+%1</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="76"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="92"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="105"/>
+        <source>Usage:
+%1
+%2</source>
+        <translation>Használat:
+%1
+%2</translation>
+    </message>
+    <message>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
-        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
+        <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;, &lt;x: szám&gt;)</translation>
     </message>

@@ -63,17 +63,17 @@ export class ExprParserAPI extends Module {
             // Parse object
             f = args[0]
             if(typeof f !== "object" || !f.execute)
-                throw EvalError(qsTranslate("usage", "Usage: %1").arg(usage1))
+                throw EvalError(qsTranslate("usage", "Usage:\n%1").arg(usage1))
             let target = f
             f = (x) => target.execute(x)
         } else if(args.length === 2) {
             // Parse variable
             [f, variable] = args
             if(typeof f !== "string" || typeof variable !== "string")
-                throw EvalError(qsTranslate("usage", "Usage: %1").arg(usage2))
+                throw EvalError(qsTranslate("usage", "Usage:\n%1").arg(usage2))
             f = this._parser.parse(f).toJSFunction(variable, this.currentVars)
         } else
-            throw EvalError(qsTranslate("usage", "Usage: %1 or\n%2").arg(usage1).arg(usage2))
+            throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
         return f
     }
 
@@ -89,7 +89,7 @@ export class ExprParserAPI extends Module {
         let usage2 = qsTranslate("usage", "integral(<from: number>, <to: number>, <f: string>, <variable: string>)")
         let f = this.parseArgumentsForFunction(args, usage1, usage2)
         if(a == null || b == null)
-            throw EvalError(qsTranslate("usage", "Usage: %1 or\n%2").arg(usage1).arg(usage2))
+            throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
 
         // https://en.wikipedia.org/wiki/Simpson%27s_rule
         // Simpler, faster than tokenizing the expression
@@ -102,7 +102,7 @@ export class ExprParserAPI extends Module {
         let x = args.pop()
         let f = this.parseArgumentsForFunction(args, usage1, usage2)
         if(x == null)
-            throw EvalError(qsTranslate("usage", "Usage: %1 or\n%2").arg(usage1).arg(usage2))
+            throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
 
         let derivative_precision = x / 10
         return (f(x + derivative_precision / 2) - f(x - derivative_precision / 2)) / derivative_precision
