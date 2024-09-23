@@ -18,22 +18,16 @@
 
 import { Module } from "./common.mjs"
 import Latex from "./latex.mjs"
+import { HistoryInterface, NUMBER, STRING } from "./interface.mjs"
 
 
 class HistoryAPI extends Module {
     constructor() {
         super("History", {
-            historyObj: {
-                undo: Function,
-                redo: Function,
-                clear: Function,
-                addToHistory: Function,
-                unserialize: Function,
-                serialize: Function
-            },
-            themeTextColor: "string",
-            imageDepth: "number",
-            fontSize: "number"
+            historyObj: HistoryInterface,
+            themeTextColor: STRING,
+            imageDepth: NUMBER,
+            fontSize: NUMBER
         })
         // History QML object
         this.history = null

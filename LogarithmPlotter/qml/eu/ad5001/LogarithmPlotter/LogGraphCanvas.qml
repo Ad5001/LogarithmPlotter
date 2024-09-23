@@ -140,7 +140,7 @@ Canvas {
         id: drawingErrorDialog
         title: qsTranslate("expression", "LogarithmPlotter - Drawing error")
         text: ""
-        function showDialog(objType, objName, error) {
+        function show(objType, objName, error) {
             text = qsTranslate("error", "Error while attempting to draw %1 %2:\n%3\n\nUndoing last change.").arg(objType).arg(objName).arg(error)
             open()
         }

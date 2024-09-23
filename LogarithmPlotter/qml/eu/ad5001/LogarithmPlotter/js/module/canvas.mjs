@@ -17,60 +17,28 @@
  */
 
 import { Module } from "./common.mjs"
+import { FUNCTION, Interface, CanvasInterface, DialogInterface } from "./interface.mjs"
 import { textsup } from "../utils.mjs"
 import { Expression } from "../math/index.mjs"
 import Latex from "./latex.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"
 
-
-/**
- * @typedef {Settings} Canvas
- * @property {object} imageLoaders
- * @property {function()} requestPaint
- * @property {function(string)} getContext
- * @property {function(rect)} markDirty
- * @property {function(string)} loadImage
- */
-
 class CanvasAPI extends Module {
     constructor() {
         super("Canvas", {
-            canvas: {
-                width: "number",
-                height: "number",
-                xmin: "number",
-                ymax: "number",
-                xzoom: "number",
-                yzoom: "number",
-                xaxisstep: "number",
-                yaxisstep: "number",
-                xlabel: "string",
-                ylabel: "string",
-                linewidth: "number",
-                textsize: "number",
-                logscalex: "boolean",
-                showxgrad: "boolean",
-                showygrad: "boolean",
-                imageLoaders: "object",
-                getContext: Function,
-                markDirty: Function,
-                loadImage: Function,
-                requestPaint: Function,
-            },
-            drawingErrorDialog: {
-                showDialog: Function,
-            }
+            canvas: CanvasInterface,
+            drawingErrorDialog: DialogInterface
         })
 
-        /** @type {Canvas} */
+        /** @type {CanvasInterface} */
         this._canvas = null
 
         /** @type {CanvasRenderingContext2D} */
         this._ctx = null
 
         /**
-         * @type {{showDialog(string, string, string)}}
+         * @type {{show(string, string, string)}}
          * @private
          */
         this._drawingErrorDialog = null
@@ -94,8 +62,8 @@ class CanvasAPI extends Module {
 
     /**
      * Initialize the module.
-     * @param {Canvas} canvas
-     * @param {{showDialog(string, string, string)}} drawingErrorDialog
+     * @param {CanvasInterface} canvas
+     * @param {{show(string, string, string)}} drawingErrorDialog
      */
     initialize({ canvas, drawingErrorDialog }) {
         super.initialize({ canvas, drawingErrorDialog })

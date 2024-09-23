@@ -20,55 +20,16 @@ import { Module } from "./common.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
+import { DialogInterface, FUNCTION, Interface, RootInterface, SettingsInterface } from "./interface.mjs"
 
-/**
- * @typedef Settings
- * @property {number} width
- * @property {number} height
- * @property {number} xmin
- * @property {number} ymax
- * @property {number} xzoom
- * @property {number} yzoom
- * @property {number} xaxisstep
- * @property {number} yaxisstep
- * @property {string} xlabel
- * @property {string} ylabel
- * @property {number} linewidth
- * @property {number} textsize
- * @property {boolean} logscalex
- * @property {boolean} showxgrad
- * @property {boolean} showygrad
- */
 
 class IOAPI extends Module {
 
     constructor() {
         super("IO", {
-            root: {
-                width: "number",
-                height: "number",
-                updateObjectsLists: Function,
-            },
-            alert: {
-                show: Function
-            },
-            settings: {
-                width: "number",
-                height: "number",
-                xmin: "number",
-                ymax: "number",
-                xzoom: "number",
-                yzoom: "number",
-                xaxisstep: "number",
-                yaxisstep: "number",
-                xlabel: "string",
-                ylabel: "string",
-                linewidth: "number",
-                textsize: "number",
-                logscalex: "boolean",
-                showxgrad: "boolean",
-                showygrad: "boolean"
-            }
+            alert: DialogInterface,
+            root: RootInterface,
+            settings: SettingsInterface
         })
         /**
          * Path of the currently opened file. Empty if no file is opened.
@@ -79,8 +40,8 @@ class IOAPI extends Module {
 
     /**
      * Initializes module with QML elements.
-     * @param {{width: number, height: number, updateObjectsLists: function()}} root
-     * @param {Settings} settings
+     * @param {RootInterface} root
+     * @param {SettingsInterface} settings
      * @param {{show: function(string)}} alert
      */
     initialize({ root, settings, alert }) {
