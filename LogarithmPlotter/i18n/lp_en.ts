@@ -1840,7 +1840,7 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</translation>
+        <translation>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: Function-like object&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="89"/>
@@ -1850,7 +1850,7 @@ Please make sure your LaTeX installation is correct and report a bug if so.</tra
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
+        <translation>derivative(&lt;f: Function-like object&gt;, &lt;x: number&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/integration.mjs" line="101"/>
