@@ -36,7 +36,7 @@ class MockIO:
 
 class MockFileOpenEvent(QEvent):
     def __init__(self, file):
-        super(QEvent.FileOpen)
+        QEvent.__init__(self, QEvent.FileOpen)
         self._file = file
 
     def file(self):

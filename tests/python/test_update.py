@@ -33,7 +33,7 @@ def check_update_callback_type(show_alert, msg_text, update_available):
     assert type(msg_text) == str
     assert type(update_available) == bool
 
-def test_update():
+def test_update(qtbot):
     def check_older(show_alert, msg_text, update_available):
         check_update_callback_type(show_alert, msg_text, update_available)
         assert update_available
@@ -50,14 +50,18 @@ def test_update():
     update_info_newer.got_update_info.connect(check_newer)
     runnable = UpdateCheckerRunnable('1.0.0', update_info_newer)
     runnable.run()
+    qtbot.waitSignal(update_info_newer.got_update_info, timeout=10000)
     runnable = UpdateCheckerRunnable('0.1.0', update_info_older)
     runnable.run()
+    qtbot.waitSignal(update_info_older.got_update_info, timeout=10000)
     runnable = UpdateCheckerRunnable('0.5.0+dev0+git20240101', update_info_older)
     runnable.run()
+    qtbot.waitSignal(update_info_older.got_update_info, timeout=10000)
 
-def test_update_checker():
-    check_for_updates('0.6.0', MockWindow())
+def test_update_checker(qtbot):
+    update_info = check_for_updates('0.6.0', MockWindow())
     assert QThreadPool.globalInstance().activeThreadCount() == 1
+    qtbot.waitSignal(update_info.got_update_info, timeout=10000)
     argv.append("--no-check-for-updates")
-    check_for_updates('0.6.0', MockWindow())
+    update_info = check_for_updates('0.6.0', MockWindow())
     assert QThreadPool.globalInstance().activeThreadCount() < 2 # No new update checks where added

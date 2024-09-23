@@ -36,7 +36,8 @@ tempdir = TemporaryDirectory()
 tmpfile = path.join(tempdir.name, 'graph.png')
 pwd = getcwd()
 
-chdir(path.dirname(path.realpath(__file__)))
+logarithmplotter_path = path.dirname(path.realpath(__file__))
+chdir(logarithmplotter_path)
 
 if path.realpath(path.join(getcwd(), "..")) not in sys_path:
     sys_path.append(path.realpath(path.join(getcwd(), "..")))
@@ -91,7 +92,7 @@ def get_platform_qt_style(os) -> str:
 
 def register_icon_directories() -> None:
     icon_fallbacks = QIcon.fallbackSearchPaths()
-    base_icon_path = path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "icons")
+    base_icon_path = path.join(logarithmplotter_path, "qml", "eu", "ad5001", "LogarithmPlotter", "icons")
     paths = [["common"], ["objects"], ["history"], ["settings"], ["settings", "custom"]]
     for p in paths:
         icon_fallbacks.append(path.realpath(path.join(base_icon_path, *p)))
@@ -106,7 +107,7 @@ def create_qapp() -> QApplication:
     app.setDesktopFileName("eu.ad5001.LogarithmPlotter")
     app.setOrganizationName("Ad5001")
     app.styleHints().setShowShortcutsInContextMenus(True)
-    app.setWindowIcon(QIcon(path.realpath(path.join(getcwd(), "logarithmplotter.svg"))))
+    app.setWindowIcon(QIcon(path.realpath(path.join(logarithmplotter_path, "logarithmplotter.svg"))))
     return app
 
 
@@ -115,10 +116,12 @@ def install_translation(app: QApplication) -> QTranslator:
     translator = QTranslator()
     # Check if lang is forced.
     forcedlang = [p for p in argv if p[:7] == "--lang="]
+    i18n_path = path.realpath(path.join(logarithmplotter_path, "i18n"))
     locale = QLocale(forcedlang[0][7:]) if len(forcedlang) > 0 else QLocale()
-    if not translator.load(locale, "lp", "_", path.realpath(path.join(getcwd(), "i18n"))):
+    if not translator.load(locale, "lp", "_", i18n_path):
         # Load default translation
-        translator.load(QLocale("en"), "lp", "_", path.realpath(path.join(getcwd(), "i18n")))
+        print("Loading default language en...")
+        translator.load(QLocale("en"), "lp", "_", i18n_path)
     app.installTranslator(translator)
     return translator
 
@@ -133,8 +136,9 @@ def create_engine(helper: Helper, latex: Latex, dep_time: float) -> tuple[QQmlAp
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)
     engine.rootContext().setContextProperty("StartTime", dep_time)
 
-    engine.addImportPath(path.realpath(path.join(getcwd(), "qml")))
-    engine.load(path.realpath(path.join(getcwd(), "qml", "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml")))
+    qml_path = path.realpath(path.join(logarithmplotter_path, "qml"))
+    engine.addImportPath(qml_path)
+    engine.load(path.join(qml_path, "eu", "ad5001", "LogarithmPlotter", "LogarithmPlotter.qml"))
 
     return engine, js_globals
 

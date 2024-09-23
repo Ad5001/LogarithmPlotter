@@ -89,3 +89,4 @@ def check_for_updates(current_version, window):
 
     runnable = UpdateCheckerRunnable(current_version, update_info)
     QThreadPool.globalInstance().start(runnable)
+    return update_info

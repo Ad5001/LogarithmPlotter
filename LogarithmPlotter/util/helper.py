@@ -24,15 +24,28 @@ from PySide6 import __version__ as PySide6_version
 
 from os import chdir, path
 from json import loads
-from sys import version as sys_version
+from sys import version as sys_version, argv
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 
 from LogarithmPlotter import __VERSION__
 from LogarithmPlotter.util import config
 
+SHOW_GUI_MESSAGES = "--test-build" not in argv
+CHANGELOG_VERSION = __VERSION__
+
 
 class InvalidFileException(Exception): pass
+
+def show_message(msg: str) -> None:
+    """
+    Shows a GUI message if GUI messages are enabled
+    """
+    if SHOW_GUI_MESSAGES:
+        QMessageBox.warning(None, "LogarithmPlotter", msg, QMessageBox.OK)
+    else:
+        raise InvalidFileException(msg)
+
 
 
 class ChangelogFetcher(QRunnable):
@@ -44,7 +57,7 @@ class ChangelogFetcher(QRunnable):
         msg_text = "Unknown changelog error."
         try:
             # Fetching version
-            r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + __VERSION__)
+            r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + CHANGELOG_VERSION)
             lines = r.readlines()
             r.close()
             msg_text = "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
@@ -53,21 +66,16 @@ class ChangelogFetcher(QRunnable):
                 str(e.code))
         except URLError as e:
             msg_text = QCoreApplication.translate("changelog", "Could not fetch update: {}.").format(str(e.reason))
-        self.helper.gotChangelog.emit(msg_text)
+        self.helper.changelogFetched.emit(msg_text)
 
 
 class Helper(QObject):
     changelogFetched = Signal(str)
-    gotChangelog = Signal(str)
 
     def __init__(self, cwd: str, tmpfile: str):
         QObject.__init__(self)
         self.cwd = cwd
         self.tmpfile = tmpfile
-        self.gotChangelog.connect(self.fetched)
-
-    def fetched(self, changelog: str):
-        self.changelogFetched.emit(changelog)
 
     @Slot(str, str)
     def write(self, filename, filedata):
@@ -93,20 +101,19 @@ class Helper(QObject):
                 if data[:5] == "LPFv1":
                     # V1 version of the file
                     data = data[5:]
-                elif data[0] == "{" and "type" in loads(data) and loads(data)["type"] == "logplotv1":
-                    pass
                 elif data[:3] == "LPF":
                     # More recent version of LogarithmPlotter file, but incompatible with the current format
-                    msg = QCoreApplication.translate("This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.")
+                    msg = QCoreApplication.translate('main',
+                                                     "This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.\nPlease update LogarithmPlotter to open this file.")
                     raise InvalidFileException(msg.format(__VERSION__))
                 else:
-                    raise Exception("Invalid LogarithmPlotter file.")
-            except Exception as e:  # If file can't be loaded
+                    raise InvalidFileException("Invalid LogarithmPlotter file.")
+            except InvalidFileException as e:  # If file can't be loaded
                 msg = QCoreApplication.translate('main', 'Could not open file "{}":\n{}')
-                QMessageBox.warning(None, 'LogarithmPlotter', msg.format(filename, e), QMessageBox.Ok)  # Cannot parse file
+                show_message(msg.format(filename, e))  # Cannot parse file
         else:
             msg = QCoreApplication.translate('main', 'Could not open file: "{}"\nFile does not exist.')
-            QMessageBox.warning(None, 'LogarithmPlotter', msg.format(filename), QMessageBox.Ok)  # Cannot parse file
+            show_message(msg.format(filename))  # Cannot parse file
         try:
             chdir(path.dirname(path.realpath(__file__)))
         except NotADirectoryError as e:
@@ -130,31 +137,27 @@ class Helper(QObject):
 
     @Slot(str, result=str)
     def getSetting(self, namespace):
-        return config.getSetting(namespace)
+        return str(config.getSetting(namespace))
 
     @Slot(str, result=float)
     def getSettingInt(self, namespace):
-        return config.getSetting(namespace)
+        return float(config.getSetting(namespace))
 
     @Slot(str, result=bool)
     def getSettingBool(self, namespace):
-        return config.getSetting(namespace)
+        return bool(config.getSetting(namespace))
 
     @Slot(str, str)
     def setSetting(self, namespace, value):
-        return config.setSetting(namespace, value)
+        return config.setSetting(namespace, str(value))
 
     @Slot(str, bool)
     def setSettingBool(self, namespace, value):
-        return config.setSetting(namespace, value)
+        return config.setSetting(namespace, bool(value))
 
     @Slot(str, float)
     def setSettingInt(self, namespace, value):
-        return config.setSetting(namespace, value)
-
-    @Slot(str)
-    def setLanguage(self, new_lang):
-        config.setSetting("language", new_lang)
+        return config.setSetting(namespace, float(value))
 
     @Slot(result=str)
     def getDebugInfos(self):
@@ -167,7 +170,6 @@ class Helper(QObject):
     @Slot()
     def fetchChangelog(self):
         changelog_cache_path = path.join(path.dirname(path.realpath(__file__)), "CHANGELOG.md")
-        print(changelog_cache_path)
         if path.exists(changelog_cache_path):
             # We have a cached version of the changelog, for env that don't have access to the internet.
             f = open(changelog_cache_path);
