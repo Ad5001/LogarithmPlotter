@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Expression, executeExpression } from "expression.mjs"
+import { Expression, executeExpression } from "./expression.mjs"
 
 /**
  * Main abstract domain class

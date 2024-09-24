@@ -21,8 +21,8 @@ import * as P from "../parameters.mjs"
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
 
-import { ExecutableObject } from "common.mjs"
-import Function from "function.mjs"
+import { ExecutableObject } from "./common.mjs"
+import Function from "./function.mjs"
 
 
 export default class BodeMagnitudeSum extends ExecutableObject {

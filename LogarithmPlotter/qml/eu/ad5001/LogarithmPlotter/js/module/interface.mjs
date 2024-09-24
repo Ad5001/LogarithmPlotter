@@ -38,7 +38,6 @@ export class Interface {
         const toCheckName = classToCheck.constructor.name
         for(const [property, value] of Object.entries(properties))
             if(property !== "implement") {
-                console.log(classToCheck[property], value)
                 if(!classToCheck.hasOwnProperty(property))
                     // Check if the property exist
                     throw new Error(`Property '${property}' (${typeof value}) is present in interface ${interfaceName}, but not in implementation ${toCheckName}.`)

@@ -21,7 +21,7 @@ import * as P from "../parameters.mjs"
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
 
-import { ExecutableObject } from "common.mjs"
+import { ExecutableObject } from "./common.mjs"
 
 export default class BodePhaseSum extends ExecutableObject {
     static type(){return 'Somme phases Bode'}

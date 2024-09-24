@@ -17,7 +17,7 @@
  */
 
 import Objects from "../module/objects.mjs"
-import { Action } from "common.mjs"
+import { Action } from "./common.mjs"
 
 export default class CreateNewObject extends Action {
     // Action used for the creation of an object

@@ -23,7 +23,7 @@ import Objects from "../module/objects.mjs"
 import History from "../module/history.mjs"
 import Latex from "../module/latex.mjs"
 
-import { ExecutableObject } from "common.mjs"
+import { ExecutableObject } from "./common.mjs"
 
 
 export default class BodePhase extends ExecutableObject {

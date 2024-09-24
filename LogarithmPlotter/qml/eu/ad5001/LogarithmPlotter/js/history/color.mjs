@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import EditedProperty from "editproperty.mjs"
+import EditedProperty from "./editproperty.mjs"
 import Objects from "../module/objects.mjs"
 
 export default class ColorChanged extends EditedProperty {

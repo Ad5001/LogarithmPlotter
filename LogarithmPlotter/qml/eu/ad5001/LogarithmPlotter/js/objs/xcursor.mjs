@@ -21,7 +21,7 @@ import * as P from "../parameters.mjs"
 import Latex from "../module/latex.mjs"
 import Objects from "../module/objects.mjs"
 
-import { DrawableObject } from "common.mjs"
+import { DrawableObject } from "./common.mjs"
 
 
 export default class XCursor extends DrawableObject {

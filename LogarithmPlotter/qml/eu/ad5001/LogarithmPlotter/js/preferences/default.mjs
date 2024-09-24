@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting, ExpressionSetting, NumberSetting, StringSetting} from "common.mjs"
+import {BoolSetting, ExpressionSetting, NumberSetting, StringSetting} from "./common.mjs"
 
 
 const XZOOM = new NumberSetting(

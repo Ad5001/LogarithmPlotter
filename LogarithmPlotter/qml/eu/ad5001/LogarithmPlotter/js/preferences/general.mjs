@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting} from "common.mjs"
+import {BoolSetting} from "./common.mjs"
 import Canvas from "../module/canvas.mjs"
 import LatexAPI from "../module/latex.mjs"
 

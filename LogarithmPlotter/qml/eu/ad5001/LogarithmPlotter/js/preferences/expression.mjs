@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting, EnumIntSetting} from "common.mjs"
+import {BoolSetting, EnumIntSetting} from "./common.mjs"
 
 const AUTOCLOSE_FORMULA = new BoolSetting(
     qsTranslate("expression", "Automatically close parenthesises and brackets"),

@@ -1,0 +1,21 @@
+{
+  "name": "logarithmplotter",
+  "version": "0.6.0",
+  "description": "2D plotter software to make Bode plots, sequences and distribution functions.",
+  "main": "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/autoload.mjs",
+  "scripts": {
+    "build": "rollup --config rollup.config.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.ad5001.eu/Ad5001/LogarithmPlotter"
+  },
+  "author": "Ad5001 <mail@ad5001.eu>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.22.4"
+  }
+}

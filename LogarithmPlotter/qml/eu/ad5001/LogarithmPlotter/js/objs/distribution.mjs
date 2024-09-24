@@ -20,7 +20,7 @@ import * as P from "../parameters.mjs"
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
 
-import { ExecutableObject } from "common.mjs"
+import { ExecutableObject } from "./common.mjs"
 
 
 export default class DistributionFunction extends ExecutableObject {

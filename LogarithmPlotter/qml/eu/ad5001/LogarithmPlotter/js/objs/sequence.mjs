@@ -21,8 +21,8 @@ import * as P from "../parameters.mjs"
 import Latex from "../module/latex.mjs"
 import Objects from "../module/objects.mjs"
 
-import { ExecutableObject } from "common.mjs"
-import Function from "function.mjs"
+import { ExecutableObject } from "./common.mjs"
+import Function from "./function.mjs"
 
 
 export default class Sequence extends ExecutableObject {

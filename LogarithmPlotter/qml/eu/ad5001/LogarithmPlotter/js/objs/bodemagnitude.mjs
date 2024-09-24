@@ -23,8 +23,8 @@ import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
 import History from "../module/history.mjs"
 
-import { ExecutableObject } from "common.mjs"
-import Function from "function.mjs"
+import { ExecutableObject } from "./common.mjs"
+import Function from "./function.mjs"
 
 export default class BodeMagnitude extends ExecutableObject {
     static type(){return 'Gain Bode'}

@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import * as Expr from "expression.mjs"
+import * as Expr from "./expression.mjs"
 import * as Utils from "../utils.mjs"
 import Latex from "../module/latex.mjs"
 import Objects from "../module/objects.mjs"

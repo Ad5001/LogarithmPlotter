@@ -17,17 +17,17 @@
  */
 
 import Objects from "../module/objects.mjs"
-import { DrawableObject } from "common.mjs"
-import Point from "point.mjs"
-import Text from "text.mjs"
-import Function from "function.mjs"
-import BodeMagnitude from "bodemagnitude.mjs"
-import BodePhase from "bodephase.mjs"
-import BodeMagnitudeSum from "bodemagnitudesum.mjs"
-import BodePhaseSum from "bodephasesum.mjs"
-import XCursor from "xcursor.mjs"
-import Sequence from "sequence.mjs"
-import DistributionFunction from "distribution.mjs"
+import { DrawableObject } from "./common.mjs"
+import Point from "./point.mjs"
+import Text from "./text.mjs"
+import Function from "./function.mjs"
+import BodeMagnitude from "./bodemagnitude.mjs"
+import BodePhase from "./bodephase.mjs"
+import BodeMagnitudeSum from "./bodemagnitudesum.mjs"
+import BodePhaseSum from "./bodephasesum.mjs"
+import XCursor from "./xcursor.mjs"
+import Sequence from "./sequence.mjs"
+import DistributionFunction from "./distribution.mjs"
 
 /**
  * Registers the object  obj in the object list.

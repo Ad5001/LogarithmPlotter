@@ -17,7 +17,7 @@
  */
 
 import Objects from "../module/objects.mjs"
-import CreateNewObject from "create.mjs"
+import CreateNewObject from "./create.mjs"
 
 
 export default class DeleteObject extends CreateNewObject {
