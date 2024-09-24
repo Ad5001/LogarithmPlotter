@@ -1825,7 +1825,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation type="unfinished">integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: ExecutableObject&gt;)</translation>
+        <translation>integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: Funktionsähnliches Objekt&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="66"/>
