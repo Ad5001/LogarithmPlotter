@@ -396,6 +396,17 @@ files = [
 ]
 
 [[package]]
+name = "sourcemap"
+version = "0.2.1"
+description = "Parse JavaScript source maps."
+optional = false
+python-versions = "*"
+files = [
+    {file = "sourcemap-0.2.1-py2.py3-none-any.whl", hash = "sha256:c448a8c48f9482e522e4582106b0c641a83b5dbc7f13927b178848e3ea20967b"},
+    {file = "sourcemap-0.2.1.tar.gz", hash = "sha256:be00a90185e7a16b87bbe62a68ffd5e38bc438ef4700806d9b90e44d8027787c"},
+]
+
+[[package]]
 name = "stdeb"
 version = "0.10.0"
 description = "Python to Debian source package conversion utility"
@@ -438,4 +449,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "3db79d8b611fd2e37486fbd8e10c6d454b293cc7156d83b05c1a8459cb9b33e6"
+content-hash = "30da53f0a05c06c5f93aa1260217d807ce2ab64debd26f313b47c664931e67c7"

@@ -43,7 +43,7 @@ if path.realpath(path.join(getcwd(), "..")) not in sys_path:
     sys_path.append(path.realpath(path.join(getcwd(), "..")))
 
 from LogarithmPlotter import __VERSION__
-from LogarithmPlotter.util import config, native
+from LogarithmPlotter.util import config, native, debug
 from LogarithmPlotter.util.update import check_for_updates
 from LogarithmPlotter.util.helper import Helper
 from LogarithmPlotter.util.latex import Latex
@@ -155,6 +155,7 @@ def run():
     register_icon_directories()
     app = create_qapp()
     translator = install_translation(app)
+    debug.setup()
 
     # Installing macOS file handler.
     macos_file_open_handler = None

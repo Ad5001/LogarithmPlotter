@@ -21,6 +21,7 @@ def update_translations():
     """
     from os import system, getcwd, chdir, path
     pwd = getcwd()
+    system("npm run build")
     chdir(path.join("LogarithmPlotter", "i18n"))
     system("./release.sh")
     chdir(pwd)

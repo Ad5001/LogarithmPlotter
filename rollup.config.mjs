@@ -18,6 +18,7 @@
 
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
+import { babel } from "@rollup/plugin-babel"
 import terser from "@rollup/plugin-terser"
 
 const path = "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js"
@@ -26,16 +27,19 @@ export default {
     input: `${path}/autoload.mjs`,
     output: {
         file: `${path}/index.mjs`,
-        compact: true,
+        compact: false,
         sourcemap: true,
-        format: "es",
+        format: "es"
     },
     plugins: [
-        nodeResolve(),
+        nodeResolve({ browser: true }),
         commonjs(),
-        terser({
-            ecma: 2015,
-        })
+        babel({
+            babelHelpers: "bundled"
+        }),
+        // terser({
+        //     ecma: 2015
+        // })
     ]
 }
 

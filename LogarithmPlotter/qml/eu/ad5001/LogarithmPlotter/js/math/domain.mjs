@@ -155,7 +155,7 @@ export class Domain {
                 return Domain.ZE
                 break;
             default:
-                return new EmptySet()
+                return Domain.EmptySet
                 break;
         }
     }
@@ -181,6 +181,8 @@ export class EmptySet extends Domain {
     
     static import(frm) { return new EmptySet() }
 }
+
+Domain.EmptySet = new EmptySet() // To prevent use prior to declaration.
 
 /**
  * Domain classes for ranges (e.g ]0;3[, [1;2[ ...)

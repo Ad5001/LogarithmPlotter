@@ -34,7 +34,7 @@ const evalVariables = {
     "false": false
 }
 
-export class ExprParserAPI extends Module {
+class ExprParserAPI extends Module {
     constructor() {
         super("ExprParser")
         this.currentVars = {}
