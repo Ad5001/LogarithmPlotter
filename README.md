@@ -15,9 +15,19 @@
 
 You can find more screenshots on the [app's website](https://apps.ad5001.eu/logarithmplotter/).
 
-## Run
+## Build & Run
 
-You can simply run LogarithmPlotter using `python3 run.py`.
+First, you'll need to install all the required dependencies:
+
+- [Python 3](https://python.org) with [poetry](https://python-poetry.org/), and setup a virtual environment and call
+  `poetry install`.
+- [npm](https://npmjs.com) (or [yarn](https://yarnpkg.com/)), and run `npm install` (or `yarn install`).
+
+You can simply run LogarithmPlotter using `python3 run.py`. It automatically compiles the language files (requires
+`lrelease` to be installed and in path), and the JavaScript modules.
+
+If you do not wish do recompile the files again on every run, you can use
+`python3 LogarithmPlotter/logarithmplotter.py`.
 
 In order to test translations, you can use the `--lang=<lang code>` commandline option to force the locale.
 
@@ -27,9 +37,7 @@ In order to test translations, you can use the `--lang=<lang code>` commandline 
 
 All scripts noted here can be found in the `scripts` directory.
 
-You can generate installers for LogarithmPlotter after installing all the dependencies:   
-For all builds, you will need [Python 3](https://python.org) with [poetry](https://python-poetry.org/), and
-`poetry install --with packaging`.
+You can generate installers for LogarithmPlotter after installing all the dependencies.
 
 - Windows installer:
     - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an
