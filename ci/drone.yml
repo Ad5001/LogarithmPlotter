@@ -11,6 +11,17 @@ steps:
     commands:
       - git submodule update --init --recursive
 
+  - name: Build
+    image: node:18-bookworm
+    commands:
+      - npm install
+      - apt install -y qtchooser qttools5-dev-tools
+      # Start building 
+      - cd LogarithmPlotter/i18n && bash release.sh && cd ../..
+      - npm run build
+    when:
+      event: [ push, tag ]
+
   - name: Unit Tests
     image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
