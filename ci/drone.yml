@@ -15,6 +15,7 @@ steps:
     image: node:18-bookworm
     commands:
       - npm install
+      - apt update
       - apt install -y qtchooser qttools5-dev-tools
       # Start building 
       - cd LogarithmPlotter/i18n && bash release.sh && cd ../..
