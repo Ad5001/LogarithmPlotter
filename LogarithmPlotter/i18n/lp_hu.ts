@@ -1717,7 +1717,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/sequence.mjs" line="41"/>
         <source>baseValues</source>
-        <translation type="unfinished">Kezdeményezési értékek</translation>
+        <translation>Kezdeményezési értékek</translation>
     </message>
     <message>
         <source>color</source>
