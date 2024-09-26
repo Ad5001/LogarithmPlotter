@@ -18,8 +18,6 @@
 
 import QtQuick
 import Qt.labs.platform as Native
-import "js/utils.mjs" as Utils
-import "js/math/index.mjs" as MathLib
 
 /*!
     \qmltype LogGraphCanvas

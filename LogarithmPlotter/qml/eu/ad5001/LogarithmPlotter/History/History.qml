@@ -19,7 +19,7 @@
 import QtQuick
 import QtQml
 import QtQuick.Window
-import "../js/history/index.mjs" as HistoryLib
+import "../js/index.mjs" as JS
 
 /*!
     \qmltype History
@@ -97,9 +97,9 @@ Item {
     function unserialize(undoSt, redoSt) {
         clear();
         for(let i = 0; i < undoSt.length; i++)
-            undoStack.push(new HistoryLib.Actions[undoSt[i][0]](...undoSt[i][1]))
+            undoStack.push(new JS.HistoryLib.Actions[undoSt[i][0]](...undoSt[i][1]))
         for(let i = 0; i < redoSt.length; i++)
-            redoStack.push(new HistoryLib.Actions[redoSt[i][0]](...redoSt[i][1]))
+            redoStack.push(new JS.HistoryLib.Actions[redoSt[i][0]](...redoSt[i][1]))
         undoCount = undoSt.length;
         redoCount = redoSt.length;
         objectLists.update()
@@ -110,7 +110,7 @@ Item {
         Adds an instance of HistoryLib.Action to history.
     */
     function addToHistory(action) {
-        if(action instanceof HistoryLib.Action) {
+        if(action instanceof JS.HistoryLib.Action) {
             console.log("Added new entry to history: " + action.getReadableString())
             undoStack.push(action)
             undoCount++;

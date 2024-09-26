@@ -78,7 +78,6 @@ def check_for_updates(current_version, window):
         return
 
     def cb(show_alert, msg_text, update_available):
-        pass
         if show_alert:
             window.showAlert(msg_text)
         if update_available:

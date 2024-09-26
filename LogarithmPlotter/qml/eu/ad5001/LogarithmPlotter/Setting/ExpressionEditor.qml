@@ -20,9 +20,7 @@ import QtQuick.Controls
 import QtQuick
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
-import "../js/math/index.mjs" as MathLib
-import "../js/utils.mjs" as Utils
-import "../js/parsing/parsing.mjs" as Parsing
+import "../js/index.mjs" as JS
 
 
 /*!
@@ -319,9 +317,9 @@ Item {
                 width: parent.width
                 
                 readonly property var identifierTokenTypes: [
-                    Parsing.TokenType.VARIABLE,
-                    Parsing.TokenType.FUNCTION,
-                    Parsing.TokenType.CONSTANT
+                    JS.Parsing.TokenType.VARIABLE,
+                    JS.Parsing.TokenType.FUNCTION,
+                    JS.Parsing.TokenType.CONSTANT
                 ]
                 property var currentToken: generateTokenInformation(getTokenAt(editor.tokens, editor.cursorPosition))
                 property var previousToken: generateTokenInformation(getPreviousToken(currentToken.token))
@@ -346,7 +344,7 @@ Item {
                         'value': exists ? token.value : null,
                         'type': exists ? token.type : null,
                         'startPosition': exists ? token.startPosition : 0,
-                        'dot': exists ? (token.type == Parsing.TokenType.PUNCT && token.value == ".") : false,
+                        'dot': exists ? (token.type == JS.Parsing.TokenType.PUNCT && token.value == ".") : false,
                         'identifier': exists ? identifierTokenTypes.includes(token.type) : false
                     }
                 }
@@ -385,7 +383,7 @@ Item {
                 */
                 function getPreviousToken(token) {
                     let newToken = getTokenAt(editor.tokens, token.startPosition)
-                    if(newToken != null && newToken.type == Parsing.TokenType.WHITESPACE)
+                    if(newToken != null && newToken.type == JS.Parsing.TokenType.WHITESPACE)
                         return getPreviousToken(newToken)
                     return newToken
                 }
@@ -444,9 +442,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: variablesList.itemStartIndex + variablesList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Parsing.CONSTANTS_LIST
+                    categoryItems: JS.Parsing.CONSTANTS_LIST
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Parsing.CONSTANTS[item],
+                        'text': item, 'annotation': JS.Parsing.CONSTANTS[item],
                         'autocomplete': item + " ", 'cursorFinalOffset': 0
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -459,9 +457,9 @@ Item {
                     visbilityCondition: parent.currentToken.identifier && !parent.previousToken.dot
                     itemStartIndex: constantsList.itemStartIndex + constantsList.model.length
                     itemSelected: parent.itemSelected
-                    categoryItems: Parsing.FUNCTIONS_LIST
+                    categoryItems: JS.Parsing.FUNCTIONS_LIST
                     autocompleteGenerator: (item) => {return {
-                        'text': item, 'annotation': Parsing.FUNCTIONS_USAGE[item].join(', '),
+                        'text': item, 'annotation': JS.Parsing.FUNCTIONS_USAGE[item].join(', '),
                         'autocomplete': item+'()', 'cursorFinalOffset': -1
                     }}
                     baseText: parent.visible ? parent.currentToken.value : ""
@@ -538,7 +536,7 @@ Item {
     function parse(newExpression) {
         let expr = null
         try {
-            expr = new MathLib.Expression(value.toString())
+            expr = new JS.MathLib.Expression(value.toString())
             // Check if the expression is valid, throws error otherwise.
             if(!expr.allRequirementsFullfilled()) {
                 let undefVars = expr.undefinedVariables()
@@ -572,7 +570,7 @@ Item {
         Generates a list of tokens from the given.
     */
     function tokens(text) {
-        let tokenizer = new Parsing.Tokenizer(new Parsing.Input(text), true, false)
+        let tokenizer = new JS.Parsing.Tokenizer(new JS.Parsing.Input(text), true, false)
         let tokenList = []
         let token
         while((token = tokenizer.next()) != null)
@@ -605,28 +603,28 @@ Item {
         let scheme = colorSchemes[Helper.getSettingInt("expression_editor.color_scheme")]
         for(let token of tokenList) {
             switch(token.type) {
-                case Parsing.TokenType.VARIABLE:
+                case JS.Parsing.TokenType.VARIABLE:
                     parsedText += `<font color="${scheme.VARIABLE}">${token.value}</font>`
                     break;
-                case Parsing.TokenType.CONSTANT:
+                case JS.Parsing.TokenType.CONSTANT:
                     parsedText += `<font color="${scheme.CONSTANT}">${token.value}</font>`
                     break;
-                case Parsing.TokenType.FUNCTION:
-                    parsedText += `<font color="${scheme.FUNCTION}">${Utils.escapeHTML(token.value)}</font>`
+                case JS.Parsing.TokenType.FUNCTION:
+                    parsedText += `<font color="${scheme.FUNCTION}">${JS.Utils.escapeHTML(token.value)}</font>`
                     break;
-                case Parsing.TokenType.OPERATOR:
-                    parsedText += `<font color="${scheme.OPERATOR}">${Utils.escapeHTML(token.value)}</font>`
+                case JS.Parsing.TokenType.OPERATOR:
+                    parsedText += `<font color="${scheme.OPERATOR}">${JS.Utils.escapeHTML(token.value)}</font>`
                     break;
-                case Parsing.TokenType.NUMBER:
-                    parsedText += `<font color="${scheme.NUMBER}">${Utils.escapeHTML(token.value)}</font>`
+                case JS.Parsing.TokenType.NUMBER:
+                    parsedText += `<font color="${scheme.NUMBER}">${JS.Utils.escapeHTML(token.value)}</font>`
                     break;
-                case Parsing.TokenType.STRING:
-                    parsedText += `<font color="${scheme.STRING}">${token.limitator}${Utils.escapeHTML(token.value)}${token.limitator}</font>`
+                case JS.Parsing.TokenType.STRING:
+                    parsedText += `<font color="${scheme.STRING}">${token.limitator}${JS.Utils.escapeHTML(token.value)}${token.limitator}</font>`
                     break;
-                case Parsing.TokenType.WHITESPACE:
-                case Parsing.TokenType.PUNCT:
+                case JS.Parsing.TokenType.WHITESPACE:
+                case JS.Parsing.TokenType.PUNCT:
                 default:
-                    parsedText += Utils.escapeHTML(token.value).replace(/ /g, '&nbsp;')
+                    parsedText += JS.Utils.escapeHTML(token.value).replace(/ /g, '&nbsp;')
                     break;
             }
         }

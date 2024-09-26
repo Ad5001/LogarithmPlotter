@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import * as Reference from "reference.mjs"
+import * as Reference from "./reference.mjs"
 import * as T from "./tokenizer.mjs"
 import InputExpression from "./common.mjs"
 

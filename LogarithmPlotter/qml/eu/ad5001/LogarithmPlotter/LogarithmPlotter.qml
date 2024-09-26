@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.12
 import QtQuick
 
 // Auto loading all modules.
-import "js/index.mjs" as ModulesAutoload
+import "js/index.mjs" as JS
 
 import eu.ad5001.LogarithmPlotter.History 1.0
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0

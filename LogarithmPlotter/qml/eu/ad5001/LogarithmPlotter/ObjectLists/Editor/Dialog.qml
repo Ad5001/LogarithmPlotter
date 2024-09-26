@@ -22,9 +22,7 @@ import QtQuick.Dialogs as D
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
-import "../../js/history/index.mjs" as HistoryLib
-import "../../js/utils.mjs" as Utils
-import "../../js/math/index.mjs" as MathLib
+import "../../js/index.mjs" as JS
 
 /*!
     \qmltype Dialog
@@ -109,12 +107,12 @@ Popup.BaseDialog {
                 width: dlgProperties.width
                 value: objEditor.obj.name
                 onChanged: function(newValue) {
-                    let newName = Utils.parseName(newValue)
+                    let newName = JS.Utils.parseName(newValue)
                     if(newName != '' && objEditor.obj.name != newName) {
                         if(newName in Modules.Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
                         } else {
-                            history.addToHistory(new HistoryLib.NameChanged(
+                            history.addToHistory(new JS.HistoryLib.NameChanged(
                                 objEditor.obj.name, objEditor.objType, newName
                             ))
                             Modules.Objects.renameObject(obj.name, newName)

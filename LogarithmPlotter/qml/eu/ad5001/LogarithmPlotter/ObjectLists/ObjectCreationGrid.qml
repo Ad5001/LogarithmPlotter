@@ -18,8 +18,8 @@
 
 import QtQuick
 import QtQuick.Controls
-import "../js/history/index.mjs" as HistoryLib
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
+import "../js/index.mjs" as JS
 
 
 /*!
@@ -104,7 +104,7 @@ Column {
                 
                 onClicked: {
                     let newObj = Modules.Objects.createNewRegisteredObject(modelData)
-                    history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
+                    history.addToHistory(new JS.HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
         
                     let hasXProp = newObj.constructor.properties().hasOwnProperty('x')

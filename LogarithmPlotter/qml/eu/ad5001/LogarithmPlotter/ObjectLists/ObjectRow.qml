@@ -21,7 +21,7 @@ import QtQuick.Dialogs
 import QtQuick.Controls
 import QtQuick.Window
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/history/index.mjs" as HistoryLib
+import "../js/index.mjs" as JS
 
 
 /*!
@@ -72,7 +72,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: 5
         onClicked: {
-            history.addToHistory(new HistoryLib.EditedVisibility(
+            history.addToHistory(new JS.HistoryLib.EditedVisibility(
                 obj.name, obj.type, this.checked
             ))
             obj.visible = this.checked
@@ -212,7 +212,7 @@ Item {
         selectedColor: obj.color
         title: qsTr("Pick new color for %1 %2").arg(obj.constructor.displayType()).arg(obj.name)
         onAccepted: {
-            history.addToHistory(new HistoryLib.ColorChanged(
+            history.addToHistory(new JS.HistoryLib.ColorChanged(
                 obj.name, obj.type, obj.color, selectedColor.toString()
             ))
             obj.color = selectedColor.toString()
@@ -231,7 +231,7 @@ Item {
             // Object still exists
             // Temporary fix for objects require not being propertly updated.
             object.requiredBy = []
-            history.addToHistory(new HistoryLib.DeleteObject(
+            history.addToHistory(new JS.HistoryLib.DeleteObject(
                 object.name, object.type, object.export()
             ))
             Modules.Objects.deleteObject(object.name)

@@ -19,8 +19,7 @@
 import QtQuick
 import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "js/math/index.mjs" as MathLib
-import "js/history/index.mjs" as HistoryLib
+import "js/index.mjs" as JS
 
 /*!
     \qmltype PickLocationOverlay
@@ -116,7 +115,7 @@ Item {
                 let obj = Modules.Objects.currentObjectsByName[objName]
                 // Set values
                 if(parent.userPickX && parent.userPickY) {
-                    history.addToHistory(new HistoryLib.EditedPosition(
+                    history.addToHistory(new JS.HistoryLib.EditedPosition(
                         objName, objType, obj[propertyX], newValueX, obj[propertyY], newValueY
                     ))
                     obj[propertyX] = newValueX
@@ -125,7 +124,7 @@ Item {
                     objectLists.update()
                     pickerRoot.picked(obj)
                 } else if(parent.userPickX) {
-                    history.addToHistory(new HistoryLib.EditedProperty(
+                    history.addToHistory(new JS.HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValueX
                     ))
                     obj[propertyX] = newValueX
@@ -133,7 +132,7 @@ Item {
                     objectLists.update()
                     pickerRoot.picked(obj)
                 } else if(parent.userPickY) {
-                    history.addToHistory(new HistoryLib.EditedProperty(
+                    history.addToHistory(new JS.HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValueY
                     ))
                     obj[propertyY] = newValueY
@@ -327,6 +326,6 @@ Item {
         if(Modules.Objects.types[objType].properties()[propertyName] == 'number')
             return parseFloat(value)
         else
-            return new MathLib.Expression(value)
+            return new JS.MathLib.Expression(value)
     }
 }

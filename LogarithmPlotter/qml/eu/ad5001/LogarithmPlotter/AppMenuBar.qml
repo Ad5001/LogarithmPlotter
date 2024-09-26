@@ -20,7 +20,7 @@ import QtQuick
 import Qt.labs.platform as Native
 //import QtQuick.Controls 2.15
 import eu.ad5001.MixedMenu 1.1
-import "js/history/index.mjs" as HistoryLib
+import "js/index.mjs" as JS
 
 
 /*!
@@ -119,7 +119,7 @@ MenuBar {
                 icon.color: sysPalette.buttonText
                 onTriggered: {
                     var newObj = Modules.Objects.createNewRegisteredObject(modelData)
-                    history.addToHistory(new HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
+                    history.addToHistory(new JS.HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
                 }
             }

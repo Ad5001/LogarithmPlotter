@@ -17,7 +17,7 @@
  */
 
 
-import * as Reference from "reference.mjs"
+import * as Reference from "./reference.mjs"
 
 const WHITESPACES = " \t\n\r"
 const STRING_LIMITERS = '"\'`';

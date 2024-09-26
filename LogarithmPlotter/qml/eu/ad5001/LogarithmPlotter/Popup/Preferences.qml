@@ -20,8 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/preferences/common.mjs" as S
-import "../js/utils.mjs" as Utils
+import "../js/index.mjs" as JS
 
 /*!
     \qmltype Preferences
@@ -77,7 +76,7 @@ Popup {
             currentIndex: find(setting.value())
             model: setting.defaultValues
             onAccepted: function() {
-                editText = Utils.parseName(editText, false)
+                editText = JS.Utils.parseName(editText, false)
                 if(find(editText) === -1) model.append(editText)
                 setting.set(editText)
             }
@@ -116,7 +115,7 @@ Popup {
             height: 30
             label: setting.name
             icon: `settings/${setting.icon}.svg`
-            defValue: Utils.simplifyExpression(setting.value())
+            defValue: JS.Utils.simplifyExpression(setting.value())
             variables: setting.variables
             allowGraphObjects: false
             property string propertyName: setting.name

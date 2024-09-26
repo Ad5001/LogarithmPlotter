@@ -20,7 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
-import "js/utils.mjs" as Utils
+import "js/index.mjs" as JS
 
 /*!
     \qmltype Settings
@@ -330,7 +330,7 @@ ScrollView {
             currentIndex: find(settings.xlabel)
             editable: true
             onAccepted: function(){
-                editText = Utils.parseName(editText, false)
+                editText = JS.Utils.parseName(editText, false)
                 if (find(editText) === -1) model.append({text: editText})
                 settings.xlabel = editText
                 settings.changed()
@@ -359,7 +359,7 @@ ScrollView {
             currentIndex: find(settings.ylabel)
             editable: true
             onAccepted: function(){
-                editText = Utils.parseName(editText, false)
+                editText = JS.Utils.parseName(editText, false)
                 if (find(editText) === -1) model.append({text: editText, yaxisstep: root.yaxisstep})
                 settings.ylabel = editText
                 settings.changed()
