@@ -66,19 +66,6 @@ class LatexAPI extends Module {
     }
 
     /**
-     * Prepares and renders a latex string into a png file.
-     *
-     * @param {string} markup - LaTeX markup to render.
-     * @param {number} fontSize - Font size (in pt) to render.
-     * @param {color} color - Color of the text to render.
-     * @returns {LatexRenderResult}
-     */
-    renderSync(markup, fontSize, color) {
-        let args = Latex.render(markup, fontSize, color).split(",")
-        return new LatexRenderResult(...args)
-    }
-
-    /**
      * Checks if the given markup (with given font size and color) has already been
      * rendered, and if so, returns its data. Otherwise, returns null.
      *
@@ -103,10 +90,9 @@ class LatexAPI extends Module {
      * @param {color} color - Color of the text to render.
      * @returns {Promise<LatexRenderResult>}
      */
-    requestAsyncRender(markup, fontSize, color) {
-        return new Promise(resolve => {
-            resolve(this.renderSync(markup, fontSize, color))
-        })
+    async requestAsyncRender(markup, fontSize, color) {
+        let args = Latex.render(markup, fontSize, color).split(",")
+        return new LatexRenderResult(...args)
     }
 
     /**

@@ -97,7 +97,7 @@ class IOAPI extends Module {
      * Loads the diagram from a certain \c filename.
      * @param {string} filename
      */
-    loadDiagram(filename) {
+    async loadDiagram(filename) {
         if(!this.initialized) throw new Error("Attempting loadDiagram before initialize!")
         if(!History.initialized) throw new Error("Attempting loadDiagram before history is initialized!")
         let basename = filename.split("/").pop()

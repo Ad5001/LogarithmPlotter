@@ -85,20 +85,16 @@ export class Action {
      * @param {string} latexString - Source string of the latex.
      * @returns {Promise<string>}
      */
-    renderLatexAsHtml(latexString) {
+    async renderLatexAsHtml(latexString) {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
-        return new Promise(resolve => {
-            let imgDepth = History.imageDepth
-            Latex.requestAsyncRender(
-                latexString,
-                imgDepth * (History.fontSize + 2),
-                History.themeTextColor
-            ).then((imgData) => {
-                const { source, width, height } = imgData
-                resolve(`<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`)
-            })
-        })
+        const imgDepth = History.imageDepth
+        const { source, width, height } = await Latex.requestAsyncRender(
+            latexString,
+            imgDepth * (History.fontSize + 2),
+            History.themeTextColor
+        )
+        return `<img src="${source}" width="${width/imgDepth}" height="${height/imgDepth}" style="vertical-align: middle"/>`
     }
     
     /**

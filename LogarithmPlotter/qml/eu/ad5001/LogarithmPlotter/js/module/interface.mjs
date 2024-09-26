@@ -69,65 +69,50 @@ export class Interface {
 
 
 export class SettingsInterface extends Interface {
-    constructor() {
-        super()
-        this.width = NUMBER
-        this.height = NUMBER
-        this.xmin = NUMBER
-        this.ymax = NUMBER
-        this.xzoom = NUMBER
-        this.yzoom = NUMBER
-        this.xaxisstep = STRING
-        this.yaxisstep = STRING
-        this.xlabel = STRING
-        this.ylabel = STRING
-        this.linewidth = NUMBER
-        this.textsize = NUMBER
-        this.logscalex = BOOLEAN
-        this.showxgrad = BOOLEAN
-        this.showygrad = BOOLEAN
-    }
+    width = NUMBER
+    height = NUMBER
+    xmin = NUMBER
+    ymax = NUMBER
+    xzoom = NUMBER
+    yzoom = NUMBER
+    xaxisstep = STRING
+    yaxisstep = STRING
+    xlabel = STRING
+    ylabel = STRING
+    linewidth = NUMBER
+    textsize = NUMBER
+    logscalex = BOOLEAN
+    showxgrad = BOOLEAN
+    showygrad = BOOLEAN
 }
 
 export class CanvasInterface extends SettingsInterface {
-    constructor() {
-        super()
-        this.imageLoaders = OBJECT
-        /** @type {function(string): CanvasRenderingContext2D} */
-        this.getContext = FUNCTION
-        /** @type {function(rect)} */
-        this.markDirty = FUNCTION
-        /** @type {function(string)} */
-        this.loadImage = FUNCTION
-        /** @type {function()} */
-        this.requestPaint = FUNCTION
-    }
+    imageLoaders = OBJECT
+    /** @type {function(string): CanvasRenderingContext2D} */
+    getContext = FUNCTION
+    /** @type {function(rect)} */
+    markDirty = FUNCTION
+    /** @type {function(string)} */
+    loadImage = FUNCTION
+    /** @type {function()} */
+    requestPaint = FUNCTION
 }
 
 export class RootInterface extends Interface {
-    constructor() {
-        super()
-        this.width = NUMBER
-        this.height = NUMBER
-        this.updateObjectsLists = FUNCTION
-    }
+    width = NUMBER
+    height = NUMBER
+    updateObjectsLists = FUNCTION
 }
 
 export class DialogInterface extends Interface {
-    constructor() {
-        super()
-        this.show = FUNCTION
-    }
+    show = FUNCTION
 }
 
 export class HistoryInterface extends Interface {
-    constructor() {
-        super()
-        this.undo = FUNCTION
-        this.redo = FUNCTION
-        this.clear = FUNCTION
-        this.addToHistory = FUNCTION
-        this.unserialize = FUNCTION
-        this.serialize = FUNCTION
-    }
+    undo = FUNCTION
+    redo = FUNCTION
+    clear = FUNCTION
+    addToHistory = FUNCTION
+    unserialize = FUNCTION
+    serialize = FUNCTION
 }

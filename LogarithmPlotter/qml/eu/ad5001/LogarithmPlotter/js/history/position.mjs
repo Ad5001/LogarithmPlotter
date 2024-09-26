@@ -89,21 +89,16 @@ export default class EditedPosition extends Action {
                 .arg(this.targetName).arg(this.prevString).arg(this.nextString)
     }
     
-    getHTMLString() {
-        return new Promise(resolve => {
-            const translation = qsTranslate("position", 'Position of %1 set from %2 to %3.')
-                                    .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
-            // Check if we need to wait for LaTeX HTML to be rendered.
-            if(this.prevHTML !== undefined && this.nextHTML !== undefined)
-                resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
-            else
-                Promise.all(this._renderPromises).then((rendered) => {
-                    // Rendered are (potentially) two HTML strings which are defined during rendering
-                    this.prevHTML = this.prevHTML ?? rendered[0]
-                    this.nextHTML = this.nextHTML ?? rendered[1]
-                    resolve(translation.arg(this.prevHTML).arg(this.nextHTML))
-                })
-        })
+    async getHTMLString() {
+        const translation = qsTranslate("position", 'Position of %1 set from %2 to %3.')
+                                .arg('<b style="font-size: 15px;">&nbsp;' + this.targetName + '&nbsp;</b>')
+        // Check if we need to wait for LaTeX HTML to be rendered.
+        if(this.prevHTML === undefined || this.nextHTML === undefined) {
+            const [prevHTML, nextHTML] = await Promise.all(this._renderPromises)
+            this.prevHTML = this.prevHTML ?? prevHTML
+            this.nextHTML = this.nextHTML ?? nextHTML
+        }
+        return translation.arg(this.prevHTML).arg(this.nextHTML)
                 
     }
 }
