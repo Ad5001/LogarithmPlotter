@@ -26,7 +26,7 @@ export class Module {
     /**
      *
      * @param {string} name - Name of the API
-     * @param {Object.<string, (Interface|string)>} initializationParameters - List of parameters for the initialize function.
+     * @param {Object.<string, (Interface|string|number|boolean)>} initializationParameters - List of parameters for the initialize function.
      */
     constructor(name, initializationParameters = {}) {
         console.log(`Loading module ${name}...`)

@@ -19,9 +19,10 @@
 import EditedProperty from "./editproperty.mjs"
 import Objects from "../module/objects.mjs"
 
-
+/**
+ * Action used everytime an object's name has been changed.
+ */
 export default class NameChanged extends EditedProperty {
-    // Action used everytime an object's property has been changed
     type(){return 'NameChanged'}
     
     icon(){return 'name'}

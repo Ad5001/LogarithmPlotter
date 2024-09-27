@@ -55,7 +55,7 @@ class ExprParserAPI extends Module {
      * @return {function} JS function to call.
      */
     parseArgumentsForFunction(args, usage1, usage2) {
-        let f, target, variable
+        let f, variable
         if(args.length === 1) {
             // Parse object
             f = args[0]

@@ -17,7 +17,6 @@
  */
 
 import { Module } from "./common.mjs"
-import Latex from "./latex.mjs"
 import { HistoryInterface, NUMBER, STRING } from "./interface.mjs"
 
 

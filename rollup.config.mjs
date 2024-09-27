@@ -20,7 +20,6 @@ import { nodeResolve } from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import { babel } from "@rollup/plugin-babel"
 import cleanup from "rollup-plugin-cleanup"
-import terser from "@rollup/plugin-terser"
 
 const path = "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js"
 
@@ -39,9 +38,6 @@ export default {
         babel({
             babelHelpers: "bundled"
         }),
-        // terser({
-        //     ecma: 2015
-        // })
     ]
 }
 

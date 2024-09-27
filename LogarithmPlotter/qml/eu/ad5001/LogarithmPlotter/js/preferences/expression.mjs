@@ -16,30 +16,30 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting, EnumIntSetting} from "./common.mjs"
+import { BoolSetting, EnumIntSetting } from "./common.mjs"
 
 const AUTOCLOSE_FORMULA = new BoolSetting(
     qsTranslate("expression", "Automatically close parenthesises and brackets"),
-    'expression_editor.autoclose',
-    'text'
+    "expression_editor.autoclose",
+    "text"
 )
 
 const ENABLE_SYNTAX_HIGHLIGHTING = new BoolSetting(
     qsTranslate("expression", "Enable syntax highlighting"),
-    'expression_editor.colorize',
-    'appearance'
+    "expression_editor.colorize",
+    "appearance"
 )
 
 const ENABLE_AUTOCOMPLETE = new BoolSetting(
     qsTranslate("expression", "Enable autocompletion"),
-    'autocompletion.enabled',
-    'label'
+    "autocompletion.enabled",
+    "label"
 )
 
 const PICK_COLOR_SCHEME = new EnumIntSetting(
     qsTranslate("expression", "Color Scheme"),
-    'expression_editor.color_scheme',
-    'color',
+    "expression_editor.color_scheme",
+    "color",
     ["Breeze Light", "Breeze Dark", "Solarized", "Github Light", "Github Dark", "Nord", "Monokai"]
 )
 

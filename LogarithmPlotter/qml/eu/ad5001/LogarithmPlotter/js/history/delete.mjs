@@ -20,10 +20,10 @@ import Objects from "../module/objects.mjs"
 import CreateNewObject from "./create.mjs"
 
 
+/**
+ * Action used at the deletion of an object. Basically the same thing as creating a new object, except Redo & Undo are reversed.
+ */
 export default class DeleteObject extends CreateNewObject {
-    /**
-     * Action used at the deletion of an object. Basically the same thing as creating a new object, except Redo & Undo are reversed.
-     */
     type(){return 'DeleteObject'}
     
     icon(){return 'delete'}

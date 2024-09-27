@@ -20,7 +20,8 @@ import { Module } from "./common.mjs"
 import * as Instruction from "../lib/expr-eval/instruction.mjs"
 import { escapeValue } from "../lib/expr-eval/expression.mjs"
 
-const unicodechars = ["α", "β", "γ", "δ", "ε", "ζ", "η",
+const unicodechars = [
+    "α", "β", "γ", "δ", "ε", "ζ", "η",
     "π", "θ", "κ", "λ", "μ", "ξ", "ρ",
     "ς", "σ", "τ", "φ", "χ", "ψ", "ω",
     "Γ", "Δ", "Θ", "Λ", "Ξ", "Π", "Σ",
@@ -30,7 +31,8 @@ const unicodechars = ["α", "β", "γ", "δ", "ε", "ζ", "η",
     "⁷", "⁸", "⁹", "⁰", "₁", "₂", "₃",
     "₄", "₅", "₆", "₇", "₈", "₉", "₀",
     "pi", "∞"]
-const equivalchars = ["\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta",
+const equivalchars = [
+    "\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta",
     "\\pi", "\\theta", "\\kappa", "\\lambda", "\\mu", "\\xi", "\\rho",
     "\\sigma", "\\sigma", "\\tau", "\\phi", "\\chi", "\\psi", "\\omega",
     "\\Gamma", "\\Delta", "\\Theta", "\\Lambda", "\\Xi", "\\Pi", "\\Sigma",
@@ -71,7 +73,7 @@ class LatexAPI extends Module {
      *
      * @param {string} markup - LaTeX markup to render.
      * @param {number} fontSize - Font size (in pt) to render.
-     * @param {color} color - Color of the text to render.
+     * @param {string} color - Color of the text to render.
      * @returns {LatexRenderResult|null}
      */
     findPrerendered(markup, fontSize, color) {
@@ -87,7 +89,7 @@ class LatexAPI extends Module {
      *
      * @param {string} markup - LaTeX markup to render.
      * @param {number} fontSize - Font size (in pt) to render.
-     * @param {color} color - Color of the text to render.
+     * @param {string} color - Color of the text to render.
      * @returns {Promise<LatexRenderResult>}
      */
     async requestAsyncRender(markup, fontSize, color) {
@@ -119,7 +121,7 @@ class LatexAPI extends Module {
         if(elem[0] !== "(" && elem[elem.length - 1] !== ")" && contents.some(x => elem.indexOf(x) > 0))
             return this.par(elem)
         if(elem[0] === "(" && elem[elem.length - 1] === ")")
-            return elem.substr(1, elem.length - 2)
+            return elem.removeEnclosure()
         return elem
     }
 
@@ -134,24 +136,24 @@ class LatexAPI extends Module {
         switch(f) {
             case "derivative":
                 if(args.length === 3)
-                    return "\\frac{d" + args[0].substr(1, args[0].length - 2).replace(new RegExp(args[1].substr(1, args[1].length - 2), "g"), "x") + "}{dx}"
+                    return `\\frac{d${args[0].removeEnclosure().replaceAll(args[1].removeEnclosure(), "x")}}{dx}`
                 else
-                    return "\\frac{d" + args[0] + "}{dx}(x)"
+                    return `\\frac{d${args[0]}}{dx}(x)`
             case "integral":
                 if(args.length === 4)
-                    return "\\int\\limits_{" + args[0] + "}^{" + args[1] + "}" + args[2].substr(1, args[2].length - 2) + " d" + args[3].substr(1, args[3].length - 2)
+                    return `\\int\\limits_{${args[0]}}^{${args[1]}}${args[2].removeEnclosure()} d${args[3].removeEnclosure()}`
                 else
-                    return "\\int\\limits_{" + args[0] + "}^{" + args[1] + "}" + args[2] + "(t) dt"
+                    return `\\int\\limits_{${args[0]}}^{${args[1]}}${args[2]}(t) dt`
             case "sqrt":
-                return "\\sqrt\\left(" + args.join(", ") + "\\right)"
+                return `\\sqrt\\left(${args.join(", ")}\\right)`
             case "abs":
-                return "\\left|" + args.join(", ") + "\\right|"
+                return `\\left|${args.join(", ")}\\right|`
             case "floor":
-                return "\\left\\lfloor" + args.join(", ") + "\\right\\rfloor"
+                return `\\left\\lfloor${args.join(", ")}\\right\\rfloor`
             case "ceil":
-                return "\\left\\lceil" + args.join(", ") + "\\right\\rceil"
+                return `\\left\\lceil${args.join(", ")}\\right\\rceil`
             default:
-                return "\\mathrm{" + f + "}\\left(" + args.join(", ") + "\\right)"
+                return `\\mathrm{${f}}\\left(${args.join(", ")}\\right)`
         }
     }
 
@@ -166,12 +168,12 @@ class LatexAPI extends Module {
         if(wrapIn$)
             for(let i = 0; i < unicodechars.length; i++) {
                 if(vari.includes(unicodechars[i]))
-                    vari = vari.replace(new RegExp(unicodechars[i], "g"), "$" + equivalchars[i] + "$")
+                    vari = vari.replaceAll(unicodechars[i], "$" + equivalchars[i] + "$")
             }
         else
             for(let i = 0; i < unicodechars.length; i++) {
                 if(vari.includes(unicodechars[i]))
-                    vari = vari.replace(new RegExp(unicodechars[i], "g"), equivalchars[i])
+                    vari = vari.replaceAll(unicodechars[i], equivalchars[i])
             }
         return vari
     }

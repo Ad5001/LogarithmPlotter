@@ -29,7 +29,7 @@ class LOG_COLORS:
     GRAY = "\033[90m"
     BLUE = "\033[94m"
     ORANGE = "\033[38;5;166m"
-    RED = "\033[e[38;5;204m"
+    RED = "\033[38;5;204m"
     INVERT = "\033[7m"
     RESET_INVERT = "\033[27m"
     RESET = "\033[0m"

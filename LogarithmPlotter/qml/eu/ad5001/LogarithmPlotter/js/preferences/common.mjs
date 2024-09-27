@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Expression} from "../math/index.mjs"
+import { Expression } from "../math/index.mjs"
 
 class Setting {
     constructor(type, name, nameInConfig, icon) {
@@ -49,7 +49,7 @@ class Setting {
 
 export class BoolSetting extends Setting {
     constructor(name, nameInConfig, icon) {
-        super('bool', name, nameInConfig, icon)
+        super("bool", name, nameInConfig, icon)
     }
 
     value() {
@@ -63,9 +63,9 @@ export class BoolSetting extends Setting {
 
 export class NumberSetting extends Setting {
     constructor(name, nameInConfig, icon, min = -Infinity, max = +Infinity) {
-        super('number', name, nameInConfig, icon)
-        this.min = typeof min == 'number' ? () => min : min
-        this.max = typeof max == 'number' ? () => max : max
+        super("number", name, nameInConfig, icon)
+        this.min = typeof min == "number" ? () => min : min
+        this.max = typeof max == "number" ? () => max : max
     }
 
     value() {
@@ -79,7 +79,7 @@ export class NumberSetting extends Setting {
 
 export class EnumIntSetting extends Setting {
     constructor(name, nameInConfig, icon, values = []) {
-        super('enum', name, nameInConfig, icon)
+        super("enum", name, nameInConfig, icon)
         this.values = values
     }
 
@@ -94,7 +94,7 @@ export class EnumIntSetting extends Setting {
 
 export class ExpressionSetting extends Setting {
     constructor(name, nameInConfig, icon, variables = []) {
-        super('expression', name, nameInConfig, icon)
+        super("expression", name, nameInConfig, icon)
         this.variables = variables
     }
 
@@ -112,17 +112,17 @@ export class ExpressionSetting extends Setting {
             Helper.setSetting(this.nameInConfig, value)
         else {
             let undefinedVars = vars.filter(x => !this.variables.includes(x))
-            let allowed = ''
+            let allowed = ""
             if(this.variables.length > 0)
-                allowed = `Allowed variables: ${this.variables.join(', ')}.`
-            throw new TypeError(`Cannot use variable(s) ${undefinedVars.join(', or ')} to define ${this.displayName}. ${allowed}`)
+                allowed = `Allowed variables: ${this.variables.join(", ")}.`
+            throw new TypeError(`Cannot use variable(s) ${undefinedVars.join(", or ")} to define ${this.displayName}. ${allowed}`)
         }
     }
 }
 
 export class StringSetting extends Setting {
     constructor(name, nameInConfig, icon, defaultValues = []) {
-        super('string', name, nameInConfig, icon)
+        super("string", name, nameInConfig, icon)
         this.defaultValues = defaultValues
     }
 

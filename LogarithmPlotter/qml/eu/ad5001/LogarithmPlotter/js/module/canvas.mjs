@@ -17,7 +17,7 @@
  */
 
 import { Module } from "./common.mjs"
-import { FUNCTION, Interface, CanvasInterface, DialogInterface } from "./interface.mjs"
+import { CanvasInterface, DialogInterface } from "./interface.mjs"
 import { textsup } from "../utils.mjs"
 import { Expression } from "../math/index.mjs"
 import Latex from "./latex.mjs"
@@ -227,7 +227,7 @@ class CanvasAPI extends Module {
                         // Drawing throws an error. Generally, it's due to a new modification (or the opening of a file)
                         console.error(e)
                         console.log(e.stack)
-                        this._drawingErrorDialog.showDialog(objType, obj.name, e.message)
+                        this._drawingErrorDialog.show(objType, obj.name, e.message)
                         History.undo()
                     }
             }

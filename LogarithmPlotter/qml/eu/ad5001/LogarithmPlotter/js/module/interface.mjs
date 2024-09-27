@@ -94,6 +94,10 @@ export class CanvasInterface extends SettingsInterface {
     markDirty = FUNCTION
     /** @type {function(string)} */
     loadImage = FUNCTION
+    /** @type {function(string)} */
+    isImageLoading = FUNCTION
+    /** @type {function(string)} */
+    isImageLoaded = FUNCTION
     /** @type {function()} */
     requestPaint = FUNCTION
 }

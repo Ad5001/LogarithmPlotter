@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting, ExpressionSetting, NumberSetting, StringSetting} from "./common.mjs"
+import { BoolSetting, ExpressionSetting, NumberSetting, StringSetting } from "./common.mjs"
 
 
 const XZOOM = new NumberSetting(
@@ -49,13 +49,13 @@ const YMAX = new NumberSetting(
 const XAXISSTEP = new ExpressionSetting(
     qsTranslate("Settings", "X Axis Step"),
     "default_graph.xaxisstep",
-    "xaxisstep",
+    "xaxisstep"
 )
 
 const YAXISSTEP = new ExpressionSetting(
     qsTranslate("Settings", "Y Axis Step"),
     "default_graph.yaxisstep",
-    "yaxisstep",
+    "yaxisstep"
 )
 
 const LINE_WIDTH = new NumberSetting(
@@ -72,33 +72,33 @@ const TEXT_SIZE = new NumberSetting(
 )
 
 const X_LABEL = new StringSetting(
-    qsTranslate("Settings", 'X Label'),
+    qsTranslate("Settings", "X Label"),
     "default_graph.xlabel",
     "xlabel",
     ["", "x", "ω (rad/s)"]
 )
 
 const Y_LABEL = new StringSetting(
-    qsTranslate("Settings", 'Y Label'),
+    qsTranslate("Settings", "Y Label"),
     "default_graph.ylabel",
     "xlabel",
     ["", "y", "G (dB)", "φ (°)", "φ (deg)", "φ (rad)"]
 )
 
 const LOG_SCALE_X = new BoolSetting(
-    qsTranslate("Settings", 'X Log scale'),
+    qsTranslate("Settings", "X Log scale"),
     "default_graph.logscalex",
     "logscalex"
 )
 
 const SHOW_X_GRAD = new BoolSetting(
-    qsTranslate("Settings", 'Show X graduation'),
+    qsTranslate("Settings", "Show X graduation"),
     "default_graph.showxgrad",
     "showxgrad"
 )
 
 const SHOW_Y_GRAD = new BoolSetting(
-    qsTranslate("Settings", 'Show Y graduation'),
+    qsTranslate("Settings", "Show Y graduation"),
     "default_graph.showygrad",
     "showygrad"
 )

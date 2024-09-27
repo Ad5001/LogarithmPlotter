@@ -538,7 +538,7 @@ Item {
         try {
             expr = new JS.MathLib.Expression(value.toString())
             // Check if the expression is valid, throws error otherwise.
-            if(!expr.allRequirementsFullfilled()) {
+            if(!expr.allRequirementsFulfilled()) {
                 let undefVars = expr.undefinedVariables()
                 if(undefVars.length > 1)
                     throw new Error(qsTranslate('error', 'No object found with names %1.').arg(undefVars.join(', ')))

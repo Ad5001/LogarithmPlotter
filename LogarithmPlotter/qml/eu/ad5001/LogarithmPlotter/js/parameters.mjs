@@ -15,15 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {parseDomain, Expression as Expr, Domain} from "./math/index.mjs"
+import { parseDomain, Expression as Expr, Domain } from "./math/index.mjs"
 import Objects from "./module/objects.mjs"
 
-const NONE = class Empty {}
+const NONE = class Empty {
+}
 
 let stringValuesValidators = {
-    'int': [parseInt, (x) => !isNaN(x)],
-    'double': [parseFloat, (x) => !isNaN(x)],
-    'string': [(x) => x, () => true]
+    "int": [parseInt, (x) => !isNaN(x)],
+    "double": [parseFloat, (x) => !isNaN(x)],
+    "string": [(x) => x, () => true]
 }
 let stringValidatorTypes = Object.keys(stringValuesValidators)
 
@@ -52,17 +53,17 @@ class PropertyType {
 export class Expression extends PropertyType {
     constructor(...variables) {
         super()
-        this.type = 'Expression'
+        this.type = "Expression"
         this.variables = variables
     }
-    
+
     toString() {
-        return this.variables.length === 0 ? 'Number' : `Expression(${this.variables.join(', ')})`
+        return this.variables.length === 0 ? "Number" : `Expression(${this.variables.join(", ")})`
     }
 
     parse(value) {
         let result = NONE
-        if(typeof value == 'string')
+        if(typeof value == "string")
             try {
                 result = new Expr(value)
             } catch(e) {
@@ -86,14 +87,14 @@ export class Expression extends PropertyType {
 export class Enum extends PropertyType {
     constructor(...values) {
         super()
-        this.type = 'Enum'
+        this.type = "Enum"
         this.values = values
         this.legacyValues = {}
-        this.translatedValues = values.map(x => qsTranslate('parameters', x))
+        this.translatedValues = values.map(x => qsTranslate("parameters", x))
     }
-    
+
     toString() {
-        return `${this.type}(${this.values.join(', ')})`
+        return `${this.type}(${this.values.join(", ")})`
     }
 
     parse(value) {
@@ -111,28 +112,28 @@ export class Enum extends PropertyType {
         else if(this.legacyValues[value])
             return this.legacyValues[value]
         else
-            throw new TypeError(`Exportation error: ${value} not one of ${this.values.join(', ')}.`)
+            throw new TypeError(`Exportation error: ${value} not one of ${this.values.join(", ")}.`)
     }
 }
 
 
 export class ObjectType extends PropertyType {
-    constructor(objType, allowNull=false) {
+    constructor(objType, allowNull = false) {
         super()
-        this.type = 'ObjectType'
+        this.type = "ObjectType"
         this.objType = objType
         this.allowNull = allowNull
     }
-    
+
     toString() {
         return this.objType
     }
 
     parse(name) {
         let result = NONE
-        if(typeof name == 'string' && name in Objects.currentObjectsByName) {
+        if(typeof name == "string" && name in Objects.currentObjectsByName) {
             let obj = Objects.currentObjectsByName[name]
-            if (obj.type === this.objType || (this.objType === 'ExecutableObject' && obj.execute)) {
+            if(obj.type === this.objType || (this.objType === "ExecutableObject" && obj.execute)) {
                 result = obj
             } else {
                 // Silently error and return null
@@ -147,7 +148,7 @@ export class ObjectType extends PropertyType {
     export(value) {
         if(value == null && this.allowNull)
             return null
-        else if(value.type === this.objType || (this.objType === 'ExecutableObject' && value.execute))
+        else if(value.type === this.objType || (this.objType === "ExecutableObject" && value.execute))
             return value.name
         else
             throw new TypeError(`Exportation error: ${value} not a ${this.objType}.`)
@@ -156,28 +157,28 @@ export class ObjectType extends PropertyType {
 
 
 export class List extends PropertyType {
-    constructor(type, format = /^.+$/, label = '', forbidAdding = false) {
+    constructor(type, format = /^.+$/, label = "", forbidAdding = false) {
         super()
         // type can be string, int and double.
-        this.type = 'List'
+        this.type = "List"
         this.valueType = type
         if(!stringValidatorTypes.includes(this.valueType))
-            throw new TypeError(`${this.valueType} must be one of ${stringValidatorTypes.join(', ')}.`)
+            throw new TypeError(`${this.valueType} must be one of ${stringValidatorTypes.join(", ")}.`)
         this.format = format
         this.label = label
         this.forbidAdding = forbidAdding
     }
-    
+
     toString() {
         return `${this.type}(${this.valueType}:${this.format})`
     }
 
     parse(value) {
         let result = NONE
-        if(typeof value == 'object' && value.__proto__ === Array) {
+        if(typeof value == "object" && value.__proto__ === Array) {
             let valid = 0
             for(let v of value) {
-                if (this.format.test(v)) {
+                if(this.format.test(v)) {
                     v = stringValuesValidators[this.valueType][0](v)
                     if(stringValuesValidators[this.valueType][1](v))
                         valid++
@@ -190,7 +191,7 @@ export class List extends PropertyType {
     }
 
     export(value) {
-        if(typeof value == 'object' && value.__proto__ === Array)
+        if(typeof value == "object" && value.__proto__ === Array)
             return value
         else
             throw new TypeError(`Exportation error: ${value} not a list.`)
@@ -200,10 +201,10 @@ export class List extends PropertyType {
 
 
 export class Dictionary extends PropertyType {
-    constructor(type, keyType = 'string', format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = '', postKeyLabel = ': ', forbidAdding = false) {
+    constructor(type, keyType = "string", format = /^.+$/, keyFormat = /^.+$/, preKeyLabel = "", postKeyLabel = ": ", forbidAdding = false) {
         super()
         // type & keyType can be string, int and double.
-        this.type = 'Dict'
+        this.type = "Dict"
         this.valueType = type
         this.keyType = keyType
         this.format = format
@@ -219,10 +220,10 @@ export class Dictionary extends PropertyType {
 
     parse(value) {
         let result = NONE
-        if(typeof value == 'object' && value.__proto__ !== Array) {
+        if(typeof value == "object" && value.__proto__ !== Array) {
             let dict = []
             for(let [k, v] of Object.entries(value)) {
-                if (this.format.test(v) && this.keyFormat.test(k)) {
+                if(this.format.test(v) && this.keyFormat.test(k)) {
                     k = stringValuesValidators[this.keyType][0](k)
                     v = stringValuesValidators[this.valueType][0](v)
                     if(stringValuesValidators[this.keyType][1](k))
@@ -237,7 +238,7 @@ export class Dictionary extends PropertyType {
     }
 
     export(value) {
-        if(typeof value == 'object' && value.__proto__ !== Array)
+        if(typeof value == "object" && value.__proto__ !== Array)
             return value
         else
             throw new TypeError(`Exportation error: ${value} not a dictionary.`)
@@ -247,51 +248,51 @@ export class Dictionary extends PropertyType {
 // Common parameters for Enums
 
 Enum.Position = new Enum(
-    QT_TRANSLATE_NOOP('parameters', 'above'),
-    QT_TRANSLATE_NOOP('parameters', 'below'),
-    QT_TRANSLATE_NOOP('parameters', 'left'),
-    QT_TRANSLATE_NOOP('parameters', 'right'),
-    QT_TRANSLATE_NOOP('parameters', 'above-left'),
-    QT_TRANSLATE_NOOP('parameters', 'above-right'),
-    QT_TRANSLATE_NOOP('parameters', 'below-left'),  
-    QT_TRANSLATE_NOOP('parameters', 'below-right')
+    QT_TRANSLATE_NOOP("parameters", "above"),
+    QT_TRANSLATE_NOOP("parameters", "below"),
+    QT_TRANSLATE_NOOP("parameters", "left"),
+    QT_TRANSLATE_NOOP("parameters", "right"),
+    QT_TRANSLATE_NOOP("parameters", "above-left"),
+    QT_TRANSLATE_NOOP("parameters", "above-right"),
+    QT_TRANSLATE_NOOP("parameters", "below-left"),
+    QT_TRANSLATE_NOOP("parameters", "below-right")
 )
 Enum.Position.legacyValues = {
-    'top': 'above',
-    'bottom': 'below',
-    'top-left': 'above-left',
-    'top-right': 'above-right',
-    'bottom-left': 'below-left',
-    'bottom-right': 'below-right',
+    "top": "above",
+    "bottom": "below",
+    "top-left": "above-left",
+    "top-right": "above-right",
+    "bottom-left": "below-left",
+    "bottom-right": "below-right"
 }
 
 Enum.Positioning = new Enum(
-    QT_TRANSLATE_NOOP('parameters', 'center'),
-    QT_TRANSLATE_NOOP('parameters', 'top'),
-    QT_TRANSLATE_NOOP('parameters', 'bottom'),
-    QT_TRANSLATE_NOOP('parameters', 'left'),
-    QT_TRANSLATE_NOOP('parameters', 'right'),
-    QT_TRANSLATE_NOOP('parameters', 'top-left'),
-    QT_TRANSLATE_NOOP('parameters', 'top-right'),
-    QT_TRANSLATE_NOOP('parameters', 'bottom-left'),  
-    QT_TRANSLATE_NOOP('parameters', 'bottom-right')
+    QT_TRANSLATE_NOOP("parameters", "center"),
+    QT_TRANSLATE_NOOP("parameters", "top"),
+    QT_TRANSLATE_NOOP("parameters", "bottom"),
+    QT_TRANSLATE_NOOP("parameters", "left"),
+    QT_TRANSLATE_NOOP("parameters", "right"),
+    QT_TRANSLATE_NOOP("parameters", "top-left"),
+    QT_TRANSLATE_NOOP("parameters", "top-right"),
+    QT_TRANSLATE_NOOP("parameters", "bottom-left"),
+    QT_TRANSLATE_NOOP("parameters", "bottom-right")
 )
 
 Enum.FunctionDisplayType = new Enum(
-    QT_TRANSLATE_NOOP('parameters', 'application'), 
-    QT_TRANSLATE_NOOP('parameters', 'function')
+    QT_TRANSLATE_NOOP("parameters", "application"),
+    QT_TRANSLATE_NOOP("parameters", "function")
 )
 
 Enum.BodePass = new Enum(
-    QT_TRANSLATE_NOOP('parameters', 'high'),
-    QT_TRANSLATE_NOOP('parameters', 'low')
+    QT_TRANSLATE_NOOP("parameters", "high"),
+    QT_TRANSLATE_NOOP("parameters", "low")
 )
 
 
 Enum.XCursorValuePosition = new Enum(
-    QT_TRANSLATE_NOOP('parameters', 'Next to target'),
-    QT_TRANSLATE_NOOP('parameters', 'With label'),
-    QT_TRANSLATE_NOOP('parameters', 'Hidden')
+    QT_TRANSLATE_NOOP("parameters", "Next to target"),
+    QT_TRANSLATE_NOOP("parameters", "With label"),
+    QT_TRANSLATE_NOOP("parameters", "Hidden")
 )
 
 /**
@@ -303,23 +304,23 @@ Enum.XCursorValuePosition = new Enum(
 export function ensureTypeSafety(propertyType, value) {
     let result
     let error = false
-    if(typeof propertyType == 'string')
+    if(typeof propertyType == "string")
         switch(propertyType) {
-            case 'string':
+            case "string":
                 result = value
-                error = typeof value !== 'string'
+                error = typeof value !== "string"
                 break
-            case 'number':
+            case "number":
                 result = parseFloat(value)
                 error = isNaN(result)
                 break
-            case 'boolean':
+            case "boolean":
                 result = value
                 error = value !== true && value !== false
                 break
-            case 'Domain':
+            case "Domain":
                 try {
-                    error = typeof value !== 'string'
+                    error = typeof value !== "string"
                     if(!error)
                         result = parseDomain(value)
                 } catch(e) {
@@ -353,18 +354,18 @@ export function ensureTypeSafety(propertyType, value) {
  */
 export function serializesByPropertyType(propertyType, value) {
     let result
-    if(typeof propertyType == 'string')
+    if(typeof propertyType == "string")
         switch(propertyType) {
-            case 'string':
+            case "string":
                 result = value.toString()
                 break
-            case 'number':
+            case "number":
                 result = parseFloat(value)
                 break
-            case 'boolean':
+            case "boolean":
                 result = value === true
                 break
-            case 'Domain':
+            case "Domain":
                 if(value instanceof Domain)
                     result = value.toString()
                 else

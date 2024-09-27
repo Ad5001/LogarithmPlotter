@@ -15,19 +15,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {Module} from "./common.mjs"
+import { Module } from "./common.mjs"
 import General from "../preferences/general.mjs"
 import Editor from "../preferences/expression.mjs"
 import DefaultGraph from "../preferences/default.mjs"
 
 class PreferencesAPI extends Module {
     constructor() {
-        super('Preferences')
+        super("Preferences")
 
         this.categories = {
-            [QT_TRANSLATE_NOOP('settingCategory', 'general')]: General,
-            [QT_TRANSLATE_NOOP('settingCategory', 'editor')]: Editor,
-            [QT_TRANSLATE_NOOP('settingCategory', 'default')]: DefaultGraph,
+            [QT_TRANSLATE_NOOP("settingCategory", "general")]: General,
+            [QT_TRANSLATE_NOOP("settingCategory", "editor")]: Editor,
+            [QT_TRANSLATE_NOOP("settingCategory", "default")]: DefaultGraph
         }
     }
 }

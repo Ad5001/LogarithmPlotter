@@ -16,25 +16,25 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {BoolSetting} from "./common.mjs"
+import { BoolSetting } from "./common.mjs"
 import Canvas from "../module/canvas.mjs"
 import LatexAPI from "../module/latex.mjs"
 
 const CHECK_FOR_UPDATES = new BoolSetting(
     qsTranslate("general", "Check for updates on startup"),
-    'check_for_updates',
-    'update'
+    "check_for_updates",
+    "update"
 )
 
 const RESET_REDO_STACK = new BoolSetting(
     qsTranslate("general", "Reset redo stack automaticly"),
-    'reset_redo_stack',
-    'timeline'
+    "reset_redo_stack",
+    "timeline"
 )
 
 class EnableLatex extends BoolSetting {
     constructor() {
-        super(qsTranslate("general","Enable LaTeX rendering"), 'enable_latex', 'Expression')
+        super(qsTranslate("general", "Enable LaTeX rendering"), "enable_latex", "Expression")
     }
 
     set(value) {

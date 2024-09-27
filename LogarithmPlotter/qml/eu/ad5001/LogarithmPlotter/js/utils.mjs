@@ -16,6 +16,25 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Add string methods
+/**
+ * Replaces latin characters with their uppercase versions.
+ * @return {string}
+ */
+String.prototype.toLatinUppercase = String.prototype.toLatinUppercase || function() {
+    return this.replace(/[a-z]/g, function(match) {
+        return match.toUpperCase()
+    })
+}
+
+/**
+ * Removes the 'enclosers' of a string (e.g. quotes, parentheses, brackets...)
+ * @return {string}
+ */
+String.prototype.removeEnclosure = function() {
+    return this.substring(1, this.length - 1)
+}
+
 const powerpos = {
     "-": "⁻",
     "+": "⁺",
@@ -348,10 +367,6 @@ export function parseName(str, removeUnallowed = true) {
     for(let replacement of replacements)
         str = str.replace(replacement[0], replacement[1])
     return str
-}
-
-String.prototype.toLatinUppercase = function() {
-    return this.replace(/[a-z]/g, function(match){return match.toUpperCase()})
 }
 
 /**

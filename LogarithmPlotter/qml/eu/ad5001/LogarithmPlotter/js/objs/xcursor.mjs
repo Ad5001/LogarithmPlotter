@@ -72,30 +72,29 @@ export default class XCursor extends DrawableObject {
         ${this.getTargetValueLatexLabel()}
         \\end{array}`
     }
-    
-    getTargetValueLabel() {
-        var t = this.targetElement
-        var approx = ''
+
+    getApprox() {
+        let approx = ''
         if(this.approximate) {
-            approx = (t.execute(this.x.execute()))
+            approx = (this.targetElement.execute(this.x.execute()))
             let intLength = Math.round(approx).toString().length
             let rounding = Math.min(this.rounding, approx.toString().length - intLength - 1)
             approx = approx.toPrecision(rounding + intLength)
         }
+        return approx
+    }
+    
+    getTargetValueLabel() {
+        const t = this.targetElement
+        const approx = this.getApprox()
         return `${t.name}(${this.name}) = ${t.simplify(this.x.toEditableString())}` +
             (this.approximate ? ' ≈ ' + approx : '')
     }
     
     getTargetValueLatexLabel() {
-        let t = this.targetElement
-        let approx = ''
-        if(this.approximate) {
-            approx = (t.execute(this.x.execute()))
-            let intLength = Math.round(approx).toString().length
-            let rounding = Math.min(this.rounding, approx.toString().length - intLength - 1)
-            approx = approx.toPrecision(rounding + intLength)
-        }
-        let simpl = t.simplify(this.x.toEditableString())
+        const t = this.targetElement
+        const approx = this.getApprox()
+        const simpl = t.simplify(this.x.toEditableString())
         return `${Latex.variable(t.name)}(${Latex.variable(this.name)}) = ${simpl.latexMarkup ? simpl.latexMarkup : Latex.variable(simpl)}` +
             (this.approximate ? ' \\simeq ' + approx : '')
     }
@@ -104,16 +103,13 @@ export default class XCursor extends DrawableObject {
         switch(this.labelContent) {
             case 'name':
                 return this.name
-                break;
             case 'name + value':
                 switch(this.targetValuePosition) {
                     case 'Next to target':
                     case 'Hidden':
                         return `${this.name} = ${this.x.toString()}`
-                        break;
                     case 'With label':
                         return this.getReadableString()
-                        break;
                 }
             case 'null':
                 return ''
@@ -124,16 +120,13 @@ export default class XCursor extends DrawableObject {
         switch(this.labelContent) {
             case 'name':
                 return Latex.variable(this.name)
-                break;
             case 'name + value':
                 switch(this.targetValuePosition) {
                     case 'Next to target':
                     case 'Hidden':
                         return `${Latex.variable(this.name)} = ${this.x.latexMarkup}`
-                        break;
                     case 'With label':
                         return this.getLatexString()
-                        break;
                 }
             case 'null':
                 return ''
