@@ -14,7 +14,7 @@ Comment[hu]=Bode-ábrák, sorozatok és újraosztási függvények létrehozása
 
 TryExec=logarithmplotter
 Exec=logarithmplotter %f
-Icon=logplotter
+Icon=logarithmplotter
 MimeType=application/x-logarithm-plot;
 Terminal=false
 StartupNotify=false

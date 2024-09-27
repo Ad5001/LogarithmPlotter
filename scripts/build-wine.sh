@@ -11,7 +11,7 @@ cd "LogarithmPlotter/i18n/"
 bash release.sh
 cd ../../
 
-wine pyinstaller --add-data "logplotter.svg;." \
+wine pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
                  --add-data "LogarithmPlotter/qml;qml" \
                  --add-data "LogarithmPlotter/i18n;i18n" \
                  --noconsole \
