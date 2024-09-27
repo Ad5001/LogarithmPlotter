@@ -16,6 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import js from "./lib/polyfills/js.mjs"
+
 // Loading modules in order
 import * as Objects from "./module/objects.mjs"
 import * as ExprParser from "./module/expreval.mjs"

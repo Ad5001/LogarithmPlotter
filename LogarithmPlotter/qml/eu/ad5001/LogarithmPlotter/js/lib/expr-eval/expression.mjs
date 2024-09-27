@@ -482,7 +482,7 @@ export class ExprEvalExpression {
 
     /**
      * Calculates the value of the expression by giving all variables and their corresponding values.
-     * @param {Object<string, number>} values
+     * @param {Object<string, number|DrawableObject>} values
      * @returns {number}
      */
     evaluate(values) {
@@ -512,8 +512,7 @@ export class ExprEvalExpression {
      * as constants or functions.
      * @returns {string[]}
      */
-    variables(options) {
-        options = options || {}
+    variables(options = {}) {
         const vars = []
         getSymbols(this.tokens, vars, options)
         const functions = this.functions

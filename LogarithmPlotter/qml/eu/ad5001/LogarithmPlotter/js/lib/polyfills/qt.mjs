@@ -18,6 +18,7 @@
 
 // Type polyfills for IDEs.
 // Never directly imported.
+// Might need to be reimplemented in other implemententations.
 
 Modules = Modules || {}
 /** @type {function(string, string): string} */
@@ -25,7 +26,7 @@ qsTranslate = qsTranslate || function(category, string) { throw new Error('qsTra
 /** @type {function(string): string} */
 qsTr = qsTr || function(string) { throw new Error('qsTr not implemented.'); }
 /** @type {function(string, string): string} */
-QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP || function(string, string) { throw new Error('QT_TRANSLATE_NOOP not implemented.'); }
+QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP || function(category, string) { throw new Error('QT_TRANSLATE_NOOP not implemented.'); }
 /** @type {function(string): string} */
 QT_TR_NOOP = QT_TR_NOOP || function(string) { throw new Error('QT_TR_NOOP not implemented.'); }
 /** @type {function(string|boolean|int): string} */
