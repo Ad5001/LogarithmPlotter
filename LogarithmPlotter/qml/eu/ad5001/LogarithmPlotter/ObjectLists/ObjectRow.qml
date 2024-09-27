@@ -227,7 +227,7 @@ Item {
     function deleteRecursively(object) {
         for(let toRemove of object.requiredBy)
             deleteRecursively(toRemove)
-        if(Modules.Objects.currentObjectsByName[object.name] != undefined) {
+        if(Modules.Objects.currentObjectsByName[object.name] !== undefined) {
             // Object still exists
             // Temporary fix for objects require not being propertly updated.
             object.requiredBy = []

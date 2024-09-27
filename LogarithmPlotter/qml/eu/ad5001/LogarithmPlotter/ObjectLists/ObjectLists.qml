@@ -71,8 +71,8 @@ ScrollView {
                     id: typeVisibilityCheckBox
                     checked: Modules.Objects.currentObjects[objType] != undefined ? Modules.Objects.currentObjects[objType].every(obj => obj.visible) : true
                     onClicked: {
-                        for(var obj of Modules.Objects.currentObjects[objType]) obj.visible = this.checked
-                        for(var obj of objTypeList.editingRows) obj.objVisible = this.checked
+                        for(const obj of Modules.Objects.currentObjects[objType]) obj.visible = this.checked
+                        for(const obj of objTypeList.editingRows) obj.objVisible = this.checked
                         objectListList.changed()
                     }
                     

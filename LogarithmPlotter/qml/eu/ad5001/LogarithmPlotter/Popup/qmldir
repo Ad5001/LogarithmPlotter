@@ -1,11 +1,11 @@
 module eu.ad5001.LogarithmPlotter.Popup
 
-BaseDialog 1.0 BaseDialog.qml
-About 1.0 About.qml
 Alert 1.0 Alert.qml
+About 1.0 About.qml
+BaseDialog 1.0 BaseDialog.qml
+Changelog 1.0 Changelog.qml
 FileDialog 1.0 FileDialog.qml
 GreetScreen 1.0 GreetScreen.qml
-Changelog 1.0 Changelog.qml
-ThanksTo 1.0 ThanksTo.qml
 InsertCharacter 1.0 InsertCharacter.qml
 Preferences 1.0 Preferences.qml
+ThanksTo 1.0 ThanksTo.qml

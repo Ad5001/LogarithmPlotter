@@ -1,4 +1,7 @@
 module eu.ad5001.LogarithmPlotter
 
+AppMenuBar 1.0 AppMenuBar.qml
+LogGraphCanvas 1.0 LogGraphCanvas.qml
+PickLocationOverlay 1.0 PickLocationOverlay.qml
 Settings 1.0 Settings.qml
-Alert 1.0 Alert.qml
+ViewPositionChangeOverlay 1.0 ViewPositionChangeOverlay.qml
