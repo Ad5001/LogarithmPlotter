@@ -1825,7 +1825,7 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation type="unfinished">integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: objeto ejecutable&gt;)</translation>
+        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: Objeto similar a una función&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="66"/>
@@ -1849,17 +1849,17 @@ Por favor, asegúrese de que su instalación de LaTeX es correcta e informe de u
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>integral(&lt;desde: número&gt;, &lt;hasta: número&gt;, &lt;f: cadena&gt;, &lt;variable: cadena&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished">derivada(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</translation>
+        <translation>derivative(&lt;f: objeto similar a una función&gt;, &lt;x: número&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
-        <translation>derivada(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</translation>
+        <translation>derivative(&lt;f: cadena&gt;, &lt;variable: cadena&gt;, &lt;x: número&gt;)</translation>
     </message>
 </context>
 <context>
