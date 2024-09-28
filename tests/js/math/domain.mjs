@@ -59,5 +59,6 @@ describe("math.domain", function() {
                     expect(parseDomainSimple(shortcut)).to.be.equal(domain)
         })
 
+        it("")
     })
 })

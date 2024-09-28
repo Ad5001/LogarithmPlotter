@@ -26,6 +26,9 @@ steps:
   - name: Unit Tests
     image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
+      - apt update
+      - apt install -y npm
+      - npm install -D
       - xvfb-run bash scripts/run-tests.sh
     when:
       event: [ push, tag ]

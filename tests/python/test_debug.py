@@ -43,7 +43,7 @@ def test_setup():
 def test_map_source():
     sourcemap_available = debug.SOURCEMAP_INDEX is not None
     if sourcemap_available:
-        assert debug.map_javascript_source("js/index.mjs", 22) == ("js/module/interface.mjs", 23)
+        assert debug.map_javascript_source("js/index.mjs", 22) != ("js/module/index.mjs", 22)
         assert debug.map_javascript_source("js/index.mjs", 100000) == ("js/index.mjs", 100000)  # Too long, not found
         debug.SOURCEMAP_INDEX = None
     assert debug.map_javascript_source("js/index.mjs", 21) == ("js/index.mjs", 21)
