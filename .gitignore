@@ -32,7 +32,6 @@ linux/flatpak/.flatpak-builder
 .vscode
 *.kdev4
 .kdev4
-.coverage
 docs/html
 .directory
 *.lpf
@@ -40,4 +39,6 @@ docs/html
 
 # npm
 node_modules
+coverage/
+.coverage
 LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs*
