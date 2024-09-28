@@ -18,6 +18,9 @@
 
 import { Interface } from "./interface.mjs"
 
+// Define Modules interface before they are imported.
+globalThis.Modules = globalThis.Modules || {}
+
 /**
  * Base class for global APIs in runtime.
  */
@@ -33,6 +36,7 @@ export class Module {
         this.__name = name
         this.__initializationParameters = initializationParameters
         this.initialized = false
+
     }
 
     /**
@@ -42,6 +46,7 @@ export class Module {
     initialize(options) {
         if(this.initialized)
             throw new Error(`Cannot reinitialize module ${this.__name}.`)
+        console.log(`Initializing ${this.__name}...`)
         for(const [name, value] of Object.entries(this.__initializationParameters)) {
             if(!options.hasOwnProperty(name))
                 throw new Error(`Option '${name}' of initialize of module ${this.__name} does not exist.`)

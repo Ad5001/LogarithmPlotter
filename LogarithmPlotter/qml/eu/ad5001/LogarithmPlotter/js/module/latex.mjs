@@ -19,6 +19,7 @@
 import { Module } from "./common.mjs"
 import * as Instruction from "../lib/expr-eval/instruction.mjs"
 import { escapeValue } from "../lib/expr-eval/expression.mjs"
+import { HelperInterface, LatexInterface } from "./interface.mjs"
 
 const unicodechars = [
     "α", "β", "γ", "δ", "ε", "ζ", "η",
@@ -60,11 +61,25 @@ class LatexRenderResult {
 
 class LatexAPI extends Module {
     constructor() {
-        super("Latex")
+        super("Latex", {
+            latex: LatexInterface,
+            helper: HelperInterface
+        })
         /**
          * true if latex has been enabled by the user, false otherwise.
          */
-        this.enabled = Helper.getSettingBool("enable_latex")
+        this.enabled = false
+    }
+
+    /**
+     * @param {LatexInterface} latex
+     * @param {HelperInterface} helper
+     */
+    initialize({ latex, helper }) {
+        super.initialize({ latex, helper })
+        this.latex = latex
+        this.helper = helper
+        this.enabled = helper.getSettingBool("enable_latex")
     }
 
     /**
@@ -77,7 +92,8 @@ class LatexAPI extends Module {
      * @returns {LatexRenderResult|null}
      */
     findPrerendered(markup, fontSize, color) {
-        const data = Latex.findPrerendered(markup, fontSize, color)
+        if(!this.initialized) throw new Error("Attempting findPrerendered before initialize!")
+        const data = this.latex.findPrerendered(markup, fontSize, color)
         let ret = null
         if(data !== "")
             ret = new LatexRenderResult(...data.split(","))
@@ -93,7 +109,8 @@ class LatexAPI extends Module {
      * @returns {Promise<LatexRenderResult>}
      */
     async requestAsyncRender(markup, fontSize, color) {
-        let args = Latex.render(markup, fontSize, color).split(",")
+        if(!this.initialized) throw new Error("Attempting requestAsyncRender before initialize!")
+        let args = this.latex.render(markup, fontSize, color).split(",")
         return new LatexRenderResult(...args)
     }
 
@@ -313,5 +330,5 @@ class LatexAPI extends Module {
 
 /** @type {LatexAPI} */
 Modules.Latex = Modules.Latex || new LatexAPI()
-
+/** @type {LatexAPI} */
 export default Modules.Latex

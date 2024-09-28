@@ -130,7 +130,7 @@ def create_engine(helper: Helper, latex: Latex, dep_time: float) -> tuple[QQmlAp
     global tmpfile
     engine = QQmlApplicationEngine()
     js_globals = PyJSValue(engine.globalObject())
-    js_globals.Modules = engine.newObject()
+    js_globals.globalThis = engine.globalObject()
     js_globals.Helper = engine.newQObject(helper)
     js_globals.Latex = engine.newQObject(latex)
     engine.rootContext().setContextProperty("TestBuild", "--test-build" in argv)

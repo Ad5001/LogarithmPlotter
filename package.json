@@ -4,7 +4,8 @@
   "description": "2D plotter software to make Bode plots, sequences and distribution functions.",
   "main": "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/autoload.mjs",
   "scripts": {
-    "build": "rollup --config rollup.config.mjs"
+    "build": "rollup --config rollup.config.mjs",
+    "test": "mocha tests/js/**/*.mjs"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,13 @@
     "install": "^0.13.0",
     "rollup": "^4.22.4",
     "rollup-plugin-cleanup": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.0",
+    "@types/mocha": "^10.0.8",
+    "chai": "^5.1.1",
+    "chai-as-promised": "^8.0.0",
+    "esm": "^3.2.25",
+    "mocha": "^10.7.3"
   }
 }

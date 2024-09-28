@@ -37,7 +37,6 @@ class HistoryAPI extends Module {
 
     initialize({ historyObj, themeTextColor, imageDepth, fontSize }) {
         super.initialize({ historyObj, themeTextColor, imageDepth, fontSize })
-        console.log("Initializing history...")
         this.history = historyObj
         this.themeTextColor = themeTextColor
         this.imageDepth = imageDepth

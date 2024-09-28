@@ -585,13 +585,13 @@ Domain.ZME = new SpecialDomain("ℤ⁻*", x => x % 1 === 0 && x < 0,
     x => Math.min(Math.ceil(x) - 1, -1))
 Domain.ZME.latexMarkup = "\\mathbb{Z}^{-*}"
 Domain.NLog = new SpecialDomain("ℕˡᵒᵍ",
-    x => x / Math.pow(10, x.toString().length - 1) % 1 === 0 && x > 0,
+    x => x / Math.pow(10, Math.ceil(Math.log10(x))) % 1 === 0 && x > 0,
     function(x) {
-        let x10pow = Math.pow(10, x.toString().length - 1)
+        let x10pow = Math.pow(10, Math.ceil(Math.log10(x)))
         return Math.max(1, (Math.floor(x / x10pow) + 1) * x10pow)
     },
     function(x) {
-        let x10pow = Math.pow(10, x.toString().length - 1)
+        let x10pow = Math.pow(10, Math.ceil(Math.log10(x)))
         return Math.max(1, (Math.ceil(x / x10pow) - 1) * x10pow)
     })
 Domain.NLog.latexMarkup = "\\mathbb{N}^{log}"

@@ -25,6 +25,7 @@ export const STRING = "string"
 export const BOOLEAN = true
 export const OBJECT = {}
 export const FUNCTION = () => {
+    throw new Error("Cannot call function of an interface.")
 }
 
 
@@ -42,7 +43,7 @@ export class Interface {
         const toCheckName = classToCheck.constructor.name
         for(const [property, value] of Object.entries(properties))
             if(property !== "implement") {
-                if(!classToCheck.hasOwnProperty(property))
+                if(classToCheck[property] === undefined)
                     // Check if the property exist
                     throw new Error(`Property '${property}' (${typeof value}) is present in interface ${interfaceName}, but not in implementation ${toCheckName}.`)
                 else if((typeof value) !== (typeof classToCheck[property]))
@@ -55,15 +56,6 @@ export class Interface {
                     else if(value.prototype && !(classToCheck[property] instanceof value))
                         throw new Error(`Property '${property}' of ${interfaceName} implementation ${toCheckName} is not '${value.constructor.name}'.`)
             }
-    }
-
-    /**
-     * Decorator to automatically check if a class conforms to the current interface.
-     * @param {object} class_
-     */
-    implement(class_) {
-        Interface.check_implementation(this, class_)
-        return class_
     }
 }
 
@@ -119,4 +111,77 @@ export class HistoryInterface extends Interface {
     addToHistory = FUNCTION
     unserialize = FUNCTION
     serialize = FUNCTION
+}
+
+export class LatexInterface extends Interface {
+    /**
+     * @param {string} markup - LaTeX markup to render
+     * @param {number} fontSize - Font size (in pt) to render
+     * @param {string} color - Color of the text to render
+     * @returns {string} - Comma separated data of the image (source, width, height)
+     */
+    render = FUNCTION
+    /**
+     * @param {string} markup - LaTeX markup to render
+     * @param {number} fontSize - Font size (in pt) to render
+     * @param {string} color - Color of the text to render
+     * @returns {string} - Comma separated data of the image (source, width, height)
+     */
+    findPrerendered = FUNCTION
+    /**
+     * Checks if the Latex installation is valid
+     * @returns {boolean}
+     */
+    checkLatexInstallation = FUNCTION
+}
+
+export class HelperInterface extends Interface {
+    /**
+     * Gets a setting from the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
+     * @returns {boolean} Value of the setting
+     */
+    getSettingBool = FUNCTION
+    /**
+     * Gets a setting from the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
+     * @returns {number} Value of the setting
+     */
+    getSettingInt = FUNCTION
+    /**
+     * Gets a setting from the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
+     * @returns {string} Value of the setting
+     */
+    getSetting = FUNCTION
+    /**
+     * Sets a setting in the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
+     * @param {boolean} value
+     */
+    setSettingBool = FUNCTION
+    /**
+     * Sets a setting in the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
+     * @param {number} value
+     */
+    setSettingInt = FUNCTION
+    /**
+     * Sets a setting in the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
+     * @param {string} value
+     */
+    setSetting = FUNCTION
+    /**
+     * Sends data to be written
+     * @param {string} file
+     * @param {string} dataToWrite - just JSON encoded, requires the "LPFv1" mime to be added before writing
+     */
+    write = FUNCTION
+    /**
+     * Requests data to be read from a file
+     * @param {string} file
+     * @returns {string} the loaded data - just JSON encoded, requires the "LPFv1" mime to be stripped
+     */
+    load = FUNCTION
 }

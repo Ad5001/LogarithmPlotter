@@ -127,10 +127,6 @@ ScrollView {
     */
     property string saveFilename: ""
     
-    Component.onCompleted: {
-        Modules.IO.initialize({ root, settings, alert })
-    }
-    
     Column {
         spacing: 10
         width: parent.width

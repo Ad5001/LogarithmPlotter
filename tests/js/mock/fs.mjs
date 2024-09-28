@@ -15,23 +15,30 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from "./common.mjs"
-import General from "../preferences/general.mjs"
-import Editor from "../preferences/expression.mjs"
-import DefaultGraph from "../preferences/default.mjs"
 
-class PreferencesAPI extends Module {
-    constructor() {
-        super("Preferences")
+import { readFileSync as readNode } from "node:fs"
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-        this.categories = {
-            [QT_TRANSLATE_NOOP("settingCategory", "general")]: General,
-            [QT_TRANSLATE_NOOP("settingCategory", "editor")]: Editor,
-            [QT_TRANSLATE_NOOP("settingCategory", "default")]: DefaultGraph
-        }
-    }
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+export const HOME = "/home/user"
+export const TMP = "/tmp"
+
+
+const filesystem = {
+    [`${HOME}/test1.lpf`]: readNode(__dirname + "/../../../ci/test1.lpf")
 }
 
-/** @type {CanvasAPI} */
-Modules.Preferences = Modules.Preferences || new PreferencesAPI()
-export default Modules.Preferences
+
+export function existsSync(file) {
+    return filesystem[file] !== undefined
+}
+
+export function writeFileSync(file, data, encoding) {
+    filesystem[file] = Buffer.from(data, encoding)
+}
+
+export function readFileSync(file, encoding) {
+    return filesystem[file].toString(encoding)
+}

@@ -44,32 +44,3 @@ const Qt = {
         return {x: x, y: y, width: width, height: height};
     }
 }
-
-/** Typehints for Helper. */
-const Helper = {
-    /** @type {function(string): boolean} */
-    getSettingBool: (setting) => true,
-    /** @type {function(string): int} */
-    getSettingInt: (setting) => 0,
-    /** @type {function(string): string} */
-    getSetting: (setting) => '',
-    /** @type {function(string, boolean)} */
-    setSettingBool: (setting, value) => {},
-    /** @type {function(string, int)} */
-    setSettingInt: (setting, value) => 0,
-    /** @type {function(string, string)} */
-    setSetting: (setting, value) => '',
-    /** @type {function(string, string)} */
-    write: (filename, data) => {},
-    /** @type {function(string): string} */
-    load: (filename) => '',
-}
-
-const Latex = {
-    /** @type {function(string, number, string): string} */
-    render: (latex_markup, font_size, color) => '',
-    /** @type {function(string, number, string): string} */
-    findPrerendered: (latex_markup, font_size, color) => '',
-    /** @type {function(): boolean} */
-    checkLatexInstallation: () => true,
-}

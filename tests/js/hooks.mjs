@@ -15,23 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from "./common.mjs"
-import General from "../preferences/general.mjs"
-import Editor from "../preferences/expression.mjs"
-import DefaultGraph from "../preferences/default.mjs"
+import * as fs from "./mock/fs.mjs";
+import Qt from "./mock/qt.mjs";
+import { MockHelper } from "./mock/helper.mjs";
+import { MockLatex } from "./mock/latex.mjs";
+import Modules from "../../LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/module/index.mjs";
 
-class PreferencesAPI extends Module {
-    constructor() {
-        super("Preferences")
-
-        this.categories = {
-            [QT_TRANSLATE_NOOP("settingCategory", "general")]: General,
-            [QT_TRANSLATE_NOOP("settingCategory", "editor")]: Editor,
-            [QT_TRANSLATE_NOOP("settingCategory", "default")]: DefaultGraph
-        }
-    }
+function setup() {
+    globalThis.Helper = new MockHelper()
+    globalThis.Latex = new MockLatex()
+    Modules.Latex.initialize({ latex: Latex, helper: Helper })
 }
 
-/** @type {CanvasAPI} */
-Modules.Preferences = Modules.Preferences || new PreferencesAPI()
-export default Modules.Preferences
+setup()

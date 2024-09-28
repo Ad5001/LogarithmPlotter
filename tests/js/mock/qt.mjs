@@ -15,23 +15,46 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from "./common.mjs"
-import General from "../preferences/general.mjs"
-import Editor from "../preferences/expression.mjs"
-import DefaultGraph from "../preferences/default.mjs"
 
-class PreferencesAPI extends Module {
-    constructor() {
-        super("Preferences")
+// Mock qt methods.
 
-        this.categories = {
-            [QT_TRANSLATE_NOOP("settingCategory", "general")]: General,
-            [QT_TRANSLATE_NOOP("settingCategory", "editor")]: Editor,
-            [QT_TRANSLATE_NOOP("settingCategory", "default")]: DefaultGraph
-        }
-    }
+/**
+ * Polyfill for Qt.rect.
+ * @param {number} x
+ * @param {number} y
+ * @param {number} width
+ * @param {number} height
+ * @returns {{x, width, y, height}}
+ */
+function rect(x, y, width, height) {
+    return { x, y, width, height }
 }
 
-/** @type {CanvasAPI} */
-Modules.Preferences = Modules.Preferences || new PreferencesAPI()
-export default Modules.Preferences
+/**
+ * Mock for QT_TRANSLATE_NOOP and qsTranslate
+ * @param {string} category
+ * @param {string} string
+ * @return {string}
+ */
+function QT_TRANSLATE_NOOP(category, string) {
+    return string
+}
+
+function setup() {
+    globalThis.Qt = {
+        rect
+    }
+
+    globalThis.QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP
+    globalThis.qsTranslate = QT_TRANSLATE_NOOP
+
+    String.prototype.arg = function() { return this; } // No need to reimplement it for now.
+}
+
+setup()
+
+export default {
+    rect,
+    QT_TRANSLATE_NOOP,
+    qtTranslate: QT_TRANSLATE_NOOP,
+}

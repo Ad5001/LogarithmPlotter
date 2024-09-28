@@ -15,23 +15,21 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from "./common.mjs"
-import General from "../preferences/general.mjs"
-import Editor from "../preferences/expression.mjs"
-import DefaultGraph from "../preferences/default.mjs"
 
-class PreferencesAPI extends Module {
-    constructor() {
-        super("Preferences")
+import Objects from "./objects.mjs"
+import ExprParser from "./expreval.mjs"
+import Latex from "./latex.mjs"
+import History from "./history.mjs"
+import Canvas from "./canvas.mjs"
+import IO from "./io.mjs"
+import Preferences from "./preferences.mjs"
 
-        this.categories = {
-            [QT_TRANSLATE_NOOP("settingCategory", "general")]: General,
-            [QT_TRANSLATE_NOOP("settingCategory", "editor")]: Editor,
-            [QT_TRANSLATE_NOOP("settingCategory", "default")]: DefaultGraph
-        }
-    }
+export default {
+    Objects,
+    ExprParser,
+    Latex,
+    History,
+    Canvas,
+    IO,
+    Preferences
 }
-
-/** @type {CanvasAPI} */
-Modules.Preferences = Modules.Preferences || new PreferencesAPI()
-export default Modules.Preferences

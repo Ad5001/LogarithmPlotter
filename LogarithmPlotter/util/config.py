@@ -120,11 +120,9 @@ def setSetting(namespace, data):
     """
     names = namespace.split(".")
     setting = current_config
-    for name in names:
-        if name != names[-1]:
-            if name in setting:
-                setting = setting[name]
-            else:
-                raise UnknownNamespaceError(f"Setting {namespace} doesn't exist. Debug: {setting}, {name}")
+    for name in names[:-1]:
+        if name in setting:
+            setting = setting[name]
         else:
-            setting[name] = data
+            raise UnknownNamespaceError(f"Setting {namespace} doesn't exist. Debug: {setting}, {name}")
+    setting[names[-1]] = data

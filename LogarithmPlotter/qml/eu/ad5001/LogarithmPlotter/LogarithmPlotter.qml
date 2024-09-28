@@ -259,4 +259,10 @@ ApplicationWindow {
     function showUpdateMenu() {
         appMenu.addMenu(updateMenu)
     }
+    
+    // Initializing modules
+    Component.onCompleted: {
+        Modules.IO.initialize({ root, settings, alert })
+        Modules.Latex.initialize({ latex: Latex, helper: Helper })
+    }
 }
