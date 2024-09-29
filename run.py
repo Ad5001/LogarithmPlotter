@@ -15,22 +15,23 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-def update_translations():
+from os import system, getcwd, path
+from sys import path as sys_path
+    
+def build():
     """
     Updates all binary translations
     """
-    from os import system, getcwd, chdir, path
-    pwd = getcwd()
-    system("npm run build")
-    chdir(path.join("LogarithmPlotter", "i18n"))
-    system("./release.sh")
-    chdir(pwd)
+    system("./scripts/build.sh")
 
 def run():
-    update_translations()
     from LogarithmPlotter import logarithmplotter 
     logarithmplotter.run()
 
 if __name__ == "__main__":
+    build()
+    logplotter_path = path.realpath(path.join(getcwd(), "build", "runtime-pyside6"))
+    print("Appending " + logplotter_path + " to path...")
+    sys_path.append(logplotter_path)
     run()
  

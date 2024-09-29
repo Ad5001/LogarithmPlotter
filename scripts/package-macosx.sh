@@ -8,14 +8,14 @@ applicationName=LogarithmPlotter
 backgroundPictureName=logarithmplotter-installer-background.png
 source=Installer
 
-cd dist
+cd build/dist
 rm -rf Installer
 mkdir -p Installer
 mkdir -p Installer/.background
-cp ../mac/install-bg.png "./Installer/.background/${backgroundPictureName}"
+cp ../../assets/native/mac/install-bg.png "./Installer/.background/${backgroundPictureName}"
 cp -r LogarithmPlotter.app Installer/LogarithmPlotter.app
-cp ../LICENSE.md Installer/LICENSE.md
-cp ../README.md Installer/README.md
+cp ../../LICENSE.md Installer/LICENSE.md
+cp ../../README.md Installer/README.md
 
 # Calculating folder size
 duoutput=$(du -h Installer | tail -n1)

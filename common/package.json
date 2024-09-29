@@ -5,7 +5,7 @@
   "main": "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/autoload.mjs",
   "scripts": {
     "build": "rollup --config rollup.config.mjs",
-    "test": "c8 mocha tests/js/**/*.mjs"
+    "test": "c8 mocha test/**/*.mjs"
   },
   "repository": {
     "type": "git",

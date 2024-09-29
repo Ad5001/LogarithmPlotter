@@ -1,3 +1,3 @@
-[submodule "LogarithmPlotter/qml/eu/ad5001/MixedMenu"]
-	path = LogarithmPlotter/qml/eu/ad5001/MixedMenu
+[submodule "runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/MixedMenu"]
+	path = runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/MixedMenu
 	url = https://git.ad5001.eu/Ad5001/MixedMenu

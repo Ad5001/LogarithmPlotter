@@ -2,10 +2,10 @@
 build/
 dist/
 deb_dist/
-linux/flatpak/AppDir
-linux/flatpak/repo
-linux/flatpak/build-dir
-linux/flatpak/.flatpak-builder
+assets/linux/flatpak/AppDir
+assets/linux/flatpak/repo
+assets/linux/flatpak/build-dir
+assets/linux/flatpak/.flatpak-builder
 *.snap
 *.spec
 *.zip
@@ -38,7 +38,7 @@ docs/html
 *.lgg
 
 # npm
-node_modules
-coverage/
-.coverage
-LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs*
+common/node_modules
+common/coverage/
+common/.coverage
+runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs*

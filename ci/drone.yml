@@ -18,8 +18,7 @@ steps:
       - apt update
       - apt install -y qtchooser qttools5-dev-tools
       # Start building 
-      - cd LogarithmPlotter/i18n && bash release.sh && cd ../..
-      - npm run build
+      - bash scripts/build.sh
     when:
       event: [ push, tag ]
 

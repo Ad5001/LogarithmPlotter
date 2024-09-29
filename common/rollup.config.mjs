@@ -21,12 +21,13 @@ import commonjs from "@rollup/plugin-commonjs"
 import { babel } from "@rollup/plugin-babel"
 import cleanup from "rollup-plugin-cleanup"
 
-const path = "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js"
+const src = "./src/index.mjs"
+const dest = "../build/runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs"
 
 export default {
-    input: `${path}/autoload.mjs`,
+    input: src,
     output: {
-        file: `${path}/index.mjs`,
+        file: dest,
         compact: false,
         sourcemap: true,
         format: "es"

@@ -1,22 +1,18 @@
 #!/bin/bash
-cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.." || exit
 
-rm -rf dist
+rm -rf build
+bash scripts/build.sh
+cd build || exit 1
 
-rm $(find . -name "*.qmlc")
 rm -rf $(find . -name "*.pyc")
 
-# Building translations
-cd "LogarithmPlotter/i18n/"
-bash release.sh
-cd ../../
-
-wine pyinstaller --add-data "logplotter.svg;." \
+wine pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
                  --add-data "LogarithmPlotter/qml;qml" \
                  --add-data "LogarithmPlotter/i18n;i18n" \
                  --noconsole \
                  LogarithmPlotter/logarithmplotter.py \
-                 --icon=win/logarithmplotter.ico \
+                 --icon=../assets/native/win/logarithmplotter.ico \
                  -n logarithmplotter
 
 # Copy Qt6ShaderTools, a required library for for Qt5Compat

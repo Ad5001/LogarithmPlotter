@@ -52,7 +52,7 @@ def map_javascript_source(source_file: str, line: str) -> tuple[str, str]:
     try:
         if SOURCEMAP_INDEX is not None:
             token = SOURCEMAP_INDEX.lookup(line, 20)
-            source_file = source_file[:-len("index.mjs")] + token.src
+            source_file = token.src.split("../")[-1]
             line = token.src_line
     except IndexError:
         pass  # Unable to find source, leave as is.

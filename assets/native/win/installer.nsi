@@ -14,7 +14,7 @@ Unicode True
 !define VERSION_SHORT "0.6.0"
 !define APP_VERSION "${VERSION_SHORT}.0"
 !define COPYRIGHT "Ad5001 (c) 2021-2024"
-!define DESCRIPTION "Create graphs with logarithm scales."
+!define DESCRIPTION "Create graphs with logarithmic scales."
 
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\LogarithmPlotter"
 !define REG_APPPATHS "Software\Microsoft\Windows\CurrentVersion\App Paths\logarithmplotter.exe"
