@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from os import system, getcwd, path
-from sys import path as sys_path
+from sys import path as sys_path, argv
     
 def build():
     """
@@ -29,7 +29,8 @@ def run():
     logarithmplotter.run()
 
 if __name__ == "__main__":
-    build()
+    if '--test-build' not in argv:
+        build()
     logplotter_path = path.realpath(path.join(getcwd(), "build", "runtime-pyside6"))
     print("Appending " + logplotter_path + " to path...")
     sys_path.append(logplotter_path)
