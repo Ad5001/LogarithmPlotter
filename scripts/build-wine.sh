@@ -3,16 +3,16 @@ cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.." || exit
 
 rm -rf build
 bash scripts/build.sh
-cd build || exit 1
+cd build/runtime-pyside6 || exit 1
 
 rm -rf $(find . -name "*.pyc")
 
-wine pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
+wine_py pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
                  --add-data "LogarithmPlotter/qml;qml" \
                  --add-data "LogarithmPlotter/i18n;i18n" \
                  --noconsole \
                  LogarithmPlotter/logarithmplotter.py \
-                 --icon=../assets/native/win/logarithmplotter.ico \
+                 --icon=../../assets/native/win/logarithmplotter.ico \
                  -n logarithmplotter
 
 # Copy Qt6ShaderTools, a required library for for Qt5Compat

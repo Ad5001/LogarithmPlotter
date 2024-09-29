@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/../build/runtime-pyside6/dist" || exit 1
 
 VERSION=0.6.0
 title="LogarithmPlotter v${VERSION} Setup"
@@ -8,14 +8,13 @@ applicationName=LogarithmPlotter
 backgroundPictureName=logarithmplotter-installer-background.png
 source=Installer
 
-cd build/dist
 rm -rf Installer
 mkdir -p Installer
 mkdir -p Installer/.background
-cp ../../assets/native/mac/install-bg.png "./Installer/.background/${backgroundPictureName}"
+cp ../../../assets/native/mac/install-bg.png "./Installer/.background/${backgroundPictureName}"
 cp -r LogarithmPlotter.app Installer/LogarithmPlotter.app
-cp ../../LICENSE.md Installer/LICENSE.md
-cp ../../README.md Installer/README.md
+cp ../../../LICENSE.md Installer/LICENSE.md
+cp ../../../README.md Installer/README.md
 
 # Calculating folder size
 duoutput=$(du -h Installer | tail -n1)

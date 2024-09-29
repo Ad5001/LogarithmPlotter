@@ -4,7 +4,7 @@ cd "$DIR/.." || exit 1
 
 rm -rf build
 bash scripts/build.sh
-cd build || exit 1
+cd build/runtime-pyside6 || exit 1
 
 rm $(find . -name "*.pyc")
 
@@ -21,12 +21,12 @@ pyinstaller --add-data "LogarithmPlotter/qml:qml" \
             --exclude-module "Tkinter" \
             --noconsole \
             --noconfirm \
-            --icon=../assets/native/mac/logarithmplotter.icns \
+            --icon=../../assets/native/mac/logarithmplotter.icns \
             --osx-bundle-identifier eu.ad5001.LogarithmPlotter \
             -n LogarithmPlotter \
             LogarithmPlotter/logarithmplotter.py 
 
-cp ../assets/native/mac/Info.plist dist/LogarithmPlotter.app/Contents/Info.plist
+cp ../../assets/native/mac/Info.plist dist/LogarithmPlotter.app/Contents/Info.plist
 
 # Remove QtWebEngine, 3D and all other unused libs libs
 rm -rf dist/LogarithmPlotter.app/Contents/MacOS/{QtWeb*,*3D*,QtRemote*,QtPdf,QtCharts,QtLocation,QtTest,QtMultimedia,QtSpatialAudio,QtDataVisualization,QtQuickParticles,QtChartsQml,QtScxml,QtDataVisualizationQml,QtTest,QtPositioningQuick,QtQuickTest,QtSql,QtSensorsQuick}

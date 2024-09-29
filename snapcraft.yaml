@@ -69,7 +69,7 @@ parts:
       logarithmplotter.desktop: usr/share/applications/logarithmplotter.desktop
       x-logarithm-plot.xml: usr/share/mime/packages/x-logarithm-plot.xml
       application-x-logarithm-plot.svg: usr/share/mime/packages/application-x-logarithm-plot.svg
-  linuxfiles:
+  filetypeicon:
     source: assets/
     plugin: dump
     organize:
