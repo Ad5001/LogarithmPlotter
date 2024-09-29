@@ -19,7 +19,7 @@
 import { describe, it } from "mocha"
 import { expect } from "chai"
 
-import { Domain, parseDomainSimple } from "../../../LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/math/domain.mjs"
+import { Domain, parseDomainSimple } from "../../src/math/domain.mjs"
 
 describe("math.domain", function() {
     describe("#parseDomainSimple", function() {

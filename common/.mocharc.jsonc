@@ -20,6 +20,6 @@
     "recursive": true,
     "require": [
         "esm",
-        "./tests/js/hooks.mjs"
+        "./test/hooks.mjs"
     ]
 }
