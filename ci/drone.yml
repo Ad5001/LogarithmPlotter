@@ -14,7 +14,7 @@ steps:
   - name: Build
     image: node:18-bookworm
     commands:
-      - npm install
+      - cd common && npm install && cd ..
       - apt update
       - apt install -y qtchooser qttools5-dev-tools
       # Start building 
@@ -27,7 +27,7 @@ steps:
     commands:
       - apt update
       - apt install -y npm
-      - npm install -D
+      - cd common && npm install -D && cd ..
       - xvfb-run bash scripts/run-tests.sh
     when:
       event: [ push, tag ]

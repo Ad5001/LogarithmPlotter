@@ -7,7 +7,7 @@ cd build/runtime-pyside6 || exit 1
 
 rm -rf $(find . -name "*.pyc")
 
-wine_py pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
+wine pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
                  --add-data "LogarithmPlotter/qml;qml" \
                  --add-data "LogarithmPlotter/i18n;i18n" \
                  --noconsole \
