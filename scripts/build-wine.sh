@@ -1,8 +1,25 @@
 #!/bin/bash
 cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.." || exit
 
-rm -rf build
-bash scripts/build.sh
+rebuild=true
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-rebuild)
+            rebuild=false
+            ;;
+        *)
+            box "Error: Invalid argument."
+            exit 1
+    esac
+    shift
+done
+
+if [ "$rebuild" == "true" ]; then
+    rm -rf build
+    bash scripts/build.sh
+fi
+
 cd build/runtime-pyside6 || exit 1
 
 rm -rf $(find . -name "*.pyc")

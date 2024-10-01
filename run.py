@@ -32,7 +32,7 @@ if __name__ == "__main__":
     if '--test-build' not in argv:
         build()
     logplotter_path = path.realpath(path.join(getcwd(), "build", "runtime-pyside6"))
-    print("Appending " + logplotter_path + " to path...")
+    print(f"Appending {logplotter_path} to path...")
     sys_path.append(logplotter_path)
     run()
  

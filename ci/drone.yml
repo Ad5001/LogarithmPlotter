@@ -28,7 +28,7 @@ steps:
       - apt update
       - apt install -y npm
       - cd common && npm install -D && cd ..
-      - xvfb-run bash scripts/run-tests.sh
+      - xvfb-run bash scripts/run-tests.sh --no-rebuild
     when:
       event: [ push, tag ]
 
@@ -44,7 +44,7 @@ steps:
   - name: Windows build
     image: ad5001/ubuntu-pyside-xvfb:wine-6-latest
     commands:
-      - bash scripts/build-wine.sh
+      - bash scripts/build-wine.sh --no-rebuild
       - bash scripts/package-wine.sh
     when:
       event: [ push, tag ]

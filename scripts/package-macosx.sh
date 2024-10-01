@@ -18,7 +18,7 @@ cp ../../../README.md Installer/README.md
 
 # Calculating folder size
 duoutput=$(du -h Installer | tail -n1)
-size=$(expr ${duoutput%M*} + 2) # +2 for allowing small space to edit.
+size=$(( ${duoutput%M*} + 2)) # +2 for allowing small space to edit.
 echo "Creating DMG file with size ${size}M."
 
 # Adapted from https://stackoverflow.com/a/1513578
@@ -26,7 +26,7 @@ hdiutil create -srcfolder "${source}" -volname "${title}" -fs HFS+ \
       -fsargs "-c c=64,a=16,e=16" -format UDRW -size ${size}M pack.temp.dmg
 
 device=$(hdiutil attach -readwrite -noverify -noautoopen "pack.temp.dmg" | \
-         egrep '^/dev/' | sed 1q | awk '{print $1}')
+         grep -E '^/dev/' | sed 1q | awk '{print $1}')
          
 sleep 3
          
@@ -53,10 +53,10 @@ echo '
      end tell
    end tell
 ' | osascript
-chmod -Rf go-w /Volumes/"${title}"
+chmod -Rf go-w "/Volumes/${title}"
 sync
 sync
-hdiutil detach ${device}
+hdiutil detach "${device}"
 hdiutil convert "pack.temp.dmg" -format UDZO -imagekey zlib-level=9 -o "${finalDMGName}"
 rm -f pack.temp.dmg 
 rm -rf Installer
