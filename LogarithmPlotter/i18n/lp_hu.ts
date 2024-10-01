@@ -39,7 +39,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="40"/>
         <source>&amp;Load...</source>
-        <translation>&amp;Betöltés…</translation>
+        <translation>&amp;Megnyitás…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="47"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Beállítások</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
@@ -394,7 +394,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="106"/>
@@ -606,7 +606,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/Preferences.qml" line="182"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
 </context>
 <context>
@@ -707,17 +707,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="417"/>
         <source>Save plot</source>
-        <translation type="unfinished">Ábra mentése</translation>
+        <translation>Ábra mentése…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="426"/>
         <source>Save plot as</source>
-        <translation type="unfinished">Ábra mentése másként</translation>
+        <translation>Ábra mentése másként…</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="435"/>
         <source>Load plot</source>
-        <translation type="unfinished">Ábra betöltése</translation>
+        <translation>Ábra megnyitása…</translation>
     </message>
     <message>
         <source>Close</source>
@@ -808,7 +808,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>spanyol</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
@@ -1055,7 +1055,7 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="123"/>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/tokens.mjs" line="573"/>
         <source>Parse error [position %1]: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Elemzési hiba [hely %1]: %2</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/lib/expr-eval/parserstate.mjs" line="380"/>
@@ -1386,7 +1386,11 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 - {} (https://ctan.org/pkg/{})
 
 Make sure said package is installed, or disable the LaTeX rendering in LogarithmPlotter.</source>
-        <translation type="unfinished"></translation>
+        <translation>A LaTeX telepítése nem tartalmaz néhány szükséges csomagot:
+
+- {} (https://ctan.org/pkg/{})
+
+Győződjön meg arról, hogy az említett csomag telepítve van, vagy tiltsa le a LaTeX megjelenítést a LogarithmPlotterben.</translation>
     </message>
     <message>
         <location filename="../util/latex.py" line="220"/>
@@ -1692,7 +1696,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="35"/>
         <source>approximate</source>
-        <translation type="unfinished">Hozzávetőleges érték megjelenítése</translation>
+        <translation>Kerekített számított érték megjelenítése</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/objs/xcursor.mjs" line="36"/>
@@ -1753,7 +1757,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="31"/>
         <source>general</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/preferences.mjs" line="32"/>
@@ -1821,7 +1825,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
-        <translation type="unfinished">integrál(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: végrehajtható objektum&gt;)</translation>
+        <translation>integral(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;f: függvényszerű objektum&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="66"/>
@@ -1850,7 +1854,7 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
-        <translation type="unfinished">derivative(&lt;függvény: VégrehajthatóObjektum&gt;, &lt;x: szám&gt;)</translation>
+        <translation>derivative(&lt;f: függvényszerű objektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
         <location filename="../qml/eu/ad5001/LogarithmPlotter/js/module/expreval.mjs" line="101"/>
