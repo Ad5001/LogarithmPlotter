@@ -1345,7 +1345,7 @@ Formule analysée : %3</translation>
     <message>
         <location filename="../../common/src/module/io.mjs" line="167"/>
         <source>Could not load file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger le fichier&#xa0;: </translation>
     </message>
     <message>
         <source>Could not save file: </source>
