@@ -5,7 +5,7 @@ summary: Create and edit Bode plots
 confinement: strict
 base: core22
 grade: stable
-icon: LogarithmPlotter/logarithmplotter.svg
+icon: assets/logarithmplotter.svg
 adopt-info: linuxfiles
 license: GPL-3.0+
 
@@ -57,21 +57,26 @@ parts:
   #  - fcitx-frontend-gtk3
   #  - libgtk2.0-0
   launchers:
-    source: linux/snapcraft/launcher/
+    source: assets/native/linux/snapcraft/launcher/
     plugin: dump
     organize:
       '*': bin/
   linuxfiles:
-    source: linux/
+    source: assets/native/linux/
     plugin: dump
     parse-info: [eu.ad5001.LogarithmPlotter.metainfo.xml]
     organize:
       logarithmplotter.desktop: usr/share/applications/logarithmplotter.desktop
       x-logarithm-plot.xml: usr/share/mime/packages/x-logarithm-plot.xml
       application-x-logarithm-plot.svg: usr/share/mime/packages/application-x-logarithm-plot.svg
+  filetypeicon:
+    source: assets/
+    plugin: dump
+    organize:
+      logplotterfile.svg: usr/share/mime/packages/application-x-logarithm-plot.svg
   logarithmplotter:
     plugin: python
-    source: .
+    source: build
     stage-packages:
     - breeze-icon-theme
     # Latex dependencies
@@ -145,7 +150,7 @@ parts:
     source: .
     plugin: dump
     organize:
-      CHANGELOG.md: lib/python3.8/site-packages/LogarithmPlotter/util/
+      CHANGELOG.md: lib/python3.12/site-packages/LogarithmPlotter/util/
     
 apps:
   logarithmplotter:

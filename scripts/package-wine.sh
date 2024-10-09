@@ -1,8 +1,8 @@
 #!/bin/bash
-cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.." || exit 1
 
 # Moving files
-cp win/* README.md LICENSE.md dist/logarithmplotter/
+cp assets/native/win/* README.md LICENSE.md build/runtime-pyside6/dist/logarithmplotter/
 # Creating installer
-cd dist/logarithmplotter/
+cd build/runtime-pyside6/dist/logarithmplotter/ || exit 1
 makensis installer.nsi

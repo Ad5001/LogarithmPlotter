@@ -1,10 +1,9 @@
 #!/bin/bash
 # This script is used to sign the LogarithmPlotter deb directly from it's DSC file.
 # Adapted from https://github.com/astraw/stdeb/issues/181
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/../build/runtime-pyside6/deb_dist" || exit 1
 
 PPA_ARCHIVE="ppa:ad5001/logarithmplotter"
-
-cd ../deb_dist
 
 # create a temporary folder
 mkdir tmp -p

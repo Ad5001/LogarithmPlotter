@@ -1,22 +1,35 @@
 #!/bin/bash
-cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.."
+cd "$(dirname "$(readlink -f "$0" || realpath "$0")")/.." || exit
 
-rm -rf dist
+rebuild=true
 
-rm $(find . -name "*.qmlc")
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-rebuild)
+            rebuild=false
+            ;;
+        *)
+            box "Error: Invalid argument."
+            exit 1
+    esac
+    shift
+done
+
+if [ "$rebuild" == "true" ]; then
+    rm -rf build
+    bash scripts/build.sh
+fi
+
+cd build/runtime-pyside6 || exit 1
+
 rm -rf $(find . -name "*.pyc")
-
-# Building translations
-cd "LogarithmPlotter/i18n/"
-bash release.sh
-cd ../../
 
 wine pyinstaller --add-data "LogarithmPlotter/logarithmplotter.svg;." \
                  --add-data "LogarithmPlotter/qml;qml" \
                  --add-data "LogarithmPlotter/i18n;i18n" \
                  --noconsole \
                  LogarithmPlotter/logarithmplotter.py \
-                 --icon=win/logarithmplotter.ico \
+                 --icon=../../assets/native/win/logarithmplotter.ico \
                  -n logarithmplotter
 
 # Copy Qt6ShaderTools, a required library for for Qt5Compat

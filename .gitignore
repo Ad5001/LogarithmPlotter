@@ -1,13 +1,19 @@
+# Building
 build/
 dist/
 deb_dist/
-linux/flatpak/AppDir
-linux/flatpak/repo
-linux/flatpak/build-dir
-linux/flatpak/.flatpak-builder
+assets/linux/flatpak/AppDir
+assets/linux/flatpak/repo
+assets/linux/flatpak/build-dir
+assets/linux/flatpak/.flatpak-builder
 *.snap
 *.spec
 *.zip
+*.tar.gz
+*.spec
+*.egg-info/
+
+# Runtime data
 **/**.qmlc
 **/**.jsc
 **/**.pyc
@@ -20,16 +26,19 @@ linux/flatpak/.flatpak-builder
 .DS_Store
 **/.DS_Store
 **/__pycache__/
+
+# IDE Data
 .ropeproject
 .vscode
 *.kdev4
 .kdev4
-.coverage
-build
 docs/html
 .directory
 *.lpf
 *.lgg
-*.spec
-*.egg-info/
-*.tar.gz
+
+# npm
+common/node_modules
+common/coverage/
+common/.coverage
+runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs*

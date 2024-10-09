@@ -15,9 +15,19 @@
 
 You can find more screenshots on the [app's website](https://apps.ad5001.eu/logarithmplotter/).
 
-## Run
+## Build & Run
 
-You can simply run LogarithmPlotter using `python3 run.py`.
+First, you'll need to install all the required dependencies:
+
+- [Python 3](https://python.org) with [poetry](https://python-poetry.org/), setup a virtual environment, go to the `runtime-pyside6` directory, and call
+  `poetry install`.
+- [npm](https://npmjs.com) (or [yarn](https://yarnpkg.com/)), go to the `common` directory, and run `npm install` (or `yarn install`).
+
+You can simply run LogarithmPlotter using `python3 run.py`. It automatically compiles the language files (requires
+`lrelease` to be installed and in path), and the JavaScript modules.
+
+If you do not wish do recompile the files again on every run, you can use the build script (`scripts/build.sh`) and run
+`python3 build/runtime-pyside6/LogarithmPlotter/logarithmplotter.py`.
 
 In order to test translations, you can use the `--lang=<lang code>` commandline option to force the locale.
 
@@ -27,26 +37,20 @@ In order to test translations, you can use the `--lang=<lang code>` commandline 
 
 All scripts noted here can be found in the `scripts` directory.
 
-You can generate installers for LogarithmPlotter after installing all the dependencies:   
-For all builds, you will need [Python 3](https://python.org) with [poetry](https://python-poetry.org/), and
-`poetry install --with packaging`.
+You can generate installers for LogarithmPlotter after installing all the dependencies.
 
-- Windows installer:
-    - Run the `build-windows.bat` script (or `build-wine.sh` if you're cross-compiling with wine on Linux) to build an
-      exe for LogarithmPlotter.
-    - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (Linux users can install
-      the [nsis](https://pkgs.org/download/nsis) package).
-    - Run the `package-windows.bat` script (or `package-wine.sh`if you're cross-compiling on Linux). You will find a
-      logarithmplotter-setup.exe installer in the dist/logarithmplotter/ folder.
+- Windows installer (crosscompiling from Linux):
+    - Run  `build-wine.sh` (requires wine) to build an exe for LogarithmPlotter in build/runtime-pyside6/dist.
+    - You also need [NSIS](https://nsis.sourceforge.io/Main_Page) (the [nsis](https://pkgs.org/download/nsis) package is available on linux).
+    - Run the `package-wine.sh` script. You will find a logarithmplotter-setup.exe installer in the build/runtime-pyside6/dist/logarithmplotter/ folder.
 - MacOS Archive creator installer:
-    - Run the `build-macosx.sh` script to build an .app for LogarithmPlotter which can be found in the dist directory.
+    - Run the `build-macosx.sh` script to build an .app for LogarithmPlotter which can be found in the build/runtime-pyside6/dist directory.
     - Run the `package-macosx.sh` script. You will find a LogarithmPlotter-v&lt;version&gt;-setup.dmg installer in the
-      dist/ folder.
+      build/runtime-pyside6/build/pysdist/ folder.
 - Linux packages:
-    - To build and install the flatpak, you
-      need [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) installed.
-    - To build the snap, you need [snapcraft](https://snapcraft.io) installed.
-    - Run `package-linux.sh`.
+    - Run `package-deb.sh`. It will create an DSC and a DEB in build/runtime-pyside6/deb_dist/
+    - Run `scripts/build.sh` followed by `snapcraft`. It .snap file in the root directory.
+    - See [the flatpak repo](https://github.com/Ad5001/eu.ad5001.LogarithmPlotter) for instrutions on how to build the flatpak.
 
 ## Contribute
 

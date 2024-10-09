@@ -11,12 +11,24 @@ steps:
     commands:
       - git submodule update --init --recursive
 
+  - name: Build
+    image: node:18-bookworm
+    commands:
+      - cd common && npm install && cd ..
+      - apt update
+      - apt install -y qtchooser qttools5-dev-tools
+      # Start building 
+      - bash scripts/build.sh
+    when:
+      event: [ push, tag ]
+
   - name: Unit Tests
     image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
     commands:
-      - apt install -y qtchooser qttools5-dev-tools
-      - cd LogarithmPlotter/i18n && bash release.sh && cd ../..
-      - xvfb-run bash scripts/run-tests.sh
+      - apt update
+      - apt install -y npm
+      - cd common && npm install -D && cd ..
+      - xvfb-run bash scripts/run-tests.sh --no-rebuild
     when:
       event: [ push, tag ]
 
@@ -32,7 +44,7 @@ steps:
   - name: Windows build
     image: ad5001/ubuntu-pyside-xvfb:wine-6-latest
     commands:
-      - bash scripts/build-wine.sh
+      - bash scripts/build-wine.sh --no-rebuild
       - bash scripts/package-wine.sh
     when:
       event: [ push, tag ]
