@@ -1330,7 +1330,7 @@ Evaluated expression: %3</translation>
     <message>
         <location filename="../../common/src/module/io.mjs" line="167"/>
         <source>Could not load file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Could not load file: </translation>
     </message>
     <message>
         <source>Could not save file: </source>
