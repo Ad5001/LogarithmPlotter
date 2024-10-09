@@ -1330,7 +1330,7 @@ Ausdruck analysiert: %3</translation>
     <message>
         <location filename="../../common/src/module/io.mjs" line="167"/>
         <source>Could not load file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Datei konnte nicht geladen werden: </translation>
     </message>
     <message>
         <source>Could not save file: </source>
