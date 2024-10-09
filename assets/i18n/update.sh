@@ -21,7 +21,7 @@ replace() {
 
 rm ../qml/eu/ad5001/LogarithmPlotter/js/index.mjs # Remove index which should not be scanned
 
-files=$(find .. -name *.mjs)
+files=$(find ../../common/src -name '*.mjs')
 for file in $files; do
     echo "Moving '$file' to '${file%.*}.js'..."
     mv "$file" "${file%.*}.js"
@@ -38,7 +38,7 @@ done
 echo "----------------------------"
 echo "| Updating translations... |"
 echo "----------------------------"
-lupdate -extensions js,qs,qml,py -recursive .. -ts lp_*.ts
+lupdate -extensions js,qs,qml,py -recursive ../../common/src -recursive ../../runtime-pyside6/LogarithmPlotter -ts lp_*.ts
 # Updating locations in files
 for lp in *.ts; do
     echo "Replacing locations in $lp..."
