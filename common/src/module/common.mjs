@@ -25,6 +25,10 @@ globalThis.Modules = globalThis.Modules || {}
  * Base class for global APIs in runtime.
  */
 export class Module {
+    /** @type {string} */
+    #name
+    /** @type {Object.<string, (Interface|string|number|boolean)>} */
+    #initializationParameters
 
     /**
      *
@@ -33,8 +37,8 @@ export class Module {
      */
     constructor(name, initializationParameters = {}) {
         console.log(`Loading module ${name}...`)
-        this.__name = name
-        this.__initializationParameters = initializationParameters
+        this.#name = name
+        this.#initializationParameters = initializationParameters
         this.initialized = false
 
     }
@@ -45,15 +49,15 @@ export class Module {
      */
     initialize(options) {
         if(this.initialized)
-            throw new Error(`Cannot reinitialize module ${this.__name}.`)
-        console.log(`Initializing ${this.__name}...`)
-        for(const [name, value] of Object.entries(this.__initializationParameters)) {
+            throw new Error(`Cannot reinitialize module ${this.#name}.`)
+        console.log(`Initializing ${this.#name}...`)
+        for(const [name, value] of Object.entries(this.#initializationParameters)) {
             if(!options.hasOwnProperty(name))
-                throw new Error(`Option '${name}' of initialize of module ${this.__name} does not exist.`)
+                throw new Error(`Option '${name}' of initialize of module ${this.#name} does not exist.`)
             if(typeof value === "function" && value.prototype instanceof Interface)
                 Interface.check_implementation(value, options[name])
             else if(typeof value !== typeof options[name])
-                throw new Error(`Option '${name}' of initialize of module ${this.__name} is not a '${value}' (${typeof options[name]}).`)
+                throw new Error(`Option '${name}' of initialize of module ${this.#name} is not a '${value}' (${typeof options[name]}).`)
         }
         this.initialized = true
     }

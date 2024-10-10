@@ -35,15 +35,17 @@ const evalVariables = {
 }
 
 class ExprParserAPI extends Module {
+    #parser = new Parser()
+    
     constructor() {
         super("ExprParser")
         this.currentVars = {}
-        this._parser = new Parser()
+        this.#parser = new Parser()
 
-        this._parser.consts = Object.assign({}, this._parser.consts, evalVariables)
+        this.#parser.consts = Object.assign({}, this.#parser.consts, evalVariables)
 
-        this._parser.functions.integral = this.integral.bind(this)
-        this._parser.functions.derivative = this.derivative.bind(this)
+        this.#parser.functions.integral = this.integral.bind(this)
+        this.#parser.functions.derivative = this.derivative.bind(this)
     }
 
     /**
@@ -68,7 +70,7 @@ class ExprParserAPI extends Module {
             [f, variable] = args
             if(typeof f !== "string" || typeof variable !== "string")
                 throw EvalError(qsTranslate("usage", "Usage:\n%1").arg(usage2))
-            f = this._parser.parse(f).toJSFunction(variable, this.currentVars)
+            f = this.#parser.parse(f).toJSFunction(variable, this.currentVars)
         } else
             throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
         return f
@@ -79,7 +81,7 @@ class ExprParserAPI extends Module {
      * @returns {ExprEvalExpression}
      */
     parse(expression) {
-        return this._parser.parse(expression)
+        return this.#parser.parse(expression)
     }
 
     integral(a, b, ...args) {

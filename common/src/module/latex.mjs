@@ -60,6 +60,9 @@ class LatexRenderResult {
 }
 
 class LatexAPI extends Module {
+    /** @type {LatexInterface} */
+    #latex = null
+    
     constructor() {
         super("Latex", {
             latex: LatexInterface,
@@ -77,8 +80,7 @@ class LatexAPI extends Module {
      */
     initialize({ latex, helper }) {
         super.initialize({ latex, helper })
-        this.latex = latex
-        this.helper = helper
+        this.#latex = latex
         this.enabled = helper.getSettingBool("enable_latex")
     }
 
@@ -93,7 +95,7 @@ class LatexAPI extends Module {
      */
     findPrerendered(markup, fontSize, color) {
         if(!this.initialized) throw new Error("Attempting findPrerendered before initialize!")
-        const data = this.latex.findPrerendered(markup, fontSize, color)
+        const data = this.#latex.findPrerendered(markup, fontSize, color)
         let ret = null
         if(data !== "")
             ret = new LatexRenderResult(...data.split(","))
@@ -110,7 +112,7 @@ class LatexAPI extends Module {
      */
     async requestAsyncRender(markup, fontSize, color) {
         if(!this.initialized) throw new Error("Attempting requestAsyncRender before initialize!")
-        let args = this.latex.render(markup, fontSize, color).split(",")
+        let args = this.#latex.render(markup, fontSize, color).split(",")
         return new LatexRenderResult(...args)
     }
 

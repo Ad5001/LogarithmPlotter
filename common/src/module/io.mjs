@@ -24,6 +24,12 @@ import { DialogInterface, RootInterface, SettingsInterface } from "./interface.m
 
 
 class IOAPI extends Module {
+    /** @type {RootInterface} */
+    #rootElement
+    /** @type {SettingsInterface} */
+    #settings
+    /** @type {{show: function(string)}} */
+    #alert
 
     constructor() {
         super("IO", {
@@ -46,9 +52,9 @@ class IOAPI extends Module {
      */
     initialize({ root, settings, alert }) {
         super.initialize({ root, settings, alert })
-        this.rootElement = root
-        this.settings = settings
-        this.alert = alert
+        this.#rootElement = root
+        this.#settings = settings
+        this.#alert = alert
     }
 
     /**
@@ -69,27 +75,27 @@ class IOAPI extends Module {
             }
         }
         let settings = {
-            "xzoom": this.settings.xzoom,
-            "yzoom": this.settings.yzoom,
-            "xmin": this.settings.xmin,
-            "ymax": this.settings.ymax,
-            "xaxisstep": this.settings.xaxisstep,
-            "yaxisstep": this.settings.yaxisstep,
-            "xaxislabel": this.settings.xlabel,
-            "yaxislabel": this.settings.ylabel,
-            "logscalex": this.settings.logscalex,
-            "linewidth": this.settings.linewidth,
-            "showxgrad": this.settings.showxgrad,
-            "showygrad": this.settings.showygrad,
-            "textsize": this.settings.textsize,
+            "xzoom": this.#settings.xzoom,
+            "yzoom": this.#settings.yzoom,
+            "xmin": this.#settings.xmin,
+            "ymax": this.#settings.ymax,
+            "xaxisstep": this.#settings.xaxisstep,
+            "yaxisstep": this.#settings.yaxisstep,
+            "xaxislabel": this.#settings.xlabel,
+            "yaxislabel": this.#settings.ylabel,
+            "logscalex": this.#settings.logscalex,
+            "linewidth": this.#settings.linewidth,
+            "showxgrad": this.#settings.showxgrad,
+            "showygrad": this.#settings.showygrad,
+            "textsize": this.#settings.textsize,
             "history": History.serialize(),
-            "width": this.rootElement.width,
-            "height": this.rootElement.height,
+            "width": this.#rootElement.width,
+            "height": this.#rootElement.height,
             "objects": objs,
             "type": "logplotv1"
         }
         Helper.write(filename, JSON.stringify(settings))
-        this.alert.show(qsTranslate("io", "Saved plot to '%1'.").arg(filename.split("/").pop()))
+        this.#alert.show(qsTranslate("io", "Saved plot to '%1'.").arg(filename.split("/").pop()))
         History.history.saved = true
     }
 
@@ -101,32 +107,32 @@ class IOAPI extends Module {
         if(!this.initialized) throw new Error("Attempting loadDiagram before initialize!")
         if(!History.initialized) throw new Error("Attempting loadDiagram before history is initialized!")
         let basename = filename.split("/").pop()
-        this.alert.show(qsTranslate("io", "Loading file '%1'.").arg(basename))
+        this.#alert.show(qsTranslate("io", "Loading file '%1'.").arg(basename))
         let data = JSON.parse(Helper.load(filename))
         let error = ""
         if(data.hasOwnProperty("type") && data["type"] === "logplotv1") {
             History.clear()
             // Importing settings
-            this.settings.saveFilename = filename
-            this.settings.xzoom = parseFloat(data["xzoom"]) || 100
-            this.settings.yzoom = parseFloat(data["yzoom"]) || 10
-            this.settings.xmin = parseFloat(data["xmin"]) || 5 / 10
-            this.settings.ymax = parseFloat(data["ymax"]) || 24
-            this.settings.xaxisstep = data["xaxisstep"] || "4"
-            this.settings.yaxisstep = data["yaxisstep"] || "4"
-            this.settings.xlabel = data["xaxislabel"] || ""
-            this.settings.ylabel = data["yaxislabel"] || ""
-            this.settings.logscalex = data["logscalex"] === true
+            this.#settings.saveFilename = filename
+            this.#settings.xzoom = parseFloat(data["xzoom"]) || 100
+            this.#settings.yzoom = parseFloat(data["yzoom"]) || 10
+            this.#settings.xmin = parseFloat(data["xmin"]) || 5 / 10
+            this.#settings.ymax = parseFloat(data["ymax"]) || 24
+            this.#settings.xaxisstep = data["xaxisstep"] || "4"
+            this.#settings.yaxisstep = data["yaxisstep"] || "4"
+            this.#settings.xlabel = data["xaxislabel"] || ""
+            this.#settings.ylabel = data["yaxislabel"] || ""
+            this.#settings.logscalex = data["logscalex"] === true
             if("showxgrad" in data)
-                this.settings.showxgrad = data["showxgrad"]
+                this.#settings.showxgrad = data["showxgrad"]
             if("showygrad" in data)
-                this.settings.textsize = data["showygrad"]
+                this.#settings.textsize = data["showygrad"]
             if("linewidth" in data)
-                this.settings.linewidth = data["linewidth"]
+                this.#settings.linewidth = data["linewidth"]
             if("textsize" in data)
-                this.settings.textsize = data["textsize"]
-            this.rootElement.height = parseFloat(data["height"]) || 500
-            this.rootElement.width = parseFloat(data["width"]) || 1000
+                this.#settings.textsize = data["textsize"]
+            this.#rootElement.height = parseFloat(data["height"]) || 500
+            this.#rootElement.width = parseFloat(data["width"]) || 1000
 
             // Importing objects
             Objects.currentObjects = {}
@@ -158,18 +164,18 @@ class IOAPI extends Module {
                 History.unserialize(...data["history"])
 
             // Refreshing sidebar
-            this.rootElement.updateObjectsLists()
+            this.#rootElement.updateObjectsLists()
         } else {
             error = qsTranslate("io", "Invalid file provided.")
         }
         if(error !== "") {
             console.log(error)
-            this.alert.show(qsTranslate("io", "Could not load file: ") + error)
+            this.#alert.show(qsTranslate("io", "Could not load file: ") + error)
             // TODO: Error handling
             return
         }
         Canvas.redraw()
-        this.alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
+        this.#alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
         History.history.saved = true
     }
 

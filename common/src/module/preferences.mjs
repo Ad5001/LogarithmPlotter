@@ -20,6 +20,9 @@ import General from "../preferences/general.mjs"
 import Editor from "../preferences/expression.mjs"
 import DefaultGraph from "../preferences/default.mjs"
 
+/**
+ * Module for application wide settings.
+ */
 class PreferencesAPI extends Module {
     constructor() {
         super("Preferences")
