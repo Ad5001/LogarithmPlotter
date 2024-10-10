@@ -33,6 +33,8 @@ for file in $files; do
     replace "${file%.*}.js" "^export" "/*export*/"
     replace "${file%.*}.js" "async " "/*async */"
     replace "${file%.*}.js" "await" "/*await */"
+    replace "${file%.*}.js" " #" "// #"
+    replace "${file%.*}.js" "this.#" "/*this.#*/"
 done
 
 echo "----------------------------"
@@ -55,7 +57,9 @@ for file in $files; do
     replace "$file" "/*async */" "async "
     replace "$file" "^/*export*/" "export"
     replace "$file" "^/*export default*/" "export default"
+    replace "$file" '.mjs"*/' '.mjs"'
     replace "$file" "^/*import" "import"
     replace "$file" "^/*export" "export"
-    replace "$file" '.mjs"*/$' '.mjs"'
+    replace "$file" "// #" " #"
+    replace "$file" "/*this.#*/" "this.#"
 done

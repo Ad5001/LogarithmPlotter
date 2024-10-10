@@ -1304,27 +1304,27 @@ Kiértékelt kifejezés: %3</translation>
         <translation type="vanished">Előzmények</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="92"/>
+        <location filename="../../common/src/module/io.mjs" line="98"/>
         <source>Saved plot to &apos;%1&apos;.</source>
         <translation>Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="104"/>
+        <location filename="../../common/src/module/io.mjs" line="110"/>
         <source>Loading file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="148"/>
+        <location filename="../../common/src/module/io.mjs" line="154"/>
         <source>Unknown object type: %1.</source>
         <translation>Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="163"/>
+        <location filename="../../common/src/module/io.mjs" line="169"/>
         <source>Invalid file provided.</source>
         <translation>A megadott fájl érvénytelen.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="167"/>
+        <location filename="../../common/src/module/io.mjs" line="173"/>
         <source>Could not load file: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1333,7 +1333,7 @@ Kiértékelt kifejezés: %3</translation>
         <translation type="vanished">A fájl mentése nem sikerült: </translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="172"/>
+        <location filename="../../common/src/module/io.mjs" line="178"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltve.</translation>
     </message>
@@ -1759,17 +1759,17 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>settingCategory</name>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="28"/>
+        <location filename="../../common/src/module/preferences.mjs" line="31"/>
         <source>general</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="29"/>
+        <location filename="../../common/src/module/preferences.mjs" line="32"/>
         <source>editor</source>
         <translation>Kifejezésszerkesztő</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="30"/>
+        <location filename="../../common/src/module/preferences.mjs" line="33"/>
         <source>default</source>
         <translation>Alapértelmezett ábra</translation>
     </message>
@@ -1827,22 +1827,22 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 <context>
     <name>usage</name>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="86"/>
+        <location filename="../../common/src/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integral(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;f: függvényszerű objektum&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="63"/>
-        <location filename="../../common/src/module/expreval.mjs" line="70"/>
+        <location filename="../../common/src/module/expreval.mjs" line="65"/>
+        <location filename="../../common/src/module/expreval.mjs" line="72"/>
         <source>Usage:
 %1</source>
         <translation>Használat:
 %1</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="73"/>
-        <location filename="../../common/src/module/expreval.mjs" line="90"/>
-        <location filename="../../common/src/module/expreval.mjs" line="103"/>
+        <location filename="../../common/src/module/expreval.mjs" line="75"/>
+        <location filename="../../common/src/module/expreval.mjs" line="92"/>
+        <location filename="../../common/src/module/expreval.mjs" line="105"/>
         <source>Usage:
 %1
 %2</source>
@@ -1851,17 +1851,17 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
 %2</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="87"/>
+        <location filename="../../common/src/module/expreval.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integral(&lt;alsó korlát: szám&gt;, &lt;felső korlát: szám&gt;, &lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="98"/>
+        <location filename="../../common/src/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f: függvényszerű objektum&gt;, &lt;x: szám&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="99"/>
+        <location filename="../../common/src/module/expreval.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivált(&lt;függvény: karakterlánc&gt;, &lt;változó: karakterlánc&gt;, &lt;x: szám&gt;)</translation>
     </message>

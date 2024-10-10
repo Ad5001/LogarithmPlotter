@@ -1308,27 +1308,27 @@ Ausdruck analysiert: %3</translation>
         <translation type="vanished">Verlauf</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="92"/>
+        <location filename="../../common/src/module/io.mjs" line="98"/>
         <source>Saved plot to &apos;%1&apos;.</source>
         <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="104"/>
+        <location filename="../../common/src/module/io.mjs" line="110"/>
         <source>Loading file &apos;%1&apos;.</source>
         <translation>Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="148"/>
+        <location filename="../../common/src/module/io.mjs" line="154"/>
         <source>Unknown object type: %1.</source>
         <translation>Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="163"/>
+        <location filename="../../common/src/module/io.mjs" line="169"/>
         <source>Invalid file provided.</source>
         <translation>Ungültige Datei angegeben.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="167"/>
+        <location filename="../../common/src/module/io.mjs" line="173"/>
         <source>Could not load file: </source>
         <translation>Datei konnte nicht geladen werden: </translation>
     </message>
@@ -1337,7 +1337,7 @@ Ausdruck analysiert: %3</translation>
         <translation type="vanished">Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="172"/>
+        <location filename="../../common/src/module/io.mjs" line="178"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>Geladene Datei &apos;%1&apos;.</translation>
     </message>
@@ -1759,17 +1759,17 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>settingCategory</name>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="30"/>
+        <location filename="../../common/src/module/preferences.mjs" line="33"/>
         <source>default</source>
         <translation>Standardeinstellungen</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="28"/>
+        <location filename="../../common/src/module/preferences.mjs" line="31"/>
         <source>general</source>
         <translation>Allgemeine</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/preferences.mjs" line="29"/>
+        <location filename="../../common/src/module/preferences.mjs" line="32"/>
         <source>editor</source>
         <translation>Ausdruckseditor</translation>
     </message>
@@ -1827,22 +1827,22 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>usage</name>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="86"/>
+        <location filename="../../common/src/module/expreval.mjs" line="88"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: ExecutableObject&gt;)</source>
         <translation>integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: Funktionsähnliches Objekt&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="63"/>
-        <location filename="../../common/src/module/expreval.mjs" line="70"/>
+        <location filename="../../common/src/module/expreval.mjs" line="65"/>
+        <location filename="../../common/src/module/expreval.mjs" line="72"/>
         <source>Usage:
 %1</source>
         <translation>Verwendung:
 %1</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="73"/>
-        <location filename="../../common/src/module/expreval.mjs" line="90"/>
-        <location filename="../../common/src/module/expreval.mjs" line="103"/>
+        <location filename="../../common/src/module/expreval.mjs" line="75"/>
+        <location filename="../../common/src/module/expreval.mjs" line="92"/>
+        <location filename="../../common/src/module/expreval.mjs" line="105"/>
         <source>Usage:
 %1
 %2</source>
@@ -1851,17 +1851,17 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 %2</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="87"/>
+        <location filename="../../common/src/module/expreval.mjs" line="89"/>
         <source>integral(&lt;from: number&gt;, &lt;to: number&gt;, &lt;f: string&gt;, &lt;variable: string&gt;)</source>
         <translation>integral(&lt;von: Zahl&gt;, &lt;bis: Zahl&gt;, &lt;f: String&gt;, &lt;Variablen: String&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="98"/>
+        <location filename="../../common/src/module/expreval.mjs" line="100"/>
         <source>derivative(&lt;f: ExecutableObject&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f: Funktionsähnliches Objekt&gt;, &lt;x: Zahl&gt;)</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/expreval.mjs" line="99"/>
+        <location filename="../../common/src/module/expreval.mjs" line="101"/>
         <source>derivative(&lt;f: string&gt;, &lt;variable: string&gt;, &lt;x: number&gt;)</source>
         <translation>derivative(&lt;f: String&gt;, &lt;Variablen: String&gt;, &lt;x: Zahl&gt;)</translation>
     </message>
