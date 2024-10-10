@@ -121,11 +121,6 @@ ScrollView {
        \sa Settings
     */
     property bool showygrad: Helper.getSettingBool('default_graph.showygrad')
-    /*!
-       \qmlproperty bool Settings::saveFilename
-       Path of the currently opened file. Empty if no file is opened.
-    */
-    property string saveFilename: ""
     
     Column {
         spacing: 10
@@ -136,15 +131,18 @@ ScrollView {
             id: fdiag
             onAccepted: {
                 var filePath = fdiag.currentFile.toString().substr(7)
-                settings.saveFilename = filePath
+                Modules.Settings.set("saveFilename", filePath)
                 if(exportMode) {
                     Modules.IO.saveDiagram(filePath)
                 } else {
                     Modules.IO.loadDiagram(filePath)
-                    if(xAxisLabel.find(settings.xlabel) == -1) xAxisLabel.model.append({text: settings.xlabel})
-                    xAxisLabel.editText = settings.xlabel
-                    if(yAxisLabel.find(settings.ylabel) == -1) yAxisLabel.model.append({text: settings.ylabel})
-                    yAxisLabel.editText = settings.ylabel
+                    // Adding labels.
+                    if(xAxisLabel.find(Modules.Settings.xlabel) === -1)
+                        xAxisLabel.model.append({text: Modules.Settings.xlabel})
+                    xAxisLabel.editText = Modules.Settings.xlabel
+                    if(yAxisLabel.find(Modules.Settings.ylabel) === -1)
+                        yAxisLabel.model.append({text: Modules.Settings.ylabel})
+                    yAxisLabel.editText = Modules.Settings.ylabel
                 }
             }
         }
@@ -158,10 +156,15 @@ ScrollView {
             min: 0.1
             icon: "settings/xzoom.svg"
             width: settings.settingWidth
-            value: settings.xzoom.toFixed(2)
+            
             onChanged: function(newValue) {
-                settings.xzoom = newValue
+                Modules.Settings.set("xzoom", newValue, true)
                 settings.changed()
+            }
+            
+            function update(newValue) {
+                value = Modules.Settings.xzoom.toFixed(2)
+                maxX.update()
             }
         }
         
@@ -173,10 +176,15 @@ ScrollView {
             label: qsTr("Y Zoom")
             icon: "settings/yzoom.svg"
             width: settings.settingWidth
-            value: settings.yzoom.toFixed(2)
+
             onChanged: function(newValue) {
-                settings.yzoom = newValue
+                Modules.Settings.set("yzoom", newValue, true)
                 settings.changed()
+            }
+            
+            function update(newValue) {
+                value = Modules.Settings.yzoom.toFixed(2)
+                minY.update()
             }
         }
         
@@ -189,14 +197,18 @@ ScrollView {
             label: qsTr("Min X")
             icon: "settings/xmin.svg"
             width: settings.settingWidth
-            defValue: settings.xmin
+            
             onChanged: function(newValue) {
-                if(parseFloat(maxX.value) > newValue) {
-                    settings.xmin = newValue
-                    settings.changed()
-                } else {
-                    alert.show("Minimum x value must be inferior to maximum.")
-                }
+                Modules.Settings.set("xmin", newValue, true)
+                settings.changed()
+            }
+            
+            function update(newValue) {
+                let newVal = Modules.Settings.xmin
+                if(newVal > 1e-5)
+                    newVal = newVal.toDecimalPrecision(8)
+                value = newVal
+                maxX.update()
             }
         }
         
@@ -208,10 +220,15 @@ ScrollView {
             label: qsTr("Max Y")
             icon: "settings/ymax.svg"
             width: settings.settingWidth
-            defValue: settings.ymax
+            
             onChanged: function(newValue) {
-                settings.ymax = newValue
+                Modules.Settings.set("ymax", newValue, true)
                 settings.changed()
+            }
+            
+            function update() {
+                value = Modules.Settings.ymax
+                minY.update()
             }
         }
         
@@ -223,14 +240,23 @@ ScrollView {
             label: qsTr("Max X")
             icon: "settings/xmax.svg"
             width: settings.settingWidth
-            defValue: Modules.Canvas.px2x(canvas.width).toFixed(2)
+            
             onChanged: function(xvaluemax) {
-                if(xvaluemax > settings.xmin) {
-                    settings.xzoom = settings.xzoom * canvas.width/(Modules.Canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
+                if(xvaluemax > Modules.Settings.xmin) {
+                    const newXZoom = Modules.Settings.xzoom * canvas.width/(Modules.Canvas.x2px(xvaluemax)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    Modules.Settings.set("xzoom", newXZoom, true)
+                    zoomX.update()
                     settings.changed()
                 } else {
                     alert.show("Maximum x value must be superior to minimum.")
                 }
+            }
+            
+            function update() {
+                let newVal = Modules.Canvas.px2x(canvas.width)
+                if(newVal > 1e-5)
+                    newVal = newVal.toDecimalPrecision(8)
+                value = newVal
             }
         }
         
@@ -242,14 +268,20 @@ ScrollView {
             label: qsTr("Min Y")
             icon: "settings/ymin.svg"
             width: settings.settingWidth
-            defValue: Modules.Canvas.px2y(canvas.height).toFixed(2)
+
             onChanged: function(yvaluemin) {
                 if(yvaluemin < settings.ymax) {
-                    settings.yzoom = settings.yzoom * canvas.height/(Modules.Canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    const newYZoom = Modules.Settings.yzoom * canvas.height/(Modules.Canvas.y2px(yvaluemin)) // Adjusting zoom to fit. = (end)/(px of current point)
+                    Modules.Settings.set("yzoom", newYZoom, true)
+                    zoomY.update()
                     settings.changed()
                 } else {
                     alert.show("Minimum y value must be inferior to maximum.")
                 }
+            }
+            
+            function update() {
+                value = Modules.Canvas.px2y(canvas.height).toDecimalPrecision(8)
             }
         }
         
@@ -260,11 +292,15 @@ ScrollView {
             label: qsTr("X Axis Step")
             icon: "settings/xaxisstep.svg"
             width: settings.settingWidth
-            defValue: settings.xaxisstep
-            visible: !settings.logscalex
+            
             onChanged: function(newValue) {
-                settings.xaxisstep = newValue
+                Modules.Settings.set("xaxisstep", newValue, true)
                 settings.changed()
+            }
+            
+            function update() {
+                value = Modules.Settings.xaxisstep
+                visible = !Modules.Settings.logscalex
             }
         }
         
@@ -275,11 +311,13 @@ ScrollView {
             label: qsTr("Y Axis Step")
             icon: "settings/yaxisstep.svg"
             width: settings.settingWidth
-            defValue: settings.yaxisstep
+            
             onChanged: function(newValue) {
-                settings.yaxisstep = newValue
+                Modules.Settings.set("yaxisstep", newValue, true)
                 settings.changed()
             }
+            
+            function update() { value = Modules.Settings.yaxisstep }
         }
         
         Setting.TextSetting {
@@ -290,11 +328,13 @@ ScrollView {
             min: 1
             icon: "settings/linewidth.svg"
             width: settings.settingWidth
-            defValue: settings.linewidth
+            
             onChanged: function(newValue) {
-                settings.linewidth = newValue
+                Modules.Settings.set("linewidth", newValue, true)
                 settings.changed()
             }
+            
+            function update() { value = Modules.Settings.linewidth }
         }
         
         Setting.TextSetting {
@@ -305,11 +345,13 @@ ScrollView {
             min: 1
             icon: "settings/textsize.svg"
             width: settings.settingWidth
-            defValue: settings.textsize
+            
             onChanged: function(newValue) {
-                settings.textsize = newValue
+                Modules.Settings.set("textsize", newValue, true)
                 settings.changed()
             }
+            
+            function update() { value = Modules.Settings.textsize }
         }
         
         Setting.ComboBoxSetting {
@@ -318,24 +360,31 @@ ScrollView {
             width: settings.settingWidth
             label: qsTr('X Label')
             icon: "settings/xlabel.svg"
+            editable: true
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "x" }
                 ListElement { text: "ω (rad/s)" }
             }
-            currentIndex: find(settings.xlabel)
-            editable: true
+            
             onAccepted: function(){
                 editText = JS.Utils.parseName(editText, false)
-                if (find(editText) === -1) model.append({text: editText})
-                settings.xlabel = editText
+                if(find(editText) === -1) model.append({text: editText})
+                currentIndex = find(editText)
+                Modules.Settings.set("xlabel", editText, true)
                 settings.changed()
             }
+            
             onActivated: function(selectedId) {
-                settings.xlabel = model.get(selectedId).text
+                Modules.Settings.set("xlabel", model.get(selectedId).text, true)
                 settings.changed()
             }
-            Component.onCompleted: editText = settings.xlabel
+            
+            function update() {
+                editText = Modules.Settings.xlabel
+                if(find(editText) === -1) model.append({text: editText})
+                currentIndex = find(editText)
+            }
         }
         
         Setting.ComboBoxSetting {
@@ -344,6 +393,7 @@ ScrollView {
             width: settings.settingWidth
             label: qsTr('Y Label')
             icon: "settings/ylabel.svg"
+            editable: true
             model: ListModel {
                 ListElement { text: "" }
                 ListElement { text: "y" }
@@ -352,39 +402,52 @@ ScrollView {
                 ListElement { text: "φ (deg)" }
                 ListElement { text: "φ (rad)" }
             }
-            currentIndex: find(settings.ylabel)
-            editable: true
+            
             onAccepted: function(){
                 editText = JS.Utils.parseName(editText, false)
-                if (find(editText) === -1) model.append({text: editText, yaxisstep: root.yaxisstep})
-                settings.ylabel = editText
+                if(find(editText) === -1) model.append({text: editText})
+                currentIndex = find(editText)
+                Modules.Settings.set("ylabel", editText, true)
                 settings.changed()
             }
+            
             onActivated: function(selectedId) {
-                settings.ylabel = model.get(selectedId).text
+                Modules.Settings.set("ylabel", model.get(selectedId).text, true)
                 settings.changed()
             }
-            Component.onCompleted: editText = settings.ylabel
+            
+            function update() {
+                editText = Modules.Settings.ylabel
+                if(find(editText) === -1) model.append({text: editText})
+                currentIndex = find(editText)
+            }
         }
         
         CheckBox {
             id: logScaleX
-            checked: settings.logscalex
             text: qsTr('X Log scale')
             onClicked: {
-                settings.logscalex = checked
+                Modules.Settings.set("logscalex", checked, true)
+                if(Modules.Settings.xmin <= 0) // Reset xmin to prevent crash.
+                    Modules.Settings.set("xmin", .5)
                 settings.changed()
+            }
+            
+            function update() {
+                checked = Modules.Settings.logscalex
+                xAxisStep.update()
             }
         }
         
         CheckBox {
             id: showXGrad
-            checked: settings.showxgrad
             text: qsTr('Show X graduation')
             onClicked: {
-                settings.showxgrad = checked
+                Modules.Settings.set("showxgrad", checked, true)
                 settings.changed()
             }
+
+            function update() { checked = Modules.Settings.showxgrad }
         }
         
         CheckBox {
@@ -392,9 +455,10 @@ ScrollView {
             checked: settings.showygrad
             text: qsTr('Show Y graduation')
             onClicked: {
-                settings.showygrad = checked
+                Modules.Settings.set("showygrad", checked, true)
                 settings.changed()
             }
+            function update() { checked = Modules.Settings.showygrad }
         }
         
         Button {
@@ -440,10 +504,10 @@ ScrollView {
         Saves the current canvas in the opened file. If no file is currently opened, prompts to pick a save location.
     */
     function save() {
-        if(settings.saveFilename == "") {
+        if(Modules.Settings.saveFilename == "") {
             saveAs()
         } else {
-            Modules.IO.saveDiagram(settings.saveFilename)
+            Modules.IO.saveDiagram(Modules.Settings.saveFilename)
         }
     }
     
@@ -463,5 +527,31 @@ ScrollView {
     function load() {
         fdiag.exportMode = false
         fdiag.open()
+    }
+    
+    /**
+     * Initializing the settings
+     */
+    Component.onCompleted: function() {
+        const matchedElements = new Map([
+            ["xzoom", zoomX],
+            ["yzoom", zoomY],
+            ["xmin", minX],
+            ["ymax", maxY],
+            ["xaxisstep", xAxisStep],
+            ["yaxisstep", yAxisStep],
+            ["xlabel", xAxisLabel],
+            ["ylabel", yAxisLabel],
+            ["linewidth", lineWidth],
+            ["textsize", textSize],
+            ["logscalex", logScaleX],
+            ["showxgrad", showXGrad],
+            ["showygrad", showYGrad]
+        ])
+        Modules.Settings.on("changed", (evt) => {
+            if(matchedElements.has(evt.property))
+                matchedElements.get(evt.property).update()
+        })
+        Modules.Settings.initialize({ helper: Helper })
     }
 }

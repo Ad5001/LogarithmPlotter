@@ -62,7 +62,7 @@ class IOAPI extends Module {
         // Add extension if necessary
         if(["lpf"].indexOf(filename.split(".")[filename.split(".").length - 1]) === -1)
             filename += ".lpf"
-        this.saveFilename = filename
+        Settings.set("saveFilename", filename, false)
         let objs = {}
         for(let objType in Objects.currentObjects) {
             objs[objType] = []

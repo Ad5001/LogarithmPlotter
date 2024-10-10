@@ -48,6 +48,8 @@ class ChangedEvent extends BaseEvent {
 class SettingsAPI extends Module {
     static emits = ["changed"]
     
+    #nonConfigurable = ["saveFilename"]
+    
     #properties = new Map([
         ["saveFilename", ""],
         ["xzoom", 100],
@@ -75,16 +77,18 @@ class SettingsAPI extends Module {
         super.initialize({ helper })
         // Initialize default values.
         for(const key of this.#properties.keys()) {
-            switch(typeof this.#properties.get(key)) {
-                case "boolean":
-                    this.set(key, helper.getSettingBool("default_graph."+key), false)
-                    break
-                case "number":
-                    this.set(key, helper.getSettingInt("default_graph."+key), false)
-                    break
-                case "string":
-                    this.set(key, helper.getSetting("default_graph."+key), false)
-                    break
+            if(!this.#nonConfigurable.includes(key)) {
+                switch(typeof this.#properties.get(key)) {
+                    case "boolean":
+                        this.set(key, helper.getSettingBool("default_graph."+key), false)
+                        break
+                    case "number":
+                        this.set(key, helper.getSettingInt("default_graph."+key), false)
+                        break
+                    case "string":
+                        this.set(key, helper.getSetting("default_graph."+key), false)
+                        break
+                }
             }
         }
     }
@@ -101,8 +105,9 @@ class SettingsAPI extends Module {
             throw new Error(`Property ${property} is not a setting.`)
         }
         const oldValue = this.#properties.get(property)
-        console.debug("Setting", property, "from", oldValue, "to", value, `(${typeof value}, ${byUser})`)
         const propType = typeof oldValue
+        if(byUser)
+            console.debug("Setting", property, "from", oldValue, "to", value, `(${typeof value}, ${byUser})`)
         if(propType !== typeof value)
             throw new Error(`Value of ${property} must be a ${propType} (${typeof value} provided).`)
         this.#properties.set(property, value)

@@ -285,7 +285,7 @@ Item {
             const axisX = Modules.Canvas.axesSteps.x.value
             const xpos = Modules.Canvas.px2x(picker.mouseX)
             if(snapToGridCheckbox.checked) {
-                if(canvas.logscalex) {
+                if(Modules.Settings.logscalex) {
                     // Calculate the logged power
                     let pow = Math.pow(10, Math.floor(Math.log10(xpos)))
                     return pow*Math.round(xpos/pow)

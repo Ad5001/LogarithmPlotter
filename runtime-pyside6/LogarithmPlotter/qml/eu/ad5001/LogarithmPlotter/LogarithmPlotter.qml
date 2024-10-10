@@ -42,7 +42,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "LogarithmPlotter " + (settings.saveFilename != "" ? " - " + settings.saveFilename.split('/').pop() : "") + (history.saved ? "" : "*")
+    title: "LogarithmPlotter"
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -250,5 +250,12 @@ ApplicationWindow {
     Component.onCompleted: {
         Modules.IO.initialize({ root, settings, alert })
         Modules.Latex.initialize({ latex: Latex, helper: Helper })
+        Modules.Settings.on("changed", (evt) => {
+            if(evt.property === "saveFilename") {
+                const fileName = evt.newValue.split('/').pop().split('\\').pop()
+                if(fileName !== "")
+                    title = `${fileName}`
+            }
+        })
     }
 }

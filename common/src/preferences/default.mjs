@@ -28,7 +28,7 @@ const XZOOM = new NumberSetting(
 
 const YZOOM = new NumberSetting(
     qsTranslate("Settings", "Y Zoom"),
-    "default_graph.xzoom",
+    "default_graph.yzoom",
     "yzoom",
     0.1
 )

@@ -37,7 +37,7 @@ Item {
         Emitted when the value of the text has been changed.
         The corresponding handler is \c onChanged.
     */
-    signal changed(string newValue)
+    signal changed(var newValue)
     
     /*!
        \qmlproperty bool TextSetting::isInt

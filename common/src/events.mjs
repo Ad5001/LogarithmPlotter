@@ -53,7 +53,7 @@ export class BaseEventEmitter {
      * @param {string} eventType - Name of the event to listen to. Throws an error if this object does not emit this kind of event.
      * @param {function(BaseEvent)} eventListener - The function to be called back when the event is emitted.
      */
-    addEventListener(eventType, eventListener) {
+    on(eventType, eventListener) {
         if(!this.constructor.emits.includes(eventType)) {
             const className = this.constructor.name
             const eventTypes = this.constructor.emits.join(", ")
@@ -70,14 +70,13 @@ export class BaseEventEmitter {
      * @param {function(BaseEvent)} eventListener - The function previously registered as a listener.
      * @returns {boolean} True if the listener was removed, false if it was not found.
      */
-    removeEventListener(eventType, eventListener) {
+    off(eventType, eventListener) {
         if(!this.constructor.emits.includes(eventType)) {
             const className = this.constructor.name
             const eventTypes = this.constructor.emits.join(", ")
             throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
         }
         return this.#listeners[eventType].delete(eventListener)
-        
     }
     
     /**
