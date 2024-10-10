@@ -16,6 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+pragma ComponentBehavior: Bound
+
 import QtQuick.Controls
 import QtQuick 
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
@@ -46,6 +48,18 @@ Item {
        true when the system is running with a dark theme, false otherwise.
     */
     property bool darkTheme: isDarkTheme()
+
+    /*!
+       \qmlproperty int HistoryBrowser::undoCount
+       Number of actions in the undo stack.
+    */
+    property int undoCount: 0
+
+    /*!
+       \qmlproperty int HistoryBrowser::redoCount
+       Number of actions in the redo stack.
+    */
+    property int redoCount: 0
     
     Setting.TextSetting {
         id: filterInput
@@ -76,19 +90,22 @@ Item {
                 id: redoColumn
                 anchors.right: parent.right
                 anchors.top: parent.top
-                width: actionWidth
+                width: historyBrowser.actionWidth
                 
                 Repeater {
-                    model: history.redoCount
+                    model: historyBrowser.redoCount
                 
                     HistoryItem {
                         id: redoButton
-                        width: actionWidth
+                        width: historyBrowser.actionWidth
                         //height: actionHeight
                         isRedo: true
-                        idx: index
                         darkTheme: historyBrowser.darkTheme
                         hidden: !(filterInput.value == "" || content.includes(filterInput.value))
+                        onClicked: {
+                            redoTimer.toRedoCount = Modules.History.redoStack.length-index
+                            redoTimer.start()
+                        }
                     }
                 }
             }
@@ -101,14 +118,14 @@ Item {
                 transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
                 height: 70
                 width: 20
-                visible: history.redoCount > 0
+                visible: historyBrowser.redoCount > 0
             }
             
             Rectangle {
                 id: nowRect
                 anchors.right: parent.right
                 anchors.top: redoColumn.bottom
-                width: actionWidth
+                width: historyBrowser.actionWidth
                 height: 40
                 color: sysPalette.highlight
                 Text {
@@ -124,20 +141,24 @@ Item {
                 id: undoColumn
                 anchors.right: parent.right
                 anchors.top: nowRect.bottom
-                width: actionWidth
+                width: historyBrowser.actionWidth
                 
                 Repeater {
-                    model: history.undoCount
+                    model: historyBrowser.undoCount
                 
                     
                     HistoryItem {
                         id: undoButton
-                        width: actionWidth
+                        width: historyBrowser.actionWidth
                         //height: actionHeight
                         isRedo: false
-                        idx: index
                         darkTheme: historyBrowser.darkTheme
                         hidden: !(filterInput.value == "" || content.includes(filterInput.value))
+
+                        onClicked: {
+                            undoTimer.toUndoCount = +index+1
+                            undoTimer.start()
+                        }
                     }
                 }
             }
@@ -150,7 +171,39 @@ Item {
                 transform: Rotation { origin.x: 30; origin.y: 30; angle: 270}
                 height: 60
                 width: 20
-                visible: history.undoCount > 0
+                visible: historyBrowser.undoCount > 0
+            }
+        }
+    }
+
+    Timer {
+        id: undoTimer
+        interval: 5; running: false; repeat: true
+        property int toUndoCount: 0
+        onTriggered: {
+            if(toUndoCount > 0) {
+                Modules.History.undo()
+                if(toUndoCount % 3 === 1)
+                    Modules.Canvas.requestPaint()
+                toUndoCount--;
+            } else {
+                running = false;
+            }
+        }
+    }
+
+    Timer {
+        id: redoTimer
+        interval: 5; running: false; repeat: true
+        property int toRedoCount: 0
+        onTriggered: {
+            if(toRedoCount > 0) {
+                Modules.History.redo()
+                if(toRedoCount % 3 === 1)
+                    Modules.Canvas.requestPaint()
+                toRedoCount--;
+            } else {
+                running = false;
             }
         }
     }
@@ -163,6 +216,18 @@ Item {
         let hex = sysPalette.windowText.toString()
         // We only check the first parameter, as on all normal OSes, text color is grayscale.
         return parseInt(hex.substr(1,2), 16) > 128
-        
+    }
+
+    Component.onCompleted: {
+        Modules.History.initialize({
+            helper: Helper,
+            themeTextColor: sysPalette.windowText.toString(),
+            imageDepth: Screen.devicePixelRatio,
+            fontSize: 14
+        })
+        Modules.History.on("updated undone redone", () => {
+            undoCount = Modules.History.undoStack.length
+            redoCount = Modules.History.redoStack.length
+        })
     }
 }

@@ -17,60 +17,151 @@
  */
 
 import { Module } from "./common.mjs"
-import { HistoryInterface, NUMBER, STRING } from "./interface.mjs"
+import { HelperInterface, HistoryInterface, NUMBER, STRING } from "./interface.mjs"
+import { BaseEvent } from "../events.mjs"
+import { Action, Actions } from "../history/index.mjs"
 
+
+
+class UpdatedEvent extends BaseEvent {
+    constructor() {
+        super("updated")
+    }
+}
+
+class UndoneEvent extends BaseEvent {
+    constructor(action) {
+        super("undone")
+        this.undid = action
+    }
+}
+
+class RedoneEvent extends BaseEvent {
+    constructor(action) {
+        super("redone")
+        this.redid = action
+    }
+}
 
 class HistoryAPI extends Module {
+    static emits = ["updated", "undone", "redone"]
+
+    #helper
+
     constructor() {
         super("History", {
-            historyObj: HistoryInterface,
+            helper: HelperInterface,
             themeTextColor: STRING,
             imageDepth: NUMBER,
             fontSize: NUMBER
         })
         // History QML object
-        this.history = null
+        /** @type {Action[]} */
+        this.undoStack = []
+        /** @type {Action[]} */
+        this.redoStack = []
+
         this.themeTextColor = "#FF0000"
         this.imageDepth = 2
         this.fontSize = 28
     }
 
-    initialize({ historyObj, themeTextColor, imageDepth, fontSize }) {
-        super.initialize({ historyObj, themeTextColor, imageDepth, fontSize })
-        this.history = historyObj
+    /**
+     * @param {HelperInterface} historyObj
+     * @param {string} themeTextColor
+     * @param {number} imageDepth
+     * @param {number} fontSize
+     */
+    initialize({ helper, themeTextColor, imageDepth, fontSize }) {
+        super.initialize({ helper, themeTextColor, imageDepth, fontSize })
+        this.#helper = helper
         this.themeTextColor = themeTextColor
         this.imageDepth = imageDepth
         this.fontSize = fontSize
     }
 
+    /**
+     * Undoes the Action at the top of the undo stack and pushes it to the top of the redo stack.
+     */
     undo() {
         if(!this.initialized) throw new Error("Attempting undo before initialize!")
-        this.history.undo()
+        if(this.undoStack.length > 0) {
+            const action = this.undoStack.pop()
+            action.undo()
+            this.redoStack.push(action)
+            this.emit(new UndoneEvent(action))
+        }
     }
 
+    /**
+     * Redoes the Action at the top of the redo stack and pushes it to the top of the undo stack.
+     */
     redo() {
         if(!this.initialized) throw new Error("Attempting redo before initialize!")
-        this.history.redo()
+        if(this.redoStack.length > 0) {
+            const action = this.redoStack.pop()
+            action.redo()
+            this.undoStack.push(action)
+            this.emit(new RedoneEvent(action))
+        }
     }
 
+    /**
+     * Clears both undo and redo stacks completely.
+     */
     clear() {
         if(!this.initialized) throw new Error("Attempting clear before initialize!")
-        this.history.clear()
+        this.undoStack = []
+        this.redoStack = []
+        this.emit(new UpdatedEvent())
     }
 
+    /**
+     * Adds an instance of HistoryLib.Action to history.
+     * @param action
+     */
     addToHistory(action) {
         if(!this.initialized) throw new Error("Attempting addToHistory before initialize!")
-        this.history.addToHistory(action)
+        if(action instanceof Action) {
+            console.log("Added new entry to history: " + action.getReadableString())
+            this.undoStack.push(action)
+            if(this.#helper.getSettingBool("reset_redo_stack"))
+                this.redoStack = []
+            this.emit(new UpdatedEvent())
+        }
     }
 
-    unserialize(...data) {
+    /**
+     * Unserializes both the undo stack and redo stack from serialized content.
+     * @param {[string, any[]][]} undoSt
+     * @param {[string, any[]][]} redoSt
+     */
+    unserialize(undoSt, redoSt) {
         if(!this.initialized) throw new Error("Attempting unserialize before initialize!")
-        this.history.unserialize(...data)
+        this.clear()
+        for(const [name, args] of undoSt)
+            this.undoStack.push(
+                new Actions[name](...args)
+            )
+        for(const [name, args] of redoSt)
+            this.redoStack.push(
+                new Actions[name](...args)
+            )
+        this.emit(new UpdatedEvent())
     }
 
+    /**
+     * Serializes history into JSON-able content.
+     * @return {[[string, any[]], [string, any[]]]}
+     */
     serialize() {
         if(!this.initialized) throw new Error("Attempting serialize before initialize!")
-        return this.history.serialize()
+        let undoSt = [], redoSt = [];
+        for(const action of this.undoStack)
+            undoSt.push([ action.type(), action.export() ])
+        for(const action of this.redoStack)
+            redoSt.push([ action.type(), action.export() ])
+        return [undoSt, redoSt]
     }
 }
 

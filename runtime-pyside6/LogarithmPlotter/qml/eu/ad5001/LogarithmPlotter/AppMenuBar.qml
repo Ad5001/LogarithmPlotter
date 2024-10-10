@@ -76,18 +76,16 @@ MenuBar {
         Action { 
             text: qsTr("&Undo")
             shortcut: StandardKey.Undo
-            onTriggered: history.undo()
+            onTriggered: Modules.History.undo()
             icon.name: 'edit-undo'
             icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
-            enabled: history.undoCount > 0
         }
         Action { 
             text: qsTr("&Redo")
             shortcut: StandardKey.Redo
-            onTriggered: history.redo()
+            onTriggered: Modules.History.redo()
             icon.name: 'edit-redo'
             icon.color: enabled ? sysPalette.windowText : sysPaletteIn.windowText
-            enabled: history.redoCount > 0
         }
         Action { 
             text: qsTr("&Copy plot")

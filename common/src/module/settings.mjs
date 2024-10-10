@@ -72,7 +72,11 @@ class SettingsAPI extends Module {
             helper: HelperInterface
         })
     }
-    
+
+    /**
+     *
+     * @param {HelperInterface} helper
+     */
     initialize({ helper }) {
         super.initialize({ helper })
         // Initialize default values.

@@ -21,7 +21,7 @@ import Objects from "./objects.mjs"
 import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
 import Settings from "./settings.mjs"
-import { DialogInterface, RootInterface, SettingsInterface } from "./interface.mjs"
+import { DialogInterface, RootInterface } from "./interface.mjs"
 
 
 class IOAPI extends Module {

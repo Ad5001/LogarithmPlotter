@@ -41,17 +41,17 @@ Button {
        \qmlproperty bool HistoryItem::isRedo
        true if the action is in the redo stack, false othewise.
     */
-    property bool isRedo
+    required property bool isRedo
     /*!
-       \qmlproperty int HistoryItem::idx
+       \qmlproperty int HistoryItem::index
        Index of the item within the HistoryBrowser list.
     */
-    property int idx
+    required property int index
     /*!
        \qmlproperty bool HistoryItem::darkTheme
        true when the system is running with a dark theme, false otherwise.
     */
-    property bool darkTheme
+    required property bool darkTheme
     /*!
        \qmlproperty bool HistoryItem::hidden
        true when the item is filtered out, false otherwise.
@@ -61,7 +61,7 @@ Button {
        \qmlproperty int HistoryItem::historyAction
        Associated history action.
     */
-    readonly property var historyAction: isRedo ? history.redoStack[idx] : history.undoStack[history.undoCount-idx-1]
+    readonly property var historyAction: isRedo ? Modules.History.redoStack.at(index) : Modules.History.undoStack.at(-index-1)
     
     /*!
        \qmlproperty int HistoryItem::actionHeight
@@ -147,13 +147,6 @@ Button {
     ToolTip.visible: hovered
     ToolTip.delay: 200
     ToolTip.text: content
-    
-    onClicked: {
-        if(isRedo)
-            history.redoMultipleDefered(history.redoCount-idx)
-        else
-            history.undoMultipleDefered(+idx+1)
-    }
 }
 
 

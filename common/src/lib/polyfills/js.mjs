@@ -67,6 +67,19 @@ function stringReplaceAll(from, to) {
     return this.split(from).join(to)
 }
 
+/**
+ * Returns the value of an element of the array at a given index.
+ * Accepts negative indexes.
+ * @this {Array|string}
+ * @param {number} index
+ * @return {*}
+ */
+function arrayAt(index) {
+    if(typeof index !== "number")
+        throw new Error(`${index} is not a number`)
+    return index >= 0 ? this[index] : this[this.length + index]
+}
+
 
 const polyfills = {
     2017: [
@@ -95,8 +108,8 @@ const polyfills = {
         [String.prototype, "replaceAll", stringReplaceAll]
     ],
     2022: [
-        [Array.prototype, "at", notPolyfilled("Array.prototype.at")],
-        [String.prototype, "at", notPolyfilled("String.prototype.at")],
+        [Array.prototype, "at", arrayAt],
+        [String.prototype, "at", arrayAt],
         [Object, "hasOwn", notPolyfilled("Object.hasOwn")]
     ],
     2023: [

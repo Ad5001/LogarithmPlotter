@@ -60,24 +60,6 @@ export class Interface {
 }
 
 
-export class SettingsInterface extends Interface {
-    width = NUMBER
-    height = NUMBER
-    xmin = NUMBER
-    ymax = NUMBER
-    xzoom = NUMBER
-    yzoom = NUMBER
-    xaxisstep = STRING
-    yaxisstep = STRING
-    xlabel = STRING
-    ylabel = STRING
-    linewidth = NUMBER
-    textsize = NUMBER
-    logscalex = BOOLEAN
-    showxgrad = BOOLEAN
-    showygrad = BOOLEAN
-}
-
 export class CanvasInterface extends Interface {
     imageLoaders = OBJECT
     /** @type {function(string): CanvasRenderingContext2D} */

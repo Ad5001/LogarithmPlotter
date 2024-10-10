@@ -54,29 +54,41 @@ export class BaseEventEmitter {
      * @param {function(BaseEvent)} eventListener - The function to be called back when the event is emitted.
      */
     on(eventType, eventListener) {
-        if(!this.constructor.emits.includes(eventType)) {
-            const className = this.constructor.name
-            const eventTypes = this.constructor.emits.join(", ")
-            throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
+        if(eventType.includes(" ")) // Listen to several different events with the same listener.
+            for(const type of eventType.split(" "))
+                this.on(type, eventListener)
+        else {
+            console.log("Listening to", eventType)
+            if(!this.constructor.emits.includes(eventType)) {
+                const className = this.constructor.name
+                const eventTypes = this.constructor.emits.join(", ")
+                throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
+            }
+            if(!this.#listeners[eventType].has(eventListener))
+                this.#listeners[eventType].add(eventListener)
         }
-        if(!this.#listeners[eventType].has(eventListener))
-            this.#listeners[eventType].add(eventListener)
     }
     
     /**
-     * Remvoes a listener from an event that can be emitted by this object.
+     * Removes a listener from an event that can be emitted by this object.
      * 
      * @param {string} eventType - Name of the event that was listened to. Throws an error if this object does not emit this kind of event.
      * @param {function(BaseEvent)} eventListener - The function previously registered as a listener.
      * @returns {boolean} True if the listener was removed, false if it was not found.
      */
     off(eventType, eventListener) {
-        if(!this.constructor.emits.includes(eventType)) {
-            const className = this.constructor.name
-            const eventTypes = this.constructor.emits.join(", ")
-            throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
+        if(eventType.includes(" ")) { // Unlisten to several different events with the same listener.
+            let found = false
+            for(const type of eventType.split(" "))
+                found ||= this.off(eventType, eventListener)
+        } else {
+            if(!this.constructor.emits.includes(eventType)) {
+                const className = this.constructor.name
+                const eventTypes = this.constructor.emits.join(", ")
+                throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
+            }
+            return this.#listeners[eventType].delete(eventListener)
         }
-        return this.#listeners[eventType].delete(eventListener)
     }
     
     /**

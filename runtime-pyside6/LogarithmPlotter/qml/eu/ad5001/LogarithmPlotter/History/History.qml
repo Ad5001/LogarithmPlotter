@@ -64,10 +64,7 @@ Item {
         Clears both undo and redo stacks completly.
     */
     function clear() {
-        undoCount = 0
-        redoCount = 0
-        undoStack = []
-        redoStack = []
+        Modules.History.clear()
     }
     
     
@@ -76,18 +73,7 @@ Item {
         Serializes history into JSON-able content.
     */
     function serialize() {
-        let undoSt = [], redoSt = [];
-        for(let i = 0; i < undoCount; i++)
-            undoSt.push([
-                undoStack[i].type(),
-                undoStack[i].export()
-            ]);
-        for(let i = 0; i < redoCount; i++)
-            redoSt.push([
-                redoStack[i].type(),
-                redoStack[i].export()
-            ]);
-        return [undoSt, redoSt]
+        return Modules.History.serialize()
     }
     
     /*!
@@ -95,14 +81,7 @@ Item {
         Unserializes both \c undoSt stack and \c redoSt stack from serialized content.
     */
     function unserialize(undoSt, redoSt) {
-        clear();
-        for(let i = 0; i < undoSt.length; i++)
-            undoStack.push(new JS.HistoryLib.Actions[undoSt[i][0]](...undoSt[i][1]))
-        for(let i = 0; i < redoSt.length; i++)
-            redoStack.push(new JS.HistoryLib.Actions[redoSt[i][0]](...redoSt[i][1]))
-        undoCount = undoSt.length;
-        redoCount = redoSt.length;
-        objectLists.update()
+        Modules.History.unserialize(undoSt, redoSt)
     }
     
     /*!
@@ -110,16 +89,7 @@ Item {
         Adds an instance of HistoryLib.Action to history.
     */
     function addToHistory(action) {
-        if(action instanceof JS.HistoryLib.Action) {
-            console.log("Added new entry to history: " + action.getReadableString())
-            undoStack.push(action)
-            undoCount++;
-            if(Helper.getSettingBool("reset_redo_stack")) {
-                redoStack = []
-                redoCount = 0
-            }
-            saved = false
-        }
+        Modules.History.addToHistory(action)
     }
     
     /*!
@@ -128,16 +98,7 @@ Item {
         By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
     function undo(updateObjectList = true) {
-        if(undoStack.length > 0) {
-            var action = undoStack.pop()
-            action.undo()
-            if(updateObjectList)
-                objectLists.update()
-            redoStack.push(action)
-            undoCount--;
-            redoCount++;
-            saved = false
-        }
+        Modules.History.undo()
     }
     
     /*!
@@ -146,77 +107,6 @@ Item {
         By default, will update the graph and the object list. This behavior can be disabled by setting the \c updateObjectList to false.
     */
     function redo(updateObjectList = true) {
-        if(redoStack.length > 0) {
-            var action = redoStack.pop()
-            action.redo()
-            if(updateObjectList)
-                objectLists.update()
-            undoStack.push(action)
-            undoCount++;
-            redoCount--;
-            saved = false
-        }
-    }
-    
-    /*!
-        \qmlmethod void History::undoMultipleDefered(int toUndoCount)
-        Undoes several HistoryLib.Action at the top of the undo stack and pushes them to the top of the redo stack.
-        It undoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
-    */
-    function undoMultipleDefered(toUndoCount) {
-        undoTimer.toUndoCount = toUndoCount;
-        undoTimer.start()
-        if(toUndoCount > 0)
-            saved = false
-    }
-    
-    
-    /*!
-        \qmlmethod void History::redoMultipleDefered(int toRedoCount)
-        Redoes several HistoryLib.Action at the top of the redo stack and pushes them to the top of the undo stack.
-        It redoes them deferedly to avoid overwhelming the computer while creating a cool short accelerated summary of all changes.
-    */
-    function redoMultipleDefered(toRedoCount) {
-        redoTimer.toRedoCount = toRedoCount;
-        redoTimer.start()
-        if(toRedoCount > 0)
-            saved = false
-    }
-    
-    Timer {
-        id: undoTimer
-        interval: 5; running: false; repeat: true
-        property int toUndoCount: 0
-        onTriggered: {
-            if(toUndoCount > 0) {
-                historyObj.undo(toUndoCount % 4 == 1) // Only redraw once every 4 changes.
-                toUndoCount--;
-            } else {
-                running = false;
-            }
-        }
-    }
-    
-    Timer {
-        id: redoTimer
-        interval: 5; running: false; repeat: true
-        property int toRedoCount: 0
-        onTriggered: {
-            if(toRedoCount > 0) {
-                historyObj.redo(toRedoCount % 4 == 1) // Only redraw once every 4 changes.
-                toRedoCount--;
-            } else {
-                running = false;
-            }
-        }
-    }
-    
-    Component.onCompleted: {
-        Modules.History.initialize({
-            historyObj,
-            themeTextColor: sysPalette.windowText.toString(),
-            imageDepth: Screen.devicePixelRatio,
-            fontSize: 14
-        })
+        Modules.History.redo()
     }
 }
