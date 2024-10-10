@@ -30,104 +30,15 @@ import Qt.labs.platform as Native
 */
 Canvas {
     id: canvas
-    anchors.top: separator.bottom
+    anchors.top: parent.top
     anchors.left: parent.left
     height: parent.height - 90
     width: parent.width
-    
-    /*!
-       \qmlproperty double LogGraphCanvas::xmin
-       Minimum x of the diagram, provided from settings.
-       \sa Settings
-    */
-    property double xmin: 0
-    /*!
-       \qmlproperty double LogGraphCanvas::ymax
-       Maximum y of the diagram, provided from settings.
-       \sa Settings
-    */
-    property double ymax: 0
-    /*!
-       \qmlproperty double LogGraphCanvas::xzoom
-       Zoom on the x axis of the diagram, provided from settings.
-       \sa Settings
-    */
-    property double xzoom: 10
-    /*!
-       \qmlproperty double LogGraphCanvas::yzoom
-       Zoom on the y axis of the diagram, provided from settings.
-       \sa Settings
-    */
-    property double yzoom: 10
-    /*!
-       \qmlproperty string LogGraphCanvas::xaxisstep
-       Step of the x axis graduation, provided from settings.
-       \note: Only available in non-logarithmic mode.
-       \sa Settings
-    */
-    property string xaxisstep: "4"
-    /*!
-       \qmlproperty string LogGraphCanvas::yaxisstep
-       Step of the y axis graduation, provided from settings.
-       \sa Settings
-    */
-    property string yaxisstep: "4"
-    /*!
-       \qmlproperty string LogGraphCanvas::xlabel
-       Label used on the x axis, provided from settings.
-       \sa Settings
-    */
-    property string xlabel: ""
-    /*!
-       \qmlproperty string LogGraphCanvas::ylabel
-       Label used on the y axis, provided from settings.
-       \sa Settings
-    */
-    property string ylabel: ""
-    /*!
-       \qmlproperty double LogGraphCanvas::linewidth
-       Width of lines that will be drawn into the canvas, provided from settings.
-       \sa Settings
-    */
-    property double linewidth: 1
-    /*!
-       \qmlproperty double LogGraphCanvas::textsize
-       Font size of the text that will be drawn into the canvas, provided from settings.
-       \sa Settings
-    */
-    property double textsize: 14
-    /*!
-       \qmlproperty bool LogGraphCanvas::logscalex
-       true if the canvas should be in logarithmic mode, false otherwise.
-       Provided from settings.
-       \sa Settings
-    */
-    property bool logscalex: false
-    /*!
-       \qmlproperty bool LogGraphCanvas::showxgrad
-       true if the x graduation should be shown, false otherwise.
-       Provided from settings.
-       \sa Settings
-    */
-    property bool showxgrad: false
-    /*!
-       \qmlproperty bool LogGraphCanvas::showygrad
-       true if the y graduation should be shown, false otherwise.
-       Provided from settings.
-       \sa Settings
-    */
-    property bool showygrad: false
-    
     /*!
        \qmlproperty var LogGraphCanvas::imageLoaders
        Dictionary of format {image: [callback.image data]} containing data for defered image loading.
     */
     property var imageLoaders: {}
-    /*!
-       \qmlproperty var LogGraphCanvas::ctx
-       Cache for the 2D context so that it may be used asynchronously.
-    */
-    property var ctx
     
     Component.onCompleted: {
         imageLoaders = {}
@@ -155,7 +66,7 @@ Canvas {
         Object.keys(imageLoaders).forEach((key) => {
             if(isImageLoaded(key)) {
                 // Calling callback
-                imageLoaders[key][0](canvas, ctx, imageLoaders[key][1])
+                imageLoaders[key][0](imageLoaders[key][1])
                 delete imageLoaders[key]
             }
         })

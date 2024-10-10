@@ -35,6 +35,19 @@ String.prototype.removeEnclosure = function() {
     return this.substring(1, this.length - 1)
 }
 
+/**
+ * Rounds to a certain number of decimal places.
+ * From https://stackoverflow.com/a/48764436
+ *
+ * @param {number} decimalPlaces
+ * @return {number}
+ */
+Number.prototype.toDecimalPrecision = function(decimalPlaces = 0) {
+    const p = Math.pow(10, decimalPlaces);
+    const n = (this * p) * (1 + Number.EPSILON);
+    return Math.round(n) / p;
+}
+
 const powerpos = {
     "-": "⁻",
     "+": "⁺",

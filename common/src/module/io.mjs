@@ -20,22 +20,20 @@ import { Module } from "./common.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
+import Settings from "./settings.mjs"
 import { DialogInterface, RootInterface, SettingsInterface } from "./interface.mjs"
 
 
 class IOAPI extends Module {
     /** @type {RootInterface} */
     #rootElement
-    /** @type {SettingsInterface} */
-    #settings
     /** @type {{show: function(string)}} */
     #alert
 
     constructor() {
         super("IO", {
             alert: DialogInterface,
-            root: RootInterface,
-            settings: SettingsInterface
+            root: RootInterface
         })
         /**
          * Path of the currently opened file. Empty if no file is opened.
@@ -47,13 +45,11 @@ class IOAPI extends Module {
     /**
      * Initializes module with QML elements.
      * @param {RootInterface} root
-     * @param {SettingsInterface} settings
      * @param {{show: function(string)}} alert
      */
-    initialize({ root, settings, alert }) {
-        super.initialize({ root, settings, alert })
+    initialize({ root, alert }) {
+        super.initialize({ root, alert })
         this.#rootElement = root
-        this.#settings = settings
         this.#alert = alert
     }
 
@@ -75,19 +71,19 @@ class IOAPI extends Module {
             }
         }
         let settings = {
-            "xzoom": this.#settings.xzoom,
-            "yzoom": this.#settings.yzoom,
-            "xmin": this.#settings.xmin,
-            "ymax": this.#settings.ymax,
-            "xaxisstep": this.#settings.xaxisstep,
-            "yaxisstep": this.#settings.yaxisstep,
-            "xaxislabel": this.#settings.xlabel,
-            "yaxislabel": this.#settings.ylabel,
-            "logscalex": this.#settings.logscalex,
-            "linewidth": this.#settings.linewidth,
-            "showxgrad": this.#settings.showxgrad,
-            "showygrad": this.#settings.showygrad,
-            "textsize": this.#settings.textsize,
+            "xzoom": Settings.xzoom,
+            "yzoom": Settings.yzoom,
+            "xmin": Settings.xmin,
+            "ymax": Settings.ymax,
+            "xaxisstep": Settings.xaxisstep,
+            "yaxisstep": Settings.yaxisstep,
+            "xaxislabel": Settings.xlabel,
+            "yaxislabel": Settings.ylabel,
+            "logscalex": Settings.logscalex,
+            "linewidth": Settings.linewidth,
+            "showxgrad": Settings.showxgrad,
+            "showygrad": Settings.showygrad,
+            "textsize": Settings.textsize,
             "history": History.serialize(),
             "width": this.#rootElement.width,
             "height": this.#rootElement.height,
@@ -113,24 +109,24 @@ class IOAPI extends Module {
         if(data.hasOwnProperty("type") && data["type"] === "logplotv1") {
             History.clear()
             // Importing settings
-            this.#settings.saveFilename = filename
-            this.#settings.xzoom = parseFloat(data["xzoom"]) || 100
-            this.#settings.yzoom = parseFloat(data["yzoom"]) || 10
-            this.#settings.xmin = parseFloat(data["xmin"]) || 5 / 10
-            this.#settings.ymax = parseFloat(data["ymax"]) || 24
-            this.#settings.xaxisstep = data["xaxisstep"] || "4"
-            this.#settings.yaxisstep = data["yaxisstep"] || "4"
-            this.#settings.xlabel = data["xaxislabel"] || ""
-            this.#settings.ylabel = data["yaxislabel"] || ""
-            this.#settings.logscalex = data["logscalex"] === true
+            Settings.set("saveFilename", filename, false)
+            Settings.set("xzoom", parseFloat(data["xzoom"]) || 100, false)
+            Settings.set("yzoom", parseFloat(data["yzoom"]) || 10, false)
+            Settings.set("xmin", parseFloat(data["xmin"]) || 5 / 10, false)
+            Settings.set("ymax", parseFloat(data["ymax"]) || 24, false)
+            Settings.set("xaxisstep", data["xaxisstep"] || "4", false)
+            Settings.set("yaxisstep", data["yaxisstep"] || "4", false)
+            Settings.set("xlabel", data["xaxislabel"] || "", false)
+            Settings.set("ylabel", data["yaxislabel"] || "", false)
+            Settings.set("logscalex", data["logscalex"] === true, false)
             if("showxgrad" in data)
-                this.#settings.showxgrad = data["showxgrad"]
+                Settings.set("showxgrad", data["showxgrad"], false)
             if("showygrad" in data)
-                this.#settings.textsize = data["showygrad"]
+                Settings.set("showygrad", data["showygrad"], false)
             if("linewidth" in data)
-                this.#settings.linewidth = data["linewidth"]
+                Settings.set("linewidth", data["linewidth"], false)
             if("textsize" in data)
-                this.#settings.textsize = data["textsize"]
+                Settings.set("textsize", data["textsize"], false)
             this.#rootElement.height = parseFloat(data["height"]) || 500
             this.#rootElement.width = parseFloat(data["width"]) || 1000
 

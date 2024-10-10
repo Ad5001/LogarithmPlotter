@@ -78,7 +78,7 @@ export class SettingsInterface extends Interface {
     showygrad = BOOLEAN
 }
 
-export class CanvasInterface extends SettingsInterface {
+export class CanvasInterface extends Interface {
     imageLoaders = OBJECT
     /** @type {function(string): CanvasRenderingContext2D} */
     getContext = FUNCTION

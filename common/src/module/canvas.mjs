@@ -23,6 +23,7 @@ import { Expression } from "../math/index.mjs"
 import Latex from "./latex.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"
+import Settings from "./settings.mjs"
 
 class CanvasAPI extends Module {
     /** @type {CanvasInterface} */
@@ -84,7 +85,7 @@ class CanvasAPI extends Module {
      */
     get xmin() {
         if(!this.initialized) throw new Error("Attempting xmin before initialize!")
-        return this.#canvas.xmin
+        return Settings.xmin
     }
 
     /**
@@ -93,7 +94,7 @@ class CanvasAPI extends Module {
      */
     get xzoom() {
         if(!this.initialized) throw new Error("Attempting xzoom before initialize!")
-        return this.#canvas.xzoom
+        return Settings.xzoom
     }
 
     /**
@@ -102,7 +103,7 @@ class CanvasAPI extends Module {
      */
     get ymax() {
         if(!this.initialized) throw new Error("Attempting ymax before initialize!")
-        return this.#canvas.ymax
+        return Settings.ymax
     }
 
     /**
@@ -111,7 +112,7 @@ class CanvasAPI extends Module {
      */
     get yzoom() {
         if(!this.initialized) throw new Error("Attempting yzoom before initialize!")
-        return this.#canvas.yzoom
+        return Settings.yzoom
     }
 
     /**
@@ -120,7 +121,7 @@ class CanvasAPI extends Module {
      */
     get xlabel() {
         if(!this.initialized) throw new Error("Attempting xlabel before initialize!")
-        return this.#canvas.xlabel
+        return Settings.xlabel
     }
 
     /**
@@ -129,7 +130,7 @@ class CanvasAPI extends Module {
      */
     get ylabel() {
         if(!this.initialized) throw new Error("Attempting ylabel before initialize!")
-        return this.#canvas.ylabel
+        return Settings.ylabel
     }
 
     /**
@@ -138,7 +139,7 @@ class CanvasAPI extends Module {
      */
     get linewidth() {
         if(!this.initialized) throw new Error("Attempting linewidth before initialize!")
-        return this.#canvas.linewidth
+        return Settings.linewidth
     }
 
     /**
@@ -147,7 +148,7 @@ class CanvasAPI extends Module {
      */
     get textsize() {
         if(!this.initialized) throw new Error("Attempting textsize before initialize!")
-        return this.#canvas.textsize
+        return Settings.textsize
     }
 
     /**
@@ -156,7 +157,7 @@ class CanvasAPI extends Module {
      */
     get logscalex() {
         if(!this.initialized) throw new Error("Attempting logscalex before initialize!")
-        return this.#canvas.logscalex
+        return Settings.logscalex
     }
 
     /**
@@ -165,7 +166,7 @@ class CanvasAPI extends Module {
      */
     get showxgrad() {
         if(!this.initialized) throw new Error("Attempting showxgrad before initialize!")
-        return this.#canvas.showxgrad
+        return Settings.showxgrad
     }
 
     /**
@@ -174,7 +175,7 @@ class CanvasAPI extends Module {
      */
     get showygrad() {
         if(!this.initialized) throw new Error("Attempting showygrad before initialize!")
-        return this.#canvas.showygrad
+        return Settings.showygrad
     }
 
     /**
@@ -237,9 +238,9 @@ class CanvasAPI extends Module {
      * @private
      */
     _computeAxes() {
-        let exprY = new Expression(`x*(${this.#canvas.yaxisstep})`)
+        let exprY = new Expression(`x*(${Settings.yaxisstep})`)
         let y1 = exprY.execute(1)
-        let exprX = new Expression(`x*(${this.#canvas.xaxisstep})`)
+        let exprX = new Expression(`x*(${Settings.xaxisstep})`)
         let x1 = exprX.execute(1)
         this.axesSteps = {
             x: {

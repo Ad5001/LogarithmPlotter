@@ -18,6 +18,7 @@
 
 import { Module } from "./common.mjs"
 import { BaseEvent } from "../events.mjs"
+import { HelperInterface } from "./interface.mjs"
 
 
 /**
@@ -48,19 +49,20 @@ class SettingsAPI extends Module {
     static emits = ["changed"]
     
     #properties = new Map([
-        ['xzoom', 100],
-        ['yzoom', 10],
-        ['xmin', .5],
-        ['ymax', 25],
-        ['xaxisstep', "4"],
-        ['yaxisstep', "4"],
-        ['xlabel', ""],
-        ['ylabel', ""],
-        ['linewidth', 1],
-        ['textsize', 18],
-        ['logscalex', true],
-        ['showxgrad', true],
-        ['showygrad', true],
+        ["saveFilename", ""],
+        ["xzoom", 100],
+        ["yzoom", 10],
+        ["xmin", .5],
+        ["ymax", 25],
+        ["xaxisstep", "4"],
+        ["yaxisstep", "4"],
+        ["xlabel", ""],
+        ["ylabel", ""],
+        ["linewidth", 1],
+        ["textsize", 18],
+        ["logscalex", true],
+        ["showxgrad", true],
+        ["showygrad", true]
     ])
     
     constructor() {
@@ -74,14 +76,14 @@ class SettingsAPI extends Module {
         // Initialize default values.
         for(const key of this.#properties.keys()) {
             switch(typeof this.#properties.get(key)) {
-                case 'boolean':
-                    this.set(key, helper.getSettingBool(key), false)
+                case "boolean":
+                    this.set(key, helper.getSettingBool("default_graph."+key), false)
                     break
-                case 'number':
-                    this.set(key, helper.getSettingInt(key), false)
+                case "number":
+                    this.set(key, helper.getSettingInt("default_graph."+key), false)
                     break
-                case 'string':
-                    this.set(key, helper.getSetting(key), false)
+                case "string":
+                    this.set(key, helper.getSetting("default_graph."+key), false)
                     break
             }
         }
@@ -89,16 +91,20 @@ class SettingsAPI extends Module {
     
     /**
      * Sets a setting to a given value
-     * 
-     * @param {boolean} byUser - Set to true if the user is at the origin of this change. 
+     *
+     * @param {string} property
+     * @param {string|number|boolean} value
+     * @param {boolean} byUser - Set to true if the user is at the origin of this change.
      */
     set(property, value, byUser) {
-        if(!this.#properties.has(property))
+        if(!this.#properties.has(property)) {
             throw new Error(`Property ${property} is not a setting.`)
+        }
         const oldValue = this.#properties.get(property)
+        console.debug("Setting", property, "from", oldValue, "to", value, `(${typeof value}, ${byUser})`)
         const propType = typeof oldValue
         if(propType !== typeof value)
-            throw new Error(`Value of ${property} must be a ${propType}.`)
+            throw new Error(`Value of ${property} must be a ${propType} (${typeof value} provided).`)
         this.#properties.set(property, value)
         this.emit(new ChangedEvent(property, oldValue, value, byUser === true))
     }
@@ -107,67 +113,70 @@ class SettingsAPI extends Module {
      * Zoom on the x axis of the diagram.
      * @returns {number}
      */
-    get xzoom() { return this.#properties.get("xzoom"); }
+    get xzoom() { return this.#properties.get("xzoom") }
     /**
      * Zoom on the y axis of the diagram.
      * @returns {number}
      */
-    get yzoom() { return this.#properties.get("yzoom"); }
+    get yzoom() { return this.#properties.get("yzoom") }
     /**
      * Minimum x of the diagram.
      * @returns {number}
      */
-    get xmin() { return this.#properties.get("xmin"); }
+    get xmin() { return this.#properties.get("xmin") }
     /**
      * Maximum y of the diagram.
      * @returns {number}
      */
-    get ymax() { return this.#properties.get("ymax"); }
+    get ymax() { return this.#properties.get("ymax") }
     /**
      * Step of the x axis graduation (expression).
      * @note Only available in non-logarithmic mode.
      * @returns {string}
      */
-    get xaxisstep() { return this.#properties.get("xaxisstep"); }
+    get xaxisstep() { return this.#properties.get("xaxisstep") }
     /**
      * Step of the y axis graduation (expression).
      * @returns {string}
      */
-    get yaxisstep() { return this.#properties.get("yaxisstep"); }
+    get yaxisstep() { return this.#properties.get("yaxisstep") }
     /**
      * Label used on the x axis.
      * @returns {string}
      */
-    get xlabel() { return this.#properties.get("xlabel"); }
+    get xlabel() { return this.#properties.get("xlabel") }
     /**
      * Label used on the y axis.
      * @returns {string}
      */
-    get ylabel() { return this.#properties.get("ylabel"); }
+    get ylabel() { return this.#properties.get("ylabel") }
     /**
      * Width of lines that will be drawn into the canvas.
      * @returns {number}
      */
-    get linewidth() { return this.#properties.get("linewidth"); }
+    get linewidth() { return this.#properties.get("linewidth") }
     /**
      * Font size of the text that will be drawn into the canvas.
      * @returns {number}
      */
-    get textsize() { return this.#properties.get("textsize"); }
+    get textsize() { return this.#properties.get("textsize") }
     /**
      * true if the canvas should be in logarithmic mode, false otherwise.
      * @returns {boolean}
      */
-    get logscalex() { return this.#properties.get("logscalex"); }
+    get logscalex() { return this.#properties.get("logscalex") }
     /**
      * true if the x graduation should be shown, false otherwise.
      * @returns {boolean}
      */
-    get showxgrad() { return this.#properties.get("showxgrad"); }
+    get showxgrad() { return this.#properties.get("showxgrad") }
     /**
      * true if the y graduation should be shown, false otherwise.
      * @returns {boolean}
      */
-    get showygrad() { return this.#properties.get("showygrad"); }
-    
+    get showygrad() { return this.#properties.get("showygrad") }
 }
+
+Modules.Settings = Modules.Settings || new SettingsAPI()
+export default Modules.Settings
+

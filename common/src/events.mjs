@@ -38,7 +38,7 @@ export class BaseEvent {
 export class BaseEventEmitter {
     static emits = []
     
-    /** @type {Record<string, function[]>} */
+    /** @type {Record<string, Set<function>>} */
     #listeners = {}
     
     constructor() {
@@ -54,7 +54,7 @@ export class BaseEventEmitter {
      * @param {function(BaseEvent)} eventListener - The function to be called back when the event is emitted.
      */
     addEventListener(eventType, eventListener) {
-        if(!this.emits.includes(eventType)) {
+        if(!this.constructor.emits.includes(eventType)) {
             const className = this.constructor.name
             const eventTypes = this.constructor.emits.join(", ")
             throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
@@ -71,7 +71,7 @@ export class BaseEventEmitter {
      * @returns {boolean} True if the listener was removed, false if it was not found.
      */
     removeEventListener(eventType, eventListener) {
-        if(!this.emits.includes(eventType)) {
+        if(!this.constructor.emits.includes(eventType)) {
             const className = this.constructor.name
             const eventTypes = this.constructor.emits.join(", ")
             throw new Error(`Cannot listen to unknown event ${eventType} in class ${className}. ${className} only emits: ${eventTypes}`)
@@ -88,8 +88,11 @@ export class BaseEventEmitter {
     emit(e) {
         if(!(e instanceof BaseEvent))
             throw new Error("Cannot emit non event object.")
-        if(!this.emits.includes(e.name))
-            throw new Error(`Cannot emit event '${e.name}' from class ${this.constructor.name}. ${this.constructor.name} can only emits: ${this.constructor.emits.join(", ")}.`)
+        if(!this.constructor.emits.includes(e.name)) {
+            const className = this.constructor.name
+            const eventTypes = this.constructor.emits.join(", ")
+            throw new Error(`Cannot emit event '${e.name}' from class ${className}. ${className} can only emit: ${eventTypes}`)
+        }
         for(const listener of this.#listeners[e.name])
             listener(e)
     }

@@ -145,20 +145,6 @@ ApplicationWindow {
         width: sidebar.inPortrait ? parent.width : parent.width - sidebar.width//*sidebar.position
         x: sidebar.width//*sidebar.position
         
-        xmin: settings.xmin
-        ymax: settings.ymax
-        xzoom: settings.xzoom
-        yzoom: settings.yzoom
-        xlabel: settings.xlabel
-        ylabel: settings.ylabel
-        yaxisstep: settings.yaxisstep
-        xaxisstep: settings.xaxisstep
-        logscalex: settings.logscalex
-        linewidth: settings.linewidth
-        textsize: settings.textsize
-        showxgrad: settings.showxgrad
-        showygrad: settings.showygrad
-        
         property bool firstDrawDone: false
         
         onPainted: if(!firstDrawDone) {

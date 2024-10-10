@@ -17,8 +17,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 /*!
     \qmltype ViewPositionChangeOverlay
@@ -81,7 +79,7 @@ Item {
     property int prevY
     /*!
        \qmlproperty double ViewPositionChangeOverlay::baseZoomMultiplier
-       How much should the zoom be mutliplied/scrolled by for one scroll step (120° on the mouse wheel).
+       How much should the zoom be multiplied/scrolled by for one scroll step (120° on the mouse wheel).
     */
     property double baseZoomMultiplier: 0.1
     
@@ -91,15 +89,15 @@ Item {
         cursorShape: pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor
         property int positionChangeTimer: 0
         
-        function updatePosition(deltaX, deltaY) {
+        function updatePosition(deltaX, deltaY, isEnd) {
             const unauthorized = [NaN, Infinity, -Infinity]
-            const xmin = (Modules.Canvas.px2x(Modules.Canvas.x2px(settingsInstance.xmin)-deltaX))
-            const ymax = settingsInstance.ymax + deltaY/canvas.yzoom
+            const xmin = (Modules.Canvas.px2x(Modules.Canvas.x2px(Modules.Settings.xmin)-deltaX))
+            const ymax = Modules.Settings.ymax + deltaY/Modules.Settings.yzoom
             if(!unauthorized.includes(xmin))
-                settingsInstance.xmin = xmin
+                Modules.Settings.set("xmin", xmin, isEnd)
             if(!unauthorized.includes(ymax))
-                settingsInstance.ymax = ymax.toFixed(4)
-            settingsInstance.changed()
+                Modules.Settings.set("ymax", ymax.toDecimalPrecision(6), isEnd)
+            Modules.Canvas.requestPaint()
             parent.positionChanged(deltaX, deltaY)
             
         }
@@ -113,9 +111,9 @@ Item {
         onPositionChanged: function(mouse) {
             positionChangeTimer++
             if(positionChangeTimer == 3) {
-                let deltaX = mouse.x - prevX
-                let deltaY = mouse.y - prevY
-                updatePosition(deltaX, deltaY)
+                let deltaX = mouse.x - parent.prevX
+                let deltaY = mouse.y - parent.prevY
+                updatePosition(deltaX, deltaY, false)
                 prevX = mouse.x
                 prevY = mouse.y
                 positionChangeTimer = 0
@@ -123,35 +121,35 @@ Item {
         }
         
         onReleased: function(mouse) {
-            let deltaX = mouse.x - prevX
-            let deltaY = mouse.y - prevY
-            updatePosition(deltaX, deltaY)
+            let deltaX = mouse.x - parent.prevX
+            let deltaY = mouse.y - parent.prevY
+            updatePosition(deltaX, deltaY, true)
             parent.endPositionChange(deltaX, deltaY)
         }
         
         onWheel: function(wheel) {
             // Scrolling
             let scrollSteps = Math.round(wheel.angleDelta.y / 120)
-            let zoomMultiplier = Math.pow(1+baseZoomMultiplier, Math.abs(scrollSteps))
+            let zoomMultiplier = Math.pow(1+parent.baseZoomMultiplier, Math.abs(scrollSteps))
             // Avoid floating-point rounding errors by removing the zoom *after*
-            let xZoomDelta = (settingsInstance.xzoom*zoomMultiplier - settingsInstance.xzoom)
-            let yZoomDelta = (settingsInstance.yzoom*zoomMultiplier - settingsInstance.yzoom)
+            let xZoomDelta = (Modules.Settings.xzoom*zoomMultiplier - Modules.Settings.xzoom)
+            let yZoomDelta = (Modules.Settings.yzoom*zoomMultiplier - Modules.Settings.yzoom)
             if(scrollSteps < 0) { // Negative scroll
                 xZoomDelta *= -1
                 yZoomDelta *= -1
             }
-            let newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(0)
-            let newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(0)
+            let newXZoom = (Modules.Settings.xzoom+xZoomDelta).toDecimalPrecision(0)
+            let newYZoom = (Modules.Settings.yzoom+yZoomDelta).toDecimalPrecision(0)
             // Check if we need to have more precision
             if(newXZoom < 10) 
-                newXZoom = (settingsInstance.xzoom+xZoomDelta).toFixed(4)
+                newXZoom = (Modules.Settings.xzoom+xZoomDelta).toDecimalPrecision(4)
             if(newYZoom < 10)
-                newYZoom = (settingsInstance.yzoom+yZoomDelta).toFixed(4)
+                newYZoom = (Modules.Settings.yzoom+yZoomDelta).toDecimalPrecision(4)
             if(newXZoom > 0.5)
-                settingsInstance.xzoom = newXZoom
+                Modules.Settings.set("xzoom", newXZoom)
             if(newYZoom > 0.5)
-                settingsInstance.yzoom = newYZoom
-            settingsInstance.changed()
+                Modules.Settings.set("yzoom", newYZoom)
+            Modules.Canvas.requestPaint()
         }
     }
 }

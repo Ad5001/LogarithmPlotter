@@ -17,6 +17,7 @@
  */
 
 import Objects from "./objects.mjs"
+import Settings from "./settings.mjs"
 import ExprParser from "./expreval.mjs"
 import Latex from "./latex.mjs"
 import History from "./history.mjs"
@@ -26,6 +27,7 @@ import Preferences from "./preferences.mjs"
 
 export default {
     Objects,
+    Settings,
     ExprParser,
     Latex,
     History,

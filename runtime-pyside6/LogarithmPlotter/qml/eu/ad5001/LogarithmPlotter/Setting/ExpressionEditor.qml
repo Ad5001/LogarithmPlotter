@@ -175,17 +175,17 @@ Item {
     Icon {
         id: iconLabel
         anchors.top: parent.top
-        anchors.topMargin: icon == "" ? 0 : 3
-        source: control.visible && icon != "" ? "../icons/" + control.icon : ""
+        anchors.topMargin: parent.icon == "" ? 0 : 3
+        source: control.visible && parent.icon != "" ? "../icons/" + control.icon : ""
         width: height
-        height: icon == "" || !visible ? 0 : 24
+        height: parent.icon == "" || !visible ? 0 : 24
         color: sysPalette.windowText
     }
     
     Label {
         id: labelItem
         anchors.left: iconLabel.right
-        anchors.leftMargin: icon == "" ? 0 : 5
+        anchors.leftMargin: parent.icon == "" ? 0 : 5
         anchors.top: parent.top
         height: parent.height
         width: Math.max(85, implicitWidth)
@@ -231,8 +231,8 @@ Item {
         onEditingFinished: {
             if(insertButton.focus || insertPopup.focus) return
             let value = text
-            if(value != "" && value.toString() != defValue) {
-                let expr = parse(value)
+            if(value != "" && value.toString() != parent.defValue) {
+                let expr = parent.parse(value)
                 if(expr != null) {
                     control.changed(expr)
                     defValue = expr.toEditableString()
@@ -280,10 +280,10 @@ Item {
                 acPopupContent.itemSelected = 0
                 
                 
-            if(event.text in openAndCloseMatches && autoClosing) {
+            if(event.text in parent.openAndCloseMatches && autoClosing) {
                 let start = selectionStart
                 insert(selectionStart, event.text)
-                insert(selectionEnd, openAndCloseMatches[event.text])
+                insert(selectionEnd, parent.openAndCloseMatches[event.text])
                 cursorPosition = start+1
                 event.accepted = true
             }
