@@ -261,7 +261,7 @@ class LatexAPI extends Module {
                             throw new EvalError("Unknown operator " + item.value + ".")
                     }
                     break
-                case Instruction.IOP3: // Thirdiary operator
+                case Instruction.IOP3: // Ternary operator
                     n3 = nstack.pop()
                     n2 = nstack.pop()
                     n1 = nstack.pop()

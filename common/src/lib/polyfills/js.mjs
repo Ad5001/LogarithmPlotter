@@ -64,10 +64,7 @@ function arrayFlatMap(callbackFn, thisArg) {
  * @return {String}
  */
 function stringReplaceAll(from, to) {
-    let str = this
-    while(str.includes(from))
-        str = str.replace(from, to)
-    return str
+    return this.split(from).join(to)
 }
 
 
