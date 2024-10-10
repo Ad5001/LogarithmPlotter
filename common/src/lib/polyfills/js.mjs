@@ -1,4 +1,4 @@
-/**
+/*!
  *  LogarithmPlotter - 2D plotter software to make BODE plots, sequences and distribution functions.
  *  Copyright (C) 2021-2024  Ad5001
  *

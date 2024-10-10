@@ -17,6 +17,7 @@
  */
 
 import { Interface } from "./interface.mjs"
+import { BaseEventEmitter } from "../events.mjs"
 
 // Define Modules interface before they are imported.
 globalThis.Modules = globalThis.Modules || {}
@@ -24,7 +25,7 @@ globalThis.Modules = globalThis.Modules || {}
 /**
  * Base class for global APIs in runtime.
  */
-export class Module {
+export class Module extends BaseEventEmitter {
     /** @type {string} */
     #name
     /** @type {Object.<string, (Interface|string|number|boolean)>} */
@@ -36,6 +37,7 @@ export class Module {
      * @param {Object.<string, (Interface|string|number|boolean)>} initializationParameters - List of parameters for the initialize function.
      */
     constructor(name, initializationParameters = {}) {
+        super()
         console.log(`Loading module ${name}...`)
         this.#name = name
         this.#initializationParameters = initializationParameters
