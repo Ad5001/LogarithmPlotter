@@ -59,7 +59,6 @@ class IOAPI extends Module {
         })
 
         // Settings.on("changed", this.__emitModified.bind(this))
-        console.log("Init IO", this)
         History.on("added undone redone", this.__emitModified.bind(this))
     }
 
@@ -125,6 +124,7 @@ class IOAPI extends Module {
         }
         Helper.write(filename, JSON.stringify(settings))
         this.#alert.show(qsTranslate("io", "Saved plot to '%1'.").arg(filename.split("/").pop()))
+        this.#saved = true
         this.emit(new SavedEvent())
     }
 
@@ -203,6 +203,7 @@ class IOAPI extends Module {
         }
         Canvas.redraw()
         this.#alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
+        this.#saved = true
         this.emit(new LoadedEvent())
     }
 

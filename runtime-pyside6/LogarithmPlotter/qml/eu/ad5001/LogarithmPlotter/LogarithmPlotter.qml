@@ -183,7 +183,7 @@ ApplicationWindow {
     }
     
     onClosing: function(close) {
-        if(!Modules.History.saved) {
+        if(!Modules.IO.saved) {
             close.accepted = false
             appMenu.openSaveUnsavedChangesDialog()
         }

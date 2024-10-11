@@ -29,6 +29,12 @@ class ClearedEvent extends BaseEvent {
     }
 }
 
+class LoadedEvent extends BaseEvent {
+    constructor() {
+        super("loaded")
+    }
+}
+
 class AddedEvent extends BaseEvent {
     constructor(action) {
         super("added")
@@ -51,7 +57,7 @@ class RedoneEvent extends BaseEvent {
 }
 
 class HistoryAPI extends Module {
-    static emits = ["cleared", "added", "undone", "redone"]
+    static emits = ["cleared", "loaded", "added", "undone", "redone"]
 
     #helper
 
@@ -154,7 +160,7 @@ class HistoryAPI extends Module {
             this.redoStack.push(
                 new Actions[name](...args)
             )
-        this.emit(new UpdatedEvent())
+        this.emit(new LoadedEvent())
     }
 
     /**

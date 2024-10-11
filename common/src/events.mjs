@@ -58,7 +58,6 @@ export class BaseEventEmitter {
             for(const type of eventType.split(" "))
                 this.on(type, eventListener)
         else {
-            console.log("Listening to", eventType)
             if(!this.constructor.emits.includes(eventType)) {
                 const className = this.constructor.name
                 const eventTypes = this.constructor.emits.join(", ")
