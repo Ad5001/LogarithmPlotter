@@ -66,50 +66,54 @@
     <categories>
         <category>Science</category>
         <category>Education</category>
-        <category>Qt</category>
     </categories>
     
     <url type="homepage">https://apps.ad5001.eu/logarithmplotter/</url>
     <url type="bugtracker">https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues/</url>
     <url type="help">https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/</url>
     <url type="translate">https://hosted.weblate.org/engage/logarithmplotter/</url>
-    
     <screenshots>
         <screenshot type="default">
-            <image>https://apps.ad5001.eu/img/en/logarithmplotter/gain.png?v=0.5</image>
-            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/gain.png?v=0.5</image>
-            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/gain.png?v=0.5</image>
-            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/gain.png?v=0.5</image>
-            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/gain.png?v=0.5</image>
+            <image>https://apps.ad5001.eu/img/en/logarithmplotter/gain.png?v=0.6</image>
+            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/gain.png?v=0.6</image>
+            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/gain.png?v=0.6</image>
+            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/gain.png?v=0.6</image>
+            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/gain.png?v=0.6</image>
+            <image xml:lang="es">https://apps.ad5001.eu/img/es/logarithmplotter/gain.png?v=0.6</image>
             <caption>Main view of LogarithmPlotter showing an asymptotic Bode magnitude plot.</caption>
             <caption xml:lang="de">Die Hauptansicht des LogarithmPlotters zeigt eine asymptotische Bode-Magnitude-Darstellung.</caption>
             <caption xml:lang="fr">Vue principale de LogarithmPlotter montrant un tracé asymptotique d'une magnitude de Bode.</caption>
             <caption xml:lang="hu">A LogarithmPlotter fő nézete, amely egy aszimptotikus Bode-magnitúdó ábrát mutat.</caption>
             <caption xml:lang="no">Hovedvisning av LogarithmPlotter som viser et asymptotisk Bode-størrelsesplott.</caption>
+            <caption xml:lang="es">Vista principal de LogarithmPlotter mostrando un gráfico asintótico de una magnitud de Bode.</caption>
         </screenshot>
         <screenshot>
-            <image>https://apps.ad5001.eu/img/en/logarithmplotter/phase.png?v=0.5</image>
-            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/phase.png?v=0.5</image>
-            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/phase.png?v=0.5</image>
-            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/phase.png?v=0.5</image>
-            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/phase.png?v=0.5</image>
+            <image>https://apps.ad5001.eu/img/en/logarithmplotter/phase.png?v=0.6</image>
+            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/phase.png?v=0.6</image>
+            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/phase.png?v=0.6</image>
+            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/phase.png?v=0.6</image>
+            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/phase.png?v=0.6</image>
+            <image xml:lang="es">https://apps.ad5001.eu/img/es/logarithmplotter/phase.png?v=0.6</image>
             <caption>Main view of LogarithmPlotter showing an asymptotic Bode phase plot.</caption>
             <caption xml:lang="de">Hauptansicht des LogarithmPlotters mit einer asymptotischen Bode-Phasendarstellung.</caption>
             <caption xml:lang="fr">Vue principale de LogarithmPlotter montrant un tracé asymptotique d'une phase de Bode.</caption>
             <caption xml:lang="hu">A LogarithmPlotter fő nézete, amely egy aszimptotikus Bode-fázis ábrát mutat.</caption>
             <caption xml:lang="no">Hovedvisning av LogarithmPlotter som viser et asymptotisk Bode-fasediagram.</caption>
+            <caption xml:lang="es">Vista principal de LogarithmPlotter mostrando un gráfico asintótico de una fase de Bode.</caption>
         </screenshot>
         <screenshot>
-            <image>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png?v=0.5</image>
-            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/welcome.png?v=0.5</image>
-            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/welcome.png?v=0.5</image>
-            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/welcome.png?v=0.5</image>
-            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/welcome.png?v=0.5</image>
+            <image>https://apps.ad5001.eu/img/en/logarithmplotter/welcome.png?v=0.6</image>
+            <image xml:lang="de">https://apps.ad5001.eu/img/de/logarithmplotter/welcome.png?v=0.6</image>
+            <image xml:lang="fr">https://apps.ad5001.eu/img/fr/logarithmplotter/welcome.png?v=0.6</image>
+            <image xml:lang="hu">https://apps.ad5001.eu/img/hu/logarithmplotter/welcome.png?v=0.6</image>
+            <image xml:lang="no">https://apps.ad5001.eu/img/no/logarithmplotter/welcome.png?v=0.6</image>
+            <image xml:lang="es">https://apps.ad5001.eu/img/es/logarithmplotter/welcome.png?v=0.6</image>
             <caption>LogarithmPlotter's welcome page.</caption>
             <caption xml:lang="de">LogarithmPlotter's Willkommensseite.</caption>
             <caption xml:lang="fr">Page d'accueil de LogarithmPlotter.</caption>
             <caption xml:lang="hu">LogarithmPlotter üdvözlő oldala.</caption>
             <caption xml:lang="no">LogarithmPlotters velkomstside.</caption>
+            <caption xml:lang="es">Página de bienvenida de LogarithmPlotter.</caption>
         </screenshot>
     </screenshots>
     

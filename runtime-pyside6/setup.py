@@ -26,27 +26,27 @@ print(sys.argv)
 current_dir = os.path.realpath(os.path.dirname(os.path.realpath(__file__)))
 
 # Check where to install by default
-if "PREFIX" not in os.environ and sys.platform == 'linux':
-    from getopt import getopt
-    optlist, args = getopt(sys.argv, '', ['prefix=', 'root='])
-    for arg,value in optlist:
-        if arg == "prefix" or arg == "root":
-            os.environ["PREFIX"] = value
-    if "PREFIX" not in os.environ and sys.platform == 'linux':
-        if "XDG_DATA_HOME" in os.environ:
-            os.environ["PREFIX"] = os.environ["XDG_DATA_HOME"]
-        else:
-            try:
-                # Checking if we have permission to write to root.
-                from os import makedirs, rmdir
-                makedirs("/usr/share/applications/test")
-                rmdir("/usr/share/applications/test")
-                os.environ["PREFIX"] = "/usr/share"
-            except:
-                if ".pybuild" in os.environ["HOME"]: # Launchpad building.
-                    os.environ["PREFIX"] = "share"
-                else:
-                    os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
+# if "PREFIX" not in os.environ and sys.platform == 'linux':
+#     from getopt import getopt
+#     optlist, args = getopt(sys.argv, '', ['prefix=', 'root='])
+#     for arg,value in optlist:
+#         if arg == "prefix" or arg == "root":
+#             os.environ["PREFIX"] = value
+#     if "PREFIX" not in os.environ and sys.platform == 'linux':
+#         if "XDG_DATA_HOME" in os.environ:
+#             os.environ["PREFIX"] = os.environ["XDG_DATA_HOME"]
+#         else:
+#             try:
+#                 # Checking if we have permission to write to root.
+#                 from os import makedirs, rmdir
+#                 makedirs("/usr/share/applications/test")
+#                 rmdir("/usr/share/applications/test")
+#                 os.environ["PREFIX"] = "/usr/share"
+#             except:
+#                 if ".pybuild" in os.environ["HOME"]: # Launchpad building.
+#                     os.environ["PREFIX"] = "share"
+#                 else:
+#                     os.environ["PREFIX"] = os.environ["HOME"] + "/.local/share"
 
 from LogarithmPlotter import __VERSION__ as pkg_version
 

@@ -1,4 +1,4 @@
-# ![icon](https://git.ad5001.eu/Ad5001/LogarithmPlotter/raw/branch/master/LogarithmPlotter/logarithmplotter.svg) LogarithmPlotter
+# ![icon](https://apps.ad5001.eu/icons/apps/svg/logarithmplotter.svg) LogarithmPlotter
 
 [![Build Status](https://ci.ad5001.eu/api/badges/Ad5001/LogarithmPlotter/status.svg)](https://ci.ad5001.eu/Ad5001/LogarithmPlotter)
 [![Translation status](https://hosted.weblate.org/widgets/logarithmplotter/-/logarithmplotter/svg-badge.svg)](https://hosted.weblate.org/engage/logarithmplotter/)
