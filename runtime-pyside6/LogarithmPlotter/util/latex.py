@@ -23,18 +23,9 @@ from PySide6.QtWidgets import QMessageBox
 from os import path, remove, environ, makedirs
 from string import Template
 from subprocess import Popen, TimeoutExpired, PIPE
-from platform import system
 from hashlib import sha512
 from shutil import which
 from sys import argv
-
-CACHE_PATH = {
-    "Linux": path.join(environ["XDG_CONFIG_HOME"], "LogarithmPlotter")
-    if "XDG_CONFIG_HOME" in environ else
-    path.join(path.expanduser("~"), ".cache", "LogarithmPlotter"),
-    "Windows": path.join(path.expandvars('%APPDATA%'), "LogarithmPlotter", "cache"),
-    "Darwin": path.join(path.expanduser("~"), "Library", "Caches", "LogarithmPlotter"),
-}[system()]
 
 
 """
@@ -85,9 +76,9 @@ class Latex(QObject):
     dvipng to be installed on the system.
     """
 
-    def __init__(self):
+    def __init__(self, cache_path):
         QObject.__init__(self)
-        self.tempdir = path.join(CACHE_PATH, "latex")
+        self.tempdir = path.join(cache_path, "latex")
         makedirs(self.tempdir, exist_ok=True)
 
     @Property(bool)

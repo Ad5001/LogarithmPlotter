@@ -31,7 +31,7 @@ latex.SHOW_GUI_MESSAGES = False
 @pytest.fixture()
 def latex_obj():
     directory = TemporaryDirectory()
-    obj = latex.Latex(directory)
+    obj = latex.Latex(directory.name)
     if not obj.checkLatexInstallation():
         raise Exception("Cannot run LaTeX tests without a proper LaTeX installation. Make sure to install a LaTeX distribution, DVIPNG, and the calligra package, and run the tests again.")
     yield obj

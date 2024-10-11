@@ -17,9 +17,9 @@
 """
 
 from os import getcwd, chdir, environ, path
-from platform import release as os_release
+from platform import system as os_name, release as OS_RELEASE
 from sys import path as sys_path
-from sys import platform, argv, exit
+from sys import argv, exit
 from tempfile import TemporaryDirectory
 from time import time
 
@@ -48,6 +48,18 @@ from LogarithmPlotter.util.update import check_for_updates
 from LogarithmPlotter.util.helper import Helper
 from LogarithmPlotter.util.latex import Latex
 from LogarithmPlotter.util.js import PyJSValue
+
+OS_NAME = os_name()
+
+
+CACHE_PATH = {
+    "Linux": path.join(environ["XDG_CONFIG_HOME"], "LogarithmPlotter")
+        if "XDG_CONFIG_HOME" in environ else
+        path.join(path.expanduser("~"), ".cache", "LogarithmPlotter"),
+    "Windows": path.join(path.expandvars('%APPDATA%'), "LogarithmPlotter", "cache"),
+    "Darwin": path.join(path.expanduser("~"), "Library", "Caches", "LogarithmPlotter"),
+}[OS_NAME]
+
 
 LINUX_THEMES = {  # See https://specifications.freedesktop.org/menu-spec/latest/onlyshowin-registry.html
     "COSMIC": "Basic",
@@ -82,11 +94,10 @@ def get_linux_theme() -> str:
 
 def get_platform_qt_style(os) -> str:
     return {
-        "linux": get_linux_theme(),
-        "freebsd": get_linux_theme(),
-        "win32": "Universal" if os_release() in ["10", "11", "12", "13", "14"] else "Windows",
-        "cygwin": "Fusion",
-        "darwin": "macOS"
+        "Linux": get_linux_theme(),
+        "Windows": "Universal" if OS_RELEASE() in ["10", "11", "12", "13", "14"] else "Windows",
+        "Darwin": "macOS",
+        "Android": "Material"
     }[os]
 
 
@@ -147,7 +158,7 @@ def run():
     config.init()
 
     if not 'QT_QUICK_CONTROLS_STYLE' in environ:
-        QQuickStyle.setStyle(get_platform_qt_style(platform))
+        QQuickStyle.setStyle(get_platform_qt_style(OS_NAME))
 
     dep_time = time()
     print("Loaded dependencies in " + str((dep_time - start_time) * 1000) + "ms.")
@@ -159,12 +170,12 @@ def run():
 
     # Installing macOS file handler.
     macos_file_open_handler = None
-    if platform == "darwin":
+    if OS_NAME == "Darwin":
         macos_file_open_handler = native.MacOSFileOpenHandler()
         app.installEventFilter(macos_file_open_handler)
 
     helper = Helper(pwd, tmpfile)
-    latex = Latex()
+    latex = Latex(CACHE_PATH)
     engine, js_globals = create_engine(helper, latex, dep_time)
 
     if len(engine.rootObjects()) == 0:  # No root objects loaded
@@ -177,7 +188,7 @@ def run():
         js_globals.Modules.IO.loadDiagram(argv[-1])
     chdir(path.dirname(path.realpath(__file__)))
 
-    if platform == "darwin":
+    if OS_NAME == "Darwin":
         macos_file_open_handler.init_io(js_globals.Modules.IO)
 
     # Check for LaTeX installation if LaTeX support is enabled

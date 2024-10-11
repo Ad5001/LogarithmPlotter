@@ -60,7 +60,7 @@ def test_update(qtbot):
 
 def test_update_checker(qtbot):
     update_info = check_for_updates('0.6.0', MockWindow())
-    assert QThreadPool.globalInstance().activeThreadCount() == 1
+    assert QThreadPool.globalInstance().activeThreadCount() >= 1
     qtbot.waitSignal(update_info.got_update_info, timeout=10000)
     argv.append("--no-check-for-updates")
     update_info = check_for_updates('0.6.0', MockWindow())

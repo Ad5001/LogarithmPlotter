@@ -39,11 +39,10 @@ THEMES = [
 ]
 
 OS_PLATFORMS = [
-    "linux",
-    "freebsd",
-    "win32",
-    "cygwin",
-    "darwin"
+    "Linux",
+    "Windows",
+    "Darwin",
+    "Android"
 ]
 
 @pytest.fixture()
@@ -91,7 +90,7 @@ class TestMain:
         # Engine
         tmpfile, tempdir = temporary
         helper = Helper(".", tmpfile)
-        latex = Latex(tempdir)
+        latex = Latex(tempdir.name)
         engine, js_globals = create_engine(helper, latex, 0)
         assert len(engine.rootObjects()) > 0 # QML File loaded.
         assert type(engine.rootContext().contextProperty("TestBuild")) is bool

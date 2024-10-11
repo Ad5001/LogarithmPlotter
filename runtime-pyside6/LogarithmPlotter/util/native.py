@@ -49,3 +49,7 @@ class MacOSFileOpenHandler(QObject):
         else:
             # standard event processing
             return QObject.eventFilter(self, obj, event)
+        
+        
+
+
