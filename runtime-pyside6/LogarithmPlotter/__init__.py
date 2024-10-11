@@ -29,7 +29,7 @@ if not is_release and which('git') is not None:
 
     # Command to check date of latest git commit
     cmd = ['git', 'log', '--format=%ci', '-n 1']
-    cwd = realpath(join(dirname(__file__), '..'))  # Root AccountFree directory.
+    cwd = realpath(join(dirname(__file__), '..', '..', '..'))  # Root LogarithmPlotter directory.
     if exists(join(cwd, '.git')):
         date_str = check_output(cmd, cwd=cwd).decode('utf-8').split(' ')[0]
         try:
