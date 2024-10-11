@@ -119,6 +119,12 @@ class SettingsAPI extends Module {
     }
     
     /**
+     * Name of the currently opened file.
+     * @returns {string}
+     */
+    get saveFilename() { return this.#properties.get("saveFilename") }
+    
+    /**
      * Zoom on the x axis of the diagram.
      * @returns {number}
      */
