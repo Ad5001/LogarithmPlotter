@@ -146,7 +146,7 @@
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="145"/>
         <source>&amp;Changelog</source>
-        <translation>&amp;Historique des modifications</translation>
+        <translation>&amp;Notes de version</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="150"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="81"/>
         <source>Fetching changelog...</source>
-        <translation>Récupération de l&apos;historique des modifications…</translation>
+        <translation>Récupération des notes de version…</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="99"/>
@@ -341,7 +341,7 @@
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="70"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation>Bienvenue sur LogarithmPlotter</translation>
+        <translation>Bienvenu•e sur LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="81"/>
@@ -382,7 +382,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="94"/>
         <source>Changelog</source>
-        <translation>Historique des modifications</translation>
+        <translation>Notes de version</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
@@ -879,12 +879,12 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="65"/>
         <source>Could not fetch changelog: Server error {}.</source>
-        <translation>Impossible de récupérer l&apos;historique des modifications : Erreur de serveur {}.</translation>
+        <translation>Impossible de récupérer les notes de version&#xa0;: Erreur de serveur {}.</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="68"/>
         <source>Could not fetch update: {}.</source>
-        <translation>Impossible de récupérer l&apos;historique des modifications : {}.</translation>
+        <translation>Impossible de récupérer les notes de version&#xa0;: {}.</translation>
     </message>
 </context>
 <context>
