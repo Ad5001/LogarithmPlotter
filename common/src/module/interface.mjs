@@ -85,15 +85,6 @@ export class DialogInterface extends Interface {
     show = FUNCTION
 }
 
-export class HistoryInterface extends Interface {
-    undo = FUNCTION
-    redo = FUNCTION
-    clear = FUNCTION
-    addToHistory = FUNCTION
-    unserialize = FUNCTION
-    serialize = FUNCTION
-}
-
 export class LatexInterface extends Interface {
     /**
      * @param {string} markup - LaTeX markup to render

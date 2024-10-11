@@ -17,7 +17,7 @@
  */
 
 import { Module } from "./common.mjs"
-import { HelperInterface, HistoryInterface, NUMBER, STRING } from "./interface.mjs"
+import { HelperInterface, NUMBER, STRING } from "./interface.mjs"
 import { BaseEvent } from "../events.mjs"
 import { Action, Actions } from "../history/index.mjs"
 
