@@ -42,7 +42,7 @@ def show_message(msg: str) -> None:
     Shows a GUI message if GUI messages are enabled
     """
     if SHOW_GUI_MESSAGES:
-        QMessageBox.warning(None, "LogarithmPlotter", msg, QMessageBox.OK)
+        QMessageBox.warning(None, "LogarithmPlotter", msg)
     else:
         raise InvalidFileException(msg)
 

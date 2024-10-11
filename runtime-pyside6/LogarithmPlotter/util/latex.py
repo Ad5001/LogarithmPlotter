@@ -20,12 +20,22 @@ from PySide6.QtCore import QObject, Slot, Property, QCoreApplication
 from PySide6.QtGui import QImage, QColor
 from PySide6.QtWidgets import QMessageBox
 
-from os import path, remove
+from os import path, remove, environ, makedirs
 from string import Template
-from tempfile import TemporaryDirectory
 from subprocess import Popen, TimeoutExpired, PIPE
+from platform import system
+from hashlib import sha512
 from shutil import which
 from sys import argv
+
+CACHE_PATH = {
+    "Linux": path.join(environ["XDG_CONFIG_HOME"], "LogarithmPlotter")
+    if "XDG_CONFIG_HOME" in environ else
+    path.join(path.expanduser("~"), ".cache", "LogarithmPlotter"),
+    "Windows": path.join(path.expandvars('%APPDATA%'), "LogarithmPlotter", "cache"),
+    "Darwin": path.join(path.expanduser("~"), "Library", "Caches", "LogarithmPlotter"),
+}[system()]
+
 
 """
 Searches for a valid Latex and DVIPNG (http://savannah.nongnu.org/projects/dvipng/)
@@ -75,9 +85,10 @@ class Latex(QObject):
     dvipng to be installed on the system.
     """
 
-    def __init__(self, tempdir: TemporaryDirectory):
+    def __init__(self):
         QObject.__init__(self)
-        self.tempdir = tempdir
+        self.tempdir = path.join(CACHE_PATH, "latex")
+        makedirs(self.tempdir, exist_ok=True)
 
     @Property(bool)
     def latexSupported(self) -> bool:
@@ -117,7 +128,7 @@ class Latex(QObject):
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
             # Generating file
-            latex_path = path.join(self.tempdir.name, str(markup_hash))
+            latex_path = path.join(self.tempdir, str(markup_hash))
             # If the formula is just recolored or the font is just changed, no need to recreate the DVI.
             if not path.exists(latex_path + ".dvi"):
                 self.create_latex_doc(latex_path, latex_markup)
@@ -148,8 +159,8 @@ class Latex(QObject):
         """
         Standardizes export path for renders.
         """
-        markup_hash = "render" + str(hash(latex_markup))
-        export_path = path.join(self.tempdir.name, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
+        markup_hash = "render" + str(sha512(latex_markup.encode()).hexdigest())
+        export_path = path.join(self.tempdir, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
         return markup_hash, export_path
 
     def create_latex_doc(self, export_path: str, latex_markup: str):
@@ -193,7 +204,7 @@ class Latex(QObject):
         Runs a subprocess and handles exceptions and messages them to the user.
         """
         cmd = " ".join(process)
-        proc = Popen(process, stdout=PIPE, stderr=PIPE, cwd=self.tempdir.name)
+        proc = Popen(process, stdout=PIPE, stderr=PIPE, cwd=self.tempdir)
         try:
             out, err = proc.communicate(timeout=2)  # 2 seconds is already FAR too long.
             if proc.returncode != 0:

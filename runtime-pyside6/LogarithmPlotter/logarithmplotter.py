@@ -164,7 +164,7 @@ def run():
         app.installEventFilter(macos_file_open_handler)
 
     helper = Helper(pwd, tmpfile)
-    latex = Latex(tempdir)
+    latex = Latex()
     engine, js_globals = create_engine(helper, latex, dep_time)
 
     if len(engine.rootObjects()) == 0:  # No root objects loaded
