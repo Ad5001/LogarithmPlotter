@@ -335,7 +335,7 @@
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="70"/>
         <source>Welcome to LogarithmPlotter</source>
-        <translation>Bienvenid@ a LogarithmPlotter</translation>
+        <translation>Bienvenido a LogarithmPlotter</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="81"/>
