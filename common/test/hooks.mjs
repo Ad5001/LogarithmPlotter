@@ -19,12 +19,10 @@ import * as fs from "./mock/fs.mjs";
 import Qt from "./mock/qt.mjs";
 import { MockHelper } from "./mock/helper.mjs";
 import { MockLatex } from "./mock/latex.mjs";
-import Modules from "../src/module/index.mjs";
 
 function setup() {
     globalThis.Helper = new MockHelper()
     globalThis.Latex = new MockLatex()
-    Modules.Latex.initialize({ latex: Latex, helper: Helper })
 }
 
 setup()

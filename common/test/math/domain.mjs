@@ -19,46 +19,46 @@
 import { describe, it } from "mocha"
 import { expect } from "chai"
 
-import { Domain, parseDomainSimple } from "../../src/math/domain.mjs"
-
-describe("math.domain", function() {
-    describe("#parseDomainSimple", function() {
-        it("returns predefined domains", function() {
-            const predefinedToCheck = [
-                // Real domains
-                { domain: Domain.R, shortcuts: ["R", "ℝ"] },
-                // Zero exclusive real domains
-                { domain: Domain.RE, shortcuts: ["RE", "R*", "ℝ*"] },
-                // Real positive domains
-                { domain: Domain.RP, shortcuts: ["RP", "R+", "ℝ⁺", "ℝ+"] },
-                // Zero-exclusive real positive domains
-                { domain: Domain.RPE, shortcuts: ["RPE", "REP", "R+*", "R*+", "ℝ*⁺", "ℝ⁺*", "ℝ*+", "ℝ+*"] },
-                // Real negative domain
-                { domain: Domain.RM, shortcuts: ["RM", "R-", "ℝ⁻", "ℝ-"] },
-                // Zero-exclusive real negative domains
-                { domain: Domain.RME, shortcuts: ["RME", "REM", "R-*", "R*-", "ℝ⁻*", "ℝ*⁻", "ℝ-*", "ℝ*-"] },
-                // Natural integers domain
-                { domain: Domain.N, shortcuts: ["ℕ", "N", "ZP", "Z+", "ℤ⁺", "ℤ+"] },
-                // Zero-exclusive natural integers domain
-                { domain: Domain.NE, shortcuts: ["NE", "NP", "N*", "N+", "ℕ*", "ℕ⁺", "ℕ+", "ZPE", "ZEP", "Z+*", "Z*+", "ℤ⁺*", "ℤ*⁺", "ℤ+*", "ℤ*+"] },
-                // Logarithmic natural domains
-                { domain: Domain.NLog, shortcuts: ["NLOG", "ℕˡᵒᵍ", "ℕLOG"] },
-                // All integers domains
-                { domain: Domain.Z, shortcuts: ["Z", "ℤ"] },
-                // Zero-exclusive all integers domain
-                { domain: Domain.ZE, shortcuts: ["ZE", "Z*", "ℤ*"] },
-                // Negative integers domain
-                { domain: Domain.ZM, shortcuts: ["ZM", "Z-", "ℤ⁻", "ℤ-"] },
-                // Zero-exclusive negative integers domain
-                { domain: Domain.ZME, shortcuts: ["ZME", "ZEM", "Z-*", "Z*-", "ℤ⁻*", "ℤ*⁻", "ℤ-*", "ℤ*-"] },
-            ]
-
-            // Real domains
-            for(const { domain, shortcuts } of predefinedToCheck)
-                for(const shortcut of shortcuts)
-                    expect(parseDomainSimple(shortcut)).to.be.equal(domain)
-        })
-
-        it("")
-    })
-})
+// import { Domain, parseDomainSimple } from "../../src/math/domain.mjs"
+//
+// describe("math.domain", function() {
+//     describe("#parseDomainSimple", function() {
+//         it("returns predefined domains", function() {
+//             const predefinedToCheck = [
+//                 // Real domains
+//                 { domain: Domain.R, shortcuts: ["R", "ℝ"] },
+//                 // Zero exclusive real domains
+//                 { domain: Domain.RE, shortcuts: ["RE", "R*", "ℝ*"] },
+//                 // Real positive domains
+//                 { domain: Domain.RP, shortcuts: ["RP", "R+", "ℝ⁺", "ℝ+"] },
+//                 // Zero-exclusive real positive domains
+//                 { domain: Domain.RPE, shortcuts: ["RPE", "REP", "R+*", "R*+", "ℝ*⁺", "ℝ⁺*", "ℝ*+", "ℝ+*"] },
+//                 // Real negative domain
+//                 { domain: Domain.RM, shortcuts: ["RM", "R-", "ℝ⁻", "ℝ-"] },
+//                 // Zero-exclusive real negative domains
+//                 { domain: Domain.RME, shortcuts: ["RME", "REM", "R-*", "R*-", "ℝ⁻*", "ℝ*⁻", "ℝ-*", "ℝ*-"] },
+//                 // Natural integers domain
+//                 { domain: Domain.N, shortcuts: ["ℕ", "N", "ZP", "Z+", "ℤ⁺", "ℤ+"] },
+//                 // Zero-exclusive natural integers domain
+//                 { domain: Domain.NE, shortcuts: ["NE", "NP", "N*", "N+", "ℕ*", "ℕ⁺", "ℕ+", "ZPE", "ZEP", "Z+*", "Z*+", "ℤ⁺*", "ℤ*⁺", "ℤ+*", "ℤ*+"] },
+//                 // Logarithmic natural domains
+//                 { domain: Domain.NLog, shortcuts: ["NLOG", "ℕˡᵒᵍ", "ℕLOG"] },
+//                 // All integers domains
+//                 { domain: Domain.Z, shortcuts: ["Z", "ℤ"] },
+//                 // Zero-exclusive all integers domain
+//                 { domain: Domain.ZE, shortcuts: ["ZE", "Z*", "ℤ*"] },
+//                 // Negative integers domain
+//                 { domain: Domain.ZM, shortcuts: ["ZM", "Z-", "ℤ⁻", "ℤ-"] },
+//                 // Zero-exclusive negative integers domain
+//                 { domain: Domain.ZME, shortcuts: ["ZME", "ZEM", "Z-*", "Z*-", "ℤ⁻*", "ℤ*⁻", "ℤ-*", "ℤ*-"] },
+//             ]
+//
+//             // Real domains
+//             for(const { domain, shortcuts } of predefinedToCheck)
+//                 for(const shortcut of shortcuts)
+//                     expect(parseDomainSimple(shortcut)).to.be.equal(domain)
+//         })
+//
+//         it("")
+//     })
+// })

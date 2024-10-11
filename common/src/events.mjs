@@ -79,7 +79,8 @@ export class BaseEventEmitter {
         if(eventType.includes(" ")) { // Unlisten to several different events with the same listener.
             let found = false
             for(const type of eventType.split(" "))
-                found ||= this.off(eventType, eventListener)
+                found ||= this.off(type, eventListener)
+            return found
         } else {
             if(!this.constructor.emits.includes(eventType)) {
                 const className = this.constructor.name
