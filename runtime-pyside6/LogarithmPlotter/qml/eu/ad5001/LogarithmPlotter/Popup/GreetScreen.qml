@@ -141,7 +141,7 @@ Popup {
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 14
                     text: modelData.name
-                    wrapMode: Text.WordWrap
+                    wrapMode: Text.Wrap
                     clip: true
                 }
             }
