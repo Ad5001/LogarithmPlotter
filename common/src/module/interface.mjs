@@ -79,7 +79,6 @@ export class CanvasInterface extends Interface {
 export class RootInterface extends Interface {
     width = NUMBER
     height = NUMBER
-    updateObjectsLists = FUNCTION
 }
 
 export class DialogInterface extends Interface {

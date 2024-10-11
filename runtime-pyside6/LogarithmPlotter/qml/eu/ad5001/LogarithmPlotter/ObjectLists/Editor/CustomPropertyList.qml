@@ -80,7 +80,7 @@ Repeater {
             variables: propertyType.variables
             onChanged: function(newExpr) {
                 if(obj[propertyName].toString() != newExpr.toString()) {
-                    history.addToHistory(new JS.HistoryLib.EditedProperty(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                         obj.name, objType, propertyName, 
                         obj[propertyName], newExpr
                     ))
@@ -123,7 +123,7 @@ Repeater {
                                         
                     // Ensuring old and new values are different to prevent useless adding to history.
                     if(obj[propertyName] != newValueParsed) {
-                        history.addToHistory(new JS.HistoryLib.EditedProperty(
+                        Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                             obj.name, objType, propertyName, 
                             obj[propertyName], newValueParsed
                         ))
@@ -168,7 +168,7 @@ Repeater {
                 return obj[propertyName]
             }
             onClicked: {
-                history.addToHistory(new JS.HistoryLib.EditedProperty(
+                Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                     obj.name, objType, propertyName, 
                     obj[propertyName], this.checked
                 ))
@@ -209,7 +209,9 @@ Repeater {
                         if(selectedObj == null) {
                             // Creating new object.
                             selectedObj = Modules.Objects.createNewRegisteredObject(propertyType.objType)
-                            history.addToHistory(new JS.HistoryLib.CreateNewObject(selectedObj.name, propertyType.objType, selectedObj.export()))
+                            Modules.History.addToHistory(
+                                new JS.HistoryLib.CreateNewObject(selectedObj.name, propertyType.objType, selectedObj.export())
+                            )
                             baseModel = Modules.Objects.getObjectsName(propertyType.objType).concat(
                                         isRealObject ? [qsTr("+ Create new %1").arg(Modules.Objects.types[propertyType.objType].displayType())] :
                                         [])
@@ -219,14 +221,14 @@ Repeater {
                         //Modules.Objects.currentObjects[objType][objIndex].requiredBy = obj[propertyName].filter((obj) => obj.name != obj.name)
                     }
                     obj.requiredBy = obj.requiredBy.filter((obj) => obj.name != obj.name)
-                    history.addToHistory(new JS.HistoryLib.EditedProperty(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                         obj.name, objType, propertyName, 
                         obj[propertyName], selectedObj
                     ))
                     obj[propertyName] = selectedObj
                 } else if(baseModel[newIndex] != obj[propertyName]) { 
                     // Ensuring new property is different to not add useless history entries.
-                    history.addToHistory(new JS.HistoryLib.EditedProperty(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                         obj.name, objType, propertyName, 
                         obj[propertyName], baseModel[newIndex]
                     ))
@@ -256,7 +258,7 @@ Repeater {
             
             onChanged: {
                 var exported = exportModel()
-                history.addToHistory(new JS.HistoryLib.EditedProperty(
+                Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                     obj.name, objType, propertyName, 
                     obj[propertyName], exported
                 ))

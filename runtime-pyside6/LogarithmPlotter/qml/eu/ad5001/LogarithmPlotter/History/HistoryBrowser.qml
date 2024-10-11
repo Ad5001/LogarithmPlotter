@@ -225,7 +225,7 @@ Item {
             imageDepth: Screen.devicePixelRatio,
             fontSize: 14
         })
-        Modules.History.on("updated undone redone", () => {
+        Modules.History.on("cleared added undone redone", () => {
             undoCount = Modules.History.undoStack.length
             redoCount = Modules.History.redoStack.length
         })

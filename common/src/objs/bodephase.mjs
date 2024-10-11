@@ -63,7 +63,7 @@ export default class BodePhase extends ExecutableObject {
                 // Create new point
                 om_0 = Objects.createNewRegisteredObject("Point", [Objects.getNewName("ω"), this.color, "name"])
                 om_0.labelPosition = this.phase.execute() >= 0 ? "above" : "below"
-                History.history.addToHistory(new CreateNewObject(om_0.name, "Point", om_0.export()))
+                History.addToHistory(new CreateNewObject(om_0.name, "Point", om_0.export()))
                 labelPosition = "below"
             }
             om_0.requiredBy.push(this)

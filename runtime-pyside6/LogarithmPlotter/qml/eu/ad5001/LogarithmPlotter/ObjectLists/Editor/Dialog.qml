@@ -112,7 +112,7 @@ Popup.BaseDialog {
                         if(newName in Modules.Objects.currentObjectsByName) {
                             invalidNameDialog.showDialog(newName)
                         } else {
-                            history.addToHistory(new JS.HistoryLib.NameChanged(
+                            Modules.History.addToHistory(new JS.HistoryLib.NameChanged(
                                 objEditor.obj.name, objEditor.objType, newName
                             ))
                             Modules.Objects.renameObject(obj.name, newName)
@@ -127,13 +127,17 @@ Popup.BaseDialog {
                 id: labelContentProperty
                 height: 30
                 width: dlgProperties.width
-                label: qsTr("Label content")
+                label: qsTranslate("prop", "labelContent")
                 model: [qsTr("null"), qsTr("name"), qsTr("name + value")]
                 property var idModel: ["null", "name", "name + value"]
                 icon: "common/label.svg"
                 currentIndex: idModel.indexOf(objEditor.obj.labelContent)
                 onActivated: function(newIndex) {
                     if(idModel[newIndex] != objEditor.obj.labelContent) {
+                        Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
+                            obj.name, objType, "labelContent",
+                            objEditor.obj.labelContent, idModel[newIndex]
+                        ))
                         objEditor.obj.labelContent = idModel[newIndex]
                         objEditor.obj.update()
                         objectListList.update()

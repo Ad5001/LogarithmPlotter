@@ -42,7 +42,7 @@ ApplicationWindow {
     width: 1000
     height: 500
     color: sysPalette.window
-    title: "LogarithmPlotter"
+    title: qsTr("untitled")
     
     SystemPalette { id: sysPalette; colorGroup: SystemPalette.Active }
     SystemPalette { id: sysPaletteIn; colorGroup: SystemPalette.Disabled }
@@ -50,9 +50,7 @@ ApplicationWindow {
     menuBar: appMenu.trueItem
     
     AppMenuBar {id: appMenu}
-    
-    History { id: history }
-    
+
     Popup.GreetScreen {}
     
     Popup.Preferences {id: preferences}
@@ -185,7 +183,7 @@ ApplicationWindow {
     }
     
     onClosing: function(close) {
-        if(!history.saved) {
+        if(!Modules.History.saved) {
             close.accepted = false
             appMenu.openSaveUnsavedChangesDialog()
         }
@@ -254,8 +252,20 @@ ApplicationWindow {
             if(evt.property === "saveFilename") {
                 const fileName = evt.newValue.split('/').pop().split('\\').pop()
                 if(fileName !== "")
-                    title = `${fileName}`
+                    title = fileName
             }
+        })
+        Modules.IO.on("saved loaded", (evt) => {
+            // Refreshing sidebar
+            console.log(evt.name)
+            updateObjectsLists()
+            if(title.endsWith("*"))
+                title = title.substring(0, title.length-1)
+        })
+        Modules.IO.on("modified", () => {
+            console.log("modified")
+            if(!title.endsWith("*"))
+                title = title+"*"
         })
     }
 }

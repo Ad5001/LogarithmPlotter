@@ -115,7 +115,7 @@ Item {
                 let obj = Modules.Objects.currentObjectsByName[objName]
                 // Set values
                 if(parent.userPickX && parent.userPickY) {
-                    history.addToHistory(new JS.HistoryLib.EditedPosition(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedPosition(
                         objName, objType, obj[propertyX], newValueX, obj[propertyY], newValueY
                     ))
                     obj[propertyX] = newValueX
@@ -124,7 +124,7 @@ Item {
                     objectLists.update()
                     pickerRoot.picked(obj)
                 } else if(parent.userPickX) {
-                    history.addToHistory(new JS.HistoryLib.EditedProperty(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                         objName, objType, propertyX, obj[propertyX], newValueX
                     ))
                     obj[propertyX] = newValueX
@@ -132,7 +132,7 @@ Item {
                     objectLists.update()
                     pickerRoot.picked(obj)
                 } else if(parent.userPickY) {
-                    history.addToHistory(new JS.HistoryLib.EditedProperty(
+                    Modules.History.addToHistory(new JS.HistoryLib.EditedProperty(
                         objName, objType, propertyY, obj[propertyY], newValueY
                     ))
                     obj[propertyY] = newValueY

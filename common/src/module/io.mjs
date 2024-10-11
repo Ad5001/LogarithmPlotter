@@ -22,25 +22,58 @@ import History from "./history.mjs"
 import Canvas from "./canvas.mjs"
 import Settings from "./settings.mjs"
 import { DialogInterface, RootInterface } from "./interface.mjs"
+import { BaseEvent } from "../events.mjs"
 
+
+class LoadedEvent extends BaseEvent {
+    constructor() {
+        super("loaded")
+    }
+}
+
+class SavedEvent extends BaseEvent {
+    constructor() {
+        super("saved")
+    }
+}
+
+class ModifiedEvent extends BaseEvent {
+    constructor() {
+        super("modified")
+    }
+}
 
 class IOAPI extends Module {
+    static emits = ["loaded", "saved", "modified"]
+
     /** @type {RootInterface} */
     #rootElement
     /** @type {{show: function(string)}} */
     #alert
+    #saved = true
 
     constructor() {
         super("IO", {
             alert: DialogInterface,
             root: RootInterface
         })
-        /**
-         * Path of the currently opened file. Empty if no file is opened.
-         * @type {string}
-         */
-        this.saveFileName = ""
+
+        // Settings.on("changed", this.__emitModified.bind(this))
+        console.log("Init IO", this)
+        History.on("added undone redone", this.__emitModified.bind(this))
     }
+
+    __emitModified() {
+        this.#saved = false
+        this.emit(new ModifiedEvent())
+    }
+
+
+    /**
+     * True if no changes have been made since last save, false otherwise.
+     * @return {boolean}
+     */
+    get saved() { return this.#saved }
 
     /**
      * Initializes module with QML elements.
@@ -92,7 +125,7 @@ class IOAPI extends Module {
         }
         Helper.write(filename, JSON.stringify(settings))
         this.#alert.show(qsTranslate("io", "Saved plot to '%1'.").arg(filename.split("/").pop()))
-        History.history.saved = true
+        this.emit(new SavedEvent())
     }
 
     /**
@@ -159,8 +192,6 @@ class IOAPI extends Module {
             if("history" in data)
                 History.unserialize(...data["history"])
 
-            // Refreshing sidebar
-            this.#rootElement.updateObjectsLists()
         } else {
             error = qsTranslate("io", "Invalid file provided.")
         }
@@ -172,7 +203,7 @@ class IOAPI extends Module {
         }
         Canvas.redraw()
         this.#alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
-        History.history.saved = true
+        this.emit(new LoadedEvent())
     }
 
 }

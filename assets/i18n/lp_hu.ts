@@ -67,22 +67,22 @@
         <translation>&amp;Visszavonás</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="85"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="84"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ismétlés</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="93"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="91"/>
         <source>&amp;Copy plot</source>
         <translation>Ábra má&amp;solása</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="100"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="98"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Beállítások</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="108"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="106"/>
         <source>&amp;Create</source>
         <translation>&amp;Létrehozás</translation>
     </message>
@@ -123,52 +123,52 @@
         <translation type="vanished">Színséma</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="128"/>
         <source>&amp;Help</source>
         <translation>&amp;Súgó</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="132"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
         <source>&amp;Source code</source>
         <translation>&amp;Forráskód</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="137"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
         <source>&amp;Report a bug</source>
         <translation>&amp;Hiba bejelentése</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="142"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="140"/>
         <source>&amp;User manual</source>
         <translation>&amp;Használati utasítás</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="145"/>
         <source>&amp;Changelog</source>
         <translation>&amp;Változásnapló</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="152"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="150"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Segítség a fordításban!</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="158"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="156"/>
         <source>&amp;Thanks</source>
         <translation>&amp;Köszönjük</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="163"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="161"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="172"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="170"/>
         <source>Save unsaved changes?</source>
         <translation>Menti a változtatásokat?</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="173"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="171"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Ez az ábra nem mentett változtatásokat tartalmaz. Ezzel az összes nem mentett adat elveszik. Folytatja?</translation>
     </message>
@@ -205,12 +205,12 @@
     <name>CustomPropertyList</name>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="196"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="214"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="216"/>
         <source>+ Create new %1</source>
         <translation>+ Új %1 létrehozása</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="314"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/CustomPropertyList.qml" line="316"/>
         <source>Pick on graph</source>
         <translation>Ábra kijelölése</translation>
     </message>
@@ -238,9 +238,8 @@
         <translation>Név</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
         <source>Label content</source>
-        <translation>Címketartalom</translation>
+        <translation type="vanished">Címketartalom</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
@@ -405,24 +404,20 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
 <context>
     <name>HistoryBrowser</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="56"/>
         <source>Filter...</source>
-        <translation>Szűrő…</translation>
+        <translation type="vanished">Szűrő…</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="99"/>
         <source>Redo &gt;</source>
-        <translation>Ismétlés &gt;</translation>
+        <translation type="vanished">Ismétlés &gt;</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="118"/>
         <source>&gt; Now</source>
-        <translation>&gt; Most</translation>
+        <translation type="vanished">&gt; Most</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/HistoryBrowser.qml" line="148"/>
         <source>&lt; Undo</source>
-        <translation>&lt; Visszavonás</translation>
+        <translation type="vanished">&lt; Visszavonás</translation>
     </message>
 </context>
 <context>
@@ -475,17 +470,17 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
         <translation type="vanished">A(z) „%1” fájl betöltve.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="232"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="218"/>
         <source>Copied plot screenshot to clipboard!</source>
         <translation>Ábra képernyőkép vágólapra másolva!</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="247"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="233"/>
         <source>&amp;Update</source>
         <translation>&amp;Frissítés</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="249"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="235"/>
         <source>&amp;Update LogarithmPlotter</source>
         <translation>A LogarithmPlotter &amp;frissítése</translation>
     </message>
@@ -613,109 +608,109 @@ Ezek a beállítások bármikor módosíthatók a „Beállítások” menüben.
     <name>Settings</name>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="23"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="157"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="155"/>
         <source>X Zoom</source>
         <translation>X-nagyítás</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="30"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="173"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="176"/>
         <source>Y Zoom</source>
         <translation>Y-nagyítás</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="37"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="189"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="197"/>
         <source>Min X</source>
         <translation>Legkisebb X</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="44"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="208"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="220"/>
         <source>Max Y</source>
         <translation>Legnagyobb Y</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="223"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="240"/>
         <source>Max X</source>
         <translation>Legnagyobb X</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="242"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="268"/>
         <source>Min Y</source>
         <translation>Legkisebb Y</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="50"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="260"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="292"/>
         <source>X Axis Step</source>
         <translation>X tengely lépésköze</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="56"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="275"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="311"/>
         <source>Y Axis Step</source>
         <translation>Y tengely lépésköze</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="62"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="289"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="327"/>
         <source>Line width</source>
         <translation>Vonalvastagság</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="69"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="304"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="344"/>
         <source>Text size (px)</source>
         <translation>Szövegméret (képpont)</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="75"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="319"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="361"/>
         <source>X Label</source>
         <translation>X címke</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="82"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="345"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="394"/>
         <source>Y Label</source>
         <translation>Y címke</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="89"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="373"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="428"/>
         <source>X Log scale</source>
         <translation>X tengely logaritmikus skálával</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="95"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="383"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="444"/>
         <source>Show X graduation</source>
         <translation>X érettségi megjelenítése</translation>
     </message>
     <message>
         <location filename="../../common/src/preferences/default.mjs" line="101"/>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="393"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="456"/>
         <source>Show Y graduation</source>
         <translation>Y érettségi megjelenítése</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="404"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="468"/>
         <source>Copy to clipboard</source>
         <translation>Másolás a vágólapra</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="413"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="477"/>
         <source>Save plot</source>
         <translation>Ábra mentése…</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="422"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="486"/>
         <source>Save plot as</source>
         <translation>Ábra mentése másként…</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="431"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Settings.qml" line="495"/>
         <source>Load plot</source>
         <translation>Ábra megnyitása…</translation>
     </message>
@@ -1160,7 +1155,7 @@ Evaluated expression: %3</source>
 Kiértékelt kifejezés: %3</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="142"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="53"/>
         <source>Error while attempting to draw %1 %2:
 %3
 
@@ -1191,7 +1186,7 @@ Evaluated expression: %3</source>
 Kiértékelt kifejezés: %3</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="139"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogGraphCanvas.qml" line="50"/>
         <source>LogarithmPlotter - Drawing error</source>
         <translation>LogarithmPlotter - Rajzolási hiba</translation>
     </message>
@@ -1304,27 +1299,27 @@ Kiértékelt kifejezés: %3</translation>
         <translation type="vanished">Előzmények</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="98"/>
+        <location filename="../../common/src/module/io.mjs" line="94"/>
         <source>Saved plot to &apos;%1&apos;.</source>
         <translation>Ábra mentve ide: „%1”.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="110"/>
+        <location filename="../../common/src/module/io.mjs" line="106"/>
         <source>Loading file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltése folyamatban van.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="154"/>
+        <location filename="../../common/src/module/io.mjs" line="150"/>
         <source>Unknown object type: %1.</source>
         <translation>Ismeretlen objektumtípus: %1.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="169"/>
+        <location filename="../../common/src/module/io.mjs" line="165"/>
         <source>Invalid file provided.</source>
         <translation>A megadott fájl érvénytelen.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="173"/>
+        <location filename="../../common/src/module/io.mjs" line="169"/>
         <source>Could not load file: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1333,7 +1328,7 @@ Kiértékelt kifejezés: %3</translation>
         <translation type="vanished">A fájl mentése nem sikerült: </translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="178"/>
+        <location filename="../../common/src/module/io.mjs" line="174"/>
         <source>Loaded file &apos;%1&apos;.</source>
         <translation>A(z) „%1” fájl betöltve.</translation>
     </message>
@@ -1730,6 +1725,11 @@ Kérjük, ellenőrizze, hogy a LaTeX telepítése helyes-e, és ha igen, jelents
     <message>
         <source>color</source>
         <translation type="vanished">Szín</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
+        <source>labelContent</source>
+        <translation>Címketartalom</translation>
     </message>
 </context>
 <context>

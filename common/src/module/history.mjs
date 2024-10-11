@@ -23,9 +23,16 @@ import { Action, Actions } from "../history/index.mjs"
 
 
 
-class UpdatedEvent extends BaseEvent {
+class ClearedEvent extends BaseEvent {
     constructor() {
-        super("updated")
+        super("cleared")
+    }
+}
+
+class AddedEvent extends BaseEvent {
+    constructor(action) {
+        super("added")
+        this.action = action
     }
 }
 
@@ -44,7 +51,7 @@ class RedoneEvent extends BaseEvent {
 }
 
 class HistoryAPI extends Module {
-    static emits = ["updated", "undone", "redone"]
+    static emits = ["cleared", "added", "undone", "redone"]
 
     #helper
 
@@ -113,7 +120,7 @@ class HistoryAPI extends Module {
         if(!this.initialized) throw new Error("Attempting clear before initialize!")
         this.undoStack = []
         this.redoStack = []
-        this.emit(new UpdatedEvent())
+        this.emit(new ClearedEvent())
     }
 
     /**
@@ -127,7 +134,7 @@ class HistoryAPI extends Module {
             this.undoStack.push(action)
             if(this.#helper.getSettingBool("reset_redo_stack"))
                 this.redoStack = []
-            this.emit(new UpdatedEvent())
+            this.emit(new AddedEvent(action))
         }
     }
 

@@ -117,7 +117,7 @@ MenuBar {
                 icon.color: sysPalette.buttonText
                 onTriggered: {
                     var newObj = Modules.Objects.createNewRegisteredObject(modelData)
-                    history.addToHistory(new JS.HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
+                    Modules.History.addToHistory(new JS.HistoryLib.CreateNewObject(newObj.name, modelData, newObj.export()))
                     objectLists.update()
                 }
             }
