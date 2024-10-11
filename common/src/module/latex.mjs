@@ -157,7 +157,7 @@ class LatexAPI extends Module {
                 if(args.length === 3)
                     return `\\frac{d${args[0].removeEnclosure().replaceAll(args[1].removeEnclosure(), "x")}}{dx}`
                 else
-                    return `\\frac{d${args[0]}}{dx}(x)`
+                    return `\\frac{d${args[0]}}{dx}(${args[1]})`
             case "integral":
                 if(args.length === 4)
                     return `\\int\\limits_{${args[0]}}^{${args[1]}}${args[2].removeEnclosure()} d${args[3].removeEnclosure()}`
