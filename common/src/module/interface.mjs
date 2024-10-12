@@ -35,9 +35,8 @@ export class Interface {
      * Throws an error if the implementation does not conform to the interface.
      * @param {typeof Interface} interface_
      * @param {object} classToCheck
-     * @return {boolean}
      */
-    static check_implementation(interface_, classToCheck) {
+    static checkImplementation(interface_, classToCheck) {
         const properties = new interface_()
         const interfaceName = interface_.name
         const toCheckName = classToCheck.constructor.name
@@ -52,7 +51,7 @@ export class Interface {
                 else if((typeof value) === "object")
                     // Test type of object.
                     if(value instanceof Interface)
-                        Interface.check_implementation(value, classToCheck[property])
+                        Interface.checkImplementation(value, classToCheck[property])
                     else if(value.prototype && !(classToCheck[property] instanceof value))
                         throw new Error(`Property '${property}' of ${interfaceName} implementation ${toCheckName} is not '${value.constructor.name}'.`)
             }
@@ -61,13 +60,12 @@ export class Interface {
 
 
 export class CanvasInterface extends Interface {
-    imageLoaders = OBJECT
     /** @type {function(string): CanvasRenderingContext2D} */
     getContext = FUNCTION
     /** @type {function(rect)} */
     markDirty = FUNCTION
-    /** @type {function(string)} */
-    loadImage = FUNCTION
+    /** @type {function(string): Promise} */
+    loadImageAsync = FUNCTION
     /** @type {function(string)} */
     isImageLoading = FUNCTION
     /** @type {function(string)} */

@@ -57,7 +57,7 @@ export class Module extends BaseEventEmitter {
             if(!options.hasOwnProperty(name))
                 throw new Error(`Option '${name}' of initialize of module ${this.#name} does not exist.`)
             if(typeof value === "function" && value.prototype instanceof Interface)
-                Interface.check_implementation(value, options[name])
+                Interface.checkImplementation(value, options[name])
             else if(typeof value !== typeof options[name])
                 throw new Error(`Option '${name}' of initialize of module ${this.#name} is not a '${value}' (${typeof options[name]}).`)
         }

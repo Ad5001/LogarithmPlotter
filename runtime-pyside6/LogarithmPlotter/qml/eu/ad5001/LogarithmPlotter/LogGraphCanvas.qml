@@ -36,7 +36,7 @@ Canvas {
     width: parent.width
     /*!
        \qmlproperty var LogGraphCanvas::imageLoaders
-       Dictionary of format {image: [callback.image data]} containing data for defered image loading.
+       Dictionary of format {image: callback} containing data for deferred image loading.
     */
     property var imageLoaders: {}
     
@@ -66,9 +66,21 @@ Canvas {
         Object.keys(imageLoaders).forEach((key) => {
             if(isImageLoaded(key)) {
                 // Calling callback
-                imageLoaders[key][0](imageLoaders[key][1])
+                imageLoaders[key]()
                 delete imageLoaders[key]
             }
+        })
+    }
+
+    /*!
+        \qmlmethod void LogGraphCanvas::loadImageAsync(string imageSource)
+        Loads an image data onto the canvas asynchronously.
+        Returns a Promise that is resolved when the image is loaded.
+    */
+    function loadImageAsync(imageSource) {
+        return new Promise((resolve) => {
+            this.loadImage(imageSource)
+            this.imageLoaders[imageSource] = resolve
         })
     }
 }

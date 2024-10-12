@@ -257,13 +257,11 @@ ApplicationWindow {
         })
         Modules.IO.on("saved loaded", (evt) => {
             // Refreshing sidebar
-            console.log(evt.name)
             updateObjectsLists()
             if(title.endsWith("*"))
                 title = title.substring(0, title.length-1)
         })
         Modules.IO.on("modified", () => {
-            console.log("modified")
             if(!title.endsWith("*"))
                 title = title+"*"
         })

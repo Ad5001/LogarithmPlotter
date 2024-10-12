@@ -522,8 +522,9 @@ class CanvasAPI extends Module {
         const onRendered = (imgData) => {
             if(!this.#canvas.isImageLoaded(imgData.source) && !this.#canvas.isImageLoading(imgData.source)) {
                 // Wait until the image is loaded to callback.
-                this.#canvas.loadImage(imgData.source)
-                this.#canvas.imageLoaders[imgData.source] = [callback, imgData]
+                this.#canvas.loadImageAsync(imgData.source).then(() => {
+                    callback(imgData)
+                })
             } else {
                 // Callback directly
                 callback(imgData)
