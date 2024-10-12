@@ -16,15 +16,12 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { BaseEventEmitter, BaseEvent } from "../../src/events.mjs"
-
 import { describe, it } from "mocha"
-import { expect, use } from "chai"
-import spies from "chai-spies"
+import { expect } from "chai"
 
-// Setting up modules
-const { spy } = use(spies)
+const { spy } = chaiPlugins
 
+import { BaseEventEmitter, BaseEvent } from "../../src/events.mjs"
 
 class MockEmitter extends BaseEventEmitter {
     static emits = ["example1", "example2"]
@@ -43,12 +40,11 @@ class MockEvent2 extends BaseEvent {
     }
 }
 
-const sandbox = spy.sandbox()
-
 describe("Lib/EventsEmitters", function() {
-
-    afterEach(() => {
-        sandbox.restore()
+    it("sends events with unique and readonly names", function() {
+        const event = new MockEvent1()
+        expect(event.name).to.equal("example1")
+        expect(() => event.name = "not").to.throw()
     })
 
     it("forwards events to all of its listeners", function() {
@@ -71,8 +67,8 @@ describe("Lib/EventsEmitters", function() {
         emitter.emit(mockEvent1)
         emitter.emit(mockEvent2)
         expect(listener).to.have.been.called.twice
-        expect(listener).to.also.have.been.called.with.exactly(mockEvent1)
-        expect(listener).to.also.have.been.called.with.exactly(mockEvent2)
+        expect(listener).to.have.been.first.called.with.exactly(mockEvent1)
+        expect(listener).to.have.been.second.called.with.exactly(mockEvent2)
     })
 
     it("is able to have listeners removed", function() {

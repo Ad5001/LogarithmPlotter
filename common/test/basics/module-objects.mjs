@@ -15,20 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import * as fs from "./mock/fs.mjs"
-import Qt from "./mock/qt.mjs"
-import { MockHelper } from "./mock/helper.mjs"
-import { MockLatex } from "./mock/latex.mjs"
 
-import { use } from "chai"
-import spies from "chai-spies"
+// Load prior tests
+import "./module-base.mjs"
+import "./utils.mjs"
 
-function setup() {
-    const { spy } = use(spies)
+import { describe, it } from "mocha"
+import { expect } from "chai"
 
-    globalThis.Helper = new MockHelper()
-    globalThis.Latex = new MockLatex()
-    globalThis.chaiPlugins = { spy }
-}
+import Objects from "../../src/module/objects.mjs"
 
-setup()
+describe("Module/Objects", function() {
+
+})

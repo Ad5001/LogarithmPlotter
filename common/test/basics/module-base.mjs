@@ -16,15 +16,15 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Load prior events
+// Load prior tests
 import "./events.mjs"
 import "./interface.mjs"
 
 import { describe, it } from "mocha"
 import { expect } from "chai"
+import { MockDialog } from "../mock/dialog.mjs"
 import { BOOLEAN, DialogInterface, FUNCTION, NUMBER, STRING } from "../../src/module/interface.mjs"
 import { Module } from "../../src/module/common.mjs"
-import { MockDialog } from "../mock/dialog.mjs"
 
 class MockModule extends Module {
     constructor() {
@@ -38,7 +38,7 @@ class MockModule extends Module {
     }
 }
 
-describe("Modules/Base", function() {
+describe("Module/Base", function() {
     it("defined a Modules global", function() {
         expect(globalThis.Modules).to.not.be.undefined
     })

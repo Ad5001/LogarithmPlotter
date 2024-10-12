@@ -49,7 +49,8 @@ class SettingsAPI extends Module {
     static emits = ["changed"]
     
     #nonConfigurable = ["saveFilename"]
-    
+
+    /** @type {Map<string, string|number|boolean>} */
     #properties = new Map([
         ["saveFilename", ""],
         ["xzoom", 100],
@@ -105,9 +106,8 @@ class SettingsAPI extends Module {
      * @param {boolean} byUser - Set to true if the user is at the origin of this change.
      */
     set(property, value, byUser) {
-        if(!this.#properties.has(property)) {
+        if(!this.#properties.has(property))
             throw new Error(`Property ${property} is not a setting.`)
-        }
         const oldValue = this.#properties.get(property)
         const propType = typeof oldValue
         if(byUser)

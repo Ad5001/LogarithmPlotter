@@ -24,6 +24,10 @@ class ObjectsAPI extends Module {
     constructor() {
         super("Objects")
 
+        /**
+         * List of object constructors.
+         * @type {Object.<string,typeof DrawableObject>}
+         */
         this.types = {}
         /**
          * List of objects for each type of object.
@@ -65,7 +69,7 @@ class ObjectsAPI extends Module {
      * @param {string} newName - Name to rename the object to.
      */
     renameObject(oldName, newName) {
-        let obj = this.currentObjectsByName[oldName]
+        const obj = this.currentObjectsByName[oldName]
         delete this.currentObjectsByName[oldName]
         this.currentObjectsByName[newName] = obj
         obj.name = newName
@@ -76,7 +80,7 @@ class ObjectsAPI extends Module {
      * @param {string} objName - Current name of the object.
      */
     deleteObject(objName) {
-        let obj = this.currentObjectsByName[objName]
+        const obj = this.currentObjectsByName[objName]
         if(obj !== undefined) {
             this.currentObjects[obj.type].splice(this.currentObjects[obj.type].indexOf(obj), 1)
             obj.delete()
