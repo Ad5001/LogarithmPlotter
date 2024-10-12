@@ -45,7 +45,7 @@ class MockEvent2 extends BaseEvent {
 
 const sandbox = spy.sandbox()
 
-describe("Events", function() {
+describe("EventsEmitters", function() {
 
     afterEach(() => {
         sandbox.restore()
@@ -71,11 +71,11 @@ describe("Events", function() {
         emitter.emit(mockEvent1)
         emitter.emit(mockEvent2)
         expect(listener).to.have.been.called.twice
-        expect(listener).to.have.been.called.with.exactly(mockEvent1)
-        expect(listener).to.have.been.called.with.exactly(mockEvent2)
+        expect(listener).to.also.have.been.called.with.exactly(mockEvent1)
+        expect(listener).to.also.have.been.called.with.exactly(mockEvent2)
     })
 
-    it("should be able to remove listeners", function() {
+    it("should be able to have listeners remvoed", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         emitter.on("example1", listener)
@@ -93,7 +93,7 @@ describe("Events", function() {
         expect(removedFromOneOfTheEvents).to.be.true
     })
 
-    it("should be able to remove listening to one event when listener listens to multiple", function() {
+    it("should be able to remove one listener listening to one event when said listener listens to multiple", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         const mockEvent1 = new MockEvent1()
@@ -104,10 +104,10 @@ describe("Events", function() {
         emitter.emit(mockEvent1)
         emitter.emit(mockEvent2)
         expect(listener).to.have.been.called.once
-        expect(listener).to.have.been.called.with.exactly(mockEvent2)
+        expect(listener).to.also.have.been.called.with.exactly(mockEvent2)
     })
 
-    it("shouldn't be able to listen/unlisten/emit inexistant events", function() {
+    it("shouldn't be able to add listen/unlisten to, or emit inexistant events", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         expect(() => emitter.on("inexistant", listener)).to.throw(Error)

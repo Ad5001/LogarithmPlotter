@@ -137,9 +137,9 @@ class LatexAPI extends Module {
      */
     parif(elem, contents) {
         elem = elem.toString()
-        if(elem[0] !== "(" && elem[elem.length - 1] !== ")" && contents.some(x => elem.indexOf(x) > 0))
+        if(elem[0] !== "(" && elem.at(-1) !== ")" && contents.some(x => elem.indexOf(x) > 0))
             return this.par(elem)
-        if(elem[0] === "(" && elem[elem.length - 1] === ")")
+        if(elem[0] === "(" && elem.at(-1) === ")")
             return elem.removeEnclosure()
         return elem
     }

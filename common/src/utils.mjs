@@ -21,14 +21,16 @@
  * Replaces latin characters with their uppercase versions.
  * @return {string}
  */
-String.prototype.toLatinUppercase = String.prototype.toLatinUppercase || function() {
+String.prototype.toLatinUppercase = function() {
     return this.replace(/[a-z]/g, function(match) {
         return match.toUpperCase()
     })
 }
 
 /**
- * Removes the 'enclosers' of a string (e.g. quotes, parentheses, brackets...)
+ * Removes the first and last character of a string
+ * Used to remove enclosing characters like quotes, parentheses, brackets...
+ * @note Does NOT check for their existence ahead of time.
  * @return {string}
  */
 String.prototype.removeEnclosure = function() {
@@ -43,126 +45,126 @@ String.prototype.removeEnclosure = function() {
  * @return {number}
  */
 Number.prototype.toDecimalPrecision = function(decimalPlaces = 0) {
-    const p = Math.pow(10, decimalPlaces);
-    const n = (this * p) * (1 + Number.EPSILON);
-    return Math.round(n) / p;
+    const p = Math.pow(10, decimalPlaces)
+    const n = (this * p) * (1 + Number.EPSILON)
+    return Math.round(n) / p
 }
 
-const powerpos = {
-    "-": "⁻",
-    "+": "⁺",
-    "=": "⁼",
-    " ": " ",
-    "(": "⁽",
-    ")": "⁾",
-    "0": "⁰",
-    "1": "¹",
-    "2": "²",
-    "3": "³",
-    "4": "⁴",
-    "5": "⁵",
-    "6": "⁶",
-    "7": "⁷",
-    "8": "⁸",
-    "9": "⁹",
-    "a": "ᵃ",
-    "b": "ᵇ",
-    "c": "ᶜ",
-    "d": "ᵈ",
-    "e": "ᵉ",
-    "f": "ᶠ",
-    "g": "ᵍ",
-    "h": "ʰ",
-    "i": "ⁱ",
-    "j": "ʲ",
-    "k": "ᵏ",
-    "l": "ˡ",
-    "m": "ᵐ",
-    "n": "ⁿ",
-    "o": "ᵒ",
-    "p": "ᵖ",
-    "r": "ʳ",
-    "s": "ˢ",
-    "t": "ᵗ",
-    "u": "ᵘ",
-    "v": "ᵛ",
-    "w": "ʷ",
-    "x": "ˣ",
-    "y": "ʸ",
-    "z": "ᶻ"
-}
+const CHARACTER_TO_POWER = new Map([
+    ["-", "⁻"],
+    ["+", "⁺"],
+    ["=", "⁼"],
+    [" ", " "],
+    ["(", "⁽"],
+    [")", "⁾"],
+    ["0", "⁰"],
+    ["1", "¹"],
+    ["2", "²"],
+    ["3", "³"],
+    ["4", "⁴"],
+    ["5", "⁵"],
+    ["6", "⁶"],
+    ["7", "⁷"],
+    ["8", "⁸"],
+    ["9", "⁹"],
+    ["a", "ᵃ"],
+    ["b", "ᵇ"],
+    ["c", "ᶜ"],
+    ["d", "ᵈ"],
+    ["e", "ᵉ"],
+    ["f", "ᶠ"],
+    ["g", "ᵍ"],
+    ["h", "ʰ"],
+    ["i", "ⁱ"],
+    ["j", "ʲ"],
+    ["k", "ᵏ"],
+    ["l", "ˡ"],
+    ["m", "ᵐ"],
+    ["n", "ⁿ"],
+    ["o", "ᵒ"],
+    ["p", "ᵖ"],
+    ["r", "ʳ"],
+    ["s", "ˢ"],
+    ["t", "ᵗ"],
+    ["u", "ᵘ"],
+    ["v", "ᵛ"],
+    ["w", "ʷ"],
+    ["x", "ˣ"],
+    ["y", "ʸ"],
+    ["z", "ᶻ"]
+])
 
-const exponents = [
-    "⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"
+const CHARACTER_TO_INDICE = new Map([
+    ["-", "₋"],
+    ["+", "₊"],
+    ["=", "₌"],
+    ["(", "₍"],
+    [")", "₎"],
+    [" ", " "],
+    ["0", "₀"],
+    ["1", "₁"],
+    ["2", "₂"],
+    ["3", "₃"],
+    ["4", "₄"],
+    ["5", "₅"],
+    ["6", "₆"],
+    ["7", "₇"],
+    ["8", "₈"],
+    ["9", "₉"],
+    ["a", "ₐ"],
+    ["e", "ₑ"],
+    ["h", "ₕ"],
+    ["i", "ᵢ"],
+    ["j", "ⱼ"],
+    ["k", "ₖ"],
+    ["l", "ₗ"],
+    ["m", "ₘ"],
+    ["n", "ₙ"],
+    ["o", "ₒ"],
+    ["p", "ₚ"],
+    ["r", "ᵣ"],
+    ["s", "ₛ"],
+    ["t", "ₜ"],
+    ["u", "ᵤ"],
+    ["v", "ᵥ"],
+    ["x", "ₓ"]
+])
+
+const EXPONENTS = [
+    "⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"
 ]
 
-const exponentReg = new RegExp('(['+exponents.join('')+']+)', 'g')
+const EXPONENTS_REG = new RegExp("([" + EXPONENTS.join("") + "]+)", "g")
 
-const indicepos = {
-    "-": "₋",
-    "+": "₊",
-    "=": "₌",
-    "(": "₍",
-    ")": "₎",
-    " ": " ",
-    "0": "₀",
-    "1": "₁",
-    "2": "₂",
-    "3": "₃",
-    "4": "₄",
-    "5": "₅",
-    "6": "₆",
-    "7": "₇",
-    "8": "₈",
-    "9": "₉",
-    "a": "ₐ",
-    "e": "ₑ",
-    "h": "ₕ",
-    "i": "ᵢ",
-    "j": "ⱼ",
-    "k": "ₖ",
-    "l": "ₗ",
-    "m": "ₘ",
-    "n": "ₙ",
-    "o": "ₒ",
-    "p": "ₚ",
-    "r": "ᵣ",
-    "s": "ₛ",
-    "t": "ₜ",
-    "u": "ᵤ",
-    "v": "ᵥ",
-    "x": "ₓ",
-}
-// Put a text in sup position
+/**
+ * Put a text in sup position
+ * @param {string} text
+ * @return {string}
+ */
 export function textsup(text) {
     let ret = ""
     text = text.toString()
-    for (let i = 0; i < text.length; i++) {
-        if(Object.keys(powerpos).indexOf(text[i]) >= 0) {
-            ret += powerpos[text[i]]
-        } else {
-            ret += text[i]
-        }
-    }
+    for(let letter of text)
+        ret += CHARACTER_TO_POWER.has(letter) ? CHARACTER_TO_POWER.get(letter) : letter
     return ret
 }
 
-// Put a text in sub position
+/**
+ * Put a text in sub position
+ * @param {string} text
+ * @return {string}
+ */
 export function textsub(text) {
     let ret = ""
     text = text.toString()
-    for (let i = 0; i < text.length; i++) {
-        if(Object.keys(indicepos).indexOf(text[i]) >= 0) {
-            ret += indicepos[text[i]]
-        } else {
-            ret += text[i]
-        }
-    }
+    for(let letter of text)
+        ret += CHARACTER_TO_INDICE.has(letter) ? CHARACTER_TO_INDICE.get(letter) : letter
     return ret
 }
 
 /**
  * Simplifies (mathematically) a mathematical expression.
+ * @deprecated
  * @param {string} str - Expression to parse
  * @returns {string}
  */
@@ -185,37 +187,43 @@ export function simplifyExpression(str) {
                 // n1 & n3 are multiplied, opeM is the main operation (- or +).
                 // Putting all n in form of number
                 //n2 = n2 == undefined ? 1 : parseFloat(n)
-                n1 = m1 === undefined ? 1 : eval(m1 + '1')
-                n2 = m2 === undefined ? 1 : eval('1' + m2)
-                n3 = m3 === undefined ? 1 : eval(m3 + '1')
-                n4 = m4 === undefined ? 1 : eval('1' + m4)
-                //let [n1, n2, n3, n4] = [n1, n2, n3, n4].map(n => n == undefined ? 1 : parseFloat(n))
-                // Falling back to * in case it does not exist (the corresponding n would be 1)
-                [ope2, ope4] = [ope2, ope4].map(ope => ope === '/' ? '/' : '*')
-                let coeff1 = n1*n2
-                let coeff2 = n3*n4
-                let coefficient = coeff1+coeff2-(opeM === '-' ? 2*coeff2 : 0)
-                
+                n1 = m1 === undefined ? 1 : eval(m1 + "1")
+                n2 = m2 === undefined ? 1 : eval("1" + m2)
+                n3 = m3 === undefined ? 1 : eval(m3 + "1")
+                n4 = m4 === undefined ? 1 : eval("1" + m4)
+                    //let [n1, n2, n3, n4] = [n1, n2, n3, n4].map(n => n == undefined ? 1 : parseFloat(n))
+                    // Falling back to * in case it does not exist (the corresponding n would be 1)
+                    [ope2, ope4] = [ope2, ope4].map(ope => ope === "/" ? "/" : "*")
+                let coeff1 = n1 * n2
+                let coeff2 = n3 * n4
+                let coefficient = coeff1 + coeff2 - (opeM === "-" ? 2 * coeff2 : 0)
+
                 return `${coefficient} * π`
             }
         ],
         [ // Removing parenthesis when content is only added from both sides.
             /(^|[+-] |\()\(([^)(]+)\)($| [+-]|\))/g,
-            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+            function(match, b4, middle, after) {
+                return `${b4}${middle}${after}`
+            }
         ],
         [ // Removing parenthesis when content is only multiplied.
             /(^|[*\/] |\()\(([^)(+-]+)\)($| [*\/+-]|\))/g,
-            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+            function(match, b4, middle, after) {
+                return `${b4}${middle}${after}`
+            }
         ],
         [ // Removing parenthesis when content is only multiplied.
             /(^|[*\/+-] |\()\(([^)(+-]+)\)($| [*\/]|\))/g,
-            function(match, b4, middle, after) {return `${b4}${middle}${after}`}
+            function(match, b4, middle, after) {
+                return `${b4}${middle}${after}`
+            }
         ],
         [// Simplification additions/subtractions.
             /(^|[^*\/] |\()([-.\d]+) [+-] (\([^)(]+\)|[^)(]+) [+-] ([-.\d]+)($| [^*\/]|\))/g,
             function(match, b4, n1, op1, middle, op2, n2, after) {
                 let total
-                if(op2 === '+') {
+                if(op2 === "+") {
                     total = parseFloat(n1) + parseFloat(n2)
                 } else {
                     total = parseFloat(n1) - parseFloat(n2)
@@ -224,14 +232,14 @@ export function simplifyExpression(str) {
             }
         ],
         [// Simplification multiplications/divisions.
-            /([-.\d]+) [*\/] (\([^)(]+\)|[^)(+-]+) [*\/] ([-.\d]+)/g, 
+            /([-.\d]+) [*\/] (\([^)(]+\)|[^)(+-]+) [*\/] ([-.\d]+)/g,
             function(match, n1, op1, middle, op2, n2) {
-                if(parseInt(n1) === n1 && parseInt(n2) === n2 && op2 === '/' &&
-                (parseInt(n1) / parseInt(n2)) % 1 !== 0) {
+                if(parseInt(n1) === n1 && parseInt(n2) === n2 && op2 === "/" &&
+                    (parseInt(n1) / parseInt(n2)) % 1 !== 0) {
                     // Non int result for int division.
                     return `(${n1} / ${n2}) ${op1} ${middle}`
                 } else {
-                    if(op2 === '*') {
+                    if(op2 === "*") {
                         return `${parseFloat(n1) * parseFloat(n2)} ${op1} ${middle}`
                     } else {
                         return `${parseFloat(n1) / parseFloat(n2)} ${op1} ${middle}`
@@ -245,17 +253,17 @@ export function simplifyExpression(str) {
                 let str = middle
                 // Replace all groups
                 while(/\([^)(]+\)/g.test(str))
-                    str = str.replace(/\([^)(]+\)/g, '')
+                    str = str.replace(/\([^)(]+\)/g, "")
                 // There shouldn't be any more parenthesis
                 // If there is, that means the 2 parenthesis are needed.
-                if(!str.includes(')') && !str.includes('(')) {
+                if(!str.includes(")") && !str.includes("(")) {
                     return middle
                 } else {
                     return `(${middle})`
                 }
-                
+
             }
-        ],
+        ]
         // Simple simplifications
         // [/(\s|^|\()0(\.0+)? \* (\([^)(]+\))/g, '$10'],
         // [/(\s|^|\()0(\.0+)? \* ([^)(+-]+)/g, '$10'],
@@ -268,7 +276,7 @@ export function simplifyExpression(str) {
         // [/(^| |\() /g, '$1'],
         // [/ ($|\))/g, '$1'],
     ]
-    
+
     // Replacements
     let found
     do {
@@ -286,24 +294,35 @@ export function simplifyExpression(str) {
 /**
  * Transforms a mathematical expression to make it readable by humans.
  * NOTE: Will break parsing of expression.
+ * @deprecated
  * @param {string} str - Expression to parse.
  * @returns {string}
  */
 export function makeExpressionReadable(str) {
     let replacements = [
         // letiables
-        [/pi/g, 'π'],
-        [/Infinity/g, '∞'],
-        [/inf/g, '∞'],
+        [/pi/g, "π"],
+        [/Infinity/g, "∞"],
+        [/inf/g, "∞"],
         // Other
-        [/ \* /g, '×'],
-        [/ \^ /g, '^'],
-        [/\^\(([\d\w+-]+)\)/g, function(match, p1) { return textsup(p1) }],
-        [/\^([\d\w+-]+)/g, function(match, p1) { return textsup(p1) }],
-        [/_\(([\d\w+-]+)\)/g, function(match, p1) { return textsub(p1) }],
-        [/_([\d\w+-]+)/g, function(match, p1) { return textsub(p1) }],
-        [/\[([^\[\]]+)\]/g, function(match, p1) { return textsub(p1) }],
-        [/(\d|\))×/g, '$1'],
+        [/ \* /g, "×"],
+        [/ \^ /g, "^"],
+        [/\^\(([\d\w+-]+)\)/g, function(match, p1) {
+            return textsup(p1)
+        }],
+        [/\^([\d\w+-]+)/g, function(match, p1) {
+            return textsup(p1)
+        }],
+        [/_\(([\d\w+-]+)\)/g, function(match, p1) {
+            return textsub(p1)
+        }],
+        [/_([\d\w+-]+)/g, function(match, p1) {
+            return textsub(p1)
+        }],
+        [/\[([^\[\]]+)\]/g, function(match, p1) {
+            return textsub(p1)
+        }],
+        [/(\d|\))×/g, "$1"],
         [/integral\((.+),\s?(.+),\s?["'](.+)["'],\s?["'](.+)["']\)/g, function(match, a, b, p1, body, p2, p3, by, p4) {
             if(a.length < b.length) {
                 return `∫${textsub(a)}${textsup(b)} ${body} d${by}`
@@ -312,10 +331,10 @@ export function makeExpressionReadable(str) {
             }
         }],
         [/derivative\(?["'](.+)["'], ?["'](.+)["'], ?(.+)\)?/g, function(match, p1, body, p2, p3, by, p4, x) {
-            return `d(${body.replace(new RegExp(by, 'g'), 'x')})/dx`
+            return `d(${body.replace(new RegExp(by, "g"), "x")})/dx`
         }]
     ]
-    
+
     // str = simplifyExpression(str)
     // Replacements
     for(let replacement of replacements)
@@ -323,6 +342,48 @@ export function makeExpressionReadable(str) {
             str = str.replace(replacement[0], replacement[1])
     return str
 }
+
+/** @type {[RegExp, string][]} */
+const replacements = [
+    // Greek letters
+    [/(\W|^)al(pha)?(\W|$)/g, "$1α$3"],
+    [/(\W|^)be(ta)?(\W|$)/g, "$1β$3"],
+    [/(\W|^)ga(mma)?(\W|$)/g, "$1γ$3"],
+    [/(\W|^)de(lta)?(\W|$)/g, "$1δ$3"],
+    [/(\W|^)ep(silon)?(\W|$)/g, "$1ε$3"],
+    [/(\W|^)ze(ta)?(\W|$)/g, "$1ζ$3"],
+    [/(\W|^)et(a)?(\W|$)/g, "$1η$3"],
+    [/(\W|^)th(eta)?(\W|$)/g, "$1θ$3"],
+    [/(\W|^)io(ta)?(\W|$)/g, "$1ι$3"],
+    [/(\W|^)ka(ppa)?(\W|$)/g, "$1κ$3"],
+    [/(\W|^)la(mbda)?(\W|$)/g, "$1λ$3"],
+    [/(\W|^)mu(\W|$)/g, "$1μ$2"],
+    [/(\W|^)nu(\W|$)/g, "$1ν$2"],
+    [/(\W|^)xi(\W|$)/g, "$1ξ$2"],
+    [/(\W|^)rh(o)?(\W|$)/g, "$1ρ$3"],
+    [/(\W|^)si(gma)?(\W|$)/g, "$1σ$3"],
+    [/(\W|^)ta(u)?(\W|$)/g, "$1τ$3"],
+    [/(\W|^)up(silon)?(\W|$)/g, "$1υ$3"],
+    [/(\W|^)ph(i)?(\W|$)/g, "$1φ$3"],
+    [/(\W|^)ch(i)?(\W|$)/g, "$1χ$3"],
+    [/(\W|^)ps(i)?(\W|$)/g, "$1ψ$3"],
+    [/(\W|^)om(ega)?(\W|$)/g, "$1ω$3"],
+    // Capital greek letters
+    [/(\W|^)gga(mma)?(\W|$)/g, "$1Γ$3"],
+    [/(\W|^)gde(lta)?(\W|$)/g, "$1Δ$3"],
+    [/(\W|^)gth(eta)?(\W|$)/g, "$1Θ$3"],
+    [/(\W|^)gla(mbda)?(\W|$)/g, "$1Λ$3"],
+    [/(\W|^)gxi(\W|$)/g, "$1Ξ$2"],
+    [/(\W|^)gpi(\W|$)/g, "$1Π$2"],
+    [/(\W|^)gsi(gma)?(\W|$)/g, "$1Σ$3"],
+    [/(\W|^)gph(i)?(\W|$)/g, "$1Φ$3"],
+    [/(\W|^)gps(i)?(\W|$)/g, "$1Ψ$3"],
+    [/(\W|^)gom(ega)?(\W|$)/g, "$1Ω$3"],
+    // Array elements
+    [/\[([^\]\[]+)\]/g, function(match, p1) {
+        return textsub(p1)
+    }]
+]
 
 /**
  * Parses a variable name to make it readable by humans.
@@ -332,65 +393,24 @@ export function makeExpressionReadable(str) {
  * @returns {string} - The parsed name
  */
 export function parseName(str, removeUnallowed = true) {
-    let replacements = [
-        // Greek letters
-        [/([^a-z]|^)al(pha)?([^a-z]|$)/g, '$1α$3'],
-        [/([^a-z]|^)be(ta)?([^a-z]|$)/g, '$1β$3'],
-        [/([^a-z]|^)ga(mma)?([^a-z]|$)/g, '$1γ$3'],
-        [/([^a-z]|^)de(lta)?([^a-z]|$)/g, '$1δ$3'],
-        [/([^a-z]|^)ep(silon)?([^a-z]|$)/g, '$1ε$3'],
-        [/([^a-z]|^)ze(ta)?([^a-z]|$)/g, '$1ζ$3'],
-        [/([^a-z]|^)et(a)?([^a-z]|$)/g, '$1η$3'],
-        [/([^a-z]|^)th(eta)?([^a-z]|$)/g, '$1θ$3'],
-        [/([^a-z]|^)io(ta)?([^a-z]|$)/g, '$1ι$3'],
-        [/([^a-z]|^)ka(ppa)([^a-z]|$)?/g, '$1κ$3'],
-        [/([^a-z]|^)la(mbda)?([^a-z]|$)/g, '$1λ$3'],
-        [/([^a-z]|^)mu([^a-z]|$)/g, '$1μ$2'],
-        [/([^a-z]|^)nu([^a-z]|$)/g, '$1ν$2'],
-        [/([^a-z]|^)xi([^a-z]|$)/g, '$1ξ$2'],
-        [/([^a-z]|^)rh(o)?([^a-z]|$)/g, '$1ρ$3'],
-        [/([^a-z]|^)si(gma)?([^a-z]|$)/g, '$1σ$3'],
-        [/([^a-z]|^)ta(u)?([^a-z]|$)/g, '$1τ$3'],
-        [/([^a-z]|^)up(silon)?([^a-z]|$)/g, '$1υ$3'],
-        [/([^a-z]|^)ph(i)?([^a-z]|$)/g, '$1φ$3'],
-        [/([^a-z]|^)ch(i)?([^a-z]|$)/g, '$1χ$3'],
-        [/([^a-z]|^)ps(i)?([^a-z]|$)/g, '$1ψ$3'],
-        [/([^a-z]|^)om(ega)?([^a-z]|$)/g, '$1ω$3'],
-        // Capital greek letters
-        [/([^a-z]|^)gga(mma)?([^a-z]|$)/g, '$1Γ$3'],
-        [/([^a-z]|^)gde(lta)?([^a-z]|$)/g, '$1Δ$3'],
-        [/([^a-z]|^)gth(eta)?([^a-z]|$)/g, '$1Θ$3'],
-        [/([^a-z]|^)gla(mbda)?([^a-z]|$)/g, '$1Λ$3'],
-        [/([^a-z]|^)gxi([^a-z]|$)/g, '$1Ξ$2'],
-        [/([^a-z]|^)gpi([^a-z]|$)/g, '$1Π$2'],
-        [/([^a-z]|^)gsi(gma)([^a-z]|$)?/g, '$1Σ$3'],
-        [/([^a-z]|^)gph(i)?([^a-z]|$)/g, '$1Φ$3'],
-        [/([^a-z]|^)gps(i)?([^a-z]|$)/g, '$1Ψ$3'],
-        [/([^a-z]|^)gom(ega)?([^a-z]|$)/g, '$1Ω$3'],
-        // Underscores
-        // [/_\(([^_]+)\)/g, function(match, p1) { return textsub(p1) }],
-        // [/_([^" ]+)/g, function(match, p1) { return textsub(p1) }],
-        // Array elements
-        [/\[([^\]\[]+)\]/g, function(match, p1) { return textsub(p1) }],
-        // Removing
-        [/[xπℝℕ\\∪∩\]\[ ()^/÷*×+=\d-]/g , ''],
-    ]
-    if(!removeUnallowed) replacements.pop()
-    // Replacements
-    for(let replacement of replacements)
+    for(const replacement of replacements)
         str = str.replace(replacement[0], replacement[1])
+    if(removeUnallowed)
+        str = str.replace(/[xnπℝℕ\\∪∩\]\[ ()^/÷*×+=\d¹²³⁴⁵⁶⁷⁸⁹⁰-]/g, "")
+
     return str
 }
 
 /**
  * Transforms camel case strings to a space separated one.
  *
+ * @deprecated
  * @param {string} label - Camel case to parse
  * @returns {string} Parsed label.
  */
 export function camelCase2readable(label) {
     let parsed = parseName(label, false)
-    return parsed.charAt(0).toLatinUppercase() + parsed.slice(1).replace(/([A-Z])/g," $1")
+    return parsed.charAt(0).toLatinUppercase() + parsed.slice(1).replace(/([A-Z])/g, " $1")
 }
 
 /**
@@ -398,12 +418,12 @@ export function camelCase2readable(label) {
  * @returns {string}
  */
 export function getRandomColor() {
-    let clrs = '0123456789ABCDEF';
-    let color = '#';
+    let clrs = "0123456789ABCDEF"
+    let color = "#"
     for(let i = 0; i < 6; i++) {
-        color += clrs[Math.floor(Math.random() * (16-5*(i%2===0)))];
+        color += clrs[Math.floor(Math.random() * (16 - 5 * (i % 2 === 0)))]
     }
-    return color;
+    return color
 }
 
 /**
@@ -412,9 +432,8 @@ export function getRandomColor() {
  * @returns {string}
  */
 export function escapeHTML(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') ;
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 }
-
 
 
 /**
@@ -423,5 +442,5 @@ export function escapeHTML(str) {
  * @return {string} The parsed expression
  */
 export function exponentsToExpression(expression) {
-    return expression.replace(exponentReg, (m, exp) => '^' + exp.split('').map((x) => exponents.indexOf(x)).join(''))
+    return expression.replace(EXPONENTS_REG, (m, exp) => "^" + exp.split("").map((x) => EXPONENTS.indexOf(x)).join(""))
 }
