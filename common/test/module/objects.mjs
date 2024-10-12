@@ -17,14 +17,14 @@
  */
 
 // Load prior tests
-import "./module-base.mjs"
-import "./utils.mjs"
+import "./base.mjs"
+import "../basics/utils.mjs"
 
 import { describe, it } from "mocha"
 import { expect } from "chai"
 
-import Objects from "../../src/module/objects.mjs"
-
-describe("Module/Objects", function() {
-
-})
+// import Objects from "../../src/module/objects.mjs"
+//
+// describe("Module/Objects", function() {
+//
+// })

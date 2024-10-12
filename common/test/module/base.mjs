@@ -17,8 +17,8 @@
  */
 
 // Load prior tests
-import "./events.mjs"
-import "./interface.mjs"
+import "../basics/events.mjs"
+import "../basics/interface.mjs"
 
 import { describe, it } from "mocha"
 import { expect } from "chai"

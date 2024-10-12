@@ -17,8 +17,8 @@
  */
 
 // Load prior tests
-import "./module-base.mjs"
-import "./utils.mjs"
+import "./base.mjs"
+import "../basics/utils.mjs"
 
 import { describe, it } from "mocha"
 import { expect } from "chai"

@@ -472,7 +472,7 @@ export class TokenStream {
                 this.current = this.newToken(TOP, "==")
                 this.pos++
             } else {
-                this.current = this.newToken(TOP, c)
+                return false
             }
         } else if(c === "!") {
             if(this.expression.charAt(this.pos + 1) === "=") {

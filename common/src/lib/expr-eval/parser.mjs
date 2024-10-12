@@ -47,9 +47,7 @@ const optionNameMap = {
     "not": "logical",
     "?": "conditional",
     ":": "conditional",
-    //'=': 'assignment', // Disable assignment
     "[": "array"
-    //'()=': 'fndef' // Diable function definition
 }
 
 export class Parser {
@@ -109,7 +107,6 @@ export class Parser {
             and: Polyfill.andOperator,
             or: Polyfill.orOperator,
             "in": Polyfill.inOperator,
-            "=": Polyfill.setVar,
             "[": Polyfill.arrayIndex
         }
 

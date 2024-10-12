@@ -84,11 +84,11 @@ class ExprParserAPI extends Module {
         return this.#parser.parse(expression)
     }
 
-    integral(a, b, ...args) {
+    integral(a = null, b = null, ...args) {
         let usage1 = qsTranslate("usage", "integral(<from: number>, <to: number>, <f: ExecutableObject>)")
         let usage2 = qsTranslate("usage", "integral(<from: number>, <to: number>, <f: string>, <variable: string>)")
         let f = this.parseArgumentsForFunction(args, usage1, usage2)
-        if(a == null || b == null)
+        if(typeof a !== "number" || typeof b !== "number")
             throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
 
         // https://en.wikipedia.org/wiki/Simpson%27s_rule
@@ -101,10 +101,10 @@ class ExprParserAPI extends Module {
         let usage2 = qsTranslate("usage", "derivative(<f: string>, <variable: string>, <x: number>)")
         let x = args.pop()
         let f = this.parseArgumentsForFunction(args, usage1, usage2)
-        if(x == null)
+        if(typeof x !== "number")
             throw EvalError(qsTranslate("usage", "Usage:\n%1\n%2").arg(usage1).arg(usage2))
 
-        let derivative_precision = x / 10
+        let derivative_precision = 1e-8
         return (f(x + derivative_precision / 2) - f(x - derivative_precision / 2)) / derivative_precision
     }
 }

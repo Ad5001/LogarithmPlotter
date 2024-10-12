@@ -171,9 +171,6 @@ function evaluate(tokens, expr, values) {
                 nstack.push(n1 ? !!evaluate(n2, expr, values) : false)
             } else if(item.value === "or") {
                 nstack.push(n1 ? true : !!evaluate(n2, expr, values))
-            } else if(item.value === "=") {
-                f = expr.binaryOps[item.value]
-                nstack.push(f(n1, evaluate(n2, expr, values), values))
             } else {
                 f = expr.binaryOps[item.value]
                 nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values)))
