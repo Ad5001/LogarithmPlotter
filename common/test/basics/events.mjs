@@ -45,13 +45,13 @@ class MockEvent2 extends BaseEvent {
 
 const sandbox = spy.sandbox()
 
-describe("EventsEmitters", function() {
+describe("Lib/EventsEmitters", function() {
 
     afterEach(() => {
         sandbox.restore()
     })
 
-    it("should forward events to all of its listeners", function() {
+    it("forwards events to all of its listeners", function() {
         const emitter = new MockEmitter()
         const listener1 = spy()
         const listener2 = spy()
@@ -62,7 +62,7 @@ describe("EventsEmitters", function() {
         expect(listener2).to.have.been.called.once
     })
 
-    it("should forward multiple events to a singular listener", function() {
+    it("forwards multiple events to a singular listener", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         const mockEvent1 = new MockEvent1()
@@ -75,7 +75,7 @@ describe("EventsEmitters", function() {
         expect(listener).to.also.have.been.called.with.exactly(mockEvent2)
     })
 
-    it("should be able to have listeners remvoed", function() {
+    it("is able to have listeners removed", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         emitter.on("example1", listener)
@@ -93,7 +93,7 @@ describe("EventsEmitters", function() {
         expect(removedFromOneOfTheEvents).to.be.true
     })
 
-    it("should be able to remove one listener listening to one event when said listener listens to multiple", function() {
+    it("is able to have one listener's listening to a single event removed when said listener listens to multiple", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         const mockEvent1 = new MockEvent1()
@@ -107,7 +107,7 @@ describe("EventsEmitters", function() {
         expect(listener).to.also.have.been.called.with.exactly(mockEvent2)
     })
 
-    it("shouldn't be able to add listen/unlisten to, or emit inexistant events", function() {
+    it("is not able to emit or add/remove listeners for inexistant events", function() {
         const emitter = new MockEmitter()
         const listener = spy()
         expect(() => emitter.on("inexistant", listener)).to.throw(Error)
@@ -115,7 +115,7 @@ describe("EventsEmitters", function() {
         expect(() => emitter.emit(new BaseEvent("inexistant"))).to.throw(Error)
     })
 
-    it("shouldn't be able to emit non-events", function() {
+    it("isn't able to emit non-events", function() {
         const emitter = new MockEmitter()
         expect(() => emitter.emit("not-an-event")).to.throw(Error)
     })

@@ -30,6 +30,8 @@ export class Module extends BaseEventEmitter {
     #name
     /** @type {Object.<string, (Interface|string|number|boolean)>} */
     #initializationParameters
+    /** @type {boolean} */
+    #initialized = false
 
     /**
      *
@@ -41,8 +43,14 @@ export class Module extends BaseEventEmitter {
         console.log(`Loading module ${name}...`)
         this.#name = name
         this.#initializationParameters = initializationParameters
-        this.initialized = false
+    }
 
+    get name() {
+        return this.#name;
+    }
+
+    get initialized() {
+        return this.#initialized
     }
 
     /**
@@ -50,7 +58,7 @@ export class Module extends BaseEventEmitter {
      * @param {Object.<string, any>} options
      */
     initialize(options) {
-        if(this.initialized)
+        if(this.#initialized)
             throw new Error(`Cannot reinitialize module ${this.#name}.`)
         console.log(`Initializing ${this.#name}...`)
         for(const [name, value] of Object.entries(this.#initializationParameters)) {
@@ -61,6 +69,6 @@ export class Module extends BaseEventEmitter {
             else if(typeof value !== typeof options[name])
                 throw new Error(`Option '${name}' of initialize of module ${this.#name} is not a '${value}' (${typeof options[name]}).`)
         }
-        this.initialized = true
+        this.#initialized = true
     }
 }

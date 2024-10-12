@@ -33,9 +33,16 @@ import { MockDialog } from "../mock/dialog.mjs"
 import { MockRootElement } from "../mock/root.mjs"
 import { MockCanvas } from "../mock/canvas.mjs"
 
-describe("Interface", function() {
+describe("Interfaces", function() {
+    describe("#interface methods", function() {
+        it("throws an error when called directly", function() {
+            const obj = new CanvasInterface()
+            expect(() => obj.markDirty()).to.throw(Error)
+        })
+    })
+
     describe("#checkImplementation", function() {
-        it("should validate the implementation of mocks", function() {
+        it("validates the implementation of mocks", function() {
             const checkMockLatex = () => Interface.checkImplementation(LatexInterface, new MockLatex())
             const checkMockHelper = () => Interface.checkImplementation(HelperInterface, new MockHelper())
             const checkMockDialog = () => Interface.checkImplementation(DialogInterface, new MockDialog())
