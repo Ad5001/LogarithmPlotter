@@ -210,9 +210,8 @@ export function gamma(n) {
 }
 
 export function stringOrArrayLength(s) {
-    if(Array.isArray(s)) {
+    if(Array.isArray(s))
         return s.length
-    }
     return String(s).length
 }
 
@@ -294,58 +293,6 @@ export function min(array) {
     } else {
         throw new EvalError(qsTranslate("error", "Function %1 must have at least one argument.").arg("min"))
     }
-}
-
-export function arrayMap(f, a) {
-    if(typeof f !== "function") {
-        throw new EvalError(qsTranslate("error", "First argument to map is not a function."))
-    }
-    if(!Array.isArray(a)) {
-        throw new EvalError(qsTranslate("error", "Second argument to map is not an array."))
-    }
-    return a.map(function(x, i) {
-        return f(x, i)
-    })
-}
-
-export function arrayFold(f, init, a) {
-    if(typeof f !== "function") {
-        throw new EvalError(qsTranslate("error", "First argument to fold is not a function."))
-    }
-    if(!Array.isArray(a)) {
-        throw new EvalError(qsTranslate("error", "Second argument to fold is not an array."))
-    }
-    return a.reduce(function(acc, x, i) {
-        return f(acc, x, i)
-    }, init)
-}
-
-export function arrayFilter(f, a) {
-    if(typeof f !== "function") {
-        throw new EvalError(qsTranslate("error", "First argument to filter is not a function."))
-    }
-    if(!Array.isArray(a)) {
-        throw new EvalError(qsTranslate("error", "Second argument to filter is not an array."))
-    }
-    return a.filter(function(x, i) {
-        return f(x, i)
-    })
-}
-
-export function stringOrArrayIndexOf(target, s) {
-    if(!(Array.isArray(s) || typeof s === "string")) {
-        throw new Error(qsTranslate("error", "Second argument to indexOf is not a string or array."))
-    }
-
-    return s.indexOf(target)
-}
-
-export function arrayJoin(sep, a) {
-    if(!Array.isArray(a)) {
-        throw new Error(qsTranslate("error", "Second argument to join is not an array."))
-    }
-
-    return a.join(sep)
 }
 
 export function sign(x) {

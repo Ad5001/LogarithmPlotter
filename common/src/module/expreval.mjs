@@ -19,7 +19,7 @@
 import { Module } from "./common.mjs"
 import { Parser } from "../lib/expr-eval/parser.mjs"
 
-const evalVariables = {
+const EVAL_VARIABLES = {
     // Variables not provided by expr-eval.js, needs to be provided manually
     "pi": Math.PI,
     "PI": Math.PI,
@@ -42,7 +42,7 @@ class ExprParserAPI extends Module {
         this.currentVars = {}
         this.#parser = new Parser()
 
-        this.#parser.consts = Object.assign({}, this.#parser.consts, evalVariables)
+        this.#parser.consts = Object.assign({}, this.#parser.consts, EVAL_VARIABLES)
 
         this.#parser.functions.integral = this.integral.bind(this)
         this.#parser.functions.derivative = this.derivative.bind(this)

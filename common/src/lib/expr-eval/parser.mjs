@@ -120,18 +120,13 @@ export class Parser {
             min: Polyfill.min,
             max: Polyfill.max,
             hypot: Math.hypot || Polyfill.hypot,
-            pyt: Math.hypot || Polyfill.hypot, // backward compat
+            pyt: Math.hypot || Polyfill.hypot,
             pow: Math.pow,
             atan2: Math.atan2,
             "if": Polyfill.condition,
             gamma: Polyfill.gamma,
             "Γ": Polyfill.gamma,
             roundTo: Polyfill.roundTo,
-            map: Polyfill.arrayMap,
-            fold: Polyfill.arrayFold,
-            filter: Polyfill.arrayFilter,
-            indexOf: Polyfill.stringOrArrayIndexOf,
-            join: Polyfill.arrayJoin
         }
 
         // These constants will automatically be replaced the MOMENT they are parsed.
@@ -154,10 +149,6 @@ export class Parser {
         parserState.expect(TEOF, QT_TRANSLATE_NOOP("error", "EOF"))
 
         return new ExprEvalExpression(instr, this)
-    }
-
-    evaluate(expr, variables) {
-        return this.parse(expr).evaluate(variables)
     }
 
     isOperatorEnabled(op) {

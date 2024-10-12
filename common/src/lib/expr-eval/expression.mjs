@@ -111,7 +111,7 @@ function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
  * In the given instructions, replaces variable by expr.
  * @param {Instruction[]} tokens
  * @param {string} variable
- * @param {number} expr
+ * @param {ExprEvalExpression} expr
  * @return {Instruction[]}
  */
 function substitute(tokens, variable, expr) {
@@ -485,18 +485,6 @@ export class ExprEvalExpression {
     evaluate(values) {
         values = Object.assign({}, values, this.parser.consts)
         return evaluate(this.tokens, this, values)
-    }
-
-    /**
-     * Returns a list of symbols (string of characters) in the expressions.
-     * Can be functions, constants, or variables.
-     * @returns {string[]}
-     */
-    symbols(options) {
-        options = options || {}
-        const vars = []
-        getSymbols(this.tokens, vars, options)
-        return vars
     }
 
     toString() {
