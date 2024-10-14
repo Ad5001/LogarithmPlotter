@@ -115,7 +115,8 @@ class SettingsAPI extends Module {
         if(propType !== typeof value)
             throw new Error(`Value of ${property} must be a ${propType} (${typeof value} provided).`)
         this.#properties.set(property, value)
-        this.emit(new ChangedEvent(property, oldValue, value, byUser === true))
+        const evt = new ChangedEvent(property, oldValue, value, byUser === true)
+        this.emit(evt)
     }
     
     /**

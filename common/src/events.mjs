@@ -23,17 +23,17 @@
 
 
 export class BaseEvent {
-    #name
+    ___name = ""
 
     /**
      * @property {string} name - Name of the event.
      */
     constructor(name) {
-        this.#name = name
+        this.___name = name
     }
 
     get name() {
-        return this.#name
+        return this.___name
     }
 }
 
