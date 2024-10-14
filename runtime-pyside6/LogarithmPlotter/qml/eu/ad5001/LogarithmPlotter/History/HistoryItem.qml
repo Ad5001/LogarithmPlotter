@@ -16,9 +16,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls
 import QtQuick
-import Qt5Compat.GraphicalEffects
+import QtQuick.Controls
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 
@@ -82,12 +81,11 @@ Button {
     height: hidden ? 8 : Math.max(actionHeight, label.height + 15)
     
     
-    LinearGradient {
+    Rectangle {
         anchors.fill: parent
         //opacity: hidden ? 0.6 : 1
-        start: Qt.point(0, 0)
-        end: Qt.point(parent.width, 0)
         gradient: Gradient {
+            orientation: Gradient.Horizontal
             GradientStop { position: 0.1; color: "transparent" }
             GradientStop { position: 1.5; color: clr }
         }

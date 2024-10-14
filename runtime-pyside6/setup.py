@@ -122,7 +122,7 @@ if sys.platform == 'linux':
     #         os.remove(os.environ["PREFIX"] + '/icons/hicolor/scalable/apps/logplotter.svg')
 
 setuptools.setup(
-    install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide6-Essentials", "PySide6-Addons"]),
+    install_requires=([] if "FLATPAK_INSTALL" in os.environ else ["PySide6-Essentials"]),
     python_requires='>=3.9',
 
     name='logarithmplotter',
