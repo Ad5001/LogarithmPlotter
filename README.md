@@ -68,7 +68,13 @@ To run LogarithmPlotter's tests, follow these steps:
 
 - Python
     - Install python3 and [poetry](https://python-poetry.org/)
-    - Run `poetry install --with test`
+    - Create and activate virtual env (recommended)
+    - Go into `runtime-pyside6` and run `poetry install --with test`
+- ECMAScript
+    - Install node with npm
+    - Go into `common` and run `npm install -D`
+
+Finally, to actually run the tests:
     - Run `scripts/run-tests.sh`
 
 ## Legal notice

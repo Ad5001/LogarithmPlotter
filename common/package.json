@@ -2,7 +2,7 @@
   "name": "logarithmplotter",
   "version": "0.6.0",
   "description": "2D plotter software to make Bode plots, sequences and distribution functions.",
-  "main": "LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/autoload.mjs",
+  "main": "src/index.mjs",
   "scripts": {
     "build": "rollup --config rollup.config.mjs",
     "test": "c8 mocha test/**/*.mjs"

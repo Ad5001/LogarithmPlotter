@@ -26,7 +26,18 @@ mkdir assets
 cp -r ../../assets/{native,*.svg} assets/
 cp ../../README.md .
 
+# Build for noble
 python3 setup.py --remove-git-version --command-packages=stdeb.command sdist_dsc \
     --package logarithmplotter --copyright-file assets/native/linux/debian/copyright \
-    --suite noble --depends3 "$(cat assets/native/linux/debian/depends)" --section science \
+    --suite noble --depends3 "$(cat assets/native/linux/debian/depends.wheels)" --section science \
     bdist_deb
+
+mv deb_dist deb_dist.noble
+
+# Build for oracular (different dependencies)
+python3 setup.py --remove-git-version --command-packages=stdeb.command sdist_dsc \
+    --package logarithmplotter --copyright-file assets/native/linux/debian/copyright \
+    --suite oracular --depends3 "$(cat assets/native/linux/debian/depends.packaged)" --section science \
+    bdist_deb
+
+mv deb_dist deb_dist.oracular
