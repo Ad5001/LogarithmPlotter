@@ -45,17 +45,17 @@ Popup {
     property bool changelogNeedsFetching: true
     
     onAboutToShow: if(changelogNeedsFetching) {
-        Helper.fetchChangelog()
-    }
-    
-    Connections {
-        target: Helper
-        function onChangelogFetched(chl) {
-            changelogNeedsFetching = false;
-            changelog.text = chl
+        Helper.fetchChangelog().then((fetchedText) => {
+            changelogNeedsFetching = false
+            changelog.text = fetchedText
             changelogView.contentItem.implicitHeight = changelog.height
-            // console.log(changelog.height, changelogView.contentItem.implicitHeight)
-        }
+        }, (error) => {
+            const e = qsTranslate("changelog", "Could not fetch update: {}.").replace('{}', error)
+            console.error(e)
+            changelogNeedsFetching = false
+            changelog.text = e
+            changelogView.contentItem.implicitHeight = changelog.height
+        })
     }
 
     ScrollView {

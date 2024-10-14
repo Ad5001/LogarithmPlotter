@@ -16,17 +16,16 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PySide6.QtCore import QObject, Slot, Property, QCoreApplication
+from PySide6.QtCore import QObject, Slot, Property, QCoreApplication, Signal
 from PySide6.QtGui import QImage, QColor
 from PySide6.QtWidgets import QMessageBox
 
-from os import path, remove, environ, makedirs
+from os import path, remove, makedirs
 from string import Template
 from subprocess import Popen, TimeoutExpired, PIPE
 from hashlib import sha512
 from shutil import which
 from sys import argv
-
 
 """
 Searches for a valid Latex and DVIPNG (http://savannah.nongnu.org/projects/dvipng/)
@@ -75,6 +74,7 @@ class Latex(QObject):
     It doesn't have any python dependency, but requires a working latex installation and
     dvipng to be installed on the system.
     """
+
 
     def __init__(self, cache_path):
         QObject.__init__(self)

@@ -16,13 +16,13 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from re import Pattern
+from typing import Callable
 from PySide6.QtCore import QMetaObject, QObject, QDateTime
 from PySide6.QtQml import QJSValue
 
 class InvalidAttributeValueException(Exception): pass
 class NotAPrimitiveException(Exception): pass
 
-class Function: pass
 class URL: pass
 
 class PyJSValue:
@@ -78,7 +78,7 @@ class PyJSValue:
         matcher = [
             (lambda: self.qjs_value.isArray(), list),
             (lambda: self.qjs_value.isBool(), bool),
-            (lambda: self.qjs_value.isCallable(), Function),
+            (lambda: self.qjs_value.isCallable(), Callable),
             (lambda: self.qjs_value.isDate(), QDateTime),
             (lambda: self.qjs_value.isError(), Exception),
             (lambda: self.qjs_value.isNull(), None),
@@ -104,3 +104,5 @@ class PyJSValue:
         if self.type() not in [bool, float, str, None]:
             raise NotAPrimitiveException()
         return self.qjs_value.toPrimitive().toVariant()
+
+

@@ -29,12 +29,15 @@ from urllib.error import HTTPError, URLError
 
 from LogarithmPlotter import __VERSION__
 from LogarithmPlotter.util import config
+from LogarithmPlotter.util.promise import PyPromise
 
 SHOW_GUI_MESSAGES = "--test-build" not in argv
 CHANGELOG_VERSION = __VERSION__
+CHANGELOG_CACHE_PATH = path.join(path.dirname(path.realpath(__file__)), "CHANGELOG.md")
 
 
 class InvalidFileException(Exception): pass
+
 
 def show_message(msg: str) -> None:
     """
@@ -46,31 +49,30 @@ def show_message(msg: str) -> None:
         raise InvalidFileException(msg)
 
 
+def fetch_changelog():
+    msg_text = "Unknown changelog error."
+    try:
+        # Fetching version
+        r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + CHANGELOG_VERSION)
+        lines = r.readlines()
+        r.close()
+        msg_text = "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
+    except HTTPError as e:
+        msg_text = QCoreApplication.translate("changelog", "Could not fetch changelog: Server error {}.").format(
+            str(e.code))
+    except URLError as e:
+        msg_text = QCoreApplication.translate("changelog", "Could not fetch update: {}.").format(str(e.reason))
+    return msg_text
 
-class ChangelogFetcher(QRunnable):
-    def __init__(self, helper):
-        QRunnable.__init__(self)
-        self.helper = helper
 
-    def run(self):
-        msg_text = "Unknown changelog error."
-        try:
-            # Fetching version
-            r = urlopen("https://api.ad5001.eu/changelog/logarithmplotter/?version=" + CHANGELOG_VERSION)
-            lines = r.readlines()
-            r.close()
-            msg_text = "".join(map(lambda x: x.decode('utf-8'), lines)).strip()
-        except HTTPError as e:
-            msg_text = QCoreApplication.translate("changelog", "Could not fetch changelog: Server error {}.").format(
-                str(e.code))
-        except URLError as e:
-            msg_text = QCoreApplication.translate("changelog", "Could not fetch update: {}.").format(str(e.reason))
-        self.helper.changelogFetched.emit(msg_text)
+def read_changelog():
+    f = open(CHANGELOG_CACHE_PATH, 'r', -1)
+    data = f.read().strip()
+    f.close()
+    return data
 
 
 class Helper(QObject):
-    changelogFetched = Signal(str)
-
     def __init__(self, cwd: str, tmpfile: str):
         QObject.__init__(self)
         self.cwd = cwd
@@ -150,15 +152,14 @@ class Helper(QObject):
         msg = QCoreApplication.translate('main', "Built with PySide6 (Qt) v{} and python v{}")
         return msg.format(PySide6_version, sys_version.split("\n")[0])
 
-    @Slot()
+    @Slot(result=PyPromise)
     def fetchChangelog(self):
-        changelog_cache_path = path.join(path.dirname(path.realpath(__file__)), "CHANGELOG.md")
-        if path.exists(changelog_cache_path):
+        """
+        Fetches the changelog and returns a Promise.
+        """
+        if path.exists(CHANGELOG_CACHE_PATH):
             # We have a cached version of the changelog, for env that don't have access to the internet.
-            f = open(changelog_cache_path);
-            self.changelogFetched.emit("".join(f.readlines()).strip())
-            f.close()
+            return PyPromise(read_changelog)
         else:
             # Fetch it from the internet.
-            runnable = ChangelogFetcher(self)
-            QThreadPool.globalInstance().start(runnable)
+            return PyPromise(fetch_changelog)
