@@ -138,7 +138,7 @@ class HistoryAPI extends Module {
         if(action instanceof Action) {
             console.log("Added new entry to history: " + action.getReadableString())
             this.undoStack.push(action)
-            if(this.#helper.getSettingBool("reset_redo_stack"))
+            if(this.#helper.getSetting("reset_redo_stack"))
                 this.redoStack = []
             this.emit(new AddedEvent(action))
         }

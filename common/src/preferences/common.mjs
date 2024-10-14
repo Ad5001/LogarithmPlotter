@@ -53,11 +53,11 @@ export class BoolSetting extends Setting {
     }
 
     value() {
-        return Helper.getSettingBool(this.nameInConfig)
+        return Helper.getSetting(this.nameInConfig)
     }
 
     set(value) {
-        Helper.setSettingBool(this.nameInConfig, value)
+        Helper.setSetting(this.nameInConfig, value === true)
     }
 }
 
@@ -69,11 +69,11 @@ export class NumberSetting extends Setting {
     }
 
     value() {
-        return Helper.getSettingInt(this.nameInConfig)
+        return Helper.getSetting(this.nameInConfig)
     }
 
     set(value) {
-        Helper.setSettingInt(this.nameInConfig, value)
+        Helper.setSetting(this.nameInConfig, +value)
     }
 }
 
@@ -84,11 +84,11 @@ export class EnumIntSetting extends Setting {
     }
 
     value() {
-        return Helper.getSettingInt(this.nameInConfig)
+        return Helper.getSetting(this.nameInConfig)
     }
 
     set(value) {
-        Helper.setSettingInt(this.nameInConfig, value)
+        Helper.setSetting(this.nameInConfig, +value)
     }
 }
 
@@ -131,6 +131,6 @@ export class StringSetting extends Setting {
     }
 
     set(value) {
-        Helper.setSetting(this.nameInConfig, value)
+        Helper.setSetting(this.nameInConfig, ""+value)
     }
 }

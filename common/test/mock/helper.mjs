@@ -53,7 +53,13 @@ export class MockHelper {
         this.__settings = { ...DEFAULT_SETTINGS }
     }
 
-    __getSetting(settingName) {
+
+    /**
+     * Gets a setting from the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
+     * @returns {string|number|boolean} Value of the setting
+     */
+    getSetting(settingName) {
         const namespace = settingName.split(".")
         let data = this.__settings
         for(const name of namespace)
@@ -64,7 +70,12 @@ export class MockHelper {
         return data
     }
 
-    __setSetting(settingName, value) {
+    /**
+     * Sets a setting in the config
+     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
+     * @param {string|number|boolean} value
+     */
+    setSetting(settingName, value) {
         const namespace = settingName.split(".")
         const finalName = namespace.pop()
         let data = this.__settings
@@ -74,60 +85,6 @@ export class MockHelper {
             else
                 throw new Error(`Setting ${namespace} does not exist.`)
         data[finalName] = value
-    }
-
-    /**
-     * Gets a setting from the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {boolean} Value of the setting
-     */
-    getSettingBool(settingName) {
-        return this.__getSetting(settingName) === true
-    }
-
-    /**
-     * Gets a setting from the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {number} Value of the setting
-     */
-    getSettingInt(settingName) {
-        return +(this.__getSetting(settingName))
-    }
-
-    /**
-     * Gets a setting from the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {string} Value of the setting
-     */
-    getSetting(settingName) {
-        return this.__getSetting(settingName).toString()
-    }
-
-    /**
-     * Sets a setting in the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {boolean} value
-     */
-    setSettingBool(settingName, value) {
-        return this.__setSetting(settingName, value === true)
-    }
-
-    /**
-     * Sets a setting in the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {number} value
-     */
-    setSettingInt(settingName, value) {
-        return this.__setSetting(settingName, +(value))
-    }
-
-    /**
-     * Sets a setting in the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {string} value
-     */
-    setSetting(settingName, value) {
-        return this.__setSetting(settingName, value.toString())
     }
 
     /**

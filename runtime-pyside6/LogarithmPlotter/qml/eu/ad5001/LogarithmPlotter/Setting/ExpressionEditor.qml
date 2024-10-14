@@ -221,9 +221,9 @@ Item {
         focus: true
         selectByMouse: true
         
-        property bool autocompleteEnabled: Helper.getSettingBool("autocompletion.enabled")
-        property bool syntaxHighlightingEnabled: Helper.getSettingBool("expression_editor.colorize")
-        property bool autoClosing: Helper.getSettingBool("expression_editor.autoclose")
+        property bool autocompleteEnabled: Helper.getSetting("autocompletion.enabled")
+        property bool syntaxHighlightingEnabled: Helper.getSetting("expression_editor.colorize")
+        property bool autoClosing: Helper.getSetting("expression_editor.autoclose")
         property var tokens: autocompleteEnabled || syntaxHighlightingEnabled ? parent.tokens(text) : []
         
         Keys.priority: Keys.BeforeItem // Required for knowing which key the user presses.
@@ -600,7 +600,7 @@ Item {
     */
     function colorize(tokenList) {
         let parsedText = ""
-        let scheme = colorSchemes[Helper.getSettingInt("expression_editor.color_scheme")]
+        let scheme = colorSchemes[Helper.getSetting("expression_editor.color_scheme")]
         for(let token of tokenList) {
             switch(token.type) {
                 case JS.Parsing.TokenType.VARIABLE:

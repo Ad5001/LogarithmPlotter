@@ -109,37 +109,13 @@ export class HelperInterface extends Interface {
     /**
      * Gets a setting from the config
      * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {boolean} Value of the setting
-     */
-    getSettingBool = FUNCTION
-    /**
-     * Gets a setting from the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {number} Value of the setting
-     */
-    getSettingInt = FUNCTION
-    /**
-     * Gets a setting from the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to get (e.g. "default_graph.xmin")
-     * @returns {string} Value of the setting
+     * @returns {string|number|boolean} Value of the setting
      */
     getSetting = FUNCTION
     /**
      * Sets a setting in the config
      * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {boolean} value
-     */
-    setSettingBool = FUNCTION
-    /**
-     * Sets a setting in the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {number} value
-     */
-    setSettingInt = FUNCTION
-    /**
-     * Sets a setting in the config
-     * @param {string} settingName - Setting (and its dot-separated namespace) to set (e.g. "default_graph.xmin")
-     * @param {string} value
+     * @param {string|number|boolean} value
      */
     setSetting = FUNCTION
     /**

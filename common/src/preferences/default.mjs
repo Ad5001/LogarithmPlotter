@@ -37,7 +37,7 @@ const XMIN = new NumberSetting(
     qsTranslate("Settings", "Min X"),
     "default_graph.xmin",
     "xmin",
-    () => Helper.getSettingBool("default_graph.logscalex") ? 1e-100 : -Infinity
+    () => Helper.getSetting("default_graph.logscalex") ? 1e-100 : -Infinity
 )
 
 const YMAX = new NumberSetting(

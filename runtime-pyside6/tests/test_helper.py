@@ -158,16 +158,16 @@ class TestHelper:
         obj = Helper(pwd, tmpfile)
         assert obj.getVersion() == version
         assert type(obj.getDebugInfos()) == str
-        assert type(obj.getSetting("check_for_updates")) == str
-        assert type(obj.getSettingInt("check_for_updates")) == float
-        assert type(obj.getSettingBool("check_for_updates")) == bool
+        assert type(obj.getSetting("last_install_greet").toVariant()) == str
+        assert type(obj.getSetting("check_for_updates").toVariant()) == bool
+        assert type(obj.getSetting("default_graph.xzoom").toVariant()) in [float, int]
 
     def test_set_config(self, temporary):
         tmpfile, directory = temporary
         obj = Helper(pwd, tmpfile)
         obj.setSetting("last_install_greet", obj.getSetting("last_install_greet"))
-        obj.setSettingBool("check_for_updates", obj.getSettingBool("check_for_updates"))
-        obj.setSettingInt("default_graph.xzoom", obj.getSettingInt("default_graph.xzoom"))
+        obj.setSetting("check_for_updates", obj.getSetting("check_for_updates"))
+        obj.setSetting("default_graph.xzoom", obj.getSetting("default_graph.xzoom"))
 
     def test_fetch_changelog(self, temporary, qtbot):
         tmpfile, directory = temporary

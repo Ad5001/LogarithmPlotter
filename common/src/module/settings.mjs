@@ -81,21 +81,9 @@ class SettingsAPI extends Module {
     initialize({ helper }) {
         super.initialize({ helper })
         // Initialize default values.
-        for(const key of this.#properties.keys()) {
-            if(!this.#nonConfigurable.includes(key)) {
-                switch(typeof this.#properties.get(key)) {
-                    case "boolean":
-                        this.set(key, helper.getSettingBool("default_graph."+key), false)
-                        break
-                    case "number":
-                        this.set(key, helper.getSettingInt("default_graph."+key), false)
-                        break
-                    case "string":
-                        this.set(key, helper.getSetting("default_graph."+key), false)
-                        break
-                }
-            }
-        }
+        for(const key of this.#properties.keys())
+            if(!this.#nonConfigurable.includes(key))
+                this.set(key, helper.getSetting("default_graph."+key), false)
     }
     
     /**

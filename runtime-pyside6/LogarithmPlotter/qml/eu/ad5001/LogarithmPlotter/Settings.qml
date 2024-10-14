@@ -44,25 +44,25 @@ ScrollView {
        Zoom on the x axis of the diagram, provided from settings.
        \sa Settings
     */
-    property double xzoom: Helper.getSettingInt('default_graph.xzoom')
+    property double xzoom: Helper.getSetting('default_graph.xzoom')
     /*!
        \qmlproperty double Settings::yzoom
        Zoom on the y axis of the diagram, provided from settings.
        \sa Settings
     */
-    property double yzoom: Helper.getSettingInt('default_graph.yzoom')
+    property double yzoom: Helper.getSetting('default_graph.yzoom')
     /*!
        \qmlproperty double Settings::xmin
        Minimum x of the diagram, provided from settings.
        \sa Settings
     */
-    property double xmin: Helper.getSettingInt('default_graph.xmin')
+    property double xmin: Helper.getSetting('default_graph.xmin')
     /*!
        \qmlproperty double Settings::ymax
        Maximum y of the diagram, provided from settings.
        \sa Settings
     */
-    property double ymax: Helper.getSettingInt('default_graph.ymax')
+    property double ymax: Helper.getSetting('default_graph.ymax')
     /*!
        \qmlproperty string Settings::xaxisstep
        Step of the x axis graduation, provided from settings.
@@ -93,34 +93,34 @@ ScrollView {
        Width of lines that will be drawn into the canvas, provided from settings.
        \sa Settings
     */
-    property double linewidth: Helper.getSettingInt('default_graph.linewidth')
+    property double linewidth: Helper.getSetting('default_graph.linewidth')
     /*!
        \qmlproperty double Settings::textsize
        Font size of the text that will be drawn into the canvas, provided from settings.
        \sa Settings
     */
-    property double textsize: Helper.getSettingInt('default_graph.textsize')
+    property double textsize: Helper.getSetting('default_graph.textsize')
     /*!
        \qmlproperty bool Settings::logscalex
        true if the canvas should be in logarithmic mode, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool logscalex: Helper.getSettingBool('default_graph.logscalex')
+    property bool logscalex: Helper.getSetting('default_graph.logscalex')
     /*!
        \qmlproperty bool Settings::showxgrad
        true if the x graduation should be shown, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool showxgrad: Helper.getSettingBool('default_graph.showxgrad')
+    property bool showxgrad: Helper.getSetting('default_graph.showxgrad')
     /*!
        \qmlproperty bool Settings::showygrad
        true if the y graduation should be shown, false otherwise.
        Provided from settings.
        \sa Settings
     */
-    property bool showygrad: Helper.getSettingBool('default_graph.showygrad')
+    property bool showygrad: Helper.getSetting('default_graph.showygrad')
     
     Column {
         spacing: 10

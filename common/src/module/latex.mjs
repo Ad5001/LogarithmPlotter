@@ -81,7 +81,7 @@ class LatexAPI extends Module {
     initialize({ latex, helper }) {
         super.initialize({ latex, helper })
         this.#latex = latex
-        this.enabled = helper.getSettingBool("enable_latex")
+        this.enabled = helper.getSetting("enable_latex")
     }
 
     /**

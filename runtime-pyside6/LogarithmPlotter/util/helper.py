@@ -15,10 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
 from PySide6.QtWidgets import QMessageBox, QApplication
 from PySide6.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, Slot, QCoreApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QJSValue
 from PySide6.QtGui import QImage
 from PySide6 import __version__ as PySide6_version
 
@@ -135,29 +134,13 @@ class Helper(QObject):
     def getVersion(self):
         return __VERSION__
 
-    @Slot(str, result=str)
-    def getSetting(self, namespace):
-        return str(config.getSetting(namespace))
+    @Slot(str, result=QJSValue)
+    def getSetting(self, namespace: str) -> QJSValue:
+        return QJSValue(config.getSetting(namespace))
 
-    @Slot(str, result=float)
-    def getSettingInt(self, namespace):
-        return float(config.getSetting(namespace))
-
-    @Slot(str, result=bool)
-    def getSettingBool(self, namespace):
-        return bool(config.getSetting(namespace))
-
-    @Slot(str, str)
-    def setSetting(self, namespace, value):
-        return config.setSetting(namespace, str(value))
-
-    @Slot(str, bool)
-    def setSettingBool(self, namespace, value):
-        return config.setSetting(namespace, bool(value))
-
-    @Slot(str, float)
-    def setSettingInt(self, namespace, value):
-        return config.setSetting(namespace, float(value))
+    @Slot(str, QJSValue)
+    def setSetting(self, namespace: str, value: QJSValue):
+        return config.setSetting(namespace, value.toPrimitive().toVariant())
 
     @Slot(result=str)
     def getDebugInfos(self):
