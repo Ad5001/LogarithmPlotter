@@ -201,7 +201,6 @@ class IOAPI extends Module {
             // TODO: Error handling
             return
         }
-        Canvas.redraw()
         this.#alert.show(qsTranslate("io", "Loaded file '%1'.").arg(basename))
         this.#saved = true
         this.emit(new LoadedEvent())

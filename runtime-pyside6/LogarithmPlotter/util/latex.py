@@ -150,11 +150,9 @@ class Latex(QObject):
             promise = self.render_pipeline_locks[render_hash]
         elif markup_hash in self.render_pipeline_locks:
             # A PyPromise with the same markup, but not the same color or font size is already running.
-            print("Chaining render of", latex_markup)
+            # print("Chaining render of", latex_markup)
             existing_promise = self.render_pipeline_locks[markup_hash]
             promise = self._create_async_promise(latex_markup, font_size, color)
-            existing_promise.then(lambda x, latex_markup=latex_markup: print("> Starting chained render of", latex_markup))
-            promise.then(lambda x, latex_markup=latex_markup: print("> Fulfilled chained render of", latex_markup, "\n   with", x.toVariant()))
             existing_promise.then(promise.start)
         else:
             # No such PyPromise is running.

@@ -530,7 +530,7 @@ class CanvasAPI extends Module {
                     if(this.#redrawCount === currentRedrawCount)
                         callback(imgData)
                     else
-                        console.log("2Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
+                        console.log("1Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
                 })
             } else {
                 // Callback directly

@@ -19,10 +19,12 @@
 from PySide6.QtCore import QtMsgType, qInstallMessageHandler, QMessageLogContext
 from math import ceil, log10
 from os import path
+from re import compile
 
 CURRENT_PATH = path.dirname(path.realpath(__file__))
 SOURCEMAP_PATH = path.realpath(f"{CURRENT_PATH}/../qml/eu/ad5001/LogarithmPlotter/js/index.mjs.map")
 SOURCEMAP_INDEX = None
+INDEX_REG = compile(r"build\/runtime-pyside6\/LogarithmPlotter\/qml\/eu\/ad5001\/LogarithmPlotter\/js\/index.mjs:(\d+)")
 
 
 class LOG_COLORS:
@@ -77,6 +79,7 @@ def create_log_terminal_message(mode: QtMsgType, context: QMessageLogContext, me
     # Check MJS
     if line is not None and source_file is not None and source_file.endswith("index.mjs"):
         source_file, line = map_javascript_source(source_file, line)
+    # Parse message
     prefix = f"{LOG_COLORS.INVERT}{mode[1]}[{mode[0].upper()}]{LOG_COLORS.RESET_INVERT}"
     message = message + LOG_COLORS.RESET
     context = f"{context.function} at {source_file}:{line}"
