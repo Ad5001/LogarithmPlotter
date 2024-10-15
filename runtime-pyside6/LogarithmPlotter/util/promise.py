@@ -53,7 +53,12 @@ class PyPromiseRunner(QRunnable):
                 raise InvalidReturnValue("Must return either a primitive, a valid QObject, JS Value, or None.")
             self.promise.finished.emit(data)
         except Exception as e:
-            self.promise.errored.emit(repr(e))
+            try:
+                self.promise.errored.emit(repr(e))
+            except RuntimeError as e2:
+                # Happens when the PyPromise has already been garbage collected.
+                # In other words, nothing to report to nowhere.
+                pass
 
 
 class PyPromise(QObject):

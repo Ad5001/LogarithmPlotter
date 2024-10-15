@@ -30,16 +30,18 @@ class CanvasAPI extends Module {
     #canvas = null
     /** @type {CanvasRenderingContext2D} */
     #ctx = null
+    /** Lock to prevent asynchronous stuff from printing stuff that is outdated. */
+    #redrawCount = 0
     /** @type {{show(string, string, string)}} */
     #drawingErrorDialog = null
-    
-    
+
+
     constructor() {
         super("Canvas", {
             canvas: CanvasInterface,
             drawingErrorDialog: DialogInterface
         })
-        
+
         /**
          *
          * @type {Object.<string, {expression: Expression, value: number, maxDraw: number}>}
@@ -207,6 +209,7 @@ class CanvasAPI extends Module {
      */
     redraw() {
         if(!this.initialized) throw new Error("Attempting redraw before initialize!")
+        this.#redrawCount = (this.#redrawCount + 1) % 10000
         this.#ctx = this.#canvas.getContext("2d")
         this._computeAxes()
         this._reset()
@@ -519,15 +522,18 @@ class CanvasAPI extends Module {
      * @param {function(LatexRenderResult|{width: number, height: number, source: string})} callback
      */
     renderLatexImage(ltxText, color, callback) {
+        const currentRedrawCount = this.#redrawCount
         const onRendered = (imgData) => {
             if(!this.#canvas.isImageLoaded(imgData.source) && !this.#canvas.isImageLoading(imgData.source)) {
                 // Wait until the image is loaded to callback.
                 this.#canvas.loadImageAsync(imgData.source).then(() => {
-                    callback(imgData)
+                    if(this.#redrawCount === currentRedrawCount)
+                        callback(imgData)
                 })
             } else {
                 // Callback directly
-                callback(imgData)
+                if(this.#redrawCount === currentRedrawCount)
+                    callback(imgData)
             }
         }
         const prerendered = Latex.findPrerendered(ltxText, this.textsize, color)
