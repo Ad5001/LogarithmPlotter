@@ -19,14 +19,16 @@
 from os import path, environ, makedirs
 from platform import system
 from json import load, dumps
+from shutil import which
+
 from PySide6.QtCore import QLocale, QTranslator
 
 DEFAULT_SETTINGS = {
     "check_for_updates": True,
     "reset_redo_stack": True,
     "last_install_greet": "0",
-    "enable_latex": False,
-    "enable_latex_async": False,
+    "enable_latex": which("latex") is not None and which("dvipng") is not None,
+    "enable_latex_async": True,
     "expression_editor": {
         "autoclose": True,
         "colorize": True,
