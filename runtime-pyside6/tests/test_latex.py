@@ -54,8 +54,8 @@ class TestLatex:
         # Reset
         [latex.DVIPNG_PATH, latex.LATEX_PATH] = bkp
 
-    def test_render(self, latex_obj: latex.Latex) -> None:
-        result = latex_obj.render(r"\frac{d\sqrt{\mathrm{f}(x \times 2.3)}}{dx}", 14, QColor(0, 0, 0, 255))
+    def test_render_sync(self, latex_obj: latex.Latex) -> None:
+        result = latex_obj.renderSync(r"\frac{d\sqrt{\mathrm{f}(x \times 2.3)}}{dx}", 14, QColor(0, 0, 0, 255))
         # Ensure result format
         assert type(result) == str
         [path, width, height] = result.split(",")
@@ -64,17 +64,17 @@ class TestLatex:
         assert match(r"\d+", height)
         # Ensure it returns errors on invalid latex.
         with pytest.raises(latex.RenderError):
-            latex_obj.render(r"\nonexistant", 14, QColor(0, 0, 0, 255))
+            latex_obj.renderSync(r"\nonexistant", 14, QColor(0, 0, 0, 255))
         # Replace latex bin with one that returns errors
         bkp = latex.LATEX_PATH
         latex.LATEX_PATH = which("false")
         with pytest.raises(latex.RenderError):
-            latex_obj.render(r"\mathrm{f}(x)", 14, QColor(0, 0, 0, 255))
+            latex_obj.renderSync(r"\mathrm{f}(x)", 14, QColor(0, 0, 0, 255))
         latex.LATEX_PATH = bkp
 
     def test_prerendered(self, latex_obj: latex.Latex) -> None:
         args = [r"\frac{d\sqrt{\mathrm{f}(x \times 2.3)}}{dx}", 14, QColor(0, 0, 0, 255)]
-        latex_obj.render(*args)
+        latex_obj.renderSync(*args)
         prerendered = latex_obj.findPrerendered(*args)
         assert type(prerendered) == str
         [path, width, height] = prerendered.split(",")

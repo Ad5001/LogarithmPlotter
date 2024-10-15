@@ -17,7 +17,7 @@
 """
 
 import pytest
-from os import getcwd, remove
+from os import getcwd, remove, path
 from os.path import join
 from tempfile import TemporaryDirectory
 from json import loads
@@ -25,11 +25,12 @@ from shutil import copy2
 
 from PySide6.QtCore import QObject, Signal, QThreadPool
 from PySide6.QtGui import QImage
+from PySide6.QtQml import QJSValue
 from PySide6.QtWidgets import QApplication
 
 from LogarithmPlotter import __VERSION__ as version
 from LogarithmPlotter.util import config, helper
-from LogarithmPlotter.util.helper import ChangelogFetcher, Helper, InvalidFileException
+from LogarithmPlotter.util.helper import Helper, InvalidFileException
 
 pwd = getcwd()
 helper.SHOW_GUI_MESSAGES = False
@@ -43,41 +44,45 @@ def temporary():
     directory.cleanup()
 
 
-class MockHelperSignals(QObject):
-    changelogFetched = Signal(str)
+def create_changelog_callback_asserter(promise, expect_404=False):
+    def cb(changelog, expect_404=expect_404):
+        # print("Got changelog", changelog)
+        assert isinstance(changelog, QJSValue)
+        assert changelog.isString()
+        changlogValue = changelog.toVariant()
+        assert ('404' in changlogValue) == expect_404
+    def error(e):
+        raise eval(e)
+    promise.then(cb, error)
 
-    def __init__(self, expect_404):
-        QObject.__init__(self)
-        self.expect_404 = expect_404
-        self.changelogFetched.connect(self.changelog_fetched)
-        self.changelog = None
-
-    def changelog_fetched(self, changelog):
-        self.changelog = changelog
-
-
-class TestChangelog:
-
-    def test_exists(self, qtbot):
-        helper.CHANGELOG_VERSION = '0.5.0'
-        mock_helper = MockHelperSignals(False)
-        fetcher = ChangelogFetcher(mock_helper)
-        fetcher.run()  # Does not raise an exception
-        qtbot.waitSignal(mock_helper.changelogFetched, timeout=10000)
-        assert type(mock_helper.changelog) == str
-        assert '404' not in mock_helper.changelog
-
-    def tests_no_exist(self, qtbot):
-        mock_helper = MockHelperSignals(True)
-        helper.CHANGELOG_VERSION = '1.0.0'
-        fetcher = ChangelogFetcher(mock_helper)
-        fetcher.run()
-        qtbot.waitSignal(mock_helper.changelogFetched, timeout=10000)
-        assert type(mock_helper.changelog) == str
-        assert '404' in mock_helper.changelog
+CHANGELOG_BASE_PATH = path.realpath(path.join(path.dirname(path.realpath(__file__)), "..", "CHANGELOG.md"))
 
 
 class TestHelper:
+    def test_changelog(self, temporary, qtbot):
+        helper.CHANGELOG_VERSION = '0.5.0'
+        tmpfile, directory = temporary
+        obj = Helper(pwd, tmpfile)
+        promise = obj.fetchChangelog()
+        create_changelog_callback_asserter(promise, expect_404=False)
+        qtbot.waitSignal(promise.fulfilled, timeout=10000)
+        # No exist
+        helper.CHANGELOG_VERSION = '2.0.0'
+        tmpfile, directory = temporary
+        obj = Helper(pwd, tmpfile)
+        promise = obj.fetchChangelog()
+        create_changelog_callback_asserter(promise, expect_404=True)
+        qtbot.waitSignal(promise.fulfilled, timeout=10000)
+        # Local
+        tmpfile, directory = temporary
+        obj = Helper(pwd, tmpfile)
+        assert path.exists(CHANGELOG_BASE_PATH)
+        copy2(CHANGELOG_BASE_PATH, helper.CHANGELOG_CACHE_PATH)
+        assert path.exists(helper.CHANGELOG_CACHE_PATH)
+        promise = obj.fetchChangelog()
+        create_changelog_callback_asserter(promise, expect_404=False)
+        qtbot.waitSignal(promise.fulfilled, timeout=10000) # Local
+    
     def test_read(self, temporary):
         # Test file reading and information loading.
         tmpfile, directory = temporary
@@ -168,15 +173,3 @@ class TestHelper:
         obj.setSetting("last_install_greet", obj.getSetting("last_install_greet"))
         obj.setSetting("check_for_updates", obj.getSetting("check_for_updates"))
         obj.setSetting("default_graph.xzoom", obj.getSetting("default_graph.xzoom"))
-
-    def test_fetch_changelog(self, temporary, qtbot):
-        tmpfile, directory = temporary
-        obj = Helper(pwd, tmpfile)
-        copy2("../../CHANGELOG.md", "../../LogarithmPlotter/util/CHANGELOG.md")
-        obj.fetchChangelog()
-        assert QThreadPool.globalInstance().activeThreadCount() == 0
-        qtbot.waitSignal(obj.changelogFetched, timeout=10000)
-        remove("../../LogarithmPlotter/util/CHANGELOG.md")
-        obj.fetchChangelog()
-        assert QThreadPool.globalInstance().activeThreadCount() > 0
-        qtbot.waitSignal(obj.changelogFetched, timeout=10000)

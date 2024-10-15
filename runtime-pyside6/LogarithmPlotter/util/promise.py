@@ -17,7 +17,7 @@
 """
 from typing import Callable
 
-from PySide6.QtCore import QRunnable, Signal, QObject, Slot, QThreadPool
+from PySide6.QtCore import QRunnable, Signal, Property, QObject, Slot, QThreadPool
 from PySide6.QtQml import QJSValue
 
 from LogarithmPlotter.util.js import PyJSValue
@@ -51,10 +51,10 @@ class PyPromiseRunner(QRunnable):
                 data = data.qjs_value
             else:
                 raise InvalidReturnValue("Must return either a primitive, a valid QObject, JS Value, or None.")
-            self.promise.finished.emit(data)
+            self.promise.fulfilled.emit(data)
         except Exception as e:
             try:
-                self.promise.errored.emit(repr(e))
+                self.promise.rejected.emit(repr(e))
             except RuntimeError as e2:
                 # Happens when the PyPromise has already been garbage collected.
                 # In other words, nothing to report to nowhere.
@@ -66,18 +66,22 @@ class PyPromise(QObject):
     Asynchronous Promise-like object meant to interface between Python and Javascript easily.
     Runs to_run in another thread, and calls fulfilled (populated by then) with its return value.
     """
-    finished = Signal((QJSValue,), (QObject,))
-    errored = Signal(Exception)
+    fulfilled = Signal((QJSValue,), (QObject,))
+    rejected = Signal(Exception)
 
-    def __init__(self, to_run: Callable, args):
+    def __init__(self, to_run: Callable, args=[]):
         QObject.__init__(self)
         self._fulfills = []
         self._rejects = []
-        self.finished.connect(self._fulfill)
-        self.errored.connect(self._reject)
+        self._state = "pending"
+        self.fulfilled.connect(self._fulfill)
+        self.rejected.connect(self._reject)
         self._runner = PyPromiseRunner(to_run, self, args)
         QThreadPool.globalInstance().start(self._runner)
 
+    @Property(str)
+    def state(self):
+        return self._state
 
     @Slot(QJSValue, result=QObject)
     @Slot(QJSValue, QJSValue, result=QObject)
@@ -98,6 +102,7 @@ class PyPromise(QObject):
     @Slot(QJSValue)
     @Slot(QObject)
     def _fulfill(self, data):
+        self._state = "fulfilled"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
         for on_fulfill in self._fulfills:
             try:
@@ -110,6 +115,7 @@ class PyPromise(QObject):
     @Slot(QJSValue)
     @Slot(str)
     def _reject(self, error):
+        self._state = "rejected"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
         for on_reject in self._rejects:
             result = on_reject(error)
