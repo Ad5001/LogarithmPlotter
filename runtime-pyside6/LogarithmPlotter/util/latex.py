@@ -15,6 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from time import sleep
 
 from PySide6.QtCore import QObject, Slot, Property, QCoreApplication, Signal
 from PySide6.QtGui import QImage, QColor
@@ -26,6 +27,9 @@ from subprocess import Popen, TimeoutExpired, PIPE
 from hashlib import sha512
 from shutil import which
 from sys import argv
+
+from LogarithmPlotter.util import config
+from LogarithmPlotter.util.promise import PyPromise
 
 """
 Searches for a valid Latex and DVIPNG (http://savannah.nongnu.org/projects/dvipng/)
@@ -75,7 +79,6 @@ class Latex(QObject):
     dvipng to be installed on the system.
     """
 
-
     def __init__(self, cache_path):
         QObject.__init__(self)
         self.tempdir = path.join(cache_path, "latex")
@@ -84,6 +87,10 @@ class Latex(QObject):
     @Property(bool)
     def latexSupported(self) -> bool:
         return LATEX_PATH is not None and DVIPNG_PATH is not None
+
+    @Property(bool)
+    def supportsAsyncRender(self) -> bool:
+        return config.getSetting("enable_latex_async")
 
     @Slot(result=bool)
     def checkLatexInstallation(self) -> bool:
@@ -105,13 +112,20 @@ class Latex(QObject):
             valid_install = False
         else:
             try:
-                self.render("", 14, QColor(0, 0, 0, 255))
+                self.renderSync("", 14, QColor(0, 0, 0, 255))
             except MissingPackageException:
                 valid_install = False  # Should have sent an error message if failed to render
         return valid_install
 
+    @Slot(str, float, QColor, result=PyPromise)
+    def renderAsync(self, latex_markup: str, font_size: float, color: QColor) -> PyPromise:
+        """
+        Prepares and renders a latex string into a png file asynchronously.
+        """
+        return PyPromise(self.renderSync, [latex_markup, font_size, color])
+
     @Slot(str, float, QColor, result=str)
-    def render(self, latex_markup: str, font_size: float, color: QColor) -> str:
+    def renderSync(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
         Prepares and renders a latex string into a png file.
         """
@@ -124,12 +138,14 @@ class Latex(QObject):
             if not path.exists(latex_path + ".dvi"):
                 self.create_latex_doc(latex_path, latex_markup)
                 self.convert_latex_to_dvi(latex_path)
-                self.cleanup(latex_path)
+                # self.cleanup(latex_path)
             # Creating four pictures of different sizes to better handle dpi.
             self.convert_dvi_to_png(latex_path, export_path, font_size, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
+        else:
+            sleep(0)
         img = QImage(export_path)
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'

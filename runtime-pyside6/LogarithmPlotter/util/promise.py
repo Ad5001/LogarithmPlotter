@@ -30,15 +30,15 @@ class PyPromiseRunner(QRunnable):
     """
     QRunnable for running Promises in different threads.
     """
-    def __init__(self, runner, promise):
+    def __init__(self, runner, promise, args):
         QRunnable.__init__(self)
         self.runner = runner
         self.promise = promise
-        print("Initialized", self.runner)
+        self.args = args
 
     def run(self):
         try:
-            data = self.runner()
+            data = self.runner(*self.args)
             if isinstance(data, QObject):
                 data = data
             elif type(data) in [int, str, float, bool, bytes]:
@@ -64,13 +64,13 @@ class PyPromise(QObject):
     finished = Signal((QJSValue,), (QObject,))
     errored = Signal(Exception)
 
-    def __init__(self, to_run: Callable):
+    def __init__(self, to_run: Callable, args):
         QObject.__init__(self)
         self._fulfills = []
         self._rejects = []
         self.finished.connect(self._fulfill)
         self.errored.connect(self._reject)
-        self._runner = PyPromiseRunner(to_run, self)
+        self._runner = PyPromiseRunner(to_run, self, args)
         QThreadPool.globalInstance().start(self._runner)
 
 
@@ -88,6 +88,7 @@ class PyPromise(QObject):
             self._rejects.append(PyJSValue(on_reject))
         elif isinstance(on_reject, Callable):
             self._rejects.append(on_reject)
+        return self
 
     @Slot(QJSValue)
     @Slot(QObject)

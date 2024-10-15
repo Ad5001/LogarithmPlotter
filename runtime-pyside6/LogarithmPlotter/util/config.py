@@ -26,6 +26,7 @@ DEFAULT_SETTINGS = {
     "reset_redo_stack": True,
     "last_install_greet": "0",
     "enable_latex": False,
+    "enable_latex_async": False,
     "expression_editor": {
         "autoclose": True,
         "colorize": True,

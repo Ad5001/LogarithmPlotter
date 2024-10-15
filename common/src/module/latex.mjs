@@ -112,7 +112,12 @@ class LatexAPI extends Module {
      */
     async requestAsyncRender(markup, fontSize, color) {
         if(!this.initialized) throw new Error("Attempting requestAsyncRender before initialize!")
-        let args = this.#latex.render(markup, fontSize, color).split(",")
+        let render
+        if(this.#latex.supportsAsyncRender)
+            render = await this.#latex.renderAsync(markup, fontSize, color)
+        else
+            render = this.#latex.renderSync(markup, fontSize, color)
+        const args = render.split(",")
         return new LatexRenderResult(...args)
     }
 

@@ -84,13 +84,21 @@ export class DialogInterface extends Interface {
 }
 
 export class LatexInterface extends Interface {
+    supportsAsyncRender = BOOLEAN
     /**
      * @param {string} markup - LaTeX markup to render
      * @param {number} fontSize - Font size (in pt) to render
      * @param {string} color - Color of the text to render
      * @returns {string} - Comma separated data of the image (source, width, height)
      */
-    render = FUNCTION
+    renderSync = FUNCTION
+    /**
+     * @param {string} markup - LaTeX markup to render
+     * @param {number} fontSize - Font size (in pt) to render
+     * @param {string} color - Color of the text to render
+     * @returns {Promise<string>} - Comma separated data of the image (source, width, height)
+     */
+    renderAsync = FUNCTION
     /**
      * @param {string} markup - LaTeX markup to render
      * @param {number} fontSize - Font size (in pt) to render

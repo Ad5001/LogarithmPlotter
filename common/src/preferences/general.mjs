@@ -46,8 +46,15 @@ class EnableLatex extends BoolSetting {
     }
 }
 
+const ENABLE_LATEX_ASYNC = new BoolSetting(
+    qsTranslate("general", "Enable asynchronous LaTeX renderer (experimental)"),
+    "enable_latex_async",
+    "new"
+)
+
 export default [
     CHECK_FOR_UPDATES,
     RESET_REDO_STACK,
-    new EnableLatex()
+    new EnableLatex(),
+    ENABLE_LATEX_ASYNC
 ]
