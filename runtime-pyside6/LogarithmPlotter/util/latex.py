@@ -82,6 +82,7 @@ class Latex(QObject):
     def __init__(self, cache_path):
         QObject.__init__(self)
         self.tempdir = path.join(cache_path, "latex")
+        self.render_pipeline_locks = {}
         makedirs(self.tempdir, exist_ok=True)
 
     @Property(bool)
@@ -116,20 +117,71 @@ class Latex(QObject):
             except MissingPackageException:
                 valid_install = False  # Should have sent an error message if failed to render
         return valid_install
+    
+    def lock(self, markup_hash, render_hash, promise):
+        """
+        Locks the render pipeline for a given markup hash and render hash.
+        """
+        # print("Locking", markup_hash, render_hash)
+        if markup_hash not in self.render_pipeline_locks:
+            self.render_pipeline_locks[markup_hash] = promise
+        self.render_pipeline_locks[render_hash] = promise
+        
+    
+    def release_lock(self, markup_hash, render_hash):
+        """
+        Release locks on the markup and render hashes.
+        """
+        # print("Releasing", markup_hash, render_hash)
+        if markup_hash in self.render_pipeline_locks:
+            del self.render_pipeline_locks[markup_hash]
+        del self.render_pipeline_locks[render_hash]
 
     @Slot(str, float, QColor, result=PyPromise)
     def renderAsync(self, latex_markup: str, font_size: float, color: QColor) -> PyPromise:
         """
         Prepares and renders a latex string into a png file asynchronously.
         """
-        return PyPromise(self.renderSync, [latex_markup, font_size, color])
+        markup_hash, render_hash, export_path = self.create_export_path(latex_markup, font_size, color)
+        promise = None
+        if render_hash in self.render_pipeline_locks:
+            # A PyPromise for this specific render is already running.
+            # print("Already running render of", latex_markup)
+            promise = self.render_pipeline_locks[render_hash]
+        elif markup_hash in self.render_pipeline_locks:
+            # A PyPromise with the same markup, but not the same color or font size is already running.
+            print("Chaining render of", latex_markup)
+            existing_promise = self.render_pipeline_locks[markup_hash]
+            promise = self._create_async_promise(latex_markup, font_size, color)
+            existing_promise.then(lambda x, latex_markup=latex_markup: print("> Starting chained render of", latex_markup))
+            promise.then(lambda x, latex_markup=latex_markup: print("> Fulfilled chained render of", latex_markup, "\n   with", x.toVariant()))
+            existing_promise.then(promise.start)
+        else:
+            # No such PyPromise is running.
+            promise  = self._create_async_promise(latex_markup, font_size, color)
+            promise.start()
+        return promise
+    
+    def _create_async_promise(self, latex_markup: str, font_size: float, color: QColor) -> PyPromise:
+        """
+        Createsa PyPromise to render a latex string into a PNG file.
+        Internal method. Use renderAsync that makes use of locks.
+        """
+        markup_hash, render_hash, export_path = self.create_export_path(latex_markup, font_size, color)
+        promise = PyPromise(self.renderSync, [latex_markup, font_size, color], start_automatically=False)
+        self.lock(markup_hash, render_hash, promise)
+        # Make the lock release at the end.
+        def unlock(data, markup_hash=markup_hash, render_hash=render_hash):
+            self.release_lock(markup_hash, render_hash)
+        promise.then(unlock, unlock)
+        return promise
 
     @Slot(str, float, QColor, result=str)
     def renderSync(self, latex_markup: str, font_size: float, color: QColor) -> str:
         """
         Prepares and renders a latex string into a png file.
         """
-        markup_hash, export_path = self.create_export_path(latex_markup, font_size, color)
+        markup_hash, render_hash, export_path = self.create_export_path(latex_markup, font_size, color)
         if self.latexSupported and not path.exists(export_path + ".png"):
             print("Rendering", latex_markup, export_path)
             # Generating file
@@ -138,14 +190,12 @@ class Latex(QObject):
             if not path.exists(latex_path + ".dvi"):
                 self.create_latex_doc(latex_path, latex_markup)
                 self.convert_latex_to_dvi(latex_path)
-                # self.cleanup(latex_path)
+                self.cleanup(latex_path)
             # Creating four pictures of different sizes to better handle dpi.
             self.convert_dvi_to_png(latex_path, export_path, font_size, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@2", font_size*2, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@3", font_size*3, color)
             # self.convert_dvi_to_png(latex_path, export_path+"@4", font_size*4, color)
-        else:
-            sleep(0)
         img = QImage(export_path)
         # Small hack, not very optimized since we load the image twice, but you can't pass a QImage to QML and expect it to be loaded
         return f'{export_path}.png,{img.width()},{img.height()}'
@@ -155,7 +205,7 @@ class Latex(QObject):
         """
         Finds a prerendered image and returns its data if possible, and an empty string if not.
         """
-        markup_hash, export_path = self.create_export_path(latex_markup, font_size, color)
+        markup_hash, render_hash, export_path = self.create_export_path(latex_markup, font_size, color)
         data = ""
         if path.exists(export_path + ".png"):
             img = QImage(export_path)
@@ -165,10 +215,13 @@ class Latex(QObject):
     def create_export_path(self, latex_markup: str, font_size: float, color: QColor):
         """
         Standardizes export path for renders.
+        Markup hash is unique for the markup
+        Render hash is unique for the markup, the font size and the color.
         """
         markup_hash = "render" + str(sha512(latex_markup.encode()).hexdigest())
-        export_path = path.join(self.tempdir, f'{markup_hash}_{int(font_size)}_{color.rgb()}')
-        return markup_hash, export_path
+        render_hash = f'{markup_hash}_{int(font_size)}_{color.rgb()}'
+        export_path = path.join(self.tempdir, render_hash)
+        return markup_hash, render_hash, export_path
 
     def create_latex_doc(self, export_path: str, latex_markup: str):
         """

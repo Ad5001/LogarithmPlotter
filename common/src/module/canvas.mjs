@@ -529,11 +529,15 @@ class CanvasAPI extends Module {
                 this.#canvas.loadImageAsync(imgData.source).then(() => {
                     if(this.#redrawCount === currentRedrawCount)
                         callback(imgData)
+                    else
+                        console.log("2Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
                 })
             } else {
                 // Callback directly
                 if(this.#redrawCount === currentRedrawCount)
                     callback(imgData)
+                else
+                    console.log("2Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
             }
         }
         const prerendered = Latex.findPrerendered(ltxText, this.textsize, color)

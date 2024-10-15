@@ -23,6 +23,18 @@ from PySide6.QtQml import QJSValue
 from LogarithmPlotter.util.js import PyJSValue
 
 
+def check_callable(function: Callable|QJSValue) -> Callable|None:
+    """
+    Checks if the given function can be called (either a python callable
+    or a QJSValue function), and returns the object that can be called directly.
+    Returns None if not a function.
+    """
+    if isinstance(function, QJSValue) and function.isCallable():
+        return PyJSValue(function)
+    elif isinstance(function, Callable):
+        return function
+    return None
+
 class InvalidReturnValue(Exception): pass
 
 
@@ -69,16 +81,30 @@ class PyPromise(QObject):
     fulfilled = Signal((QJSValue,), (QObject,))
     rejected = Signal(Exception)
 
-    def __init__(self, to_run: Callable, args=[]):
+    def __init__(self, to_run: Callable|QJSValue, args=[], start_automatically=True):
         QObject.__init__(self)
         self._fulfills = []
         self._rejects = []
         self._state = "pending"
+        self._started = False
         self.fulfilled.connect(self._fulfill)
         self.rejected.connect(self._reject)
+        to_run = check_callable(to_run)
+        if to_run is None:
+            raise ValueError("New PyPromise created with invalid function")
         self._runner = PyPromiseRunner(to_run, self, args)
-        QThreadPool.globalInstance().start(self._runner)
-
+        if start_automatically:
+            self._start()
+    
+    @Slot()
+    def start(self, *args, **kwargs):
+        """
+        Starts the thread that will run the promise.
+        """
+        if not self._started: # Avoid getting started twice.
+            QThreadPool.globalInstance().start(self._runner)
+            self._started = True
+        
     @Property(str)
     def state(self):
         return self._state
@@ -89,13 +115,11 @@ class PyPromise(QObject):
         """
         Adds listeners for both fulfilment and catching errors of the Promise.
         """
-        if isinstance(on_fulfill, QJSValue):
-            self._fulfills.append(PyJSValue(on_fulfill))
-        elif isinstance(on_fulfill, Callable):
+        on_fulfill = check_callable(on_fulfill)
+        on_reject = check_callable(on_reject)
+        if on_fulfill is not None:
             self._fulfills.append(on_fulfill)
-        if isinstance(on_reject, QJSValue):
-            self._rejects.append(PyJSValue(on_reject))
-        elif isinstance(on_reject, Callable):
+        if on_reject is not None:
             self._rejects.append(on_reject)
         return self
 
@@ -107,6 +131,7 @@ class PyPromise(QObject):
         for on_fulfill in self._fulfills:
             try:
                 result = on_fulfill(data)
+                result = result.qjs_value if isinstance(result, PyJSValue) else result
                 data = result if result not in no_return else data  # Forward data.
             except Exception as e:
                 self._reject(repr(e))
