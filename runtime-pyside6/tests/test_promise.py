@@ -17,11 +17,9 @@
 """
 from time import sleep
 
-import pytest
-from PySide6.QtCore import QObject
 from PySide6.QtQml import QJSValue
 
-from spy import Spy
+from tests.plugins.natural import that, Spy
 from LogarithmPlotter.util.js import PyJSValue
 from LogarithmPlotter.util.promise import PyPromise
 
@@ -95,10 +93,10 @@ class TestPyPromise:
         # Check on our spy.
         with qtbot.waitSignal(promise.fulfilled, timeout=10000):
                 pass
-        assert spy_fulfilled.was_called.once
-        assert spy_fulfilled.was_not_called.with_arguments(3)
-        assert spy_fulfilled.was_called.with_arguments_matching(check_promise_result(3))
-        assert spy_rejected.was_not_called
+        assert that(spy_fulfilled).was.called.once
+        assert that(spy_fulfilled).was.not_called.with_arguments(3)
+        assert that(spy_fulfilled).was.called.with_arguments_matching(check_promise_result(3))
+        assert spy_rejected.was.not_called
 
     def test_rejected(self, qtbot):
         spy_fulfilled = Spy()
@@ -106,10 +104,10 @@ class TestPyPromise:
         promise = PyPromise(async_throw)
         then_res = promise.then(spy_fulfilled, spy_rejected)
         # Check if the return value is the same promise (so we can chain then)
-        assert then_res == promise
+        assert that(then_res).is_equal.to(promise)
         # Check on our spies.
         with qtbot.waitSignal(promise.rejected, timeout=10000):
             pass
-        assert spy_rejected.was_called.once
-        assert spy_rejected.was_called.with_arguments("Exception('aaaa')")
-        assert spy_fulfilled.was_not_called
+        assert that(spy_rejected).was.called.once
+        assert that(spy_rejected).was.called.with_arguments("Exception('aaaa')")
+        assert that(spy_fulfilled).was.not_called
