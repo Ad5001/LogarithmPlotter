@@ -49,19 +49,20 @@ def test_update(qtbot):
     update_info_newer = UpdateInformation()
     update_info_newer.got_update_info.connect(check_newer)
     runnable = UpdateCheckerRunnable('1.0.0', update_info_newer)
-    runnable.run()
-    qtbot.waitSignal(update_info_newer.got_update_info, timeout=10000)
+    with qtbot.waitSignal(update_info_newer.got_update_info, timeout=10000):
+        runnable.run()
     runnable = UpdateCheckerRunnable('0.1.0', update_info_older)
-    runnable.run()
-    qtbot.waitSignal(update_info_older.got_update_info, timeout=10000)
+    with qtbot.waitSignal(update_info_older.got_update_info, timeout=10000):
+        runnable.run()
     runnable = UpdateCheckerRunnable('0.5.0+dev0+git20240101', update_info_older)
-    runnable.run()
-    qtbot.waitSignal(update_info_older.got_update_info, timeout=10000)
+    with qtbot.waitSignal(update_info_older.got_update_info, timeout=10000):
+        runnable.run()
 
 def test_update_checker(qtbot):
     update_info = check_for_updates('0.6.0', MockWindow())
     assert QThreadPool.globalInstance().activeThreadCount() >= 1
-    qtbot.waitSignal(update_info.got_update_info, timeout=10000)
+    with qtbot.waitSignal(update_info.got_update_info, timeout=10000):
+        pass
     argv.append("--no-check-for-updates")
     update_info = check_for_updates('0.6.0', MockWindow())
     assert QThreadPool.globalInstance().activeThreadCount() < 2 # No new update checks where added

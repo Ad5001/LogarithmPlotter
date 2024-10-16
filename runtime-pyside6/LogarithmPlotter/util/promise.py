@@ -31,7 +31,7 @@ def check_callable(function: Callable|QJSValue) -> Callable|None:
     """
     if isinstance(function, QJSValue) and function.isCallable():
         return PyJSValue(function)
-    elif isinstance(function, Callable):
+    elif callable(function):
         return function
     return None
 
@@ -51,9 +51,7 @@ class PyPromiseRunner(QRunnable):
     def run(self):
         try:
             data = self.runner(*self.args)
-            if isinstance(data, QObject):
-                data = data
-            elif type(data) in [int, str, float, bool, bytes]:
+            if type(data) in [int, str, float, bool]:
                 data = QJSValue(data)
             elif data is None:
                 data = QJSValue.SpecialValue.UndefinedValue
@@ -62,7 +60,7 @@ class PyPromiseRunner(QRunnable):
             elif isinstance(data, PyJSValue):
                 data = data.qjs_value
             else:
-                raise InvalidReturnValue("Must return either a primitive, a valid QObject, JS Value, or None.")
+                raise InvalidReturnValue("Must return either a primitive, a JS Value, or None.")
             self.promise.fulfilled.emit(data)
         except Exception as e:
             try:
@@ -79,7 +77,7 @@ class PyPromise(QObject):
     Runs to_run in another thread, and calls fulfilled (populated by then) with its return value.
     """
     fulfilled = Signal((QJSValue,), (QObject,))
-    rejected = Signal(Exception)
+    rejected = Signal(str)
 
     def __init__(self, to_run: Callable|QJSValue, args=[], start_automatically=True):
         QObject.__init__(self)
@@ -94,7 +92,7 @@ class PyPromise(QObject):
             raise ValueError("New PyPromise created with invalid function")
         self._runner = PyPromiseRunner(to_run, self, args)
         if start_automatically:
-            self._start()
+            self.start()
     
     @Slot()
     def start(self, *args, **kwargs):
@@ -122,6 +120,35 @@ class PyPromise(QObject):
         if on_reject is not None:
             self._rejects.append(on_reject)
         return self
+    
+    def calls_upon_fulfillment(self, function: Callable | QJSValue) -> bool:
+        """
+        Returns True if the given function will be callback upon the promise fulfillment.
+        False otherwise.
+        """
+        return self._calls_in(function, self._fulfills)
+    
+    def calls_upon_rejection(self, function: Callable | QJSValue) -> bool:
+        """
+        Returns True if the given function will be callback upon the promise rejection.
+        False otherwise.
+        """
+        return self._calls_in(function, self._rejects)
+        
+    def _calls_in(self, function: Callable | QJSValue, within: list) -> bool:
+        """
+        Returns True if the given function resides in the given within list, False otherwise.
+        Internal method of calls_upon_fulfill
+        """
+        function = check_callable(function)
+        ret = False
+        if isinstance(function, PyJSValue):
+            found = next((f for f in within if f.qjs_value == function.qjs_value), None)
+            ret = found is not None
+        elif callable(function):
+            found = next((f for f in within if f == function), None)
+            ret = found is not None
+        return ret
 
     @Slot(QJSValue)
     @Slot(QObject)

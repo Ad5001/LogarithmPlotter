@@ -23,6 +23,7 @@ fi
 
 
 # Run python tests
+rm -rf build/runtime-pyside6/tests
 cp -r runtime-pyside6/tests build/runtime-pyside6
 cp -r ci CHANGELOG.md build/runtime-pyside6
 cd build/runtime-pyside6 || exit 1

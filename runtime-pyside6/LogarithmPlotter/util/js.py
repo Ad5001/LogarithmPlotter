@@ -75,6 +75,7 @@ class PyJSValue:
         return value
 
     def type(self) -> any:
+        ret = None
         matcher = [
             (lambda: self.qjs_value.isArray(), list),
             (lambda: self.qjs_value.isBool(), bool),
@@ -93,8 +94,9 @@ class PyJSValue:
         ]
         for (test, value) in matcher:
             if test():
-                return value
-        return None
+                ret = value
+                break
+        return ret
 
     def primitive(self):
         """

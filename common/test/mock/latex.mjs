@@ -23,6 +23,10 @@ const PIXEL = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQAAAAA3bvkkAAAACklEQVR4AWNgAAAAA
 export class MockLatex {
     constructor() {
     }
+    
+    get supportsAsyncRender() {
+        return true
+    }
 
     /**
      * Creates a simple string hash.
@@ -59,9 +63,19 @@ export class MockLatex {
      * @param {string} markup - LaTeX markup to render
      * @param {number} fontSize - Font size (in pt) to render
      * @param {string} color - Color of the text to render
+     * @returns {Promise<string>} - Comma separated data of the image (source, width, height)
+     */
+    async renderAsync(markup, fontSize, color) {
+        return this.renderSync(markup, fontSize, color)
+    }
+
+    /**
+     * @param {string} markup - LaTeX markup to render
+     * @param {number} fontSize - Font size (in pt) to render
+     * @param {string} color - Color of the text to render
      * @returns {string} - Comma separated data of the image (source, width, height)
      */
-    render(markup, fontSize, color) {
+    renderSync(markup, fontSize, color) {
         const file = this.__getFileName(markup, fontSize, color)
         writeFileSync(file, PIXEL, "base64")
         return `${file},1,1`

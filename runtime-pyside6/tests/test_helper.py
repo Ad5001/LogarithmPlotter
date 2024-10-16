@@ -30,7 +30,7 @@ from PySide6.QtWidgets import QApplication
 
 from LogarithmPlotter import __VERSION__ as version
 from LogarithmPlotter.util import config, helper
-from LogarithmPlotter.util.helper import Helper, InvalidFileException
+from LogarithmPlotter.util.helper import Helper, fetch_changelog, read_changelog, InvalidFileException
 
 pwd = getcwd()
 helper.SHOW_GUI_MESSAGES = False
@@ -60,19 +60,23 @@ CHANGELOG_BASE_PATH = path.realpath(path.join(path.dirname(path.realpath(__file_
 
 class TestHelper:
     def test_changelog(self, temporary, qtbot):
+        # Exists
         helper.CHANGELOG_VERSION = '0.5.0'
         tmpfile, directory = temporary
         obj = Helper(pwd, tmpfile)
         promise = obj.fetchChangelog()
         create_changelog_callback_asserter(promise, expect_404=False)
-        qtbot.waitSignal(promise.fulfilled, timeout=10000)
-        # No exist
+        with qtbot.waitSignal(promise.fulfilled, timeout=10000):
+            pass
+        assert type(fetch_changelog()) == str
+        # Does not exist
         helper.CHANGELOG_VERSION = '2.0.0'
         tmpfile, directory = temporary
         obj = Helper(pwd, tmpfile)
         promise = obj.fetchChangelog()
         create_changelog_callback_asserter(promise, expect_404=True)
-        qtbot.waitSignal(promise.fulfilled, timeout=10000)
+        with qtbot.waitSignal(promise.fulfilled, timeout=10000):
+            pass
         # Local
         tmpfile, directory = temporary
         obj = Helper(pwd, tmpfile)
@@ -81,7 +85,9 @@ class TestHelper:
         assert path.exists(helper.CHANGELOG_CACHE_PATH)
         promise = obj.fetchChangelog()
         create_changelog_callback_asserter(promise, expect_404=False)
-        qtbot.waitSignal(promise.fulfilled, timeout=10000) # Local
+        with qtbot.waitSignal(promise.fulfilled, timeout=100): # Local
+            pass
+        assert type(read_changelog()) == str
     
     def test_read(self, temporary):
         # Test file reading and information loading.

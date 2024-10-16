@@ -17,7 +17,6 @@
 """
 
 import pytest
-from os.path import exists
 
 from PySide6.QtCore import QEvent, QObject, QUrl
 from PySide6.QtGui import QActionEvent, QFileOpenEvent

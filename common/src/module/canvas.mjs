@@ -530,14 +530,14 @@ class CanvasAPI extends Module {
                     if(this.#redrawCount === currentRedrawCount)
                         callback(imgData)
                     else
-                        console.log("1Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
+                        console.log("1. Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
                 })
             } else {
                 // Callback directly
                 if(this.#redrawCount === currentRedrawCount)
                     callback(imgData)
                 else
-                    console.log("2Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
+                    console.log("2. Discard render of", imgData.source, this.#redrawCount, currentRedrawCount)
             }
         }
         const prerendered = Latex.findPrerendered(ltxText, this.textsize, color)
