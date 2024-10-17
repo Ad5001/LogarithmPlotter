@@ -82,9 +82,9 @@ class TestLatex:
         with pytest.raises(latex.RenderError):
             latex_obj.renderSync("\\mathrm{f}(x)", 14, BLACK)
         # Replace latex bin with one goes indefinitely
-        latex.LATEX_PATH = which("import")
-        with pytest.raises(latex.RenderError):
-            latex_obj.renderSync("\\mathrm{f}(x)", 14, BLACK)
+        # latex.LATEX_PATH = which("import") # TODO: Find one such executable
+        # with pytest.raises(latex.RenderError):
+        #     latex_obj.renderSync("\\mathrm{f}(x)", 14, BLACK)
         latex.LATEX_PATH = bkp
 
     def test_prerendered(self, latex_obj: latex.Latex) -> None:

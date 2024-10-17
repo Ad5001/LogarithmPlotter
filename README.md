@@ -24,7 +24,7 @@ First, you'll need to install all the required dependencies:
 - [npm](https://npmjs.com) (or [yarn](https://yarnpkg.com/)), go to the `common` directory, and run `npm install` (or `yarn install`).
 
 You can simply run LogarithmPlotter using `python3 run.py`. It automatically compiles the language files (requires
-`lrelease` to be installed and in path), and the JavaScript modules.
+`pyside6-lrelease` to be installed and in path), and the JavaScript modules.
 
 If you do not wish do recompile the files again on every run, you can use the build script (`scripts/build.sh`) and run
 `python3 build/runtime-pyside6/LogarithmPlotter/logarithmplotter.py`.
