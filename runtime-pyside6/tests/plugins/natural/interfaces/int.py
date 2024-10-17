@@ -15,8 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from idlelib.configdialog import is_int
-from math import log10, floor, ceil
+from math import log10, floor
 from typing import Self
 
 from .assertion import Assertion

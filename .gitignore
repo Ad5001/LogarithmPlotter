@@ -37,8 +37,10 @@ docs/html
 *.lpf
 *.lgg
 
+# Tests
+common/coverage/
+**/.coverage
+
 # npm
 common/node_modules
-common/coverage/
-common/.coverage
 runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js/index.mjs*
