@@ -18,4 +18,5 @@
 
 from .spy import Spy
 from .that import that
+from .interfaces.base import Assertion
 

@@ -17,14 +17,23 @@
 """
 
 class Assertion(Exception):
-    def __init__(self, assertion: bool, message: str):
+    def __init__(self, assertion: bool, message: str, invert: bool):
         self.assertion = assertion
         self.message = message
+        self.invert = invert
+
+    def _invert_message(self):
+        for verb in ('is', 'was', 'has', 'have'):
+            for negative in ("n't", ' not', ' never', ' no'):
+                self.message = self.message.replace(f"{verb}{negative}", verb.upper())
 
     def __str__(self):
         return self.message
 
     def __bool__(self):
-        if not self.assertion:
+        if not self.invert and not self.assertion:
             raise self
-        return self.assertion
+        if self.invert and self.assertion:
+            self._invert_message()
+            raise self
+        return True # Raises otherwise.

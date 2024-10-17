@@ -15,10 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from typing import Self
+from typing import Self, Callable, Any
 
-from tests.plugins.natural.interfaces.assertion import Assertion
-from tests.plugins.natural.interfaces.utils import repr_
+from .assertion import Assertion
+from .utils import repr_
 
 
 class AssertionInterface:
@@ -26,15 +26,91 @@ class AssertionInterface:
     Most basic assertion interface.
     You probably want to use BaseAssertionInterface
     """
-    def __init__(self, value):
+
+    def __init__(self, value, parent: Self = None):
         self._value = value
+        self._parent = parent
+        if parent is None:
+            self.__not = False
 
     @property
-    def was(self) -> Self:
+    def _not(self) -> bool:
+        """
+        Internal state of whether the expression was negated.
+        Use "not_" to set it.
+        :return:
+        """
+        return self.__not if self._parent is None else self._parent._not
+
+    @_not.setter
+    def _not(self, value: bool):
+        if self._not is True:
+            raise RuntimeError("Cannot call is_not or was_not twice in the same statement.")
+        if self._parent is None:
+            self.__not = True
+        else:
+            self._parent._not = True
+
+    def instance_of(self, type_: type) -> Assertion:
+        """
+        Checks if the current value is equal to the provided value
+        """
+        value_type_name = type(self._value).__name__
+        if not isinstance(type_, type):
+            raise RuntimeError("Provided 'type' provided is not a class.")
+        return Assertion(
+            isinstance(self._value, type_),
+            f"The value ({value_type_name} {repr_(self._value)}) is not a {type_.__name__}.",
+            self._not
+        )
+
+    def __call__(self, condition: Callable[[Any], bool]) -> Assertion:
+        """
+        Apply condition to value that returns whether or not the value is valid.
+        """
+        return Assertion(
+            condition(self._value),
+            f"The value ({repr_(self._value)}) did not match given conditions.",
+            self._not
+        )
+
+    """
+    NOT Properties.
+    """
+
+    @property
+    def NOT(self) -> Self:
+        self._not = True
         return self
 
     @property
-    def be(self) -> Self:
+    def not_(self) -> Self:
+        self._not = True
+        return self
+
+    @property
+    def never(self) -> Self:
+        self._not = True
+        return self
+
+    """
+    Chain self properties to sound natural
+    """
+
+    @property
+    def that(self) -> Self:
+        return self
+
+    @property
+    def is_(self) -> Self:
+        return self
+
+    @property
+    def does(self) -> Self:
+        return self
+
+    @property
+    def was(self) -> Self:
         return self
 
     @property
@@ -57,31 +133,25 @@ class AssertionInterface:
     def an(self) -> Self:
         return self
 
-    def is_a(self, type_) -> Assertion:
-        """
-        Checks if the current value is equal to the provided value
-        """
-        value_type_name = type(self._value).__name__
-        return Assertion(isinstance(type_, type_), f"The value ({value_type_name} {repr_(self._value)}) is not a {type_.__name__}.")
-
-
 
 class EqualAssertionInterface(AssertionInterface):
     """
     Interface created for when its value should be checked for equality
     """
-    def __init__(self, value):
-        super().__init__(value)
+
+    def __init__(self, value, parent: AssertionInterface = None):
+        super().__init__(value, parent)
 
     def __call__(self, value) -> Assertion:
-        return Assertion(value == self._value, f"The value ({repr_(self._value)}) is not equal to {repr(value)}.")
+        return Assertion(
+            value == self._value,
+            f"The value {repr_(self._value)} is different from {repr(value)}.",
+            self._not
+        )
 
-    def to(self, value) -> Self:
-        return self(value)
-
-    def of(self, value) -> Self:
-        return self(value)
-
+    @property
+    def to(self) -> Self:
+        return self
 
 
 class BaseAssertionInterface(AssertionInterface):
@@ -91,10 +161,10 @@ class BaseAssertionInterface(AssertionInterface):
         """
         Checks if the current value is equal to the provided value
         """
-        return EqualAssertionInterface(self._value)
+        return EqualAssertionInterface(self._value, self)
 
     @property
-    def is_equal(self) -> EqualAssertionInterface:
+    def equal(self) -> EqualAssertionInterface:
         """
         Checks if the current value is equal to the provided value
         """

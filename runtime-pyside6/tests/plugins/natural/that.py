@@ -17,17 +17,21 @@
 """
 from typing import overload, Generic, TypeVar
 
-from .spy import Spy
+from . import Spy
 from .interfaces.base import AssertionInterface, BaseAssertionInterface
-from .interfaces.basic import StringInterface, BoolInterface
-from .interfaces.int import IntInterface
+from .interfaces.basic import StringInterface, BoolInterface, ListInterface
+from .interfaces.int import NumberInterface
+from .interfaces.spy import SpyAssertionInterface
 
 Interface = TypeVar("Interface", bound=AssertionInterface)
 
 MATCHES = [
     (str, StringInterface),
-    (int, IntInterface),
     (bool, BoolInterface),
+    (int, NumberInterface),
+    (float, NumberInterface),
+    (list, ListInterface),
+    (Spy, SpyAssertionInterface)
 ]
 
 
@@ -36,11 +40,18 @@ def that(value: str) -> StringInterface: ...
 
 
 @overload
-def that(value: int) -> IntInterface: ...
+def that(value: bool) -> BoolInterface: ...
 
 
 @overload
-def that(value: bool) -> BoolInterface: ...
+def that(value: int) -> NumberInterface: ...
+
+
+@overload
+def that(value: float) -> NumberInterface: ...
+
+@overload
+def that(value: Spy) -> SpyAssertionInterface: ...
 
 
 @overload

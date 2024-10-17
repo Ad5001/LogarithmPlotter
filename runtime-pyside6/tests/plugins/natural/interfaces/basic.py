@@ -15,47 +15,69 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from tests.plugins.natural.interfaces.assertion import Assertion
-from tests.plugins.natural.interfaces.base import BaseAssertionInterface
-from tests.plugins.natural.interfaces.int import IntInterface
-from tests.plugins.natural.interfaces.utils import repr_
+from .assertion import Assertion
+from .base import BaseAssertionInterface
+from .int import NumberInterface
+from .utils import repr_
 
 
 class FixedIteratorInterface(BaseAssertionInterface):
     @property
-    def length(self) -> IntInterface:
-        return IntInterface(len(self._value))
+    def length(self) -> NumberInterface:
+        return NumberInterface(len(self._value), self)
 
     def elements(self, *elements) -> Assertion:
-        tests = [elem for elem in elements if elem in self._value]
+        tests = [repr_(elem) for elem in elements if elem not in self._value]
         return Assertion(
             len(tests) == 0,
-            f"This value ({repr_(self._value)}) does not have elements ({repr_(tests)})"
+            f"This value ({repr_(self._value)}) does not have elements {', '.join(tests)}.",
+            self._not
         )
 
     def element(self, element) -> Assertion:
         return Assertion(
             element in self._value,
-            f"This value ({repr_(self._value)}) does not have element ({repr_(element)})"
+            f"This value ({repr_(self._value)}) does not have element {repr_(element)}.",
+            self._not
         )
 
     def contains(self, *elements) -> Assertion:
-        return self.elements(*elements)
+        """
+        Check if the element(s) are contained in the iterator.
+        """
+        if len(elements) == 1:
+            return self.element(elements[0])
+        else:
+            return self.elements(*elements)
+
+    def contain(self, *elements):
+        """
+        Check if the element(s) are contained in the iterator.
+        """
+        return self.contains(*elements)
+
 
 class BoolInterface(BaseAssertionInterface):
     @property
-    def is_true(self):
+    def true(self):
         return Assertion(
             self._value == True,
-            f"The value ({repr_(self._value)}) is not True."
+            f"The value ({repr_(self._value)}) is not True.",
+            self._not
         )
 
     @property
-    def is_false(self):
+    def false(self):
         return Assertion(
             self._value == False,
-            f"The value ({repr_(self._value)}) is not False."
+            f"The value ({repr_(self._value)}) is not False.",
+            self._not
         )
 
-class StringInterface(LengthInterface):
+
+class StringInterface(FixedIteratorInterface):
+    pass
+
+
+class ListInterface(FixedIteratorInterface):
     pass
