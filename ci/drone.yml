@@ -12,28 +12,21 @@ steps:
       - git submodule update --init --recursive
 
   - name: Build
-    image: node:18-bookworm
+    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex-node
     commands:
       - cd common && npm install && cd ..
-      - apt update
-      - apt install -y qtchooser qttools5-dev-tools
-      # Start building 
       - bash scripts/build.sh
-    when:
-      event: [ push, tag ]
 
   - name: Unit Tests
-    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
+    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex-node
     commands:
-      - apt update
-      - apt install -y npm
       - cd common && npm install -D && cd ..
       - xvfb-run bash scripts/run-tests.sh --no-rebuild
     when:
       event: [ push, tag ]
 
   - name: File Tests
-    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex
+    image: ad5001/ubuntu-pyside-xvfb:linux-6-latest-latex-node
     commands:
       - xvfb-run python3 run.py --test-build --no-check-for-updates
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf

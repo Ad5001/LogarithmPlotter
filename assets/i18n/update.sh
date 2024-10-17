@@ -40,7 +40,7 @@ done
 echo "----------------------------"
 echo "| Updating translations... |"
 echo "----------------------------"
-lupdate -extensions js,qs,qml,py -recursive ../../common/src -recursive ../../runtime-pyside6/LogarithmPlotter -ts lp_*.ts
+pyside6-lupdate -extensions js,qs,qml,py -recursive ../../common/src -recursive ../../runtime-pyside6/LogarithmPlotter -ts lp_*.ts
 # Updating locations in files
 for lp in *.ts; do
     echo "Replacing locations in $lp..."
