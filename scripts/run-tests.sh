@@ -12,7 +12,7 @@ rebuild=true
 
 cd runtime-pyside6/tests/plugins || exit 1
 box "Testing pytest natural plugins..."
-PYTHONPATH="$PYTHONPATH:." pytest --cov=natural --cov-report term-missing .
+PYTHONPATH="$PYTHONPATH:." pytest --cov=natural --cov-report term-missing . || exit 1
 cd ../../../
 
 while [ $# -gt 0 ]; do
@@ -40,11 +40,11 @@ cp -r runtime-pyside6/tests build/runtime-pyside6
 cp -r ci CHANGELOG.md build/runtime-pyside6
 cd build/runtime-pyside6 || exit 1
 box "Testing runtime-pyside6..."
-PYTHONPATH="$PYTHONPATH:." pytest --cov=LogarithmPlotter --cov-report term-missing .
+PYTHONPATH="$PYTHONPATH:." pytest --cov=LogarithmPlotter --cov-report term-missing . || exit 1
 cd ../../
 
 # Run js tests
 cd common || exit 1
 box "Testing common..."
-npm test
+npm test || exit 1
 
