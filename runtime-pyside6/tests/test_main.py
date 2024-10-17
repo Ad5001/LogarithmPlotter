@@ -22,12 +22,13 @@ from os.path import exists, join
 from PySide6.QtGui import QIcon
 from tempfile import TemporaryDirectory
 
+from .globals import app
+
 from LogarithmPlotter.logarithmplotter import get_linux_theme, LINUX_THEMES, get_platform_qt_style, \
     register_icon_directories, install_translation, create_engine
 from LogarithmPlotter.util import config
 from LogarithmPlotter.util.helper import Helper
 from LogarithmPlotter.util.latex import Latex
-from globals import app
 
 THEMES = [
     "Basic",

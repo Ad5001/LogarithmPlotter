@@ -21,7 +21,7 @@ from typing import Callable, Self
 from .base import Assertion, repr_, AssertionInterface
 from .int import NumberComparisonAssertionInterface
 
-PRINT_PREFIX = (" " * 24)
+PRINT_PREFIX = (" " * 3)
 
 
 class SpyAssertion(Assertion):

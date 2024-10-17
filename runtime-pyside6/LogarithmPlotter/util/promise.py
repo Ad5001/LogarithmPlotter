@@ -73,10 +73,10 @@ class PyPromiseRunner(QRunnable):
 
 class PyPromise(QObject):
     """
-    Asynchronous Promise-like object meant to interface between Python and Javascript easily.
+    Threaded A+/Promise implementation meant to interface between Python and Javascript easily.
     Runs to_run in another thread, and calls fulfilled (populated by then) with its return value.
     """
-    fulfilled = Signal((QJSValue,), (QObject,))
+    fulfilled = Signal(QJSValue)
     rejected = Signal(str)
 
     def __init__(self, to_run: Callable|QJSValue, args=[], start_automatically=True):
@@ -115,10 +115,8 @@ class PyPromise(QObject):
         """
         on_fulfill = check_callable(on_fulfill)
         on_reject = check_callable(on_reject)
-        if on_fulfill is not None:
-            self._fulfills.append(on_fulfill)
-        if on_reject is not None:
-            self._rejects.append(on_reject)
+        self._fulfills.append(on_fulfill)
+        self._rejects.append(on_reject)
         return self
     
     def calls_upon_fulfillment(self, function: Callable | QJSValue) -> bool:
@@ -155,20 +153,22 @@ class PyPromise(QObject):
     def _fulfill(self, data):
         self._state = "fulfilled"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
-        for on_fulfill in self._fulfills:
+        print("Fulfill")
+        for i in range(len(self._fulfills)):
             try:
-                result = on_fulfill(data)
+                result = self._fulfills[i](data)
                 result = result.qjs_value if isinstance(result, PyJSValue) else result
                 data = result if result not in no_return else data  # Forward data.
             except Exception as e:
-                self._reject(repr(e))
+                self._reject(repr(e), start_at=i)
                 break
 
     @Slot(QJSValue)
     @Slot(str)
-    def _reject(self, error):
+    def _reject(self, error, start_at=0):
         self._state = "rejected"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
-        for on_reject in self._rejects:
-            result = on_reject(error)
+        for i in range(start_at, len(self._rejects)):
+            result = self._rejects[i](error)
+            result = result.qjs_value if isinstance(result, PyJSValue) else result
             error = result if result not in no_return else error  # Forward data.

@@ -134,13 +134,13 @@ def test_add_natural_complex():
         assert that(2).equals.one.minus.two
 
 def test_spy():
-    spy = Spy()
+    spy = Spy(lambda *args, **kw: 10)
     assert that(spy).is_.an.instance_of(Spy)
     assert that(spy).is_(callable)
     # Check calls
     assert that(spy).was.never.called
     assert that(spy).was.called.zero.times
-    spy(30, arg="string")
+    assert spy(30, arg="string") == 10
     assert that(spy).was.called
     assert that(spy).was.called.once
     assert that(spy).was.called.one.time
@@ -159,7 +159,7 @@ def test_spy():
         assert that(spy).was.called.with_no_argument()
 
 def test_spy_seral_calls():
-    spy = Spy(lambda *args, **kw: None)
+    spy = Spy()
     obj = object()
     spy()
     spy(30, arg="string")

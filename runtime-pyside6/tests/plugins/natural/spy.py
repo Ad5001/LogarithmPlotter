@@ -30,4 +30,4 @@ class Spy:
     def __call__(self, *args, **kwargs):
         self.calls.append((args, kwargs))
         if self.function is not None:
-            self.function(*args, **kwargs)
+            return self.function(*args, **kwargs)

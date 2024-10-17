@@ -17,9 +17,10 @@
 """
 from time import sleep
 
+import pytest
 from PySide6.QtQml import QJSValue
 
-from tests.plugins.natural import that, Spy
+from .plugins.natural import that, Spy
 from LogarithmPlotter.util.js import PyJSValue
 from LogarithmPlotter.util.promise import PyPromise
 
@@ -56,6 +57,10 @@ def async_throw():
 
 class TestPyPromise:
 
+    def test_invalid_function(self):
+        with pytest.raises(ValueError):
+            promise = PyPromise("not a function")
+
     def test_fulfill_values(self, qtbot):
         qjsv = QJSValue(3)
         values = [
@@ -70,7 +75,6 @@ class TestPyPromise:
         for [value, test] in values:
             promise = PyPromise(create_async_func(value))
             with qtbot.assertNotEmitted(promise.rejected, wait=1000):
-                print("Testing", value)
                 with qtbot.waitSignal(promise.fulfilled, check_params_cb=test, timeout=2000):
                     assert promise.state == "pending"
             assert promise.state == "fulfilled"
@@ -84,30 +88,90 @@ class TestPyPromise:
         assert promise.state == "rejected"
 
     def test_fulfill(self, qtbot):
-        spy_fulfilled = Spy()
-        spy_rejected = Spy()
+        fulfilled = Spy()
+        rejected = Spy()
         promise = PyPromise(create_async_func(3))
-        then_res = promise.then(spy_fulfilled, spy_rejected)
+        then_res = promise.then(fulfilled, rejected)
         # Check if the return value is the same promise (so we can chain then)
-        assert then_res == promise
+        assert that(then_res).does.equal(promise)
         # Check on our spy.
         with qtbot.waitSignal(promise.fulfilled, timeout=10000):
                 pass
-        assert that(spy_fulfilled).was.called.once
-        assert that(spy_fulfilled).was.not_called.with_arguments(3)
-        assert that(spy_fulfilled).was.called.with_arguments_matching(check_promise_result(3))
-        assert spy_rejected.was.not_called
+        assert that(fulfilled).was.called.once
+        assert that(fulfilled).was.NOT.called.with_arguments(3)
+        assert that(fulfilled).was.called.with_arguments_matching(check_promise_result(3))
+        assert that(rejected).was.never.called
 
     def test_rejected(self, qtbot):
-        spy_fulfilled = Spy()
-        spy_rejected = Spy()
+        fulfilled = Spy()
+        rejected = Spy()
         promise = PyPromise(async_throw)
-        then_res = promise.then(spy_fulfilled, spy_rejected)
+        then_res = promise.then(fulfilled, rejected)
         # Check if the return value is the same promise (so we can chain then)
-        assert that(then_res).is_equal.to(promise)
+        assert that(then_res).does.equal(promise)
         # Check on our spies.
         with qtbot.waitSignal(promise.rejected, timeout=10000):
             pass
-        assert that(spy_rejected).was.called.once
-        assert that(spy_rejected).was.called.with_arguments("Exception('aaaa')")
-        assert that(spy_fulfilled).was.not_called
+        assert that(rejected).was.called.once
+        assert that(rejected).was.called.with_arguments("Exception('aaaa')")
+        assert that(fulfilled).has.never.been.called
+
+    def test_chain_fulfill(self, qtbot):
+        convert = Spy(lambda v: v.toVariant())
+        plus = Spy(lambda v: v + 1)
+        rejected = Spy()
+        promise = PyPromise(create_async_func(5))
+        then_res = promise.then(convert, rejected).then(plus, rejected).then(plus, rejected).then(plus, rejected)
+        # Check if the return value is the same promise (so we can chain then)
+        assert that(then_res).does.equal(promise)
+        with qtbot.waitSignal(promise.fulfilled, timeout=10000):
+            pass
+        assert that(convert).was.called.once.with_arguments_matching(check_promise_result(5))
+        assert that(rejected).was.never.called
+        assert that(plus).was.called.three.times
+        assert that(plus).was.called.once.with_exact_arguments(5)
+        assert that(plus).was.called.once.with_exact_arguments(6)
+        assert that(plus).was.called.once.with_exact_arguments(7)
+
+    def test_chain_reject(self, qtbot):
+        fulfilled = Spy()
+        convert = Spy(lambda v: len(v))
+        minus = Spy(lambda v: v - 1)
+        promise = PyPromise(async_throw)
+        then_res = promise.then(fulfilled, convert).then(fulfilled, minus).then(fulfilled, minus).then(fulfilled, minus)
+        # Check if the return value is the same promise (so we can chain then)
+        assert that(then_res).does.equal(promise)
+        with qtbot.waitSignal(promise.rejected, timeout=10000):
+            pass
+        assert that(fulfilled).was.never.called
+        assert that(convert).was.called.once.with_arguments_matching(check_promise_result("Exception('aaaa')"))
+        assert that(minus).was.called.three.times
+        assert that(minus).was.called.once.with_exact_arguments(17)
+        assert that(minus).was.called.once.with_exact_arguments(16)
+        assert that(minus).was.called.once.with_exact_arguments(15)
+
+    def test_check_calls_upon(self):
+        promise = PyPromise(async_throw)
+        fulfilled = Spy()
+        rejected = Spy()
+        promise.then(fulfilled, rejected)
+        assert promise.calls_upon_fulfillment(fulfilled)
+        assert promise.calls_upon_rejection(rejected)
+        assert not promise.calls_upon_fulfillment(rejected)
+        assert not promise.calls_upon_rejection(fulfilled)
+
+    def test_reject_in_fulfill(self, qtbot):
+        def fulfilled_throw(x):
+            raise Exception('noooo')
+        promise = PyPromise(create_async_func("3"))
+        fulfilled_throw = Spy(fulfilled_throw)
+        fulfilled = Spy()
+        rejected = Spy()
+        then_res = promise.then(fulfilled, rejected).then(fulfilled_throw, rejected).then(fulfilled, rejected).then(fulfilled, rejected)
+        # Check if the return value is the same promise (so we can chain then)
+        assert that(then_res).does.equal(promise)
+        with qtbot.waitSignal(promise.fulfilled, timeout=10000):
+            pass
+        assert that(fulfilled_throw).has.been.called.once
+        assert that(rejected).has.been.called.three.times
+        assert that(rejected).has.been.called.three.times.with_arguments("Exception('noooo')")

@@ -21,7 +21,6 @@ from re import Pattern
 from PySide6.QtQml import QJSEngine, QJSValue
 
 from LogarithmPlotter.util.js import PyJSValue, InvalidAttributeValueException, NotAPrimitiveException
-from globals import app
 
 @pytest.fixture()
 def data():
