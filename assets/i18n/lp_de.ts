@@ -145,7 +145,7 @@
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="145"/>
         <source>&amp;Changelog</source>
-        <translation>&amp;Changelog</translation>
+        <translation>&amp;Versionshinweise</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="150"/>
@@ -388,7 +388,7 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="94"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>Versionshinweise</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/GreetScreen.qml" line="98"/>
