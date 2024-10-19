@@ -22,7 +22,8 @@ const DEFAULT_SETTINGS = {
     "check_for_updates": true,
     "reset_redo_stack": true,
     "last_install_greet": "0",
-    "enable_latex": false,
+    "enable_latex": true,
+    "enable_latex_async": true,
     "expression_editor": {
         "autoclose": true,
         "colorize": true,

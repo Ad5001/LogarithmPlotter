@@ -62,7 +62,7 @@ class LatexRenderResult {
 class LatexAPI extends Module {
     /** @type {LatexInterface} */
     #latex = null
-    
+
     constructor() {
         super("Latex", {
             latex: LatexInterface,
@@ -142,9 +142,10 @@ class LatexAPI extends Module {
      */
     parif(elem, contents) {
         elem = elem.toString()
-        if(elem[0] !== "(" && elem.at(-1) !== ")" && contents.some(x => elem.indexOf(x) > 0))
+        const contains = contents.some(x => elem.indexOf(x) > 0)
+        if(elem[0] !== "(" && elem.at(-1) !== ")" && contains)
             return this.par(elem)
-        if(elem[0] === "(" && elem.at(-1) === ")")
+        if(elem[0] === "(" && elem.at(-1) === ")" && !contains)
             return elem.removeEnclosure()
         return elem
     }

@@ -22,8 +22,10 @@ import { MockLatex } from "./mock/latex.mjs"
 
 import { use } from "chai"
 import spies from "chai-spies"
+import promised from "chai-as-promised"
 
 function setup() {
+    use(promised)
     const { spy } = use(spies)
 
     globalThis.Helper = new MockHelper()

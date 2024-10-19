@@ -22,10 +22,7 @@ const PIXEL = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQAAAAA3bvkkAAAACklEQVR4AWNgAAAAA
 
 export class MockLatex {
     constructor() {
-    }
-    
-    get supportsAsyncRender() {
-        return true
+        this.supportsAsyncRender = true
     }
 
     /**
