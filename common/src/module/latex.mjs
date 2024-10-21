@@ -143,9 +143,9 @@ class LatexAPI extends Module {
     parif(elem, contents) {
         elem = elem.toString()
         const contains = contents.some(x => elem.indexOf(x) > 0)
-        if(elem[0] !== "(" && elem.at(-1) !== ")" && contains)
+        if((elem[0] !== "(" || elem.at(-1) !== ")") && contains)
             return this.par(elem)
-        if(elem[0] === "(" && elem.at(-1) === ")" && !contains)
+        if((elem[0] === "(" || elem.at(-1) === ")") && !contains)
             return elem.removeEnclosure()
         return elem
     }
@@ -170,13 +170,14 @@ class LatexAPI extends Module {
                 else
                     return `\\int\\limits_{${args[0]}}^{${args[1]}}${args[2]}(t) dt`
             case "sqrt":
-                return `\\sqrt\\left(${args.join(", ")}\\right)`
+                const arg = this.parif(args.join(", "), [])
+                return `\\sqrt{${arg}}`
             case "abs":
                 return `\\left|${args.join(", ")}\\right|`
             case "floor":
-                return `\\left\\lfloor${args.join(", ")}\\right\\rfloor`
+                return `\\left\\lfloor{${args.join(", ")}}\\right\\rfloor`
             case "ceil":
-                return `\\left\\lceil${args.join(", ")}\\right\\rceil`
+                return `\\left\\lceil{${args.join(", ")}}\\right\\rceil`
             default:
                 return `\\mathrm{${f}}\\left(${args.join(", ")}\\right)`
         }
@@ -294,7 +295,7 @@ class LatexAPI extends Module {
                             nstack.push(this.parif(n1, ["+", "-", "*", "/", "^"]) + "!")
                             break
                         default:
-                            nstack.push(f + this.parif(n1, ["+", "-", "*", "/", "^"]))
+                            nstack.push(this.functionToLatex(f, [this.parif(n1, ["+", "-", "*", "/", "^"])]))
                             break
                     }
                     break
@@ -332,6 +333,7 @@ class LatexAPI extends Module {
         if(nstack.length > 1) {
             nstack = [nstack.join(";")]
         }
+        console.log(nstack[0])
         return String(nstack[0])
     }
 }
