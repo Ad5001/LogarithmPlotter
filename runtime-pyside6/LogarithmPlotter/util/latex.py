@@ -181,7 +181,7 @@ class Latex(QObject):
         """
         markup_hash, render_hash, export_path = self.create_export_path(latex_markup, font_size, color)
         if self.latexSupported and not path.exists(export_path + ".png"):
-            print("Rendering", latex_markup, export_path)
+            print("Rendering", latex_markup)
             # Generating file
             latex_path = path.join(self.tempdir, str(markup_hash))
             # If the formula is just recolored or the font is just changed, no need to recreate the DVI.

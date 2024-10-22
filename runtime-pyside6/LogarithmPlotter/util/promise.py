@@ -153,7 +153,6 @@ class PyPromise(QObject):
     def _fulfill(self, data):
         self._state = "fulfilled"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
-        print("Fulfill")
         for i in range(len(self._fulfills)):
             try:
                 result = self._fulfills[i](data)
