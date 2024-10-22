@@ -17,6 +17,7 @@
  */
 
 // Load prior tests
+import "../basics/utils.mjs"
 import "./base.mjs"
 import "./expreval.mjs"
 
@@ -26,6 +27,7 @@ import { existsSync } from "../mock/fs.mjs"
 
 const { spy } = chaiPlugins
 
+import ExprEval from "../../src/module/expreval.mjs"
 import LatexAPI from "../../src/module/latex.mjs"
 
 describe("Module/Latex", function() {
@@ -125,7 +127,7 @@ describe("Module/Latex", function() {
 
         it("shouldn't add parentheses to strings that does not contains one of the ones in the list", function() {
             expect(LatexAPI.parif("string", ["+"])).to.equal("string")
-            expect(LatexAPI.parif("string+assert", ["-"])).to.equal("string+assert)")
+            expect(LatexAPI.parif("string+assert", ["-"])).to.equal("string+assert")
             expect(LatexAPI.parif("(string*assert", ["+", "-"])).to.equal("(string*assert")
             expect(LatexAPI.parif("string/assert)", ["+", "-"])).to.equal("string/assert)")
         })
@@ -139,6 +141,91 @@ describe("Module/Latex", function() {
     })
 
     describe("#variable", function() {
-        
+        const from = [
+            "α", "β", "γ", "δ", "ε", "ζ", "η",
+            "π", "θ", "κ", "λ", "μ", "ξ", "ρ",
+            "ς", "σ", "τ", "φ", "χ", "ψ", "ω",
+            "Γ", "Δ", "Θ", "Λ", "Ξ", "Π", "Σ",
+            "Φ", "Ψ", "Ω", "ₐ", "ₑ", "ₒ", "ₓ",
+            "ₕ", "ₖ", "ₗ", "ₘ", "ₙ", "ₚ", "ₛ",
+            "ₜ", "¹", "²", "³", "⁴", "⁵", "⁶",
+            "⁷", "⁸", "⁹", "⁰", "₁", "₂", "₃",
+            "₄", "₅", "₆", "₇", "₈", "₉", "₀",
+            "pi", "∞"]
+        const to = [
+            "\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta",
+            "\\pi", "\\theta", "\\kappa", "\\lambda", "\\mu", "\\xi", "\\rho",
+            "\\sigma", "\\sigma", "\\tau", "\\phi", "\\chi", "\\psi", "\\omega",
+            "\\Gamma", "\\Delta", "\\Theta", "\\Lambda", "\\Xi", "\\Pi", "\\Sigma",
+            "\\Phy", "\\Psi", "\\Omega", "{}_{a}", "{}_{e}", "{}_{o}", "{}_{x}",
+            "{}_{h}", "{}_{k}", "{}_{l}", "{}_{m}", "{}_{n}", "{}_{p}", "{}_{s}",
+            "{}_{t}", "{}^{1}", "{}^{2}", "{}^{3}", "{}^{4}", "{}^{5}", "{}^{6}",
+            "{}^{7}", "{}^{8}", "{}^{9}", "{}^{0}", "{}_{1}", "{}_{2}", "{}_{3}",
+            "{}_{4}", "{}_{5}", "{}_{6}", "{}_{7}", "{}_{8}", "{}_{9}", "{}_{0}",
+            "\\pi", "\\infty"]
+
+        it("should convert unicode characters to their latex equivalent", function() {
+            for(let i = 0; i < from.length; i++)
+                expect(LatexAPI.variable(from[i])).to.include(to[i])
+        })
+
+        it("should wrap within dollar signs when the option is included", function() {
+            for(let i = 0; i < from.length; i++) {
+                expect(LatexAPI.variable(from[i], false)).to.equal(to[i])
+                expect(LatexAPI.variable(from[i], true)).to.equal(`$${to[i]}$`)
+            }
+        })
+
+        it("should be able to convert multiple of them", function() {
+            expect(LatexAPI.variable("α₂", false)).to.equal("\\alpha{}_{2}")
+            expect(LatexAPI.variable("∞piΠ", false)).to.equal("\\infty\\pi\\Pi")
+        })
+    })
+
+    describe("#functionToLatex", function() {
+        it("should transform derivatives into latex fractions", function() {
+            const d1 = LatexAPI.functionToLatex("derivative", ["'3t'", "'t'", "x+2"])
+            const d2 = LatexAPI.functionToLatex("derivative", ["f", "x+2"])
+            expect(d1).to.equal("\\frac{d3x}{dx}")
+            expect(d2).to.equal("\\frac{df}{dx}(x+2)")
+        })
+
+        it("should transform integrals into latex limits", function() {
+            const i1 = LatexAPI.functionToLatex("integral", ["0", "x", "'3y'", "'y'"])
+            const i2 = LatexAPI.functionToLatex("integral", ["1", "2", "f"])
+            expect(i1).to.equal("\\int\\limits_{0}^{x}3y dy")
+            expect(i2).to.equal("\\int\\limits_{1}^{2}f(t) dt")
+        })
+
+        it("should transform sqrt functions to sqrt latex", function()  {
+            const sqrt1 = LatexAPI.functionToLatex("sqrt", ["(x+2)"])
+            const sqrt2 = LatexAPI.functionToLatex("sqrt", ["\\frac{x}{2}"])
+            expect(sqrt1).to.equal("\\sqrt{x+2}")
+            expect(sqrt2).to.equal("\\sqrt{\\frac{x}{2}}")
+        })
+
+        it("should transform abs, floor and ceil", function() {
+            const abs = LatexAPI.functionToLatex("abs", ["x+3"])
+            const floor = LatexAPI.functionToLatex("floor", ["x+3"])
+            const ceil = LatexAPI.functionToLatex("ceil", ["x+3"])
+            expect(abs).to.equal("\\left|x+3\\right|")
+            expect(floor).to.equal("\\left\\lfloor{x+3}\\right\\rfloor")
+            expect(ceil).to.equal("\\left\\lceil{x+3}\\right\\rceil")
+        })
+
+        it("should transform regular functions into latex", function() {
+            const f1 = LatexAPI.functionToLatex("f", ["x+3", true])
+            const f2 = LatexAPI.functionToLatex("h_1", ["10"])
+            expect(f1).to.equal("\\mathrm{f}\\left(x+3, true\\right)")
+            expect(f2).to.equal("\\mathrm{h_1}\\left(10\\right)")
+        })
+    })
+
+    describe("#expression", function() {
+        it("should transform parsed expressions", function() {
+            const expr = ExprEval.parse("(+1! == 2/2 ? sin [-2.2][0] : f(t)^(1+1-1) + sqrt(A.t)) * 3 % 1")
+            const expected = "((((+1!))==(\\frac{2}{2}) ? (\\mathrm{sin}\\left(([(-2.2)][0])\\right)) : (\\mathrm{f}\\left(t\\right)^{1+1-1}+\\sqrt{A.t})) \\times 3) \\mathrm{mod} 1"
+            expect(LatexAPI.expression(expr.tokens)).to.equal(expected)
+        })
     })
 })
