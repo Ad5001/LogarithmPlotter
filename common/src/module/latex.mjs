@@ -21,7 +21,7 @@ import * as Instruction from "../lib/expr-eval/instruction.mjs"
 import { escapeValue } from "../lib/expr-eval/expression.mjs"
 import { HelperInterface, LatexInterface } from "./interface.mjs"
 
-const unicodechars = [
+const unicodechars = ["pi", "∞",
     "α", "β", "γ", "δ", "ε", "ζ", "η",
     "π", "θ", "κ", "λ", "μ", "ξ", "ρ",
     "ς", "σ", "τ", "φ", "χ", "ψ", "ω",
@@ -30,9 +30,9 @@ const unicodechars = [
     "ₕ", "ₖ", "ₗ", "ₘ", "ₙ", "ₚ", "ₛ",
     "ₜ", "¹", "²", "³", "⁴", "⁵", "⁶",
     "⁷", "⁸", "⁹", "⁰", "₁", "₂", "₃",
-    "₄", "₅", "₆", "₇", "₈", "₉", "₀",
-    "pi", "∞"]
-const equivalchars = [
+    "₄", "₅", "₆", "₇", "₈", "₉", "₀"
+]
+const equivalchars = ["\\pi", "\\infty",
     "\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta",
     "\\pi", "\\theta", "\\kappa", "\\lambda", "\\mu", "\\xi", "\\rho",
     "\\sigma", "\\sigma", "\\tau", "\\phi", "\\chi", "\\psi", "\\omega",
@@ -42,7 +42,7 @@ const equivalchars = [
     "{}_{t}", "{}^{1}", "{}^{2}", "{}^{3}", "{}^{4}", "{}^{5}", "{}^{6}",
     "{}^{7}", "{}^{8}", "{}^{9}", "{}^{0}", "{}_{1}", "{}_{2}", "{}_{3}",
     "{}_{4}", "{}_{5}", "{}_{6}", "{}_{7}", "{}_{8}", "{}_{9}", "{}_{0}",
-    "\\pi", "\\infty"]
+]
 
 /**
  * Class containing the result of a LaTeX render.
@@ -143,9 +143,9 @@ class LatexAPI extends Module {
     parif(elem, contents) {
         elem = elem.toString()
         const contains = contents.some(x => elem.indexOf(x) > 0)
-        if((elem[0] !== "(" || elem.at(-1) !== ")") && contains)
+        if(contains && (elem[0] !== "(" || elem.at(-1) !== ")"))
             return this.par(elem)
-        if((elem[0] === "(" || elem.at(-1) === ")") && !contains)
+        if(!contains && elem[0] === "(" && elem.at(-1) === ")")
             return elem.removeEnclosure()
         return elem
     }
@@ -191,16 +191,17 @@ class LatexAPI extends Module {
      * @returns {string}
      */
     variable(vari, wrapIn$ = false) {
-        if(wrapIn$)
+        if(wrapIn$) {
             for(let i = 0; i < unicodechars.length; i++) {
                 if(vari.includes(unicodechars[i]))
                     vari = vari.replaceAll(unicodechars[i], "$" + equivalchars[i] + "$")
             }
-        else
+        } else {
             for(let i = 0; i < unicodechars.length; i++) {
                 if(vari.includes(unicodechars[i]))
                     vari = vari.replaceAll(unicodechars[i], equivalchars[i])
             }
+        }
         return vari
     }
 
@@ -330,10 +331,6 @@ class LatexAPI extends Module {
                     throw new EvalError("invalid Expression")
             }
         }
-        if(nstack.length > 1) {
-            nstack = [nstack.join(";")]
-        }
-        console.log(nstack[0])
         return String(nstack[0])
     }
 }
