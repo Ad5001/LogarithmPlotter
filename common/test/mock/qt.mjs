@@ -40,6 +40,17 @@ function QT_TRANSLATE_NOOP(category, string) {
     return string
 }
 
+/**
+ * Polyfilling Qt arg function.
+ * @param {string} argument
+ */
+String.prototype.arg = function(argument) {
+    for(let i = 0; i < 10; i++)
+        if(this.includes("%"+i))
+            return this.replaceAll("%" + i, argument)
+    throw new Error("Too many arguments used.")
+}
+
 function setup() {
     globalThis.Qt = {
         rect
@@ -47,8 +58,6 @@ function setup() {
 
     globalThis.QT_TRANSLATE_NOOP = QT_TRANSLATE_NOOP
     globalThis.qsTranslate = QT_TRANSLATE_NOOP
-
-    String.prototype.arg = function() { return this; } // No need to reimplement it for now.
 }
 
 setup()

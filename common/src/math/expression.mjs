@@ -21,24 +21,34 @@ import * as Utils from "../utils.mjs"
 import Latex from "../module/latex.mjs"
 import ExprParser from "../module/expreval.mjs"
 import Objects from "../module/objects.mjs"
+import { ExprEvalExpression } from "../lib/expr-eval/expression.mjs"
+
+const NUMBER_MATCHER = /^\d*\.\d+(e[+-]\d+)?$/
 
 /**
  * Represents any kind of x-based or non variable based expression.
  */
 export class Expression {
+    /**
+     *
+     * @param {string|ExprEvalExpression} expr
+     */
     constructor(expr) {
         if(typeof expr === "string") {
             this.expr = Utils.exponentsToExpression(expr)
             this.calc = ExprParser.parse(this.expr).simplify()
-        } else {
+        } else if(expr instanceof ExprEvalExpression) {
             // Passed an expression here directly.
             this.calc = expr.simplify()
             this.expr = expr.toString()
+        } else {
+            const type = expr != null ? "a " + expr.constructor.name : expr
+            throw new Error(`Cannot create an expression with ${type}.`)
         }
-        this.cached = this.isConstant()
+        this.canBeCached = this.isConstant()
         this.cachedValue = null
-        if(this.cached && this.allRequirementsFulfilled())
-            this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
+        if(this.canBeCached && this.allRequirementsFulfilled())
+            this.recache()
         this.latexMarkup = Latex.expression(this.calc.tokens)
     }
 
@@ -77,21 +87,20 @@ export class Expression {
 
     /**
      * Returns a list of names whose corresponding objects this expression is dependant on and are missing.
-     * @return {boolean}
+     * @return {string[]}
      */
     undefinedVariables() {
         return this.requiredObjects().filter(objName => !(objName in Objects.currentObjectsByName))
     }
 
     recache() {
-        if(this.cached)
-            this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
+        this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
     }
 
     execute(x = 1) {
-        if(this.cached) {
+        if(this.canBeCached) {
             if(this.cachedValue == null)
-                this.cachedValue = this.calc.evaluate(Objects.currentObjectsByName)
+                this.recache()
             return this.cachedValue
         }
         ExprParser.currentVars = Object.assign({ "x": x }, Objects.currentObjectsByName)
@@ -99,9 +108,10 @@ export class Expression {
     }
 
     simplify(x) {
-        let expr = this.calc.substitute("x", x).simplify()
-        if(expr.evaluate() === 0) expr = "0"
-        return new Expression(expr)
+        let expr = new Expression(this.calc.substitute("x", x).simplify())
+        if(expr.allRequirementsFulfilled() && expr.execute() === 0)
+            expr = new Expression("0")
+        return expr
     }
 
     toEditableString() {
@@ -110,17 +120,28 @@ export class Expression {
 
     toString(forceSign = false) {
         let str = Utils.makeExpressionReadable(this.calc.toString())
-        if(str !== undefined && str.match(/^\d*\.\d+$/)) {
-            if(str.split(".")[1].split("0").length > 7) {
+        if(str !== undefined && str.match(NUMBER_MATCHER)) {
+            const decimals = str.split(".")[1].split("e")[0]
+            const zeros = decimals.split("0").length
+            const nines = decimals.split("9").length
+            if(zeros > 7 || nines > 7) {
                 // Likely rounding error
-                str = parseFloat(str.substring(0, str.length - 1)).toString()
+                str = parseFloat(str).toDecimalPrecision(8).toString()
             }
         }
-        if(str[0] !== "-" && forceSign) str = "+" + str
+        if(str[0] === "(" && str.at(-1) === ")")
+            str = str.substring(1, str.length - 1)
+        if(str[0] !== "-" && forceSign)
+            str = "+" + str
         return str
     }
 }
 
+/**
+ * Parses and executes the given expression
+ * @param {string} expr
+ * @return {number}
+ */
 export function executeExpression(expr) {
     return (new Expression(expr.toString())).execute()
 }

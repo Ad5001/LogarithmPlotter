@@ -224,7 +224,7 @@ export class DrawableObject {
                             currentObjectsByName[objName].requiredBy.push(this)
                         }
                     }
-                    if(this[property].cached && this[property].requiredObjects().length > 0)
+                    if(this[property].canBeCached && this[property].requiredObjects().length > 0)
                         // Recalculate
                         this[property].recache()
 

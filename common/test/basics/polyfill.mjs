@@ -35,50 +35,50 @@ import {
 } from "../../src/lib/expr-eval/polyfill.mjs"
 
 describe("Math/Polyfill", () => {
-    describe("#AADDDD", function() {
-        it("should add two numbers", function() {
+    describe("#add", function() {
+        it("adds two numbers", function() {
             expect(Polyfill.add(2, 3)).to.equal(5)
             expect(Polyfill.add("2", "3")).to.equal(5)
         })
     })
 
     describe("#sub", function() {
-        it("should subtract two numbers", function() {
+        it("subtracts two numbers", function() {
             expect(Polyfill.sub(2, 1)).to.equal(1)
             expect(Polyfill.sub("2", "1")).to.equal(1)
         })
     })
 
     describe("#mul", function() {
-        it("should multiply two numbers", function() {
+        it("multiplies two numbers", function() {
             expect(Polyfill.mul(2, 3)).to.equal(6)
             expect(Polyfill.mul("2", "3")).to.equal(6)
         })
     })
 
     describe("#div", function() {
-        it("should divide two numbers", function() {
+        it("divides two numbers", function() {
             expect(Polyfill.div(10, 2)).to.equal(5)
             expect(Polyfill.div("10", "2")).to.equal(5)
         })
     })
 
     describe("#mod", function() {
-        it("should return the modulo of two numbers", function() {
+        it("returns the modulo of two numbers", function() {
             expect(Polyfill.mod(10, 3)).to.equal(1)
             expect(Polyfill.mod("10", "3")).to.equal(1)
         })
     })
 
     describe("#concat", function() {
-        it("should return the concatenation of two strings", function() {
+        it("returns the concatenation of two strings", function() {
             expect(Polyfill.concat(10, 3)).to.equal("103")
             expect(Polyfill.concat("abc", "def")).to.equal("abcdef")
         })
     })
 
     describe("#equal", function() {
-        it("should return whether its two arguments are equal", function() {
+        it("returns whether its two arguments are equal", function() {
             expect(Polyfill.equal(10, 3)).to.be.false
             expect(Polyfill.equal(10, 10)).to.be.true
             expect(Polyfill.equal("abc", "def")).to.be.false
@@ -87,7 +87,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#notEqual", function() {
-        it("should return whether its two arguments are not equal", function() {
+        it("returns whether its two arguments are not equal", function() {
             expect(Polyfill.notEqual(10, 3)).to.be.true
             expect(Polyfill.notEqual(10, 10)).to.be.false
             expect(Polyfill.notEqual("abc", "def")).to.be.true
@@ -96,7 +96,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#greaterThan", function() {
-        it("should return whether its first argument is strictly greater than its second", function() {
+        it("returns whether its first argument is strictly greater than its second", function() {
             expect(Polyfill.greaterThan(10, 3)).to.be.true
             expect(Polyfill.greaterThan(10, 10)).to.be.false
             expect(Polyfill.greaterThan(10, 30)).to.be.false
@@ -104,7 +104,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#lessThan", function() {
-        it("should return whether its first argument is strictly less than its second", function() {
+        it("returns whether its first argument is strictly less than its second", function() {
             expect(Polyfill.lessThan(10, 3)).to.be.false
             expect(Polyfill.lessThan(10, 10)).to.be.false
             expect(Polyfill.lessThan(10, 30)).to.be.true
@@ -112,7 +112,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#greaterThanEqual", function() {
-        it("should return whether its first argument is greater or equal to its second", function() {
+        it("returns whether its first argument is greater or equal to its second", function() {
             expect(Polyfill.greaterThanEqual(10, 3)).to.be.true
             expect(Polyfill.greaterThanEqual(10, 10)).to.be.true
             expect(Polyfill.greaterThanEqual(10, 30)).to.be.false
@@ -120,7 +120,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#lessThanEqual", function() {
-        it("should return whether its first argument is strictly less than its second", function() {
+        it("returns whether its first argument is strictly less than its second", function() {
             expect(Polyfill.lessThanEqual(10, 3)).to.be.false
             expect(Polyfill.lessThanEqual(10, 10)).to.be.true
             expect(Polyfill.lessThanEqual(10, 30)).to.be.true
@@ -128,7 +128,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#andOperator", function() {
-        it("should return whether its arguments are both true", function() {
+        it("returns whether its arguments are both true", function() {
             expect(Polyfill.andOperator(true, true)).to.be.true
             expect(Polyfill.andOperator(true, false)).to.be.false
             expect(Polyfill.andOperator(false, true)).to.be.false
@@ -140,7 +140,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#orOperator", function() {
-        it("should return whether one of its arguments is true", function() {
+        it("returns whether one of its arguments is true", function() {
             expect(Polyfill.orOperator(true, true)).to.be.true
             expect(Polyfill.orOperator(true, false)).to.be.true
             expect(Polyfill.orOperator(false, true)).to.be.true
@@ -152,7 +152,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#inOperator", function() {
-        it("should check if second argument contains first", function() {
+        it("checks if second argument contains first", function() {
             expect(Polyfill.inOperator("a", ["a", "b", "c"])).to.be.true
             expect(Polyfill.inOperator(3, [0, 1, 2])).to.be.false
             expect(Polyfill.inOperator(3, [0, 1, 3, 2])).to.be.true
@@ -181,14 +181,14 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#trunc", function() {
-        it("should return the decimal part of floats", function() {
+        it("returns the decimal part of floats", function() {
             for(let x = -10; x < 10; x += 0.1)
                 expect(Polyfill.trunc(x)).to.equal(Math.trunc(x))
         })
     })
 
     describe("#gamma", function() {
-        it("should return the product of factorial(x - 1)", function() {
+        it("returns the product of factorial(x - 1)", function() {
             expect(Polyfill.gamma(0)).to.equal(Infinity)
             expect(Polyfill.gamma(1)).to.equal(1)
             expect(Polyfill.gamma(2)).to.equal(1)
@@ -204,7 +204,7 @@ describe("Math/Polyfill", () => {
     })
 
     describe("#hypot", function() {
-        it("should return the hypothenus length of a triangle whose length are provided in arguments", function() {
+        it("returns the hypothenus length of a triangle whose length are provided in arguments", function() {
             for(let x = 0; x < 10; x += 0.3) {
                 expect(Polyfill.hypot(x)).to.be.approximately(Math.hypot(x), Number.EPSILON)
                 for(let y = 0; y < 10; y += 0.3) {
@@ -224,7 +224,8 @@ describe("Math/Polyfill", () => {
 
     describe("#log1p, #log2", function() {
         for(let x = 1; x < 10; x += 0.3) {
-            expect(Polyfill.log1p(x)).to.be.approximately(Math.log1p(x), 1e-12)
+            expect(Polyfill.log1p(x)).to
+                                     .be.approximately(Math.log1p(x), 1e-12)
             expect(Polyfill.log2(x)).to.be.approximately(Math.log2(x), 1e-12)
         }
     })

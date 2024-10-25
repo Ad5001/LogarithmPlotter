@@ -19,7 +19,6 @@
 import { Module } from "./common.mjs"
 import Objects from "./objects.mjs"
 import History from "./history.mjs"
-import Canvas from "./canvas.mjs"
 import Settings from "./settings.mjs"
 import { DialogInterface, RootInterface } from "./interface.mjs"
 import { BaseEvent } from "../events.mjs"

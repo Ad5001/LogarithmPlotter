@@ -26,5 +26,6 @@ import { expect } from "chai"
 // import Objects from "../../src/module/objects.mjs"
 //
 // describe("Module/Objects", function() {
-//
+//     describe("#getNewName", function() {
+//     })
 // })
