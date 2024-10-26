@@ -30,7 +30,7 @@ cp ../../README.md .
 python3 setup.py --remove-git-version --command-packages=stdeb.command sdist_dsc \
     --package logarithmplotter --copyright-file assets/native/linux/debian/copyright \
     --suite noble --depends3 "$(cat assets/native/linux/debian/depends.wheels)" --section science \
-    bdist_deb
+    --debian-version +wheels-1 bdist_deb
 
 mv deb_dist deb_dist.noble
 
@@ -38,6 +38,6 @@ mv deb_dist deb_dist.noble
 python3 setup.py --remove-git-version --command-packages=stdeb.command sdist_dsc \
     --package logarithmplotter --copyright-file assets/native/linux/debian/copyright \
     --suite oracular --depends3 "$(cat assets/native/linux/debian/depends.packaged)" --section science \
-    bdist_deb
+    --debian-version +packaged-1 bdist_deb
 
 mv deb_dist deb_dist.oracular
