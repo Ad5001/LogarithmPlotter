@@ -18,12 +18,12 @@
 
 import QtQuick
 import QtQuick.Controls
-import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "js/index.mjs" as JS
+import eu.ad5001.LogarithmPlotter.Setting as Setting
+import eu.ad5001.LogarithmPlotter.Common
 
 /*!
-    \qmltype PickLocationOverlay
-    \inqmlmodule eu.ad5001.LogarithmPlotter
+    \qmltype PickLocation
+    \inqmlmodule eu.ad5001.LogarithmPlotter.Overlay
     \brief Overlay used to pick a new location for an object.
 
     Provides an overlay over the canvas that can be shown when the user clicks the "Set position" button
@@ -32,11 +32,13 @@ import "js/index.mjs" as JS
     
     \sa LogarithmPlotter, LogGraphCanvas
 */
-Item {
+Rectangle {
     id: pickerRoot
     visible: false
     clip: true
-    
+    color: sysPalette.window
+    opacity: 0.35
+
     /*!
         \qmlsignal PickLocationOverlay::picked(var obj)
         
@@ -96,11 +98,6 @@ Item {
     */
     readonly property bool userPickY: pickY && pickYCheckbox.checked
     
-    Rectangle {
-        color: sysPalette.window
-        opacity: 0.35
-        anchors.fill: parent
-    }
     
     MouseArea {
         id: picker

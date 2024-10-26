@@ -100,6 +100,7 @@ class PyPromise(QObject):
         Starts the thread that will run the promise.
         """
         if not self._started: # Avoid getting started twice.
+            print("Starting", self._runner.args)
             QThreadPool.globalInstance().start(self._runner)
             self._started = True
         
@@ -153,6 +154,7 @@ class PyPromise(QObject):
     def _fulfill(self, data):
         self._state = "fulfilled"
         no_return = [None, QJSValue.SpecialValue.UndefinedValue]
+        print("Finished", self._runner.args)
         for i in range(len(self._fulfills)):
             try:
                 result = self._fulfills[i](data)

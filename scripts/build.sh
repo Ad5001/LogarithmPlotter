@@ -22,6 +22,10 @@
 DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR/.." || exit 1
 
+BUILD_DIR="build/runtime-pyside6"
+BUILD_QML_DIR="$BUILD_DIR/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter"
+
+
 box() {
     len=${#1}
     echo "┌─$(printf '─%.0s' $(seq 1 "$len"))─┐"
@@ -30,20 +34,22 @@ box() {
 }
 
 rm -rf build
-mkdir -p build/runtime-pyside6
+mkdir -p "$BUILD_DIR"
 
 # Copy python
 box "Copying pyside6 python runtime..."
-cp -r runtime-pyside6/{setup.py,LogarithmPlotter} build/runtime-pyside6
+cp -r runtime-pyside6/{setup.py,LogarithmPlotter} "$BUILD_DIR"
 
 box "Building ecmascript modules..."
-mkdir -p build/runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/js
-cd common && (npm run build || exit) && cd ..
+mkdir -p "$BUILD_QML_DIR/js"
+cd common && \
+    (npm run build || exit) && \
+    cd ..
 
 box "Building translations..."
 cd assets/i18n/ && (bash release.sh || exit) && cd ../../
-mkdir -p build/runtime-pyside6/LogarithmPlotter/i18n && cp assets/i18n/*.qm build/runtime-pyside6/LogarithmPlotter/i18n/
+mkdir -p "$BUILD_DIR/LogarithmPlotter/i18n" && cp assets/i18n/*.qm "$BUILD_DIR/LogarithmPlotter/i18n/"
 
 box "Building icons..."
-cp -r assets/icons build/runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/
-cp assets/logarithmplotter.svg build/runtime-pyside6/LogarithmPlotter/
+cp -r assets/icons "$BUILD_QML_DIR"
+cp assets/logarithmplotter.svg "$BUILD_DIR/LogarithmPlotter/"

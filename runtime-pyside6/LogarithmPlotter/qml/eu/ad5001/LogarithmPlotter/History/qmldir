@@ -1,4 +1,4 @@
 module eu.ad5001.LogarithmPlotter.History
 
-HistoryBrowser 1.0 HistoryBrowser.qml
-HistoryItem 1.0 HistoryItem.qml
+Browser 1.0 Browser.qml
+SingleItem 1.0 SingleItem.qml

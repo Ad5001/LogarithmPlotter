@@ -20,7 +20,7 @@ import QtQuick.Controls
 import QtQuick
 import Qt.labs.platform as Native
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as P
-import "../js/index.mjs" as JS
+import eu.ad5001.LogarithmPlotter.Common
 
 
 /*!

@@ -20,7 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
-import "../js/index.mjs" as JS
+import eu.ad5001.LogarithmPlotter.Common
 
 /*!
     \qmltype Preferences

@@ -23,10 +23,11 @@ import QtQuick.Layouts 1.12
 import QtQuick
 
 // Auto loading all modules.
-import "js/index.mjs" as JS
+import eu.ad5001.LogarithmPlotter.Common
 
-import eu.ad5001.LogarithmPlotter.History 1.0
+import eu.ad5001.LogarithmPlotter.History 1.0 as History
 import eu.ad5001.LogarithmPlotter.ObjectLists 1.0
+import eu.ad5001.LogarithmPlotter.Overlay 1.0 as Overlay
 import eu.ad5001.LogarithmPlotter.Popup 1.0 as Popup
 
 /*!
@@ -120,16 +121,16 @@ ApplicationWindow {
             
             ObjectLists {
                 id: objectLists
-                onChanged: drawCanvas.requestPaint()
+                onChanged: Modules.Canvas.requestPaint()
             }
 
             Settings {
                 id: settings
                 canvas: drawCanvas
-                onChanged: drawCanvas.requestPaint()
+                onChanged: Modules.Canvas.requestPaint()
             }
 
-            HistoryBrowser {
+            History.Browser {
                 id: historyBrowser
             }
         }
@@ -154,18 +155,24 @@ ApplicationWindow {
             }
         }
         
-        ViewPositionChangeOverlay {
+        Overlay.ViewPositionChange {
             id: viewPositionChanger
             anchors.fill: parent
             canvas: parent
             settingsInstance: settings
         }
         
-        PickLocationOverlay {
+        Overlay.PickLocation {
             id: positionPicker
             anchors.fill: parent
             canvas: parent
         }
+        
+        // Overlay.Loading {
+        //     id: loadingOverlay
+        //     anchors.fill: parent
+        //     canvas: parent
+        // }
     }
     
     Timer {

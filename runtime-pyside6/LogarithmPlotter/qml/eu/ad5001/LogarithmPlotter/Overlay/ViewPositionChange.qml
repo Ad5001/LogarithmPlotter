@@ -19,7 +19,7 @@
 import QtQuick
 
 /*!
-    \qmltype ViewPositionChangeOverlay
+    \qmltype ViewPositionChange.Overlay
     \inqmlmodule eu.ad5001.LogarithmPlotter
     \brief Overlay used allow the user to drag the canvas' position and change the zoom level.
 

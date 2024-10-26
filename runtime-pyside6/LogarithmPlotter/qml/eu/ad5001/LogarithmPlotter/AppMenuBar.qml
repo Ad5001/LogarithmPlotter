@@ -20,7 +20,7 @@ import QtQuick
 import Qt.labs.platform as Native
 //import QtQuick.Controls 2.15
 import eu.ad5001.MixedMenu 1.1
-import "js/index.mjs" as JS
+import eu.ad5001.LogarithmPlotter.Common
 
 
 /*!

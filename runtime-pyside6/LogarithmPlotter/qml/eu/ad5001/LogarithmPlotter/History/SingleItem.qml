@@ -22,7 +22,7 @@ import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 
 /*!
-    \qmltype HistoryItem
+    \qmltype SingleItem
     \inqmlmodule eu.ad5001.LogarithmPlotter.History
     \brief Item representing an history action.
 

@@ -1,0 +1,4 @@
+module eu.ad5001.LogarithmPlotter.Overlay
+
+PickLocation 1.0 PickLocation.qml
+ViewPositionChange 1.0 ViewPositionChange.qml

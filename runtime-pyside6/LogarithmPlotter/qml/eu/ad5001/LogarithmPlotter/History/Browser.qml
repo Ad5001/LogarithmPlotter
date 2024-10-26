@@ -24,7 +24,7 @@ import eu.ad5001.LogarithmPlotter.Setting 1.0 as Setting
 
 
 /*!
-    \qmltype HistoryBrowser
+    \qmltype Browser
     \inqmlmodule eu.ad5001.LogarithmPlotter.History
     \brief Tab of the drawer that allows to navigate through the undo and redo history.
 
@@ -95,7 +95,7 @@ Item {
                 Repeater {
                     model: historyBrowser.redoCount
                 
-                    HistoryItem {
+                    SingleItem {
                         id: redoButton
                         width: historyBrowser.actionWidth
                         //height: actionHeight
@@ -147,7 +147,7 @@ Item {
                     model: historyBrowser.undoCount
                 
                     
-                    HistoryItem {
+                    SingleItem {
                         id: undoButton
                         width: historyBrowser.actionWidth
                         //height: actionHeight
