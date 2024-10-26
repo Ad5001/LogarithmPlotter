@@ -32,12 +32,10 @@ import eu.ad5001.LogarithmPlotter.Common
     
     \sa LogarithmPlotter, LogGraphCanvas
 */
-Rectangle {
+Item {
     id: pickerRoot
     visible: false
     clip: true
-    color: sysPalette.window
-    opacity: 0.35
 
     /*!
         \qmlsignal PickLocationOverlay::picked(var obj)
@@ -98,6 +96,11 @@ Rectangle {
     */
     readonly property bool userPickY: pickY && pickYCheckbox.checked
     
+    Rectangle {
+        anchors.fill: parent
+        color: sysPalette.window
+        opacity: 0.35
+    }
     
     MouseArea {
         id: picker
