@@ -41,6 +41,7 @@ MenuBar {
             shortcut: StandardKey.Open
             onTriggered: settings.load()
             icon.name: 'document-open'
+            icon.color: sysPalette.windowText
             
         }
         Action {
@@ -48,13 +49,14 @@ MenuBar {
             shortcut: StandardKey.Save
             onTriggered: settings.save()
             icon.name: 'document-save'
+            icon.color: sysPalette.windowText
         }
         Action {
             text: qsTr("Save &As...")
             shortcut: StandardKey.SaveAs
             onTriggered: settings.saveAs()
-            icon.name: 'document-save-as'
-            
+            icon.color: sysPalette.windowText
+            icon.name: 'document-save-as'            
         }
         MenuSeparator { }
         Action {
@@ -68,6 +70,7 @@ MenuBar {
             }
             
             icon.name: 'application-exit'
+            icon.color: sysPalette.windowText
         }
     }
     
@@ -92,6 +95,7 @@ MenuBar {
             shortcut: StandardKey.Copy
             onTriggered: root.copyDiagramToClipboard()
             icon.name: 'edit-copy'
+            icon.color: sysPalette.windowText
         }
         MenuSeparator { }
         Action { 
@@ -99,6 +103,7 @@ MenuBar {
             shortcut: StandardKey.Copy
             onTriggered: preferences.open()
             icon.name: 'settings'
+            icon.color: sysPalette.windowText
         }
     }
     
@@ -129,38 +134,45 @@ MenuBar {
         Action {
             text: qsTr("&Source code")
             icon.name: 'software-sources'
+            icon.color: sysPalette.windowText
             onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter")
         }
         Action {
             text: qsTr("&Report a bug")
             icon.name: 'tools-report-bug'
+            icon.color: sysPalette.windowText
             onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/issues")
         }
         Action {
             text: qsTr("&User manual")
             icon.name: 'documentation'
+            icon.color: sysPalette.windowText
             onTriggered: Qt.openUrlExternally("https://git.ad5001.eu/Ad5001/LogarithmPlotter/wiki/_Sidebar")
         }
         Action {
             text: qsTr("&Changelog")
             icon.name: 'state-information'
+            icon.color: sysPalette.windowText
             onTriggered: changelog.open()
         }
         Action {
             text: qsTr("&Help translating!")
-            icon.name: 'translator'
+            icon.name: 'translate'
+            icon.color: sysPalette.windowText
             onTriggered: Qt.openUrlExternally("https://hosted.weblate.org/engage/logarithmplotter/")
         }
         MenuSeparator { }
         Action {
             text: qsTr("&Thanks")
-            icon.name: 'about'
+            icon.name: 'help-about'
+            icon.color: sysPalette.windowText
             onTriggered: thanksTo.open()
         }
         Action {
             text: qsTr("&About")
             shortcut: StandardKey.HelpContents
-            icon.name: 'about'
+            icon.name: 'help-about'
+            icon.color: sysPalette.windowText
             onTriggered: about.open()
         }
     }
