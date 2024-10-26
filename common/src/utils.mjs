@@ -402,18 +402,6 @@ export function parseName(str, removeUnallowed = true) {
 }
 
 /**
- * Transforms camel case strings to a space separated one.
- *
- * @deprecated
- * @param {string} label - Camel case to parse
- * @returns {string} Parsed label.
- */
-export function camelCase2readable(label) {
-    let parsed = parseName(label, false)
-    return parsed.charAt(0).toLatinUppercase() + parsed.slice(1).replace(/([A-Z])/g, " $1")
-}
-
-/**
  * Creates a randomized color string.
  * @returns {string}
  */

@@ -74,7 +74,7 @@ Repeater {
         Setting.ExpressionEditor {
             height: 30
             label: propertyLabel
-            icon: `settings/custom/${propertyIcon}.svg`
+            icon: `properties/${propertyIcon}.svg`
             defValue: JS.Utils.simplifyExpression(obj[propertyName].toEditableString())
             self: obj.name
             variables: propertyType.variables
@@ -99,7 +99,7 @@ Repeater {
         Setting.TextSetting {
             height: 30
             label: propertyLabel
-            icon: `settings/custom/${propertyIcon}.svg`
+            icon: `properties/${propertyIcon}.svg`
             min: propertyType == "int" ? 0 : -Infinity
             isInt: propertyType == "int"
             isDouble: propertyType == "number"
@@ -159,7 +159,7 @@ Repeater {
         CheckBox {
             height: 20
             text: propertyLabel
-            //icon: `settings/custom/${propertyIcon}.svg`
+            //icon: `properties/${propertyIcon}.svg`
             
             checked: {
                 //if(obj[propertyName] == null) {
@@ -185,7 +185,7 @@ Repeater {
         Setting.ComboBoxSetting {
             height: 30
             label: propertyLabel
-            icon: `settings/custom/${propertyIcon}.svg`
+            icon: `properties/${propertyIcon}.svg`
             // True to select an object of type, false for enums.
             property bool selectObjMode: paramTypeIn(propertyType, ['ObjectType'])
             property bool isRealObject: !selectObjMode || (propertyType.objType != "ExecutableObject" && propertyType.objType != "DrawableObject")
@@ -246,7 +246,7 @@ Repeater {
         
         Setting.ListSetting {
             label: propertyLabel
-            //icon: `settings/custom/${propertyIcon}.svg`
+            //icon: `properties/${propertyIcon}.svg`
             dictionaryMode: paramTypeIn(propertyType, ['Dict'])
             keyType: dictionaryMode ? propertyType.keyType : 'string'
             valueType: propertyType.valueType
@@ -283,7 +283,7 @@ Repeater {
                 property string propertyName: modelData[0]
                 property var propertyType: modelData[1]
                 property string propertyLabel: qsTranslate('prop',propertyName)
-                property string propertyIcon: JS.Utils.camelCase2readable(propertyName)
+                property string propertyIcon: propertyName
                 
                 sourceComponent: {
                     if(propertyName.startsWith('comment'))

@@ -104,7 +104,7 @@ def get_platform_qt_style(os) -> str:
 def register_icon_directories() -> None:
     icon_fallbacks = QIcon.fallbackSearchPaths()
     base_icon_path = path.join(logarithmplotter_path, "qml", "eu", "ad5001", "LogarithmPlotter", "icons")
-    paths = [["common"], ["objects"], ["history"], ["settings"], ["settings", "custom"]]
+    paths = [["common"], ["objects"], ["history"], ["settings"], ["properties"]]
     for p in paths:
         icon_fallbacks.append(path.realpath(path.join(base_icon_path, *p)))
     QIcon.setFallbackSearchPaths(icon_fallbacks)
