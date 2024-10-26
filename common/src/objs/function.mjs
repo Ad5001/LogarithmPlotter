@@ -122,7 +122,9 @@ export default class Function extends ExecutableObject {
      */
     static drawFunction(canvas, expr, definitionDomain, destinationDomain, drawPoints = true, drawDash = true) {
         let pxprecision = 10
-        let previousX = canvas.px2x(0)
+        const startDrawFrom = canvas.x2px(1)%pxprecision-pxprecision
+        let previousX = canvas.px2x(startDrawFrom)
+        // console.log("Starting draw from", previousX, startDrawFrom, canvas.x2px(1))
         let previousY = null
         if(definitionDomain instanceof SpecialDomain && definitionDomain.moveSupported) {
             // Point based functions.
@@ -160,7 +162,7 @@ export default class Function extends ExecutableObject {
             // Calculate the previousY at the start of the canvas
             if(definitionDomain.includes(previousX))
                 previousY = expr.execute(previousX)
-            for(let px = pxprecision; px < canvas.width; px += pxprecision) {
+            for(let px = pxprecision; px-pxprecision < canvas.width; px += pxprecision) {
                 let currentX = canvas.px2x(px)
                 if(!definitionDomain.includes(previousX) && definitionDomain.includes(currentX)) {
                     // Should draw up to currentX, but NOT at previousX.
@@ -169,7 +171,7 @@ export default class Function extends ExecutableObject {
                     do {
                         tmpPx++
                         previousX = canvas.px2x(tmpPx)
-                    } while(!definitionDomain.includes(previousX))
+                    } while(!definitionDomain.includes(previousX) && currentX > previousX)
                     // Recaclulate previousY
                     previousY = expr.execute(previousX)
                 } else if(!definitionDomain.includes(currentX)) {
@@ -179,7 +181,7 @@ export default class Function extends ExecutableObject {
                     do {
                         tmpPx--
                         currentX = canvas.px2x(tmpPx)
-                    } while(!definitionDomain.includes(currentX) && currentX !== previousX)
+                    } while(!definitionDomain.includes(currentX) && currentX > previousX)
                 }
                 // This max variation is needed for functions with asymptotical vertical lines (e.g. 1/x, tan x...)
                 let maxvariation = (canvas.px2y(0) - canvas.px2y(canvas.height))
