@@ -23,7 +23,7 @@ const DEFAULT_SETTINGS = {
     "reset_redo_stack": true,
     "last_install_greet": "0",
     "enable_latex": true,
-    "enable_latex_async": true,
+    "enable_latex_threaded": true,
     "expression_editor": {
         "autoclose": true,
         "colorize": true,

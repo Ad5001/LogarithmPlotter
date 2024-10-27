@@ -28,7 +28,7 @@ DEFAULT_SETTINGS = {
     "reset_redo_stack": True,
     "last_install_greet": "0",
     "enable_latex": which("latex") is not None and which("dvipng") is not None,
-    "enable_latex_async": True,
+    "enable_latex_threaded": True,
     "expression_editor": {
         "autoclose": True,
         "colorize": True,

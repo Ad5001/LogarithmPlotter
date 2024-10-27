@@ -25,7 +25,10 @@ import Objects from "./objects.mjs"
 import History from "./history.mjs"
 import Settings from "./settings.mjs"
 
+
 class CanvasAPI extends Module {
+    
+    
     /** @type {CanvasInterface} */
     #canvas = null
     /** @type {CanvasRenderingContext2D} */

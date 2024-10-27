@@ -17,10 +17,10 @@
  */
 
 import QtQml
-import QtQuick.Controls
-import eu.ad5001.MixedMenu 1.1
-import QtQuick.Layouts 1.12
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts 1.12
+import eu.ad5001.MixedMenu 1.1
 
 // Auto loading all modules.
 import eu.ad5001.LogarithmPlotter.Common
@@ -158,21 +158,17 @@ ApplicationWindow {
         Overlay.ViewPositionChange {
             id: viewPositionChanger
             anchors.fill: parent
-            canvas: parent
-            settingsInstance: settings
         }
         
         Overlay.PickLocation {
             id: positionPicker
             anchors.fill: parent
-            canvas: parent
         }
+    }
         
-        // Overlay.Loading {
-        //     id: loadingOverlay
-        //     anchors.fill: parent
-        //     canvas: parent
-        // }
+    Overlay.Loading {
+        id: loadingOverlay
+        anchors.fill: parent
     }
     
     Timer {

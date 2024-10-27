@@ -17,6 +17,7 @@
  */
 
 import { Module } from "./common.mjs"
+import { BaseEvent } from "../events.mjs"
 import * as Instruction from "../lib/expr-eval/instruction.mjs"
 import { escapeValue } from "../lib/expr-eval/expression.mjs"
 import { HelperInterface, LatexInterface } from "./interface.mjs"
@@ -44,6 +45,28 @@ const equivalchars = ["\\pi", "\\infty",
     "{}_{4}", "{}_{5}", "{}_{6}", "{}_{7}", "{}_{8}", "{}_{9}", "{}_{0}",
 ]
 
+
+
+
+class AsyncRenderStartedEvent extends BaseEvent {
+    constructor(markup, fontSize, color) {
+        super("async-render-started")
+        this.markup = markup
+        this.fontSize = fontSize
+        this.color = color
+    }
+}
+
+
+class AsyncRenderFinishedEvent extends BaseEvent {
+    constructor(markup, fontSize, color) {
+        super("async-render-finished")
+        this.markup = markup
+        this.fontSize = fontSize
+        this.color = color
+    }
+}
+
 /**
  * Class containing the result of a LaTeX render.
  *
@@ -60,6 +83,8 @@ class LatexRenderResult {
 }
 
 class LatexAPI extends Module {
+    static emits = ["async-render-started", "async-render-finished"]
+    
     /** @type {LatexInterface} */
     #latex = null
 
@@ -113,10 +138,14 @@ class LatexAPI extends Module {
     async requestAsyncRender(markup, fontSize, color) {
         if(!this.initialized) throw new Error("Attempting requestAsyncRender before initialize!")
         let render
-        if(this.#latex.supportsAsyncRender)
+        if(this.#latex.supportsAsyncRender) {
+            console.trace()
+            this.emit(new AsyncRenderStartedEvent(markup, fontSize, color))
             render = await this.#latex.renderAsync(markup, fontSize, color)
-        else
+            this.emit(new AsyncRenderFinishedEvent(markup, fontSize, color))
+        } else {
             render = this.#latex.renderSync(markup, fontSize, color)
+        }
         const args = render.split(",")
         return new LatexRenderResult(...args)
     }

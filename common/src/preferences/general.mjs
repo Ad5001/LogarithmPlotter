@@ -47,8 +47,8 @@ class EnableLatex extends BoolSetting {
 }
 
 const ENABLE_LATEX_ASYNC = new BoolSetting(
-    qsTranslate("general", "Enable asynchronous LaTeX renderer"),
-    "enable_latex_async",
+    qsTranslate("general", "Enable threaded LaTeX renderer (experimental)"),
+    "enable_latex_threaded",
     "new"
 )
 

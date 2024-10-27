@@ -22,9 +22,9 @@ from os import path
 from re import compile
 
 CURRENT_PATH = path.dirname(path.realpath(__file__))
-SOURCEMAP_PATH = path.realpath(f"{CURRENT_PATH}/../qml/eu/ad5001/LogarithmPlotter/js/index.mjs.map")
+SOURCEMAP_PATH = path.realpath(f"{CURRENT_PATH}/../qml/eu/ad5001/LogarithmPlotter/Common/index.mjs.map")
 SOURCEMAP_INDEX = None
-INDEX_REG = compile(r"build\/runtime-pyside6\/LogarithmPlotter\/qml\/eu\/ad5001\/LogarithmPlotter\/js\/index.mjs:(\d+)")
+INDEX_REG = compile(r"build\/runtime-pyside6\/LogarithmPlotter\/qml\/eu\/ad5001\/LogarithmPlotter\/Common\/index.mjs:(\d+)")
 
 
 class LOG_COLORS:

@@ -95,11 +95,15 @@ export class Action {
         if(!Latex.enabled)
             throw new Error("Cannot render an item as LaTeX when LaTeX is disabled.")
         const imgDepth = History.imageDepth
-        const { source, width, height } = await Latex.requestAsyncRender(
+        const renderArguments = [
             latexString,
             imgDepth * (History.fontSize + 2),
             History.themeTextColor
-        )
+        ]
+        let render = Latex.findPrerendered(...renderArguments)
+        if(render === null)
+            render = await Latex.requestAsyncRender(...renderArguments)
+        const { source, width, height } = render
         return `<img src="${source}" width="${width / imgDepth}" height="${height / imgDepth}" style="vertical-align: middle"/>`
     }
 

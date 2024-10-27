@@ -91,7 +91,7 @@ class Latex(QObject):
 
     @Property(bool)
     def supportsAsyncRender(self) -> bool:
-        return config.getSetting("enable_latex_async")
+        return config.getSetting("enable_latex_threaded")
 
     @Slot(result=bool)
     def checkLatexInstallation(self) -> bool:

@@ -58,16 +58,6 @@ Item {
     signal endPositionChange(int deltaX, int deltaY)
     
     /*!
-       \qmlproperty var ViewPositionChangeOverlay::canvas
-       LogGraphCanvas instance.
-    */
-    property var canvas
-    /*!
-       \qmlproperty var ViewPositionChangeOverlay::settingsInstance
-       Settings instance.
-    */
-    property var settingsInstance
-    /*!
        \qmlproperty int ViewPositionChangeOverlay::prevX
        The x coordinate (on the mousearea) at the last change of the canvas position.
     */
