@@ -1321,7 +1321,7 @@ Kiértékelt kifejezés: %3</translation>
     <message>
         <location filename="../../common/src/module/io.mjs" line="169"/>
         <source>Could not load file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült betölteni a fájlt: </translation>
     </message>
     <message>
         <source>Could not save file: </source>
