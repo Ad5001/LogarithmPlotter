@@ -17,7 +17,7 @@
  */
 
 import * as Expr from "./expression.mjs"
-import * as Utils from "../utils.mjs"
+import * as Utils from "../utils/index.mjs"
 import Latex from "../module/latex.mjs"
 import Objects from "../module/objects.mjs"
 import ExprParser from "../module/expreval.mjs"

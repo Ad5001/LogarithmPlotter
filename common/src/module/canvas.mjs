@@ -18,7 +18,7 @@
 
 import { Module } from "./common.mjs"
 import { CanvasInterface, DialogInterface } from "./interface.mjs"
-import { textsup } from "../utils.mjs"
+import { textsup } from "../utils/index.mjs"
 import { Expression } from "../math/index.mjs"
 import Latex from "./latex.mjs"
 import Objects from "./objects.mjs"

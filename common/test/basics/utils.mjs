@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { textsup, textsub, parseName, getRandomColor, escapeHTML, exponentsToExpression } from "../../src/utils.mjs"
+import { textsup, textsub, parseName, getRandomColor, escapeHTML, exponentsToExpression } from "../../src/utils/index.mjs"
 
 
 import { describe, it } from "mocha"

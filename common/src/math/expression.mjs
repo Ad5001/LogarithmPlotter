@@ -17,11 +17,11 @@
  */
 
 
-import * as Utils from "../utils.mjs"
+import * as Utils from "../utils/index.mjs"
+import { ExprEvalExpression } from "../lib/expr-eval/expression.mjs"
 import Latex from "../module/latex.mjs"
 import ExprParser from "../module/expreval.mjs"
 import Objects from "../module/objects.mjs"
-import { ExprEvalExpression } from "../lib/expr-eval/expression.mjs"
 
 const NUMBER_MATCHER = /^\d*\.\d+(e[+-]\d+)?$/
 

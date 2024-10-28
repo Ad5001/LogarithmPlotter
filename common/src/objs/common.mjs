@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getRandomColor } from "../utils.mjs"
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
+import { getRandomColor } from "../utils/index.mjs"
 import { ensureTypeSafety, serializesByPropertyType } from "../parameters.mjs"
 
 // This file contains the default data to be imported from all other objects

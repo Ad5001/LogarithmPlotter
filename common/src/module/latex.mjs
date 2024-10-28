@@ -97,6 +97,7 @@ class LatexAPI extends Module {
          * true if latex has been enabled by the user, false otherwise.
          */
         this.enabled = false
+        this.promises = new Set()
     }
 
     /**
@@ -139,9 +140,12 @@ class LatexAPI extends Module {
         if(!this.initialized) throw new Error("Attempting requestAsyncRender before initialize!")
         let render
         if(this.#latex.supportsAsyncRender) {
-            console.trace()
             this.emit(new AsyncRenderStartedEvent(markup, fontSize, color))
-            render = await this.#latex.renderAsync(markup, fontSize, color)
+            // Storing promise so that it does not get dereferenced.
+            const promise = this.#latex.renderAsync(markup, fontSize, color)
+            this.promises.add(promise)
+            render = await promise
+            this.promises.delete(promise)
             this.emit(new AsyncRenderFinishedEvent(markup, fontSize, color))
         } else {
             render = this.#latex.renderSync(markup, fontSize, color)

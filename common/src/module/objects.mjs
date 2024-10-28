@@ -17,7 +17,7 @@
  */
 
 import { Module } from "./common.mjs"
-import { textsub } from "../utils.mjs"
+import { textsub } from "../utils/index.mjs"
 
 class ObjectsAPI extends Module {
 

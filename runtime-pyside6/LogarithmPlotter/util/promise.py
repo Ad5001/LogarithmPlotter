@@ -22,6 +22,8 @@ from PySide6.QtQml import QJSValue
 
 from LogarithmPlotter.util.js import PyJSValue
 
+NO_RETURN = [None, QJSValue.SpecialValue.UndefinedValue]
+
 
 def check_callable(function: Callable|QJSValue) -> Callable|None:
     """
@@ -153,13 +155,12 @@ class PyPromise(QObject):
     @Slot(QObject)
     def _fulfill(self, data):
         self._state = "fulfilled"
-        no_return = [None, QJSValue.SpecialValue.UndefinedValue]
         print("Finished", self._runner.args)
         for i in range(len(self._fulfills)):
             try:
                 result = self._fulfills[i](data)
                 result = result.qjs_value if isinstance(result, PyJSValue) else result
-                data = result if result not in no_return else data  # Forward data.
+                data = result if result not in NO_RETURN else data  # Forward data.
             except Exception as e:
                 self._reject(repr(e), start_at=i)
                 break
@@ -168,8 +169,7 @@ class PyPromise(QObject):
     @Slot(str)
     def _reject(self, error, start_at=0):
         self._state = "rejected"
-        no_return = [None, QJSValue.SpecialValue.UndefinedValue]
         for i in range(start_at, len(self._rejects)):
             result = self._rejects[i](error)
             result = result.qjs_value if isinstance(result, PyJSValue) else result
-            error = result if result not in no_return else error  # Forward data.
+            error = result if result not in NO_RETURN else error  # Forward data.

@@ -19,7 +19,7 @@
 import Objects from "../module/objects.mjs"
 import Latex from "../module/latex.mjs"
 import * as MathLib from "../math/index.mjs"
-import { escapeHTML } from "../utils.mjs"
+import { escapeHTML } from "../utils/index.mjs"
 import { Action } from "./common.mjs"
 
 /**

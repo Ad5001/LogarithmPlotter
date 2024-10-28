@@ -21,9 +21,10 @@ from platform import system as os_name, release as OS_RELEASE
 from sys import path as sys_path
 from sys import argv, exit
 from tempfile import TemporaryDirectory
+from math import ceil
 from time import time
 
-from PySide6.QtCore import QTranslator, QLocale
+from PySide6.QtCore import QTranslator, QLocale, QThreadPool, QThread
 from PySide6.QtGui import QIcon
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtQuickControls2 import QQuickStyle
@@ -162,7 +163,11 @@ def run():
 
     dep_time = time()
     print("Loaded dependencies in " + str((dep_time - start_time) * 1000) + "ms.")
-
+    
+    # Maxing thread count to half the computer's thread count to avoid maxing CPU
+    # with too many threads (and also leaving some for rendering).
+    QThreadPool.globalInstance().setMaxThreadCount(int(ceil(QThread.idealThreadCount() / 2)))
+    
     register_icon_directories()
     app = create_qapp()
     translator = install_translation(app)
