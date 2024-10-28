@@ -31,6 +31,10 @@ steps:
       - xvfb-run python3 run.py --test-build --no-check-for-updates
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test1.lpf
       - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/test2.lpf
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/all.lpf
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/magnitude.lpf
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/phase.lpf
+      - xvfb-run python3 run.py --test-build --no-check-for-updates ./ci/stress.lpf
     when:
       event: [ push, tag ]
 
