@@ -16,10 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from PySide6.QtWidgets import QMessageBox, QApplication
-from PySide6.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, Slot, QCoreApplication
+from PySide6.QtCore import QRunnable, QThreadPool, QThread, QObject, Signal, Slot, QCoreApplication, __version__ as PySide6_version
 from PySide6.QtQml import QJSValue
 from PySide6.QtGui import QImage
-from PySide6 import __version__ as PySide6_version
 
 from os import chdir, path
 from json import loads
