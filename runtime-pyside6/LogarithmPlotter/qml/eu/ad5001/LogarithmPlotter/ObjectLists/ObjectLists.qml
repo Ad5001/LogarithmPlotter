@@ -56,7 +56,7 @@ ScrollView {
             property var editingRows: []
             model: Modules.Objects.currentObjects[objType]
             width: objectsListView.width
-            height: contentItem.childrenRect.height + 10
+            height: contentItem.childrenRect.height + (visible ? 10 : 0)
             visible: model != undefined && model.length > 0
             interactive: false
             
