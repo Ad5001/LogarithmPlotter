@@ -27,9 +27,9 @@ rm $(find . -name "*.pyc")
 
 pyinstaller --add-data "LogarithmPlotter/qml:qml" \
             --add-data "LogarithmPlotter/i18n:i18n" \
-            --add-data "LICENSE.md:." \
-            --add-data "../assets/native/mac/logarithmplotterfile.icns:." \
-            --add-data "README.md:." \
+            --add-data "../../LICENSE.md:." \
+            --add-data "../../assets/native/mac/logarithmplotterfile.icns:." \
+            --add-data "../../README.md:." \
             --exclude-module "FixTk" \
             --exclude-module "tcl" \
             --exclude-module "tk" \
