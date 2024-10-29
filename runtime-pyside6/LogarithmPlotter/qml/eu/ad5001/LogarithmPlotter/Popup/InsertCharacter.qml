@@ -108,7 +108,6 @@ Popup {
         
         Component.onCompleted: function() {
             for(const chr of insertChars) {
-                console.log("Appending", chr)
                 model.append({ 'chr': chr })
             }
         }
