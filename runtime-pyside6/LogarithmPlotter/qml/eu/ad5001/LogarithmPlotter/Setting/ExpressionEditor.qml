@@ -500,29 +500,41 @@ Item {
     
     Button {
         id: insertButton
-        text: "α"
         anchors.right: parent.right
         anchors.rightMargin: 5
         anchors.verticalCenter: parent.verticalCenter
         width: 20
         height: width
+        
+        Icon {
+            id: icon
+            width: 12
+            height: 12
+            anchors.centerIn: parent
+            
+            color: sysPalette.windowText
+            source: '../icons/properties/expression.svg'
+        }
+        
         onClicked: {
             insertPopup.open()
-            insertPopup.focus = true
+            insertPopup.setFocus()
         }
     }
     
     P.InsertCharacter {
         id: insertPopup
         
-        x: Math.round((parent.width - width) / 2)
-        y: Math.round((parent.height - height) / 2)
+        x: parent.width - width
+        y: parent.height
         
         category: "expression"
         
         onSelected: function(c) {
             editor.insert(editor.cursorPosition, c)
-            insertPopup.close()
+        }
+        
+        onClosed: function() {
             focus = false
             editor.focus = true
         }

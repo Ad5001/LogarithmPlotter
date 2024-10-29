@@ -16,8 +16,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick.Controls
 import QtQuick 
+import QtQuick.Controls
+import QtQml.Models
 
 /*!
     \qmltype InsertCharacter
@@ -42,15 +43,18 @@ Popup {
     */
     property string category: 'all'
     
-    width: 280
-    height: Math.ceil(insertGrid.insertChars.length/insertGrid.columns)*(width/insertGrid.columns)+5
+    width: insertGrid.width + 10
+    height: insertGrid.height + 10
     modal: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
     
-    Grid {
+    GridView {
         id: insertGrid
-        width: parent.width
-        columns: 7
+        width: 280
+        height: Math.ceil(model.count/columns)*cellHeight
+        property int columns: 7
+        cellWidth: width/columns
+        cellHeight: cellWidth
         
         property var insertCharsExpression: [
             "∞","π","¹","²","³","⁴","⁵",
@@ -86,21 +90,34 @@ Popup {
             }[insertPopup.category]
         }
         
-        Repeater {
-            model: parent.insertChars.length
-            
-            Button {
-                id: insertBtn
-                width: insertGrid.width/insertGrid.columns
-                height: width
-                text: insertGrid.insertChars[modelData]
-                flat: text == " "
-                font.pixelSize: 18
-                
-                onClicked: {
-                    selected(text)
-                }
+        model: ListModel {}
+        
+        delegate: Button {
+            id: insertBtn
+            width: insertGrid.cellWidth
+            height: insertGrid.cellHeight
+            text: chr
+            flat: text == " "
+            font.pixelSize: 18
+             
+            onClicked: {
+                insertPopup.selected(text)
+                insertPopup.close()
+            }
+        }
+        
+        Component.onCompleted: function() {
+            for(const chr of insertChars) {
+                console.log("Appending", chr)
+                model.append({ 'chr': chr })
             }
         }
     }
+    
+    function setFocus() {
+        insertGrid.currentIndex = 0
+        insertGrid.forceActiveFocus()
+    }
+    
+    Keys.onEscapePressed: close()
 }
