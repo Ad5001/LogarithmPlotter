@@ -24,6 +24,7 @@ import { Expression, executeExpression } from "./expression.mjs"
  */
 export class Domain {
     constructor() {
+        this.latexMarkup = "#INVALID"
     }
 
     /**
@@ -206,8 +207,8 @@ export class Range extends Domain {
     }
 
     includes(x) {
-        if(x instanceof Expression) x = x.execute()
         if(typeof x == "string") x = executeExpression(x)
+        if(x instanceof Expression) x = x.execute()
         return ((this.openBegin && x > this.begin.execute()) || (!this.openBegin && x >= this.begin.execute())) &&
             ((this.openEnd && x < this.end.execute()) || (!this.openEnd && x <= this.end.execute()))
     }
@@ -249,15 +250,17 @@ export class SpecialDomain extends Domain {
     /**
      * @constructs SpecialDomain
      * @param {string} displayName
+     * @param {string} latexMarkup - markup representing the domain.
      * @param {function} isValid - function returning true when number is in domain false when it isn't.
      * @param {function} next - function provides the next positive value in the domain after the one given.
      * @param {function} previous - function provides the previous positive value in the domain before the one given.
      * @param {boolean} moveSupported - Only true if next and previous functions are valid.
      */
-    constructor(displayName, isValid, next = () => true, previous = () => true,
+    constructor(displayName, latexMarkup, isValid, next = () => true, previous = () => true,
         moveSupported = true) {
         super()
         this.displayName = displayName
+        this.latexMarkup = latexMarkup
         this.isValid = isValid
         this.nextValue = next
         this.prevValue = previous
@@ -562,39 +565,54 @@ Domain.RPE.latexMarkup = "\\mathbb{R}^{+*}"
 Domain.RME = new Range(-Infinity, 0, true, true)
 Domain.RME.displayName = "ℝ⁻*"
 Domain.RME.latexMarkup = "\\mathbb{R}^{+*}"
-Domain.N = new SpecialDomain("ℕ", x => x % 1 === 0 && x >= 0,
+Domain.N = new SpecialDomain(
+    "ℕ", "\\mathbb{N}",
+    x => x % 1 === 0 && x >= 0,
     x => Math.max(Math.floor(x) + 1, 0),
-    x => Math.max(Math.ceil(x) - 1, 0))
-Domain.N.latexMarkup = "\\mathbb{N}"
-Domain.NE = new SpecialDomain("ℕ*", x => x % 1 === 0 && x > 0,
+    x => Math.max(Math.ceil(x) - 1, 0)
+)
+Domain.NE = new SpecialDomain(
+    "ℕ*", "\\mathbb{N}^{*}",
+    x => x % 1 === 0 && x > 0,
     x => Math.max(Math.floor(x) + 1, 1),
-    x => Math.max(Math.ceil(x) - 1, 1))
-Domain.NE.latexMarkup = "\\mathbb{N}^{*}"
-Domain.Z = new SpecialDomain("ℤ", x => x % 1 === 0, x => Math.floor(x) + 1, x => Math.ceil(x) - 1)
-Domain.Z.latexMarkup = "\\mathbb{Z}"
-Domain.ZE = new SpecialDomain("ℤ*", x => x % 1 === 0 && x !== 0,
+    x => Math.max(Math.ceil(x) - 1, 1)
+)
+Domain.Z = new SpecialDomain(
+    "ℤ", "\\mathbb{Z}",
+    x => x % 1 === 0,
+    x => Math.floor(x) + 1,
+    x => Math.ceil(x) - 1
+)
+Domain.ZE = new SpecialDomain(
+    "ℤ*", "\\mathbb{Z}^{*}",
+    x => x % 1 === 0 && x !== 0,
     x => Math.floor(x) + 1 === 0 ? Math.floor(x) + 2 : Math.floor(x) + 1,
-    x => Math.ceil(x) - 1 === 0 ? Math.ceil(x) - 2 : Math.ceil(x) - 1)
-Domain.ZE.latexMarkup = "\\mathbb{Z}^{*}"
-Domain.ZM = new SpecialDomain("ℤ⁻", x => x % 1 === 0 && x <= 0,
+    x => Math.ceil(x) - 1 === 0 ? Math.ceil(x) - 2 : Math.ceil(x) - 1
+)
+Domain.ZM = new SpecialDomain(
+    "ℤ⁻", "\\mathbb{Z}^{-}",
+    x => x % 1 === 0 && x <= 0,
     x => Math.min(Math.floor(x) + 1, 0),
-    x => Math.min(Math.ceil(x) - 1, 0))
-Domain.ZM.latexMarkup = "\\mathbb{Z}^{-}"
-Domain.ZME = new SpecialDomain("ℤ⁻*", x => x % 1 === 0 && x < 0,
+    x => Math.min(Math.ceil(x) - 1, 0)
+)
+Domain.ZME = new SpecialDomain(
+    "ℤ⁻*", "\\mathbb{Z}^{-*}",
+    x => x % 1 === 0 && x < 0,
     x => Math.min(Math.floor(x) + 1, -1),
-    x => Math.min(Math.ceil(x) - 1, -1))
-Domain.ZME.latexMarkup = "\\mathbb{Z}^{-*}"
-Domain.NLog = new SpecialDomain("ℕˡᵒᵍ",
+    x => Math.min(Math.ceil(x) - 1, -1)
+)
+Domain.NLog = new SpecialDomain(
+    "ℕˡᵒᵍ", "\\mathbb{N}^{log}",
     x => x / Math.pow(10, Math.ceil(Math.log10(x))) % 1 === 0 && x > 0,
-    function(x) {
+    x => {
         let x10pow = Math.pow(10, Math.ceil(Math.log10(x)))
         return Math.max(1, (Math.floor(x / x10pow) + 1) * x10pow)
     },
-    function(x) {
+    x => {
         let x10pow = Math.pow(10, Math.ceil(Math.log10(x)))
         return Math.max(1, (Math.ceil(x / x10pow) - 1) * x10pow)
-    })
-Domain.NLog.latexMarkup = "\\mathbb{N}^{log}"
+    }
+)
 
 let refedDomains = []
 
@@ -626,7 +644,7 @@ export function parseDomainSimple(domain) {
     if(domain.includes("U") || domain.includes("∪")) return UnionDomain.import(domain)
     if(domain.includes("∩")) return IntersectionDomain.import(domain)
     if(domain.includes("∖") || domain.includes("\\")) return MinusDomain.import(domain)
-    if(domain.charAt(0) === "{" && domain.charAt(domain.length - 1) === "}") return DomainSet.import(domain)
+    if(domain.at(0) === "{" && domain.at(-1) === "}") return DomainSet.import(domain)
     if(domain.includes("]") || domain.includes("[")) return Range.import(domain)
     if(["R", "ℝ", "N", "ℕ", "Z", "ℤ"].some(str => domain.toUpperCase().includes(str)))
         return Domain.import(domain)

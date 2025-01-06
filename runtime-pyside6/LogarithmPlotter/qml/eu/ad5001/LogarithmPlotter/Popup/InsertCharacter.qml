@@ -111,6 +111,8 @@ Popup {
                 model.append({ 'chr': chr })
             }
         }
+        
+        Keys.onEscapePressed: parent.close()
     }
     
     function setFocus() {
@@ -118,5 +120,4 @@ Popup {
         insertGrid.forceActiveFocus()
     }
     
-    Keys.onEscapePressed: close()
 }
