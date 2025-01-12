@@ -212,8 +212,9 @@ class CanvasAPI extends Module {
      */
     redraw() {
         if(!this.initialized) throw new Error("Attempting redraw before initialize!")
+        if(this.#ctx == null)
+            this.#ctx = this.#canvas.getContext("2d")
         this.#redrawCount = (this.#redrawCount + 1) % 10000
-        this.#ctx = this.#canvas.getContext("2d")
         this._computeAxes()
         this._reset()
         this._drawGrid()
