@@ -458,12 +458,12 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/Loading.qml" line="99"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement…</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/Loading.qml" line="127"/>
         <source>Finished rendering of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendu de %1 terminé</translation>
     </message>
 </context>
 <context>
@@ -471,7 +471,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="46"/>
         <source>untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>sans titre</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="90"/>
@@ -883,7 +883,7 @@ Ces paramètres peuvent être modifiés à tout moment à partir du menu &quot;P
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="274"/>
         <source>Tamil</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamoul</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="285"/>
@@ -1337,7 +1337,7 @@ Formule analysée : %3</translation>
     <message>
         <location filename="../../common/src/preferences/general.mjs" line="50"/>
         <source>Enable threaded LaTeX renderer (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le moteur de rendu LaTeX asynchrone (expérimental)</translation>
     </message>
 </context>
 <context>
@@ -1482,24 +1482,27 @@ Vérifiez que votre installation de LaTeX est correcte et signalez un bogue si c
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="108"/>
         <source>This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.
 Please update LogarithmPlotter to open this file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce fichier a été créé par une version plus récente de LogarithmPlotter et ne peut pas être rechargé dans LogarithmPlotter v{}.
+Veuillez mettre à jour LogarithmPlotter pour ouvrir ce fichier.</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="113"/>
         <source>Could not open file &quot;{}&quot;:
 {}</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir le fichier &quot;{}&quot;:
+{}</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="116"/>
         <source>Could not open file: &quot;{}&quot;
 File does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir le fichier &quot;{}&quot;:
+Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
         <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="152"/>
         <source>Built with PySide6 (Qt) v{} and python v{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilé avec PySide6 (Qt) v{} et python v{}</translation>
     </message>
 </context>
 <context>
