@@ -42,47 +42,47 @@
         <translation>&amp;Laden…</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="47"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="48"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="53"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="55"/>
         <source>Save &amp;As...</source>
         <translation>Speichern &amp;Unter…</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="61"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="63"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ausfahrt</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="75"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="78"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="77"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="80"/>
         <source>&amp;Undo</source>
         <translation>&amp;Lösen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="84"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="87"/>
         <source>&amp;Redo</source>
         <translation>&amp;Wiederherstellen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="91"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="94"/>
         <source>&amp;Copy plot</source>
         <translation>Grafik &amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="98"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="102"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Einstellung</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="106"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="111"/>
         <source>&amp;Create</source>
         <translation>&amp;Erstellen</translation>
     </message>
@@ -123,52 +123,52 @@
         <translation type="vanished">Syntaktische Färbung</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="128"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="133"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="130"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
         <source>&amp;Source code</source>
         <translation>&amp;Quellcode</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="135"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="141"/>
         <source>&amp;Report a bug</source>
         <translation>Fehler &amp;Melden</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="140"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="147"/>
         <source>&amp;User manual</source>
         <translation>&amp;Benutzerhandbuch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="145"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="153"/>
         <source>&amp;Changelog</source>
         <translation>&amp;Versionshinweise</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="150"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="159"/>
         <source>&amp;Help translating!</source>
         <translation>&amp;Hilfe beim Übersetzen!</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="156"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="166"/>
         <source>&amp;Thanks</source>
         <translation>&amp;Danksagungen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="161"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="172"/>
         <source>&amp;About</source>
         <translation>&amp;Übrigens</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="170"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="182"/>
         <source>Save unsaved changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="171"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/AppMenuBar.qml" line="183"/>
         <source>This plot contains unsaved changes. By doing this, all unsaved data will be lost. Continue?</source>
         <translation>Diese Grafik enthält ungespeicherte Änderungen. Dadurch gehen alle ungespeicherten Daten verloren. Fortfahren?</translation>
     </message>
@@ -186,6 +186,29 @@
     <message>
         <source>Check for updates on startup</source>
         <translation type="vanished">Beim Starten auf Updates prüfen</translation>
+    </message>
+</context>
+<context>
+    <name>Browser</name>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/Browser.qml" line="70"/>
+        <source>Filter...</source>
+        <translation>Filtern…</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/Browser.qml" line="116"/>
+        <source>Redo &gt;</source>
+        <translation>Wiederherstellen &gt;</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/Browser.qml" line="135"/>
+        <source>&gt; Now</source>
+        <translation>&gt; Aktueller Stand</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/History/Browser.qml" line="169"/>
+        <source>&lt; Undo</source>
+        <translation>&lt; Rückgängig</translation>
     </message>
 </context>
 <context>
@@ -218,22 +241,22 @@
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="86"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="85"/>
         <source>Edit properties of %1 %2</source>
         <translation>Eigenschaften von %1 %2 bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="93"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="92"/>
         <source>LogarithmPlotter - Invalid object name</source>
         <translation>LogarithmPlotter - Ungültiger Objektname</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="96"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="95"/>
         <source>An object with the name &apos;%1&apos; already exists.</source>
         <translation>Ein Objekt mit dem Namen &apos;%1&apos; existiert bereits.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="104"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="103"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -242,17 +265,17 @@
         <translation type="vanished">Etikett</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
         <source>null</source>
         <translation>leer</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
         <source>name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="131"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
         <source>name + value</source>
         <translation>Name + Wert</translation>
     </message>
@@ -429,19 +452,37 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
 </context>
 <context>
+    <name>Loading</name>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/Loading.qml" line="99"/>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/Loading.qml" line="127"/>
+        <source>Finished rendering of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LogarithmPlotter</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="91"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="46"/>
+        <source>untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="90"/>
         <source>Objects</source>
         <translation>Objekte</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="97"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="96"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="103"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="102"/>
         <source>History</source>
         <translation>Verlauf</translation>
     </message>
@@ -470,17 +511,17 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation type="vanished">Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="218"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="219"/>
         <source>Copied plot screenshot to clipboard!</source>
         <translation>Grafik in die Zwischenablage kopiert!</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="233"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="234"/>
         <source>&amp;Update</source>
         <translation>&amp;Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="235"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/LogarithmPlotter.qml" line="236"/>
         <source>&amp;Update LogarithmPlotter</source>
         <translation>LogarithmPlotter &amp;aktualisieren</translation>
     </message>
@@ -555,45 +596,76 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     </message>
 </context>
 <context>
-    <name>PickLocationOverlay</name>
+    <name>PickLocation</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="177"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="177"/>
         <source>Pointer precision:</source>
         <translation>Genauigkeit des Zeigers:</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="184"/>
+        <source>Snap to grid:</source>
+        <translation>Am Raster einrasten:</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="193"/>
+        <source>Pick X</source>
+        <translation>X nehmen</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="227"/>
+        <source>Pick Y</source>
+        <translation>Y nehmen</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="243"/>
+        <source>Open picker settings</source>
+        <translation>Zeigereinstellungen öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="243"/>
+        <source>Hide picker settings</source>
+        <translation>Zeigereinstellungen ausblenden</translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Overlay/PickLocation.qml" line="316"/>
+        <source>(no pick selected)</source>
+        <translation>(keine Auswahl ausgewählt)</translation>
+    </message>
+</context>
+<context>
+    <name>PickLocationOverlay</name>
+    <message>
+        <source>Pointer precision:</source>
+        <translation type="vanished">Genauigkeit des Zeigers:</translation>
     </message>
     <message>
         <source>Snap to grid</source>
         <translation type="vanished">Am Gitter einrasten</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="184"/>
         <source>Snap to grid:</source>
-        <translation>Am Raster einrasten:</translation>
+        <translation type="vanished">Am Raster einrasten:</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="193"/>
         <source>Pick X</source>
-        <translation>X nehmen</translation>
+        <translation type="vanished">X nehmen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="227"/>
         <source>Pick Y</source>
-        <translation>Y nehmen</translation>
+        <translation type="vanished">Y nehmen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="243"/>
         <source>Open picker settings</source>
-        <translation>Zeigereinstellungen öffnen</translation>
+        <translation type="vanished">Zeigereinstellungen öffnen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="243"/>
         <source>Hide picker settings</source>
-        <translation>Zeigereinstellungen ausblenden</translation>
+        <translation type="vanished">Zeigereinstellungen ausblenden</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/PickLocationOverlay.qml" line="316"/>
         <source>(no pick selected)</source>
-        <translation>(keine Auswahl ausgewählt)</translation>
+        <translation type="vanished">(keine Auswahl ausgewählt)</translation>
     </message>
 </context>
 <context>
@@ -769,22 +841,22 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation>E-Mail</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="239"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="244"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="244"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="249"/>
         <source>French</source>
         <translation>Französisch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="249"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="254"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="254"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
@@ -792,26 +864,32 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="219"/>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="224"/>
         <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="229"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="239"/>
         <source>Github</source>
         <translation>GitHub</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="259"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
         <source>Norwegian</source>
         <translation>Norwegisch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="264"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="269"/>
         <source>Spanish</source>
         <translation>Spanisch</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="275"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="274"/>
+        <source>Tamil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="285"/>
         <source>Translations included</source>
         <translation>Einschließlich Übersetzungen</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="304"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/ThanksTo.qml" line="314"/>
         <source>Improve</source>
         <translation>Verbessern</translation>
     </message>
@@ -875,12 +953,13 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
 <context>
     <name>changelog</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="65"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="60"/>
         <source>Could not fetch changelog: Server error {}.</source>
         <translation>Changelog konnte nicht geholt werden: Server-Fehler {}.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="68"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Popup/Changelog.qml" line="53"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="63"/>
         <source>Could not fetch update: {}.</source>
         <translation>Changelog konnte nicht geholt werden: {}.</translation>
     </message>
@@ -982,34 +1061,34 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
     <name>error</name>
     <message>
         <location filename="../../common/src/lib/expr-eval/expression.mjs" line="96"/>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="241"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="238"/>
         <source>Cannot find property %1 of object %2.</source>
         <translation>Eigenschaft %1 von Objekt %2 kann nicht gefunden werden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="204"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="201"/>
         <source>Undefined variable %1.</source>
         <translation>Die Variable %1 ist nicht definiert.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="225"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="222"/>
         <source>In order to be executed, object %1 must have at least one argument.</source>
         <translation>Um als Funktion verwendet zu werden, benötigt das Objekt %1 mindestens ein Parameter.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="227"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="224"/>
         <source>%1 cannot be executed.</source>
         <translation>%1 ist keine Formel.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="252"/>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="339"/>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="384"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="249"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="336"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="381"/>
         <source>Invalid expression.</source>
         <translation>Ungültiger Ausdruck.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="256"/>
+        <location filename="../../common/src/lib/expr-eval/expression.mjs" line="253"/>
         <source>Invalid expression (parity).</source>
         <translation>Ungültiger Ausdruck (Parität).</translation>
     </message>
@@ -1068,78 +1147,70 @@ Diese Einstellungen können jederzeit über das Menü &quot;Einstellungen&quot; 
         <translation>Unerwartetes Symbol: %1.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="285"/>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="295"/>
+        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="279"/>
+        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="289"/>
         <source>Function %1 must have at least one argument.</source>
         <translation>Die Funktion %1 benötigt mindestens ein Parameter.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="301"/>
         <source>First argument to map is not a function.</source>
-        <translation>Der erste Parameter von map ist keine Formel.</translation>
+        <translation type="vanished">Der erste Parameter von map ist keine Formel.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="304"/>
         <source>Second argument to map is not an array.</source>
-        <translation>Der zweite Parameter von map ist kein Array.</translation>
+        <translation type="vanished">Der zweite Parameter von map ist kein Array.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="313"/>
         <source>First argument to fold is not a function.</source>
-        <translation>Der erste Parameter für fold ist keine Formel.</translation>
+        <translation type="vanished">Der erste Parameter für fold ist keine Formel.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="316"/>
         <source>Second argument to fold is not an array.</source>
-        <translation>Der zweite Parameter für fold ist kein Array.</translation>
+        <translation type="vanished">Der zweite Parameter für fold ist kein Array.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="325"/>
         <source>First argument to filter is not a function.</source>
-        <translation>Der erste Parameter für filter ist keine Formel.</translation>
+        <translation type="vanished">Der erste Parameter für filter ist keine Formel.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="328"/>
         <source>Second argument to filter is not an array.</source>
-        <translation>Der zweite Parameter von filter ist kein Array.</translation>
+        <translation type="vanished">Der zweite Parameter von filter ist kein Array.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="337"/>
         <source>Second argument to indexOf is not a string or array.</source>
-        <translation>Der zweite Parameter von indexOf ist kein String oder Array.</translation>
+        <translation type="vanished">Der zweite Parameter von indexOf ist kein String oder Array.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/polyfill.mjs" line="345"/>
         <source>Second argument to join is not an array.</source>
-        <translation>Der zweite Parameter von join ist kein Array.</translation>
+        <translation type="vanished">Der zweite Parameter von join ist kein Array.</translation>
     </message>
     <message>
-        <location filename="../../common/src/lib/expr-eval/parser.mjs" line="157"/>
+        <location filename="../../common/src/lib/expr-eval/parser.mjs" line="149"/>
         <source>EOF</source>
         <translation>Ende des Ausdrucks</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="544"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="556"/>
         <source>No object found with names %1.</source>
         <translation>Kein Objekt mit Namen %1 gefunden.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="546"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="558"/>
         <source>No object found with name %1.</source>
         <translation>Kein Objekt mit dem Namen %1 gefunden.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="549"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="561"/>
         <source>Object cannot be dependent on itself.</source>
         <translation>Ein Objekt kann nicht von sich selbst abhängen.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="556"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="568"/>
         <source>Circular dependency detected. Object %1 depends on %2.</source>
         <translation>Zirkuläre Abhängigkeit entdeckt. Objekt %1 hängt von %2 ab.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="558"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/Setting/ExpressionEditor.qml" line="570"/>
         <source>Circular dependency detected. Objects %1 depend on %2.</source>
         <translation>Zirkuläre Abhängigkeit entdeckt. Objekte %1 hängen von %2 ab.</translation>
     </message>
@@ -1260,6 +1331,11 @@ Ausdruck analysiert: %3</translation>
         <source>Enable LaTeX rendering</source>
         <translation>LaTeX-Rendering aktivieren</translation>
     </message>
+    <message>
+        <location filename="../../common/src/preferences/general.mjs" line="50"/>
+        <source>Enable threaded LaTeX renderer (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>historylib</name>
@@ -1303,38 +1379,32 @@ Ausdruck analysiert: %3</translation>
         <translation type="vanished">Verlauf</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="94"/>
         <source>Saved plot to &apos;%1&apos;.</source>
-        <translation>Gespeicherte Grafik auf &apos;%1&apos;.</translation>
+        <translation type="vanished">Gespeicherte Grafik auf &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="106"/>
         <source>Loading file &apos;%1&apos;.</source>
-        <translation>Laden der Datei &apos;%1&apos;.</translation>
+        <translation type="vanished">Laden der Datei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="150"/>
         <source>Unknown object type: %1.</source>
-        <translation>Unbekannter Objekttyp: %1.</translation>
+        <translation type="vanished">Unbekannter Objekttyp: %1.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="165"/>
         <source>Invalid file provided.</source>
-        <translation>Ungültige Datei angegeben.</translation>
+        <translation type="vanished">Ungültige Datei angegeben.</translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="169"/>
         <source>Could not load file: </source>
-        <translation>Datei konnte nicht geladen werden: </translation>
+        <translation type="vanished">Datei konnte nicht geladen werden: </translation>
     </message>
     <message>
         <source>Could not save file: </source>
         <translation type="vanished">Die Datei konnte nicht gespeichert werden: </translation>
     </message>
     <message>
-        <location filename="../../common/src/module/io.mjs" line="174"/>
         <source>Loaded file &apos;%1&apos;.</source>
-        <translation>Geladene Datei &apos;%1&apos;.</translation>
+        <translation type="vanished">Geladene Datei &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Copied plot screenshot to clipboard!</source>
@@ -1352,7 +1422,7 @@ Ausdruck analysiert: %3</translation>
 <context>
     <name>latex</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="94"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="106"/>
         <source>No Latex installation found.
 If you already have a latex distribution installed, make sure it&apos;s installed on your path.
 Otherwise, you can download a Latex distribution like TeX Live at https://tug.org/texlive/.</source>
@@ -1361,12 +1431,12 @@ Wenn Sie bereits eine LaTeX-Distribution installiert haben, vergewissern Sie sic
 Andernfalls können Sie eine LaTeX-Distribution wie TeX Live unter https://tug.org/texlive/ herunterladen.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="100"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="112"/>
         <source>DVIPNG was not found. Make sure you include it from your Latex distribution.</source>
         <translation>DVIPNG wurde nicht gefunden. Stellen Sie sicher, dass Sie es aus Ihrer LaTeX-Distribution einbinden.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="202"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="272"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; ended with a non-zero return code {}:
 
@@ -1379,7 +1449,7 @@ Der Prozess &apos;{}&apos; wurde mit einem Rückgabecode ungleich Null beendet {
 Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melden Sie einen Fehler, falls dies der Fall ist.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="216"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="286"/>
         <source>Your LaTeX installation does not include some required packages:
 
 - {} (https://ctan.org/pkg/{})
@@ -1392,7 +1462,7 @@ Make sure said package is installed, or disable the LaTeX rendering in Logarithm
 Stellen Sie sicher, dass diese Pakete installiert sind, oder deaktivieren Sie das LaTeX-Rendering in LogarithmPlotter.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="220"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/latex.py" line="290"/>
         <source>An exception occured within the creation of the latex formula.
 Process &apos;{}&apos; took too long to finish:
 {}
@@ -1401,6 +1471,32 @@ Please make sure your latex installation is correct and report a bug if so.</sou
 Der Prozess &apos;{}&apos; brauchte zu lange, um beendet zu werden:
 {}
 Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melden Sie einen Fehler, falls dies der Fall ist.</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="108"/>
+        <source>This file was created by a more recent version of LogarithmPlotter and cannot be backloaded in LogarithmPlotter v{}.
+Please update LogarithmPlotter to open this file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="113"/>
+        <source>Could not open file &quot;{}&quot;:
+{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="116"/>
+        <source>Could not open file: &quot;{}&quot;
+File does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/helper.py" line="152"/>
+        <source>Built with PySide6 (Qt) v{} and python v{}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1727,7 +1823,7 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
         <translation type="vanished">Farbe</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="130"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/qml/eu/ad5001/LogarithmPlotter/ObjectLists/Editor/Dialog.qml" line="129"/>
         <source>labelContent</source>
         <translation>Etikett</translation>
     </message>
@@ -1804,22 +1900,22 @@ Bitte vergewissern Sie sich, dass Ihre LaTeX-Installation korrekt ist, und melde
 <context>
     <name>update</name>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="56"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="57"/>
         <source>An update for LogarithmPlotter (v{}) is available.</source>
         <translation>Ein Update für LogarithmPlotter (v{}) ist verfügbar.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="61"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="63"/>
         <source>No update available.</source>
         <translation>Keine Aktualisierung verfügbar.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="64"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="66"/>
         <source>Could not fetch update information: Server error {}.</source>
         <translation>Es konnten keine Aktualisierungsinformationen abgerufen werden: Server-Fehler {}.</translation>
     </message>
     <message>
-        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="68"/>
+        <location filename="../../runtime-pyside6/LogarithmPlotter/util/update.py" line="69"/>
         <source>Could not fetch update information: {}.</source>
         <translation>Es konnten keine Aktualisierungsinformationen abgerufen werden:{}.</translation>
     </message>

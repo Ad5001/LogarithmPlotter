@@ -232,6 +232,11 @@ BaseDialog {
                                 authorLine: 'gallegonovato',
                                 website: '',
                                 websiteName: ''
+                            },
+                            TamilNeram: {
+                                authorLine: 'தமிழ் நேரம்',
+                                website: 'https://github.com/TamilNeram',
+                                websiteName: qsTr('Github')
                             }
                         }
                         
@@ -264,6 +269,11 @@ BaseDialog {
                             tranName: '🇪🇸 ' + qsTr('Spanish'),
                             link: 'https://hosted.weblate.org/projects/logarithmplotter/logarithmplotter/es/',
                             authors: [authors.IngrownMink4, authors.gallegonovato]
+                        })
+                        append({
+                            tranName: '🇱🇰 ' + qsTr('Tamil'),
+                            link: 'https://hosted.weblate.org/projects/logarithmplotter/logarithmplotter/ta/',
+                            authors: [authors.TamilNeram]
                         })
                     }
                 }
